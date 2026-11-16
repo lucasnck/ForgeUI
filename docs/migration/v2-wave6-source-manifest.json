@@ -1,0 +1,232 @@
+{
+  "date": "2026-11-14",
+  "phase": "wave6",
+  "files": [
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Select/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Select/definition.ts",
+      "sha256": "ab3397bbf660f929a5674e5a9d84be14c1d3e3ee7d146bfcaff0c966f4cc2f70",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; exemplos mantêm o modelo original; Select substitui FormField por Stack/Label enquanto FormField não está migrado."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Select/Select.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Select/Select.example.tsx",
+      "sha256": "2b0dc1145a5e2088d6e3b621f57cb703499f95ad84edd5bfffdabd304abaccc1",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; exemplos mantêm o modelo original; Select substitui FormField por Stack/Label enquanto FormField não está migrado."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Select/useSelectExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Select/useSelectExample.ts",
+      "sha256": "bcefd921dd60f1494e3ae100e3ae7763d7e781dc82590a5c1272256f3fe8b5ad",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; exemplos mantêm o modelo original; Select substitui FormField por Stack/Label enquanto FormField não está migrado."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Select/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Select/usage-code.ts",
+      "sha256": "157ec68827256ab9762f9fb38df142f247f5bb32c606467a0fa5a74ec4f95404",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; exemplos mantêm o modelo original; Select substitui FormField por Stack/Label enquanto FormField não está migrado."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Option/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Option/definition.ts",
+      "sha256": "2653706ef0e1a779080564681ba043022dc87b9ccc0cd596bb8718d310da5fe4",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Option/Option.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Option/Option.example.tsx",
+      "sha256": "1695233a4844e362fd91b9fa6f8eab3fabdced393660f33c6fe8bd7956c543b7",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Option/useOptionExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Option/useOptionExample.ts",
+      "sha256": "15f3a69e38a6614a89f90b7dc6ce0257d5c83dec9b1ea95536a9dd9d77368e8e",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Option/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Option/usage-code.ts",
+      "sha256": "157ec68827256ab9762f9fb38df142f247f5bb32c606467a0fa5a74ec4f95404",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Container/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Container/definition.ts",
+      "sha256": "06df471af8ae2eb52d4565e5550c055a8686c351ab8651bfb8d88c3fba54f58c",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Container/Container.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Container/Container.example.tsx",
+      "sha256": "593cc4ccece4500d8f247e0923237ef3eeaf4ae9fd552dfd02dbddce609e186b",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Container/useContainerExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Container/useContainerExample.ts",
+      "sha256": "2a892da8d6d0384b6fbaa8fe8517e1515929587706c3d432fbe8b77627dfa8c7",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Container/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Container/usage-code.ts",
+      "sha256": "5e67c90061db232fa1fbc65737d136648bfe0e4fce6abeb1a2b2a56ced81161c",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Stack/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Stack/definition.ts",
+      "sha256": "0ad98a9322735e5f8f83d8eec4d537239989aa5d15de0b5cd68f4656026bfb0c",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Stack/Stack.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Stack/Stack.example.tsx",
+      "sha256": "6161d2f5386e05477ea5f771975e58f98ed6888ef811fbf1e3651d8ef262f068",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Stack/useStackExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Stack/useStackExample.ts",
+      "sha256": "eb9a6c123e644e5d127ad07e49027c0301a302f705603237400b944bc8cda191",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Stack/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Stack/usage-code.ts",
+      "sha256": "907535f00b6eaeb8bf849a486c444d534066400fda140197aedb05e6d01d3d88",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Inline/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Inline/definition.ts",
+      "sha256": "305b4bf1c10995641b5fc38d2f53ac468bffb115d3476217b27abcbeadae356f",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Inline/Inline.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Inline/Inline.example.tsx",
+      "sha256": "186d9412fc968b3132a3e9f51dc1f87375f32f13bce78463de5368369830d63f",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Inline/useInlineExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Inline/useInlineExample.ts",
+      "sha256": "a10321e0fa04902eb3279620c729fe6e16ad04baf089a74d8baec2f5e6d4550b",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Inline/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Inline/usage-code.ts",
+      "sha256": "f39507218bc4e51e090dfec3103a895ed2406c4caa6e7f91f3bd77f436e92059",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Link/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Link/definition.ts",
+      "sha256": "a66aeca28509b5261fe83f42bcc9fd6261bc42931b56e2b0be58b5407ff2f79e",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Link/Link.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Link/Link.example.tsx",
+      "sha256": "e4a4e42ab0b737310f9e2869e2abc2119cb492677a36ff169095e16c03d6e553",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Link/useLinkExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Link/useLinkExample.ts",
+      "sha256": "90ae74b2a97b517b3a0ba4daea999be16ae9f93b24d4134d32851fbfbc6648e8",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Link/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Link/usage-code.ts",
+      "sha256": "fc957a7a2306eecee70860c068e876c1a987ff814c58c2284d7dc9a05f15c1ed",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Surface/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Surface/definition.ts",
+      "sha256": "5fa9ed2c05cdbebbb64a9ec3521050c8c42fb60f2348ca7ead69d74f59d17bfa",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Surface/Surface.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Surface/Surface.example.tsx",
+      "sha256": "baaa05ecdd444d84885740a138784a2ebe161a7c5231d73a28b68cac049758fb",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Surface/useSurfaceExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Surface/useSurfaceExample.ts",
+      "sha256": "b72a31bcd7cfdd75a4261ab92613bbc957eb530117e4ab293ac9c8b71f656b2a",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Surface/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Surface/usage-code.ts",
+      "sha256": "526801a14284e447e6d277a69aba1f5923af05374127694683b25879ee5b5269",
+      "mode": "ported-adapted",
+      "notes": "Imports da aplicação trocados por @forge-ui/web; hook/definição/snippet originais preservados."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ResourceExamples/useNativeRecipeOptions.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/ResourceExamples/useNativeRecipeOptions.ts",
+      "sha256": "43e8dbc54b8018a90452d148ee0680cb5b23447742708decbe1caaefc53061a3",
+      "mode": "ported-adapted"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ResourceExamples/useResourceExampleCopy.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/ResourceExamples/useResourceExampleCopy.ts",
+      "sha256": "c251c7fd68c752dd9d820d625cf9a7166c3e52343c62942341797fedaa91b15a",
+      "mode": "ported-adapted"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ResourceExamples/ResourceState.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/ResourceExamples/ResourceState.tsx",
+      "sha256": "96216f6f303d81d86d41962c4391895dfc77c765403da033d1da3d3441938a08",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ComponentExamples/useNativeFieldFixture.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/ComponentExamples/useNativeFieldFixture.ts",
+      "sha256": "8c8815b7c59cc2805af30a9c4152af80cc7f64c41a20255084a7b6763fd76df9",
+      "mode": "exact-copy"
+    }
+  ],
+  "adaptationNotes": [
+    "FormField não foi substituído dentro da biblioteca; o SelectExample usa Label/Stack no portal.",
+    "A localização de idioma do PraticarFront usa ForgePreferences; nenhum import de @/ ou serviços de negócio.",
+    "A tela das definições originais fica no client boundary SourceDefinitionPage e reutiliza ShowcaseV2Renderer.",
+    "Não declarar paridade, typecheck, build e screenshots sem evidência real."
+  ]
+}

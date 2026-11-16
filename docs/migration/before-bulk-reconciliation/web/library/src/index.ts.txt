@@ -1,0 +1,144 @@
+/** Public, framework-agnostic-to-Next React component exports from the extracted Forge UI slice. */
+export { Button } from "./design-system/components/atoms/Button";
+export type { ButtonProps } from "./design-system/components/atoms/Button";
+export { Badge } from "./design-system/components/atoms/Badge";
+export type { BadgeProps } from "./design-system/components/atoms/Badge";
+export { Input } from "./design-system/components/atoms/Input";
+export type { InputProps } from "./design-system/components/atoms/Input";
+export { Checkbox } from "./design-system/components/atoms/Checkbox";
+export type { CheckboxProps } from "./design-system/components/atoms/Checkbox";
+export { Text } from "./design-system/components/atoms/Text";
+export type { TextProps } from "./design-system/components/atoms/Text";
+export { Spinner } from "./design-system/components/atoms/Spinner";
+export type { SpinnerProps } from "./design-system/components/atoms/Spinner";
+export type { ComponentSize, ComponentTone, ComponentAppearance, ComponentShape } from "./design-system/types/component-capabilities";
+export { Textarea } from "./design-system/components/atoms/Textarea";
+export type { TextareaProps } from "./design-system/components/atoms/Textarea";
+export { Switch } from "./design-system/components/atoms/Switch";
+export type { SwitchProps } from "./design-system/components/atoms/Switch";
+export { Radio } from "./design-system/components/atoms/Radio";
+export type { RadioProps } from "./design-system/components/atoms/Radio";
+export { Label } from "./design-system/components/atoms/Label";
+export type { LabelProps } from "./design-system/components/atoms/Label";
+export { Divider } from "./design-system/components/atoms/Divider";
+export type { DividerProps } from "./design-system/components/atoms/Divider";
+export { Heading } from "./design-system/components/atoms/Heading";
+export type { HeadingProps } from "./design-system/components/atoms/Heading";
+export { VisuallyHidden } from "./design-system/components/atoms/VisuallyHidden";
+export type { VisuallyHiddenProps } from "./design-system/components/atoms/VisuallyHidden";
+
+
+export { Select } from "./design-system/components/atoms/Select";
+export type { SelectProps } from "./design-system/components/atoms/Select";
+
+
+export { Option } from "./design-system/components/atoms/Option";
+export type { OptionProps } from "./design-system/components/atoms/Option";
+
+
+export { Container } from "./design-system/components/atoms/Container";
+export type { ContainerProps } from "./design-system/components/atoms/Container";
+
+
+export { Stack } from "./design-system/components/atoms/Stack";
+export type { StackProps } from "./design-system/components/atoms/Stack";
+
+
+export { Inline } from "./design-system/components/atoms/Inline";
+export type { InlineProps } from "./design-system/components/atoms/Inline";
+
+
+export { Link } from "./design-system/components/atoms/Link";
+export type { LinkProps } from "./design-system/components/atoms/Link";
+
+
+export { ThemeSelector } from "./design-system/components/molecules/ThemeSelector";
+export type { ThemeSelectorProps } from "./design-system/components/molecules/ThemeSelector";
+
+
+export { LocaleSelector } from "./design-system/components/molecules/LocaleSelector";
+export type { LocaleSelectorProps } from "./design-system/components/molecules/LocaleSelector";
+
+
+export { ShowcasePageTemplate } from "./design-system/components/templates/ShowcasePageTemplate";
+export type { ShowcasePageTemplateProps } from "./design-system/components/templates/ShowcasePageTemplate";
+
+
+// V2 documentation chrome composed from the original public DS components.
+export { Surface } from "./design-system/components/atoms/Surface";
+export type { SurfaceProps } from "./design-system/components/atoms/Surface";
+export { CardHeader } from "./design-system/components/atoms/CardHeader";
+export type { CardHeaderProps } from "./design-system/components/atoms/CardHeader";
+export { CardBody } from "./design-system/components/atoms/CardBody";
+export type { CardBodyProps } from "./design-system/components/atoms/CardBody";
+export { CardFooter } from "./design-system/components/atoms/CardFooter";
+export type { CardFooterProps } from "./design-system/components/atoms/CardFooter";
+export { Card } from "./design-system/components/molecules/Card";
+export type { CardProps } from "./design-system/components/molecules/Card";
+
+
+// Source-equivalent DataGrid and icon primitives extracted for Showcase V2.
+export { Icon } from "./design-system/components/atoms/Icon";
+export type { IconProps } from "./design-system/components/atoms/Icon";
+export { DataGridCell } from "./design-system/components/atoms/DataGridCell";
+export type { DataGridCellProps } from "./design-system/components/atoms/DataGridCell";
+export { DataGridFooter } from "./design-system/components/atoms/DataGridFooter";
+export type { DataGridFooterProps } from "./design-system/components/atoms/DataGridFooter";
+export { DataGridHeader } from "./design-system/components/molecules/DataGridHeader";
+export type { DataGridHeaderProps } from "./design-system/components/molecules/DataGridHeader";
+export { DataGridBody } from "./design-system/components/molecules/DataGridBody";
+export type { DataGridBodyProps } from "./design-system/components/molecules/DataGridBody";
+export { DataGridRow } from "./design-system/components/molecules/DataGridRow";
+export type { DataGridRowProps } from "./design-system/components/molecules/DataGridRow";
+export { DataGridColumnHeader } from "./design-system/components/molecules/DataGridColumnHeader";
+export type { DataGridColumnHeaderProps } from "./design-system/components/molecules/DataGridColumnHeader";
+export { DataGrid } from "./design-system/components/organisms/DataGrid";
+export type { DataGridProps } from "./design-system/components/organisms/DataGrid";
+export type { DataGridColumn, DataGridSort, DataGridAlignment } from "./design-system/types/collection-contracts";
+export type { IconName } from "./design-system/types/icon-geometry";
+export { useCollapse } from "./design-system/hooks/collapse/useCollapse";
+export type { CollapseOptions, CollapseContract } from "./design-system/types/disclosure";
+
+
+// Additional source-preserving component families from PraticarFront.
+export { Avatar } from "./design-system/components/atoms/Avatar";
+export type { AvatarProps } from "./design-system/components/atoms/Avatar";
+export { Skeleton } from "./design-system/components/atoms/Skeleton";
+export type { SkeletonProps } from "./design-system/components/atoms/Skeleton";
+export { IconButton } from "./design-system/components/molecules/IconButton";
+export type { IconButtonProps } from "./design-system/components/molecules/IconButton";
+export { Tag } from "./design-system/components/molecules/Tag";
+export type { TagProps } from "./design-system/components/molecules/Tag";
+export { Alert } from "./design-system/components/molecules/Alert";
+export type { AlertProps } from "./design-system/components/molecules/Alert";
+export { AlertHeader } from "./design-system/components/atoms/AlertHeader";
+export type { AlertHeaderProps } from "./design-system/components/atoms/AlertHeader";
+export { AlertBody } from "./design-system/components/atoms/AlertBody";
+export type { AlertBodyProps } from "./design-system/components/atoms/AlertBody";
+export { AlertFooter } from "./design-system/components/atoms/AlertFooter";
+export type { AlertFooterProps } from "./design-system/components/atoms/AlertFooter";
+export type { SkeletonKind } from "./design-system/types/loading";
+export type { AnnouncementPoliteness } from "./design-system/types/collection-contracts";
+
+
+export type { ComponentContainerSize, ComponentElevation } from "./design-system/types/layout";
+
+
+// Marco 8: source-preserving media layout primitive.
+export { AspectRatio } from "./design-system/components/atoms/AspectRatio";
+export type { AspectRatioProps } from "./design-system/components/atoms/AspectRatio";
+export type { ComponentAspectRatio } from "./design-system/types/layout";
+// Low-dependency primitives extracted from the canonical PraticarFront source.
+export { SimpleGrid } from "./design-system/components/atoms/SimpleGrid";
+export type { SimpleGridProps } from "./design-system/components/atoms/SimpleGrid";
+export { FieldHint } from "./design-system/components/atoms/FieldHint";
+export type { FieldHintProps } from "./design-system/components/atoms/FieldHint";
+export { FieldError } from "./design-system/components/atoms/FieldError";
+export type { FieldErrorProps } from "./design-system/components/atoms/FieldError";
+// Source-equivalent icon geometry for public V2 examples.
+export { iconData } from "./design-system/helpers/icon-data.generated";
+
+export type { ComponentTextSize, ComponentFontWeight, ComponentHeadingLevel, TextElement } from "./design-system/types/typography";
+
+export { Legend } from "./design-system/components/molecules/Legend";
+export type { LegendProps } from "./design-system/components/molecules/Legend";

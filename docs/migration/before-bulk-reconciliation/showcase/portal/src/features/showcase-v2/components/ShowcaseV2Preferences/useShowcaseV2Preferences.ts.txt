@@ -1,0 +1,30 @@
+"use client";
+
+import { useLocale } from "@/infrastructure/i18n";
+import { useTheme } from "@/infrastructure/theme";
+import { useShowcaseV2Copy } from "../../messages/useShowcaseV2Copy";
+
+export function useShowcaseV2Preferences() {
+  const { locale, setLocale } = useLocale();
+  const { resolvedTheme, setTheme } = useTheme();
+  const { copy } = useShowcaseV2Copy();
+
+  return {
+    locale,
+    setLocale,
+    resolvedTheme,
+    setTheme,
+    copy,
+    localeOptions: [
+      { value: "pt-BR", label: "Português (BR)" },
+      { value: "es", label: "Español" },
+      { value: "en", label: "English" },
+    ] as const,
+    themeOptions: [
+      { value: "light", label: copy.light },
+      { value: "dark", label: copy.dark },
+      { value: "contrast", label: copy.contrast },
+      { value: "liquid-glass", label: copy.glass },
+    ] as const,
+  };
+}

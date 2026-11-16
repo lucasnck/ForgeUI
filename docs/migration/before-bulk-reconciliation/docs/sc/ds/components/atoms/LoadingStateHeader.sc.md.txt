@@ -1,0 +1,131 @@
+---
+title: "LoadingStateHeader"
+scope: "LoadingState public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# LoadingStateHeader
+
+## Files
+
+```text
+design-system/components/atoms/LoadingStateHeader/LoadingStateHeader.module.css (M)
+features/showcase/examples/LoadingStateHeader.example.tsx (M)
+features/showcase/examples/useLoadingStateExampleCopy.ts (C)
+features/showcase/examples/LoadingStateExamples.module.css (C)
+features/showcase-v2/components/LoadingStateHeader/definition.ts (C)
+features/showcase-v2/components/LoadingStateHeader/LoadingStateHeader.example.tsx (C)
+features/showcase-v2/components/LoadingStateHeader/useLoadingStateHeaderExample.ts (C)
+features/showcase-v2/components/LoadingStateHeader/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [LoadingState.sc.md](../molecules/LoadingState.sc.md)
+
+## Contract
+
+```tsx
+import { Heading, LoadingState, LoadingStateHeader, LoadingStateBody } from "@/design-system";
+
+<LoadingState label="Loading records">
+  <LoadingStateHeader><Heading level={4}>Loading content</Heading></LoadingStateHeader>
+  <LoadingStateBody hidden />
+</LoadingState>
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useLoadingStateContext } from "../../../internal/loadingstate/LoadingStateContext";
+import type { LoadingStateHeaderProps } from "./LoadingStateHeader";
+
+export function useLoadingStateHeader(input: LoadingStateHeaderProps) {
+  const { children, className, ...props } = input;
+  const context = useLoadingStateContext();
+  return { children, className, props, context };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import { useLoadingStateHeader } from "./useLoadingStateHeader";
+import styles from "./LoadingStateHeader.module.css";
+
+export interface LoadingStateHeaderProps extends ComponentPropsWithRef<"header"> {}
+
+export function LoadingStateHeader(props: LoadingStateHeaderProps) {
+  const view = useLoadingStateHeader(props);
+  return (
+    <header
+      {...view.props}
+      className={[styles.root, view.className].filter(Boolean).join(" ")}
+      id={view.context.titleId}
+    >
+      {view.children}
+    </header>
+  );
+}
+```
+
+## Tests
+
+- V2 LoadingStateHeader contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server rendering forwards native attributes/classes and produces deterministic semantic regions.
+- Missing required Body, duplicate/unknown regions and orphan contextual parts fail clearly.
+- Optional Header/Footer add no empty wrapper; Header IDs stay scoped.
+- Header-only and Footer-only compositions retain a real required Body with hidden; Body-only compositions omit optional Header/Footer.
+- Additional Body children occupy a full-width content wrapper while Spinner and localized status label remain a single announcement.
+- Only Body owns its status/alert announcement; Footer controls stay outside the live content.
+
+## Criteria
+
+- [x] Given LoadingStateHeader, Header is a scoped LoadingState region; provide visible title content with an explicit Heading where a semantic heading is needed.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Header is a scoped LoadingState region; provide visible title content with an explicit Heading where a semantic heading is needed.
+- [x] No independent state store or route landmark is created.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useLoadingStateHeader is colocated with LoadingStateHeader and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content variations and no duplicated complete-family preview.
+
+- [x] Header examples show title and decorative icon plus title with Heading level=4; required Body is hidden and Footer omitted.
+- [x] Explicit hidden attributes continue to hide flex regions; hidden required context does not leak a visible spinner or loading label into part previews.
+- [x] Dedicated example copy covers pt-BR, es and en without changing DS public APIs or the shared example dictionary.
+- [x] Integrated visual verification confirms padding, atomic isolation, image sizing and narrow-width layout in the running Showcase.
+
+- [x] V2 **LoadingStateHeader contextual region**: Render LoadingStateHeader through public LoadingState with the minimum valid siblings. Use a real Heading or owner title slot with Children/Title text; any decorative icon has an aligned Inline gap="2" row outside heading text. Hide/omit optional siblings only where allowed by the owner; link to the full LoadingState composition.
+- [x] The LoadingStateHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useLoadingStateHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

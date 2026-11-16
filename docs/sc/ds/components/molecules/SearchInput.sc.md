@@ -1,0 +1,170 @@
+---
+title: "SearchInput"
+scope: "Compose a native search field with an optional explicit clear action. Excludes querying, debounce and result rendering."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# SearchInput
+
+## Files
+
+```text
+../scripts/check-inputs.cjs (M)
+design-system/index.ts (M)
+design-system/components/molecules/SearchInput/index.ts (C)
+design-system/components/molecules/SearchInput/SearchInput.tsx (C)
+design-system/components/molecules/SearchInput/useSearchInput.ts (C)
+features/showcase/examples/SearchInput.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase/examples/InputFamilyExample.tsx (C)
+features/showcase-v2/components/SearchInput/definition.ts (C)
+features/showcase-v2/components/SearchInput/SearchInput.example.tsx (C)
+features/showcase-v2/components/SearchInput/useSearchInputExample.ts (C)
+features/showcase-v2/components/SearchInput/usage-code.ts (C)
+features/showcase-v2/model/specialized-input-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/messages/useShowcaseV2Copy.ts (M)
+features/showcase-v2/components/SearchInput/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-input-specializations.sc.md](../../types/tech-input-specializations.sc.md)
+- [Input.sc.md](../atoms/Input.sc.md)
+- [InputGroup.sc.md](InputGroup.sc.md)
+- [Button.sc.md](../atoms/Button.sc.md)
+- [Mask contracts](../../hooks/tech-mask.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { SearchInput } from "@forge-ui/web";
+<SearchInput name="query" aria-label="Search" clearLabel="Clear search"/>;
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
+import type { ChangeEvent } from "react";
+import type { SearchInputProps } from "./SearchInput";
+
+export function useSearchInput({ clearLabel, value, defaultValue, onChange, disabled = false, readOnly = false, fullWidth = true, ref, ...props }: SearchInputProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [localValue, setLocalValue] = useState(() => String(defaultValue ?? ""));
+  const displayValue = value === undefined ? localValue : String(value);
+  useImperativeHandle(ref, () => inputRef.current!, []);
+  useEffect(() => {
+    const form = inputRef.current?.form;
+    if (!form || value !== undefined) return;
+    let active = true;
+    const reset = (event: Event) => queueMicrotask(() => {
+      if (active && !event.defaultPrevented) setLocalValue(inputRef.current?.defaultValue ?? "");
+    });
+    form.addEventListener("reset", reset);
+    return () => { active = false; form.removeEventListener("reset", reset); };
+  }, [value]);
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const next = event.currentTarget.value;
+    onChange?.(event);
+    if (value === undefined) setLocalValue(next);
+  }
+  function clear() {
+    const input = inputRef.current;
+    if (!input || disabled || readOnly || !input.value) return;
+    const setter = Object.getOwnPropertyDescriptor(input.ownerDocument.defaultView!.HTMLInputElement.prototype, "value")?.set;
+    setter?.call(input, "");
+    input.dispatchEvent(new input.ownerDocument.defaultView!.Event("input", { bubbles: true }));
+    input.focus();
+  }
+  return { inputRef, props, value, defaultValue, disabled, readOnly, fullWidth, clearLabel, showClear: Boolean(clearLabel && displayValue && !disabled && !readOnly), handleChange, clear };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import { Input } from "../../atoms/Input";
+import { Button } from "../../atoms/Button";
+import { InputGroup } from "../InputGroup";
+import type { NativeSpecializedInputProps } from "../../../types/input-specializations";
+import type { VisualProps, ComponentFullWidthProps, ComponentInvalidProps } from "../../../types/component-capabilities";
+import { useSearchInput } from "./useSearchInput";
+
+export interface SearchInputProps extends NativeSpecializedInputProps, VisualProps, ComponentFullWidthProps, ComponentInvalidProps {
+  clearLabel?: string;
+}
+
+export function SearchInput(props: SearchInputProps) {
+  const { props: inputProps, inputRef, value, defaultValue, disabled, readOnly, fullWidth, handleChange, showClear, clear, clearLabel } = useSearchInput(props);
+  return (
+    <InputGroup fullWidth={fullWidth} trailing={showClear ? <Button type="button" onClick={clear}>{clearLabel}</Button> : undefined}>
+      <Input
+        {...inputProps}
+        ref={inputRef}
+        type="search"
+        value={value}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        readOnly={readOnly}
+        fullWidth={fullWidth}
+        onChange={handleChange}
+      />
+    </InputGroup>
+  );
+}
+```
+
+## Tests
+
+- V2 Query and clear: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Form reset derives clear visibility from native defaultValue even when the reset event precedes the browser restoring value; canceled reset and cleanup suppress synchronization.
+
+- Controlled clearing emits one native change; rejecting it keeps the supplied value authoritative.
+- Uncontrolled typing and unprevented form reset update clear-button visibility from the actual input.
+- Disabled/readOnly and empty inputs have no operable custom clear action.
+- Clearing preserves input focus and forwards its real native ref.
+- Enter retains native submission and Escape introduces no custom clear shortcut.
+
+## Criteria
+
+- [x] Given the public props, rendering and callbacks follow the defaults and constraints above; unsupported channels are not added.
+- [x] Use one Input type="search" and a non-submit Button only when clearLabel exists and the current value is nonempty.
+- [x] Forward native onChange once through the DOM input event rather than fabricating a React event.
+- [x] Track an uncontrolled display value from the DOM for clear visibility and restore defaultValue on form reset.
+- [x] Native interactions remain delegated to the control; custom handlers intercept only documented keys, respect composition and prevent activation when disabled.
+- [x] Text and focus consume canonical semantic tokens and recipes; shared contrast and forced-color fallbacks are owned by the token/style specifications.
+- [x] The owned layout accommodates caller content; preference changes do not reset caller-owned values.
+- [x] Given reduced motion, no required interaction depends on animation; no document/window access occurs during module evaluation or static rendering.
+- [x] The fullWidth / invalid contract uses true / undefined; Forward to Input; explicit invalid wins over aria-invalid.
+- [x] The value / defaultValue / onChange contract uses Native; Never switch controlled mode after mount; event contains the native string.
+- [x] The disabled / readOnly / required contract uses false; Preserve native semantics.
+- [x] The clearLabel contract uses undefined; Without it no custom clear button appears.
+- [x] The clear value contract uses Empty string; Controlled owner must apply the emitted native onChange event.
+- [x] Use one Input type="search" and a non-submit Button only when clearLabel exists and the current value is nonempty.
+- [x] Forward native onChange once through the DOM input event rather than fabricating a React event.
+- [x] Controlled owners may reject clearing; display stays the supplied value.
+- [x] Escape receives no custom clear handler; any native search-field behavior remains browser-owned.
+- [x] User types → Current text → Native event text → onChange once.
+- [x] Clear activation → Nonempty editable → Empty if owner accepts → Native input event once; input focus.
+- [x] Enter → Any text → Unchanged → Native form submission.
+- [x] No new tokens, shared recipe or visual value union is introduced by this component.
+- [x] Use current semantic token overrides for themes; caller supplies locale text and the component inherits direction.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Native field value and focus stay unchanged by motion.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Query and clear**: Compose FormField with placeholder="Placeholder" and a meaningful clearLabel; typing and the clear action update caller query through the actual supported callback.
+- [x] The SearchInput V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useSearchInputExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

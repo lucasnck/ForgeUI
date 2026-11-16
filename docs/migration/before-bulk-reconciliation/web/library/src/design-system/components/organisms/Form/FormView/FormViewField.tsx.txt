@@ -1,0 +1,254 @@
+"use client";
+import type {
+  FormFieldPasswordPresentationProps,
+  FormFieldTelephonePresentationProps,
+} from "../../../../types";
+import type { FormRendererDefinition } from "@/lib/forms";
+import { FormFieldInput } from "../FormFieldInput";
+import { FormFieldPasswordInput } from "../FormFieldPasswordInput";
+import { FormFieldMaskedInput } from "../FormFieldMaskedInput";
+import { FormFieldInternationalTelephoneInput } from "../FormFieldInternationalTelephoneInput";
+import { FormFieldSelect } from "../FormFieldSelect";
+import { FormFieldCheckbox } from "../FormFieldCheckbox";
+import { FormFieldRadioGroup } from "../FormFieldRadioGroup";
+import { FormFieldTextarea } from "../FormFieldTextarea";
+import { FormFieldNumberInput } from "../FormFieldNumberInput";
+import { FormFieldPercentageInput } from "../FormFieldPercentageInput";
+import { FormFieldDateTimeInput } from "../FormFieldDateTimeInput";
+import { FormFieldTimeInput } from "../FormFieldTimeInput";
+import { FormFieldTelephoneInput } from "../FormFieldTelephoneInput";
+import { FormFieldUrlInput } from "../FormFieldUrlInput";
+import { FormFieldColorInput } from "../FormFieldColorInput";
+import { FormFieldDateInput } from "../FormFieldDateInput";
+import { FormFieldTaxIdInput } from "../FormFieldTaxIdInput";
+import { FormFieldPostalCodeInput } from "../FormFieldPostalCodeInput";
+import { FormFieldTokenInput } from "../FormFieldTokenInput";
+import { FormFieldEmailInput } from "../FormFieldEmailInput";
+import { FormFieldSearchInput } from "../FormFieldSearchInput";
+import { FormFieldSwitch } from "../FormFieldSwitch";
+import { FormFieldSlider } from "../FormFieldSlider";
+import { FormFieldAutocomplete } from "../FormFieldAutocomplete";
+import { FormFieldCurrencyInput } from "../FormFieldCurrencyInput";
+import { FormFieldFileInput } from "../FormFieldFileInput";
+import { FormFieldCombobox } from "../FormFieldCombobox";
+import { FormFieldCheckboxGroup } from "../FormFieldCheckboxGroup";
+import { FormFieldListBox } from "../FormFieldListBox";
+type FieldPresentation = {
+  name: string;
+  id?: string;
+  label: string;
+  description: string;
+  placeholder: string;
+  required?: boolean;
+} & FormRendererDefinition;
+export interface FormViewFieldProps {
+  field: FieldPresentation;
+  id: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  error?: string;
+  translate: (key: string) => string;
+  passwordLabels?: FormFieldPasswordPresentationProps;
+  telephoneLabels?: FormFieldTelephonePresentationProps;
+}
+
+export function FormViewField({
+  field,
+  id,
+  disabled,
+  readOnly,
+  error,
+  translate,
+  passwordLabels,
+  telephoneLabels,
+}: FormViewFieldProps) {
+  const common = {
+    name: field.name,
+    id,
+    label: translate(field.label),
+    hint: field.description ? translate(field.description) : undefined,
+    error,
+    required: field.required,
+  };
+  const native = {
+    ...field.props,
+    placeholder: field.placeholder ? translate(field.placeholder) : undefined,
+    disabled: disabled || field.props?.disabled,
+    readOnly: readOnly || (field.props && "readOnly" in field.props ? field.props.readOnly : false),
+  };
+
+  const { readOnly: unsupportedReadOnly, ...nonReadonly } = native;
+  void unsupportedReadOnly;
+
+  switch (field.kind) {
+    case "textarea":
+      return <FormFieldTextarea {...native} {...common} fullWidth />;
+    case "number":
+      return <FormFieldNumberInput {...native} {...common} fullWidth />;
+    case "percentage":
+      return <FormFieldPercentageInput {...native} {...common} fullWidth />;
+    case "dateTime":
+      return <FormFieldDateTimeInput {...native} {...common} fullWidth />;
+    case "time":
+      return <FormFieldTimeInput {...native} {...common} fullWidth />;
+    case "telephone":
+      return <FormFieldTelephoneInput {...native} {...common} fullWidth />;
+    case "url":
+      return <FormFieldUrlInput {...native} {...common} fullWidth />;
+    case "color":
+      return <FormFieldColorInput {...native} {...common} fullWidth />;
+    case "date":
+      return <FormFieldDateInput {...native} {...common} mask={field.mask} fullWidth />;
+    case "taxId":
+      return <FormFieldTaxIdInput {...native} {...common} mask={field.mask} fullWidth />;
+    case "postalCode":
+      return <FormFieldPostalCodeInput {...native} {...common} mask={field.mask} fullWidth />;
+    case "token":
+      return <FormFieldTokenInput {...native} {...common} mask={field.mask} fullWidth />;
+    case "email":
+      return (
+        <FormFieldEmailInput
+          {...native}
+          {...common}
+          providers={field.providers}
+          maxSuggestions={field.maxSuggestions}
+          listboxLabel={field.listboxLabel ? translate(field.listboxLabel) : undefined}
+          fullWidth
+        />
+      );
+    case "search":
+      return (
+        <FormFieldSearchInput
+          {...native}
+          {...common}
+          clearLabel={field.clearLabel ? translate(field.clearLabel) : undefined}
+          fullWidth
+        />
+      );
+    case "switch":
+      return <FormFieldSwitch {...native} {...common} />;
+    case "slider":
+      if (native.readOnly && !native.disabled)
+        throw new Error("slider fields do not support readOnly.");
+      return (
+        <FormFieldSlider
+          {...nonReadonly}
+          {...common}
+          valueText={field.valueText ? translate(field.valueText) : undefined}
+          fullWidth
+        />
+      );
+    case "autocomplete":
+      return (
+        <FormFieldAutocomplete
+          {...native}
+          {...common}
+          options={field.options.map((option) => ({ ...option, label: translate(option.label) }))}
+          listboxLabel={field.listboxLabel ? translate(field.listboxLabel) : undefined}
+          fullWidth
+        />
+      );
+    case "currency":
+      return (
+        <FormFieldCurrencyInput
+          {...native}
+          {...common}
+          currency={field.currency}
+          locale={field.locale}
+          invalidMessage={translate(field.invalidMessage)}
+          allowNegative={field.allowNegative}
+          animated={field.animated}
+          fullWidth
+        />
+      );
+    case "file":
+      if (native.readOnly && !native.disabled)
+        throw new Error("file fields do not support readOnly.");
+      return <FormFieldFileInput {...nonReadonly} {...common} fullWidth />;
+    case "combobox":
+      return (
+        <FormFieldCombobox
+          {...native}
+          {...common}
+          options={field.options.map((option) => ({ ...option, label: translate(option.label) }))}
+          listboxLabel={field.listboxLabel ? translate(field.listboxLabel) : undefined}
+          fullWidth
+        />
+      );
+    case "checkboxGroup":
+      return (
+        <FormFieldCheckboxGroup
+          {...native}
+          {...common}
+          options={field.options.map((option) => ({ ...option, label: translate(option.label) }))}
+        />
+      );
+    case "listBox":
+      if (native.readOnly && !native.disabled)
+        throw new Error("listBox fields do not support readOnly.");
+      return (
+        <FormFieldListBox
+          {...nonReadonly}
+          {...common}
+          options={field.options.map((option) => ({ ...option, label: translate(option.label) }))}
+          selectionMode={field.selectionMode}
+        />
+      );
+
+    case "input":
+      return (
+        <FormFieldInput
+          {...native}
+          {...common}
+          placeholder={field.placeholder ? translate(field.placeholder) : undefined}
+          inputType={field.inputType}
+          fullWidth
+        />
+      );
+    case "password":
+      if (!passwordLabels)
+        throw new Error("Password fields require localized reveal/conceal labels.");
+      return <FormFieldPasswordInput {...native} {...common} {...passwordLabels} fullWidth />;
+    case "maskedInput":
+      if (!field.mask) throw new Error("Masked fields require a mask.");
+      return <FormFieldMaskedInput {...native} {...common} mask={field.mask} fullWidth />;
+    case "internationalTelephone":
+      if (!telephoneLabels) throw new Error("Telephone fields require localized labels.");
+      return (
+        <FormFieldInternationalTelephoneInput
+          {...native}
+          {...common}
+          {...telephoneLabels}
+          fullWidth
+        />
+      );
+    case "select":
+      return (
+        <FormFieldSelect
+          {...common}
+          disabled={native.disabled}
+          readOnly={native.readOnly}
+          options={field.options}
+          fullWidth
+        />
+      );
+    case "checkbox":
+      return <FormFieldCheckbox {...common} {...native} />;
+    case "radioGroup":
+      return (
+        <FormFieldRadioGroup
+          {...common}
+          disabled={native.disabled}
+          readOnly={native.readOnly}
+          options={field.options}
+        />
+      );
+    case undefined:
+      throw new Error("FormView fields require an explicit renderer kind.");
+
+    default: {
+      const unsupported: never = field;
+      throw new Error("Unsupported FormView renderer: " + String(unsupported));
+    }
+  }
+}

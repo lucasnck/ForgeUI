@@ -1,0 +1,98 @@
+---
+title: "Divider"
+scope: "Horizontal thematic separator with token-backed color and thickness"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Divider
+
+## Files
+
+```text
+design-system/components/static-components.contracts.test.ts (C)
+../scripts/check-static-components.cjs (C)
+design-system/index.ts (M)
+design-system/components/atoms/Divider/Divider.tsx (M)
+design-system/components/atoms/Divider/Divider.module.css (M)
+design-system/components/atoms/Divider/index.ts (M)
+features/showcase/examples/Divider.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Divider/definition.ts (C)
+features/showcase-v2/components/Divider/Divider.example.tsx (C)
+features/showcase-v2/components/Divider/useDividerExample.ts (C)
+features/showcase-v2/components/Divider/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import { Divider } from "@forge-ui/web";
+<Divider />;
+```
+
+## Styles
+
+```css
+.root {
+  display: block;
+  inline-size: var(--size-full);
+  block-size: var(--border-width-thin);
+  margin: var(--zero);
+  border: none;
+  background: var(--color-border-subtle);
+}
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes, RefAttributes } from "react";
+import styles from "./Divider.module.css";
+
+export interface DividerProps extends HTMLAttributes<HTMLHRElement>, RefAttributes<HTMLHRElement> {}
+
+export function Divider({ className, ...props }: DividerProps) {
+  return (
+    <hr
+      {...props}
+      className={[styles.root, className].filter(Boolean).join(" ")}
+    />
+  );
+}
+```
+
+## Tests
+
+- V2 Separated regions: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given no props, the rendered element is `hr` with the component class and no added role.
+- [x] Given an `aria-label`, it is forwarded and the separator is named.
+- [x] Given a surrounding container that controls spacing, the separator adds no margin of its own.
+- [x] Given the four themes, the line resolves `--color-border-subtle` and stays visible against the page and surface backgrounds.
+- [x] Given the module CSS, only existing tokens and structural keywords appear, with no numeric or color literal.
+- [x] Given a `className`, it is appended without replacing the component class.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens`, `npm run test:design-system` and `npm run build` pass.
+- [x] Includes the native `<hr>` element, the token-backed line color and thickness, and the optional accessible label.
+- [x] Excludes vertical separators between inline items, layout spacing, section headings and any decorative graphic.
+- [x] The Native hr attributes contract uses Native contract; `className` is appended; `aria-label`/`aria-labelledby` may name a meaningful break.
+- [x] The Line color / thickness contract uses `--color-border-subtle` / `--border-width-thin`; Declared by the component module; not props.
+- [x] The component exposes no visual capability.
+- [x] Component-local CSS: `src/design-system/components/atoms/Divider/Divider.module.css`.
+- [x] The declaration resets the platform `hr` chrome and paints the line from tokens.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Separated regions**: Place Divider between two Stack content groups with gap="2"; native hr/aria-hidden decorative settings follow the actual API; no orientation prop is invented without using the separator as a control.
+- [x] The Divider V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useDividerExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

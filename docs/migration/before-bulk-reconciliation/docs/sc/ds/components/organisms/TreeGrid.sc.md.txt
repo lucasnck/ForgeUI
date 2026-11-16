@@ -1,0 +1,214 @@
+---
+title: "TreeGrid"
+scope: "Presentation-only TreeGrid with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# TreeGrid
+
+## Files
+
+```text
+design-system/components/organisms/TreeGrid/TreeGrid.tsx (C)
+design-system/components/organisms/TreeGrid/TreeGrid.module.css (C)
+design-system/components/organisms/TreeGrid/index.ts (C)
+design-system/internal/treegrid/TreeGridContext.ts (C)
+design-system/internal/treegrid/validateParts.ts (C)
+design-system/index.ts (M)
+design-system/types/tree-grid.contracts.test.ts (C)
+features/showcase/examples/TreeGrid.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/organisms/TreeGrid/useTreeGrid.ts (C)
+features/showcase-v2/components/TreeGrid/definition.ts (C)
+features/showcase-v2/components/TreeGrid/TreeGrid.example.tsx (C)
+features/showcase-v2/components/TreeGrid/useTreeGridExample.ts (C)
+features/showcase-v2/components/TreeGrid/usage-code.ts (C)
+features/showcase-v2/components/TreeGrid/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-tree-state.sc.md](../../hooks/tech-tree-state.sc.md)
+- [tech-grid-navigation.sc.md](../../hooks/tech-grid-navigation.sc.md)
+- [Focus contracts](../../types/tech-focus-contracts.sc.md)
+- [Compound parts](../../helpers/tech-compound-parts.sc.md)
+
+## Contract
+
+```tsx
+import { TreeGrid, TreeGridHeader, TreeGridBody, TreeGridFooter } from "@/design-system";
+<TreeGrid label="Resources" nodes={[{ key: "root", item: { name: "Resources" }, children: [{ key: "guide", item: { name: "Guide" } }] }]} columns={[{ key: "name", header: "Name", getCellText: (row) => row.name }]} getNodeLabel={(row) => row.name}><TreeGridHeader /><TreeGridBody /><TreeGridFooter>Resource hierarchy</TreeGridFooter></TreeGrid>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-x: auto;
+}
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useId, useLayoutEffect, useRef } from "react";
+import type { KeyboardEvent } from "react";
+import type { GridCellAddress, TreeGridNode, TreeNodeDescriptor } from "../../../types";
+import { useTreeState } from "../../../hooks/tree/useTreeState";
+import { useGridNavigation } from "../../../hooks/grid/useGridNavigation";
+import type { TreeGridProps } from "./TreeGrid";
+
+export function useTreeGrid<Row>(input: TreeGridProps<Row>) {
+  const { nodes, columns, getNodeLabel, expandedValue, defaultExpandedValue,
+    onExpandedValueChange, direction = "ltr", label, children, className, animated = true, ...props } = input;
+  if (!label.trim() || !columns.length || columns.some(column => !column.key.trim() || !column.header.trim()) || new Set(columns.map(column => column.key)).size !== columns.length) {
+    throw new Error("TreeGrid requires a label and uniquely keyed, named columns.");
+  }
+  const nodeByKey = new Map<string, TreeGridNode<Row>>();
+  function describe(list: readonly TreeGridNode<Row>[]): readonly TreeNodeDescriptor[] {
+    return list.map(node => {
+      if (!node.key.trim() || nodeByKey.has(node.key)) throw new Error("TreeGrid keys must be nonempty, unique and acyclic.");
+      nodeByKey.set(node.key, node);
+      const text = getNodeLabel(node.item);
+      if (!text.trim()) throw new Error("TreeGrid node labels must be nonempty.");
+      return { key: node.key, label: text, children: node.children ? describe(node.children) : undefined };
+    });
+  }
+  const hierarchy = useTreeState({ nodes: describe(nodes), expandedValue, defaultExpandedValue, onExpandedValueChange });
+  const tableRef = useRef<HTMLTableElement>(null);
+  const previousVisible = useRef(hierarchy.visibleNodes);
+  const id = useId();
+  const rowKeys = hierarchy.visibleNodes.map(entry => entry.node.key);
+  function resolveRemovedCell(previous: GridCellAddress): GridCellAddress | null {
+    let ancestor = previousVisible.current.find(entry => entry.node.key === previous.rowKey)?.parentKey;
+    while (ancestor) {
+      if (rowKeys.includes(ancestor)) return { rowKey: ancestor, columnKey: previous.columnKey };
+      ancestor = previousVisible.current.find(entry => entry.node.key === ancestor)?.parentKey;
+    }
+    return null;
+  }
+  const navigation = useGridNavigation({ rowKeys, columnKeys: columns.map(column => column.key), direction, fallbackRef: tableRef, resolveRemovedCell });
+  useLayoutEffect(() => { previousVisible.current = hierarchy.visibleNodes; });
+  function toggleBranch(key: string): void {
+    if (!nodeByKey.get(key)?.children?.length) return;
+    // Only a locally accepted request can repair focus before removing rows.
+    // Controlled changes repair through the shared navigation commit policy.
+    if (expandedValue === undefined && hierarchy.isExpanded(key) && navigation.active) {
+      let parent = hierarchy.visibleNodes.find(entry => entry.node.key === navigation.active?.rowKey)?.parentKey;
+      while (parent) {
+        if (parent === key && tableRef.current?.contains(tableRef.current.ownerDocument.activeElement)) {
+          navigation.focusCell({ rowKey: key, columnKey: navigation.active.columnKey });
+          break;
+        }
+        parent = hierarchy.visibleNodes.find(entry => entry.node.key === parent)?.parentKey;
+      }
+    }
+    hierarchy.setExpanded(key, !hierarchy.isExpanded(key));
+  }
+  function onCellKeyDown(event: KeyboardEvent<HTMLElement>, address: GridCellAddress): void {
+    if (event.defaultPrevented || event.nativeEvent.isComposing || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+      navigation.onCellKeyDown(event, address);
+      return;
+    }
+    if (event.key === "Enter" && address.columnKey === columns[0].key && nodeByKey.get(address.rowKey)?.children?.length) {
+      event.preventDefault(); toggleBranch(address.rowKey); return;
+    }
+    navigation.onCellKeyDown(event, address);
+  }
+  return { columns, hierarchy, navigation, nodeByKey, tableRef, onCellKeyDown, label, children, className, props, direction, animated,
+    headerId: (key: string) => `${id}-column-${encodeURIComponent(key)}`,
+    branchCellExpanded: (address: GridCellAddress) => address.columnKey === columns[0].key && nodeByKey.get(address.rowKey)?.children?.length ? hierarchy.isExpanded(address.rowKey) : undefined };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { ComponentChildrenProps, ComponentTreeExpansionProps, ComponentAnimatedProps, NativeCollectionRootProps, TreeGridColumn, TreeGridNode, NavigationDirection } from "../../../types";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { TreeGridContext } from "../../../internal/treegrid/TreeGridContext";
+import { TreeGridHeader } from "../../molecules/TreeGridHeader";
+import { TreeGridBody } from "../../molecules/TreeGridBody";
+import { TreeGridFooter } from "../../atoms/TreeGridFooter";
+import { TreeGridRow } from "../../molecules/TreeGridRow";
+import { TreeGridCell } from "../../atoms/TreeGridCell";
+import { useTreeGrid } from "./useTreeGrid";
+import styles from "./TreeGrid.module.css";
+export interface TreeGridProps<Row> extends NativeCollectionRootProps, ComponentChildrenProps, ComponentTreeExpansionProps, ComponentAnimatedProps {
+  label: string;
+  nodes: readonly TreeGridNode<Row>[];
+  columns: readonly TreeGridColumn<Row>[];
+  getNodeLabel(node: Row): string;
+  direction?: NavigationDirection;
+}
+export function TreeGrid<Row>(props: TreeGridProps<Row>) {
+  const { columns, hierarchy, navigation, nodeByKey, tableRef, onCellKeyDown, label, children, className, props: nativeProps, direction, headerId, branchCellExpanded, animated } = useTreeGrid(props);
+  const regions = collectCompoundParts(children, { header: TreeGridHeader, body: TreeGridBody, footer: TreeGridFooter });
+  if (!regions.body) throw new Error("TreeGrid requires TreeGridBody.");
+  const renderedRows = hierarchy.visibleNodes.map(entry => <TreeGridRow key={entry.node.key} rowKey={entry.node.key}>{columns.map(column => {
+    const text = column.getCellText(nodeByKey.get(entry.node.key)!.item);
+    if (typeof text !== "string") throw new Error("TreeGrid cells require plain text.");
+    return <TreeGridCell key={column.key} rowKey={entry.node.key} columnKey={column.key}>{text}</TreeGridCell>;
+  })}</TreeGridRow>);
+  return <TreeGridContext value={{ animated, renderedRows, columns, hasHeader: !!regions.header, rows: hierarchy.visibleNodes, navigation, headerId, branchCellExpanded, onCellKeyDown }}><div {...nativeProps} data-gap="2" className={[styles.root, className].filter(Boolean).join(" ")}><table ref={tableRef} role="treegrid" aria-label={label} dir={direction} tabIndex={renderedRows.length ? undefined : 0}>{regions.header}{regions.body}</table>{regions.footer}</div></TreeGridContext>;
+}
+```
+
+## Tests
+
+- V2 Hierarchical tabular records: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Controlled hierarchy filtering: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Actual browser verification covers cell-only arrows, RTL bounds, accepted controlled collapse repairing descendant focus to the ancestor/current column without callbacks, and 12 locale/theme combinations preserving row count and one tab stop.
+
+- `npm run test:overlays` verifies actual React SSR semantics and family guards.
+- `npm run test:hooks` verifies keyboard control and focus repair; browser validation is separate.
+- Empty or duplicate column keys and duplicate/cyclic node keys are rejected.
+- Expanding a branch changes visible row keys while keeping the selected column.
+- First-column Enter toggles a branch once; other cells delegate spatial navigation.
+- Caller-prevented keys perform neither expansion nor spatial movement.
+- Rendering resolves each row item through its stable key rather than visible array index.
+
+The filtered V2 scenario keeps the current cell focused for the primary-pointer Collapse action. The caller changes accepted expandedValue; the canonical owner repairs a removed descendant to its ancestor in the same column. Keyboard Footer activation retains normal native button focus.
+
+## Criteria
+
+- [x] Given first-cell Enter on branch, expansion changes once and cell focus remains.
+- [x] Given ArrowDown, navigation retains column and never visits collapsed descendants.
+- [x] The label / nodes / columns / getNodeLabel contract uses Required; unique keys, at least one column.
+- [x] The expandedValue / defaultExpandedValue contract uses undefined / [].
+- [x] The direction contract uses ltr.
+- [x] No row tabindex.
+- [x] Footer sits outside the table; no automatic virtualization or variable-height geometry.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+- [x] No animated row height, sorting or virtual spacers.
+- [x] A future geometry enhancement must preserve the currently focused cell.
+- [x] useTreeGrid is colocated with TreeGrid and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] A locally accepted collapse repairs descendant focus to its ancestor/current column before changing rows; an authoritative controlled collapse repairs before paint. A rejected request preserves current focus, and external Footer focus remains external.
+
+- [x] V2 **Hierarchical tabular records**: Compose TreeGridHeader/Body/Footer with two columns, indexed parents/children, stable keys and getNodeLabel. Expand a parent, navigate cells with the canonical keyboard model; labels stay attached to record identity.
+- [x] V2 **Controlled hierarchy filtering**: Compose an independent SearchInput with controlled TreeGrid nodes. Caller filtering preserves valid ancestor paths and supports empty results; accepted collapse repairs descendant focus through the owner while node/column keys remain stable.
+- [x] The TreeGrid V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTreeGridExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

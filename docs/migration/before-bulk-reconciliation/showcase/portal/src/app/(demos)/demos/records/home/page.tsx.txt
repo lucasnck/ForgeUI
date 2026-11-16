@@ -1,0 +1,5 @@
+import { TemplateDemoHome } from "@/features/showcase-v2";
+
+export default function Page() {
+  return <TemplateDemoHome />;
+}

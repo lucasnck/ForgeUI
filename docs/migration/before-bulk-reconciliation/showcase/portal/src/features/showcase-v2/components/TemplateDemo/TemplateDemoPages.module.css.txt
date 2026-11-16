@@ -1,0 +1,27 @@
+.formActions {
+  justify-content: flex-end;
+}
+
+.simulationField {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.actionLink {
+  composes: stateFeedback from "../../../../design-system/styles/motion-components.module.css";
+  composes: sized from "../../../../design-system/styles/sized-components.module.css";
+  composes: shaped from "../../../../design-system/styles/shaped-components.module.css";
+  composes: action from "../../../../design-system/styles/toned-components.module.css";
+  composes: appearance from "../../../../design-system/styles/appearance-components.module.css";
+  --control-forced-border: var(--color-system-button-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.actionLink:hover {
+  filter: var(--filter-hover);
+}

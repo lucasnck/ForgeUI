@@ -1,0 +1,78 @@
+---
+title: "Relative time formatting"
+scope: "Deterministic relative instant labels with an explicit reference clock and localized native output"
+status: "DONE"
+type: "helper"
+ds-level: "none"
+---
+
+# Relative time formatting
+
+## Files
+
+```text
+design-system/helpers/relative-time.ts (C)
+design-system/index.ts (M)
+../scripts/check-formatting.cjs (C)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Contract
+
+```ts
+import {formatters, validators} from "@forge-ui/web";
+formatters.relativeTime(updatedAt, referenceNow, "pt-BR");
+validators.relativeTime(updatedAt, referenceNow);
+```
+
+## Content
+
+```ts
+import { isValidInstant } from "@/lib/formatting/intl";
+import type {Locale} from "@/lib/contracts/preferences";
+export function formatRelativeTime(value: Date | number | null, reference: Date | number, locale: Locale,
+  options: Intl.RelativeTimeFormatOptions = {}): string {
+  if (value === null) return "";
+  const target = value instanceof Date ? value.getTime() : value;
+  const origin = reference instanceof Date ? reference.getTime() : reference;
+  if (!isValidInstant(value) || !isValidInstant(reference)) throw new RangeError("Invalid instant");
+  const delta = (target-origin)/1000;
+  const magnitude = Math.abs(delta);
+  const units: readonly (readonly [Intl.RelativeTimeFormatUnit,number])[] = [
+    ["year",31536000],["month",2592000],["week",604800],["day",86400],
+    ["hour",3600],["minute",60],["second",1],
+  ];
+  const [unit,divisor] = units.find(([,seconds]) => magnitude >= seconds) ?? units[units.length-1];
+  const count = Math.trunc(delta/divisor);
+  return new Intl.RelativeTimeFormat(locale, {numeric:"auto",...options}).format(count === 0 ? 0 : count,unit);
+}
+
+export function isValidRelativeTime(value: unknown, reference: unknown): boolean {
+  return isValidInstant(value) && isValidInstant(reference);
+}
+```
+
+## Tests
+
+- V2 Deterministic relative time: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Fixed reference covers past/future, zero/subsecond, minute/hour/day/week/month/year boundaries and numeric=always versus auto.
+- Verify invalid Date, NaN/Infinity and missing/unsupported input handling; null display is empty.
+- Same inputs generate identical SSR/client strings even if the host clock/timezone changes.
+
+## Criteria
+
+- [x] Numeric timestamps are epoch milliseconds; Date inputs represent instants. String parsing and civil-date interpretation are not guessed.
+- [x] Reference time is required. No hidden Date.now, browser clock, interval, subscription or provider makes output nondeterministic; a caller owns refresh cadence.
+- [x] Largest elapsed unit is selected using the declared fixed thresholds. Weeks are seven elapsed days, months thirty days and years 365 days: these are approximate relative labels, not calendar anniversary or billing calculations.
+- [x] Values truncate toward zero after selecting the unit; subsecond differences use zero. Native Intl.RelativeTimeFormat owns language/pluralization and numeric=auto terms such as now/yesterday where applicable.
+- [x] A calendar-day label such as yesterday occurs only at the helper's elapsed-day selection, not merely because local midnight was crossed. Calendar-relative business behavior requires a distinct future contract.
+- [x] Null displays empty text; invalid instants throw. Helpers do not mutate Date inputs, create live announcements or register duplicate application formatters.
+
+- [x] Preferred public consumption uses the typed formatters/validators namespaces. Parsing and normalization functions in this source owner are internal DS exports, omitted from the root public barrel. The namespace modules alias the same owning functions rather than copying algorithms.
+
+- [x] V2 **Deterministic relative time** is covered through the public Text consumer examples and typed caller fixtures: Use fixed updatedAt/referenceNow values, explicit locale and actual relativeTime/validator APIs; compare past/future/boundary output with no wall-clock access during SSR and no unowned running timer.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.
+
+- [x] Verify the supporting example in a real browser with standard/narrow layout and displayed-output/copyable-snippet agreement. Runtime helper assertions, typed fixtures and SSR do not replace visual verification.

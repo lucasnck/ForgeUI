@@ -1,0 +1,249 @@
+{
+  "date": "2026-11-14",
+  "files": [
+    {
+      "source": "PraticarFront/docs/sc/ds/components/organisms/ODataFilter.sc.md",
+      "target": "docs/sc/ds/components/organisms/ODataFilter.sc.md",
+      "sha256": "6902e2623ae54a9bc0654179e00f89619ab87e1d7ee4f2e062a0029330ad5dc7",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "9f374a5624ba39dcffe14c408769d3c55837a053a1bdb0ad61a76936dffc92ac",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Pagination.sc.md",
+      "target": "docs/sc/ds/components/molecules/Pagination.sc.md",
+      "sha256": "1f9e7a663b1dd4b49126c00a059a63e79f91781ce6f38f758ad8e6ca0e7e2d75",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "fe4cd0cb2f7607e1c3055d67624fb0bbc1c6dccc6c9d2c291cfd71c48dd7b7b9",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Avatar.sc.md",
+      "target": "docs/sc/ds/components/atoms/Avatar.sc.md",
+      "sha256": "b7f7f874df4a786dd76889ed7003824d873c97a40fae1e1188c54ca7940df7a0",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/SimpleGrid.sc.md",
+      "target": "docs/sc/ds/components/atoms/SimpleGrid.sc.md",
+      "sha256": "eeda48dcfe66ed2311191cd9aba3f17805beaf3ba1ee5b27161f01ee974bb6f0",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "180b06bea0a9f2842e9bfc89a7b26d5a80479bfc4bc204aaaed953f629fdac65",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/PopupListbox.sc.md",
+      "target": "docs/sc/ds/components/molecules/PopupListbox.sc.md",
+      "sha256": "0f5d1b39259092b49175d1948eb0874430c055bd926aaa3a9f7ee609ccd63e65",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "80ea405b83a4bc24ede3075807d12e44b6989dd247bfb0adf1910850297b8e2e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/IconButton.sc.md",
+      "target": "docs/sc/ds/components/molecules/IconButton.sc.md",
+      "sha256": "4e17b1f5ea8865f9d19d685fc0879f77277439b46e57df607255d603676cfb33",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/tech-brand-identity.sc.md",
+      "target": "docs/sc/tech-brand-identity.sc.md",
+      "sha256": "06000bd82aa471aa2e3825ab8acdd079155588e076b3d7af4d46fe5ce727544d",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/tech-react-hook-form.sc.md",
+      "target": "docs/sc/tech-react-hook-form.sc.md",
+      "sha256": "f1749992e099d63a5b873091dcb3195b08199c332e1c84419fe0cf3220ceac61",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "9ee00c6724160b490c27d7d55a6078d102fd95ee27a49ac5dfe8d218a7fa23bb",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/tech-theming.sc.md",
+      "target": "docs/sc/tech-theming.sc.md",
+      "sha256": "60f317f4cf9f5ec58491030d4dfbb7375f7967eaa2847e628e2241469ef67e12",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/PopupListboxItem.sc.md",
+      "target": "docs/sc/ds/components/atoms/PopupListboxItem.sc.md",
+      "sha256": "a3ca3ff565680bfdb3355099bfd6331ace5fbccc968bfd5f472ab8ae6e1cd58e",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "f9e67df2251de9d71f95e453629c1788e521b558bc02b18c50cbe3c21bc94113",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/PaginationEllipsis.sc.md",
+      "target": "docs/sc/ds/components/atoms/PaginationEllipsis.sc.md",
+      "sha256": "cff89732379f105749e706018e6e8c3be8c26079914c079f40070106dbbc6116",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "ea2fc10c54e5e691e87143dec948203cfa69b722cde83cbe8bc523f0f6e032d7",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/PaginationItem.sc.md",
+      "target": "docs/sc/ds/components/atoms/PaginationItem.sc.md",
+      "sha256": "23fda45bca7a81188285e4977e14799b1d8c019df2ac22a2efb936aa6e47f59b",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "8441684b7e01564c420bfc61ec4421e4c285cfb06f2450cae0ad1b066b56711e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/ODataFilterGroup.sc.md",
+      "target": "docs/sc/ds/components/molecules/ODataFilterGroup.sc.md",
+      "sha256": "b9ab6ba993e625288b3ec4350b903930efdbeec3ea8e7e1d797fcb346371e60c",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "8b8e432147b686f427c085e06a04a3a75b96260c4ae6141c4b042967094c858e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/ODataFilterCondition.sc.md",
+      "target": "docs/sc/ds/components/molecules/ODataFilterCondition.sc.md",
+      "sha256": "e71ad727769273323bd6f20184e9961fbc3ee385545c5d0860c24c812921d654",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "01d8d4344cb620b244fcf3e177b465d08cbe7e8849ce1dc843f71a5e191ffd1a",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Popover.sc.md",
+      "target": "docs/sc/ds/components/molecules/Popover.sc.md",
+      "sha256": "f19761835574a7aaf82ab98bd2f375149f9a979f928a0534c3611c0c5a42a049",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "c2b4f03587267ff714e2eaa9df3529b2150b3aca1a746ef160fb3eb4295f86dd",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/templates/ListPageTemplate.sc.md",
+      "target": "docs/sc/ds/components/templates/ListPageTemplate.sc.md",
+      "sha256": "c06c0b9d2eaa89e9b5a84b9ca1881b24c2715926e03142b5db1fc3168bb19909",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "2d1239bb5bf90d721d9ee1b5764cceb8a3e74f9fadcf1dd7103097cb6a41cb12",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/tech-form-config.sc.md",
+      "target": "docs/sc/tech-form-config.sc.md",
+      "sha256": "ae9b72d33504498dca9e4e641e9a6652fbf8561ba4d4fee28c0b112ef7b5b8e3",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/tech-preference-contracts.sc.md",
+      "target": "docs/sc/tech-preference-contracts.sc.md",
+      "sha256": "4ee803ba479075a1fecc3ec610319d92fd523d5befbc4b2a807ccf337a013bc1",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/PopoverBody.sc.md",
+      "target": "docs/sc/ds/components/atoms/PopoverBody.sc.md",
+      "sha256": "4083c8f04ea49acfc11a910f6c4b7a7072963faa75fb33921842c9524db56356",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "0def154b73fd8c4dbc43f8a28f039f9f208a9d9604b90a6a01d62638528d5447",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/PopoverFooter.sc.md",
+      "target": "docs/sc/ds/components/atoms/PopoverFooter.sc.md",
+      "sha256": "29fab8cd156de3a907a467b6af5876373adfef9b1c066a89c20c0591287d0850",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "418608be8662e44e9dd0a51d57b119a1901715c03d43ff3665610882008de9dd",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/PopoverHeader.sc.md",
+      "target": "docs/sc/ds/components/atoms/PopoverHeader.sc.md",
+      "sha256": "c63f0df3edf6948732cd7c0aedc538ccf5bd7efe458b1f95a47a04d4c9f416b5",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "ca8afddbb313a911564d32ec1d162e9fbb415b364d5444a2d4809dba3fb3f265",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/ODataFilterValue.sc.md",
+      "target": "docs/sc/ds/components/molecules/ODataFilterValue.sc.md",
+      "sha256": "d78562ff6e4c62852ae91ba3be7447ad92244db90838c8441f091ae1f67eb897",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "025ceef1fa3119b9572bb12bdbae3656ff6c40e2510abb312645f4913b927f56",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/PageHeader.sc.md",
+      "target": "docs/sc/ds/components/molecules/PageHeader.sc.md",
+      "sha256": "22822754345be7374fb58467b3315c34e71d5651e01bf9aa9ff6d19f5fdcaa71",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export",
+      "sourceRawSha256": "7e68aeb756bbca42e2e1ed61371b5fc54b9808b7d1cfaee08c14d8c8b030042c",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/tech-form-config-types.sc.md",
+      "target": "docs/sc/tech-form-config-types.sc.md",
+      "sha256": "89632df5b40385cf566b26b8d5b71e35d9fb6670b1be06d68530f5813cd6ee6b",
+      "mode": "exact-copy",
+      "type": "documentation-only, not a public component export"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/AlertBody.sc.md",
+      "target": "docs/sc/ds/components/atoms/AlertBody.sc.md",
+      "sha256": "6ee69e1af05dd5bf56128f786c57c7f821300c5d7196b617ddc06d2c9b300f27",
+      "mode": "exact-copy",
+      "type": "original component SC accompanying 91ab08f code"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/AlertFooter.sc.md",
+      "target": "docs/sc/ds/components/atoms/AlertFooter.sc.md",
+      "sha256": "36cda1054cdf3709b5fe6dec22c3f1ca771f3201d5a7f00cdb4e06a6f8e76243",
+      "mode": "exact-copy",
+      "type": "original component SC accompanying 91ab08f code"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/AlertHeader.sc.md",
+      "target": "docs/sc/ds/components/atoms/AlertHeader.sc.md",
+      "sha256": "3e795028672fbcf6c356f78e2d89d3a90ca73d06586839a597b7b8b2132f3f0b",
+      "mode": "exact-copy",
+      "type": "original component SC accompanying 91ab08f code"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Skeleton.sc.md",
+      "target": "docs/sc/ds/components/atoms/Skeleton.sc.md",
+      "sha256": "533a610f1177f8735969d43d859cff1e7991368648c2eae56c19b347ba3556d1",
+      "mode": "exact-copy",
+      "type": "original component SC accompanying 91ab08f code"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Alert.sc.md",
+      "target": "docs/sc/ds/components/molecules/Alert.sc.md",
+      "sha256": "7bbcbe54acc2e4cbb3420543568054d66ff61f3d73a907dd81b1016087ab5e28",
+      "mode": "exact-copy",
+      "type": "original component SC accompanying 91ab08f code"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Tag.sc.md",
+      "target": "docs/sc/ds/components/molecules/Tag.sc.md",
+      "sha256": "060f259fea626f2892ef3d04af0f5206e0295c6218ef14dbf6365dd50e0e47c0",
+      "mode": "exact-copy",
+      "type": "original component SC accompanying 91ab08f code"
+    }
+  ]
+}

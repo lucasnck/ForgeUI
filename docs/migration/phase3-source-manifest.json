@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-14",
+  "manifest": [
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Select/Select.tsx",
+      "target": "web/library/src/design-system/components/atoms/Select/Select.tsx",
+      "sha256": "a2562f95ff031fb787a38bed1fdd2b60a1d9668b1559c7e268dc4d96822250e4",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Select/Select.module.css",
+      "target": "web/library/src/design-system/components/atoms/Select/Select.module.css",
+      "sha256": "255b043ce8dca482b20a05bf5010ca69b26692a77223c3bd9d52b2d0bc43996d",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Container/Container.tsx",
+      "target": "web/library/src/design-system/components/atoms/Container/Container.tsx",
+      "sha256": "ce4095bd8935beb0b4baa772f43fb8c0761c8cc01125f7c1e76ffe0fa1c62d6e",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Container/Container.module.css",
+      "target": "web/library/src/design-system/components/atoms/Container/Container.module.css",
+      "sha256": "bf4d4eaa3ad5c005a82846f20ede5f4070a9c5f637b3785cccf97e030028fa70",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Inline/Inline.tsx",
+      "target": "web/library/src/design-system/components/atoms/Inline/Inline.tsx",
+      "sha256": "9e0496386ac8d1cd91121d578e73dbc1152ad6665d73a97d896f0f4d586bdc20",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Inline/Inline.module.css",
+      "target": "web/library/src/design-system/components/atoms/Inline/Inline.module.css",
+      "sha256": "09605dd24ab38d724312de52108b0d9268988fb90a7a33adfb100b696b418e0f",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Stack/Stack.tsx",
+      "target": "web/library/src/design-system/components/atoms/Stack/Stack.tsx",
+      "sha256": "8fba9a8b2496af88d9b9b5612d05fa690d073290423d547bafd087687fa3e9d1",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Stack/Stack.module.css",
+      "target": "web/library/src/design-system/components/atoms/Stack/Stack.module.css",
+      "sha256": "fd657bbcf60fda042081b388896755bf5d9bccda50ed775156839f33c5ba6d65",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Surface/Surface.tsx",
+      "target": "web/library/src/design-system/components/atoms/Surface/Surface.tsx",
+      "sha256": "2c54da1735c0dc0c3d1325346e01d1c5455ae1d334720a0fa0ea1ad515017f29",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Surface/Surface.module.css",
+      "target": "web/library/src/design-system/components/atoms/Surface/Surface.module.css",
+      "sha256": "41105300e8f94925777c1a7f3b5604e3b73539eee390af834dedc6fc3e998f35",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/SimpleGrid/SimpleGrid.tsx",
+      "target": "web/library/src/design-system/components/atoms/SimpleGrid/SimpleGrid.tsx",
+      "sha256": "36c7fe2620f04703e9959028b7b526b62144e8cf6152a7ef87d7393acd8efd5c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/SimpleGrid/SimpleGrid.module.css",
+      "target": "web/library/src/design-system/components/atoms/SimpleGrid/SimpleGrid.module.css",
+      "sha256": "0d9ce4aaaacd1334e64ffa57eb4156decde865cf3f211553eae69f1e7a8e3693",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Link/Link.tsx",
+      "target": "web/library/src/design-system/components/atoms/Link/Link.tsx",
+      "sha256": "e40439d5b1bb2c1f4863363e38fc03b3dbf0fae679ebf0ed63b48b682d38cce4",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Link/Link.module.css",
+      "target": "web/library/src/design-system/components/atoms/Link/Link.module.css",
+      "sha256": "732cfbf81f78e134328fdf5353ff38d363845a932e1233a971de1ae917ca67e6",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.tsx",
+      "target": "web/library/src/design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.tsx",
+      "sha256": "65d21801471564a166437062b08fc75d21d4ea1e98e5fba2b82cdcb67263fe5f",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.module.css",
+      "target": "web/library/src/design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.module.css",
+      "sha256": "60acfd7ab6d5a712400530bc597c8a2e60bd83bb2aa86cef28f7bc5e116fdb3f",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/types/layout.ts",
+      "target": "web/library/src/design-system/types/layout.ts",
+      "sha256": "db6c9d60dae64b1c4c8c31a2ab4d2dbe93c325548dbf89042fe77d92a432f430",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/styles/layout-components.module.css",
+      "target": "web/library/src/design-system/styles/layout-components.module.css",
+      "sha256": "7a527ec3fb1bd90579bf117c54738306cc959de2d751c75a632d5223da23fa62",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ShowcaseV2Page/ShowcaseV2Page.module.css",
+      "target": "showcase/portal/src/features/showcase-v2/ShowcaseV2Page.module.css",
+      "sha256": "049952e48e579ba0077ecb87797b927c1b352c3b6c3055e7d95b9294b8482a00",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ShowcaseV2Navigation/ShowcaseV2Navigation.module.css",
+      "target": "showcase/portal/src/features/showcase-v2/ShowcaseV2Navigation.module.css",
+      "sha256": "be16d89c2187b6028e4dc55f8b13caccd261f6dbb5039a2461f7903700787e7a",
+      "mode": "exact-copy"
+    }
+  ],
+  "source_catalogs": [
+    {
+      "source": "PraticarFront/src/features/showcase-v2/model/showcase-v2-index.ts",
+      "target": "showcase/portal/src/features/showcase-v2/catalog.ts",
+      "mode": "metadata-extraction"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/model/showcase-v2-resources.ts",
+      "target": "showcase/portal/src/features/showcase-v2/catalog.ts",
+      "mode": "metadata-extraction"
+    }
+  ],
+  "original_showcase_pages": 221,
+  "original_resource_pages": 33,
+  "active_preview_pages": 13
+}

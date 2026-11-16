@@ -1,0 +1,617 @@
+{
+  "date": "2026-11-14",
+  "source": "PraticarFront/docs/sc/ds",
+  "files": [
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Badge.sc.md",
+      "target": "docs/sc/ds/components/atoms/Badge.sc.md",
+      "sha256": "28ca33ea6653109ddfa72f80df4295b2632662e0b613f16731f1833bd2c513b4",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Badge",
+      "sourceRawSha256": "889f848dd75bc6836b4ea115e37d3509becc919ba1b6b8b0bce71b711d16a503",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Button.sc.md",
+      "target": "docs/sc/ds/components/atoms/Button.sc.md",
+      "sha256": "4e83a0fd89a54d27fced359fc76b6a01d76be6c126ea67d4e73de049aed566da",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Button",
+      "sourceRawSha256": "ff071c9a43a8c57ece1734f4ef1b5c64649460a95b1444435dea9180d987cd0e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Card.sc.md",
+      "target": "docs/sc/ds/components/molecules/Card.sc.md",
+      "sha256": "cf60d80e2176a4c25032dbba44dde5d674ccc9b508fa3ed063e6b7633894649e",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Card",
+      "sourceRawSha256": "29fa756b6195db42d8d89a06fb6e62344a5fad0efc36259b2fc5f9fc15663f3d",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/CardBody.sc.md",
+      "target": "docs/sc/ds/components/atoms/CardBody.sc.md",
+      "sha256": "f936eeabbb7aaf7de05e6e13d5d018598167ebde0fd11e0169088315b9ebc0fd",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "CardBody",
+      "sourceRawSha256": "eeb34e1267482c77d8b9e8ffea56fa246fef9065fc11b3043bb5e5466f8f14e6",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/CardFooter.sc.md",
+      "target": "docs/sc/ds/components/atoms/CardFooter.sc.md",
+      "sha256": "c3020598179801743c08a09fae1631bc0dd540275ee5a151c50597708d1130dc",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "CardFooter",
+      "sourceRawSha256": "25aadca7c6d2b50a967d8ecd98c6e18c1e04861cb3384cbf621de8cd4728cf59",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/CardHeader.sc.md",
+      "target": "docs/sc/ds/components/atoms/CardHeader.sc.md",
+      "sha256": "0ac8fe4779634f3e46e389ea90ba0b30a947f654a8c7fd1dc4f181ce1582ab1f",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "CardHeader",
+      "sourceRawSha256": "460ce8d5b62ad52c7023de75d0baaec9b5b22608e815df43edd31af690383bfb",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Checkbox.sc.md",
+      "target": "docs/sc/ds/components/atoms/Checkbox.sc.md",
+      "sha256": "dddbc7d14ee109c0df1a531f0c0ef8605e9b0854ad15f2ff1202313d41cc0717",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Checkbox",
+      "sourceRawSha256": "0d87dbbf9a00029f5ed55421f80deabe2a4227d89bbdbe47d9a560e0adf8dc13",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Container.sc.md",
+      "target": "docs/sc/ds/components/atoms/Container.sc.md",
+      "sha256": "dd3686b1f643466d5612a8d68a6013d0e006ec2d13b4adf7891351820f6c4e2d",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Container",
+      "sourceRawSha256": "09575046528bbf51d2e228c06407a15aafba53807bf2061c90bf8646da4be9be",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/organisms/DataGrid.sc.md",
+      "target": "docs/sc/ds/components/organisms/DataGrid.sc.md",
+      "sha256": "017f8e2e48f39b97b7d9c47fa5e35a96285dcf2bf571e70b88eec6c9a1a9d30d",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGrid",
+      "sourceRawSha256": "174394ac2ff989982f12b463f5780e9b3c0695d3af163e3a9b9f381afd005708",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/DataGridBody.sc.md",
+      "target": "docs/sc/ds/components/molecules/DataGridBody.sc.md",
+      "sha256": "49daf1839ff1f544907c72afbf0a0db275aad34b480ea2d30958eca5a305c074",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGridBody",
+      "sourceRawSha256": "5ef14e941b007bb9918afe7538b95b72072fdba01f1b86b5ace30049d70692cc",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/DataGridCell.sc.md",
+      "target": "docs/sc/ds/components/atoms/DataGridCell.sc.md",
+      "sha256": "311bddfa7f2e148ecbb24bae0dc3869766ea01c070e2c1fbaeaa78e7cc821e06",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGridCell",
+      "sourceRawSha256": "16169b87c84a59d4da7ffca99b274a817e2610efbb9ec617c95d9d3ad6827688",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/DataGridColumnHeader.sc.md",
+      "target": "docs/sc/ds/components/molecules/DataGridColumnHeader.sc.md",
+      "sha256": "038ca48a19754ffc579f5116bbbe6d58666215ff4fc8f5943a520f21f422ce5d",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGridColumnHeader",
+      "sourceRawSha256": "e09e4f9632ab4eda481516b2f14ef944b1e8bf6376a088bb8740f34aeb762b78",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/DataGridFooter.sc.md",
+      "target": "docs/sc/ds/components/atoms/DataGridFooter.sc.md",
+      "sha256": "073e533b9c410fa37d472dffdce3c89c6d7e593ae66e18460fe9b475c82a5ef2",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGridFooter",
+      "sourceRawSha256": "dc267bb9b2af5bfca07e3cb8352920d73d22cd9f395731008f6fbeded7aff7d2",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/DataGridHeader.sc.md",
+      "target": "docs/sc/ds/components/molecules/DataGridHeader.sc.md",
+      "sha256": "16746513c35637bb470f7b3728779e1d4426e51fa1176ebc967430138274728f",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGridHeader",
+      "sourceRawSha256": "aa3ee8d1fb3bfb11e2d6830d61d4d06fec4df360581ffde487a4428cbe0302a9",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/DataGridRow.sc.md",
+      "target": "docs/sc/ds/components/molecules/DataGridRow.sc.md",
+      "sha256": "9873722f7822d1dee06770106406bebb6f48f377cae65ab773b831da0370882e",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "DataGridRow",
+      "sourceRawSha256": "4ac101918b4e7aa9523b1d82dcc24814fdc47b288a27bef315941921615cc4ec",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Divider.sc.md",
+      "target": "docs/sc/ds/components/atoms/Divider.sc.md",
+      "sha256": "f1374bd6944ddd310ed03eda39dcb12c45d3ccf3fd21a89f623176aea48e8d81",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Divider",
+      "sourceRawSha256": "14fc16e0e845ffe99b7d3b03c8f88cc1df1573f93ea6335b12a64b00462fa1c5",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Heading.sc.md",
+      "target": "docs/sc/ds/components/atoms/Heading.sc.md",
+      "sha256": "4915a338622cc345d44293e7be5c154ed8371717248ac6ae6ec43fca10da4ed7",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Heading",
+      "sourceRawSha256": "2a35980cd6f3f2c85a1be5b49b37f5c6274dc3c22055b7f669286c62d30fd4dc",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Icon.sc.md",
+      "target": "docs/sc/ds/components/atoms/Icon.sc.md",
+      "sha256": "be59b81f3f983fab252b087cf1628d878d81557d99604b23164dd39990af5c42",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Icon",
+      "sourceRawSha256": "9663087beaa3eb239231a4d942d52b4bff8152b2ad214314a91cbf1b58cb1dab",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Inline.sc.md",
+      "target": "docs/sc/ds/components/atoms/Inline.sc.md",
+      "sha256": "5f61418e4bddb241396c7c2767e924ba53199a13ff8ac36c38b8fd1942b8f4c1",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Inline",
+      "sourceRawSha256": "9e90dbc58cb04381a6da8d013b6ed60d49b295381cdf690749abbf09070a7d9a",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Input.sc.md",
+      "target": "docs/sc/ds/components/atoms/Input.sc.md",
+      "sha256": "d69da93de828e101b1a6272bc3cb19bde3cf41bda5336959a1c93e94492730a3",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Input",
+      "sourceRawSha256": "5faac7423e302d9d5e0479b27a6387b931aadc5027dba26d2a3a8a299d2d716c",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Label.sc.md",
+      "target": "docs/sc/ds/components/atoms/Label.sc.md",
+      "sha256": "4cad990116d8195ae1c5fac8af1903c07af598180356dbd73ee09f7e8104fed8",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Label",
+      "sourceRawSha256": "7e96fa223eb58d209725b6eed9ccd08c7894f793d370f0156bebe7cf21867e67",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Link.sc.md",
+      "target": "docs/sc/ds/components/atoms/Link.sc.md",
+      "sha256": "04de030a53013280e87605104e2f349294cbbdc1cf5957adeebdda1276166e89",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Link",
+      "sourceRawSha256": "954860652714d5ce08a05ddbbb7b61dfcceb9c513e2aad608541bea9512acc80",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/LocaleSelector.sc.md",
+      "target": "docs/sc/ds/components/molecules/LocaleSelector.sc.md",
+      "sha256": "4c051a3cb31d1a26286ed9812d6aaf6ad2788ca49e0dbaed5a7434ad726e81ad",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "LocaleSelector",
+      "sourceRawSha256": "b2a8b86f932f08d32434ffa37e70055b3f01c4e3cb6150fd2eab35353b2ccd58",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Option.sc.md",
+      "target": "docs/sc/ds/components/atoms/Option.sc.md",
+      "sha256": "8190ff96f813105fc3b275068e3df8d1555a36b31328ab55525651ee7c5a17c4",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Option",
+      "sourceRawSha256": "1d6bd8ba47bdd3852f1b07787733602c2ba7c300cf5c4de3492788ca33b9bc9b",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Radio.sc.md",
+      "target": "docs/sc/ds/components/atoms/Radio.sc.md",
+      "sha256": "55d6a8f6c1ce5cf0860446dca998c3954a0f4fd8ed5ba617807ab09b8f071462",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Radio",
+      "sourceRawSha256": "aaab093b2ac06b64ed25217ba06fb3583624c0a717e0f9cb43c5c64c88c663b8",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Select.sc.md",
+      "target": "docs/sc/ds/components/atoms/Select.sc.md",
+      "sha256": "8a47f64bdf805d21fbaf1c462650d00d307fcbc1de4342f86bd2e8f143d58546",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Select",
+      "sourceRawSha256": "2e7dc86722d0fa8753c4d20e1b34f189ca253062050be5f905cbd090e4941bda",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/templates/ShowcasePageTemplate.sc.md",
+      "target": "docs/sc/ds/components/templates/ShowcasePageTemplate.sc.md",
+      "sha256": "8ad09d10268bcc7d5ccdcad67a02ed004593f8cd7dd6d5c1fceb1d1a6fea0221",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "ShowcasePageTemplate",
+      "sourceRawSha256": "d14b76a3a3bfea7ad181dcaf1b25c9d0d39174c68c1480be0975d250506fab6d",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Spinner.sc.md",
+      "target": "docs/sc/ds/components/atoms/Spinner.sc.md",
+      "sha256": "98d479c7f785dfedaf792779d7048b3515c6c933e70cf0b2d7958de8835ce6fd",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Spinner",
+      "sourceRawSha256": "28a0f621cc47d6a3fd80ee09ad4f52a3490030cf41398008afa7ae0ab6e76c52",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Stack.sc.md",
+      "target": "docs/sc/ds/components/atoms/Stack.sc.md",
+      "sha256": "4ac5f977dc71f9f410d7818a7c0734e1d4161233ec291759b6c388b33936d558",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Stack",
+      "sourceRawSha256": "94542a1e041f2479d2e3d5ff3c16a038f57b43f26998d613268eb40df845ff06",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Surface.sc.md",
+      "target": "docs/sc/ds/components/atoms/Surface.sc.md",
+      "sha256": "7d658026df01a46638c534f2d5f1ace00513105ea0ff8f57ac32801fdb9fc451",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Surface",
+      "sourceRawSha256": "3bf87afb9e27f748bc3eac828444d3ca003fa7dccd1bf2bc78937916b5f9c653",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Switch.sc.md",
+      "target": "docs/sc/ds/components/atoms/Switch.sc.md",
+      "sha256": "3437797455a6184dc9dfa75f1349502e1b7fb0135cb25413ca30a9046094b50a",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Switch",
+      "sourceRawSha256": "e89fd66e753046ad4e99467c9a3139b3ea299395052664f195535f2f7e202d82",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Text.sc.md",
+      "target": "docs/sc/ds/components/atoms/Text.sc.md",
+      "sha256": "a0f53603e2725967f66e9ca36d456296d9b9b3f8b612ad3adcf833a4db8a75f1",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Text",
+      "sourceRawSha256": "4c7a2a225452622c9405b36a6b8937bd9c29f447731a687d343205058f2e32f2",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Textarea.sc.md",
+      "target": "docs/sc/ds/components/atoms/Textarea.sc.md",
+      "sha256": "c9e62f76d67fe9a894e2fa44eeb410a6ecad7b37b118f63e4df28f421b905880",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "Textarea",
+      "sourceRawSha256": "fdb0a516a9b20c1ec54087a8db9fe74f9f154786feeb3630ee881f889f69dd25",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/ThemeSelector.sc.md",
+      "target": "docs/sc/ds/components/molecules/ThemeSelector.sc.md",
+      "sha256": "0bfa9647d2adea345bc66779513b399d2d63dd32379b62ad586e569121a566c3",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "ThemeSelector",
+      "sourceRawSha256": "a7982f16d852733f2a495f80462bd054b9ebf7a3236082ff19216a682b0e8b3c",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/VisuallyHidden.sc.md",
+      "target": "docs/sc/ds/components/atoms/VisuallyHidden.sc.md",
+      "sha256": "335ed840082716b6147d816229c75958ea0616235953a1242b436fa0221850c6",
+      "mode": "exact-copy",
+      "kind": "component",
+      "name": "VisuallyHidden",
+      "sourceRawSha256": "e88ac118da057b190eb06a39778b9e855ccdce416db069095974ccf6c5658c72",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-disclosure-hooks.sc.md",
+      "target": "docs/sc/ds/hooks/tech-disclosure-hooks.sc.md",
+      "sha256": "3b5aa1f1b8159d22678c51d993101d78983ce2464f65135c806f1c1d25bc2429",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "a943ba945cbc108847d35bff2ffbfac839e944a757a2f37be1faf6dbef806df4",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-grid-navigation.sc.md",
+      "target": "docs/sc/ds/hooks/tech-grid-navigation.sc.md",
+      "sha256": "0322530e3737a2e807ab225ab7fab21424e81db956a7f44d6831da03c0093aef",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "95f101e7ca46c0241ecf8400fc782e63baf56b03beb5a4b28f3e4b3fc6013e72",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-listbox-state.sc.md",
+      "target": "docs/sc/ds/hooks/tech-listbox-state.sc.md",
+      "sha256": "db4582d7e33aae4f7c5c722eff5c8ad4af8502e5835fb7aac5642eb42e295e3a",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "0f41d1c62e0c3e75c7e4d6eabf165d774800895e442829721e7e6e115b5bc696",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-mask.sc.md",
+      "target": "docs/sc/ds/hooks/tech-mask.sc.md",
+      "sha256": "e9683d20f11ae62f2f5b690a3c574490d2c8145c82f0b3f1f73e43b42b3613a2",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "736a33b98a6e225e19168988d21b42177469ece5994ede3a8403f5b7365206fd",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-modal-interactions.sc.md",
+      "target": "docs/sc/ds/hooks/tech-modal-interactions.sc.md",
+      "sha256": "2fd493758ba671c6369ab951f30ff39ea0840572eb210a5be5e684a508dd97b6",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "a25f4e29796563a068ab10d94fe881feb15fbb6f6d27a1198dc2eb886b981d4e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-notifications.sc.md",
+      "target": "docs/sc/ds/hooks/tech-notifications.sc.md",
+      "sha256": "ef4ea94922459505d1a8e616c983ab1c56a08262cc948be5a3c71c0c15b8d19c",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "027ff5b94e203437c28555f01b12be42f67f4c7eb82bd7cfcb7f520e9f9129c8",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-overlay-interactions.sc.md",
+      "target": "docs/sc/ds/hooks/tech-overlay-interactions.sc.md",
+      "sha256": "a07c46e8bb33eec3fdcb4a45de66ac19ee2bff58557928fc628d0a534b39da96",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "a26e234147f4b574cd82a9ac31cb3fc86ece8b06d63ba6f91a6db86c474353ee",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-popup-contracts.sc.md",
+      "target": "docs/sc/ds/hooks/tech-popup-contracts.sc.md",
+      "sha256": "537d1295f7804e12acb165195044280a21ad06e609627f1790d69a937025d227",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "f284ba676d366054506f39d1ea0f9c731d97f6ed7ae62c0d67409b2047cf443a",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-presence.sc.md",
+      "target": "docs/sc/ds/hooks/tech-presence.sc.md",
+      "sha256": "d0cd030c1675bf566e0055a80fd249fc5bd42f9e77b6350cd5913fd0470b48da",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "5cd6820f8fdf6a5958edbdc9c32e1257d202b392b848fff57283481f439a7cec",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-roving-focus.sc.md",
+      "target": "docs/sc/ds/hooks/tech-roving-focus.sc.md",
+      "sha256": "2d6ad0b335be641e3dc4eef6da83ae5fa4f69cdee57d526849975951e19be2f6",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "985ebe7666244820f2a41da5b7855e349bff616d460fa49d007482ee9c602aa4",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/hooks/tech-tree-state.sc.md",
+      "target": "docs/sc/ds/hooks/tech-tree-state.sc.md",
+      "sha256": "e9db32e4da6191875eccf339a8306393f1b0c44be9c27b066c325d1f1649ba5e",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "3334b5eeb1155744e1ba4e5f1cc6f9173f5cbae7af27ad914bc297a353fb814b",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/animations/tech-motion-recipes.sc.md",
+      "target": "docs/sc/ds/styles/animations/tech-motion-recipes.sc.md",
+      "sha256": "a9f2e88d0e5ef0fd9195a16f47d38cf59a130b1f998f5c0ec28d7af56a2c62fb",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "bbc3bedb6f1858d7602dba799f33ad127b881bc5efe8afa9140646432cda84ce",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/animations/tech-page-transitions.sc.md",
+      "target": "docs/sc/ds/styles/animations/tech-page-transitions.sc.md",
+      "sha256": "499b78eba3a480d040eeb8464fcea57bfc629fb94092730673e9b9fa4cf48ab0",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "3c601312df52bd85fe29f7873f037048a430cef466a09fd08c9f06e547db04b8",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/animations/tech-shared-element-transitions.sc.md",
+      "target": "docs/sc/ds/styles/animations/tech-shared-element-transitions.sc.md",
+      "sha256": "ce953da2366986d197afa6116c3bbe9fb3f502ecea8843323a05c146ad8cddc2",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "81604b723709ab8552d5936bcd3433dc63a64d720d0aca0c694717dd8ff4dee2",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/animations/tech-surface-animations.sc.md",
+      "target": "docs/sc/ds/styles/animations/tech-surface-animations.sc.md",
+      "sha256": "9e2cc71571b81603244423ecef63f4de8c4862ed375b1246f98591bd4bb5a289",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "74d497a04a92d820edde478fb63dcc58ed8ed97ecb83d758cdbc181a00bae75e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-data-grid-components.sc.md",
+      "target": "docs/sc/ds/styles/tech-data-grid-components.sc.md",
+      "sha256": "65544b56a7aa90ecf3246d39e5ebc380cc7cc0782aab1b59586f8695b9316d78",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "bf504934f6e74b07866a538c895409b75cdb147b10f041ed6a3a748b0c78852d",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-design-tokens.sc.md",
+      "target": "docs/sc/ds/styles/tech-design-tokens.sc.md",
+      "sha256": "b848380d1ec9becaf3770367a8013a2d20a0c26a6916da7f9043037e1bfb7a4a",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "6d7882931834709c372ff397fdb3391bd778a52a72ddd3ea15d0fcd7833893fb",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-icon.sc.md",
+      "target": "docs/sc/ds/styles/tech-icon.sc.md",
+      "sha256": "a0ac20defc15a9a78ea7a18213c24b57a581eb9493eb9400a0b3a7d0ff4dd568",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "50a28b879763578e62529cffd14fa8c86e3ad9269bfa52395e540af82e1704a9",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-interactive-primitives.sc.md",
+      "target": "docs/sc/ds/styles/tech-interactive-primitives.sc.md",
+      "sha256": "8b272fdf51311607d751671a8b8c6e87dfc068dd45ce9ffc515e545e7dea95f2",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "e7ae82d950076b1ba6df5a7e8d48e0c7689e6b570a022a558faceb9d192b4324",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-layout.sc.md",
+      "target": "docs/sc/ds/styles/tech-layout.sc.md",
+      "sha256": "c9fc7187786ee1255208c0852d7022c469b83161d7f3d87072d7e9df30587696",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "725152701ba43f58e0927cbd7dd35ba003e4edd2ea52c9e0e27f42a6e716f2d5",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-loading-indicators.sc.md",
+      "target": "docs/sc/ds/styles/tech-loading-indicators.sc.md",
+      "sha256": "4ac786d5c4fab99457375dfe69049aacee2cd995c8efcefb9ab85762f43fe139",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "3767b5001b79d3bdd15b1b2e9cf486386c4623ffdafb3593abde728b7d84d6de",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-native-control-recipes.sc.md",
+      "target": "docs/sc/ds/styles/tech-native-control-recipes.sc.md",
+      "sha256": "cb5b050bd264cf93eb9a942aa4b83d4b55cd15ecf1516e4b7715c2067dc36d8e",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "80d8dbf0edd9e65dda392f410b8c213855042c2d2e0aa13ff450800502f62e9d",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-overlay-scroll-lock.sc.md",
+      "target": "docs/sc/ds/styles/tech-overlay-scroll-lock.sc.md",
+      "sha256": "715245e5b77dc293f9c4d33706bbbe35db28e701b2f5cf762c9734a3943624d4",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "bd1d2a7f33008ae56810ae3726cbb166b8d3551f1a6e2e748e6fff25cfdf7a4e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-popup-recipes.sc.md",
+      "target": "docs/sc/ds/styles/tech-popup-recipes.sc.md",
+      "sha256": "4854ded0aea7481256a765fc7ec821083b9155fb09d2d2ff7a7adf7f0a430f2b",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "c19d3d1e83eff821456a217536914efa68677118c7c4d2c81fbd53901fea4e88",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-range-recipes.sc.md",
+      "target": "docs/sc/ds/styles/tech-range-recipes.sc.md",
+      "sha256": "24d2cd632f2c189643814c181e942e77b406375d1e2bd9246b3adbdf111b2d16",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "c89a5f1606e376d340f6015446891fb9396389d247ec9476e06d21c0132c15ff",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-scrollbars.sc.md",
+      "target": "docs/sc/ds/styles/tech-scrollbars.sc.md",
+      "sha256": "d70281e9cb11841ac0052f28af81e224ac4f24418ae2a9afbe700d6e3b77a9f3",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "e4a0ad6f78f9f3407e93b7b0066db762d0514494741b9c1ad2d75530a1fdd59a",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-shape.sc.md",
+      "target": "docs/sc/ds/styles/tech-shape.sc.md",
+      "sha256": "9335e158b88945736e7777959dc31babd7205b9b00aa7fa98719691a9ef93870",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "2ff51372b273dee38fbfd54776eab7f822eecc395a608d0d50fa667b9f475832",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-status-primitives.sc.md",
+      "target": "docs/sc/ds/styles/tech-status-primitives.sc.md",
+      "sha256": "a09228782a6f77df0f7d1f01a2fc813a3b9f905cbdd882918dbd73c9417e8d83",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "33650d2bf3d4bd3e084efb8f235f25e6371a741ff1832218d8f43f5a89be7e13",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/styles/tech-typography.sc.md",
+      "target": "docs/sc/ds/styles/tech-typography.sc.md",
+      "sha256": "2723187e84600ecf7cefc2c28249412076154b19f29782f4d698c71e05e64b24",
+      "mode": "exact-copy",
+      "kind": "resource",
+      "sourceRawSha256": "b6e9297d2b18f236b571d7f14a2ddcc42f615cb67e02e4f1236cd346b2cca1ac",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    }
+  ]
+}

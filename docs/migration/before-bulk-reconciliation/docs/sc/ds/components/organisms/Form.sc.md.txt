@@ -1,0 +1,176 @@
+---
+title: "Form"
+scope: "Presentation-only Form with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# Form
+
+
+## Files
+
+```text
+design-system/components/organisms/Form/Form.module.css (M)
+features/showcase/examples/Form.example.tsx (M)
+features/showcase-v2/components/Form/definition.ts (C)
+features/showcase-v2/components/Form/Form.example.tsx (C)
+features/showcase-v2/components/Form/useFormExample.ts (C)
+features/showcase-v2/components/Form/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/model/form-grid-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/components/Form/fixtures.ts (C)
+features/showcase-v2/components/Form/useNativeFormExample.ts (C)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Native form contract](../../types/tech-collection-contracts.sc.md)
+- [Compound contracts](../../types/tech-compound-composition.sc.md)
+- [Compound parts](../../helpers/tech-compound-parts.sc.md)
+- [Component loading](../../types/tech-component-capabilities.sc.md)
+- [FormHeader](../atoms/FormHeader.sc.md)
+- [FormBody](../atoms/FormBody.sc.md)
+- [FormFooter](../atoms/FormFooter.sc.md)
+
+## Contract
+
+```tsx
+import { Form, FormHeader, FormBody, FormField, Input, FormFooter, Button } from "@/design-system";
+<Form onValidSubmit={saveForm}><FormHeader>Details</FormHeader><FormBody><FormField controlId="name" label="Name"><Input name="name" required/></FormField></FormBody><FormFooter><Button type="submit">Save</Button></FormFooter></Form>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  padding: var(--space-3);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import type { SubmitEvent } from "react";
+import type { FormProps } from "./Form";
+
+export function useForm({ onValidSubmit, onSubmit, loading = false, loadingLabel, children, className, ...props }: FormProps) {
+  function submit(event: SubmitEvent<HTMLFormElement>) {
+    onSubmit?.(event);
+    if (event.defaultPrevented) return;
+    event.preventDefault();
+    if (loading) return;
+    const form = event.currentTarget;
+    const environment = form.ownerDocument.defaultView;
+    if (!environment) return;
+    const nativeEvent = event.nativeEvent;
+    const submitter = nativeEvent instanceof environment.SubmitEvent ? nativeEvent.submitter : undefined;
+    onValidSubmit(new environment.FormData(form, submitter ?? undefined), event);
+  }
+  return { context: { loading, loadingLabel }, children, className, props, submit };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { SubmitEvent } from "react";
+import type { NativeFormRootProps } from "../../../types/collection-contracts";
+import type { ComponentChildrenProps } from "../../../types/compound-composition";
+import type { ComponentLoadingProps } from "../../../types/component-capabilities";
+import { FormContext } from "../../../internal/form/FormContext";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { FormHeader } from "../../atoms/FormHeader";
+import { FormBody } from "../../atoms/FormBody";
+import { FormFooter } from "../../atoms/FormFooter";
+import { useForm } from "./useForm";
+import styles from "./Form.module.css";
+
+export interface FormProps extends NativeFormRootProps, ComponentChildrenProps, ComponentLoadingProps {
+  onValidSubmit(data: FormData, event: SubmitEvent<HTMLFormElement>): void;
+}
+
+export function Form(input: FormProps) {
+  const { context, children, props, className, submit } = useForm(input);
+  const parts = collectCompoundParts(children, { header: FormHeader, body: FormBody, footer: FormFooter });
+  return (
+    <FormContext value={context}>
+      <form
+        {...props}
+        onSubmit={submit}
+        className={[styles.root, className].filter(Boolean).join(" ")}
+        data-gap="2"
+      >
+        {parts.header}
+        {parts.body}
+        {parts.footer}
+      </form>
+    </FormContext>
+  );
+}
+```
+
+```tsx
+"use client";
+
+import { createContext, useContext } from "react";
+
+export interface FormContextValue {
+  loading: boolean;
+  loadingLabel?: string;
+}
+export const FormContext = createContext<FormContextValue | null>(null);
+export function useFormPresentationContext() {
+  const context = useContext(FormContext);
+  if (!context) throw new Error("Form parts require Form");
+  return context;
+}
+```
+
+## Tests
+
+- V2 Required native submission: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Multiple submit intents: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Native invalid controls prevent valid submission; noValidate explicitly follows browser opt-out.
+- A prevented caller onSubmit skips the owned callback.
+- FormData includes the submitter name/value and loading suppresses another owned submission.
+
+## Criteria
+
+- [x] Given an invalid required control, browser submission is blocked and onValidSubmit does not run.
+- [x] Given submitter name/value, FormData includes it; prevented caller onSubmit skips the owned callback.
+- [x] The onValidSubmit contract uses Required; no network behavior in DS.
+- [x] The noValidate / loading / loadingLabel contract uses false / false / undefined.
+- [x] Root owns one native form; Header/Body/optional Footer preserve browser submission/constraint validation. onSubmit runs before the owned handler and can prevent it; callback runs once only for native submit events reaching the form.
+- [x] Native invalid controls block submit and browser focus/validation feedback remain; caller onInvalidCapture can observe them. noValidate explicitly opts out of native validation without inventing a DS schema.
+- [x] Native action/method/target are omitted because this contract emits FormData rather than navigating. use requestSubmit, never form.submit, for programmatic validated activation.
+- [x] No nested forms, field discovery, server action, API adapter or domain validator.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+
+- [x] Root owns --space-3 padding and --space-2 region separation without Card surfaces, borders or unrelated close controls.
+- [x] The original complete FormExample remains the submission/loading/native-validation playground; its title uses Heading level=4 in the Showcase.
+- [x] The existing native form submit handler, caller cancellation, submitter FormData and loading behavior remain unchanged.
+- [x] Flex regions honor native hidden through explicit CSS; parts use --space-2 gaps without duplicating root padding.
+- [x] Integrated verification confirms atomic isolation, spacing, narrow-width layout and preserved form interaction in the running Showcase.
+
+- [x] V2 **Required native submission**: Compose FormHeader/Body/Footer, FormField/Input and secondary Cancel/primary Save. An empty required field blocks onValidSubmit; valid entry displays native FormData from the actual submit event, and reset clears values/feedback.
+- [x] V2 **Multiple submit intents**: Compose the public parts with two submit Buttons using distinct name/value intents and a non-submit reset action. Display the native submitter and fields; caller loading prevents repeated valid handling without a backend.
+- [x] The Form V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useFormExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

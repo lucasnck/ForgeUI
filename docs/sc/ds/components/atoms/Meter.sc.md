@@ -1,0 +1,112 @@
+---
+title: "Meter"
+scope: "Native meter for a scalar within a known range"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Meter
+
+## Files
+
+```text
+design-system/components/atoms/Meter/Meter.tsx (M)
+design-system/components/atoms/Meter/Meter.module.css (M)
+design-system/styles/range-components.module.css (M)
+design-system/components/atoms/Meter/index.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Meter.example.tsx (M)
+features/showcase/examples/control-variations.ts (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Meter/definition.ts (C)
+features/showcase-v2/components/Meter/Meter.example.tsx (C)
+features/showcase-v2/components/Meter/useMeterExample.ts (C)
+features/showcase-v2/components/Meter/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Range indicators](../../helpers/tech-range-indicators.sc.md)
+- [Interactive primitives](../../styles/tech-interactive-primitives.sc.md)
+- [Range indicator recipes](../../styles/tech-range-recipes.sc.md)
+- [Range contracts](../../types/tech-range-contracts.sc.md)
+- [Interactive native controls](../../types/tech-interactive-controls.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Meter } from "@forge-ui/web";
+<Meter label="Storage usage" value={65} min={0} max={100} low={25} high={75} aria-valuetext="65 percent"/>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: meter from "../../../styles/range-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import { RangeTrack } from "../RangeTrack/RangeTrack";
+import { VisuallyHidden } from "../VisuallyHidden";
+import { normalizeMeterRange } from "../../../helpers/range";
+import type { ReactElement } from "react";
+import type { NativeMeterProps, ComponentMeterValueProps, ComponentAccessibleNameProps, ComponentSizedProps, ComponentToneProps, ComponentFullWidthProps, ComponentAnimatedProps, } from "../../../types";
+import styles from "./Meter.module.css";
+export interface MeterProps extends NativeMeterProps, ComponentMeterValueProps, ComponentAccessibleNameProps, ComponentSizedProps, ComponentToneProps, ComponentFullWidthProps, ComponentAnimatedProps {
+}
+export function Meter({ className, label, value, min, max, low, high, optimum, size = "md", tone = "brand", fullWidth = true, animated = true, ...props }: MeterProps): ReactElement {
+  const range = normalizeMeterRange({ value, min, max, low, high, optimum });
+  const extent = range.max - range.min;
+  const ratio = Number.isFinite(extent)
+    ? (range.value - range.min) / extent
+    : (range.value / 2 - range.min / 2) / (range.max / 2 - range.min / 2);
+  return (<span className={[styles.root, className].filter(Boolean).join(" ")} data-size={size} data-tone={tone} data-full-width={fullWidth || undefined}>
+   <VisuallyHidden>
+  <meter {...props} {...range} aria-label={label}/>
+   </VisuallyHidden>
+   <RangeTrack ratio={ratio} animated={animated}/>
+  </span>);
+}
+```
+
+## Tests
+
+- V2 Measured range: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Five sizes, seven tones, widths, minimum/midpoint/maximum, threshold regions, invalid numeric inputs and localized units are demonstrated.
+- [x] Low/high/optimum remain ordered/in-range; native semantics describe a measurement, not task completion.
+- [x] Browser-native fallback remains meaningful without vendor styling.
+- [x] Exactly one Atom registration exists in Showcase; examples cover its supported public capabilities.
+- [x] Lint, type, token and static-export checks pass; canonical interfaces/recipes are reused.
+- [x] Consumer supplies units and thresholds; exclude task-completion and indeterminate mode.
+- [x] The Defaults contract uses label and numeric value required; size md, tone brand, fullWidth true.
+- [x] The Constraint 1 contract uses min/max/low/high/optimum normalized by shared helper; non-finite value becomes min.
+- [x] The Constraint 2 contract uses Native aria-valuetext may describe measurement units.
+- [x] The Constraint 3 contract uses No auto status-color selection, role progressbar, disabled/loading/shape or appearance axis.
+- [x] The animated contract uses true; controls the private renderer, without delaying native value semantics.
+- [x] Defaults are those in Signature.
+- [x] Native scalar attributes carry actual measurement.
+- [x] Shared recipe owns browser tracks/fill and ordered thresholds; explicit tone governs authored fill.
+- [x] No inline runtime CSS values or timers.
+- [x] The native element is clipped through VisuallyHidden but remains accessible; the decorative SVG has no accessible role/name.
+- [x] The private RangeTrack animates the SVG rect width with --motion-normal and --ease-standard; native value and accessible value text update immediately.
+- [x] No entrance animation is required.
+
+- [x] V2 **Measured range**: Compose a named measurement/range and caller controls using valid min/max/value relationships and supported step/thresholds. Show actual value feedback immediately; only interactive Slider receives editing actions, and progress never fabricates elapsed work.
+- [x] The Meter V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useMeterExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

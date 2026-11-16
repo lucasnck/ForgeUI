@@ -1,0 +1,131 @@
+---
+title: "MenuItem"
+scope: "Menu compound part: MenuItem. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# MenuItem
+
+## Files
+
+```text
+features/showcase/examples/useMenuAtomicExample.ts (C)
+design-system/components/atoms/MenuItem/MenuItem.tsx (C)
+design-system/components/atoms/MenuItem/MenuItem.module.css (C)
+design-system/components/atoms/MenuItem/index.ts (C)
+design-system/internal/menu/MenuContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/MenuItem.example.tsx (M)
+features/showcase/examples/Menu.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/MenuItem/useMenuItem.ts (C)
+features/showcase-v2/components/MenuItem/definition.ts (C)
+features/showcase-v2/components/MenuItem/MenuItem.example.tsx (C)
+features/showcase-v2/components/MenuItem/useMenuItemExample.ts (C)
+features/showcase-v2/components/MenuItem/usage-code.ts (C)
+features/showcase-v2/components/Menu/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-roving-focus.sc.md](../../hooks/tech-roving-focus.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+
+## Contract
+
+```tsx
+import { Menu, MenuBody, MenuItem } from "@forge-ui/web";
+<Menu label="Actions" onAction={runAction}><MenuBody><MenuItem value="download" label="Download"/></MenuBody></Menu>;
+```
+
+## Styles
+
+```css
+.root { min-inline-size: var(--zero); }
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useRef, useLayoutEffect } from "react";
+import { useMenuContext } from "../../../internal/menu/MenuContext";
+import type { MenuItemProps } from "./MenuItem";
+export function useMenuItem(input: MenuItemProps) {
+  const { value, label, disabled = false, onClick, onFocus, className, children, ...props } = input;
+  if (!label.trim() || children != null) throw new Error("MenuItem requires a nonempty plain label.");
+  const menu = useMenuContext();
+  const itemRef = useRef<HTMLButtonElement>(null);
+  const register = menu.focus.registerItem;
+  useLayoutEffect(() => register({ id: value, ref: itemRef, textValue: label, disabled }), [register, value, label, disabled]);
+  const handleFocus: NonNullable<MenuItemProps["onFocus"]> = (event) => { onFocus?.(event); if (!event.defaultPrevented && !disabled) menu.focus.onItemFocus(value); };
+  const handleClick: NonNullable<MenuItemProps["onClick"]> = (event) => { onClick?.(event); if (!event.defaultPrevented && !disabled && itemRef.current?.contains(event.target as Node)) menu.activate(value); };
+  return { props, className, label, disabled, itemRef, tabIndex: menu.focus.tabIndex(value), animated: menu.animated, handleFocus, handleClick };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { NativeCollectionItemProps } from "../../../types";
+import { Button } from "../Button";
+import { useMenuItem } from "./useMenuItem";
+import styles from "./MenuItem.module.css";
+export interface MenuItemProps extends NativeCollectionItemProps { value: string; label: string; disabled?: boolean; }
+export function MenuItem(input: MenuItemProps) {
+  const { props, className, label, disabled, itemRef, tabIndex, animated, handleFocus, handleClick } = useMenuItem(input);
+  return <li {...props} role="none" className={[styles.root, className].filter(Boolean).join(" ")} onFocus={handleFocus} onClick={handleClick}><Button ref={itemRef} type="button" role="menuitem" tone="neutral" appearance="ghost" disabled={disabled} tabIndex={tabIndex} data-animated={animated}>{label}</Button></li>;
+}
+```
+
+## Tests
+
+- V2 Indexed action menu: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- `npm run test:overlays` verifies real React SSR: scoped menu items, one enabled tab stop, omitted closed popup and one named nonmodal dialog panel. Real keyboard, pointer and focus acceptance remain separate.
+
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given MenuItem, Item renders li role=none containing a native type=button role=menuitem, registers its button ref/text with root focus, and requests one root action on click.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The value contract uses Required stable item identity, unique within its root.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Disabled items cannot activate.
+- [x] Native Enter/Space click is not duplicated by key handlers.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] inactive ↔ active/selected → Current selection, active-descendant or native activation → Actual item control/background, not a second list surface → stateFeedback; --motion-fast / --ease-standard.
+- [x] Use only the item states supported by its owning contract.
+- [x] Native focus and aria-selected/current/expanded/activedescendant update immediately; arrow navigation never waits for motion.
+- [x] The item does not allocate a presence/selection clock.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useMenuItem is colocated with MenuItem and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **Indexed action menu**: Compose required public MenuBody with three MenuItems labeled Label 1..3 and stable values; navigate enabled actions, invoke onAction once and display the emitted key locally.
+- [x] The MenuItem V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useMenuItemExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Menu fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

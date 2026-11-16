@@ -1,0 +1,88 @@
+---
+title: "Modal contracts"
+scope: "Modal contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Modal contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/modal.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Dependencies
+
+- [Selection, panel and open-state contracts](tech-selection-navigation.sc.md)
+
+## Contract
+
+```ts
+import type { NativeModalRootProps } from "@/design-system";
+type Contract = NativeModalRootProps;
+```
+
+## Content
+
+```ts
+import type {
+  SyntheticEvent,
+  MouseEvent,
+  PointerEvent,
+  RefObject,
+  ComponentPropsWithRef,
+} from "react";
+import type {
+  ComponentOpenProps,
+} from "./selection-navigation";
+
+export interface NativeModalRootProps extends Omit<ComponentPropsWithRef<"dialog">, "open" | "onCancel" | "onClose" | "children"> {
+}
+
+export interface ModalDismissProps {
+  closeOnOutsideClick?: boolean;
+}
+
+export interface ModalOptions extends ComponentOpenProps, ModalDismissProps {
+  initialFocusRef?: RefObject<HTMLElement | null>;
+  returnFocusRef?: RefObject<HTMLElement | null>;
+  requiredInitialFocus?: boolean;
+}
+
+export interface ModalContract {
+  open: boolean;
+  dialogRef: RefObject<HTMLDialogElement | null>;
+  requestOpen(open: boolean): void;
+  onPointerDown(event: PointerEvent<HTMLDialogElement>): void;
+  onPointerCancel(event: PointerEvent<HTMLDialogElement>): void;
+  onClick(event: MouseEvent<HTMLDialogElement>): void;
+  onCancel(event: SyntheticEvent<HTMLDialogElement>): void;
+  onClose(event: SyntheticEvent<HTMLDialogElement>): void;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for Dialog, AlertDialog, useModal retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile controlled/uncontrolled open options and initial/return focus refs.
+- Reject incompatible dialog refs, non-boolean open channels and incorrectly typed native cancel/close handlers.
+- Reject native channels explicitly owned by the modal adaptation.
+
+## Criteria
+
+- [x] closeOnOutsideClick defaults to false. When enabled, a primary click beginning and ending outside native dialog bounds requests onOpenChange(false); inside clicks, drag across bounds, canceled pointers, caller-prevented events and nested dialog events do not dismiss. Controlled refusal keeps the dialog open; accepted close restores focus through the existing lifecycle. The option is not forwarded to the DOM.
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+
+- [x] V2 typed usage fixtures cover Dialog, AlertDialog, useModal: Native modal refs, initial/return focus and controlled open requests. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

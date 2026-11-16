@@ -1,0 +1,227 @@
+---
+title: "Pagination"
+scope: "Compose controlled page navigation and inert gaps; document complete navigation independently from atomic item previews."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Pagination
+
+
+## Files
+
+```text
+design-system/components/static-components.contracts.test.ts (M)
+features/showcase/examples/useNavigationExampleCopy.ts (M)
+features/showcase/examples/PaginationBehavior.example.tsx (C)
+features/showcase/examples/PaginationExamples.module.css (C)
+../scripts/check-static-components.cjs (M)
+design-system/components/molecules/Pagination/usePagination.ts (M)
+design-system/components/molecules/Pagination/Pagination.tsx (M)
+design-system/components/molecules/Pagination/Pagination.module.css (M)
+design-system/components/molecules/Pagination/index.ts (M)
+design-system/internal/pagination/PaginationContext.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Pagination.example.tsx (M)
+features/showcase/examples/PaginationItem.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase-v2/components/Pagination/definition.ts (C)
+features/showcase-v2/components/Pagination/Pagination.example.tsx (C)
+features/showcase-v2/components/Pagination/usePaginationExample.ts (C)
+features/showcase-v2/components/Pagination/usage-code.ts (C)
+features/showcase-v2/components/Pagination/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Semantic native region contracts](../../types/tech-collection-contracts.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [PaginationItem.sc.md](../atoms/PaginationItem.sc.md)
+- [PaginationEllipsis](../atoms/PaginationEllipsis.sc.md)
+
+## Contract
+
+```tsx
+import { Pagination, PaginationEllipsis, PaginationItem } from "@forge-ui/web";
+
+<Pagination label="Pages" page={6} pageCount={12} onPageChange={setPage}>
+  <PaginationItem page={5} label="Previous page" aria-current={false}>Previous</PaginationItem>
+  <PaginationItem page={1} label="Page 1" />
+  <PaginationEllipsis />
+  <PaginationItem page={5} label="Page 5" />
+  <PaginationItem page={6} label="Page 6" />
+  <PaginationItem page={7} label="Page 7" />
+  <PaginationEllipsis />
+  <PaginationItem page={12} label="Page 12" />
+  <PaginationItem page={7} label="Next page" aria-current={false}>Next</PaginationItem>
+</Pagination>
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+}
+.list {
+  composes: inline from "../../../styles/layout-components.module.css";
+  --inline-gap: var(--space-0);
+  --inline-wrap: wrap;
+  margin: var(--zero);
+  padding: var(--zero);
+  list-style: none;
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import type { PaginationProps } from "./Pagination";
+
+export function usePagination({ label, page, pageCount, onPageChange, disabled = false, children, className, ...props }: PaginationProps) {
+  if (!label.trim()) throw new Error("Pagination requires a nonempty navigation label.");
+  if (!Number.isInteger(pageCount) || pageCount < 1 || !Number.isInteger(page) || page < 1 || page > pageCount) {
+    throw new Error("Invalid pagination range.");
+  }
+  function requestPage(next: number) {
+    if (disabled || !Number.isInteger(next) || next === page || next < 1 || next > pageCount) return;
+    onPageChange(next);
+  }
+  return { label, page, pageCount, disabled, children, className, props, requestPage };
+}
+```
+
+## Content
+
+```ts
+"use client";
+
+import { createContext, useContext } from "react";
+
+export interface PaginationContextValue {
+  page: number;
+  pageCount: number;
+  disabled: boolean;
+  requestPage(page: number): void;
+}
+
+export const PaginationContext = createContext<PaginationContextValue | null>(null);
+
+export function usePaginationContext() {
+  const value = useContext(PaginationContext);
+  if (!value) throw new Error("PaginationItem must be rendered inside Pagination.");
+  return value;
+}
+```
+
+```tsx
+"use client";
+
+import { Children, Fragment, isValidElement } from "react";
+import type { ReactElement, ReactNode } from "react";
+import type { ComponentChildrenProps } from "../../../types/compound-composition";
+import type { NativeSectionRootProps } from "../../../types/collection-contracts";
+import { PaginationContext } from "../../../internal/pagination/PaginationContext";
+import { PaginationEllipsis } from "../../atoms/PaginationEllipsis";
+import { PaginationItem } from "../../atoms/PaginationItem";
+import type { PaginationItemProps } from "../../atoms/PaginationItem";
+import { usePagination } from "./usePagination";
+import styles from "./Pagination.module.css";
+
+export interface PaginationProps extends NativeSectionRootProps, ComponentChildrenProps {
+  label: string;
+  page: number;
+  pageCount: number;
+  onPageChange(page: number): void;
+  disabled?: boolean;
+}
+
+function collectItems(children: ReactNode, prefix = ""): { item: ReactElement<PaginationItemProps>; key: string }[] {
+  const items: { item: ReactElement<PaginationItemProps>; key: string }[] = [];
+  Children.forEach(children, (child, index) => {
+    if (child === null || child === undefined || typeof child === "boolean") return;
+    if (!isValidElement<PaginationItemProps>(child)) throw new Error("Invalid Pagination child.");
+    const key = prefix + "/" + (child.key ?? index);
+    if (child.type === Fragment && child.key !== null) {
+      items.push(...collectItems(child.props.children, key));
+      return;
+    }
+    if (child.type !== PaginationItem && child.type !== PaginationEllipsis) throw new Error("Pagination accepts only PaginationItem or PaginationEllipsis children and keyed fragments.");
+    items.push({ item: child, key });
+  });
+  return items;
+}
+
+export function Pagination(props: PaginationProps) {
+  const view = usePagination(props);
+  const items = collectItems(view.children);
+  for (const { item } of items) {
+    if (item.type === PaginationEllipsis) continue;
+    if (!Number.isInteger(item.props.page) || item.props.page < 1 || item.props.page > view.pageCount) {
+      throw new Error("PaginationItem target must be an integer in the root page range.");
+    }
+  }
+  return (
+    <PaginationContext value={{ page: view.page, pageCount: view.pageCount, disabled: view.disabled, requestPage: view.requestPage }}>
+      <nav {...view.props} className={[styles.root, view.className].filter(Boolean).join(" ")} aria-label={view.label}>
+        <ol className={styles.list}>
+          {items.map(({ item, key }) => <li key={key}>{item}</li>)}
+        </ol>
+      </nav>
+    </PaginationContext>
+  );
+}
+```
+
+## Tests
+
+- V2 Controlled pagination: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server markup preserves native owner attributes, named semantic regions and permitted child hierarchy.
+- Invalid root ranges/item targets, orphan Items and unsupported wrappers fail.
+- Current-page/out-of-range/disabled requests are ignored; valid requests run once without changing controlled state.
+- Caller onClick runs before requestPage; defaultPrevented cancels the request and disabled Items run neither handler.
+- Mixed Item/Ellipsis keyed fragments preserve list structure; inert gaps are not treated as invalid page targets.
+- Explicit aria-current=false prevents boundary navigation controls from duplicating the numbered current page.
+
+## Criteria
+
+- [x] The children contract uses Explicit public parts; keyed fragments allowed; no arbitrary descendant cloning.
+- [x] The Region absence contract uses Omit absent footer/header; no empty wrapper.
+- [x] The label / page / pageCount / onPageChange contract uses Required; integers pageCount >= 1, page in range.
+- [x] The disabled contract uses false.
+- [x] No fetching/URL routing or artificial H/B/F regions; page-window selection remains caller-owned.
+- [x] Native actions remain buttons and caller owns result focus/announcements.
+- [x] Public native attributes go to their semantic owner.
+- [x] Normalize permitted direct items/keyed fragments with private collectItems; it compares actual imported component identities and never clones descendants.
+- [x] Forward caller events before owned handlers and respect defaultPrevented.
+- [x] No new token family or motion is added.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] Showcase demonstrates complete pagination with previous/next, bounded page ranges and gaps, boundary states and narrow layouts; PaginationItem has an independent example.
+
+- [x] PaginationEllipsis is available through the public DS export and is accepted without bypassing the explicit-parts contract.
+- [x] Only actual PaginationItem/PaginationEllipsis identities and keyed fragments are accepted; arbitrary wrappers and text children remain rejected.
+- [x] Ellipses occupy native list items, carry no page target, do not request changes and do not receive keyboard focus.
+- [x] The complete Showcase example includes previous/next controls, a short list without gaps, and a caller-defined large-page window with explicit gaps.
+- [x] First, intermediate and last page examples use valid in-range targets; boundary controls are disabled and suppress aria-current with false.
+- [x] Exactly one numbered control in each complete example has aria-current="page"; navigation controls and gaps never claim the current page.
+- [x] Page-window calculation and example state live in the feature example hook, not a second DS state machine; changing controlled page updates the displayed window.
+- [x] Narrow presentation keeps all controls operable and inside the preview width using token-backed wrapping; it does not cause page-wide horizontal overflow.
+- [x] Root examples demonstrate complete navigation; PaginationItem examples independently show one visible target per minimal owner, without reproducing the complete example or exposing behavioral test switches as their primary presentation.
+- [x] Showcase labels and scenario captions exist in pt-BR, es and en; documented variations match the registered examples.
+- [x] Targeted browser verification covers first/last disabled actions, intermediate navigation, one current page, nonfocusable gaps and narrow layout.
+
+- [x] V2 **Controlled pagination**: Compose twelve pages with initial page=6, indexed PaginationItems and passive ellipses; changing page reports accepted onPageChange while current/disabled semantics and original page numbers remain coherent.
+- [x] The Pagination V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. usePaginationExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

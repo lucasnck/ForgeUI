@@ -1,0 +1,104 @@
+---
+title: "ListBoxHeader"
+scope: "ListBox public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# ListBoxHeader
+
+## Files
+
+```text
+features/showcase/examples/useListBoxAtomicExample.ts (C)
+design-system/components/atoms/ListBoxHeader/ListBoxHeader.tsx (C)
+design-system/components/atoms/ListBoxHeader/ListBoxHeader.module.css (C)
+design-system/components/atoms/ListBoxHeader/index.ts (C)
+design-system/internal/listbox/ListBoxContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ListBoxHeader.example.tsx (M)
+features/showcase/examples/ListBox.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/ListBoxHeader/useListBoxHeader.ts (C)
+features/showcase-v2/components/ListBoxHeader/definition.ts (C)
+features/showcase-v2/components/ListBoxHeader/ListBoxHeader.example.tsx (C)
+features/showcase-v2/components/ListBoxHeader/useListBoxHeaderExample.ts (C)
+features/showcase-v2/components/ListBoxHeader/usage-code.ts (C)
+features/showcase-v2/components/ListBox/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/model/grid-list-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [ListBox.sc.md](../organisms/ListBox.sc.md)
+
+## Contract
+
+```tsx
+import { ListBox, ListBoxHeader, ListBoxBody } from "@/design-system";
+<ListBox label="Options" options={[]}><ListBoxHeader>Options</ListBoxHeader><ListBoxBody hidden /></ListBox>;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; --stack-gap: var(--space-2); min-inline-size: var(--zero); }
+
+.root[hidden] { display: none; }
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useListBoxContext } from "../../../internal/listbox/ListBoxContext";
+import type { ListBoxHeaderProps } from "./ListBoxHeader";
+export function useListBoxHeader(input: ListBoxHeaderProps) { useListBoxContext(); return input; }
+```
+
+## Content
+
+```tsx
+"use client";
+import type { ComponentPropsWithRef } from "react";
+import { useListBoxHeader } from "./useListBoxHeader";
+import styles from "./ListBoxHeader.module.css";
+export interface ListBoxHeaderProps extends ComponentPropsWithRef<"div"> {}
+export function ListBoxHeader(input: ListBoxHeaderProps) { const { className, ...props } = useListBoxHeader(input); return <div {...props} className={[styles.root, className].filter(Boolean).join(" ")} />; }
+```
+
+## Tests
+
+- V2 ListBoxHeader contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- `npm run test:overlays` verifies real React SSR: one listbox owner, canonical options, selected hidden values, named empty fallback and outside-family failure. Browser keyboard/FormData/reset acceptance remains separate.
+
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given ListBoxHeader, Header is a scoped ListBox region; provide visible title content with an explicit Heading where a semantic heading is needed.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Header is a scoped ListBox region; provide visible title content with an explicit Heading where a semantic heading is needed.
+- [x] No independent state store or route landmark is created.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useListBoxHeader is colocated with ListBoxHeader and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **ListBoxHeader contextual region**: Render ListBoxHeader through public ListBox with the minimum valid siblings. Use a real Heading or owner title slot with Children/Title text; any decorative icon has an aligned Inline gap="2" row outside heading text. Hide/omit optional siblings only where allowed by the owner; link to the full ListBox composition.
+- [x] The ListBoxHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useListBoxHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data, when present, reuses the ListBox fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

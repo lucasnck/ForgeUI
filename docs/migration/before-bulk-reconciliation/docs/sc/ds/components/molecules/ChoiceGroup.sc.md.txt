@@ -1,0 +1,168 @@
+---
+title: "ChoiceGroup"
+scope: "Aggregate scoped ChoiceGroup parts and consume DS-owned behavior; no duplicate item markup or hook state."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# ChoiceGroup
+
+
+## Files
+
+```text
+design-system/components/molecules/ChoiceGroup/ChoiceGroup.module.css (M)
+features/showcase/examples/ChoiceGroup.example.tsx (M)
+features/showcase-v2/components/ChoiceGroup/definition.ts (C)
+features/showcase-v2/components/ChoiceGroup/ChoiceGroup.example.tsx (C)
+features/showcase-v2/components/ChoiceGroup/useChoiceGroupExample.ts (C)
+features/showcase-v2/components/ChoiceGroup/usage-code.ts (C)
+features/showcase-v2/model/collection-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/components/ChoiceGroup/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [ChoiceGroupHeader.sc.md](../atoms/ChoiceGroupHeader.sc.md)
+- [ChoiceGroupBody.sc.md](../atoms/ChoiceGroupBody.sc.md)
+- [ChoiceGroupFooter.sc.md](../atoms/ChoiceGroupFooter.sc.md)
+- [Legend.sc.md](Legend.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Layout contracts](../../types/tech-layout-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { ChoiceGroup, ChoiceGroupHeader, ChoiceGroupBody, Checkbox, ChoiceGroupFooter } from "@/design-system";
+<ChoiceGroup><ChoiceGroupHeader>Preferences</ChoiceGroupHeader><ChoiceGroupBody><label><Checkbox name="emailUpdates"/>Email updates</label></ChoiceGroupBody><ChoiceGroupFooter>Choose your preferences</ChoiceGroupFooter></ChoiceGroup>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useId } from "react";
+import type { ChoiceGroupProps } from "./ChoiceGroup";
+
+export function useChoiceGroup({ legend, invalid, gap = "2", padding, children, className, ...props }: ChoiceGroupProps) {
+  const id = useId();
+  return { legend, invalid, gap, padding, children, className, props, footerId: id + "-description", legendId: id + "-legend" };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { NativeChoiceGroupProps, ComponentChildrenProps } from "../../../types/compound-composition";
+import type { ComponentInvalidProps } from "../../../types/component-capabilities";
+import type { ComponentSpaceProps } from "../../../types/layout";
+import { ChoiceGroupContext } from "../../../internal/choicegroup/ChoiceGroupContext";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { Legend } from "../Legend";
+import { ChoiceGroupHeader } from "../../atoms/ChoiceGroupHeader";
+import { ChoiceGroupBody } from "../../atoms/ChoiceGroupBody";
+import { ChoiceGroupFooter } from "../../atoms/ChoiceGroupFooter";
+import { useChoiceGroup } from "./useChoiceGroup";
+import styles from "./ChoiceGroup.module.css";
+
+export interface ChoiceGroupProps extends NativeChoiceGroupProps, ComponentChildrenProps, ComponentInvalidProps, ComponentSpaceProps {
+  legend?: string;
+}
+
+export function ChoiceGroup(input: ChoiceGroupProps) {
+  const { legend, invalid, gap, padding, children, props, footerId, legendId, className } = useChoiceGroup(input);
+  const regions = collectCompoundParts(children, { header: ChoiceGroupHeader, body: ChoiceGroupBody, footer: ChoiceGroupFooter }, legend ? ["body"] : ["header", "body"]);
+  if (legend && regions.header) throw new Error("ChoiceGroup accepts one legend source");
+  const describedBy = [...new Set([...(props["aria-describedby"]?.split(/\s+/).filter(Boolean) ?? []), ...(regions.footer ? [footerId] : [])])].join(" ") || undefined;
+  return (
+    <ChoiceGroupContext value={{ describedBy, invalid, footerId, legendId }}>
+      <fieldset
+        {...props}
+        aria-invalid={invalid ?? props["aria-invalid"]}
+        aria-describedby={describedBy}
+        data-gap={gap}
+        data-padding={padding}
+        className={[styles.root, className].filter(Boolean).join(" ")}
+      >
+        {legend ? <Legend id={legendId}>{legend}</Legend> : regions.header}
+        {regions.body}
+        {regions.footer}
+      </fieldset>
+    </ChoiceGroupContext>
+  );
+}
+```
+
+```tsx
+"use client";
+
+import { createContext, useContext } from "react";
+
+export interface ChoiceGroupContextValue {
+  legendId: string;
+  footerId: string;
+  describedBy?: string;
+  invalid?: boolean;
+}
+export const ChoiceGroupContext = createContext<ChoiceGroupContextValue | null>(null);
+export function useChoiceGroupContext() {
+  const context = useContext(ChoiceGroupContext);
+  if (!context) throw new Error("ChoiceGroup parts require ChoiceGroup");
+  return context;
+}
+```
+
+## Tests
+
+- V2 Indexed choice composition: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Exactly one native legend comes from the convenience prop or Header.
+- Only an existing Footer contributes its stable description id.
+- Nested groups isolate invalid and description context; forwarded native attributes remain on the fieldset.
+
+## Criteria
+
+- [x] The children contract uses Explicit public parts; keyed fragments allowed; no arbitrary descendant cloning.
+- [x] The Region absence contract uses Omit absent footer/header; no empty wrapper.
+- [x] The legend contract uses undefined; required Header if absent.
+- [x] The disabled / invalid / gap contract uses false / undefined / "2".
+- [x] First child is exactly one native legend: use legend convenience string or ChoiceGroupHeader, never both.
+- [x] Body holds individually labeled controls; optional Footer descriptions are merged into the native fieldset aria-describedby.
+- [x] Public native attributes go to their semantic owner.
+- [x] Normalize permitted direct parts/keyed fragments with private collectCompoundParts; it receives actual imported component identities, never displayName strings.
+- [x] Forward caller events before owned handlers and respect defaultPrevented.
+- [x] No new token family or motion is added.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] The complete Showcase composition preserves individually labeled choices, fieldset disabled inheritance, nested group isolation and optional Footer description ownership.
+- [x] Root gap and optional padding remain caller configurable without imposing a Card surface or additional region dividers.
+
+- [x] V2 **Indexed choice composition**: Use the real group/Header/Body/Footer and three corresponding items labeled Label 1..3 with stable values; compare supported controlled selection, disabled items and native form values without private context.
+- [x] The ChoiceGroup V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useChoiceGroupExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

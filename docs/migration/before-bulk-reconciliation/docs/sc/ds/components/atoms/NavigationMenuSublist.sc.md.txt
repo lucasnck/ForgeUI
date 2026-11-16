@@ -1,0 +1,123 @@
+---
+title: "NavigationMenuSublist"
+scope: "NavigationMenu public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# NavigationMenuSublist
+
+## Files
+
+```text
+features/showcase/examples/NavigationMenuPartExamples.tsx (C)
+design-system/components/atoms/NavigationMenuSublist/NavigationMenuSublist.tsx (C)
+design-system/components/atoms/NavigationMenuSublist/NavigationMenuSublist.module.css (C)
+design-system/components/atoms/NavigationMenuSublist/index.ts (C)
+design-system/internal/navigationmenu/NavigationItemContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/NavigationMenuSublist.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/NavigationMenuSublist/useNavigationMenuSublist.ts (C)
+../scripts/check-static-components.cjs (M)
+features/showcase-v2/components/NavigationMenuSublist/definition.ts (C)
+features/showcase-v2/components/NavigationMenuSublist/NavigationMenuSublist.example.tsx (C)
+features/showcase-v2/components/NavigationMenuSublist/useNavigationMenuSublistExample.ts (C)
+features/showcase-v2/components/NavigationMenuSublist/usage-code.ts (C)
+features/showcase-v2/components/NavigationMenu/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [NavigationMenuItem.sc.md](../molecules/NavigationMenuItem.sc.md)
+
+## Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuBody, NavigationMenuSublist, NavigationMenuItem } from "@/design-system";
+<NavigationMenu label="Navigation"><NavigationMenuBody><NavigationMenuItem label="Pages"><NavigationMenuSublist><NavigationMenuItem label="Page" href="#page" /></NavigationMenuSublist></NavigationMenuItem></NavigationMenuBody></NavigationMenu>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  margin: var(--zero);
+  padding: var(--zero);
+  min-inline-size: var(--zero);
+  list-style: none;
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useNavigationItemContext } from "../../../internal/navigationmenu/NavigationItemContext";
+import { useNavigationMenuContext } from "../../../internal/navigationmenu/NavigationMenuContext";
+import type { NavigationMenuSublistProps } from "./NavigationMenuSublist";
+
+export function useNavigationMenuSublist({ children, className, ...props }: NavigationMenuSublistProps) {
+  useNavigationItemContext();
+  const { Item } = useNavigationMenuContext();
+  return { children, props, className, Item };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import { validateNavigationItems } from "../../../internal/navigationmenu/validateNavigationItems";
+import { useNavigationMenuSublist } from "./useNavigationMenuSublist";
+import styles from "./NavigationMenuSublist.module.css";
+
+export interface NavigationMenuSublistProps extends ComponentPropsWithRef<"ul"> {}
+export function NavigationMenuSublist(input: NavigationMenuSublistProps) {
+  const { children, props, className, Item } = useNavigationMenuSublist(input);
+  validateNavigationItems(children, Item);
+  return <ul {...props} role={undefined} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</ul>;
+}
+```
+
+## Tests
+
+- V2 Nested local navigation: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server-render native nav/ul/li/link hierarchy, one current page and collapsed inert disclosure panels.
+- Reject orphan parts, invalid wrappers, ambiguous group href/current and missing leaf href.
+- In the browser, verify native Tab/Enter/Space, caller prevention, nested disclosure isolation and close-focus repair.
+- Verify animated=false, reduced motion and localized/theme presentation in the browser.
+
+## Criteria
+
+- [x] Given NavigationMenuSublist, Sublist is ul inside its parent li disclosure panel, containing NavigationMenuItem li nodes.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useNavigationMenuSublist is colocated with NavigationMenuSublist and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **Nested local navigation**: Compose the real NavigationMenu/Body with one indexed parent and two indexed local destinations; supported expansion/traversal preserves accepted current location and stable keys.
+- [x] The NavigationMenuSublist V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useNavigationMenuSublistExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the NavigationMenu fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

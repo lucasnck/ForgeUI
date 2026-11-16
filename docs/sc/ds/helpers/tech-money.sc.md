@@ -1,0 +1,184 @@
+---
+title: "Money formatting and parsing"
+scope: "Deterministic exact currency formatting and locale-aware monetary input normalization without exchange conversion"
+status: "DONE"
+type: "helper"
+ds-level: "none"
+---
+
+# Money formatting and parsing
+
+## Files
+
+```text
+features/showcase-v2/components/CurrencyInput/fixtures.ts (C)
+design-system/helpers/money.ts (C)
+design-system/index.ts (M)
+../scripts/check-money.cjs (C)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Dependencies
+
+- [Money contracts](../types/tech-money-contracts.sc.md)
+
+## Contract
+
+```ts
+import {formatters, validators} from "@forge-ui/web";
+formatters.money("1234.56", {currency: "BRL", locale: "pt-BR"});
+validators.money(amount, {currency: "BRL", locale: "pt-BR"});
+```
+
+## Content
+
+```ts
+import type { CurrencyCode, MoneyFormatOptions, MoneyInputResult, MonetaryValue } from "../types/money";
+import type { Locale } from "@/lib/contracts/preferences";
+
+export interface MoneyParseOptions extends MoneyFormatOptions { allowNegative?: boolean; }
+const canonical = /^-?(0|[1-9][0-9]*)(\.[0-9]+)?$/;
+const negativeZero = /^-0(?:\.0+)?$/;
+
+export function getCurrencyFractionDigits(currency: CurrencyCode, locale: Locale): number {
+  if (!/^[A-Z]{3}$/.test(currency)) throw new RangeError("Invalid currency code");
+  const digits = new Intl.NumberFormat(locale, { style: "currency", currency }).resolvedOptions().maximumFractionDigits;
+  if (digits === undefined) throw new RangeError("Currency precision is unavailable");
+  return digits;
+}
+function exactFormat(formatter: Intl.NumberFormat, value: string): string {
+  const format = formatter.format as unknown as (amount: string) => string;
+  // ECMA-402 exact decimal string support is mandatory: never fall back to Number.
+  const probe = new Intl.NumberFormat("en", { useGrouping: false, maximumFractionDigits: 2 }).format as unknown as (amount: string) => string;
+  if (probe("9007199254740993.01") !== "9007199254740993.01") throw new RangeError("Exact decimal Intl formatting is unavailable");
+  return format(value);
+}
+export function formatMoney(value: MonetaryValue, options: MoneyFormatOptions): string {
+  const digits = getCurrencyFractionDigits(options.currency, options.locale);
+  if (value === null) return "";
+  if (typeof value !== "string" || !canonical.test(value)) throw new RangeError("Invalid monetary value");
+  if ((value.split(".")[1]?.length ?? 0) > digits) throw new RangeError("Invalid currency precision");
+  const normalized = negativeZero.test(value) ? value.slice(1) : value;
+  return exactFormat(new Intl.NumberFormat(options.locale, { style: "currency", currency: options.currency,
+    currencyDisplay: options.currencyDisplay ?? "code", useGrouping: options.useGrouping ?? true }), normalized);
+}
+export function isValidMoney(value: unknown, options: MoneyFormatOptions): boolean {
+  if (typeof value !== "string" || !value) return false;
+  try { formatMoney(value, options); return true; } catch { return false; }
+}
+/** Internal editor representation: no currency affix or forced scale. */
+export function moneyEditText(value: MonetaryValue, options: MoneyFormatOptions): string {
+  getCurrencyFractionDigits(options.currency, options.locale);
+  if (value === null) return "";
+  if (!canonical.test(value)) throw new RangeError("Invalid monetary value");
+  const decimal = new Intl.NumberFormat(options.locale).formatToParts(1.1).find(part => part.type === "decimal")?.value ?? ".";
+  return (negativeZero.test(value) ? value.slice(1) : value).replace(".", decimal);
+}
+/** Internal blur representation. Precision is checked before formatting. */
+export function moneyDisplayText(value: MonetaryValue, options: MoneyFormatOptions): string {
+  formatMoney(value, options);
+  if (value === null) return "";
+  return exactFormat(new Intl.NumberFormat(options.locale, {
+    minimumFractionDigits: getCurrencyFractionDigits(options.currency, options.locale),
+    maximumFractionDigits: getCurrencyFractionDigits(options.currency, options.locale),
+    useGrouping: options.useGrouping ?? true,
+  }), negativeZero.test(value) ? value.slice(1) : value);
+}
+function stripMatchingAffix(text: string, options: MoneyFormatOptions): string | null {
+  // Intl nonbreaking affix spaces and ordinary paste spaces are equivalent only here.
+  const affixSpace = (value: string) => value.replace(/[\u00a0\u202f]/g, " ");
+  const pasted = affixSpace(text);
+  // Derive the whole prefix/suffix rather than stripping arbitrary symbols or letters.
+  for (const currencyDisplay of ["code", "symbol", "narrowSymbol", "name"] as const) {
+    for (const number of [1, 2, -1, -2]) {
+      const parts = new Intl.NumberFormat(options.locale, { style: "currency", currency: options.currency, currencyDisplay }).formatToParts(number);
+      const first = parts.findIndex(part => part.type === "integer");
+      let last = parts.length - 1;
+      while (last > first && !["integer", "group", "decimal", "fraction"].includes(parts[last].type)) last--;
+      const prefix = affixSpace(parts.slice(0, first).map(part => part.value).join(""));
+      const suffix = affixSpace(parts.slice(last + 1).map(part => part.value).join(""));
+      if (pasted.startsWith(prefix) && pasted.endsWith(suffix) && pasted.length > prefix.length + suffix.length) {
+        const body = pasted.slice(prefix.length, suffix ? -suffix.length : undefined);
+        // Number affixes may include a sign; preserve it in the numeric body.
+        return `${parts.some(part => part.type === "minusSign") ? "-" : ""}${body}`;
+      }
+    }
+  }
+  return null;
+}
+export function parseMoneyInput(text: string, options: MoneyParseOptions): MoneyInputResult {
+  const digits = getCurrencyFractionDigits(options.currency, options.locale);
+  if (text === "") return { kind: "empty", value: null };
+  const parts = new Intl.NumberFormat(options.locale).formatToParts(-1234567.89);
+  const decimal = parts.find(part => part.type === "decimal")?.value ?? ".";
+  const group = parts.find(part => part.type === "group")?.value ?? ",";
+  const minus = parts.find(part => part.type === "minusSign")?.value ?? "-";
+  let raw = text;
+  // Plain editor text is accepted independently of currency placement.
+  const allowed = (value: string) => [...value].every(char => /[0-9]/.test(char) || [decimal, group, minus].includes(char));
+  if (!allowed(raw)) {
+    const stripped = stripMatchingAffix(raw, options);
+    if (stripped === null || !allowed(stripped)) return { kind: "invalid", text, reason: "syntax" };
+    raw = stripped;
+  }
+  const negative = raw.startsWith(minus);
+  if (negative && options.allowNegative === false) return { kind: "invalid", text, reason: "negative" };
+  if (negative) raw = raw.slice(minus.length);
+  if (raw.includes(minus)) return { kind: "invalid", text, reason: "syntax" };
+  if (raw === "" || raw === decimal) return { kind: "incomplete", text };
+  const sections = raw.split(decimal);
+  if (sections.length > 2) return { kind: "invalid", text, reason: "syntax" };
+  let integer = sections[0];
+  const fraction = sections[1];
+  if (fraction !== undefined && !/^[0-9]*$/.test(fraction)) return { kind: "invalid", text, reason: "syntax" };
+  if (integer.includes(group)) {
+    const groups = integer.split(group);
+    const expected = new Intl.NumberFormat(options.locale).formatToParts(1234567890123).filter(part => part.type === "integer").map(part => part.value.length);
+    const primary = expected.at(-1) ?? 3;
+    const secondary = expected.at(-2) ?? primary;
+    if (!groups.every((part, index) => /^[0-9]+$/.test(part) && (index === 0 ? part.length >= 1 && part.length <= secondary : part.length === (index === groups.length - 1 ? primary : secondary)))) {
+      return { kind: "invalid", text, reason: "syntax" };
+    }
+    integer = groups.join("");
+  }
+  if (!/^[0-9]*$/.test(integer) || (!integer && fraction === undefined)) return { kind: "invalid", text, reason: "syntax" };
+  if (fraction !== undefined && fraction.length > digits) return { kind: "invalid", text, reason: "precision" };
+  if (fraction === "") return { kind: "incomplete", text };
+  integer = integer.replace(/^0+(?=[0-9])/, "") || "0";
+  const unsigned = integer + (fraction === undefined ? "" : `.${fraction}`);
+  const value = negative && !/^0(?:\.0+)?$/.test(unsigned) ? `-${unsigned}` : unsigned;
+  return { kind: "valid", value };
+}
+
+```
+
+## Tests
+
+- V2 Exact money formatting: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Verify exact output for 9007199254740993.01 without any Number/parseFloat intermediate.
+- Check zero, negative zero, negative fractions, empty, BRL/USD/EUR/JPY/KWD and locale/currency independence.
+- Round-trip formatted code/symbol values through the parser for the same locale/currency, including Intl nonbreaking spaces.
+- Reject malformed grouping, foreign currency affixes, exponent syntax, multiple decimal separators, embedded signs, letters, invalid currency shape and excess fractional precision.
+- Verify partial "-", decimal separator and trailing separator remain incomplete rather than becoming zero or silently truncating.
+
+## Criteria
+
+- [x] `formatMoney`, `parseMoneyInput` and `getCurrencyFractionDigits` have one pure owner; no DS provider, storage, navigator locale detection, API or third-party dependency is introduced.
+- [x] Explicit locale produces deterministic server/client formatting. Formatting uses native Intl.NumberFormat with exact decimal strings; a TypeScript overload adaptation must not coerce the value to Number. Unsupported exact-string runtimes must not silently lose precision.
+- [x] Formatting preserves all digits. Inputs exceeding the currency scale are rejected, never silently rounded, truncated or divided by 100.
+- [x] Parser derives decimal/group/sign/affixes from Intl.formatToParts for the supplied locale/currency. Editable ungrouped decimal text is accepted; correctly grouped same-locale pasted amounts may include that currency's matching code/symbol.
+- [x] A separator is interpreted only under the explicit locale. `1,234` in English is grouped 1234; in pt-BR it is fractional and may exceed BRL precision. There is no heuristic fallback to another locale.
+- [x] Group separators require the correct group lengths and positions. Unexpected symbols, foreign affixes and malformed text are rejected, never stripped into a different number.
+- [x] Parser returns empty/valid/incomplete/invalid states, preserves invalid text and normalizes leading integer zeros, the canonical decimal separator and negative zero without floating-point arithmetic.
+- [x] `allowNegative` defaults true; false rejects a negative input without changing it to its absolute value. Parser results contain no translated product messages.
+- [x] Currency changes reinterpret no amount and trigger no exchange request. An incompatible scale is exposed as invalid so the caller can resolve it explicitly.
+
+- [x] The existing infrastructure `formatCurrency(number, locale, currency, options)` remains available for its delivered numeric presentation contract. `formatMoney(decimalString, options)` is the exact monetary contract for CurrencyValue/CurrencyInput; neither the DS helper nor its components import infrastructure formatters, and no number-to-string adapter claims to recover precision already lost upstream.
+- [x] Existing formatNumber/formatPercent/formatDate helpers retain their own responsibilities. This increment creates no universal formatting facade, duplicate currency algorithm, implicit number parsing or automatic migration of unrelated consumers.
+
+- [x] Preferred public consumption uses the typed formatters/validators namespaces. Parsing and normalization functions in this source owner are internal DS exports, omitted from the root public barrel. The namespace modules alias the same owning functions rather than copying algorithms.
+
+- [x] V2 **Exact money formatting** is covered through the public CurrencyInput consumer examples and typed caller fixtures: Compare actual formatter/validator outputs for exact decimal string 1234.56 and boundary inputs with explicit currency/locale; keep exact values separate from presentation and native edit state.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.

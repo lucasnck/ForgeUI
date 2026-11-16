@@ -1,0 +1,102 @@
+---
+title: "VisuallyHidden"
+scope: "Content exposed to assistive technology and removed from the visual layout"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# VisuallyHidden
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/atoms/VisuallyHidden/VisuallyHidden.tsx (M)
+design-system/components/atoms/VisuallyHidden/VisuallyHidden.module.css (M)
+design-system/components/atoms/VisuallyHidden/index.ts (M)
+features/showcase/examples/VisuallyHidden.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/VisuallyHidden/definition.ts (C)
+features/showcase-v2/components/VisuallyHidden/VisuallyHidden.example.tsx (C)
+features/showcase-v2/components/VisuallyHidden/useVisuallyHiddenExample.ts (C)
+features/showcase-v2/components/VisuallyHidden/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+
+## Contract
+
+```tsx
+import { Button, VisuallyHidden } from "@forge-ui/web";
+<Button type="submit">
+ <VisuallyHidden>{savingLabel}</VisuallyHidden>
+</Button>;
+```
+
+## Styles
+
+```css
+.root {
+  position: absolute;
+  inline-size: var(--size-visually-hidden);
+  block-size: var(--size-visually-hidden);
+  margin: var(--zero);
+  padding: var(--zero);
+  overflow: hidden;
+  clip-path: inset(var(--size-half));
+  white-space: nowrap;
+  border: var(--zero);
+}
+```
+
+## Animations
+
+```text
+clip
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes } from "react";
+import styles from "./VisuallyHidden.module.css";
+export interface VisuallyHiddenProps extends HTMLAttributes<HTMLSpanElement> {
+}
+export function VisuallyHidden({ className, ...props }: VisuallyHiddenProps) {
+  return (<span {...props} className={[styles.root, className].filter(Boolean).join(" ")}/>);
+}
+```
+
+## Tests
+
+- V2 Accessible supplementary text: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given content, the rendered markup contains a `span` with the hidden class and the content as a text node.
+- [x] Given a visible sibling, the hidden content adds no visible space: the box measures 1px and is removed from the flow.
+- [x] Given a `className`, it is appended to the component class without replacing it.
+- [x] Given native attributes and events, they are forwarded unchanged.
+- [x] Given the module CSS, only existing tokens and structural keywords appear, and no numeric or percentage literal is declared.
+- [x] Given a consumer's accessible-name computation, the content is exposed to assistive technology, while nothing is displayed visually.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens`, `npm run test:design-system` and `npm run build` pass.
+- [x] Excludes visually hidden text that must also stay focusable, screen-reader-only styles that require clip overrides per element, and any content that must not be announced.
+- [x] The children contract uses Required for meaningful use; Announced content; the component adds none.
+- [x] The Native span attributes contract uses Native contract; `className` is appended, never replaced.
+- [x] The component exposes no visual capability: size, tone, shape and appearance do not apply to content that is never rendered visually.
+- [x] Component-local CSS: `src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.module.css`.
+- [x] Every value is an existing token or a structural keyword, so the atom introduces no new token and no color.
+- [x] The class must not be combined with a visible layout rule from a consumer module; the caller places it where the hidden text belongs in the accessible order.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Accessible supplementary text**: Compose a named icon Button with VisuallyHidden children="Children"; inspect its accessible name without making the hidden text a separate focus target.
+- [x] The VisuallyHidden V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useVisuallyHiddenExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

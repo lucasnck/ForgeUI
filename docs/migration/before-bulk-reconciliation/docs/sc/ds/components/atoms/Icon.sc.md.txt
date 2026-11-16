@@ -1,0 +1,145 @@
+---
+title: "Icon"
+scope: "Monochrome icon atom rendering canonical geometry, decorative by default"
+status: "PENDING"
+type: "component"
+ds-level: "atoms"
+---
+
+# Icon
+
+## Files
+
+```text
+features/showcase-v2/components/Icon/IconGeometryExample.tsx (C)
+design-system/components/static-components.contracts.test.ts (C)
+../scripts/check-static-components.cjs (C)
+design-system/index.ts (M)
+design-system/components/atoms/Icon/Icon.tsx (M)
+design-system/components/atoms/Icon/Icon.module.css (M)
+design-system/components/atoms/Icon/index.ts (M)
+features/showcase/examples/Icon.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Icon/definition.ts (C)
+features/showcase-v2/components/Icon/Icon.example.tsx (C)
+features/showcase-v2/components/Icon/useIconExample.ts (C)
+features/showcase-v2/components/Icon/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/components/Icon/fixtures.ts (C)
+```
+
+## Dependencies
+
+- [Icon capability](../../styles/tech-icon.sc.md)
+- [Icon sources](../../helpers/tech-icon-sources.sc.md)
+- [Icon contracts](../../types/tech-icon-contracts.sc.md)
+- [Icon geometry](../../types/tech-icon-geometry.sc.md)
+
+## Contract
+
+```tsx
+import { Icon } from "@/design-system";
+<Icon name="chevron-down" size="sm"/>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: icon from "../../../styles/icon-components.module.css";
+  composes: size from "../../../styles/icon-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import type { ReactElement, SVGProps } from "react";
+import type {
+  ComponentIconSize,
+} from "../../../types/icon";
+import type { IconName } from "../../../types/icon-geometry";
+import { iconData } from "../../../helpers/icon-data.generated";
+import styles from "./Icon.module.css";
+
+export interface IconProps extends SVGProps<SVGSVGElement> {
+  name: IconName;
+  size?: ComponentIconSize;
+  label?: string;
+}
+
+export function Icon({
+  name,
+  size,
+  label,
+  className,
+  ...props
+}: IconProps): ReactElement {
+  const geometry = iconData[name];
+  const presentation =
+    geometry.drawing === "stroke"
+      ? {
+          fill: "none",
+          stroke: "currentColor",
+          strokeLinecap: "round" as const,
+          strokeLinejoin: "round" as const,
+        }
+      : { fill: "currentColor" };
+
+  return (
+    <svg
+      {...props}
+      {...presentation}
+      viewBox={geometry.viewBox}
+      className={[styles.root, className].filter(Boolean).join(" ")}
+      data-icon-size={size}
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+      focusable="false"
+    >
+      {geometry.paths.map((d) => (
+        <path key={d} d={d} />
+      ))}
+    </svg>
+  );
+}
+```
+
+## Tests
+
+- V2 Inline icon: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given a name, the rendered `svg` carries that geometry's `viewBox` and one `path` per geometry entry, in order.
+- [x] Given no `label`, the icon renders `aria-hidden="true"`, `focusable="false"` and no role; given a `label`, it renders `role="img"` with that name and no `aria-hidden`.
+- [x] Given each `ComponentIconSize` value, `data-icon-size` matches and the recipe resolves the corresponding length or `1em`.
+- [x] Given a `stroke` geometry, the rendered presentation is `fill="none"` with `currentColor` stroke and round caps and joins; given a `filled` geometry, it is `fill="currentColor"`.
+- [x] Given a `className` or native SVG attribute, it is forwarded and appended without replacing the recipe classes.
+- [x] Given a filled or colored parent, the icon follows the inherited color in all four themes and forced colors.
+- [x] Given the component source, no icon vendor, package name or upstream icon name appears.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens`, `npm run test:design-system` and `npm run build` pass.
+- [x] Includes the drawing-model application (`stroke` or `filled`), the size attribute contract and native SVG attribute passthrough.
+- [x] Excludes geometry, naming and provenance ([Icon sources](../../helpers/tech-icon-sources.sc.md)), multi-color, duotone and illustrated assets, icon-only controls and their labelling (future `IconButton`), animated icons, and any consumer-specific meaning such as error or required state.
+- [x] The component has no knowledge of the adopted icon source: it renders `IconName` and `IconGeometry`, so replacing the source does not touch this file.
+- [x] The name contract uses Required; `IconName` from the generated data; unknown names are a type error.
+- [x] The label contract uses undefined; Localized accessible name for a meaningful icon; absent means decorative.
+- [x] The Native SVG attributes contract uses Native contract; `className`, `data-*`, event handlers and `aria-*` pass through; color declarations do not.
+- [x] `size` is not a native SVG attribute, so it does not conflict with the inherited `SVGProps` surface.
+- [x] `width` and `height` remain accepted as native attributes but are never rendered by the component itself; a caller that passes them overrides the recipe intentionally.
+- [x] `focusable="false"` keeps the icon out of the tab order in engines that still make SVG focusable.
+- [x] Component-local CSS: `src/design-system/components/atoms/Icon/Icon.module.css`.
+- [x] The module declares no size, alignment, stroke, color or vendor-specific rule; all of it comes from the shared recipe and its tokens.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Inline icon**: Compose a supported name with Text in Inline gap="2" align="center" and size="inherit"; compare decorative and meaningfully named usage without duplicate accessible names.
+- [x] The Icon V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useIconExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] V2 supporting fixture **Supported icon geometry** in the Icon example uses the actual [helper contract](../../helpers/tech-icon-sources.sc.md): Use valid iconData names through Icon and typed caller fixtures, reject unsupported names, and retain canonical geometry ownership without copying SVG data into V2. Computed output is an explicit typed-fixture exception to generic Children text; it is not a new prop or helper page.
+
+- [x] Supporting helper consumption uses public canonical formatter/validator, geometry or range APIs with deterministic valid fixtures and copyable public usage.
+- [ ] Review the added supporting helper examples in a real browser, including narrow layout and displayed output/snippet agreement; SSR and type checks do not certify this visual acceptance.

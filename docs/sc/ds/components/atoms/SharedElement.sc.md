@@ -1,0 +1,91 @@
+---
+title: "SharedElement"
+scope: "Named phrasing-content participant matching record identity across page transitions"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# SharedElement
+
+## Files
+
+```text
+design-system/components/atoms/SharedElement/SharedElement.tsx (C)
+design-system/components/atoms/SharedElement/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/SharedElement.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase/examples/PageTransition.example.tsx (C)
+features/showcase/model/showcase-status.ts (M)
+features/showcase-v2/components/SharedElement/definition.ts (C)
+features/showcase-v2/components/SharedElement/SharedElement.example.tsx (C)
+features/showcase-v2/components/SharedElement/useSharedElementExample.ts (C)
+features/showcase-v2/components/SharedElement/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Page transition contracts](../../types/tech-page-transition-contracts.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Shared element recipes](../../styles/animations/tech-shared-element-transitions.sc.md)
+
+## Contract
+
+```tsx
+import { SharedElement } from "@forge-ui/web";
+<SharedElement name={recordTitleTransitionName} animated={animated}>{record.name}</SharedElement>;
+```
+
+## Animations
+
+```text
+praticar-shared-element
+```
+
+## Content
+
+```tsx
+"use client";
+import { ViewTransition, type ComponentPropsWithRef, type ReactNode } from "react";
+import type { ComponentAnimatedProps } from "../../../types/animation";
+import type { SharedElementName } from "../../../types/page-transitions";
+import { pageTransitionClasses } from "../../../types/page-transitions";
+import styles from "../../../styles/animations/shared-element-transitions.module.css";
+export interface SharedElementProps extends ComponentPropsWithRef<"span">, ComponentAnimatedProps {
+  name: SharedElementName;
+  children: ReactNode;
+}
+export function SharedElement({ name, animated = true, className, children, ...props }: SharedElementProps) {
+  if (!name.trim()) throw new Error("SharedElement requires a nonempty name.");
+  return <ViewTransition name={name} share={animated ? pageTransitionClasses.shared : "none"} default="none">
+    <span {...props} className={[styles.participant, className].filter(Boolean).join(" ")}>{children}</span>
+  </ViewTransition>;
+}
+```
+
+## Tests
+
+- V2 Local view transition: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Match the same record/title across list and detail and back; use separate image and status names.
+- Reject an empty name; test punctuation/Unicode record keys through the feature encoder and independent demo scopes.
+- Enter detail directly or reveal a previously unknown image after the navigation commit; verify ordinary fallback without errors.
+
+## Criteria
+
+- [x] Wraps only actual identity content with a neutral span; examples use text, icon/text, native image or phrasing badge content, never headings/divs/table rows/forms as span children.
+- [x] Feature supplies a collision-free deterministic name containing scope/entity/role; component never derives identity from display text, index, locale or random values.
+- [x] Each document snapshot has at most one participant per name; inactive screens unmount rather than remaining hidden duplicates.
+- [x] Only known record name/image/status participate. Missing name uses an unnamed header placeholder; missing image uses an unnamed skeleton or omits the image.
+- [x] On list-to-detail, cached list identity may seed the destination header while only unknown details load; the pair must be mounted in the same navigation commit.
+- [x] A direct URL, filtered-out origin, changed record identity or late request uses normal enter/reveal. Never reuse a skeleton name to impersonate the record or promise a delayed morph.
+- [x] Errors preserve only trusted known identity and render feature-owned retry/back content; rejected or stale responses never rewrite another record participant.
+- [x] animated=false and reduced motion preserve layout/content; unsupported browser renders the same span without motion.
+- [x] Showcase presents matching/nonmatching identity, title/image and opt-out independently; no timers or fixture transport inside the atom.
+
+- [x] V2 **Local view transition**: Switch two local views of one stable indexed record with the public transition boundary/name; compare supported animated opt-out and interruption without document-wide animation or private V1 imports.
+- [x] The SharedElement V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useSharedElementExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

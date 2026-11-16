@@ -1,0 +1,90 @@
+---
+title: "Link"
+scope: "Native anchor with shared focus behavior and token-backed text styling"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Link
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/atoms/Link/Link.tsx (M)
+design-system/components/atoms/Link/Link.module.css (M)
+design-system/components/atoms/Link/index.ts (M)
+features/showcase/examples/Link.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Link/definition.ts (C)
+features/showcase-v2/components/Link/Link.example.tsx (C)
+features/showcase-v2/components/Link/useLinkExample.ts (C)
+features/showcase-v2/components/Link/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import { Link } from "@forge-ui/web";
+<Link href={privacyUrl}>{privacyLabel}</Link>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  --control-focus-offset: var(--length-1);
+  cursor: pointer;
+}
+```
+
+## Content
+
+```tsx
+import type { AnchorHTMLAttributes } from "react";
+import styles from "./Link.module.css";
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+}
+export function Link({ className, ...props }: LinkProps) {
+  return (<a {...props} className={[styles.root, className].filter(Boolean).join(" ")}/>);
+}
+```
+
+## Tests
+
+- V2 Local anchor navigation: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given an `href`, the rendered element is `a` with that `href` unchanged.
+- [x] Given external-link attributes, they are forwarded together with `href`.
+- [x] Given keyboard focus, the shared focus ring is visible and the link is reachable in tab order.
+- [x] Given the document link styling, the color and underline offset come from `globals.css` and no component rule overrides them.
+- [x] Given forced colors, the link keeps a distinguishable focus outline through the shared recipe.
+- [x] Given the module CSS, only `composes`, one custom property referencing a token, and structural keywords appear.
+- [x] Given a `className`, it is appended without replacing the component class, and no router import appears in the source.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens`, `npm run test:design-system` and `npm run build` pass.
+- [x] Includes external-link attributes and the caller-owned destination.
+- [x] Excludes routing, destination decisions, navigation lifecycle, button-like actions (owned by [Button](Button.sc.md)) and any icon.
+- [x] The href contract uses None; Required for a meaningful link; the DS never derives it.
+- [x] The target / rel / download / hreflang contract uses Native contract; Passed through unchanged, including external-link safety attributes.
+- [x] The Native anchor attributes contract uses Native contract; `className` is appended, never replaced.
+- [x] The component exposes no visual capability.
+- [x] Component-local CSS: `src/design-system/components/atoms/Link/Link.module.css`.
+- [x] The color and underline come from `globals.css`; focus and forced-colors borders come from the shared `interactive` recipe.
+- [x] The module declares no color, no font value and no numeric literal, and it introduces no token.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Local anchor navigation**: Use children="Children" and an href to an existing named target in the preview; activation follows native/public navigation and supported presentation behavior.
+- [x] The Link V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useLinkExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

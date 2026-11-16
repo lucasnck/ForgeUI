@@ -1,0 +1,91 @@
+---
+title: "TokenInput"
+scope: "Use one text input with a fixed caller-selected token mask and native one-time-code autofill. Excludes verification, expiry timers, multiple focusable digit cells and automatic submission."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# TokenInput
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/molecules/TokenInput/index.ts (C)
+design-system/components/molecules/TokenInput/TokenInput.tsx (C)
+features/showcase/examples/TokenInput.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-inputs.cjs (C)
+features/showcase/examples/InputFamilyExample.tsx (C)
+features/showcase-v2/components/TokenInput/definition.ts (C)
+features/showcase-v2/components/TokenInput/TokenInput.example.tsx (C)
+features/showcase-v2/components/TokenInput/useTokenInputExample.ts (C)
+features/showcase-v2/components/TokenInput/usage-code.ts (C)
+features/showcase-v2/model/specialized-input-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/messages/useShowcaseV2Copy.ts (M)
+features/showcase-v2/components/TokenInput/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [MaskedInput.sc.md](MaskedInput.sc.md)
+- [tech-mask.sc.md](../../hooks/tech-mask.sc.md)
+
+## Contract
+
+```tsx
+import { MASK_TOKEN_6 } from "@forge-ui/web";
+import { TokenInput } from "@forge-ui/web";
+<TokenInput mask={MASK_TOKEN_6} value={token} onValueChange={setToken} aria-label="Six digit verification code"/>;
+```
+
+## Content
+
+```tsx
+import { MaskedInput } from "../MaskedInput";
+import type { MaskedInputProps } from "../MaskedInput";
+
+export interface TokenInputProps extends MaskedInputProps {}
+
+export function TokenInput(props: TokenInputProps) {
+  return <MaskedInput autoComplete="one-time-code" {...props} />;
+}
+```
+
+## Tests
+
+- V2 Canonical masked entry: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Render without browser globals and verify forwarded native attributes and the documented value channel.
+- Verify explicit invalid=false overrides aria-invalid=true and fullWidth=false preserves the intrinsic contract.
+- Verify shared input capabilities use canonical contracts without introducing another visual recipe.
+
+## Criteria
+
+- [x] Given the public props, rendering and callbacks follow the defaults and constraints above; unsupported channels are not added.
+- [x] Verify: Paste and autofill populate the same raw value channel, retaining leading zeros.
+- [x] Verify: Completion never triggers verification or form submission.
+- [x] Verify: Arrow, Backspace and selection obey the mask hook.
+- [x] Native interactions remain delegated to the control; custom handlers intercept only documented keys, respect composition and prevent activation when disabled.
+- [x] Text and focus consume canonical semantic tokens and recipes; shared contrast and forced-color fallbacks are owned by the token/style specifications.
+- [x] The owned layout accommodates caller content; preference changes do not reset caller-owned values.
+- [x] Given reduced motion, no required interaction depends on animation; no document/window access occurs during module evaluation or static rendering.
+- [x] The mask / value / onValueChange contract uses Required; Token length and character grammar come from the mask.
+- [x] The autoComplete contract uses one-time-code; Forward caller override.
+- [x] The visual, disabled, invalid contract uses MaskedInput defaults; A single labeled input remains the focus target.
+- [x] Arrow, Backspace and selection obey the mask hook.
+- [x] Never log or persist entered secrets.
+- [x] No new tokens, shared recipe or visual value union is introduced by this component.
+- [x] Use current semantic token overrides for themes; caller supplies locale text and the component inherits direction.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Native field value and focus stay unchanged by motion.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Canonical masked entry**: Use the actual public mask/preset in the existing Contract with FormField; type/delete/paste a valid fixture and clear it, showing display text separately from onValueChange canonical data.
+- [x] The TokenInput V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTokenInputExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

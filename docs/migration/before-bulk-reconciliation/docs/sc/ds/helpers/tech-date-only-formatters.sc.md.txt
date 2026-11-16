@@ -1,0 +1,85 @@
+---
+title: "Date-only formatting"
+scope: "Validate and format Gregorian civil dates without converting them into local instants"
+status: "DONE"
+type: "helper"
+ds-level: "none"
+---
+
+# Date-only formatting
+
+## Files
+
+```text
+features/showcase-v2/components/DateInput/fixtures.ts (C)
+design-system/helpers/date-only.ts (C)
+design-system/index.ts (M)
+../scripts/check-formatting.cjs (C)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Contract
+
+```ts
+import {formatters, validators} from "@/design-system";
+formatters.dateOnly("2026-10-18", "pt-BR");
+validators.dateOnly(date);
+```
+
+## Content
+
+```ts
+import type {Locale} from "@/lib/contracts/preferences";
+
+export function normalizeDateOnly(value: string): string {
+  if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)) throw new RangeError("Invalid civil date");
+  const [year, month, day] = value.split("-").map(Number);
+  if (year < 1) throw new RangeError("Invalid civil date");
+  const date = new Date(0);
+  date.setUTCHours(0,0,0,0);
+  date.setUTCFullYear(year, month-1, day);
+  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month-1 || date.getUTCDate() !== day)
+    throw new RangeError("Invalid civil date");
+  return value;
+}
+
+export function formatDateOnly(value: string | null, locale: Locale,
+  options: Pick<Intl.DateTimeFormatOptions, "dateStyle"> = {}): string {
+  if (value === null) return "";
+  const raw = normalizeDateOnly(value);
+  const [year, month, day] = raw.split("-").map(Number);
+  const date = new Date(0);
+  date.setUTCHours(0,0,0,0);
+  date.setUTCFullYear(year,month-1,day);
+  return new Intl.DateTimeFormat(locale, {
+    dateStyle: options.dateStyle ?? "short", timeZone: "UTC", calendar: "gregory",
+  }).format(date);
+}
+
+export function isValidDateOnly(value: unknown): boolean {
+  if (typeof value !== "string") return false;
+  try { normalizeDateOnly(value); return true; } catch { return false; }
+}
+```
+
+## Tests
+
+- V2 Civil date display: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Same YYYY-MM-DD displays the same calendar date with process/browser zones west and east of UTC.
+- Accept leap-day 2024-02-29, years 0001/0099 and normal dates; reject 2023-02-29, month/day overflow, year zero, timestamp suffix and locale-ambiguous input.
+- Check pt-BR/es/en date styles, null display and no Date/number input in the public civil-date contract.
+
+## Criteria
+
+- [x] Canonical input is strict Gregorian YYYY-MM-DD with year 0001–9999; invalid values throw without Date rollover normalization. No localized date parsing is guessed.
+- [x] UTC is an internal presentation anchor, not a user/business timezone conversion. Civil dates never shift by the user's offset or daylight-saving rules.
+- [x] Existing infrastructure formatDate remains the instant/date-time formatter requiring an explicit timezone. This helper has no time-of-day, account timezone or server-date semantics.
+- [x] Explicit locale/options produce deterministic SSR/client output. Null means absent; empty or malformed strings do not become epoch/today automatically.
+- [x] No library, browser globals, current-clock access or provider dependency is introduced.
+
+- [x] Preferred public consumption uses the typed formatters/validators namespaces. Parsing and normalization functions in this source owner are internal DS exports, omitted from the root public barrel. The namespace modules alias the same owning functions rather than copying algorithms.
+
+- [x] V2 **Civil date display** is covered through the public DateInput consumer examples and typed caller fixtures: Compare valid leap-day and invalid civil-date fixtures through actual dateOnly formatter/validator APIs, with explicit locales and no timezone shift.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.

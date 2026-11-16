@@ -1,0 +1,75 @@
+---
+title: "Animation contracts"
+scope: "Animation contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Animation contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/foundations/types.ts (D)
+design-system/types/animation.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```ts
+import type { AnimationEffect, ComponentAnimationEffectProps } from "@forge-ui/web";
+type Effect = AnimationEffect;
+type SurfaceMotion = ComponentAnimationEffectProps;
+```
+
+## Content
+
+```ts
+import type { RefObject, TransitionEvent } from "react";
+
+export type PresencePhase = "unmounted" | "entering" | "entered" | "exiting";
+
+export interface PresenceOptions {
+  open: boolean;
+  elementRef: RefObject<HTMLElement | null>;
+  enabled?: boolean;
+}
+
+export interface PresenceContract {
+  present: boolean;
+  phase: PresencePhase;
+  onTransitionEnd(event: TransitionEvent<HTMLElement>): void;
+}
+
+export interface ComponentAnimatedProps {
+  animated?: boolean;
+}
+
+export type AnimationEffect = "none" | "fade" | "scale";
+
+export interface ComponentAnimationEffectProps extends ComponentAnimatedProps {
+  animationEffect?: AnimationEffect;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for usePresence, Motion recipes retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile accepted none, fade and scale effects; reject unsupported strings and numeric effects.
+- Compile optional animated capability and typed presence ref/phase/event contracts; reject invalid phases and incompatible refs.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+- [x] none, fade and scale are target effects; no target export is cataloged before implementation.
+
+- [x] V2 typed usage fixtures cover usePresence, Motion recipes: Presence phases, enabled opt-out and supported effect names. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

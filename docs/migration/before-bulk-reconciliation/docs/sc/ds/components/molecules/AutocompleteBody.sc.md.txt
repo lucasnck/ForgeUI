@@ -1,0 +1,130 @@
+---
+title: "AutocompleteBody"
+scope: "Autocomplete compound part: AutocompleteBody. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# AutocompleteBody
+
+## Files
+
+```text
+features/showcase/examples/QueryInputPartExamples.tsx (C)
+design-system/components/molecules/AutocompleteBody/AutocompleteBody.module.css (C)
+design-system/components/molecules/AutocompleteBody/AutocompleteBody.tsx (C)
+design-system/components/molecules/AutocompleteBody/index.ts (C)
+design-system/components/molecules/AutocompleteBody/useAutocompleteBody.ts (C)
+design-system/internal/autocomplete/AutocompleteContext.ts (C)
+design-system/internal/query-input/QueryInputContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/AutocompleteBody.example.tsx (C)
+features/showcase/examples/QueryInputExample.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-query-inputs.cjs (C)
+features/showcase-v2/components/AutocompleteBody/definition.ts (C)
+features/showcase-v2/components/AutocompleteBody/AutocompleteBody.example.tsx (C)
+features/showcase-v2/components/AutocompleteBody/useAutocompleteBodyExample.ts (C)
+features/showcase-v2/components/AutocompleteBody/usage-code.ts (C)
+features/showcase-v2/components/Autocomplete/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Input](../atoms/Input.sc.md)
+- [PopupListbox](PopupListbox.sc.md)
+
+## Contract
+
+```tsx
+import { Autocomplete, AutocompleteBody } from "@/design-system";
+<Autocomplete options={options} query={query} onQueryChange={setQuery} aria-label="Search"><AutocompleteBody /></Autocomplete>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: anchor from "../../../styles/popup-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  inline-size: fit-content;
+  min-inline-size: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import type { ChoiceOption } from "../../../types/selection-navigation";
+import { useAutocompleteContext } from "../../../internal/autocomplete/AutocompleteContext";
+import type { AutocompleteBodyProps } from "./AutocompleteBody";
+
+export function useAutocompleteBody({ children, className, ...props }: AutocompleteBodyProps) {
+  const field = useAutocompleteContext();
+  function getOptionLabel(option: ChoiceOption) { return option.label; }
+  return { field, children, className, props, getOptionLabel };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { HTMLAttributes } from "react";
+import { Input } from "../../atoms/Input";
+import { PopupListbox } from "../PopupListbox";
+import { useAutocompleteBody } from "./useAutocompleteBody";
+import styles from "./AutocompleteBody.module.css";
+
+export interface AutocompleteBodyProps extends HTMLAttributes<HTMLDivElement> {}
+
+export function AutocompleteBody(input: AutocompleteBodyProps) {
+  const { field, children, className, props, getOptionLabel } = useAutocompleteBody(input);
+  return <div {...props} className={[styles.root, className].filter(Boolean).join(" ")} data-full-width={(field.inputProps.fullWidth ?? true) || undefined}><Input {...field.inputProps} /><PopupListbox popup={field.popup} items={field.enabledOptions} getOptionLabel={getOptionLabel} listboxLabel={field.listboxLabel} />{children}</div>;
+}
+```
+
+## Tests
+
+- V2 AutocompleteBody contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Scoped parts require their matching owner and preserve native label/body/footer attributes.
+- Header label references the actual input id and only a present Footer contributes its owned description id, including server markup.
+- Missing optional regions add no empty wrapper; two instances preserve distinct associations.
+
+## Criteria
+
+- [x] Given AutocompleteBody, Body composes existing Input and PopupListbox, which renders PopupListboxItem atoms.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Body composes existing Input and PopupListbox, which renders PopupListboxItem atoms.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useAutocompleteBody is colocated with AutocompleteBody and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **AutocompleteBody contextual region**: Render AutocompleteBody through public Autocomplete with the minimum valid siblings. Show Text children="Children" or the actual owner-generated options/records, preserving required siblings and owner semantics. Hide/omit optional siblings only where allowed by the owner; link to the full Autocomplete composition.
+- [x] The AutocompleteBody V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useAutocompleteBodyExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Autocomplete fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

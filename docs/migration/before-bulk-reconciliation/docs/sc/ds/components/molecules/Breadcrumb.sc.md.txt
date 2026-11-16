@@ -1,0 +1,135 @@
+---
+title: "Breadcrumb"
+scope: "Aggregate scoped Breadcrumb parts and consume DS-owned behavior; no duplicate item markup or hook state."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Breadcrumb
+
+## Files
+
+```text
+../package.json (M)
+design-system/components/static-components.contracts.test.ts (C)
+../scripts/check-static-components.cjs (C)
+design-system/components/molecules/Breadcrumb/Breadcrumb.tsx (C)
+design-system/components/molecules/Breadcrumb/Breadcrumb.module.css (C)
+design-system/components/molecules/Breadcrumb/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/Breadcrumb.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase-v2/components/Breadcrumb/definition.ts (C)
+features/showcase-v2/components/Breadcrumb/Breadcrumb.example.tsx (C)
+features/showcase-v2/components/Breadcrumb/useBreadcrumbExample.ts (C)
+features/showcase-v2/components/Breadcrumb/usage-code.ts (C)
+features/showcase-v2/components/Breadcrumb/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Semantic native region contracts](../../types/tech-collection-contracts.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [BreadcrumbItem.sc.md](../atoms/BreadcrumbItem.sc.md)
+
+## Contract
+
+```tsx
+import { Breadcrumb, BreadcrumbItem } from "@/design-system";
+<Breadcrumb label="Breadcrumb"><BreadcrumbItem href="/">Home</BreadcrumbItem><BreadcrumbItem current>Settings</BreadcrumbItem></Breadcrumb>;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+}
+.list {
+  composes: inline from "../../../styles/layout-components.module.css";
+  margin: var(--zero);
+  padding: var(--zero);
+  list-style: none;
+}
+```
+
+## Content
+
+```tsx
+import { Children, Fragment, isValidElement } from "react";
+import type { ReactElement, ReactNode } from "react";
+import type { ComponentChildrenProps } from "../../../types/compound-composition";
+import type { NativeSectionRootProps } from "../../../types/collection-contracts";
+import { BreadcrumbItem } from "../../atoms/BreadcrumbItem";
+import type { BreadcrumbItemProps } from "../../atoms/BreadcrumbItem";
+import styles from "./Breadcrumb.module.css";
+
+export interface BreadcrumbProps extends NativeSectionRootProps, ComponentChildrenProps {
+  label: string;
+}
+
+function collectItems(children: ReactNode): ReactElement<BreadcrumbItemProps>[] {
+  const items: ReactElement<BreadcrumbItemProps>[] = [];
+  Children.forEach(children, (child) => {
+    if (child === null || child === undefined || typeof child === "boolean") return;
+    if (isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment && child.key !== null) {
+      items.push(...collectItems(child.props.children));
+      return;
+    }
+    if (!isValidElement<BreadcrumbItemProps>(child) || child.type !== BreadcrumbItem) {
+      throw new Error("Breadcrumb accepts only BreadcrumbItem children and keyed fragments.");
+    }
+    items.push(child);
+  });
+  return items;
+}
+
+export function Breadcrumb({ children, className, label, ...props }: BreadcrumbProps) {
+  if (!label.trim()) throw new Error("Breadcrumb requires a nonempty navigation label.");
+  const items = collectItems(children);
+  const current = items.filter((item) => item.props.current);
+  if (current.length !== 1 || current[0] !== items.at(-1)) {
+    throw new Error("Breadcrumb requires exactly one current item, placed last.");
+  }
+  return (
+    <nav {...props} className={[styles.root, className].filter(Boolean).join(" ")} aria-label={label}>
+      <ol className={styles.list}>{children}</ol>
+    </nav>
+  );
+}
+```
+
+## Tests
+
+- V2 Indexed location trail: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server markup preserves native owner attributes, named semantic regions and permitted child hierarchy.
+- Ancestors require href; exactly one current item must appear last with a span, not a link.
+- Direct Items and keyed fragments work; unrelated wrappers/unkeyed fragments/multiple current items fail.
+
+## Criteria
+
+- [x] The children contract uses Explicit public parts; keyed fragments allowed; no arbitrary descendant cloning.
+- [x] The Region absence contract uses Omit absent footer/header; no empty wrapper.
+- [x] The label contract uses Required navigation name.
+- [x] Root receives BreadcrumbItem components and renders ordered-list hierarchy; exactly one current item is last.
+- [x] No collection hook, region wrapper or route discovery is introduced.
+- [x] Validate direct Items/keyed fragments; no unrelated wrapper div inside ol.
+- [x] No separate H/B/F because the whole component is a breadcrumb navigation list.
+- [x] Public native attributes go to their semantic owner.
+- [x] Normalize permitted direct items/keyed fragments with private collectItems; it compares actual imported component identities and never clones descendants.
+- [x] Forward caller events before owned handlers and respect defaultPrevented.
+- [x] No new token family or motion is added.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner: Breadcrumb owns only nav/ol/li; no H/B/F region or panel lifecycle is applicable.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Indexed location trail**: Compose three BreadcrumbItems with Children 1..3 and valid local anchors; the last is current and labels/keys retain their original index.
+- [x] The Breadcrumb V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useBreadcrumbExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

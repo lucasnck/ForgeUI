@@ -1,0 +1,129 @@
+---
+title: "LocaleSelector"
+scope: "Controlled Locale selection with caller-supplied options and labels"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# LocaleSelector
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/molecules/LocaleSelector/LocaleSelector.tsx (M)
+design-system/components/molecules/LocaleSelector/LocaleSelector.module.css (M)
+design-system/components/molecules/LocaleSelector/index.ts (M)
+design-system/components/molecules/LocaleSelector/useLocaleSelector.ts (C)
+features/showcase/examples/LocaleSelector.example.tsx (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/LocaleSelector/definition.ts (C)
+features/showcase-v2/components/LocaleSelector/LocaleSelector.example.tsx (C)
+features/showcase-v2/components/LocaleSelector/useLocaleSelectorExample.ts (C)
+features/showcase-v2/components/LocaleSelector/usage-code.ts (C)
+features/showcase-v2/model/specialized-input-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/messages/useShowcaseV2Copy.ts (M)
+features/showcase-v2/components/LocaleSelector/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Select](../atoms/Select.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { LocaleSelector } from "@forge-ui/web";
+<LocaleSelector label="Locale" value={value} onValueChange={setValue} options={[
+    { value: "pt-BR", label: "Português" },
+    { value: "es", label: "Español" },
+    { value: "en", label: "English" },
+  ]}/>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: selector from "../../../styles/preference-selector.module.css";
+  --selector-min-width: var(--length-18);
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useId, type ChangeEvent } from "react";
+import type { LocaleSelectorProps } from "./LocaleSelector";
+
+export function useLocaleSelector({ value, options, onValueChange, label, id, disabled, size }: LocaleSelectorProps) {
+  const generatedId = useId();
+  const controlId = id ?? `locale-${generatedId}`;
+  function handleChange(event: ChangeEvent<HTMLSelectElement>) {
+    if (disabled || event.defaultPrevented) return;
+    const selected = options.find(option => option.value === event.currentTarget.value);
+    if (selected) onValueChange(selected.value);
+  }
+  return { size, value, options, label, disabled, controlId, handleChange };
+}
+```
+## Content
+
+```tsx
+"use client";
+
+import type { Locale } from "@/lib/contracts/preferences";
+import type { SelectorProps } from "../../../types/component-capabilities";
+import { Select } from "../../atoms/Select";
+import { useLocaleSelector } from "./useLocaleSelector";
+import styles from "./LocaleSelector.module.css";
+
+export interface LocaleSelectorProps extends SelectorProps<Locale> {}
+
+export function LocaleSelector(props: LocaleSelectorProps) {
+  const { value, options, label, disabled, controlId, handleChange, size } = useLocaleSelector(props);
+  return <label className={styles.root} htmlFor={controlId}>
+    <span>{label}</span>
+    <Select size={size} id={controlId} value={value} disabled={disabled} onChange={handleChange}>
+      {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+    </Select>
+  </label>;
+}
+```
+## Tests
+
+- V2 Valid preference options: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- The declared native or controlled value channel forwards one user change while prop updates emit no corrective callback.
+- Caller-prevented and composing input does not trigger an owned selection/completion action.
+- Two mounted instances preserve independent ids, descriptions and native submission values.
+
+## Criteria
+
+- [x] Given no id, a unique generated ID associates the visible label and Select.
+- [x] Given an option change, only a value present in supplied options emits onValueChange.
+- [x] Given disabled=true, the native Select is disabled.
+- [x] Given no provider, supplied props still render the controlled selector.
+- [x] Excludes preference persistence, provider imports, API calls and application state ownership.
+- [x] The value / options / onValueChange / label contract uses Required; Controlled presentation; labels supplied by caller.
+- [x] The id contract uses locale-prefixed useId value; Unique label/control association.
+- [x] The disabled contract uses undefined; Native enabled state.
+- [x] The pending Option extraction does not alter the shared selector recipe.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Native field value and focus stay unchanged by motion.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useLocaleSelector is colocated with LocaleSelector and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Optional canonical size reaches the native Select without changing default sizing, controlled value, label or keyboard behavior.
+
+- [x] V2 **Valid preference options**: Use caller-owned value and real locale/theme options, with indexed Label 1..n text and valid pt-BR/es/en or light/dark/contrast/liquid-glass values; report accepted onValueChange without a second global preference store.
+- [x] The LocaleSelector V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useLocaleSelectorExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

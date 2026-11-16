@@ -1,0 +1,199 @@
+---
+title: "FormFieldCurrencyInput"
+scope: "CurrencyInput composed with accessible field feedback and caller-owned React Hook Form state"
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# FormFieldCurrencyInput
+
+## Files
+
+```text
+design-system/components/organisms/Form/FormFieldCurrencyInput/FormFieldCurrencyInput.tsx (C)
+design-system/components/organisms/Form/FormFieldCurrencyInput/useFormFieldCurrencyInput.ts (C)
+design-system/components/organisms/Form/FormFieldCurrencyInput/index.ts (C)
+design-system/components/organisms/Form/index.ts (M)
+design-system/index.ts (M)
+design-system/types/form-field-organisms.ts (M)
+design-system/types/index.ts (M)
+design-system/types/forms.test.ts (M)
+../scripts/check-form-field-adapters.cjs (C)
+../scripts/fixtures/form-field-adapters.tsx (C)
+../scripts/fixtures/form-adapter-upload.txt (C)
+```
+
+## Dependencies
+
+- [CurrencyInput](../../molecules/CurrencyInput.sc.md)
+- [FormField](../../molecules/FormField.sc.md)
+- [Form registration types](../../../types/tech-form-field-organisms.sc.md)
+- [React Hook Form integration](../../../../tech-react-hook-form.sc.md)
+
+## Contract
+
+```tsx
+import { FormFieldCurrencyInput } from "@forge-ui/web";
+import type { MonetaryValue } from "@forge-ui/web";
+
+<FormFieldCurrencyInput<{ value: MonetaryValue }>
+  name="value"
+  label={fieldLabel}
+  currency="BRL"
+  locale="pt-BR"
+  invalidMessage={invalidMoneyMessage}
+/>;
+```
+
+## Hooks
+
+```ts
+"use client";
+import { useId, useEffect, useState } from "react";
+import { useFormContext, useController } from "react-hook-form";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type { MonetaryValue, MoneyInputResult } from "../../../../types/money";
+
+import type { FormFieldCurrencyInputProps } from "./FormFieldCurrencyInput";
+
+export function useFormFieldCurrencyInput<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, MonetaryValue> = FieldPathByValue<TValues, MonetaryValue>,
+>({
+  id,
+  name,
+  label,
+  hint,
+  error: displayedError,
+  required,
+  disabled: callerDisabled,
+  onInputStateChange,
+  ...inputProps
+}: FormFieldCurrencyInputProps<TValues, TName>) {
+  const generatedId = useId();
+  const controlId = id ?? generatedId;
+  const methods = useFormContext<TValues>();
+  if (!methods) throw new Error("FormFieldCurrencyInput requires FormProvider.");
+  const disabled = callerDisabled || methods.formState.disabled;
+  const { field, fieldState } = useController({ control: methods.control, name, disabled });
+  const value: unknown = field.value;
+  const message =
+    displayedError ??
+    (typeof fieldState.error?.message === "string" ? fieldState.error.message : undefined);
+  const invalid = Boolean(fieldState.error) || Boolean(displayedError);
+
+  if (value !== null && typeof value !== "string")
+    throw new Error("Currency fields require MonetaryValue defaults.");
+  const [resetKey, setResetKey] = useState(0);
+  const subscribe = methods.subscribe;
+  useEffect(
+    () =>
+      subscribe({
+        formState: { values: true },
+        callback: (state) => {
+          if (!state.name) setResetKey((key) => key + 1);
+        },
+      }),
+    [subscribe],
+  );
+
+  function inputStateChange(state: MoneyInputResult) {
+    if (state.kind === "valid" || state.kind === "empty") {
+      if (methods.getFieldState(name).error?.type === "draft") methods.clearErrors(name);
+    }
+
+    onInputStateChange?.(state);
+  }
+
+  return {
+    controlId,
+    label,
+    hint,
+    message,
+    invalid,
+    required,
+    disabled,
+    inputProps,
+    resetKey,
+    binding: {
+      name: field.name,
+      ref: field.ref,
+      value,
+      onValueChange: field.onChange,
+      onBlur: field.onBlur,
+      onInputStateChange: inputStateChange,
+      "data-form-draft": field.name,
+    },
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type {
+  FormFieldCurrencyInputControlProps,
+  FormFieldRegistrationProps,
+} from "../../../../types";
+import type { MonetaryValue } from "../../../../types/money";
+
+export interface FormFieldCurrencyInputProps<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, MonetaryValue> = FieldPathByValue<TValues, MonetaryValue>,
+>
+  extends FormFieldCurrencyInputControlProps, FormFieldRegistrationProps<TValues, TName> {}
+
+import { FormField } from "../../../molecules/FormField";
+import { CurrencyInput } from "../../../molecules/CurrencyInput";
+import { useFormFieldCurrencyInput } from "./useFormFieldCurrencyInput";
+
+export function FormFieldCurrencyInput<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, MonetaryValue> = FieldPathByValue<TValues, MonetaryValue>,
+>(props: FormFieldCurrencyInputProps<TValues, TName>) {
+  const view = useFormFieldCurrencyInput(props);
+
+  return (
+    <FormField controlId={view.controlId} label={view.label} hint={view.hint} error={view.message}>
+      <CurrencyInput
+        key={view.resetKey}
+        {...view.inputProps}
+        {...view.binding}
+        id={view.controlId}
+        disabled={view.disabled}
+        invalid={view.invalid}
+        aria-required={view.required || undefined}
+      />
+    </FormField>
+  );
+}
+```
+
+## Tests
+
+- `npm run test:form-adapters`: real React Hook Form SSR composition, independent IDs, provider failures, native defaults and unsupported readonly modes.
+- Valid nested MonetaryValue field paths compile; unknown or incompatible paths and competing registration props fail typechecking.
+- User changes update the field once; blur marks touched, invalid submit focuses the visible control, and an error without a message still sets invalid state.
+- Initial defaults, reset, setValue, disabled submission and conditional unmount follow the provider policy without cross-form ID/value leakage.
+- Verify the CurrencyInput-specific value and interaction scenarios in the acceptance criteria, including SSR and a targeted browser check for the actual focus target and native/compound behavior.
+
+## Criteria
+
+- [x] Use one caller-owned FormProvider and preserve FormFieldInput's organization: a named generic Props interface, a colocated useFormFieldCurrencyInput view hook called at the top of render, and existing DS presentation. No nested useForm, feature APIs or RHF imports in atoms/molecules.
+- [x] Restrict name to FieldPathByValue for the declared form input type, including nested paths. Keep native/presentation adapter interfaces in design-system/types/form-field-organisms.ts, exported through the type barrel; component-local Props extend those canonical interfaces and FormFieldRegistrationProps.
+- [x] Implement the useController channel for CurrencyInput; the registered input type is `MonetaryValue`.
+- [x] Bind the canonical MonetaryValue (decimal string or null) through value/onValueChange; never round through JavaScript Number or send the localized display string as the field value.
+- [x] Require currency, locale and invalidMessage presentation metadata; preserve allowNegative, animated and onInputStateChange without exposing a competing value callback.
+- [x] Incomplete/invalid local drafts can coexist with the last committed canonical value. Track the primitive's input-state channel to block resolver submission for that field until it is empty/valid; native customValidity alone is insufficient in FormView's noValidate form. Clear only adapter-owned draft errors on correction/reset; preserve external/schema errors.
+- [x] Changing locale/currency is presentation, not a value conversion or onValueChange event. Forward RHF focus to the visible money editor; do not register the hidden canonical input separately.
+- [x] RHF owns value/defaultValue, name, change/blur, disabled and registration ref. Do not expose competing channels or register the same field twice. Schema/resolver validation, transforms, localization and submission remain caller-owned.
+- [x] Preserve exact-field errors, including invalid state without a string message and an explicitly supplied translated error. Merge external and mounted hint/error description IDs once; label the actual focus target or group and keep generated IDs independent between forms.
+- [x] Forward RHF focus to the actual editable control or enabled option, never a hidden input, decorative wrapper or non-focusable fieldset. Reset, setValue, dirty/touched and conditional unmount follow the caller's RHF policy.
+- [x] FormView integration uses the explicit renderer kind specified below and strictly typed per-kind metadata. Both form and fields modes preserve caller-owned submission and reject incompatible schema inputs at compile time. Use `kind="currency"`.
+- [x] Use existing visual recipes and primitive behavior without new CSS or popup/selection/mask implementations. Retain supported native and visual capabilities; do not spread unsupported readOnly or fullWidth props onto a primitive.
+- [x] Support deterministic static rendering without browser globals at module evaluation. The component and renderer kind are exported and documented in the availability catalog after verification.
+- [x] Format only task-touched supported files using .prettierrc.json and .prettierignore, apply ESLint fixes only to touched JS/TS files, rerun read-only formatting/lint checks, typechecks and relevant established form/control tests before DONE.
+

@@ -1,0 +1,117 @@
+---
+title: "BreadcrumbItem"
+scope: "Breadcrumb compound part: BreadcrumbItem. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# BreadcrumbItem
+
+## Files
+
+```text
+design-system/components/static-components.contracts.test.ts (C)
+../scripts/check-static-components.cjs (C)
+design-system/components/atoms/BreadcrumbItem/BreadcrumbItem.tsx (C)
+design-system/components/atoms/BreadcrumbItem/BreadcrumbItem.module.css (C)
+design-system/components/atoms/BreadcrumbItem/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/BreadcrumbItem.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase-v2/components/BreadcrumbItem/definition.ts (C)
+features/showcase-v2/components/BreadcrumbItem/BreadcrumbItem.example.tsx (C)
+features/showcase-v2/components/BreadcrumbItem/useBreadcrumbItemExample.ts (C)
+features/showcase-v2/components/BreadcrumbItem/usage-code.ts (C)
+features/showcase-v2/components/Breadcrumb/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Link](Link.sc.md)
+
+## Contract
+
+```tsx
+import { Breadcrumb, BreadcrumbItem } from "@forge-ui/web";
+<Breadcrumb label="Navigation"><BreadcrumbItem current>Current page</BreadcrumbItem></Breadcrumb>;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+```
+
+## Content
+
+```tsx
+import type { NativeCollectionItemProps } from "../../../types/compound-composition";
+import { Link } from "../Link";
+import styles from "./BreadcrumbItem.module.css";
+
+export interface BreadcrumbItemProps extends NativeCollectionItemProps {
+  current?: boolean;
+  href?: string;
+}
+
+export function BreadcrumbItem({ children, className, current = false, href, ...props }: BreadcrumbItemProps) {
+  if (!current && !href?.trim()) throw new Error("Ancestor BreadcrumbItem requires a nonempty href.");
+  return (
+    <li
+      {...props}
+      className={[styles.root, className].filter(Boolean).join(" ")}
+      aria-current={undefined}
+      aria-selected={undefined}
+      tabIndex={undefined}
+      role={undefined}
+    >
+      {current ? <span aria-current="page">{children}</span> : <Link href={href}>{children}</Link>}
+    </li>
+  );
+}
+```
+
+## Tests
+
+- V2 Indexed location trail: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server markup preserves native owner attributes, named semantic regions and permitted child hierarchy.
+- Ancestors require href; exactly one current item must appear last with a span, not a link.
+- Direct Items and keyed fragments work; unrelated wrappers/unkeyed fragments/multiple current items fail.
+
+## Criteria
+
+- [x] Given BreadcrumbItem, Exactly one current=true item is last and has no link; ancestor items require nonempty href.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Native Link behavior remains.
+- [x] Root owns ordered-list hierarchy and rejects multiple current items.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Current content is a native span and ancestors reuse Link; no independent visual selection transition is added.
+- [x] Use only the item states supported by its owning contract.
+- [x] Native focus and aria-selected/current/expanded/activedescendant update immediately; arrow navigation never waits for motion.
+- [x] The item does not allocate a presence/selection clock.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **Indexed location trail**: Compose three BreadcrumbItems with Children 1..3 and valid local anchors; the last is current and labels/keys retain their original index.
+- [x] The BreadcrumbItem V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useBreadcrumbItemExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Breadcrumb fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

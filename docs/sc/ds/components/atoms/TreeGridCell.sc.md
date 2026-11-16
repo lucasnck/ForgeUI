@@ -1,0 +1,133 @@
+---
+title: "TreeGridCell"
+scope: "TreeGrid public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# TreeGridCell
+
+## Files
+
+```text
+features/showcase/examples/GridPartExamples.tsx (C)
+design-system/components/atoms/TreeGridCell/TreeGridCell.tsx (C)
+design-system/components/atoms/TreeGridCell/TreeGridCell.module.css (C)
+design-system/components/atoms/TreeGridCell/index.ts (C)
+design-system/internal/treegrid/TreeGridContext.ts (C)
+design-system/internal/treegrid/validateParts.ts (C)
+design-system/index.ts (M)
+design-system/types/tree-grid.contracts.test.ts (C)
+features/showcase/examples/TreeGridCell.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/TreeGridCell/useTreeGridCell.ts (C)
+features/showcase-v2/components/TreeGridCell/definition.ts (C)
+features/showcase-v2/components/TreeGridCell/TreeGridCell.example.tsx (C)
+features/showcase-v2/components/TreeGridCell/useTreeGridCellExample.ts (C)
+features/showcase-v2/components/TreeGridCell/usage-code.ts (C)
+features/showcase-v2/components/TreeGrid/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-grid-navigation.sc.md](../../hooks/tech-grid-navigation.sc.md)
+- [tech-tree-state.sc.md](../../hooks/tech-tree-state.sc.md)
+- [TreeGrid.sc.md](../organisms/TreeGrid.sc.md)
+
+## Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridHeader } from "@forge-ui/web";
+<TreeGrid label="Resources" nodes={nodes} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader hidden /><TreeGridBody /></TreeGrid>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  composes: text from "../../../styles/text-components.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  color: var(--color-text-default);
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useImperativeHandle, useLayoutEffect, useRef } from "react";
+import { useTreeGridContext } from "../../../internal/treegrid/TreeGridContext";
+import type { TreeGridCellProps } from "./TreeGridCell";
+export function useTreeGridCell(input: TreeGridCellProps) {
+  const { rowKey, columnKey, onFocus, onKeyDown, onClick, children, ref, className, ...props } = input;
+  const grid = useTreeGridContext();
+  if (!grid.rows.some(row => row.node.key === rowKey) || !grid.columns.some(column => column.key === columnKey) || typeof children !== "string") {
+    throw new Error("TreeGridCell requires root keys and plain text content.");
+  }
+  const cellRef = useRef<HTMLTableCellElement>(null);
+  useImperativeHandle(ref, () => cellRef.current!, []);
+  const register = grid.navigation.registerCell;
+  useLayoutEffect(() => register({ rowKey, columnKey }, cellRef), [register, rowKey, columnKey]);
+  const address = { rowKey, columnKey };
+  const handleFocus: NonNullable<TreeGridCellProps["onFocus"]> = event => { onFocus?.(event); if (!event.defaultPrevented) grid.navigation.onCellFocus(address); };
+  const handleKeyDown: NonNullable<TreeGridCellProps["onKeyDown"]> = event => { onKeyDown?.(event); if (!event.defaultPrevented) grid.onCellKeyDown(event, address); };
+  const handleClick: NonNullable<TreeGridCellProps["onClick"]> = event => { onClick?.(event); if (!event.defaultPrevented) grid.navigation.focusCell(address); };
+  return { props, children, className, cellRef, animated: grid.animated, handleFocus, handleKeyDown, handleClick,
+    headerId: grid.hasHeader ? grid.headerId(columnKey) : undefined, tabIndex: grid.navigation.tabIndex(address), expanded: grid.branchCellExpanded(address) };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { NativeTreeGridCellProps } from "../../../types";
+import { useTreeGridCell } from "./useTreeGridCell";
+import styles from "./TreeGridCell.module.css";
+export interface TreeGridCellProps extends NativeTreeGridCellProps { rowKey: string; columnKey: string; }
+export function TreeGridCell(props: TreeGridCellProps) {
+  const { props: nativeProps, cellRef, headerId, tabIndex, expanded, handleFocus, handleKeyDown, handleClick, className, children, animated } = useTreeGridCell(props);
+  return <td {...nativeProps} ref={cellRef} role="gridcell" data-animated={animated} headers={headerId} tabIndex={tabIndex} aria-expanded={expanded} onFocus={handleFocus} onKeyDown={handleKeyDown} onClick={handleClick} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</td>;
+}
+```
+
+## Tests
+
+- V2 TreeGridCell contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Actual browser verification covers cell-only arrows, RTL bounds, accepted controlled collapse repairing descendant focus to the ancestor/current column without callbacks, and 12 locale/theme combinations preserving row count and one tab stop.
+
+- `npm run test:overlays` verifies actual React SSR semantics and family guards.
+- `npm run test:hooks` verifies keyboard control and focus repair; browser validation is separate.
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given TreeGridCell, Cell-only keyboard model.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Local fields contract uses Required unless optional in Signature; constraints stated below.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] First cell of a branch owns aria-expanded/Enter expansion; generic arrows remain column/row movement.
+- [x] Root toggle repairs descendant focus before hiding.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useTreeGridCell is colocated with TreeGridCell and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **TreeGridCell contextual region**: Demonstrate TreeGridCell through actual TreeGrid records/nodes and the public Header/Body render path, with three stable indexed records and two indexed columns. Exercise owner sort/selection/expansion applicable to this part, without orphan cells/rows or private context.
+- [x] The TreeGridCell V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTreeGridCellExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the TreeGrid fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

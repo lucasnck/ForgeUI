@@ -1,0 +1,171 @@
+---
+title: "FormFieldEmailInput"
+scope: "EmailInput composed with FormField and caller-owned React Hook Form registration"
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# FormFieldEmailInput
+
+## Files
+
+```text
+design-system/components/organisms/Form/FormFieldEmailInput/FormFieldEmailInput.tsx (C)
+design-system/components/organisms/Form/FormFieldEmailInput/useFormFieldEmailInput.ts (C)
+design-system/components/organisms/Form/FormFieldEmailInput/index.ts (C)
+design-system/components/organisms/Form/index.ts (M)
+design-system/index.ts (M)
+design-system/types/form-field-organisms.ts (M)
+design-system/types/forms.test.ts (M)
+../scripts/check-form-field-adapters.cjs (C)
+../scripts/fixtures/form-field-adapters.tsx (C)
+../scripts/fixtures/form-adapter-upload.txt (C)
+```
+
+## Dependencies
+
+- [EmailInput](../../molecules/EmailInput.sc.md)
+- [FormField](../../molecules/FormField.sc.md)
+- [Form registration types](../../../types/tech-form-field-organisms.sc.md)
+- [Native contracts](../../../types/tech-native-control-contracts.sc.md)
+- [Component capabilities](../../../types/tech-component-capabilities.sc.md)
+- [React Hook Form integration](../../../../tech-react-hook-form.sc.md)
+
+## Contract
+
+```tsx
+import { FormFieldEmailInput } from "@forge-ui/web";
+
+<FormFieldEmailInput<{ email: string }>
+  name="email"
+  label={emailLabel}
+  providers={emailProviders}
+  listboxLabel={emailSuggestionsLabel}
+  required
+/>;
+```
+
+## Hooks
+
+```ts
+"use client";
+import { useId } from "react";
+
+import { useFormContext, useController } from "react-hook-form";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type { FormFieldEmailInputProps } from "./FormFieldEmailInput";
+
+export function useFormFieldEmailInput<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>({
+  id,
+  name,
+  label,
+  hint,
+  error: displayedError,
+  required,
+  disabled: callerDisabled,
+  ...inputProps
+}: FormFieldEmailInputProps<TValues, TName>) {
+  const generatedId = useId();
+  const methods = useFormContext<TValues>();
+  if (!methods) throw new Error("FormFieldEmailInput requires FormProvider.");
+  const disabled = callerDisabled || methods.formState.disabled;
+  const { field, fieldState } = useController({ control: methods.control, name, disabled });
+  const value: unknown = field.value;
+  if (typeof value !== "string") throw new Error("FormFieldEmailInput requires string defaults.");
+  const error = fieldState.error;
+  const message =
+    displayedError ?? (typeof error?.message === "string" ? error.message : undefined);
+
+  return {
+    controlId: id ?? generatedId,
+    label,
+    hint,
+    required,
+    disabled,
+    message,
+    invalid: Boolean(error) || Boolean(displayedError),
+    inputProps,
+    binding: {
+      name: field.name,
+      ref: field.ref,
+      onBlur: field.onBlur,
+      value,
+      onValueChange: field.onChange,
+    },
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type {
+  NativeFormFieldEmailProps,
+  FormFieldRegistrationProps,
+  FormFieldEmailPresentationProps,
+  VisualProps,
+  ComponentFullWidthProps,
+} from "../../../../types";
+export interface FormFieldEmailInputProps<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>
+  extends
+    NativeFormFieldEmailProps,
+    FormFieldRegistrationProps<TValues, TName>,
+    FormFieldEmailPresentationProps,
+    VisualProps,
+    ComponentFullWidthProps {}
+import { EmailInput } from "../../../molecules/EmailInput";
+
+import { FormField } from "../../../molecules/FormField";
+import { useFormFieldEmailInput } from "./useFormFieldEmailInput";
+
+export function FormFieldEmailInput<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>(props: FormFieldEmailInputProps<TValues, TName>) {
+  const view = useFormFieldEmailInput(props);
+
+  return (
+    <FormField controlId={view.controlId} label={view.label} hint={view.hint} error={view.message}>
+      <EmailInput
+        {...view.inputProps}
+        {...view.binding}
+        id={view.controlId}
+        disabled={view.disabled}
+        invalid={view.invalid}
+        aria-required={view.required || undefined}
+      />
+    </FormField>
+  );
+}
+```
+
+## Tests
+
+- `npm run test:form-adapters`: real React Hook Form SSR composition, independent IDs, provider failures, native defaults and unsupported readonly modes.
+- Typed nested string paths compile; unknown paths, non-string fields and competing value/defaultValue/change/ref props fail typechecking.
+- Typing and accepting a domain suggestion each update the registered value once; acceptance retains input focus and prevents accidental form submission according to EmailInput's keyboard contract.
+- Reset, setValue, blur, invalid-submit focus, conditional unmount and two independent forms preserve RHF semantics and independent IDs.
+- Errors with no message still mark the input invalid; supplied translated errors and external description IDs retain correct FormField relationships.
+- Missing FormProvider and non-string defaults fail explicitly; static rendering does not access browser APIs or display an open suggestion list.
+
+## Criteria
+
+- [x] Follow FormFieldInput's organization: named generic Props interface, colocated view hook called at the top of render, FormField composition, inherited visual/native capabilities and RHF-owned field state.
+- [x] Use useController once for EmailInput's controlled value/onValueChange channel. Do not combine register with useController, create useForm, duplicate popup logic or import RHF into EmailInput.
+- [x] String defaults/reset values come from the caller's form configuration. Preserve native input ref for setFocus and invalid-submit focus; readonly retains submission value and disabled follows RHF's disabled contract.
+- [x] Canonical NativeFormFieldEmailProps and FormFieldEmailPresentationProps live in form-field-organisms.ts; providers is required, maxSuggestions and listboxLabel retain EmailInput defaults and semantics. Do not expose competing value, defaultValue, name, ref, onChange, onBlur or aria-invalid channels through native props.
+- [x] EmailInput retains its fixed email attributes, popup keyboard behavior, composition handling and suggestion ownership; FormField owns label/hint/error markup and description merging.
+- [x] Validation and email normalization remain in the consuming schema/request adapter. Provider domains and accessible suggestion text are application-owned; the DS ships no product dictionary or provider list.
+- [x] FormView renders this organism for explicit kind="email" using typed provider metadata and caller-localized listboxLabel. Both form and fields modes preserve the existing submit owner.
+- [x] All application fields dedicated to email entry use this organism: password registration, OAuth registration and password recovery. Mixed login identifiers preserve CPF/phone/email support; read-only email displays and low-level DS demonstrations do not become registered fields.
+- [x] Format only task-touched supported files using .prettierrc.json and .prettierignore; apply ESLint fixes only to touched JS/TS files, then pass read-only formatting/lint checks, typechecking and relevant form/input checks before marking DONE.
+- [x] Register delivered exports in the availability catalog and verify suggestion acceptance, focus, validation and layout in the migrated pages in the browser.

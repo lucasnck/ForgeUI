@@ -1,0 +1,185 @@
+---
+title: "Nonmodal overlay interaction infrastructure"
+scope: "Overlay layer membership, dismissal, explicit focus return and native-modal scroll ownership"
+status: "DONE"
+type: "hook"
+ds-level: "none"
+---
+
+# Nonmodal overlay interaction infrastructure
+
+
+## Files
+
+```text
+design-system/hooks/overlay/useOverlay.ts (C)
+design-system/hooks/overlay/index.ts (C)
+design-system/index.ts (M)
+features/showcase-v2/components/HookResources/useOverlay/definition.ts (C)
+features/showcase-v2/components/HookResources/useOverlay/useOverlay.example.tsx (C)
+features/showcase-v2/components/HookResources/useOverlay/useOverlayResourceExample.ts (C)
+features/showcase-v2/components/HookResources/useOverlay/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Overlay contracts](../types/tech-overlay-contracts.sc.md)
+- [Overlay scroll lock](../styles/tech-overlay-scroll-lock.sc.md)
+
+## Contract
+
+```ts
+import { useOverlay } from "@forge-ui/web";
+const overlay = useOverlay({ open, triggerRef, panelRef, onEscape, onOutside });
+```
+
+## Content
+
+```ts
+"use client";
+
+import { useCallback, useLayoutEffect, useRef } from "react";
+import type { OverlayLayerContract, OverlayLayerOptions } from "../../types/overlay";
+
+interface OverlayManager {
+  layers: symbol[];
+  consumedOutside: WeakSet<Event>;
+  scrollOwners: Set<symbol>;
+  previousScrollLock: string | undefined;
+}
+
+const managers = new WeakMap<Document, OverlayManager>();
+
+function managerFor(document: Document): OverlayManager {
+  let manager = managers.get(document);
+  if (!manager) {
+    manager = {
+      layers: [],
+      consumedOutside: new WeakSet(),
+      scrollOwners: new Set(),
+      previousScrollLock: undefined,
+    };
+    managers.set(document, manager);
+  }
+  return manager;
+}
+
+export function useOverlay(options: OverlayLayerOptions): OverlayLayerContract {
+  const latest = useRef(options);
+  const branches = useRef(new Map<HTMLElement, Set<symbol>>());
+  useLayoutEffect(() => { latest.current = options; });
+
+  useLayoutEffect(() => {
+    if (!options.open) return;
+    const ownerDocument = options.panelRef.current?.ownerDocument
+      ?? options.triggerRef.current?.ownerDocument ?? document;
+    const manager = managerFor(ownerDocument);
+    const id = Symbol("overlay");
+    manager.layers.push(id);
+    if (options.lockScroll) {
+      if (!manager.scrollOwners.size) {
+        manager.previousScrollLock = ownerDocument.documentElement.getAttribute("data-overlay-scroll-locked") ?? undefined;
+        ownerDocument.documentElement.setAttribute("data-overlay-scroll-locked", "true");
+      }
+      manager.scrollOwners.add(id);
+    }
+
+    const onEscape = (event: KeyboardEvent) => {
+      const current = latest.current;
+      if (
+        manager.layers.at(-1) !== id || !current.open || current.nativeModal ||
+        event.defaultPrevented || event.isComposing || event.key !== "Escape"
+      ) return;
+      event.preventDefault();
+      current.onEscape();
+    };
+    const onOutside = (event: PointerEvent) => {
+      const current = latest.current;
+      if (
+        manager.layers.at(-1) !== id || !current.open || current.nativeModal ||
+        event.defaultPrevented || manager.consumedOutside.has(event)
+      ) return;
+      const path = event.composedPath();
+      const nodes = [current.triggerRef.current, current.panelRef.current, ...branches.current.keys()];
+      const inside = nodes.some((element) => element && path.some((target) =>
+        target === element || (target instanceof ownerDocument.defaultView!.Node && element.contains(target)),
+      ));
+      if (inside) return;
+      manager.consumedOutside.add(event);
+      current.onOutside();
+    };
+    ownerDocument.addEventListener("keydown", onEscape);
+    ownerDocument.addEventListener("pointerdown", onOutside);
+
+    return () => {
+      ownerDocument.removeEventListener("keydown", onEscape);
+      ownerDocument.removeEventListener("pointerdown", onOutside);
+      const index = manager.layers.indexOf(id);
+      if (index >= 0) manager.layers.splice(index, 1);
+      if (options.lockScroll) {
+        manager.scrollOwners.delete(id);
+        if (!manager.scrollOwners.size) {
+          if (manager.previousScrollLock === undefined) {
+            ownerDocument.documentElement.removeAttribute("data-overlay-scroll-locked");
+          } else {
+            ownerDocument.documentElement.setAttribute("data-overlay-scroll-locked", manager.previousScrollLock);
+          }
+        }
+      }
+    };
+  }, [options.open, options.nativeModal, options.lockScroll, options.panelRef, options.triggerRef]);
+
+  const registerBranch = useCallback((element: HTMLElement) => {
+    const id = Symbol("branch");
+    let owners = branches.current.get(element);
+    if (!owners) {
+      owners = new Set();
+      branches.current.set(element, owners);
+    }
+    owners.add(id);
+    return () => {
+      owners.delete(id);
+      if (!owners.size && branches.current.get(element) === owners) {
+        branches.current.delete(element);
+      }
+    };
+  }, []);
+  const restoreTriggerFocus = useCallback(() => {
+    const trigger = latest.current.triggerRef.current;
+    if (trigger?.isConnected) trigger.focus({ preventScroll: true });
+  }, []);
+
+  return { registerBranch, restoreTriggerFocus };
+}
+```
+
+## Tests
+
+- V2 Outside and topmost dismissal: verify its observable state, actual public contract, reset and complete copied code.
+
+- `npm run test:overlays` passes isolated stack/native lifecycle checks and real React server rendering; `npm run typecheck:design-system` passes. Browser fixtures verify nested Escape, controlled rejection, native external close, focus return and reference-counted lock restoration.
+
+- Nested layers deliver Escape once to the top eligible nonmodal owner and ignore composing or prevented keys.
+- Outside pointer events preserve native target focus and close at most one owner even if its callback synchronously changes membership.
+- Registered portaled branches count as inside; their disposer removes only that branch.
+- Native modal membership delegates Escape to the browser; scroll locking requires explicit lockScroll=true.
+- Closing, unmount and Strict Mode replay release listeners, membership and prior root attributes.
+- Callback updates preserve layer order without stale request handlers.
+
+## Criteria
+
+- [x] Only the topmost eligible nonmodal layer receives Escape, excluding composing and prevented events.
+- [x] Outside pointer detection includes trigger, panel and registered branches through composedPath.
+- [x] A pointer event requests at most one layer close without preventing native target focus.
+- [x] Native modal membership delegates Escape to native cancel without changing page overflow; explicit lockScroll=true uses the reference-counted root lock.
+- [x] Focus restoration occurs only when explicitly requested and the trigger is connected.
+- [x] Closing, reopening, unmount and StrictMode release listeners, membership and scroll ownership.
+- [x] Callback updates preserve membership order and use the latest accepted open state.
+- [x] The hook owns no coordinates, rendered portal, focus trap, styles or semantic open-state store.
+- [x] Positioning beyond an existing renderer requires a separately documented geometry rule.
+
+- [x] V2 **Outside and topmost dismissal**: Bind real trigger/panel refs to two nested named nonmodal overlays, each with its own visible Close Button. Register actual public branches, exercise Escape/outside pointer and supported lockScroll, and show only topmost requests. Reset/unmount restores prior root scroll state and removes listeners.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

@@ -1,0 +1,133 @@
+---
+title: "Status Primitives"
+scope: "Shared size and tone recipes for Avatar, Badge and Tag"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Status Primitives
+
+
+
+## Files
+
+```text
+design-system/styles/status-components.module.css (M)
+features/showcase-v2/components/StyleResources/StatusRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/StatusRecipes/StatusRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/StatusRecipes/useStatusRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/StatusRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](tech-design-tokens.sc.md)
+- [Typography](tech-typography.sc.md)
+- [Shape](tech-shape.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@/design-system/styles/status-components.module.css";
+<div className={styles.compact}/>;
+```
+
+## Styles
+
+```css
+.compact {
+  composes: shaped from "./shaped-components.module.css";
+  composes: action from "./toned-components.module.css";
+  composes: appearance from "./appearance-components.module.css";
+  composes: fullWidth from "./full-width-components.module.css";
+  --status-height: var(--length-5);
+  --status-padding: var(--length-2);
+  --status-font: var(--font-size-md);
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--status-height);
+  max-inline-size: var(--size-full);
+  min-inline-size: var(--zero);
+  padding-inline: var(--status-padding);
+  font-size: var(--status-font);
+  gap: var(--space-1);
+  overflow-wrap: anywhere;
+}
+.avatar {
+  composes: shaped from "./shaped-components.module.css";
+  --avatar-size: var(--length-6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--avatar-size);
+  block-size: var(--avatar-size);
+  flex-shrink: var(--zero);
+  overflow: hidden;
+  background: var(--color-surface-subtle);
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+}
+.compact[data-size="xs"] {
+  --status-height: var(--length-3);
+  --status-padding: var(--length-1);
+  --status-font: var(--font-size-xs);
+}
+.avatar[data-size="xs"] {
+  --avatar-size: var(--length-4);
+}
+.compact[data-size="sm"] {
+  --status-height: var(--length-4);
+  --status-padding: var(--length-1);
+  --status-font: var(--font-size-sm);
+}
+.avatar[data-size="sm"] {
+  --avatar-size: var(--length-5);
+}
+.compact[data-size="lg"] {
+  --status-height: var(--length-6);
+  --status-padding: var(--length-2);
+  --status-font: var(--font-size-lg);
+}
+.avatar[data-size="lg"] {
+  --avatar-size: var(--length-7);
+}
+.compact[data-size="xl"] {
+  --status-height: var(--length-7);
+  --status-padding: var(--length-3);
+  --status-font: var(--font-size-xl);
+}
+.avatar[data-size="xl"] {
+  --avatar-size: var(--length-8);
+}
+```
+
+## Tests
+
+- V2 Status surface anatomy: verify its observable state, actual public contract, reset and complete copied code.
+
+- Avatar, badge and tag sizes, tones and shapes compose their canonical visual tokens.
+- Interactive tag focus/removal controls preserve visible focus and disabled semantics.
+
+## Criteria
+
+- [x] Badge and Tag share one compact recipe for every supported size/tone/appearance/shape.
+- [x] Avatar's five diameters resolve through the shared recipe without duplicate selectors.
+- [x] md defaults and all dimensions use existing integer base-unit lengths.
+- [x] Soft/outlined behavior matches the existing appearance recipe; no unsupported tone effect is claimed.
+- [x] Foreground/border combinations, forced colors and token/static-export checks pass.
+- [x] No new palette, runtime color inference, status business vocabulary or feature dependency.
+- [x] The Consumer contract uses xs / sm / md / lg / xl.
+- [x] The compact height contract uses --length-3 / --length-4 / --length-5 / --length-6 / --length-7.
+- [x] The compact padding inline contract uses --length-1 / --length-1 / --length-2 / --length-2 / --length-3.
+- [x] The compact font size contract uses --font-size-xs / sm / md / lg / xl.
+- [x] The avatar diameter contract uses --length-4 / --length-5 / --length-6 / --length-7 / --length-8.
+- [x] Default Badge tone brand and Tag tone neutral, appearance soft, inherited shape.
+- [x] Use existing fullWidth recipe where supported; no new capability interfaces required.
+- [x] No numeric/color CSS outside tokens.
+
+- [x] V2 **Status surface anatomy**: Compare real Badge/Alert/EmptyState/ErrorState consumers with indexed content, icon/title gaps and end-aligned actions. Document actual compact/surface recipe classes and semantic status tokens without inventing announcements in CSS.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

@@ -1,0 +1,83 @@
+---
+title: "Notification contracts"
+scope: "Notification contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Notification contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/notifications.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```ts
+import type { ToastDuration } from "@forge-ui/web";
+type Contract = ToastDuration;
+```
+
+## Content
+
+```ts
+import type {
+  ReactNode,
+  RefObject,
+} from "react";
+
+export type ToastDuration = "persistent" | "short" | "long";
+
+export type ToastPauseReason = "hover" | "focus" | "document-hidden";
+
+export type NotificationUrgency = "normal" | "urgent";
+
+export interface ToastRecord {
+  id: string;
+  title: string;
+  message: string;
+  duration?: ToastDuration;
+  urgency?: NotificationUrgency;
+  action?: ReactNode;
+  dismissLabel: string;
+}
+
+export interface ToastRegionOptions {
+  records?: readonly ToastRecord[];
+  defaultRecords?: readonly ToastRecord[];
+  onRecordsChange?(records: readonly ToastRecord[]): void;
+}
+
+export interface ToastRegionContract {
+  records: readonly ToastRecord[];
+  announcement: { text: string; urgency: NotificationUrgency } | null;
+  registerRecord(id: string, root: RefObject<HTMLElement | null>, action: RefObject<HTMLElement | null>): () => void;
+  add(record: ToastRecord): void;
+  dismiss(id: string): void;
+  pause(reason: ToastPauseReason): void;
+  resume(reason: ToastPauseReason): void;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for ToastRegion, useToast retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile persistent/short/long durations, normal/urgent urgency and each declared pause reason.
+- Reject unknown durations, absent required record ids/dismiss labels and mismatched readonly-record callbacks.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+
+- [x] V2 typed usage fixtures cover ToastRegion, useToast: Stable notification records, queue operations, timing and single announcements. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

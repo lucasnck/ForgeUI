@@ -1,0 +1,139 @@
+---
+title: "PageHeader"
+scope: "Reusable content-page title, optional identity, navigation and action composition below the application shell"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# PageHeader
+
+## Files
+
+```text
+design-system/components/molecules/PageHeader/PageHeader.tsx (C)
+design-system/components/molecules/PageHeader/PageHeader.module.css (C)
+design-system/components/molecules/PageHeader/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/PageHeader.example.tsx (C)
+features/showcase/examples/usePageHeaderExample.ts (C)
+features/showcase/examples/page-header-example.messages.ts (C)
+features/showcase/examples/PageHeaderExample.module.css (C)
+../scripts/check-crud-home.cjs (M)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase/model/showcase-status.ts (M)
+features/showcase-v2/components/PageHeader/definition.ts (C)
+features/showcase-v2/components/PageHeader/PageHeader.example.tsx (C)
+features/showcase-v2/components/PageHeader/usePageHeaderExample.ts (C)
+features/showcase-v2/components/PageHeader/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Heading](../atoms/Heading.sc.md)
+- [Text](../atoms/Text.sc.md)
+- [Divider](../atoms/Divider.sc.md)
+- [Inline](../atoms/Inline.sc.md)
+- [Stack](../atoms/Stack.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import { PageHeader } from "@forge-ui/web";
+<PageHeader titleId="records-title" pageTitle="Records" description="Manage records" identity={avatar} breadcrumb={breadcrumbs} actions={actions} divider />;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+}
+.content {
+  min-inline-size: var(--zero);
+  flex: var(--opacity-full);
+  overflow-wrap: anywhere;
+}
+.heading {
+  min-inline-size: var(--zero);
+  flex: var(--opacity-full) var(--opacity-full) var(--length-32);
+}
+.actions {
+  margin-inline-start: auto;
+  max-inline-size: var(--size-full);
+}
+.root[hidden] {
+  display: none;
+}
+
+```
+
+## Content
+
+```tsx
+import type { ComponentPropsWithRef, ReactNode } from "react";
+import { Heading } from "../../atoms/Heading";
+import { Text } from "../../atoms/Text";
+import { Divider } from "../../atoms/Divider";
+import { Inline } from "../../atoms/Inline";
+import { Stack } from "../../atoms/Stack";
+import styles from "./PageHeader.module.css";
+export interface PageHeaderContentProps {
+  titleId: string;
+  pageTitle: ReactNode;
+  description?: ReactNode;
+  identity?: ReactNode;
+  breadcrumb?: ReactNode;
+  actions?: ReactNode;
+  divider?: boolean;
+}
+export interface PageHeaderProps extends ComponentPropsWithRef<"header">, PageHeaderContentProps {
+  children?: never;
+}
+export function PageHeader({ titleId, pageTitle, description, identity, breadcrumb, actions, divider = false, className, ...props }: PageHeaderProps) {
+  return <Stack as="header" gap="2" {...props} className={[styles.root, className].filter(Boolean).join(" ")}>
+    {breadcrumb}
+    <Inline gap="3" align="center">
+      <Inline gap="2" align="center" wrap={false} className={styles.heading}>
+        {identity}
+        <Stack gap="1" className={styles.content}>
+          <Heading level={1} size="xl" id={titleId} tabIndex={-1}>{pageTitle}</Heading>
+          {description !== undefined && description !== null && description !== false && description !== true && description !== "" && <Text as="p">{description}</Text>}
+        </Stack>
+      </Inline>
+      {actions !== undefined && actions !== null && actions !== false && actions !== true && actions !== "" &&
+        <Inline gap="2" align="center" className={styles.actions}>{actions}</Inline>}
+    </Inline>
+    {divider && <Divider />}
+  </Stack>;
+}
+
+
+```
+
+## Tests
+
+- V2 Composed page heading: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Render title only, icon/title, avatar/title/actions, breadcrumb/description, divider on/off and long title with wrapping actions.
+- Mount inside a section under the application main; verify the title remains a heading and the header is not an extra page banner.
+
+## Criteria
+
+- [x] Title/identity/actions keep their own native semantics; shared transition participants are supplied as title/identity values rather than importing feature state or transition policy.
+- [x] Caller supplies a stable unique titleId; templates reference it with aria-labelledby and navigation may focus that heading with preventScroll after commit.
+- [x] Header belongs to a content section inside existing main, never replaces the application header or adds another main.
+- [x] Absent optional content creates no empty slot wrapper; no close button is invented. Actions use caller-owned native buttons/links and wrap at narrow widths.
+- [x] Text/action spacing uses tokens; long localized titles and image/avatar identities do not touch outer template edges or force document overflow.
+- [x] Divider defaults off. Isolated Showcase variants demonstrate title, icon/title, avatar, actions, description and divider on/off using only PageHeader; complete templates are separate examples.
+- [x] Header remains present across detail/edit when the record identity is known; feature decides title text and image availability without guessing unavailable data.
+
+- [x] Identity and title/description form one non-wrapping cluster, vertically centered as a unit. A separate action group wraps with token gaps at the trailing edge and moves below when space is insufficient; identity never becomes an orphaned flex-row item.
+- [x] Showcase provides six clearly labeled, isolated examples with meaningful records/profile content, caller-owned container padding, compact preview heights and pt-BR/es/en copy. Description is never concatenated into the title; page action buttons and the breadcrumb produce visible local feedback instead of dead self-links or nested app navigation.
+
+- [x] V2 **Composed page heading**: Use pageTitle="PageTitle", description="Description", a unique titleId, Avatar identity, Breadcrumb and right-aligned secondary/primary actions; long titles and optional slots preserve spacing and accessible naming.
+- [x] The PageHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. usePageHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

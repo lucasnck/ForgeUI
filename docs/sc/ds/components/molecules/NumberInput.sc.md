@@ -1,0 +1,90 @@
+---
+title: "NumberInput"
+scope: "Render native numeric editing without erasing partial input or introducing custom spinbutton behavior."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# NumberInput
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/molecules/NumberInput/index.ts (C)
+design-system/components/molecules/NumberInput/NumberInput.tsx (C)
+features/showcase/examples/NumberInput.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-inputs.cjs (C)
+features/showcase/examples/InputFamilyExample.tsx (C)
+features/showcase-v2/components/NumberInput/definition.ts (C)
+features/showcase-v2/components/NumberInput/NumberInput.example.tsx (C)
+features/showcase-v2/components/NumberInput/useNumberInputExample.ts (C)
+features/showcase-v2/components/NumberInput/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-input-specializations.sc.md](../../types/tech-input-specializations.sc.md)
+- [Input.sc.md](../atoms/Input.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { NumberInput } from "@forge-ui/web";
+<NumberInput name="quantity" aria-label="Quantity" min={0} step={1}/>;
+```
+
+## Content
+
+```tsx
+import { Input } from "../../atoms/Input";
+import type { NativeSpecializedInputProps } from "../../../types/input-specializations";
+import type { VisualProps, ComponentFullWidthProps, ComponentInvalidProps } from "../../../types/component-capabilities";
+
+export interface NumberInputProps extends NativeSpecializedInputProps, VisualProps, ComponentFullWidthProps, ComponentInvalidProps {}
+
+export function NumberInput(props: NumberInputProps) {
+  return <Input {...props} type="number" />;
+}
+```
+
+## Tests
+
+- V2 Native numeric constraints: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Render without browser globals and verify forwarded native attributes and the documented value channel.
+- Verify explicit invalid=false overrides aria-invalid=true and fullWidth=false preserves the intrinsic contract.
+- Verify shared input capabilities use canonical contracts without introducing another visual recipe.
+
+## Criteria
+
+- [x] Given the public props, rendering and callbacks follow the defaults and constraints above; unsupported channels are not added.
+- [x] Verify: Keep value/defaultValue/onChange native: consumers store the event string if partial editing matters.
+- [x] Verify: valueAsNumber may be NaN for an empty or incomplete field and must not be silently coerced to zero.
+- [x] Verify: Browser min/max/step validity and arrows remain native; wheel behavior is unchanged.
+- [x] Native interactions remain delegated to the control; custom handlers intercept only documented keys, respect composition and prevent activation when disabled.
+- [x] Text and focus consume canonical semantic tokens and recipes; shared contrast and forced-color fallbacks are owned by the token/style specifications.
+- [x] The owned layout accommodates caller content; preference changes do not reset caller-owned values.
+- [x] Given reduced motion, no required interaction depends on animation; no document/window access occurs during module evaluation or static rendering.
+- [x] The fullWidth / invalid contract uses true / undefined; Forward to Input; explicit invalid wins over aria-invalid.
+- [x] The value / defaultValue / onChange contract uses Native; Never switch controlled mode after mount; event contains the native string.
+- [x] The disabled / readOnly / required contract uses false; Preserve native semantics.
+- [x] The type contract uses number; Fixed by the wrapper; excluded from its native props.
+- [x] The min / max / step contract uses Native undefined / undefined / 1; Do not clamp on every keystroke.
+- [x] Keep value/defaultValue/onChange native: consumers store the event string if partial editing matters. valueAsNumber may be NaN for an empty or incomplete field and must not be silently coerced to zero.
+- [x] No localized separator parser or custom steppers.
+- [x] No new tokens, shared recipe or visual value union is introduced by this component.
+- [x] Use current semantic token overrides for themes; caller supplies locale text and the component inherits direction.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Native field value and focus stay unchanged by motion.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Native numeric constraints**: Compose FormField with valid supported min/max/step values; type/increment/clear and compare valid/invalid native data without inventing business validation.
+- [x] The NumberInput V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useNumberInputExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

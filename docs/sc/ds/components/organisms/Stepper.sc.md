@@ -1,0 +1,242 @@
+---
+title: "Stepper"
+scope: "Presentation-only Stepper with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# Stepper
+
+
+## Files
+
+```text
+features/showcase/examples/StepperPartExamples.tsx (C)
+design-system/components/organisms/Stepper/useStepper.ts (C)
+design-system/components/organisms/Stepper/Stepper.tsx (C)
+design-system/components/organisms/Stepper/Stepper.module.css (C)
+design-system/components/organisms/Stepper/index.ts (C)
+design-system/internal/stepper/StepperContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/Stepper.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/internal/stepper/collectStepperChildren.ts (C)
+design-system/components/static-components.contracts.test.ts (M)
+../scripts/check-static-components.cjs (M)
+features/showcase-v2/components/Stepper/definition.ts (C)
+features/showcase-v2/components/Stepper/Stepper.example.tsx (C)
+features/showcase-v2/components/Stepper/useStepperExample.ts (C)
+features/showcase-v2/components/Stepper/usage-code.ts (C)
+features/showcase-v2/components/Stepper/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Button.sc.md](../atoms/Button.sc.md)
+
+## Contract
+
+```tsx
+import { Stepper, StepperHeader, StepperItem, StepperBody, StepperPanel, StepperFooter, Button } from "@forge-ui/web";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader><StepperItem value="details" label="Details"/><StepperItem value="review" label="Review"/></StepperHeader><StepperBody><StepperPanel value="details">Details fields</StepperPanel><StepperPanel value="review">Review fields</StepperPanel></StepperBody><StepperFooter><Button onClick={nextStep}>Next</Button></StepperFooter></Stepper>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  padding: var(--space-3);
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useCallback, useId, useLayoutEffect, useRef } from "react";
+import type { RefObject } from "react";
+import type { StepperProps } from "./Stepper";
+import type { StepperContextValue } from "../../../internal/stepper/StepperContext";
+
+interface StepRegistration { disabled: boolean; ref: RefObject<HTMLButtonElement | null>; }
+
+export function useStepper({ label, value, onStepChange, children, className, ...props }: StepperProps) {
+  const id = useId();
+  const registry = useRef(new Map<string, StepRegistration>());
+  const navigation = useRef<RefObject<HTMLElement | null> | null>(null);
+  const focusedPanel = useRef<string | null>(null);
+  const previous = useRef(value);
+  const registerStep = useCallback((key: string, disabled: boolean, ref: RefObject<HTMLButtonElement | null>) => {
+    if (!key.trim() || registry.current.has(key)) throw new Error("Stepper values must be unique and nonempty.");
+    const entry = { disabled, ref };
+    registry.current.set(key, entry);
+    return () => { if (registry.current.get(key) === entry) registry.current.delete(key); };
+  }, []);
+  const registerNavigation = useCallback((ref: RefObject<HTMLElement | null>) => {
+    navigation.current = ref;
+    return () => { if (navigation.current === ref) navigation.current = null; };
+  }, []);
+  useLayoutEffect(() => {
+    if (previous.current !== value && focusedPanel.current === previous.current) {
+      const selected = registry.current.get(value);
+      const fallback = [...registry.current.values()].find((entry) => !entry.disabled && entry.ref.current?.isConnected);
+      const target = !selected?.disabled && selected?.ref.current?.isConnected
+        ? selected.ref.current
+        : fallback?.ref.current ?? navigation.current?.current;
+      target?.focus();
+      focusedPanel.current = null;
+    }
+    previous.current = value;
+  }, [value]);
+  function requestStep(key: string) {
+    const entry = registry.current.get(key);
+    if (!entry || entry.disabled || !entry.ref.current?.isConnected || entry.ref.current.disabled || key === value) return;
+    onStepChange(key);
+  }
+  function markPanelFocus(key: string, focused: boolean) {
+    if (focused) focusedPanel.current = key;
+    else if (focusedPanel.current === key) focusedPanel.current = null;
+  }
+  const stepId = (key: string) => id + "-step-" + encodeURIComponent(key);
+  const panelId = (key: string) => id + "-panel-" + encodeURIComponent(key);
+  const context: StepperContextValue = { label, value, registerStep, registerNavigation, requestStep, markPanelFocus, stepId, panelId };
+  return { context, props, children, className };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import type { NativeCollectionRootProps, ComponentChildrenProps } from "../../../types/compound-composition";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { collectStepperChildren } from "../../../internal/stepper/collectStepperChildren";
+import { StepperContext } from "../../../internal/stepper/StepperContext";
+import { StepperHeader } from "../../atoms/StepperHeader";
+import { StepperBody } from "../../atoms/StepperBody";
+import { StepperFooter } from "../../atoms/StepperFooter";
+import { StepperPanel } from "../../atoms/StepperPanel";
+import { StepperItem } from "../../molecules/StepperItem";
+import type { StepperItemProps } from "../../molecules/StepperItem";
+import type { StepperPanelProps } from "../../atoms/StepperPanel";
+import { useStepper } from "./useStepper";
+import styles from "./Stepper.module.css";
+
+export interface StepperProps extends NativeCollectionRootProps, ComponentChildrenProps {
+  label: string;
+  value: string;
+  onStepChange(value: string): void;
+}
+export function Stepper(input: StepperProps) {
+  const { context, props, children, className } = useStepper(input);
+  if (!input.label.trim()) throw new Error("Stepper requires a nonempty navigation name.");
+  const parts = collectCompoundParts(children, { header: StepperHeader, body: StepperBody, footer: StepperFooter });
+  const header = parts.header!.props as ComponentPropsWithRef<"nav">;
+  const body = parts.body!.props as ComponentPropsWithRef<"div">;
+  const items = collectStepperChildren<StepperItemProps>(header.children, StepperItem, "StepperHeader");
+  const panels = collectStepperChildren<StepperPanelProps>(body.children, StepperPanel, "StepperBody");
+  const keys = items.map((item) => item.props.value);
+  const panelKeys = panels.map((panel) => panel.props.value);
+  if (!keys.length || keys.some((key) => !key.trim()) || new Set(keys).size !== keys.length) throw new Error("Stepper item values must be nonempty and unique.");
+  if (panelKeys.some((key) => !key.trim()) || new Set(panelKeys).size !== panelKeys.length || keys.length !== panelKeys.length || keys.some((key) => !panelKeys.includes(key))) throw new Error("Each StepperItem must have exactly one matching StepperPanel.");
+  if (!keys.includes(input.value)) throw new Error("Unknown controlled Stepper value.");
+  return <StepperContext value={context}>
+    <div {...props} className={[styles.root, className].filter(Boolean).join(" ")} data-gap="2">
+      {parts.header}{parts.body}{parts.footer}
+    </div>
+  </StepperContext>;
+}
+```
+
+```tsx
+import { Children, Fragment, isValidElement } from "react";
+import type { ElementType, ReactElement, ReactNode } from "react";
+
+export function collectStepperChildren<Props>(children: ReactNode, Constructor: ElementType, owner: string): ReactElement<Props>[] {
+  const items: ReactElement<Props>[] = [];
+  Children.forEach(children, (child) => {
+    if (child === null || child === undefined || typeof child === "boolean") return;
+    if (isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment && child.key !== null) {
+      items.push(...collectStepperChildren<Props>(child.props.children, Constructor, owner));
+      return;
+    }
+    if (!isValidElement<Props>(child) || child.type !== Constructor) throw new Error(owner + " accepts only its declared public children and keyed fragments.");
+    items.push(child);
+  });
+  return items;
+}
+```
+
+```tsx
+"use client";
+
+import { createContext, useContext } from "react";
+import type { RefObject } from "react";
+
+export interface StepperContextValue {
+  label: string;
+  value: string;
+  registerStep(value: string, disabled: boolean, ref: RefObject<HTMLButtonElement | null>): () => void;
+  registerNavigation(ref: RefObject<HTMLElement | null>): () => void;
+  requestStep(value: string): void;
+  markPanelFocus(value: string, focused: boolean): void;
+  stepId(value: string): string;
+  panelId(value: string): string;
+}
+export const StepperContext = createContext<StepperContextValue | null>(null);
+export function useStepperContext() {
+  const context = useContext(StepperContext);
+  if (!context) throw new Error("Stepper parts must be rendered inside Stepper.");
+  return context;
+}
+```
+
+## Tests
+
+- V2 Linear local entry: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Review and edit: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server-render one current step, linked control/panel ids, visible status descriptions and mounted hidden panels.
+- Reject unknown controlled values, duplicate values, missing matching panels and orphan parts.
+- Exercise the owning hook: ignore current/disabled/unregistered/disconnected requests, preserve controlled rejection, emit one accepted request and repair focus on accepted panel change.
+- In the browser, verify native activation, caller prevention, input preservation and focus repair without roving or automatic progression.
+
+## Criteria
+
+- [x] Given rejected request, current step/content remain unchanged.
+- [x] Given status complete/error, supplied visible statusLabel accompanies styling rather than color-only status.
+- [x] The label / value / onStepChange contract uses Required controlled workflow presentation.
+- [x] The Item status contract uses pending; caller supplies complete/error and statusLabel.
+- [x] Header is a named navigation with an ol of StepperItem controls; current control has aria-current=step.
+- [x] Body contains mounted StepperPanel content, hidden except current; optional Footer contains caller-owned actions.
+- [x] Native Tab order is retained; this is not a tablist or custom roving widget.
+- [x] Unknown value is invalid caller state, not silently guessed as the next step.
+- [x] No fetching, form validation engine or implicit route change.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+- [x] No automatic slide transition or completion-driven Next action.
+
+- [x] Root spacing and region gaps use tokens while preserving paired controlled steps/panels and native current-step, status and focus contracts.
+
+- [x] V2 **Linear local entry**: Compose Header with three StepperItems, Body with matching StepperPanels and Footer Next/Back Buttons. Stable item-1..3 values pair Label/Children 1..3; accepted onStepChange advances caller state and supported disabled behavior remains canonical.
+- [x] V2 **Review and edit**: Compose fields in the first two panels and a summary in the third. Caller validation gates Next, Review returns to the relevant step, and drafts persist while panels hide; pass only supported value/onStepChange and public children.
+- [x] The Stepper V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useStepperExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

@@ -1,0 +1,114 @@
+---
+title: "FormFieldHeader"
+scope: "FormField compound part: FormFieldHeader. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# FormFieldHeader
+
+## Files
+
+```text
+features/showcase/examples/FormFieldHeaderExamples.module.css (C)
+design-system/components/atoms/FormFieldHeader/FormFieldHeader.tsx (C)
+design-system/components/atoms/FormFieldHeader/FormFieldHeader.module.css (C)
+design-system/components/atoms/FormFieldHeader/index.ts (C)
+design-system/internal/formfield/FormFieldContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/FormFieldHeader.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/FormFieldHeader/useFormFieldHeader.ts (C)
+design-system/internal/formfield/field-control.ts (C)
+../scripts/check-forms.cjs (C)
+features/showcase-v2/components/FormFieldHeader/definition.ts (C)
+features/showcase-v2/components/FormFieldHeader/FormFieldHeader.example.tsx (C)
+features/showcase-v2/components/FormFieldHeader/useFormFieldHeaderExample.ts (C)
+features/showcase-v2/components/FormFieldHeader/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Label](Label.sc.md)
+
+## Contract
+
+```tsx
+import { FormField, FormFieldHeader, FormFieldBody, Input } from "@/design-system";
+<FormField controlId="email" label="Email"><FormFieldHeader /><FormFieldBody hidden><Input /></FormFieldBody></FormField>;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+}
+
+.root[hidden] { display: none; }
+```
+## Hooks
+
+```tsx
+"use client";
+
+import { useFormFieldContext } from "../../../internal/formfield/FormFieldContext";
+import type { FormFieldHeaderProps } from "./FormFieldHeader";
+
+export function useFormFieldHeader({ children, className, ...props }: FormFieldHeaderProps) {
+  const context = useFormFieldContext();
+  return { context, props, className, children: children ?? context.label };
+}
+```
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import { Label } from "../Label";
+import { useFormFieldHeader } from "./useFormFieldHeader";
+import styles from "./FormFieldHeader.module.css";
+
+export interface FormFieldHeaderProps extends ComponentPropsWithRef<"label"> {}
+
+export function FormFieldHeader(props: FormFieldHeaderProps) {
+  const { context, props: labelProps, children, className } = useFormFieldHeader(props);
+  return <Label {...labelProps} htmlFor={context.controlId} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</Label>;
+}
+```
+## Tests
+
+- V2 FormFieldHeader contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- The declared native or controlled value channel forwards one user change while prop updates emit no corrective callback.
+- Caller-prevented and composing input does not trigger an owned selection/completion action.
+- Two mounted instances preserve independent ids, descriptions and native submission values.
+
+## Criteria
+
+- [x] Given FormFieldHeader, Header composes Label with the field context controlId; it is not a page heading.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Header composes Label with the field context controlId; it is not a page heading.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useFormFieldHeader is colocated with FormFieldHeader and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **FormFieldHeader contextual region**: Render FormFieldHeader through public FormField with the minimum valid siblings. Use a real Heading or owner title slot with Children/Title text; any decorative icon has an aligned Inline gap="2" row outside heading text. Hide/omit optional siblings only where allowed by the owner; link to the full FormField composition.
+- [x] The FormFieldHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useFormFieldHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

@@ -1,0 +1,108 @@
+---
+title: "ListBox state hook"
+scope: "Own standalone single/multiple selection while keeping DOM focus separate from value state."
+status: "DONE"
+type: "hook"
+ds-level: "none"
+---
+
+# ListBox state hook
+
+
+
+## Files
+
+```text
+design-system/hooks/listbox/useListBoxState.ts (C)
+design-system/hooks/listbox/index.ts (C)
+design-system/index.ts (M)
+features/showcase-v2/components/HookResources/useListBoxState/definition.ts (C)
+features/showcase-v2/components/HookResources/useListBoxState/useListBoxState.example.tsx (C)
+features/showcase-v2/components/HookResources/useListBoxState/useListBoxStateResourceExample.ts (C)
+features/showcase-v2/components/HookResources/useListBoxState/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Roving focus](tech-roving-focus.sc.md)
+- [Listbox state contracts](../types/tech-listbox-state-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { useListBoxState } from "@/design-system";
+const { selected, select } = useListBoxState({ options, selectionMode: "multiple", value, onValueChange });
+```
+
+## Content
+
+```ts
+// design-system/hooks/listbox/useListBoxState.ts
+"use client";
+
+import { useState } from "react";
+import type { KeyboardEvent } from "react";
+import { useRovingFocus } from "../focus";
+import type { ListBoxStateContract, ListBoxStateOptions } from "../../types/listbox-state";
+
+export function useListBoxState(options: ListBoxStateOptions): ListBoxStateContract {
+  const keys = options.options.map((option) => option.value);
+  if (keys.some((key) => !key.trim()) || new Set(keys).size !== keys.length) {
+    throw new Error("ListBox option values must be nonempty and unique.");
+  }
+  const [localValue, setLocalValue] = useState<readonly string[]>(options.defaultValue ?? []);
+  const selected = options.value ?? localValue;
+  const focus = useRovingFocus({
+    orientation: "vertical", loop: false, typeahead: true,
+    initialId: selected.find((key) => options.options.some((option) => option.value === key && !option.disabled)),
+  });
+  function select(key: string): void {
+    const option = options.options.find((option) => option.value === key);
+    if (!option || option.disabled || options.disabled) return;
+    const next = options.selectionMode === "multiple"
+      ? selected.includes(key) ? selected.filter((value) => value !== key) : [...selected, key]
+      : [key];
+    if (next.length === selected.length && next.every((value, index) => value === selected[index])) return;
+    if (options.value === undefined) setLocalValue(next);
+    options.onValueChange?.(next);
+  }
+  function onOptionKeyDown(event: KeyboardEvent<HTMLElement>, key: string): void {
+    if (event.defaultPrevented || event.nativeEvent.isComposing || event.ctrlKey || event.altKey || event.metaKey || event.shiftKey || options.disabled) return;
+    const option = options.options.find((candidate) => candidate.value === key);
+    if (!option || option.disabled) return;
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+      select(key);
+    } else focus.onKeyDown(event);
+  }
+  return { selected, focus, isSelected: (key) => selected.includes(key), select, onOptionKeyDown };
+}
+```
+
+## Tests
+
+- V2 Controlled option selection: verify its observable state, actual public contract, reset and complete copied code.
+
+- `npm run test:hooks` verifies scoped keyboard/state/rejection behavior; DS typecheck passes. Real browser fixtures verify single tab stops, disabled-item skipping, selection/focus separation, controlled rejection and focus repair under accepted external changes.
+
+- Single mode replaces a selection once; selecting the same key is a no-op.
+- Multiple mode toggles one enabled key without changing other keys.
+- Controlled owners rejecting a request retain the rendered selection.
+- Disabled, missing and IME inputs do not request changes.
+- Arrow focus navigation leaves selection unchanged.
+
+## Criteria
+
+- [x] Given single mode, accepting B replaces A once.
+- [x] Given multiple mode, Space toggles only the focused enabled key and arrows preserve selection.
+- [x] The value / defaultValue contract uses undefined / [].
+- [x] The selectionMode / disabled contract uses single / false.
+- [x] The Focus contract uses useRovingFocus vertical, loop=false, typeahead=true; entry selected or first enabled option.
+- [x] Space/Enter toggle in multiple mode or select in single mode; IME/modified shortcuts are ignored.
+- [x] No selection on blur; no shift-range/Ctrl+A in this first contract.
+
+- [x] V2 **Controlled option selection**: Use five indexed options and native semantic listbox markup; compare single/multiple selection through supported options, disabled keys and controlled rejection. Show selected keys and actual callback arguments without reusing a second selection store.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

@@ -1,0 +1,74 @@
+---
+title: "Specialized native input interfaces"
+scope: "Specialized native input interfaces. Own fixed-type and query/file channel adaptations without duplicating visual behavior."
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Specialized native input interfaces
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/input-specializations.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Dependencies
+
+- [Native contracts](tech-native-control-contracts.sc.md)
+
+## Contract
+
+```ts
+import type { NativeSpecializedInputProps } from "@forge-ui/web";
+type Contract = NativeSpecializedInputProps;
+```
+
+## Content
+
+```ts
+import type {
+  NativeInputProps,
+} from "./native-control-contracts";
+
+export interface NativeSpecializedInputProps extends Omit<NativeInputProps, "type" | "children"> {
+}
+
+export interface NativeFileInputProps extends Omit<NativeSpecializedInputProps, "value" | "defaultValue"> {
+}
+
+export interface NativeRangeInputProps extends Omit<NativeSpecializedInputProps, "readOnly"> {
+}
+
+export interface NativeQueryInputProps extends Omit<NativeSpecializedInputProps, "value" | "defaultValue" | "onChange" | "list"> {
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for EmailInput, PasswordInput, SearchInput retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile supported native refs, events and numeric/date attributes.
+- Reject caller type/children on fixed-type adaptations, value/defaultValue on file inputs and readOnly on range inputs.
+- Reject competing value, defaultValue, onChange and list on query-input adaptations.
+
+## Criteria
+
+- [x] Given a fixed-type wrapper, type cannot be supplied by its consumer and native numeric size does not conflict with ComponentSize.
+- [x] Given FileInput, a nonempty controlled string is rejected by the public contract.
+- [x] Given a query component, competing native value/defaultValue/onChange/list channels are rejected.
+- [x] Given an implementation, native props and supported visual interfaces are composed through named interfaces, not local Omit or duplicated unions.
+- [x] The Fixed-type adaptation contract uses Excludes type and children once at shared owner.
+- [x] The Native file channel contract uses No string value/defaultValue.
+- [x] The Native range channel contract uses No readOnly property; use disabled for a noneditable slider.
+- [x] The Query channel contract uses Consumer controls query through component-specific callbacks.
+
+- [x] V2 typed usage fixtures cover EmailInput, PasswordInput, SearchInput: Supported native specialization props and actual public change callbacks. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

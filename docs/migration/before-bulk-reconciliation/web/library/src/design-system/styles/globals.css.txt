@@ -1,0 +1,8 @@
+@import "./tokens.css";
+* { box-sizing: border-box; }
+html { min-width: var(--zero); background: var(--color-surface-page); }
+body { margin: 0; background: var(--page-background); color: var(--color-text-default); font-family: var(--font-family-sans); font-size: var(--font-size-md); line-height: var(--line-height-normal); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+a { color: var(--color-text-brand); text-underline-offset: var(--underline-offset); }
+:focus-visible { outline: var(--border-width-focus) var(--border-style-default) var(--color-focus-ring); outline-offset: var(--length-1); }

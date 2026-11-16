@@ -1,0 +1,254 @@
+---
+title: "Interactive Primitives"
+scope: "Canonical native contracts and token-backed icon-action/radio/switch recipes"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Interactive Primitives
+
+
+
+## Files
+
+```text
+design-system/styles/interactive-primitives.module.css (M)
+features/showcase-v2/components/StyleResources/InteractiveRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/InteractiveRecipes/InteractiveRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/InteractiveRecipes/useInteractiveRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/InteractiveRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](tech-design-tokens.sc.md)
+- [Native controls](../types/tech-native-control-contracts.sc.md)
+- [Interactive native controls](../types/tech-interactive-controls.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@forge-ui/web/styles/interactive-primitives.module.css";
+<div className={styles.radio}/>;
+```
+
+## Styles
+
+```css
+.squareAction[data-size] {
+  inline-size: var(--control-size-height);
+  padding: var(--zero);
+}
+.radio {
+  composes: indicator from "./checkable-components.module.css";
+  composes: interactive from "./interactive-components.module.css";
+  appearance: auto;
+  border-radius: var(--radius-circle);
+  margin: var(--zero);
+  cursor: pointer;
+}
+.radio[aria-invalid="true"]:not(:focus-visible) {
+  outline: var(--border-width-thin) var(--border-style-default)
+    var(--color-text-danger);
+  outline-offset: var(--length-1);
+}
+.switchTarget {
+  composes: checkable from "./checkable-components.module.css";
+  composes: fullWidth from "./full-width-components.module.css";
+  position: relative;
+  --switch-width: var(--switch-track-width-md);
+  --switch-height: var(--switch-track-height-md);
+  --switch-thumb: var(--switch-thumb-size-md);
+}
+.switchTarget[data-size="xs"] {
+  --switch-width: var(--switch-track-width-xs);
+  --switch-height: var(--switch-track-height-xs);
+  --switch-thumb: var(--switch-thumb-size-xs);
+}
+.switchTarget[data-size="sm"] {
+  --switch-width: var(--switch-track-width-sm);
+  --switch-height: var(--switch-track-height-sm);
+  --switch-thumb: var(--switch-thumb-size-sm);
+}
+.switchTarget[data-size="lg"] {
+  --switch-width: var(--switch-track-width-lg);
+  --switch-height: var(--switch-track-height-lg);
+  --switch-thumb: var(--switch-thumb-size-lg);
+}
+.switchTarget[data-size="xl"] {
+  --switch-width: var(--switch-track-width-xl);
+  --switch-height: var(--switch-track-height-xl);
+  --switch-thumb: var(--switch-thumb-size-xl);
+}
+.switchInput {
+  composes: interactive from "./interactive-components.module.css";
+  position: absolute;
+  inset: var(--zero);
+  inline-size: var(--size-full);
+  block-size: var(--size-full);
+  opacity: var(--zero);
+  margin: var(--zero);
+  cursor: pointer;
+}
+.switchInput:disabled {
+  opacity: var(--zero);
+}
+.switchTrack {
+  position: relative;
+  inline-size: var(--switch-width);
+  block-size: var(--switch-height);
+  flex-shrink: var(--zero);
+  border-radius: var(--radius-full);
+  outline: var(--border-width-thin) var(--border-style-default)
+    var(--color-border-default);
+  pointer-events: none;
+}
+.switchTrack::before {
+  content: "";
+  position: absolute;
+  inset: var(--zero);
+  border-radius: inherit;
+  background: var(--color-text-muted);
+  opacity: var(--switch-track-opacity);
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
+.switchThumb {
+  position: absolute;
+  inset-inline-start: var(--zero);
+  inset-block-start: var(--size-half);
+  inline-size: var(--switch-thumb);
+  block-size: var(--switch-thumb);
+  border-radius: var(--radius-circle);
+  background: var(--color-text-default);
+  color: var(--color-text-default);
+  border: var(--border-width-thin) var(--border-style-default)
+    var(--color-border-default);
+  transform: translateY(var(--translation-center));
+  transition-property: inset-inline-start, background-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+  pointer-events: none;
+}
+.switchThumb::before {
+  content: "";
+  position: absolute;
+  inset: var(--zero);
+  border-radius: var(--radius-circle);
+  background: var(--color-current);
+  box-shadow: var(--zero) var(--zero) var(--zero)
+    var(--switch-state-layer-spread) var(--color-current);
+  opacity: var(--zero);
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+.switchInput:checked + .switchTrack::before {
+  background: var(--checkable-accent);
+}
+.switchInput:checked + .switchTrack .switchThumb {
+  inset-inline-start: calc(
+    var(--switch-width) - var(--switch-thumb)
+  );
+  background: var(--checkable-accent);
+  color: var(--checkable-accent);
+}
+.switchInput:not(:disabled):hover + .switchTrack .switchThumb::before,
+.switchInput:not(:disabled):focus-visible + .switchTrack .switchThumb::before {
+  opacity: var(--opacity-decorative);
+}
+.switchInput:not(:disabled):active + .switchTrack .switchThumb::before {
+  opacity: var(--opacity-pulse);
+}
+.switchInput:disabled + .switchTrack {
+  opacity: var(--opacity-disabled);
+}
+.switchInput[aria-invalid="true"] + .switchTrack {
+  outline-color: var(--color-text-danger);
+}
+.switchInput:disabled + .switchTrack .switchThumb::before {
+  opacity: var(--zero);
+  transition: none;
+}
+.switchInput:not(:disabled):focus-visible + .switchTrack {
+  outline: var(--border-width-focus) var(--border-style-default)
+    var(--color-focus-ring);
+  outline-offset: var(--length-1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .switchThumb,
+  .switchTrack::before,
+  .switchThumb::before {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .switchTrack {
+    outline-color: var(--color-system-field-text);
+  }
+  .switchInput:checked + .switchTrack::before {
+    background: var(--color-system-highlight);
+  }
+  .switchThumb,
+  .switchInput:checked + .switchTrack .switchThumb {
+    background: var(--color-system-canvas-text);
+    color: var(--color-system-canvas-text);
+  }
+  .switchInput:not(:disabled):focus-visible + .switchTrack {
+    outline-color: var(--color-system-highlight);
+  }
+}
+```
+
+## Tests
+
+- V2 Native interaction states: verify its observable state, actual public contract, reset and complete copied code.
+
+- Native radio and switch state update their shared token-backed visual targets.
+- Disabled rules suppress interactive halos while preserving native disabled semantics.
+- Focus-visible and invalid styling remain distinct in forced colors and reduced motion.
+- Thumb movement follows its canonical tokens and settles under the shared motion opt-out.
+
+## Criteria
+
+- [x] Native conflicts are adapted once; consuming Props extend interfaces without local Omit or aliases.
+- [x] Square action uses the Button height token at every size and never clips its icon/loading indicator.
+- [x] Radio retains native grouping, form values and a visible selected dot.
+- [x] Switch retains native checkbox form values and exposes switch semantics without redundant aria-checked.
+- [x] Thumb position, focus and disabled state work in LTR/RTL, forced colors and reduced motion.
+- [x] At md, the rail is 6 × 2 base units and thumb is 3 base units in diameter; at all sizes the thumb vertically overhangs the rail while canonical hit-target minimums remain intact.
+- [x] Enabled hover/focus-visible show a thumb-centered circular halo, pressed has precedence, and disabled never shows a halo; keyboard focus remains immediately outlined independently of rail opacity.
+- [x] Rapid checked reversals converge to the latest state without semantic delay; reduced motion removes all Switch transitions.
+- [x] All shared selectors/token aliases have concrete consumers and pass token/type/static-export checks.
+- [x] Components own names, events and accessible labeling.
+- [x] Native interfaces belong to types/native-control-contracts.ts and types/interactive-controls.ts, extending local canonical declarations there; import examples above describe public consumption.
+- [x] ComponentAccessibleNameProps has concrete reuse by IconButton, Progress and Meter.
+- [x] The squareAction contract uses inline-size = --control-size-height from Button sized recipe; padding --zero; md default.
+- [x] The radio contract uses Native appearance auto, circular geometry, checkable indicator and accent; no custom keyboard engine.
+- [x] The switchTarget contract uses Shared checkable target; track/overlay own geometry; md default; no shape prop.
+- [x] The switchTrack contract uses Width xs/sm/md/lg/xl = length-5/5/6/7/8; height = length-2/2/2/3/3; circular-ended low pill using --radius-full.
+- [x] The switchThumb contract uses Diameter xs/sm/md/lg/xl = length-3/3/3/4/4; --radius-circle; logical inset --zero when off, track width minus thumb diameter when on.
+- [x] The --switch-track-width-*, --switch-track-height-*, --switch-thumb-size-* contract uses New aliases in tokens.css to the exact existing length tokens above.
+- [x] The switchTrack::before contract uses Separate rail background layer at --switch-track-opacity; thumb and focus outlines retain their own opacity.
+- [x] The switchThumb::before contract uses Circular state layer following the thumb, expanded by --switch-state-layer-spread on all sides through a box shadow; --opacity-decorative for hover/focus-visible, --opacity-pulse for pressed.
+- [x] The Interaction contract uses Native target follows canonical checkable minimum heights; fullWidth expands hit area without stretching visual control; disabled suppresses all halos; immediate focus outline; system colors override authored tones under forced colors.
+- [x] The transparent native input stays focusable and receives pointer input.
+- [x] The disabled recipe dims the visible track without exposing the invisible native input.
+- [x] The Switch thumb overhangs the thinner rail vertically and is centered with --size-half / --translation-center.
+- [x] A --border-width-thin / --border-style-default / --color-border-default border makes inverse/light thumb colors visible; border-box sizing keeps its declared diameter unchanged.
+- [x] The separate switchTrack::before rail uses --color-text-muted when off and --checkable-accent when on, at --switch-track-opacity.
+- [x] The track uses --radius-full to keep straight middle segments rather than forming an ellipse; thumb and halo use --radius-circle.
+- [x] The thumb halo uses the same state color, with opacity on its own pseudo-element so it does not dim the thumb.
+- [x] All selectors exclude :disabled.
+- [x] Disabled controls use --opacity-disabled on the visible control only.
+- [x] The immediate focus outline uses --border-width-focus, --border-style-default, --color-focus-ring and --length-1 offset without inheriting rail opacity.
+- [x] Invalid state preserves --color-text-danger outline, with focus precedence.
+- [x] The rail remains visibly outlined and on/off remain distinguishable by thumb position; translucent layers must not become the sole state or focus signal.
+- [x] Disabled native behavior remains unchanged.
+- [x] The existing shared Switch recipe owns all presentation motion; no new public animated capability or dependency on PENDING global motion recipes is introduced.
+- [x] Disabled presentation changes immediately and suppresses the halo.
+- [x] No transition completion listener or retained mounting is needed.
+
+- [x] V2 **Native interaction states**: Use actual native checkbox/radio/switch controls with connected labels and the corresponding shared recipes. Compare checked/disabled/focus states and supported tone/size values; preserve native semantics rather than applying control classes to arbitrary divs.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

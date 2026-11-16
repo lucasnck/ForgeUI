@@ -1,0 +1,213 @@
+---
+title: "AccordionItem"
+scope: "Accordion compound part: AccordionItem. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# AccordionItem
+
+## Files
+
+```text
+design-system/components/molecules/AccordionItem/AccordionItem.tsx (C)
+design-system/components/molecules/AccordionItem/AccordionItem.module.css (C)
+design-system/components/molecules/AccordionItem/index.ts (C)
+design-system/internal/accordion/AccordionContext.ts (C)
+design-system/internal/accordion/AccordionItemContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/AccordionItem.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/molecules/AccordionItem/useAccordionItem.ts (C)
+features/showcase-v2/components/DisclosureExamples/DisclosureExamples.module.css (C)
+features/showcase-v2/components/AccordionItem/definition.ts (C)
+features/showcase-v2/components/AccordionItem/AccordionItem.example.tsx (C)
+features/showcase-v2/components/AccordionItem/useAccordionItemExample.ts (C)
+features/showcase-v2/components/AccordionItem/usage-code.ts (C)
+features/showcase-v2/components/Accordion/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-disclosure-hooks.sc.md](../../hooks/tech-disclosure-hooks.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+- [usePresence](../../hooks/tech-presence.sc.md)
+- [Compound parts](../../helpers/tech-compound-parts.sc.md)
+
+## Contract
+
+```tsx
+import {
+  Surface,
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionBody,
+  Text,
+  AccordionFooter,
+  Inline,
+  Button,
+} from "@forge-ui/web";
+
+<Surface padding="2" shape="rounded">
+  <Accordion
+    level={3}
+    value={expandedValues}
+    onValueChange={onExpandedValuesChange}
+  >
+    <AccordionItem value="item-1">
+      <AccordionHeader>Children 1</AccordionHeader>
+      <AccordionBody>
+        <Surface elevation="flat" padding="4">
+          <Text>Children 1</Text>
+        </Surface>
+      </AccordionBody>
+      <AccordionFooter>
+        <Inline gap="2" padding="4" justify="end">
+          <Button variant="outline" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button onClick={onSave}>Save</Button>
+        </Inline>
+      </AccordionFooter>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionHeader>Children 2</AccordionHeader>
+      <AccordionBody>
+        <Surface elevation="flat" padding="4">
+          <Text>Children 2</Text>
+        </Surface>
+      </AccordionBody>
+      <AccordionFooter>
+        <Inline gap="2" padding="4" justify="end">
+          <Button variant="outline" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button onClick={onSave}>Save</Button>
+        </Inline>
+      </AccordionFooter>
+    </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionHeader>Children 3</AccordionHeader>
+      <AccordionBody>
+        <Surface elevation="flat" padding="4">
+          <Text>Children 3</Text>
+        </Surface>
+      </AccordionBody>
+      <AccordionFooter>
+        <Inline gap="2" padding="4" justify="end">
+          <Button variant="outline" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button onClick={onSave}>Save</Button>
+        </Inline>
+      </AccordionFooter>
+    </AccordionItem>
+  </Accordion>
+</Surface>;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; min-inline-size: var(--zero); }
+.panel { composes: disclosurePresence from "../../../styles/motion-components.module.css"; }
+.panel[hidden] { display: none; }
+.clip { composes: clip from "../../../styles/motion-components.module.css"; }
+```
+
+## Animations
+
+```text
+disclosurePresence
+clip
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useLayoutEffect } from "react";
+import { useAccordionContext } from "../../../internal/accordion/AccordionContext";
+import { useCollapse } from "../../../hooks/collapse/useCollapse";
+import { usePresence } from "../../../hooks/motion/usePresence";
+import type { AccordionItemProps } from "./AccordionItem";
+export function useAccordionItem(input: AccordionItemProps) {
+  const { value, disabled = false, children, className, ...props } = input;
+  const accordion = useAccordionContext();
+  const collapse = useCollapse({ open: accordion.isExpanded(value), disabled: accordion.disabled || disabled, onOpenChange: (next) => accordion.setExpanded(value, next) });
+  const presence = usePresence({ open: collapse.open, elementRef: collapse.bodyRef, enabled: accordion.animated });
+  const registerItem = accordion.registerItem;
+  useLayoutEffect(() => registerItem(value, disabled), [registerItem, value, disabled]);
+  return { props, children, className, context: collapse, bodyRef: collapse.bodyRef, bodyProps: collapse.bodyProps, acceptedOpen: collapse.open, animated: accordion.animated, phase: presence.phase, onTransitionEnd: presence.onTransitionEnd };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { ComponentChildrenProps, NativeCollectionRootProps } from "../../../types";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { AccordionItemContext } from "../../../internal/accordion/AccordionItemContext";
+import { AccordionHeader } from "../../atoms/AccordionHeader";
+import { AccordionBody } from "../../atoms/AccordionBody";
+import { AccordionFooter } from "../../atoms/AccordionFooter";
+import { useAccordionItem } from "./useAccordionItem";
+import styles from "./AccordionItem.module.css";
+export interface AccordionItemProps extends NativeCollectionRootProps, ComponentChildrenProps { value: string; disabled?: boolean; }
+export function AccordionItem(input: AccordionItemProps) {
+  const { props, children, className, animated, context, bodyRef, bodyProps, acceptedOpen, phase, onTransitionEnd } = useAccordionItem(input);
+  const parts = collectCompoundParts(children, { header: AccordionHeader, body: AccordionBody, footer: AccordionFooter });
+  return <AccordionItemContext value={context}><div {...props} className={[styles.root, className].filter(Boolean).join(" ")} data-gap="2">
+    {parts.header}<div {...bodyProps} ref={bodyRef} hidden={phase === "unmounted"} inert={!acceptedOpen || undefined} aria-hidden={!acceptedOpen || undefined} className={styles.panel} data-motion-state={phase} data-animated={animated} onTransitionEnd={onTransitionEnd}><div className={styles.clip}>{parts.body}{parts.footer}</div></div>
+  </div></AccordionItemContext>;
+}
+```
+
+## Tests
+
+- V2 Indexed expansion: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- `npm run test:overlays` verifies real React SSR for native relationships, retained closed content, heading depth, scoped parts and unique Accordion identities. Browser transition/focus coverage remains separate.
+
+- Opening and closing request state once while rejected controlled updates remain authoritative.
+- A disabled trigger and caller-prevented activation emit no owned request.
+- Closing a panel with focus inside repairs focus before pixels can remain on exit.
+
+## Criteria
+
+- [x] Given AccordionItem, Compose exactly one AccordionHeader, one AccordionBody and optional AccordionFooter.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The value contract uses Required stable item identity, unique within its root.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Header is wrapped in Heading at root level; semantic slots are normalized from direct children/keyed fragments before rendering.
+- [x] Never reorder arbitrary unrelated children or inspect displayName.
+- [x] Root owns the outer item div and preserves its native attributes.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] collapsed ↔ expanded → Authoritative useCollapse/useAccordion state → One root-owned .panel containing Body and Footer → disclosurePresence; --motion-normal / --ease-standard.
+- [x] Closing repairs focus and makes the retained panel inert/aria-hidden immediately.
+- [x] Body/Footer stay mounted through the accepted transition and share one completion owner.
+- [x] Reduced motion, animated=false and zero computed duration settle immediately.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useAccordionItem is colocated with AccordionItem and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **Indexed expansion**: Compose three AccordionItems with public Header/Body/Footer and stable item-1..3 values; actual supported single/multiple expansion and focus repair preserve Children 1..3.
+- [x] The AccordionItem V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useAccordionItemExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Accordion fixture module listed in Files; part pages do not create a second index/key sequence for the same records.
+
+- [x] V2 uses public Surface around the family and padded public Surface content with DS Inline icon/text spacing. Disclosure owners remain structural/behavioral; direct public parts and a single native trigger are preserved, without nested buttons. Where present, action footers retain aligned secondary/primary buttons; minimal copyable code matches the visible composition.

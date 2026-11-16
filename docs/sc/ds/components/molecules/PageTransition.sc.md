@@ -1,0 +1,102 @@
+---
+title: "PageTransition"
+scope: "React-neutral transition boundary for changing page content without animating the application shell"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# PageTransition
+
+## Files
+
+```text
+design-system/components/molecules/PageTransition/PageTransition.tsx (C)
+design-system/components/molecules/PageTransition/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/PageTransition.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase/examples/IsolatedRootDocument.tsx (C)
+features/showcase/examples/useIsolatedRootDocument.ts (C)
+features/showcase/examples/useIsolatedExampleDocument.ts (M)
+features/showcase/examples/useTransitionExample.ts (C)
+features/showcase/examples/TransitionExamples.module.css (C)
+features/showcase/examples/crud-page-flow.messages.ts (C)
+features/showcase/model/showcase-status.ts (M)
+features/showcase-v2/components/PageTransition/definition.ts (C)
+features/showcase-v2/components/PageTransition/PageTransition.example.tsx (C)
+features/showcase-v2/components/PageTransition/usePageTransitionExample.ts (C)
+features/showcase-v2/components/PageTransition/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Page transition contracts](../../types/tech-page-transition-contracts.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Page transition recipes](../../styles/animations/tech-page-transitions.sc.md)
+
+## Contract
+
+```tsx
+import { PageTransition } from "@forge-ui/web";
+<PageTransition key={screenKey} animated={animated}>{pageContent}</PageTransition>;
+```
+
+## Animations
+
+```text
+pageEnter
+pageLeave
+pageFadeIn
+pageFadeOut
+```
+
+## Content
+
+```tsx
+"use client";
+import { ViewTransition, type ComponentPropsWithRef, type ReactNode } from "react";
+import type { ComponentAnimatedProps } from "../../../types/animation";
+import { pageTransitionTypes, pageTransitionClasses } from "../../../types/page-transitions";
+import styles from "../../../styles/animations/page-transitions.module.css";
+export interface PageTransitionProps extends ComponentPropsWithRef<"div">, ComponentAnimatedProps {
+  children: ReactNode;
+}
+const transitionClasses = {
+  [pageTransitionTypes.forward]: pageTransitionClasses.forward,
+  [pageTransitionTypes.back]: pageTransitionClasses.back,
+  [pageTransitionTypes.replace]: pageTransitionClasses.replace,
+  [pageTransitionTypes.reveal]: pageTransitionClasses.reveal,
+  default: "none",
+};
+export function PageTransition({ children, animated = true, className, ...props }: PageTransitionProps) {
+  return <ViewTransition enter={animated ? transitionClasses : "none"} exit={animated ? transitionClasses : "none"} default="none">
+    <div {...props} className={[styles.boundary, className].filter(Boolean).join(" ")}>{children}</div>
+  </ViewTransition>;
+}
+```
+
+## Tests
+
+- V2 Local view transition: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Render changing keyed pages inside React transitions tagged with each canonical transition type; verify ordinary untagged updates do not acquire forward motion.
+- Verify animated=false and reduced-motion render the same children and focus targets.
+- Keep shell mounted while navigating, then interrupt an in-flight transition with a newer destination.
+
+## Criteria
+
+- [x] Uses React 19.3 ViewTransition; no experimental configuration flag, new package, manual startViewTransition engine or Next.js import.
+- [x] Wrapper adds one neutral div, never main, header, nav, a duplicate live region or focus trap; native props, children and caller refs survive.
+- [x] Changing screen keys identify enter/exit boundaries. Ordinary setState is not represented as an animated transition; feature navigation/reveals use startTransition or framework transitions.
+- [x] Explicit transition types choose direction. Untagged browser history or refresh does not assume forward; replace/reveal only crossfade.
+- [x] Persistent application shell is outside the boundary; typing, focus and control values remain live, with no retained obsolete accessible page.
+- [x] animated=false suppresses all effects owned by this boundary and is propagated by the feature to its SharedElement participants; unrelated application transitions retain their own policy.
+- [x] No local hook exists merely to map classes; routing, requests, cache, scroll/focus restoration and confirmation of unsaved edits belong to the consuming feature.
+- [x] Showcase independently demonstrates forward, back, replacement, reveal and animation opt-out with the actual public export; the complete flow is documented separately.
+
+- [x] V2 **Local view transition**: Switch two local views of one stable indexed record with the public transition boundary/name; compare supported animated opt-out and interruption without document-wide animation or private V1 imports.
+- [x] The PageTransition V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. usePageTransitionExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

@@ -1,0 +1,102 @@
+{
+  "phase": 2,
+  "description": "Source-file integrity manifest for seven original atoms and two direct dependencies",
+  "files": [
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Textarea/Textarea.tsx",
+      "sourceDriveId": "1kd6uIjZYBoEwLMc5NizjUkDUgRboI5zI",
+      "target": "web/library/src/design-system/components/atoms/Textarea/Textarea.tsx",
+      "sha256": "eb0926a75cdf2c31116703c2afaa9bf3902b9af368d6ac533ca6fef24be44f4c"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Textarea/Textarea.module.css",
+      "sourceDriveId": "1AFlExfbM1H9F3r4FDZ7hYBa49hLxmB34",
+      "target": "web/library/src/design-system/components/atoms/Textarea/Textarea.module.css",
+      "sha256": "f9a63c69db4a58042d2a3f9b83c6069c28e5a6debd12141f5a677bbf27812dc0"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Switch/Switch.tsx",
+      "sourceDriveId": "1TVFLAN706_E736eITAyWXUbORkCFd9C5",
+      "target": "web/library/src/design-system/components/atoms/Switch/Switch.tsx",
+      "sha256": "208c616c4c7c8fdf3c2d0fcc44febc7f91535d8f99f7768205a489db8251dab5"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Switch/Switch.module.css",
+      "sourceDriveId": "17X0YiEesmQMH-3Y8ZfD_R2gS9DFXxnvs",
+      "target": "web/library/src/design-system/components/atoms/Switch/Switch.module.css",
+      "sha256": "4539a9525a825f2b62b2efe1956b81f1cc57baa4dec9e03da1e5d384ae628946"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Radio/Radio.tsx",
+      "sourceDriveId": "1TS03ejGRG3txOsJCI98R6ySZWpgjo6JV",
+      "target": "web/library/src/design-system/components/atoms/Radio/Radio.tsx",
+      "sha256": "44e2314dafd10f6a5dbfa29a4f7ec5385437d38a599dc124d121c1e87c519b8d"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Radio/Radio.module.css",
+      "sourceDriveId": "1RrnTVAatdwALgo5CuL0oUHWzRfA9QXBU",
+      "target": "web/library/src/design-system/components/atoms/Radio/Radio.module.css",
+      "sha256": "8487bcb7541fbc6e0d5328a1890ca3dad86dc4ec1fd5c5ea1fc1bdfb406c4ce9"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Label/Label.tsx",
+      "sourceDriveId": "1fGwViXicoJKv00dcuCtkYJ0CR1QKFT2x",
+      "target": "web/library/src/design-system/components/atoms/Label/Label.tsx",
+      "sha256": "042e1ac7c8923c36a642b9f8e87f96700d535f02eca9e58dac858eeedc7405da"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Label/Label.module.css",
+      "sourceDriveId": "1tDxFTTLYCgZf2QlneiD0IHiICAXCVcMj",
+      "target": "web/library/src/design-system/components/atoms/Label/Label.module.css",
+      "sha256": "0d468c099993bd9a3a55146f5b91b97572cf881c446c728f35d292ceba213758"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Divider/Divider.tsx",
+      "sourceDriveId": "1_vrLN2Co4p5e-cjjqFkRQ94jeau1h9pb",
+      "target": "web/library/src/design-system/components/atoms/Divider/Divider.tsx",
+      "sha256": "df730894a120d851fceda8aa00810389214516d9f8b563434d522f374097ecd8"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Divider/Divider.module.css",
+      "sourceDriveId": "1egO71S67vwDXIpgWkF83kpa9OCJjCiTs",
+      "target": "web/library/src/design-system/components/atoms/Divider/Divider.module.css",
+      "sha256": "7572141ff78ddd5408c0968f7729a5e1c9301a851247eb96d6faa9d56a1846ce"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Heading/Heading.tsx",
+      "sourceDriveId": "19mASCJun-sXm4JMn3FfbrmOVgGJS-tX1",
+      "target": "web/library/src/design-system/components/atoms/Heading/Heading.tsx",
+      "sha256": "3b2d6bcc6ce985f7f4288b3a003c61a90cc086c2097c00c16223cecaf6b21f6c"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Heading/Heading.module.css",
+      "sourceDriveId": "1UIeeUMffRMF9RojT33JsJwalH01Ie9PD",
+      "target": "web/library/src/design-system/components/atoms/Heading/Heading.module.css",
+      "sha256": "e230a68ec6d855f59ce8ffda9b5f9c750e044d0ef5cf69748077f079db2427ab"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.tsx",
+      "sourceDriveId": "1XVmGIhIDXtueBwR53Vql71jIEtS-jhkh",
+      "target": "web/library/src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.tsx",
+      "sha256": "c1402a5fd3de352b643dac97de75b7bcd62766d1b23dbf1c28dfa02279278bb9"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.module.css",
+      "sourceDriveId": "1QfmrKCBQHk_YqJuOjJiuFBYt1jYq5DyE",
+      "target": "web/library/src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.module.css",
+      "sha256": "f257c49ce28633d5a4cfbac5ecb4e34db4f52905c68a31c2ac2e0bd45df56a86"
+    },
+    {
+      "source": "PraticarFront/src/design-system/types/interactive-controls.ts",
+      "sourceDriveId": "1J6HrgoI0bi7kgwhQI-NNY2nWvx1kQGGG",
+      "target": "web/library/src/design-system/types/interactive-controls.ts",
+      "sha256": "8ef1ec76781c8a0eb0a6eb61d60075a6ff058f58dc07abbf85f7ae7846710eda"
+    },
+    {
+      "source": "PraticarFront/src/design-system/styles/interactive-primitives.module.css",
+      "sourceDriveId": null,
+      "target": "web/library/src/design-system/styles/interactive-primitives.module.css",
+      "sha256": "600205046ed9f6e2274b93adaabfdf9e622bb6fe8dda377b5fb6a8fe1222aca9"
+    }
+  ]
+}

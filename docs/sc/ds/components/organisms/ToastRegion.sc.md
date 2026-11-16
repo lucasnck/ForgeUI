@@ -1,0 +1,186 @@
+---
+title: "ToastRegion"
+scope: "Presentation-only ToastRegion with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# ToastRegion
+
+## Files
+
+```text
+features/showcase/examples/ToastAtomicExamples.tsx (C)
+../scripts/check-overlays.cjs (M)
+design-system/components/organisms/ToastRegion/ToastRegion.tsx (C)
+design-system/components/organisms/ToastRegion/ToastRegion.module.css (C)
+design-system/components/organisms/ToastRegion/index.ts (C)
+design-system/internal/notifications/NotificationContext.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/ToastRegion.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/organisms/ToastRegion/useToastRegionView.ts (C)
+features/showcase-v2/components/ToastRegion/definition.ts (C)
+features/showcase-v2/components/ToastRegion/ToastRegion.example.tsx (C)
+features/showcase-v2/components/ToastRegion/useToastRegionExample.ts (C)
+features/showcase-v2/components/ToastRegion/usage-code.ts (C)
+features/showcase-v2/components/ToastRegion/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-notifications.sc.md](../../hooks/tech-notifications.sc.md)
+- [Toast.sc.md](../molecules/Toast.sc.md)
+- [Notification contracts](../../types/tech-notification-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { ToastRegion, Toast, ToastHeader, ToastBody, ToastFooter } from "@forge-ui/web";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastHeader>{record.title}</ToastHeader><ToastBody>{record.message}</ToastBody><ToastFooter>{record.action}</ToastFooter></Toast>} />;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+.list {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  list-style: none;
+  padding: var(--zero);
+  margin: var(--zero);
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { cloneElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import type { ToastProps } from "../../molecules/Toast";
+import type { NativeSectionRootProps, ToastRegionOptions, ToastRecord } from "../../../types";
+import { NotificationContext } from "../../../internal/notifications/NotificationContext";
+import { Toast } from "../../molecules/Toast";
+import { VisuallyHidden } from "../../atoms/VisuallyHidden";
+import { useToastRegionView } from "./useToastRegionView";
+import styles from "./ToastRegion.module.css";
+
+export interface ToastRegionProps extends NativeSectionRootProps, ToastRegionOptions {
+  label: string;
+  renderToast?(record: ToastRecord): ReactElement<ToastProps>;
+}
+
+function renderRecord(record: ToastRecord, renderToast: ToastRegionProps["renderToast"]) {
+  if (!renderToast) return <Toast key={record.id} record={record} />;
+  const rendered = renderToast(record);
+  if (!isValidElement<ToastProps>(rendered) || rendered.type !== Toast) {
+    throw new Error("ToastRegion renderToast must return a Toast.");
+  }
+  return cloneElement(rendered, { record, key: record.id });
+}
+
+export function ToastRegion(input: ToastRegionProps) {
+  const { renderToast, queue, polite, assertive, sequence, label, className, rootRef, props, handlePointerEnter, handlePointerLeave, handleFocusCapture, handleBlurCapture } = useToastRegionView(input);
+  return <NotificationContext value={queue}>
+    <section {...props} ref={rootRef} tabIndex={props.tabIndex ?? -1} aria-label={label} role={undefined} aria-live="off" aria-busy={undefined} className={[styles.root, className].filter(Boolean).join(" ")} data-gap="2" onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave} onFocusCapture={handleFocusCapture} onBlurCapture={handleBlurCapture}>
+      <ol className={styles.list} aria-live="off">{queue.records.map((record) => renderRecord(record, renderToast))}</ol>
+      <VisuallyHidden role="status" aria-live="polite" aria-atomic="true"><span key={sequence}>{polite}</span></VisuallyHidden>
+      <VisuallyHidden role="alert" aria-live="assertive" aria-atomic="true"><span key={sequence}>{assertive}</span></VisuallyHidden>
+    </section>
+  </NotificationContext>;
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import { cloneElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import type { ToastProps } from "../../molecules/Toast";
+import type { NativeSectionRootProps, ToastRegionOptions, ToastRecord } from "../../../types";
+import { NotificationContext } from "../../../internal/notifications/NotificationContext";
+import { Toast } from "../../molecules/Toast";
+import { VisuallyHidden } from "../../atoms/VisuallyHidden";
+import { useToastRegionView } from "./useToastRegionView";
+import styles from "./ToastRegion.module.css";
+
+export interface ToastRegionProps extends NativeSectionRootProps, ToastRegionOptions {
+  label: string;
+  renderToast?(record: ToastRecord): ReactElement<ToastProps>;
+}
+
+function renderRecord(record: ToastRecord, renderToast: ToastRegionProps["renderToast"]) {
+  if (!renderToast) return <Toast key={record.id} record={record} />;
+  const rendered = renderToast(record);
+  if (!isValidElement<ToastProps>(rendered) || rendered.type !== Toast) {
+    throw new Error("ToastRegion renderToast must return a Toast.");
+  }
+  return cloneElement(rendered, { record, key: record.id });
+}
+
+export function ToastRegion(input: ToastRegionProps) {
+  const { renderToast, queue, polite, assertive, sequence, label, className, rootRef, props, handlePointerEnter, handlePointerLeave, handleFocusCapture, handleBlurCapture } = useToastRegionView(input);
+  return <NotificationContext value={queue}>
+    <section {...props} ref={rootRef} tabIndex={props.tabIndex ?? -1} aria-label={label} role={undefined} aria-live="off" aria-busy={undefined} className={[styles.root, className].filter(Boolean).join(" ")} data-gap="2" onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave} onFocusCapture={handleFocusCapture} onBlurCapture={handleBlurCapture}>
+      <ol className={styles.list} aria-live="off">{queue.records.map((record) => renderRecord(record, renderToast))}</ol>
+      <VisuallyHidden role="status" aria-live="polite" aria-atomic="true"><span key={sequence}>{polite}</span></VisuallyHidden>
+      <VisuallyHidden role="alert" aria-live="assertive" aria-atomic="true"><span key={sequence}>{assertive}</span></VisuallyHidden>
+    </section>
+  </NotificationContext>;
+}
+```
+
+## Tests
+
+- V2 Manual scoped notifications: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Timed queue and pause: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Initial default records render without announcing before a meaningful client change.
+- A new or changed record announces on exactly one urgency channel; visual Toast markup has no competing live region.
+- Record-array identity changes with identical text produce no duplicate announcement.
+- Reusing text in a later notification produces a new keyed announcement inside its permanently mounted channel.
+- Pointer/focus pause resumes only after leaving the region, with caller-prevented events respected.
+
+## Criteria
+
+- [x] After record removal, pause reasons follow actual region focus/hover; missing native blur/leave events cannot keep later records paused.
+
+- [x] Root role/live/busy overrides cannot create a competing announcement channel or suppress the queue-owned live channels.
+
+- [x] Given incoming message, one channel announces it once and the visual Toast does not duplicate live output.
+- [x] Given focused/hovered region, transient dismissal is paused.
+- [x] The label contract uses Required localized region name.
+- [x] The records / defaultRecords contract uses undefined / [].
+- [x] Visual region owns ordered Toast items plus permanently mounted polite/assertive announcement channels; queue hook owns timers/state.
+- [x] A focused dismissed toast restores to adjacent action or connected origin; no global hotkey is invented.
+- [x] Initial defaultRecords render deterministically, with announcements only after meaningful client changes.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+- [x] No exit effect is promised without a reviewed retained-pixel renderer.
+- [x] useToastRegionView is colocated with ToastRegion and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Optional renderToast(record) returns the public Toast constructor; the region keeps the authoritative queue record/id and rejects unrelated root elements.
+- [x] The default renderer and queue-owned permanent announcement channels remain unchanged; renderToast never reaches native section attributes.
+- [x] Custom Toast compositions preserve dismissal, timer pause and adjacent-action/fallback focus repair through the public queue.
+
+- [x] V2 **Manual scoped notifications**: Compose ToastRegion and a producer using real useToast/useToastRegion APIs; renderToast returns Toast/Header/Body/Footer. Enqueue two indexed records, invoke an action and dismiss, preserving ids and one announcement channel.
+- [x] V2 **Timed queue and pause**: Use a separate region with actual per-record duration="short"/"long" and supported records/defaultRecords options and three indexed records started by the visible Show action. The dormant scenario starts with an empty queue so hidden examples cannot announce or expire records before use. Compare automatic dismissal and pointer/focus pause; update a stable record through caller-owned controlled records, then dismiss it and cancel timers/announcements on reset/unmount.
+- [x] The ToastRegion V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useToastRegionExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

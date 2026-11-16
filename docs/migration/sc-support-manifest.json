@@ -1,0 +1,429 @@
+{
+  "date": "2026-11-14",
+  "source": "PraticarFront/docs/sc/ds",
+  "files": [
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-odata-filter-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-odata-filter-contracts.sc.md",
+      "sha256": "1bc2717133472f2f101972c9cdd2f0e0687a2554e29bf8ecde2742269e17afd5",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "aed56792584c0cd195bb6522ad04d3ff7e52b6c04506c4f7a7ea00e8b371ed1c",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-component-capabilities.sc.md",
+      "target": "docs/sc/ds/types/tech-component-capabilities.sc.md",
+      "sha256": "393b6570e73ccaee46b16985ac7726d55bb5f9cfb732b11e253f037de5a39fbf",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "b6feb57ab842d2af3bab7864b4030e33ad27dd155239c457b12087342ee669f1",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-map-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-map-contracts.sc.md",
+      "sha256": "e5af24feec148fa1c30767cba53ae6b924c1ccc6f9cbbd966743661ea2e9f1c5",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "23c8bb8cf4cbdb8868a7a54d85a20cfb66792bea0263c55872dca07b77e3462f",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-form-field-organisms.sc.md",
+      "target": "docs/sc/ds/types/tech-form-field-organisms.sc.md",
+      "sha256": "ad3076f408778fe1231811bccbc70262f9c2dcf54dca0262f83c9326854235c7",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "ddec3badf671c48164ce6525efd5e732a83b64f7350d51685469211ccee5083f",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-collection-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-collection-contracts.sc.md",
+      "sha256": "068074c4c606c8b6ab99cd90b02ed7074efc6fdc6adc8c8219a30a37cef67453",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "ef04a7ae793472122b31a15c6e53f992e7bfe62864e48d00cb55416609721e3a",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-virtual-window-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-virtual-window-contracts.sc.md",
+      "sha256": "4cea4ce199a868c26a48b2c4fa81f66359d9abc0fe218a0ec9e00e809126426b",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "be5c37c48eef40e09e767038b7eb1c17f38b7166a9f2bf30e989ac127761fcab",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-typography-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-typography-contracts.sc.md",
+      "sha256": "290f1212b7c2ab377cafb3a1f4a9bae41aa887dcc1812eecc7803aef257a0a9a",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "55161534ccd579bcd02b2294b803b0d058d89bde804621d29457a4519c2a654d",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-tree-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-tree-contracts.sc.md",
+      "sha256": "18baab846575f632d17ee7d19a0213597946c2260bc7d8b13d716f307c1fa28e",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "58811b2d9ffc89b3c86a6222720fcbc0cb46450b8a6367aa241a8565fb2da409",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-selection-navigation.sc.md",
+      "target": "docs/sc/ds/types/tech-selection-navigation.sc.md",
+      "sha256": "7ad5af91532cb24405c02ff4057e814dc2169aa2bcb03c7e200a8089c87ca083",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "37d5f982727b142bdb25db1693e73d17b2a0b4e6abf3e07ce08873f79efd7f08",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-range-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-range-contracts.sc.md",
+      "sha256": "e1e3ecd677a337b1e0b60161fb3ef3099e6d39c39c20d936f6b829359b13a371",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "a024106741ed0e222bd958b07c147792dfb78944e8bea0e410b287a53cc5c631",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-popup-types.sc.md",
+      "target": "docs/sc/ds/types/tech-popup-types.sc.md",
+      "sha256": "bb07b1f69adae0d968d399150bed02e00505c5d851328aae5491d0d921d644ee",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "4808542a6fc8d448165204b0f70b51a66dcb499a7e5f28dc905cb8f5bbc4e2eb",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-page-transition-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-page-transition-contracts.sc.md",
+      "sha256": "5a295b25d8559bced83c7b719adcafac4abb264f187d5df4f006854225615b01",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "7278bd8d0284add772f5f0df81bf4f1bc1b1e916887e0e59fad6e632cadbaca2",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-overlay-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-overlay-contracts.sc.md",
+      "sha256": "165378ba3a774a28a3acb15c11c3678b51e253c57aec7d190d5b3fa8c7b2552d",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "4afaa2de5bb37a03aaa8e012afbe8938810934ea355eadbdcf54c0dd689fa5a6",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-notification-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-notification-contracts.sc.md",
+      "sha256": "caa71a6a2c312727a72b513329189bdb9b9349c4033889777a4a1551dea526d3",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "1493be78b8e0e255fd8d83b7359ba11d1a0cb10456bf4e23deb55ca616a7e1f2",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-native-control-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-native-control-contracts.sc.md",
+      "sha256": "c174d3f2ce75fa7bfe1e5c75eefbd2017dfd2023d83f5424016140ef4d4c926b",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "ba8b9e185ef5cde592be3b87a67e65d1b8859469cf353170dc6a74bb256e1f64",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-modal-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-modal-contracts.sc.md",
+      "sha256": "b48249187b5231f3cb7131368c4a1620c12bccbc1562cd9c4c91411b680af3d3",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "1bf643641e61d328cb179b2a6da8caf08bcfcb8e3eecf9b8339ee75c6193536f",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-mask-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-mask-contracts.sc.md",
+      "sha256": "0ccd1c9698ab7b341aef002dbca9eced54e5c334b246b7f35affa20627521813",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "14fce54538d7bd348bdfc21363c8649732d30a96c153acdc3ae98175348d06a9",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-loading-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-loading-contracts.sc.md",
+      "sha256": "e8ca1f3d033d29d4f7ee17986daebe1d19c766004da7f60d57cce4d04b776545",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "4da2040e94905f1ac2d87d961869ae3bcadbcccb80b9d14762cd05d4519ac701",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-listbox-state-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-listbox-state-contracts.sc.md",
+      "sha256": "aff3d1ff0d73664fdcca75cbf96e9c19b6ae4ad7fce2b139285b4d72ad816975",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "2079b104c5c607b7d4db9150392ba918e28fa6faa18513b2b709fd17d4f87caf",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-layout-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-layout-contracts.sc.md",
+      "sha256": "7be84cac46d6afd2dac37fe1e44ffca7754101989e50c5be070b5ef0484ac3b4",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "36140f4606b6c8aeebe83532e6e1107d63850d4a152a02d8d9e2ef3809b313d6",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-interactive-controls.sc.md",
+      "target": "docs/sc/ds/types/tech-interactive-controls.sc.md",
+      "sha256": "50966d6e745dc7ec1621ecdfc98baf03b9765dc30beda8c28d83a2bf301ef3f3",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "a6915782b522638fd5dfb69880e907555fe30ed2b46c9fa9e729ab82c0733759",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-input-specializations.sc.md",
+      "target": "docs/sc/ds/types/tech-input-specializations.sc.md",
+      "sha256": "51492be374ff7c937705beeecb23d8497076318c3c0ff19b0f2362a91229a1bd",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "cb4284329d11406d864e81bf13dfcd5f177d3ef2141ed4d7dbea00dad9ec6f17",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-icon-geometry.sc.md",
+      "target": "docs/sc/ds/types/tech-icon-geometry.sc.md",
+      "sha256": "276a086d519abe706dfdf345c3bff3f52456d8d8ec8a22986cc9704d158cb738",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "4baaf7851e0ae0a3ecbaca4f176ecc6817044e17ad025005eabf6fa300b50d91",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-icon-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-icon-contracts.sc.md",
+      "sha256": "6651dd2ba62b81d7eed670197b3a2628068038bb7f0d28ae41fb429734f79181",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "7b50dc3d32fcec4095707cecae73527c26c2b8a0a1372227761aef199a72ffca",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-grid-navigation-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-grid-navigation-contracts.sc.md",
+      "sha256": "8c8219ac322cb361c82399ada2896f81dd8265a665931916b1e3f956e2df9ad3",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "8093beca09965524b1e53d3706915502c6612077baf0432574d49c72e8daa653",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-focus-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-focus-contracts.sc.md",
+      "sha256": "a67a6c17dc37b58c7faa189bccbbea8da8f17cd2df8abb1e9e9269200546fd64",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "536a8ca5725c9dd1bbd2a6397f830490cdd629ea6153a54c99025dd5801f3fa1",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-disclosure-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-disclosure-contracts.sc.md",
+      "sha256": "437373f6abaef9d4ee06374f7d661e0b9af957e360e4e5f568cfc971dcee0994",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "8425767a5b6cd940848cea6ceaf6db948dda7c6e92807dbf86f85ff5990dcee3",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-compound-composition.sc.md",
+      "target": "docs/sc/ds/types/tech-compound-composition.sc.md",
+      "sha256": "c6c4e835f603366a35c80ad68444eccd52847335cdb7e5ef1ed8d6af165e3486",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "f9b70b2730aaacc8b18a5bbbaa016c2788b23d4ba38496db29b76007b418f56b",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-animation-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-animation-contracts.sc.md",
+      "sha256": "736d94f590b4b8178d056cc6e866f351850723130baffd9f47c05c18dbe6099c",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "b57ed2a8e3b251754e10fb72f7a41cf84c6a30976112807a6ba7f5f586ef2c55",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-phone-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-phone-contracts.sc.md",
+      "sha256": "ec3b59d6b089907c88ae669a84c276010f7bf868d9588053c08e22df6be1fb7e",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "8fc01abe49573b8a51ae690a3610542ad01d7461be50fb39320a74f100be26e1",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/types/tech-money-contracts.sc.md",
+      "target": "docs/sc/ds/types/tech-money-contracts.sc.md",
+      "sha256": "5533710fac7a75832e0212203e7732fc4366cc4715725c3d027d0a71f05e3a1c",
+      "mode": "exact-copy",
+      "kind": "types",
+      "sourceRawSha256": "ce5d072fd403d2329ea62cebe851babd933a5414ae71ba16f3fc6272a535065e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-formatting-api.sc.md",
+      "target": "docs/sc/ds/helpers/tech-formatting-api.sc.md",
+      "sha256": "4a7b7cb300e691f1470b19eb57a1de8e797f1535bb968f7b3f39d43ab6802dc0",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "2a7bf9ed7c8e78e9229f04e94ea5774636af67f8b6101c370b66c506c16facc2",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-relative-time-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-relative-time-formatters.sc.md",
+      "sha256": "6d30960456244003b2b643084209f74b64339bbee37358f693edc6b10f8d6e69",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "b0757ee0a3c755b55acac50340eaa41baf27fa57e0be150489f5306c57a66456",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-odata-filter.sc.md",
+      "target": "docs/sc/ds/helpers/tech-odata-filter.sc.md",
+      "sha256": "0582ffb46e3f0209ceb75a34149263ce1d0c84f8dec5c0d5f79a14bd026490a5",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "770f82a29564e82b4e0d3d6506704493aa9688cd955b6105893beb77dc973ba9",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-map-geometry.sc.md",
+      "target": "docs/sc/ds/helpers/tech-map-geometry.sc.md",
+      "sha256": "25e5196650744a9b40a72f93129718f905f193f0d527f4342d101c7b8b8f8d84",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "baa33c6c78ec4b0a6fe9b46f8f03134634449ef77983a0dfb7e4156f7e25ffdd",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-phone-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-phone-formatters.sc.md",
+      "sha256": "a91f43a7ae22f0db3b5e867b1ff70323bdf7ee90f2848bbbbbd2c5bbb1777410",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "5b870172d15869589d9a9d92ea5048fc2dceeb7b23fb0cd9adf319c2dae77693",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-file-size-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-file-size-formatters.sc.md",
+      "sha256": "f7ba9cc2ad0b7cc9eb4bd76aba739b04ab478ea90ce37772fd221bdf5ad40be8",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "24ae6b990dd182f5f088033cbe9fe171df189b565a1c84d81cd8847b7aaa598b",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-icon-sources.sc.md",
+      "target": "docs/sc/ds/helpers/tech-icon-sources.sc.md",
+      "sha256": "5f4aa7a59587c0d7f38485c3c4e4398b7fab181d97012a8246981f7797409624",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "a9856f14e6c9184995fe40ac5fd841615fae8aee9d3f28d8c846eae2bf0c7f53",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-tree-traversal.sc.md",
+      "target": "docs/sc/ds/helpers/tech-tree-traversal.sc.md",
+      "sha256": "ea3a064c7cf10f5953e689063ce3139dd91c7664fc2606d122e88cd3ff5b2b7b",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "ef750e881fb3433839f976b9c1d66d20ad2f715cbac091e93c391ea02f7d7c4e",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-range-indicators.sc.md",
+      "target": "docs/sc/ds/helpers/tech-range-indicators.sc.md",
+      "sha256": "a49abdaabce488230c8f3616277309b8f85eabcc208fe736d3d7afff4eebd81d",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "c9478844d82ea710237bc07a06eb3a9927a187457a83d4a9d5cb358ba0b5fee8",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-duration-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-duration-formatters.sc.md",
+      "sha256": "7a3960d02057a0ab0d16dc2e767bc45e6df765a5544dd3f6b7259297186d1dff",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "068da3c2311bd3d4b8ff31c072b97e860cf7a8e852f194bb817fa0b6eb690eeb",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-compound-parts.sc.md",
+      "target": "docs/sc/ds/helpers/tech-compound-parts.sc.md",
+      "sha256": "4f06679f0099e67bd83e8212667d39e7bbef574b0973d92c8aee6b551344db89",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "4c0c19f7a7babe78b20181e6f0405649c18ecb8aa94d84872273fa5fa80a130d",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-brazilian-document-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-brazilian-document-formatters.sc.md",
+      "sha256": "566b779bba1cc460dd09fe6b39d18cccdbcf6e6dcf2f5c7962a30aa93d6ec12c",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "0fa0cc2040e8c8ef414a2ac8b75ff015f473ee43201646a9c1d26c10e6758eba",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-date-only-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-date-only-formatters.sc.md",
+      "sha256": "29cd2cc67bf7059f3d18e5220c8f7eead949d47ed55762a449f6f254728ea6e9",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "5dd35fc45fbfdf9794ee800eef5021e7985e6c9e35f5fcd4c3b872f1f12eb779",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-mask-helpers.sc.md",
+      "target": "docs/sc/ds/helpers/tech-mask-helpers.sc.md",
+      "sha256": "2ef36d360fd4d54d30569c4fb38be1ab0def68c622e6c73917280f85bd0931e2",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "67b0e52b9683771c172d538f6551cf21d068e3398387262334fe750fec0ff7f6",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-money.sc.md",
+      "target": "docs/sc/ds/helpers/tech-money.sc.md",
+      "sha256": "520e9dbe771750533b09cddd4f434a4cc2d89d12a8fee308975db20d53561fa4",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "e179f08a318bd0ef7b6f7028addf52c2e0ef49ce0f43983369ebb371a9c00a03",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/helpers/tech-postal-code-formatters.sc.md",
+      "target": "docs/sc/ds/helpers/tech-postal-code-formatters.sc.md",
+      "sha256": "1b0f93c9dcb9c8b7fc7bf2e9a4b247aa8b96bfa15c5d110a560abb5bf40ab69c",
+      "mode": "exact-copy",
+      "kind": "helpers",
+      "sourceRawSha256": "5506e9eeae434a3e2fe466e8d630189f5fad2b8d0f52d58b302a980a5757e04a",
+      "lineEndingPolicy": "canonical LF for portable verification"
+    }
+  ]
+}

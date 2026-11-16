@@ -1,0 +1,245 @@
+---
+title: "DS Animations"
+scope: "Global motion tokens, shared state/presence recipes, reduced-motion policy and per-component animation contracts"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# DS Animations
+
+
+
+## Files
+
+```text
+design-system/styles/motion-components.module.css (M)
+design-system/styles/animations/modal-animations.module.css (C)
+features/showcase-v2/components/PresenceResource/definition.ts (C)
+features/showcase-v2/components/PresenceResource/PresenceResource.example.tsx (C)
+features/showcase-v2/components/PresenceResource/usePresenceResourceExample.ts (C)
+```
+
+## Dependencies
+
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Design Tokens and Visual Foundations](../tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@forge-ui/web/styles/motion-components.module.css";
+<div className={styles.stateColor} data-animated={animated}>{children}</div>;
+```
+
+## Styles
+
+```css
+.stateColor {
+  transition-property: background-color, border-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.stateOpacity {
+  transition-property: opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.stateFeedback {
+  transition-property: background-color, border-color, opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.surfacePresence {
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.surfacePresence[data-motion-state="entering"],
+.surfacePresence[data-motion-state="exiting"] {
+  opacity: var(--motion-opacity-hidden);
+  transform: scale(var(--motion-scale-enter));
+}
+.surfacePresence[data-motion-state="entered"] {
+  opacity: var(--motion-opacity-visible);
+  transform: scale(var(--motion-scale-rest));
+}
+.disclosurePresence {
+  display: grid;
+  grid-template-rows: var(--motion-grid-expanded);
+  transition-property: grid-template-rows, opacity;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.disclosurePresence[data-motion-state="entering"],
+.disclosurePresence[data-motion-state="exiting"] {
+  grid-template-rows: var(--motion-grid-collapsed);
+  opacity: var(--motion-opacity-hidden);
+}
+.disclosurePresence[data-motion-state="entered"] {
+  opacity: var(--motion-opacity-visible);
+}
+.disclosurePresence:is([data-motion-state="entering"], [data-motion-state="entered"]):focus-within {
+  grid-template-rows: var(--motion-grid-expanded);
+  opacity: var(--motion-opacity-visible);
+  transition: none;
+}
+.clip {
+  min-block-size: var(--zero);
+  overflow: hidden;
+}
+.stateColor[data-animated="false"],
+.stateOpacity[data-animated="false"],
+.stateFeedback[data-animated="false"],
+.surfacePresence[data-animated="false"],
+.disclosurePresence[data-animated="false"] {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stateColor,
+  .stateOpacity,
+  .stateFeedback,
+  .surfacePresence,
+  .disclosurePresence {
+    transition: none;
+  }
+  .surfacePresence {
+    transform: none;
+  }
+}
+@media (forced-colors: active) {
+  .stateColor,
+  .stateFeedback {
+    transition: none;
+  }
+}
+```
+
+```css
+/* Native close releases modality and focus immediately. Discrete transitions
+   retain only the closing paint; unsupported browsers use instant native close. */
+@supports (transition-behavior: allow-discrete) {
+  @media (prefers-reduced-motion: no-preference) {
+    .root[data-animated="true"]:not([data-animation-effect="none"]) {
+      opacity: var(--motion-opacity-hidden);
+      transition-property: opacity, transform, display, overlay;
+      transition-duration: var(--motion-normal);
+      transition-timing-function: var(--ease-standard);
+      transition-behavior: allow-discrete;
+    }
+
+    .root[data-animated="true"][data-animation-effect="scale"] {
+      transform: scale(var(--motion-scale-enter));
+    }
+
+    .root[data-animated="true"][open]:not([data-animation-effect="none"]) {
+      opacity: var(--motion-opacity-visible);
+      transform: scale(var(--motion-scale-rest));
+    }
+
+    .root[data-animated="true"]:not([data-animation-effect="none"])::backdrop {
+      opacity: var(--motion-opacity-hidden);
+      transition-property: opacity, display, overlay;
+      transition-duration: var(--motion-normal);
+      transition-timing-function: var(--ease-standard);
+      transition-behavior: allow-discrete;
+    }
+
+    .root[data-animated="true"][open]:not([data-animation-effect="none"])::backdrop {
+      opacity: var(--opacity-pulse);
+    }
+
+    @starting-style {
+      .root[data-animated="true"][open]:not([data-animation-effect="none"]),
+      .root[data-animated="true"][open]:not([data-animation-effect="none"])::backdrop {
+        opacity: var(--motion-opacity-hidden);
+      }
+
+      .root[data-animated="true"][open][data-animation-effect="scale"] {
+        transform: scale(var(--motion-scale-enter));
+      }
+    }
+  }
+}
+```
+
+## Animations
+
+```text
+stateColor
+stateOpacity
+stateFeedback
+surfacePresence
+disclosurePresence
+clip
+```
+
+## Tests
+
+- Each recipe transitions only its documented properties with canonical duration/easing tokens.
+- animated=false and reduced motion disable applicable transitions.
+- Focused entering descendants remain visible; nested events do not create a second presence owner.
+- Disclosure intrinsic-size fallback preserves readable content and never animates focus outlines.
+
+## Criteria
+
+- [x] Given Checkbox, checked/FormData/change callback updates immediately while .control background/border transitions to the existing checked target; no glyph or DOM replacement appears.
+- [x] Given any stateful component, its Animations section names applicable state pairs, exact target, recipe/tokens and reversal/reduced-motion behavior, or explains delegation/non-applicability.
+- [x] Given rapid checked/open reversals, the latest state wins and stale events/frames/timeouts cannot duplicate callbacks or hide reopened content.
+- [x] Given closing disclosure/overlay content, focus is repaired and retained pixels become inert/aria-hidden immediately; completion only controls visual removal.
+- [x] Given reduced motion, animated=false, or effective zero duration, motion settles immediately without transitionend/animationend dependencies; a preference change during motion cleans pending resources.
+- [x] Given no completion event, a bounded computed-duration fallback finishes exit; unmount/Strict Mode leaves no listeners, frames or timers.
+- [x] Given native Modal, cancel/close/focus containment follows its owning hook and no exit animation postpones modality release.
+- [x] Given themes, forced colors, RTL, zoom and intermediate frames, readable contrast and immediate visible focus are preserved; no transition:all or unowned numeric motion values appear.
+- [x] Given Spinner/Skeleton reduced-motion alternatives, loading remains understandable through current labels/semantics without indefinite motion.
+- [x] Given static rendering, presence snapshots are deterministic and no window/document/matchMedia/computed-style access occurs during module evaluation or render.
+- [x] Component SCs specify each concrete state pair in Animations.
+- [x] State, callbacks and accessibility change immediately; animation only expresses the change visually.
+- [x] Component-owned selectors retain state-specific target colors, thumb positions and semantic visibility.
+- [x] The State recipe / animated contract uses Enhanced visual owner defaults true after delivery; animated=false disables its motion only.
+- [x] The Presence open / elementRef contract uses Required authoritative boolean and mounted surface ref supplied by owner.
+- [x] The Presence enabled contract uses true; combine with global prefers-reduced-motion policy.
+- [x] The Initial SSR phase contract uses entered/present if open, otherwise unmounted/absent; no first-render entrance or browser access.
+- [x] The Fast color/opacity / normal surface contract uses Existing 140ms / 220ms and --ease-standard; no per-component milliseconds.
+- [x] The Global opt-out contract uses Existing reduced-motion reset; no animations applied through a blanket universal transition.
+- [x] The hook handles client effects, bounded frame scheduling and teardown, not semantic open state.
+- [x] Opening mounts entering content, then advances to entered on the next animation frame.
+- [x] Closing retains exiting pixels only when eligible motion exists.
+- [x] If reduced motion is enabled during a transition, settle immediately and clean listeners, frames and timers.
+- [x] Authoritative open becomes true → unmounted → entering → entered → Owner exposes current state/focus immediately.
+- [x] Authoritative open becomes false → entered → exiting → unmounted → Owner closes semantically immediately; retained pixels are inert and aria-hidden.
+- [x] Reopen during exit → exiting → entering → entered → Cancel old completion; current state wins.
+- [x] Reduced motion / enabled=false → Any → entered or unmounted immediately → No completion-event dependency.
+- [x] Missing event / detached node → exiting → unmounted via bounded fallback → No stuck presence.
+- [x] Unmount → Any → Disposed → Cancel resources; no state callback from cleanup.
+- [x] No descendants remain tabbable during exit.
+- [x] Native Modal.close remains immediate: native discrete display/overlay transitions retain closing paint where supported; no hook postpones native modality release.
+- [x] All new numeric values belong to tokens.css.
+- [x] Shared motion-components.module.css excerpts:
+- [x] Component SCs identify exact targets; parts delegate to that one owner.
+- [x] Surface entry does not delay semantic focus or cancel its selected effect when focus is received; native Modal uses discrete display/overlay transitions to retain closing paint only.
+- [x] Checkbox enhancement composes stateFeedback on its existing .control; :checked target remains the inspected --checkable-accent background/border.
+- [x] Native checked state is applied without waiting for transition completion.
+- [x] No glyph, remount, transform pulse or delayed native change is introduced.
+- [x] Native field validation/disabled attributes update immediately; no shake or flashing.
+- [x] Focus outlines are immediate and are not in the transition property list.
+- [x] Check readable intermediate frames; do not animate foreground text with background changes that lower contrast.
+- [x] Family → State pair / visual owner → Recipe and timing → Reduced motion / interruption.
+- [x] Checkbox / Radio → unchecked ↔ checked, native control → stateFeedback, --motion-fast / --ease-standard → Immediate native/semantic state; reverse to latest target.
+- [x] Switch → off ↔ on, track and thumb → token-backed rail background and thumb inset transitions → One movement owner; immediate final geometry without motion.
+- [x] Button / IconButton / interactive items → hover/pressed/selected background; disabled root opacity → stateColor / stateOpacity, fast → Immediate focus/activation/disabled semantics; no default positional movement.
+- [x] Input / Select / specialized fields → valid ↔ invalid border; applicable hover surface → stateColor, fast → No caret movement, delayed errors or validation shake.
+- [x] Collapse / Accordion → collapsed ↔ expanded, shared Body+Footer panel → disclosurePresence, normal + usePresence → Focus/semantics immediate; latest group state wins.
+- [x] Popover / Dropdown / popup surface / Tooltip → closed ↔ open, dedicated surface → surfacePresence, normal when renderer can retain an inert shell → No delayed dismissal; close/reopen cancels stale completion.
+- [x] Modal → closed ↔ open surface → native modal-animations discrete transitions, normal → Native close/focus release immediate; closing paint never extends modality.
+- [x] Tabs → selected tab chrome; panel change → stateColor on Tab, fast; panels switch immediately by default → No automatic panel fade/remount; preserve content/focus.
+- [x] Menus / listboxes / Pagination → active/selected item background → Canonical item recipe, fast → Keyboard focus/activedescendant updates immediately.
+- [x] Spinner / Skeleton → loading loop → Existing rotating/pulse recipes and tokens → Static meaningful status/placeholder; no new loop engine.
+- [x] Progress / Meter → value change → Immediate native value; track interpolation in the delivered private RangeTrack SVG renderer → Announce current value immediately; never animate fabricated progress.
+- [x] Templates / page regions → opt-in region entry/exit → Shared presence recipes; consumer owns navigation timing → No automatic route or document/body animation.
+- [x] Structural Header/Body/Footer / native Option / text/layout → No independent motion → Delegate to surface/control owner or Not applicable → No duplicate transitions or invented state axis.
+
+- [x] The V2 motion-recipes resource defines Presence recipes: the initial disclosurePresence preview can switch to surfacePresence, open/close a passive Card and toggle enabled; it imports the actual shared motion module and usePresence instead of recreating CSS or lifecycle.
+- [x] The disclosure sample uses a clip child; semantic closure applies inert/aria-hidden immediately. The real shared recipe/hook own reduced-motion and disabled behavior. Reset restores closed disclosurePresence with enabled=true.
+- [x] The Contract documents surfacePresence, disclosurePresence, clip, stateColor, stateOpacity and stateFeedback; data-motion-state/data-animated and actual motion token dependencies are distinguished from component props.
+- [x] The copyable base snippet consumes disclosurePresence plus clip with caller-owned phase/ref/completion; the two-section resource page omits Usage/resources and Related examples.

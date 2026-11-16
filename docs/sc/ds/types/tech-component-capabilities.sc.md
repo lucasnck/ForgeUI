@@ -1,0 +1,134 @@
+---
+title: "Component capabilities"
+scope: "Component capabilities shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Component capabilities
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/component-capabilities.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+design-system/foundations/types.ts (D)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```ts
+import type { ComponentSize } from "@forge-ui/web";
+type Contract = ComponentSize;
+```
+
+## Content
+
+```ts
+export type ComponentSize = "xs" | "sm" | "md" | "lg" | "xl";
+
+export type ComponentTone =
+  | "neutral"
+  | "brand"
+  | "success"
+  | "warning"
+  | "danger"
+  | "info"
+  | "inverse"
+  | "sand"
+  | "violet"
+  | "forest"
+  | "sky";
+
+export type ComponentAppearance =
+  | "solid"
+  | "soft"
+  | "outlined"
+  | "bordered"
+  | "ghost"
+  | "none";
+
+export type ComponentShape = "square" | "rounded" | "pill";
+
+export type ComponentVariant = "solid" | "soft" | "ghost" | "outline";
+
+export interface SelectorOption<Value extends string> {
+  value: Value;
+  label: string;
+}
+
+export interface SelectorProps<Value extends string> extends ComponentSizedProps {
+  value: Value;
+  options: readonly SelectorOption<Value>[];
+  onValueChange: (value: Value) => void;
+  label: string;
+  id?: string;
+  disabled?: boolean;
+}
+
+export interface ComponentSizedProps {
+  size?: ComponentSize;
+}
+
+export interface ComponentToneProps {
+  tone?: ComponentTone;
+}
+
+export interface ComponentAppearanceProps {
+  appearance?: ComponentAppearance;
+}
+
+export interface ComponentShapeProps {
+  shape?: ComponentShape;
+}
+
+export interface ComponentVariantProps {
+  variant?: ComponentVariant;
+}
+
+export interface ComponentLoadingProps {
+  loading?: boolean;
+  loadingLabel?: string;
+}
+
+export interface ComponentFullWidthProps {
+  fullWidth?: boolean;
+}
+
+export interface ComponentInvalidProps {
+  invalid?: boolean;
+}
+
+export interface VisualProps
+  extends ComponentSizedProps,
+    ComponentToneProps,
+    ComponentAppearanceProps,
+    ComponentShapeProps {}
+```
+
+## Tests
+
+- V2 Consumer snippets for Button, Input, Surface retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile every declared size, tone, appearance, shape and variant; reject unsupported literals.
+- Compile VisualProps composed with full-width, loading and invalid capabilities without conflicting properties.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+- [x] All imports of the legacy foundations/types module migrate atomically to the target canonical type modules; the public root barrel remains compatible.
+
+- [x] V2 typed usage fixtures cover Button, Input, Surface: Canonical tone/appearance/shape/size/loading/fullWidth capabilities and actual defaults. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.
+
+- [x] `ComponentTone` supports `sand`, `violet`, `forest` and `sky` while retaining all existing tones; relevant type fixtures verify accepted literals and reject unsupported ones.
+
+- [x] Extend existing V2 typed consumer cases for all canonical tones (`brand`, `neutral`, `danger`, `success`, `warning`, `info`, `sand`, `violet`, `forest`, `sky`) using the existing `ComponentTone` owner; reject unknown strings at compile time without introducing a parallel CRUD action type.
+- [x] Keep size, appearance, shape and loading capabilities independent of semantic action priority. Caller-owned page composition supplies `tone` and `appearance`; adding tones cannot change Button's public defaults or Input/Select field parity.
+- [x] Run actual type fixture, typecheck and public import coverage for Button, IconButton and existing tone consumers before marking this incremental contract complete.

@@ -1,0 +1,78 @@
+---
+title: "Dialog"
+scope: "Named modal-dialog façade over existing Modal; reuse the same native lifecycle, context and public visual parts."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# Dialog
+
+## Files
+
+```text
+design-system/components/organisms/Dialog/Dialog.tsx (C)
+design-system/components/organisms/Dialog/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/Dialog.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase-v2/components/Dialog/definition.ts (C)
+features/showcase-v2/components/Dialog/Dialog.example.tsx (C)
+features/showcase-v2/components/Dialog/useDialogExample.ts (C)
+features/showcase-v2/components/Dialog/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [Modal.sc.md](../molecules/Modal.sc.md)
+- [tech-modal-interactions.sc.md](../../hooks/tech-modal-interactions.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Dialog, DialogHeader, DialogBody, DialogFooter, DialogClose } from "@/design-system";
+<Dialog open={open} onOpenChange={setOpen} closeOnOutsideClick><DialogHeader title="Details"/><DialogBody>Details content</DialogBody><DialogFooter><DialogClose>Close</DialogClose></DialogFooter></Dialog>;
+```
+
+## Content
+
+```tsx
+import { Modal } from "../../molecules/Modal";
+import type { ModalProps } from "../../molecules/Modal";
+
+export interface DialogProps extends ModalProps {}
+
+export function Dialog(props: DialogProps) {
+  return <Modal {...props} />;
+}
+```
+
+## Tests
+
+- V2 Record inspection: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Editable local record: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] closeOnOutsideClick defaults to false. When enabled, a primary click beginning and ending outside native dialog bounds requests onOpenChange(false); inside clicks, drag across bounds, canceled pointers, caller-prevented events and nested dialog events do not dismiss. Controlled refusal keeps the dialog open; accepted close restores focus through the existing lifecycle. The option is not forwarded to the DOM.
+
+- [x] Given aliases, there is one DOM dialog and one useModal instance.
+- [x] Given Escape/close rejected by owner, the native dialog remains open.
+- [x] The Parts contract uses DialogHeader/Body/Footer are identity aliases of ModalHeader/Body/Footer.
+- [x] Header/Body/Footer aliases retain identical constructor identities so Modal part validation accepts them.
+- [x] Header title provides accessible name; concise description ids remain caller-owned.
+- [x] Native showModal/close, accepted controlled cancellation, topmost layering and focus return follow useModal.
+- [x] No nonmodal or nested form method=dialog close bypass.
+- [x] Native close remains immediate; aliases/close control do not allocate another presence state.
+
+- [x] Showcase exposes two independently functioning Dialog triggers inside Inline with gap=2: outside dismissal enabled and disabled. It renders no policy checkbox or nested label composition; each dialog restores focus to its own opener.
+
+- [x] V2 **Record inspection**: Compose DialogHeader/Body/Footer with Text and DialogClose for one indexed record; open from a named Button, dismiss visibly or by Escape and return focus through the actual dialog contract.
+- [x] V2 **Editable local record**: Compose DialogBody with Form/FormField/Input and secondary Cancel/primary Save. Native validation prevents invalid save; valid caller submission updates the record and closes, while Cancel discards the draft.
+- [x] The Dialog V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useDialogExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

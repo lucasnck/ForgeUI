@@ -1,0 +1,102 @@
+---
+title: "TreeHeader"
+scope: "Tree public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# TreeHeader
+
+## Files
+
+```text
+features/showcase/examples/TreePartExamples.tsx (C)
+design-system/components/atoms/TreeHeader/TreeHeader.tsx (C)
+design-system/components/atoms/TreeHeader/TreeHeader.module.css (C)
+design-system/components/atoms/TreeHeader/index.ts (C)
+design-system/internal/tree/TreeContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/TreeHeader.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/TreeHeader/useTreeHeader.ts (C)
+features/showcase-v2/components/TreeHeader/definition.ts (C)
+features/showcase-v2/components/TreeHeader/TreeHeader.example.tsx (C)
+features/showcase-v2/components/TreeHeader/useTreeHeaderExample.ts (C)
+features/showcase-v2/components/TreeHeader/usage-code.ts (C)
+features/showcase-v2/components/Tree/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Tree.sc.md](../organisms/Tree.sc.md)
+
+## Contract
+
+```tsx
+import { Tree, TreeBody, TreeHeader } from "@forge-ui/web";
+<Tree label="Resources" nodes={[]}><TreeHeader>Resources</TreeHeader><TreeBody hidden /></Tree>;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; --stack-gap: var(--space-2); padding: var(--space-2); min-inline-size: var(--zero); }
+
+.root[hidden] { display: none; }
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useTreeContext } from "../../../internal/tree/TreeContext";
+import type { TreeHeaderProps } from "./TreeHeader";
+export function useTreeHeader(input: TreeHeaderProps) { useTreeContext(); return input; }
+```
+
+## Content
+
+```tsx
+"use client";
+import type { ComponentPropsWithRef } from "react";
+import { useTreeHeader } from "./useTreeHeader";
+import styles from "./TreeHeader.module.css";
+export interface TreeHeaderProps extends ComponentPropsWithRef<"div"> {}
+export function TreeHeader(input: TreeHeaderProps) { const { className, ...props } = useTreeHeader(input); return <div {...props} className={[styles.root, className].filter(Boolean).join(" ")} />; }
+```
+
+## Tests
+
+- V2 TreeHeader contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Actual browser verification covers nested branch arrows, skipped disabled nodes, collapsed descendant traversal, named all-disabled fallback, and an external Footer collapse that preserves Footer focus.
+
+- `npm run test:overlays` verifies actual React SSR semantics and family guards.
+- `npm run test:hooks` verifies keyboard control and focus repair; browser validation is separate.
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given TreeHeader, Header is a scoped Tree region; provide visible title content with an explicit Heading where a semantic heading is needed.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Header is a scoped Tree region; provide visible title content with an explicit Heading where a semantic heading is needed.
+- [x] No independent state store or route landmark is created.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useTreeHeader is colocated with TreeHeader and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **TreeHeader contextual region**: Render TreeHeader through public Tree with the minimum valid siblings. Use a real Heading or owner title slot with Children/Title text; any decorative icon has an aligned Inline gap="2" row outside heading text. Hide/omit optional siblings only where allowed by the owner; link to the full Tree composition.
+- [x] The TreeHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTreeHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

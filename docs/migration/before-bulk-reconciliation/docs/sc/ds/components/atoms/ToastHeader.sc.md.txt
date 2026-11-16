@@ -1,0 +1,109 @@
+---
+title: "ToastHeader"
+scope: "Toast public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# ToastHeader
+
+## Files
+
+```text
+features/showcase/examples/ToastAtomicExamples.tsx (C)
+../scripts/check-overlays.cjs (M)
+design-system/components/atoms/ToastHeader/ToastHeader.tsx (C)
+design-system/components/atoms/ToastHeader/ToastHeader.module.css (C)
+design-system/components/atoms/ToastHeader/index.ts (C)
+design-system/internal/toast/ToastContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ToastHeader.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/ToastHeader/useToastHeader.ts (C)
+features/showcase-v2/components/ToastHeader/definition.ts (C)
+features/showcase-v2/components/ToastHeader/ToastHeader.example.tsx (C)
+features/showcase-v2/components/ToastHeader/useToastHeaderExample.ts (C)
+features/showcase-v2/components/ToastHeader/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/components/ToastRegion/fixtures.ts (C)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Toast.sc.md](../molecules/Toast.sc.md)
+
+## Contract
+
+```tsx
+import { ToastRegion, Toast, ToastHeader, ToastBody } from "@/design-system";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastHeader>Saved</ToastHeader><ToastBody hidden /></Toast>} />;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; --stack-gap: var(--space-2); min-inline-size: var(--zero); overflow-wrap: anywhere; }
+
+.root[hidden] { display: none; }
+```
+
+## Hooks
+
+```tsx
+"use client";
+import styles from "./ToastHeader.module.css";
+import type { ComponentPropsWithRef } from "react";
+export interface ToastHeaderProps extends ComponentPropsWithRef<"header"> {
+}
+import { useToastHeader } from "./useToastHeader";
+export function ToastHeader(props: ToastHeaderProps) {
+  const view = useToastHeader(props);
+  return <header {...view.props} aria-live="off" role={undefined} className={[styles.root, view.props.className].filter(Boolean).join(" ")}>{view.children}</header>;
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import styles from "./ToastHeader.module.css";
+import type { ComponentPropsWithRef } from "react";
+export interface ToastHeaderProps extends ComponentPropsWithRef<"header"> {
+}
+import { useToastHeader } from "./useToastHeader";
+export function ToastHeader(props: ToastHeaderProps) {
+  const view = useToastHeader(props);
+  return <header {...view.props} aria-live="off" role={undefined} className={[styles.root, view.props.className].filter(Boolean).join(" ")}>{view.children}</header>;
+}
+```
+
+## Tests
+
+- V2 ToastHeader contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Removing or unmounting a record disposes only that record’s lifecycle and timers.
+- Focus/pointer pause does not emit a duplicate live announcement.
+
+## Criteria
+
+- [x] Given ToastHeader, Toast part consumes one nearest Toast context and remains a visual region without a live role.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Header/Body render supplied text; Footer holds caller action and native dismiss button, whose policy stays in ToastRegion.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useToastHeader is colocated with ToastHeader and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] Showcase uses the public ToastRegion renderer and real Toast owner to display only this region, with all required contextual parts hidden and no repeated complete queue playground.
+
+- [x] V2 **ToastHeader contextual region**: Render ToastHeader through ToastRegion renderToast returning public Toast with the minimum valid siblings. Use a real Heading or owner title slot with Children/Title text; any decorative icon has an aligned Inline gap="2" row outside heading text. Hide/omit optional siblings only where allowed by the owner; link to the full Toast composition.
+- [x] The ToastHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useToastHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the ToastRegion fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

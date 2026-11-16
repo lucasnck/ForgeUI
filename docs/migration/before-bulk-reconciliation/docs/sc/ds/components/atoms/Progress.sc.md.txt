@@ -1,0 +1,108 @@
+---
+title: "Progress"
+scope: "Native linear progress for task completion with determinate/indeterminate modes"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Progress
+
+## Files
+
+```text
+design-system/components/atoms/Progress/Progress.tsx (M)
+design-system/components/atoms/Progress/Progress.module.css (M)
+design-system/styles/range-components.module.css (M)
+design-system/components/atoms/Progress/index.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Progress.example.tsx (M)
+features/showcase/examples/control-variations.ts (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Progress/definition.ts (C)
+features/showcase-v2/components/Progress/Progress.example.tsx (C)
+features/showcase-v2/components/Progress/useProgressExample.ts (C)
+features/showcase-v2/components/Progress/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Range indicators](../../helpers/tech-range-indicators.sc.md)
+- [Interactive primitives](../../styles/tech-interactive-primitives.sc.md)
+- [Range indicator recipes](../../styles/tech-range-recipes.sc.md)
+- [Range contracts](../../types/tech-range-contracts.sc.md)
+- [Interactive native controls](../../types/tech-interactive-controls.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Progress } from "@/design-system";
+<Progress label="Upload" value={40} max={100}/>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: progress from "../../../styles/range-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import { RangeTrack } from "../RangeTrack/RangeTrack";
+import { VisuallyHidden } from "../VisuallyHidden";
+import { normalizeProgressRange } from "../../../helpers/range";
+import type { ReactElement } from "react";
+import type { NativeProgressProps, ComponentProgressValueProps, ComponentAccessibleNameProps, ComponentSizedProps, ComponentToneProps, ComponentFullWidthProps, ComponentAnimatedProps, } from "../../../types";
+import styles from "./Progress.module.css";
+export interface ProgressProps extends NativeProgressProps, ComponentProgressValueProps, ComponentAccessibleNameProps, ComponentSizedProps, ComponentToneProps, ComponentFullWidthProps, ComponentAnimatedProps {
+}
+export function Progress({ className, label, value, max, size = "md", tone = "brand", fullWidth = true, animated = true, ...props }: ProgressProps): ReactElement {
+  if (!label.trim()) throw new Error("Progress requires a nonempty accessible label.");
+  const range = normalizeProgressRange(value, max);
+  const ratio = range.value === undefined ? undefined : range.value / range.max;
+  return (<span className={[styles.root, className].filter(Boolean).join(" ")} data-size={size} data-tone={tone} data-full-width={fullWidth || undefined}>
+   <VisuallyHidden>
+  <progress {...props} value={range.value} max={range.max} aria-label={label}/>
+   </VisuallyHidden>
+   <RangeTrack ratio={ratio} animated={animated}/>
+  </span>);
+}
+```
+
+## Tests
+
+- V2 Measured range: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Five sizes, seven tones, widths, zero/midpoint/completed, over/under-range, non-finite and indeterminate modes are demonstrated.
+- [x] Indeterminate omits value; zero remains determinate; label and normalized value match native semantics.
+- [x] Native progress remains usable when browser-specific styling is unsupported.
+- [x] Exactly one Atom registration exists in Showcase; examples cover its supported public capabilities.
+- [x] Lint, type, token and static-export checks pass; canonical interfaces/recipes are reused.
+- [x] Exclude scalar thresholds, polling, timers and automatic live announcements.
+- [x] The Defaults contract uses label nonempty required; size md, tone brand, fullWidth true.
+- [x] The Constraint 1 contract uses max defaults to 100 through canonical normalizer; missing/non-finite value omits native value.
+- [x] The Constraint 2 contract uses Zero is determinate.
+- [x] The Constraint 3 contract uses Native aria-valuetext may supply localized units; no redundant aria-valuenow/min/max.
+- [x] The Constraint 4 contract uses No disabled/loading/shape/appearance axis.
+- [x] Defaults are those in Signature.
+- [x] Native value/max attributes encode data; no runtime width CSS or copied percentage state.
+- [x] Shared recipe owns track scale, browser pseudo-elements and native fallback.
+- [x] The private RangeTrack animates the SVG rect width with --motion-normal and --ease-standard; native value and accessible value text update immediately.
+- [x] No entrance animation is required.
+
+- [x] V2 **Measured range**: Compose a named measurement/range and caller controls using valid min/max/value relationships and supported step/thresholds. Show actual value feedback immediately; only interactive Slider receives editing actions, and progress never fabricates elapsed work.
+- [x] The Progress V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useProgressExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

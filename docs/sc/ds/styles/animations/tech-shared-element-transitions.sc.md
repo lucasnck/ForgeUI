@@ -1,0 +1,80 @@
+---
+title: "Shared element transition recipes"
+scope: "Scoped identity morph timing for matched title, image and status participants"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Shared element transition recipes
+
+## Files
+
+```text
+design-system/styles/animations/shared-element-transitions.module.css (C)
+features/showcase-v2/components/StyleResources/SharedElementRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/SharedElementRecipes/SharedElementRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/SharedElementRecipes/useSharedElementRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/SharedElementRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Page transition contracts](../../types/tech-page-transition-contracts.sc.md)
+- [Design tokens](../tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@forge-ui/web/styles/animations/shared-element-transitions.module.css";
+<span className={styles.participant}>{identity}</span>;
+```
+
+## Styles
+
+```css
+.participant { display: inline-block; max-inline-size: var(--size-full); vertical-align: baseline; }
+:global(html):has(.participant):global(::view-transition-group(.praticar-shared-element)) {
+  animation-duration: var(--motion-normal);
+  animation-timing-function: var(--ease-standard);
+}
+:global(html):has(.participant):global(::view-transition-old(.praticar-shared-element)),
+:global(html):has(.participant):global(::view-transition-new(.praticar-shared-element)) {
+  animation-duration: var(--motion-fast);
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(html):has(.participant):global(::view-transition-group(.praticar-shared-element)),
+  :global(html):has(.participant):global(::view-transition-old(.praticar-shared-element)),
+  :global(html):has(.participant):global(::view-transition-new(.praticar-shared-element)) { animation: none !important; }
+}
+```
+
+## Animations
+
+```text
+praticar-shared-element
+```
+
+## Tests
+
+- V2 Shared record identity: verify its observable state, actual public contract, reset and complete copied code.
+
+- Build the CSS Module and inspect namespaced global pseudo-element arguments under the locally hashed participant anchor.
+- Match title and image independently; interrupt the morph, disable animations, and navigate without a matching origin.
+
+## Criteria
+
+- [x] Native browser geometry interpolation owns matching element movement; no imperative measurements, cloned row DOM, absolute positioning engine or animation library.
+- [x] Namespaced class matches the canonical mapping; no business id is interpolated into a CSS selector.
+- [x] Recipes keep title glyphs readable and image aspect ratio stable; status can participate independently only where both views contain the same semantic status.
+- [x] Never morph a full DataGrid row, native table structure, complete form or loading skeleton into a record.
+- [x] Inline participant span has no added name, role, focus stop or changed heading/link/button semantics; only phrasing content or a native image is accepted by its consuming component.
+- [x] Matched participants require origin and destination in the same transition commit; delayed data cannot retroactively create the lost pair.
+- [x] Shared effect timing consumes existing tokens, respects reduced motion and works without page-direction animation.
+- [x] CSS failure or unsupported ViewTransition is a normal content swap with unchanged semantics and no hidden content.
+
+- [x] V2 **Shared record identity**: Use one stable indexed record in two local regions through SharedElement and the real participant recipe. Trigger the supported transition, disable animation and exercise unavailable-browser fallback without duplicate live transition identities.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

@@ -1,0 +1,238 @@
+---
+title: "CurrencyInput"
+scope: "Controlled exact monetary entry with explicit currency, localized decimal editing and native form validation"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# CurrencyInput
+
+## Files
+
+```text
+design-system/components/molecules/CurrencyInput/CurrencyInput.tsx (C)
+design-system/components/molecules/CurrencyInput/useCurrencyInput.ts (C)
+design-system/components/molecules/CurrencyInput/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/CurrencyInput.example.tsx (C)
+features/showcase/examples/useCurrencyInputExample.ts (C)
+features/showcase/examples/money-example.messages.ts (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-money.cjs (C)
+features/showcase-v2/components/CurrencyInput/definition.ts (C)
+features/showcase-v2/components/CurrencyInput/CurrencyInput.example.tsx (C)
+features/showcase-v2/components/CurrencyInput/useCurrencyInputExample.ts (C)
+features/showcase-v2/components/CurrencyInput/usage-code.ts (C)
+features/showcase-v2/model/specialized-input-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/messages/useShowcaseV2Copy.ts (M)
+features/showcase-v2/components/InputFixtures/HelperResults.tsx (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/components/CurrencyInput/fixtures.ts (C)
+```
+
+## Dependencies
+
+- [Money contracts](../../types/tech-money-contracts.sc.md)
+- [Money helpers](../../helpers/tech-money.sc.md)
+- [Input](../atoms/Input.sc.md)
+- [InputGroup](InputGroup.sc.md)
+- [InputAddon](InputAddon.sc.md)
+- [FormField](FormField.sc.md)
+- [Select](../atoms/Select.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Animation capability](../../types/tech-animation-contracts.sc.md)
+
+## Contract
+
+```tsx
+import {CurrencyInput, FormField} from "@forge-ui/web";
+<FormField controlId="amount" label={amountLabel} hint={currencyHint}>
+  <CurrencyInput id="amount" name="amount" value={amount} onValueChange={setAmount}
+    currency="BRL" locale="pt-BR" invalidMessage={invalidAmountMessage} required />
+</FormField>
+```
+
+```tsx
+import {CurrencyInput, Select} from "@forge-ui/web";
+<Select aria-label={currencyLabel} value={currency} onChange={changeCurrency}>
+  <option value="BRL">BRL</option><option value="USD">USD</option><option value="EUR">EUR</option>
+</Select>
+<CurrencyInput value={amount} onValueChange={setAmount} currency={currency}
+  locale={locale} invalidMessage={invalidAmountMessage} />
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useCallback, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
+import type { ChangeEvent, CompositionEvent, FocusEvent } from "react";
+import type { CurrencyInputProps } from "./CurrencyInput";
+import type { MoneyFormatOptions, MonetaryValue } from "../../../types/money";
+import { isValidMoney, moneyDisplayText, moneyEditText, parseMoneyInput } from "../../../helpers/money";
+
+interface Draft {
+  text: string;
+  baseline: MonetaryValue;
+  expected: MonetaryValue;
+  locale: MoneyFormatOptions["locale"];
+  currency: string;
+  editing: boolean;
+}
+function display(value: MonetaryValue, options: MoneyFormatOptions): string {
+  return value === null || isValidMoney(value, options) ? moneyDisplayText(value, options) : moneyEditText(value, options);
+}
+export function useCurrencyInput(props: CurrencyInputProps) {
+  const { value, onValueChange, currency, locale, allowNegative = true, invalidMessage, onInputStateChange,
+    name: _name, form, ref, onFocus, onBlur, onCompositionStart, onCompositionEnd, disabled, readOnly,
+    invalid, "aria-invalid": ariaInvalid, ...rest } = props;
+  void _name;
+  const options = { currency, locale, allowNegative };
+  const input = useRef<HTMLInputElement | null>(null);
+  const composing = useRef(false);
+  const composedText = useRef<string | null>(null);
+  const [draft, setDraft] = useState<Draft>(() => ({ text: display(value, options), baseline: value,
+    expected: value, locale, currency, editing: false }));
+  // A genuinely external value wins immediately; an accepted edit keeps its native caret.
+  const external = value !== draft.baseline && value !== draft.expected;
+  const text = external ? display(value, options) : draft.text;
+  const previousState = parseMoneyInput(text, { currency, locale: draft.locale, allowNegative });
+  const partial = previousState.kind === "incomplete" || previousState.kind === "invalid";
+  const parseOptions = { currency, locale: partial ? draft.locale : locale, allowNegative };
+  const presentationChanged = !partial && (draft.locale !== locale || draft.currency !== currency);
+  const shownText = external ? display(value, options) : presentationChanged
+    ? (draft.editing ? moneyEditText(value, options) : display(value, options)) : text;
+  if (external || presentationChanged) {
+    setDraft({ text: shownText, baseline: value, expected: value, locale, currency, editing: draft.editing });
+  }
+  const state = parseMoneyInput(shownText, parseOptions);
+  const ownedInvalid = state.kind === "invalid" || state.kind === "incomplete";
+  const canonicalValue = value !== null && /^-0(?:\.0+)?$/.test(value) ? value.slice(1) : value;
+  useImperativeHandle(ref, () => input.current!, []);
+  useLayoutEffect(() => { input.current?.setCustomValidity(ownedInvalid ? invalidMessage : ""); }, [ownedInvalid, invalidMessage, shownText]);
+  const setInput = useCallback((node: HTMLInputElement | null) => { input.current = node; }, []);
+  function process(next: string) {
+    if (disabled || readOnly) return;
+    const activeOptions = partial ? parseOptions : options;
+    const result = parseMoneyInput(next, activeOptions);
+    const expected = result.kind === "valid" || result.kind === "empty" ? result.value : value;
+    setDraft({ text: next, baseline: value, expected, locale: activeOptions.locale, currency, editing: true });
+    onInputStateChange?.(result);
+    if ((result.kind === "valid" || result.kind === "empty") && result.value !== value) onValueChange(result.value);
+  }
+  function change(event: ChangeEvent<HTMLInputElement>) {
+    if (event.defaultPrevented || event.nativeEvent.defaultPrevented || disabled || readOnly) return;
+    const next = event.currentTarget.value;
+    if (composing.current) {
+      setDraft({ text: next, baseline: value, expected: value, locale: draft.locale, currency, editing: true });
+      return;
+    }
+    if (composedText.current === next) { composedText.current = null; return; }
+    composedText.current = null;
+    process(next);
+  }
+  function focus(event: FocusEvent<HTMLInputElement>) {
+    onFocus?.(event);
+    if (event.defaultPrevented || disabled || readOnly) return;
+    const current = parseMoneyInput(shownText, parseOptions);
+    const next = current.kind === "invalid" || current.kind === "incomplete" ? shownText : moneyEditText(value, options);
+    setDraft({ text: next, baseline: value, expected: value, locale, currency, editing: true });
+  }
+  function blur(event: FocusEvent<HTMLInputElement>) {
+    onBlur?.(event);
+    if (event.defaultPrevented || disabled || readOnly) return;
+    const result = parseMoneyInput(shownText, parseOptions);
+    const validDraft = result.kind === "valid" || result.kind === "empty";
+    // Refused edits commit the authoritative prop. Invalid text is never silently erased.
+    const next = validDraft ? display(value, options) : shownText;
+    setDraft({ text: next, baseline: value, expected: value, locale: validDraft ? locale : parseOptions.locale, currency, editing: false });
+  }
+  function compositionStart(event: CompositionEvent<HTMLInputElement>) {
+    onCompositionStart?.(event);
+    if (!event.defaultPrevented && !disabled && !readOnly) composing.current = true;
+  }
+  function compositionEnd(event: CompositionEvent<HTMLInputElement>) {
+    onCompositionEnd?.(event);
+    composing.current = false;
+    if (event.defaultPrevented || disabled || readOnly) return;
+    composedText.current = event.currentTarget.value;
+    process(event.currentTarget.value);
+  }
+  return { canonicalValue, state, inputProps: { ...rest, form, disabled, readOnly, ref: setInput,
+    type: "text" as const, inputMode: "decimal" as const, value: shownText,
+    invalid: ownedInvalid ? true : invalid, "aria-invalid": ariaInvalid,
+    onChange: change, onFocus: focus, onBlur: blur, onCompositionStart: compositionStart, onCompositionEnd: compositionEnd } };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import { Input } from "../../atoms/Input";
+import { InputGroup } from "../InputGroup";
+import { InputAddon } from "../InputAddon";
+import type { NativeCurrencyInputProps, MonetaryValue, MoneyInputResult, CurrencyCode } from "../../../types/money";
+import type { Locale } from "@/lib/contracts/preferences";
+import type { VisualProps, ComponentFullWidthProps, ComponentInvalidProps } from "../../../types/component-capabilities";
+import type { ComponentAnimatedProps } from "../../../types/animation";
+import { useCurrencyInput } from "./useCurrencyInput";
+
+export interface CurrencyInputProps extends NativeCurrencyInputProps, VisualProps,
+  ComponentFullWidthProps, ComponentInvalidProps, ComponentAnimatedProps {
+  value: MonetaryValue;
+  onValueChange(value: MonetaryValue): void;
+  currency: CurrencyCode;
+  locale: Locale;
+  allowNegative?: boolean;
+  invalidMessage: string;
+  onInputStateChange?(state: MoneyInputResult): void;
+}
+export function CurrencyInput(props: CurrencyInputProps) {
+  const view = useCurrencyInput(props);
+  return <InputGroup fullWidth={props.fullWidth} leading={<InputAddon>{props.currency}</InputAddon>}>
+    <Input {...view.inputProps} />
+    <input type="hidden" name={props.name} form={props.form} value={view.canonicalValue ?? ""} disabled={props.disabled} />
+  </InputGroup>;
+}
+```
+
+## Tests
+
+- V2 Exact monetary entry: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Type, replace a selection, delete, paste formatted amounts, use arrows/Home/End, compose IME and blur without caret jumps or duplicate callbacks.
+- Verify empty versus zero, decimal separator and negative prefixes, JPY zero-scale and KWD three-scale, forbidden negatives and excessive precision.
+- Test a parent that accepts and one that rejects a controlled value update; prop/locale/currency updates emit no corrective onValueChange.
+- Verify required/invalid submission, name/form ownership, disabled omission, readOnly inclusion, ref to visible input, Enter submission and caller-prevented events.
+- Switch locale or currency while focused with a partial draft, and test external record replacement and two independent instances.
+
+## Criteria
+
+- [x] The molecule composes InputGroup, noninteractive InputAddon containing the currency code, and one visible Input. Currency selection is a separately composed Select owned by the caller; fixed-currency entry requires no dropdown.
+- [x] `useCurrencyInput` is the colocated view hook called at render top. It owns edit draft, composition, validity, refs and handlers and delegates formatting/parsing to the shared helper. It never imports rendered components or application i18n providers.
+- [x] Value is always controlled, with null for empty. onValueChange emits a canonical major-unit string or null once per accepted semantic edit; prop updates do not emit it. Incomplete/invalid text stays visible and is reported through onInputStateChange without overwriting the last accepted value with zero/null.
+- [x] Input uses type=text and inputMode=decimal. While editing it shows the locale decimal text without continuously reinserting grouping or moving the caret; blur formats a valid amount with grouping, retaining the separate currency code addon. No cents-shifting digit mask is assumed.
+- [x] Empty and incomplete `-`/decimal/trailing separator are distinct states. Blur never erases invalid text, silently rounds precision or pretends the previous accepted value is the user's current valid draft. Disabled/readOnly never commit owned edits.
+- [x] Currency precision derives from Intl. BRL/USD/EUR allow two fractional places, JPY zero and KWD three. Too many places are visibly invalid rather than silently modified; business min/max and pricing rules remain caller-owned.
+- [x] Locale and currency are explicit. On a locale change the current valid amount reformats without a value callback; an active partial draft keeps its original parsing locale until blur or explicit reset. A currency change preserves the major-unit amount and surfaces incompatible precision; no exchange conversion occurs.
+- [x] Controlled external value replacement wins and clears stale draft/error. A refused edit returns to the authoritative value at commit/blur. IME completion parses once; caller events run first and preventDefault blocks owned work where cancelable.
+- [x] Visible input owns id/ref, label/hint/error relationships, required, focus, readOnly, disabled and customValidity. invalidMessage supplies localized syntax/precision/negative feedback; required empty uses native required validation. Incomplete/invalid drafts block native submit and expose aria-invalid alongside the caller's invalid state.
+- [x] Native FormData contains only the canonical value under the caller name, never currency symbols or grouping. Use one disabled-aware hidden named field and an unnamed visible editor; honor external form association on both. Invalid visible drafts block submission even though the last accepted hidden value remains available. Currency is submitted separately only if the caller names its Select/hidden field.
+- [x] Required value "0" is valid. Whitespace, NaN, Infinity, exponent text, malformed grouping and foreign currency paste never become a different valid amount by stripping arbitrary characters.
+- [x] Native form reset follows controlled ownership: caller updates value; the component does not silently reset external state. No FormProvider, registration DTO, exchange API, library or source-wide input migration is introduced.
+- [x] Showcase independently illustrates fixed BRL/USD/EUR/JPY/KWD, empty/zero/negative, invalid precision, readOnly/disabled/required and valid canonical submission feedback, with proper FormField spacing and label association.
+- [x] Showcase also composes Select + CurrencyInput + CurrencyValue with locale and currency controls. It shows the canonical string beside the localized preview and explicitly states that changing currency is not conversion. Same-locale formatted paste and blur/caret behavior receive a targeted browser check.
+- [x] Existing visual/token/focus/motion behavior is inherited from Input/InputGroup. The addon is not independently focusable; a localized label or hint identifies currency without depending solely on its symbol.
+
+- [x] Edit parsing/normalization remains internal to the helper and view hook. Public callers use formatters/validators for display and checks; no public parsers service, normalization callback or business-rule parser is added. Existing rich draft state callbacks remain available for component feedback.
+
+- [x] V2 **Exact monetary entry**: Compose FormField with canonical decimal caller state and valid currency/locale controls; edit/clear and compare presentation changes without silently changing the business amount.
+- [x] The CurrencyInput V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useCurrencyInputExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] V2 supporting fixture **Exact money formatting** in the CurrencyInput example uses the actual [helper contract](../../helpers/tech-money.sc.md): Compare actual formatter/validator outputs for exact decimal string 1234.56 and boundary inputs with explicit currency/locale; keep exact values separate from presentation and native edit state. Computed output is an explicit typed-fixture exception to generic Children text; it is not a new prop or helper page.

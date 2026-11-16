@@ -1,0 +1,168 @@
+---
+title: "FormFieldAutocomplete"
+scope: "Autocomplete composed with accessible field feedback and caller-owned React Hook Form state"
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# FormFieldAutocomplete
+
+## Files
+
+```text
+design-system/components/organisms/Form/FormFieldAutocomplete/FormFieldAutocomplete.tsx (C)
+design-system/components/organisms/Form/FormFieldAutocomplete/useFormFieldAutocomplete.ts (C)
+design-system/components/organisms/Form/FormFieldAutocomplete/index.ts (C)
+design-system/components/organisms/Form/index.ts (M)
+design-system/index.ts (M)
+design-system/types/form-field-organisms.ts (M)
+design-system/types/index.ts (M)
+design-system/types/forms.test.ts (M)
+../scripts/check-form-field-adapters.cjs (C)
+../scripts/fixtures/form-field-adapters.tsx (C)
+../scripts/fixtures/form-adapter-upload.txt (C)
+```
+
+## Dependencies
+
+- [Autocomplete](../../molecules/Autocomplete.sc.md)
+- [FormField](../../molecules/FormField.sc.md)
+- [Form registration types](../../../types/tech-form-field-organisms.sc.md)
+- [React Hook Form integration](../../../../tech-react-hook-form.sc.md)
+
+## Contract
+
+```tsx
+import { FormFieldAutocomplete } from "@forge-ui/web";
+
+<FormFieldAutocomplete<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  options={options}
+  listboxLabel={suggestionsLabel}
+/>;
+```
+
+## Hooks
+
+```ts
+"use client";
+import { useId } from "react";
+
+import { useFormContext, useController } from "react-hook-form";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type { FormFieldAutocompleteProps } from "./FormFieldAutocomplete";
+
+export function useFormFieldAutocomplete<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>({
+  id,
+  name,
+  label,
+  hint,
+  error: displayedError,
+  required,
+  disabled: callerDisabled,
+  ...inputProps
+}: FormFieldAutocompleteProps<TValues, TName>) {
+  const generatedId = useId();
+  const methods = useFormContext<TValues>();
+  if (!methods) throw new Error("FormFieldAutocomplete requires FormProvider.");
+  const disabled = callerDisabled || methods.formState.disabled;
+  const { field, fieldState } = useController({ control: methods.control, name, disabled });
+  const value: unknown = field.value;
+  if (typeof value !== "string") throw new Error("FormFieldAutocomplete requires string defaults.");
+  const error = fieldState.error;
+  const message =
+    displayedError ?? (typeof error?.message === "string" ? error.message : undefined);
+
+  return {
+    controlId: id ?? generatedId,
+    label,
+    hint,
+    required,
+    disabled,
+    message,
+    invalid: Boolean(error) || Boolean(displayedError),
+    inputProps,
+    binding: {
+      name: field.name,
+      ref: field.ref,
+      onBlur: field.onBlur,
+      query: value,
+      onQueryChange: field.onChange,
+    },
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type {
+  FormFieldAutocompleteControlProps,
+  FormFieldRegistrationProps,
+} from "../../../../types";
+
+export interface FormFieldAutocompleteProps<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>
+  extends FormFieldAutocompleteControlProps, FormFieldRegistrationProps<TValues, TName> {}
+
+import { Autocomplete } from "../../../molecules/Autocomplete";
+import { AutocompleteBody } from "../../../molecules/AutocompleteBody";
+import { FormField } from "../../../molecules/FormField";
+import { useFormFieldAutocomplete } from "./useFormFieldAutocomplete";
+
+export function FormFieldAutocomplete<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>(props: FormFieldAutocompleteProps<TValues, TName>) {
+  const view = useFormFieldAutocomplete(props);
+
+  return (
+    <FormField controlId={view.controlId} label={view.label} hint={view.hint} error={view.message}>
+      <Autocomplete
+        {...view.inputProps}
+        {...view.binding}
+        id={view.controlId}
+        disabled={view.disabled}
+        invalid={view.invalid}
+        aria-required={view.required || undefined}
+      >
+        <AutocompleteBody />
+      </Autocomplete>
+    </FormField>
+  );
+}
+```
+
+## Tests
+
+- `npm run test:form-adapters`: real React Hook Form SSR composition, independent IDs, provider failures, native defaults and unsupported readonly modes.
+- Valid nested string field paths compile; unknown or incompatible paths and competing registration props fail typechecking.
+- User changes update the field once; blur marks touched, invalid submit focuses the visible control, and an error without a message still sets invalid state.
+- Initial defaults, reset, setValue, disabled submission and conditional unmount follow the provider policy without cross-form ID/value leakage.
+- Verify the Autocomplete-specific value and interaction scenarios in the acceptance criteria, including SSR and a targeted browser check for the actual focus target and native/compound behavior.
+
+## Criteria
+
+- [x] Use one caller-owned FormProvider and preserve FormFieldInput's organization: a named generic Props interface, a colocated useFormFieldAutocomplete view hook called at the top of render, and existing DS presentation. No nested useForm, feature APIs or RHF imports in atoms/molecules.
+- [x] Restrict name to FieldPathByValue for the declared form input type, including nested paths. Keep native/presentation adapter interfaces in design-system/types/form-field-organisms.ts, exported through the type barrel; component-local Props extend those canonical interfaces and FormFieldRegistrationProps.
+- [x] Implement the useController channel for Autocomplete; the registered input type is `string`.
+- [x] Bind query/onQueryChange to the single string RHF field, default "". Autocomplete stores free text (the accepted option label), not the option value; do not turn it into Combobox.
+- [x] Compose the required AutocompleteBody inside the existing Autocomplete owner. FormField labels the input, so omit a competing AutocompleteHeader label by default; preserve optional popup naming and existing descriptions.
+- [x] Keyboard/pointer acceptance updates RHF once and keeps existing popup behavior; arbitrary query text is a valid field input unless rejected by the caller schema. Options/filtering and data requests are caller-owned.
+- [x] RHF owns value/defaultValue, name, change/blur, disabled and registration ref. Do not expose competing channels or register the same field twice. Schema/resolver validation, transforms, localization and submission remain caller-owned.
+- [x] Preserve exact-field errors, including invalid state without a string message and an explicitly supplied translated error. Merge external and mounted hint/error description IDs once; label the actual focus target or group and keep generated IDs independent between forms.
+- [x] Forward RHF focus to the actual editable control or enabled option, never a hidden input, decorative wrapper or non-focusable fieldset. Reset, setValue, dirty/touched and conditional unmount follow the caller's RHF policy.
+- [x] FormView integration uses the explicit renderer kind specified below and strictly typed per-kind metadata. Both form and fields modes preserve caller-owned submission and reject incompatible schema inputs at compile time. Use `kind="autocomplete"`.
+- [x] Use existing visual recipes and primitive behavior without new CSS or popup/selection/mask implementations. Retain supported native and visual capabilities; do not spread unsupported readOnly or fullWidth props onto a primitive.
+- [x] Support deterministic static rendering without browser globals at module evaluation. The component and renderer kind are exported and documented in the availability catalog after verification.
+- [x] Format only task-touched supported files using .prettierrc.json and .prettierignore, apply ESLint fixes only to touched JS/TS files, rerun read-only formatting/lint checks, typechecks and relevant established form/control tests before DONE.
+

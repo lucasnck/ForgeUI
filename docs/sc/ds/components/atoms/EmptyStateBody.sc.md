@@ -1,0 +1,120 @@
+---
+title: "EmptyStateBody"
+scope: "EmptyState public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# EmptyStateBody
+
+## Files
+
+```text
+../scripts/check-static-components.cjs (C)
+design-system/components/atoms/EmptyStateBody/EmptyStateBody.tsx (C)
+design-system/components/atoms/EmptyStateBody/EmptyStateBody.module.css (C)
+design-system/components/atoms/EmptyStateBody/index.ts (C)
+design-system/internal/emptystate/EmptyStateContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/EmptyStateBody.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/EmptyStateBody/useEmptyStateBody.ts (C)
+features/showcase-v2/components/EmptyStateBody/definition.ts (C)
+features/showcase-v2/components/EmptyStateBody/EmptyStateBody.example.tsx (C)
+features/showcase-v2/components/EmptyStateBody/useEmptyStateBodyExample.ts (C)
+features/showcase-v2/components/EmptyStateBody/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [EmptyState.sc.md](../molecules/EmptyState.sc.md)
+
+## Contract
+
+```tsx
+import { EmptyState, EmptyStateBody } from "@forge-ui/web";
+<EmptyState><EmptyStateBody>Description</EmptyStateBody></EmptyState>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useEmptyStateContext } from "../../../internal/emptystate/EmptyStateContext";
+import type { EmptyStateBodyProps } from "./EmptyStateBody";
+
+export function useEmptyStateBody(input: EmptyStateBodyProps) {
+  const { children, className, ...props } = input;
+  const context = useEmptyStateContext();
+  return { children, className, props, context };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import { useEmptyStateBody } from "./useEmptyStateBody";
+import styles from "./EmptyStateBody.module.css";
+
+export interface EmptyStateBodyProps extends ComponentPropsWithRef<"div"> {}
+
+export function EmptyStateBody(props: EmptyStateBodyProps) {
+  const view = useEmptyStateBody(props);
+  return (
+    <div {...view.props} className={[styles.root, view.className].filter(Boolean).join(" ")} >
+      {view.children}
+    </div>
+  );
+}
+```
+
+## Tests
+
+- V2 EmptyStateBody contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server rendering forwards native attributes/classes and produces deterministic semantic regions.
+- Missing required Body, duplicate/unknown regions and orphan contextual parts fail clearly.
+- Optional Header/Footer add no empty wrapper; Header IDs stay scoped.
+
+## Criteria
+
+- [x] Given EmptyStateBody, Body is a scoped EmptyState region; render content without owning business state.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Body is a scoped EmptyState region; render content without owning business state.
+- [x] No independent state store or route landmark is created.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useEmptyStateBody is colocated with EmptyStateBody and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **EmptyStateBody contextual region**: Render EmptyStateBody through public EmptyState with the minimum valid siblings. Show Text children="Children" or the actual owner-generated options/records, preserving required siblings and owner semantics. Hide/omit optional siblings only where allowed by the owner; link to the full EmptyState composition.
+- [x] The EmptyStateBody V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useEmptyStateBodyExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

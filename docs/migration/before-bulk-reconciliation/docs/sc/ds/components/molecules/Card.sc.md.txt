@@ -1,0 +1,179 @@
+---
+title: "Card"
+scope: "Presentation-only Card with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Card
+
+## Files
+
+```text
+features/showcase-v2/components/Card/usage-code.ts (C)
+features/showcase-v2/components/Card/definition.ts (C)
+features/showcase-v2/components/Card/Card.example.tsx (C)
+features/showcase-v2/components/Card/useCardExample.ts (C)
+features/showcase/examples/Card.example.tsx (M)
+features/showcase/examples/CardContentExamples.tsx (C)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/molecules/Card/Card.tsx (M)
+../scripts/check-static-components.cjs (M)
+```
+
+## Dependencies
+
+- [Inline](../atoms/Inline.sc.md)
+
+- [Divider](../atoms/Divider.sc.md)
+- [Icon](../atoms/Icon.sc.md)
+- [Heading](../atoms/Heading.sc.md)
+- [Avatar](../atoms/Avatar.sc.md)
+- [CardFooter](../atoms/CardFooter.sc.md)
+- [CardBody](../atoms/CardBody.sc.md)
+- [CardHeader](../atoms/CardHeader.sc.md)
+- [Compound part collection](../../helpers/tech-compound-parts.sc.md)
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Surface.sc.md](../atoms/Surface.sc.md)
+- [Button.sc.md](../atoms/Button.sc.md)
+- [Native control recipes](../../styles/tech-native-control-recipes.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Layout contracts](../../types/tech-layout-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter, Button } from "@/design-system";
+<Card><CardHeader>Record title</CardHeader><CardBody>Record description</CardBody><CardFooter><Button>Open</Button></CardFooter></Card>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  min-inline-size: var(--zero);
+  inline-size: fit-content;
+  max-inline-size: var(--size-full);
+  color: var(--color-text-default);
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useId } from "react";
+import type { CardProps } from "./Card";
+
+export function useCard(input: CardProps) {
+  const { children, className, elevation = "raised", shape, fullWidth = true, ...props } = input;
+  const titleId = useId();
+  return { children, className, props, titleId, elevation, shape, fullWidth };
+}
+```
+
+## Content
+
+```ts
+"use client";
+
+import { createContext, useContext } from "react";
+
+export interface CardContextValue { titleId?: string; }
+export const CardContext = createContext<CardContextValue | null>(null);
+
+export function useCardContext() {
+  const context = useContext(CardContext);
+  if (!context) throw new Error("Card parts must be rendered inside Card.");
+  return context;
+}
+```
+
+```tsx
+"use client";
+
+import type { NativeSectionRootProps } from "../../../types/collection-contracts";
+import type { ComponentChildrenProps } from "../../../types/compound-composition";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { CardContext } from "../../../internal/card/CardContext";
+import { CardHeader } from "../../atoms/CardHeader";
+import { CardBody } from "../../atoms/CardBody";
+import { CardFooter } from "../../atoms/CardFooter";
+import { Surface } from "../../atoms/Surface";
+import type { ComponentShapeProps, ComponentFullWidthProps } from "../../../types/component-capabilities";
+import type { ComponentElevation } from "../../../types/layout";
+import { useCard } from "./useCard";
+import styles from "./Card.module.css";
+
+export interface CardProps extends NativeSectionRootProps, ComponentChildrenProps, ComponentShapeProps, ComponentFullWidthProps {
+  elevation?: ComponentElevation;
+}
+
+export function Card(props: CardProps) {
+  const view = useCard(props);
+  const parts = collectCompoundParts(view.children, { header: CardHeader, body: CardBody, footer: CardFooter }, ["body"]);
+  return (
+    <CardContext value={{ titleId: parts.header ? view.titleId : undefined }}>
+      <Surface
+        as="article"
+        elevation={view.elevation}
+        shape={view.shape}
+        data-full-width={view.fullWidth || undefined}
+        {...view.props}
+        className={[styles.root, view.className].filter(Boolean).join(" ")}
+        gap="0"
+        aria-labelledby={parts.header ? view.titleId : undefined}
+      >
+        {parts.header}
+        {parts.body}
+        {parts.footer}
+      </Surface>
+    </CardContext>
+  );
+}
+```
+
+## Tests
+
+- Verify the named V2 Card scenario, actual public owner/parts, property documentation and independent reset.
+
+- Server rendering forwards native attributes/classes and produces deterministic semantic regions.
+- Missing required Body, duplicate/unknown regions and orphan contextual parts fail clearly.
+- Optional Header/Footer add no empty wrapper; Header IDs stay scoped.
+
+## Criteria
+
+- [x] Given nested actions, each action is independently keyboard operable.
+- [x] The elevation / fullWidth / shape contract uses raised / true / inherited.
+- [x] The children contract uses Required Body; optional Header/Footer.
+- [x] Native actions live inside Body/Footer, preserving independent keyboard semantics.
+- [x] Use Card for self-contained article content; generic nonarticle panels use Surface.
+- [x] Do not infer a clickable panel or wrap nested buttons in a single anchor.
+- [x] No media loader, data fetch or business record shape.
+- [x] useCard is colocated with Card and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] All three public parts provide their own internal spacing; the Card root has no additional inter-region gap or duplicate outer content padding.
+
+- [x] The primary Showcase demonstrates complete text, icon/divider/image and avatar/profile compositions using actual Header, Body and Footer identities.
+
+- [x] Elevation, shape and width examples are separated from the primary compositions rather than multiplying complete Cards into a Cartesian product.
+
+- [x] Targeted browser checks verify padded regions, local image loading, decorative icons/avatar semantics, independent actions and no page-wide overflow at narrow widths.
+
+- [x] The Complete card example uses direct Header/Body/Footer parts. Header composes Icon and Heading in Inline gap="2" align="center". Body contains Text with Children. Footer uses Inline gap="2" justify="end" with secondary Cancel and primary Save, localized semantic labels and separate onCancel/onSave counters.
+- [x] The Body-only card example renders Card with CardBody only; controls toggle optional Header/Footer without removing required Body. Controls expose actual elevation, shape and fullWidth values and reset restores initial composition.
+- [x] Properties document native section inheritance, children, elevation, shape and fullWidth. Resources identify accepted parts, required Body, single-part constraints, canonical Header/Body/Footer ordering and context-owned accessible labeling.
+- [x] The complete Card example lives in the Card entry; individual part pages link to this aggregator and demonstrate their own contracts without copying the complete preview.
+- [x] V2 uses real public exports and colocated example view logic; reset restores local controls and feedback, and V1 remains unchanged.
+
+- [x] Each V2 scenario includes minimal copyable TSX in the catalog format: public imports and direct JSX with valid owner/parts; application-owned values and callbacks remain external, without wrapper components, hook bodies or showcase dependencies.
+
+- [x] The V2 base preview and minimal usage snippet preserve meaningful spacing, action hierarchy and visible dismissal where applicable; browser validation includes the reported visual states.

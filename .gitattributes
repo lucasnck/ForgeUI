@@ -1,0 +1,6 @@
+* text=auto
+*.sh text eol=lf
+# Preserve extracted bytes and the SHA-256 evidence across Windows/Linux clones.
+docs/** -text
+web/** -text
+showcase/** -text

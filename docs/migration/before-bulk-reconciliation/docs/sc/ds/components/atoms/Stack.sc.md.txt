@@ -1,0 +1,123 @@
+---
+title: "Stack"
+scope: "Vertical rhythm between sibling blocks with token-backed gap and alignment"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Stack
+
+## Files
+
+```text
+design-system/components/static-components.contracts.test.ts (C)
+../scripts/check-static-components.cjs (C)
+design-system/index.ts (M)
+design-system/components/atoms/Stack/Stack.tsx (M)
+design-system/components/atoms/Stack/Stack.module.css (M)
+design-system/components/atoms/Stack/index.ts (M)
+features/showcase/examples/Stack.example.tsx (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Stack/definition.ts (C)
+features/showcase-v2/components/Stack/Stack.example.tsx (C)
+features/showcase-v2/components/Stack/useStackExample.ts (C)
+features/showcase-v2/components/Stack/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Layout contracts](../../styles/tech-layout.sc.md)
+- [Layout contracts](../../types/tech-layout-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Stack, Text } from "@/design-system";
+<Stack gap="3">
+ <Text as="p">{lead}</Text>
+ <Text as="p" tone="muted">{hint}</Text>
+</Stack>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import { createElement } from "react";
+﻿import type { HTMLAttributes, RefAttributes } from "react";
+import type {
+  ComponentAlignProps,
+  ComponentSpaceProps,
+  LayoutElement,
+} from "../../../types/layout";
+import styles from "./Stack.module.css";
+
+export interface StackProps
+  extends HTMLAttributes<HTMLElement>, RefAttributes<HTMLElement>,
+    ComponentSpaceProps,
+    ComponentAlignProps {
+  as?: LayoutElement;
+}
+
+export function Stack({
+  as = "div",
+  gap,
+  padding,
+  align,
+  className,
+  ...props
+}: StackProps) {
+  const Element = as;
+  return createElement(Element, {
+    ...props,
+    "className": [styles.root, className].filter(Boolean).join(" "),
+    "data-gap": gap,
+    "data-padding": padding,
+    "data-align": align,
+  });
+}
+```
+
+## Tests
+
+- V2 Composed content layout: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given no props, the rendered element is `div` with the recipe class and no `data-*` attribute; the recipe resolves gap `--space-4` and stretch alignment.
+- [x] Given each `ComponentSpace` value for `gap` or `padding`, the matching attribute is rendered and the recipe resolves that token.
+- [x] Given each `ComponentAlign` value, the attribute is rendered and the cross-axis alignment follows it.
+- [x] Given `as="ul"`, the element keeps list semantics and the children remain the list items.
+- [x] Given a `className`, it is appended without replacing the recipe classes; native attributes and events pass through.
+- [x] Given the migrated Showcase modules and `FormField`, vertical layout composes the shared stack recipe and preserves the declared rhythm; nested containers resolve their own defaults.
+- [x] Given the module CSS, only the `composes` rule appears.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens` and `npm run test:design-system` pass.
+- [x] Includes the rendered element choice through a constrained `as` prop.
+- [x] Excludes horizontal arrangement ([Inline](Inline.sc.md)), grid arrangement ([SimpleGrid](SimpleGrid.sc.md)), breakpoint behavior, and every visual surface concern such as background, border or elevation ([Surface](Surface.sc.md)).
+- [x] The gap contract uses 4; `ComponentSpace`; resolves to the matching `--space-*` token.
+- [x] The padding contract uses undefined; `ComponentSpace`; applied to the container, absent means none.
+- [x] The align contract uses stretch; `ComponentAlign`; cross-axis alignment of the children.
+- [x] The as contract uses div; One of `LayoutElement`.
+- [x] Native attributes, events and `className` pass through.
+- [x] `data-gap`, `data-padding` and `data-align` are rendered only for the values the caller passes.
+- [x] The component declares no spacing value: the recipe resolves `--stack-gap`, `--stack-padding` and `--stack-align` from the attributes, and the documented defaults come from the recipe fallbacks.
+- [x] Component-local CSS: `src/design-system/components/atoms/Stack/Stack.module.css`.
+- [x] The recipe owns direction, gap, alignment, padding and the per-value selectors.
+- [x] The module declares no spacing, colour or layout value of its own.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Composed content layout**: Compose Heading, Text and an Inline action row; controls change only supported gap/padding/size/elevation settings for this component, preserving readable gutters and hierarchy.
+- [x] The Stack V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useStackExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

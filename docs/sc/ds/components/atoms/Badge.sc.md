@@ -1,0 +1,89 @@
+---
+title: "Badge"
+scope: "Present a noninteractive count or short status label"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Badge
+
+## Files
+
+```text
+design-system/components/atoms/Badge/Badge.tsx (M)
+design-system/components/atoms/Badge/Badge.module.css (M)
+design-system/components/atoms/Badge/index.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Badge.example.tsx (M)
+features/showcase/examples/control-variations.ts (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Badge/definition.ts (C)
+features/showcase-v2/components/Badge/Badge.example.tsx (C)
+features/showcase-v2/components/Badge/useBadgeExample.ts (C)
+features/showcase-v2/components/Badge/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Status primitives](../../styles/tech-status-primitives.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { Badge } from "@forge-ui/web";
+<Badge tone="success" appearance="solid">Active</Badge>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: compact from "../../../styles/status-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes, ReactElement } from "react";
+import type { VisualProps, ComponentFullWidthProps, } from "../../../types";
+import styles from "./Badge.module.css";
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement>, VisualProps, ComponentFullWidthProps {
+}
+export function Badge({ children, className, size = "md", tone = "brand", appearance = "soft", shape, fullWidth = false, ...props }: BadgeProps): ReactElement {
+  return (<span {...props} className={[styles.root, className].filter(Boolean).join(" ")} data-size={size} data-tone={tone} data-appearance={appearance} data-shape={shape} data-full-width={fullWidth || undefined}>
+   {children}
+  </span>);
+}
+```
+
+## Tests
+
+- V2 Status marker: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Five sizes, seven tones, six appearances, three shapes, widths, zero/count and long labels are demonstrated.
+- [x] Badge renders zero and text without adding interactive semantics or default announcements.
+- [x] Exactly one Atom registration exists in Showcase; examples cover its supported public capabilities.
+- [x] Lint, type, token and static-export checks pass; canonical interfaces/recipes are reused.
+- [x] Consumer owns content/meaning; no implicit live announcement, selection or navigation.
+- [x] The Defaults contract uses size md, tone brand, appearance soft, fullWidth false; inherited shared shape.
+- [x] The Constraint 1 contract uses Children renders text/numeric zero without truthiness filtering.
+- [x] The Constraint 2 contract uses Native role/aria-live are caller-owned, absent by default.
+- [x] The Constraint 3 contract uses Variant/loading/disabled unsupported; appearance is the canonical visual axis.
+- [x] Defaults are those in Signature.
+- [x] No focusable role or custom palette.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Status marker**: Compose Badge children="Children" with Text in Inline gap="2"; supported tone/appearance controls change presentation without inventing click behavior.
+- [x] The Badge V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useBadgeExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

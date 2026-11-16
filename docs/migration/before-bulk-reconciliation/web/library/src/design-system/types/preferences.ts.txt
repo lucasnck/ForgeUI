@@ -1,0 +1,2 @@
+export type Theme = "light" | "dark" | "contrast" | "liquid-glass";
+export type Locale = "pt-BR" | "en-US";

@@ -1,0 +1,133 @@
+---
+title: "CardFooter"
+scope: "Card public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# CardFooter
+
+## Files
+
+```text
+features/showcase-v2/components/CardFooter/usage-code.ts (C)
+features/showcase-v2/components/CardFooter/definition.ts (C)
+features/showcase-v2/components/CardFooter/CardFooter.example.tsx (C)
+features/showcase-v2/components/CardFooter/useCardFooterExample.ts (C)
+design-system/components/atoms/CardFooter/CardFooter.module.css (M)
+features/showcase/examples/CardFooter.example.tsx (M)
+features/showcase/examples/CardContentExamples.tsx (C)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+```
+
+## Dependencies
+
+- [Text](Text.sc.md)
+- [Stack](Stack.sc.md)
+- [Inline](Inline.sc.md)
+- [Button](Button.sc.md)
+- [Divider](Divider.sc.md)
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Card.sc.md](../molecules/Card.sc.md)
+
+## Contract
+
+```tsx
+import { Card, CardBody, CardFooter, Divider, Button } from "@forge-ui/web";
+
+<Card aria-label="Footer actions"><CardBody hidden /><CardFooter><Divider /><Button onClick={confirm}>Confirm</Button></CardFooter></Card>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useCardContext } from "../../../internal/card/CardContext";
+import type { CardFooterProps } from "./CardFooter";
+
+export function useCardFooter(input: CardFooterProps) {
+  const { children, className, ...props } = input;
+  const context = useCardContext();
+  return { children, className, props, context };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import { useCardFooter } from "./useCardFooter";
+import styles from "./CardFooter.module.css";
+
+export interface CardFooterProps extends ComponentPropsWithRef<"footer"> {}
+
+export function CardFooter(props: CardFooterProps) {
+  const view = useCardFooter(props);
+  return (
+    <footer {...view.props} className={[styles.root, view.className].filter(Boolean).join(" ")} >
+      {view.children}
+    </footer>
+  );
+}
+```
+
+## Tests
+
+- Verify the named V2 CardFooter scenario, actual public owner/parts, property documentation and independent reset.
+
+- Server rendering forwards native attributes/classes and produces deterministic semantic regions.
+- Missing required Body, duplicate/unknown regions and orphan contextual parts fail clearly.
+- Optional Header/Footer add no empty wrapper; Header IDs stay scoped.
+
+## Criteria
+
+- [x] Given CardFooter, Footer is a scoped Card region; render optional caller actions/messages without adding a live role.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Footer is a scoped Card region; render optional caller actions/messages without adding a live role.
+- [x] No independent state store or route landmark is created.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useCardFooter is colocated with CardFooter and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] The footer owns token-backed internal padding and spacing between its message, separator and actions.
+
+- [x] Atomic examples illustrate informational text and working confirm/cancel actions, each with and without a composed Divider.
+
+- [x] Each footer preview uses a real Card owner with the required Body hidden and no Header; actions retain native keyboard behavior and independent counters.
+
+- [x] Native hidden remains authoritative even though the region composes the shared Stack display recipe.
+
+- [x] The Right-aligned actions example uses a full-width real Card, hidden required Body and no Header. CardFooter composes Inline gap="2" align="center" justify="end" with secondary Cancel and primary Save Buttons. Localized semantic labels are intentional; independent onCancel/onSave counters remain outside the surface.
+- [x] Properties document native footer attributes and children; resources identify the Card owner, optional Footer and its composition. The complete Card preview is linked rather than duplicated.
+- [x] V2 uses real public exports and colocated example view logic; reset restores local controls and feedback, and V1 remains unchanged.
+
+- [x] Each V2 scenario includes minimal copyable TSX in the catalog format: public imports and direct JSX with valid owner/parts; application-owned values and callbacks remain external, without wrapper components, hook bodies or showcase dependencies.
+
+- [x] The V2 base preview and minimal usage snippet preserve meaningful spacing, action hierarchy and visible dismissal where applicable; browser validation includes the reported visual states.

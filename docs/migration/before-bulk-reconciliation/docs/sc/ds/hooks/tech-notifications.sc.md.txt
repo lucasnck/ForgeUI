@@ -1,0 +1,261 @@
+---
+title: "Notification queue and announcements"
+scope: "Own scoped toast queues, optional timeouts and a single announcement path; preserve application-independent messages."
+status: "DONE"
+type: "hook"
+ds-level: "none"
+---
+
+# Notification queue and announcements
+
+
+
+## Files
+
+```text
+design-system/hooks/notifications/useToastRegion.ts (C)
+design-system/hooks/notifications/useToast.ts (C)
+design-system/hooks/notifications/budgets.ts (C)
+design-system/hooks/notifications/index.ts (C)
+design-system/internal/notifications/NotificationContext.ts (C)
+design-system/index.ts (M)
+features/showcase-v2/components/HookResources/useToastRegion/definition.ts (C)
+features/showcase-v2/components/HookResources/useToastRegion/useToastRegion.example.tsx (C)
+features/showcase-v2/components/HookResources/useToastRegion/useToastRegionResourceExample.ts (C)
+features/showcase-v2/components/HookResources/useToastRegion/usage-code.ts (C)
+features/showcase-v2/components/HookResources/useToast/definition.ts (C)
+features/showcase-v2/components/HookResources/useToast/useToast.example.tsx (C)
+features/showcase-v2/components/HookResources/useToast/useToastResourceExample.ts (C)
+features/showcase-v2/components/HookResources/useToast/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Notification contracts](../types/tech-notification-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { useToastRegion } from "@/design-system";
+const { records, dismiss } = useToastRegion({ defaultRecords: [], onRecordsChange });
+```
+
+## Content
+
+```ts
+// design-system/hooks/notifications/budgets.ts
+import type { ToastRecord } from "../../types/notifications";
+
+export const NOTIFICATION_BUDGETS = { short: 5000, long: 10000 } as const;
+
+export function notificationBudget(record: ToastRecord): number | null {
+  if (record.action !== null && record.action !== undefined && record.action !== false) return null;
+  return record.duration === undefined || record.duration === "persistent"
+    ? null : NOTIFICATION_BUDGETS[record.duration];
+}
+```
+
+```ts
+// design-system/hooks/notifications/useToastRegion.ts
+"use client";
+
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
+import type { ToastPauseReason, ToastRecord, ToastRegionContract, ToastRegionOptions } from "../../types/notifications";
+import { notificationBudget } from "./budgets";
+
+type Registration = { root: RefObject<HTMLElement | null>; action: RefObject<HTMLElement | null> };
+
+export function useToastRegion(options: ToastRegionOptions): ToastRegionContract {
+  const [local, setLocal] = useState<readonly ToastRecord[]>(options.defaultRecords ?? []);
+  const records = options.records ?? local;
+  const ids = records.map((record) => record.id);
+  if (ids.some((id) => !id.trim()) || new Set(ids).size !== ids.length) {
+    throw new Error("Toast record ids must be nonempty and unique.");
+  }
+  const [announcement, setAnnouncement] = useState<ToastRegionContract["announcement"]>(null);
+  const [pauseVersion, setPauseVersion] = useState(0);
+  const reasons = useRef(new Set<ToastPauseReason>());
+  const remaining = useRef(new Map<string, number>());
+  const expired = useRef(new Set<string>());
+  const seen = useRef(new Map<string, string>());
+  const initialized = useRef(false);
+  const sequence = useRef(0);
+  const registry = useRef(new Map<string, Registration>());
+  const origins = useRef(new Map<string, HTMLElement>());
+  const focusedRecord = useRef<string | null>(null);
+  const latest = useRef({ options, records });
+  useLayoutEffect(() => { latest.current = { options, records }; });
+
+  const request = useCallback((next: readonly ToastRecord[]): void => {
+    if (latest.current.options.records === undefined) {
+      latest.current.records = next;
+      setLocal(next);
+    }
+    latest.current.options.onRecordsChange?.(next);
+  }, []);
+  const dismiss = useCallback((id: string): void => {
+    const current = latest.current.records;
+    if (!current.some((record) => record.id === id)) return;
+    request(current.filter((record) => record.id !== id));
+  }, [request]);
+  const pause = useCallback((reason: ToastPauseReason): void => {
+    if (reasons.current.has(reason)) return;
+    reasons.current.add(reason);
+    setPauseVersion((version) => version + 1);
+  }, []);
+  const resume = useCallback((reason: ToastPauseReason): void => {
+    if (!reasons.current.delete(reason)) return;
+    setPauseVersion((version) => version + 1);
+  }, []);
+
+  useEffect(() => {
+    const ids = records.map((record) => record.id);
+    const signatures = new Map(records.map((record) => [record.id, JSON.stringify([record.title, record.message, record.urgency ?? "normal"])]));
+    const added = records.filter((record) => seen.current.get(record.id) !== signatures.get(record.id));
+    if (initialized.current) {
+      const active = document.activeElement;
+      if (active instanceof HTMLElement) {
+        for (const record of added) {
+          if (!seen.current.has(record.id) && !origins.current.has(record.id)) origins.current.set(record.id, active);
+        }
+      }
+    }
+    if (initialized.current && added.length) setAnnouncement({
+      sequence: ++sequence.current,
+      messages: added.map((record) => ({
+        text: [record.title, record.message].filter(Boolean).join(". "),
+        urgency: record.urgency ?? "normal",
+      })),
+    });
+    for (const id of seen.current.keys()) {
+      if (ids.includes(id)) continue;
+      if (focusedRecord.current === id) {
+        const previousIds = [...seen.current.keys()];
+        const position = previousIds.indexOf(id);
+        const candidates = [...previousIds.slice(position + 1), ...previousIds.slice(0, position).reverse(), ...ids];
+        const next = candidates.filter((candidate) => ids.includes(candidate)).map((candidate) => registry.current.get(candidate)?.action.current)
+          .find((element) => element?.isConnected);
+        const origin = origins.current.get(id);
+        const fallback = latest.current.options.fallbackRef?.current;
+        focusedRecord.current = null;
+        if (!next) resume("focus");
+        (next ?? (origin?.isConnected ? origin : fallback?.isConnected ? fallback : null))?.focus();
+      }
+      origins.current.delete(id);
+      remaining.current.delete(id);
+      expired.current.delete(id);
+    }
+    seen.current = signatures;
+    initialized.current = true;
+    // A new authoritative records snapshot permits another request. Merely
+    // pausing or rerendering an unchanged rejected queue does not.
+    expired.current.clear();
+  }, [records, resume]);
+
+  useEffect(() => {
+    const onVisibility = () => document.hidden ? pause("document-hidden") : resume("document-hidden");
+    onVisibility();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, [pause, resume]);
+
+  useEffect(() => {
+    const timers: { id: string; started: number; timer: ReturnType<typeof setTimeout> }[] = [];
+    const budgets = remaining.current;
+    for (const record of records) {
+      const budget = notificationBudget(record);
+      if (budget === null) { remaining.current.delete(record.id); continue; }
+      if (!remaining.current.has(record.id)) remaining.current.set(record.id, budget);
+      if (reasons.current.size || expired.current.has(record.id)) continue;
+      const started = Date.now();
+      const timer = setTimeout(() => {
+        expired.current.add(record.id);
+        remaining.current.set(record.id, 0);
+        dismiss(record.id);
+      }, remaining.current.get(record.id));
+      timers.push({ id: record.id, started, timer });
+    }
+    return () => {
+      for (const { id, started, timer } of timers) {
+        clearTimeout(timer);
+        budgets.set(id, Math.max(0, (budgets.get(id) ?? 0) - (Date.now() - started)));
+      }
+    };
+  }, [records, pauseVersion, dismiss]);
+
+  const registerRecord = useCallback<ToastRegionContract["registerRecord"]>((id, root, action) => {
+      const registration = { root, action };
+      registry.current.set(id, registration);
+      const element = root.current;
+      const onFocus = () => { focusedRecord.current = id; };
+      const onBlur = (event: FocusEvent) => {
+        if (event.relatedTarget && !element?.contains(event.relatedTarget as Node)) focusedRecord.current = null;
+      };
+      element?.addEventListener("focusin", onFocus);
+      element?.addEventListener("focusout", onBlur);
+      return () => {
+        element?.removeEventListener("focusin", onFocus);
+        element?.removeEventListener("focusout", onBlur);
+        if (registry.current.get(id) === registration) registry.current.delete(id);
+      };
+  }, []);
+  return {
+    records, announcement, dismiss, pause, resume, registerRecord,
+    add(record) {
+      if (!record.id.trim() || latest.current.records.some((current) => current.id === record.id)) {
+        throw new Error("Toast record ids must be nonempty and unique.");
+      }
+      const active = document.activeElement;
+      if (active instanceof HTMLElement) origins.current.set(record.id, active);
+      request([...latest.current.records, record]);
+    },
+  };
+}
+```
+
+```ts
+// design-system/hooks/notifications/useToast.ts
+"use client";
+
+import { useContext } from "react";
+import { NotificationContext } from "../../internal/notifications/NotificationContext";
+
+export function useToast() {
+  const context = useContext(NotificationContext);
+  if (!context) throw new Error("useToast must be used inside ToastRegion.");
+  return context;
+}
+```
+
+## Tests
+
+- V2 Scoped queue operations: verify its observable state, actual public contract, reset and complete copied code.
+- V2 Scoped producer: verify its observable state, actual public contract, reset and complete copied code.
+
+- Persistent notifications and notifications with actions have no timeout.
+- Short and long notifications consume the specified semantic budget.
+- Hover, focus and hidden document pause and resume the remaining budget.
+- A rejected controlled dismissal is not repeated by an expired timer.
+- Exactly one live channel announces each addition; adding does not move focus.
+- Removing a focused record repairs focus and unmount cancels timers.
+
+## Criteria
+
+- [x] Given a message, exactly one live channel announces it once; animated pixels do not repeat it.
+- [x] Given focus/hover/document hidden, timeout pauses with remaining budget.
+- [x] Given an action, the toast stays persistent until explicit dismissal.
+- [x] The records / defaultRecords contract uses undefined / [].
+- [x] The duration / urgency contract uses persistent / normal.
+- [x] The short / long contract uses 5000 / 10000 milliseconds in hooks/notifications/budgets.ts; semantic notification budgets, not animation durations.
+- [x] The Interactive action contract uses Persistent regardless of requested transient duration.
+- [x] Never move focus on adding a toast; dismissing a focused toast moves to the next available region action or a connected recorded origin.
+- [x] No persistence, backend event bus or business severity policy.
+- [x] Controlled owners may reject changes; no optimistic queue removal or repeated timeout request until props change.
+
+- [x] V2 **Scoped queue operations**: Use the real region hook add/dismiss methods for indexed notification records; updates use caller-owned controlled records, not an invented update method or duplicate add; display queue identity and real callback arguments. Compare supported timeout/pause behavior and clear timers on reset/unmount.
+- [x] V2 **Scoped producer**: Mount a producer inside a public ToastRegion and call its real returned methods; enqueue/dismiss a named indexed toast and observe the shared queue, not a separately simulated notification state.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

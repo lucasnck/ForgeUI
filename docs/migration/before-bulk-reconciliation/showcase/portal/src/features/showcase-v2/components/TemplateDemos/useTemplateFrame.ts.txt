@@ -1,0 +1,16 @@
+"use client";
+import { useLocale } from "@/infrastructure/i18n";
+import { useTheme } from "@/infrastructure/theme";
+
+export function useTemplateFrame(
+  template: string,
+  scenario: string,
+  properties: Readonly<Record<string, unknown>>,
+) {
+  const { locale } = useLocale();
+  const { resolvedTheme } = useTheme();
+  const query = new URLSearchParams({ locale, theme: resolvedTheme });
+  for (const [name, value] of Object.entries(properties))
+    if (typeof value === "string" || typeof value === "boolean") query.set(name, String(value));
+  return "/design-system-v2/demos/templates/" + template + "/" + scenario + "/?" + query.toString();
+}

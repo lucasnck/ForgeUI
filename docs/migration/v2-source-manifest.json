@@ -1,0 +1,88 @@
+{
+  "source": "PraticarFront in AiWorkspace Google Drive",
+  "date": "2026-11-14",
+  "runtimeMigratedComponentDemos": 13,
+  "libraryExportedComponents": 22,
+  "cataloguedComponents": 221,
+  "cataloguedResources": 33,
+  "files": [
+    {
+      "target": "web/library/src/design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.tsx",
+      "sourceFileId": "11WeV0Y3Kgh51XhDostRFN270mfzffVUC",
+      "targetSha256": "65d21801471564a166437062b08fc75d21d4ea1e98e5fba2b82cdcb67263fe5f",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/molecules/ThemeSelector/ThemeSelector.tsx",
+      "sourceFileId": "1MG_qNEeBxrb_Am1d3aCPjuWNOdeO08YE",
+      "targetSha256": "b841976d59d62d6bcb90d6e24788488bb0e346a31b2558c4314f5f2fb68b0c30",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/molecules/LocaleSelector/LocaleSelector.tsx",
+      "sourceFileId": "1OX_FHOLgtmUqOgLZpspTdkMlBLqhRAvL",
+      "targetSha256": "22a7d2c266618c19aeda5d2fbc6738521aba707962e839251ac837f12c403812",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/atoms/Option/Option.tsx",
+      "sourceFileId": "1BUSqkuw7tPKoVmStHlZn8t6tjwlU5szy",
+      "targetSha256": "84bf9ab2174ae451179a58f126f7dc9e8c8436f3f32b62c32e4dfd2056c99f50",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/atoms/Select/Select.tsx",
+      "sourceFileId": "1u9r80XceY75ZgMbu8xdyEFP849vYBhj5",
+      "targetSha256": "a2562f95ff031fb787a38bed1fdd2b60a1d9668b1559c7e268dc4d96822250e4",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/atoms/Stack/Stack.tsx",
+      "sourceFileId": "1FNIxy4nkgCGOCLPj8duouZabPmtH2zpS",
+      "targetSha256": "8fba9a8b2496af88d9b9b5612d05fa690d073290423d547bafd087687fa3e9d1",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/atoms/Link/Link.tsx",
+      "sourceFileId": "1qX8hf4tt1SWETdQ46s585KNAJNvLNA2q",
+      "targetSha256": "e40439d5b1bb2c1f4863363e38fc03b3dbf0fae679ebf0ed63b48b682d38cce4",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/atoms/Inline/Inline.tsx",
+      "sourceFileId": "1-0cks1XzqqSAjc1UmE5JnJ1Lae4Xz6eQ",
+      "targetSha256": "9e0496386ac8d1cd91121d578e73dbc1152ad6665d73a97d896f0f4d586bdc20",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "web/library/src/design-system/components/atoms/Container/Container.tsx",
+      "sourceFileId": "1WYM-SLEZFCQlQXrIJxcIwVm-W4a9P-ig",
+      "targetSha256": "ce4095bd8935beb0b4baa772f43fb8c0761c8cc01125f7c1e76ffe0fa1c62d6e",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "showcase/portal/src/features/showcase-v2/components/ShowcaseV2Page/ShowcaseV2Page.tsx",
+      "sourceFileId": "1t45VmZrjkSikWOGTBeieJqQmojWU23tv",
+      "targetSha256": "b08673f685f4cc2574494fd640be1eb01a544dba8ee4a3855ab938625837b896",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "showcase/portal/src/features/showcase-v2/components/ShowcaseV2Navigation/ShowcaseV2Navigation.tsx",
+      "sourceFileId": "1P6bULx6TQSCf8o15nBo3OVNQYvX5jd-6",
+      "targetSha256": "2fb93b34ff03334913c40129818e557e98e0609ab14decce93c0b30909a41c45",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "showcase/portal/src/features/showcase-v2/model/showcase-v2-index.ts",
+      "sourceFileId": "1NLnaLCkBKvZaOV_HXyEp5ObjPqUzDnVA",
+      "targetSha256": "79f3b1b8268352dff30fb3d231063a7f3fbc60446943a5e811750c6bcc1aef65",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    },
+    {
+      "target": "showcase/portal/src/features/showcase-v2/model/showcase-v2-resources.ts",
+      "sourceFileId": "1I9x8ovpjiqZcj6RPCmL8lPT8VmNPOLvu",
+      "targetSha256": "6547028c1b47398ef10dd3e2fd6e95ebac2d78536553eddb9d2a5db2426cd8b3",
+      "note": "Ported from PraticarFront, check corresponding SC and diff for adaptations"
+    }
+  ]
+}

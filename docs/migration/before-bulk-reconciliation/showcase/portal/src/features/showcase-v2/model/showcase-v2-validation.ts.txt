@@ -1,0 +1,116 @@
+import type { ShowcaseV2Definition, ShowcaseV2IndexEntry } from "./showcase-v2.types";
+
+function requireText(value: unknown, field: string) {
+  if (typeof value !== "string" || !value.trim()) throw new Error(`Showcase V2 requires ${field}`);
+}
+
+function unique(values: readonly string[], field: string) {
+  if (new Set(values).size !== values.length) throw new Error(`Showcase V2 duplicate ${field}`);
+}
+
+export function validateShowcaseV2Index(
+  entries: readonly ShowcaseV2IndexEntry[],
+  loaderSlugs: readonly string[],
+) {
+  unique(
+    entries.map((entry) => entry.slug),
+    "slugs",
+  );
+  unique(
+    entries.map((entry) => entry.name),
+    "names",
+  );
+  unique(loaderSlugs, "loaders");
+
+  for (const entry of entries) {
+    requireText(entry.name, "name");
+    requireText(entry.specification, "specification");
+    if (!/^[a-z][a-z0-9-]*$/.test(entry.slug)) throw new Error("Showcase V2 invalid slug");
+    if (!["atoms", "molecules", "organisms", "templates"].includes(entry.level))
+      throw new Error("Showcase V2 invalid level");
+    if (!loaderSlugs.includes(entry.slug))
+      throw new Error(`Showcase V2 missing loader: ${entry.slug}`);
+  }
+
+  if (loaderSlugs.length !== entries.length)
+    throw new Error("Showcase V2 index/loader coverage mismatch");
+}
+
+export function validateShowcaseV2Definition(
+  definition: ShowcaseV2Definition,
+  entry: ShowcaseV2IndexEntry,
+) {
+  for (const key of ["slug", "name", "level", "specification"] as const) {
+    if (definition[key] !== entry[key]) throw new Error(`Showcase V2 metadata mismatch: ${key}`);
+  }
+
+  requireText(definition.description, "description");
+
+  if (
+    !Array.isArray(definition.examples) ||
+    definition.examples.length < (entry.level === "organisms" ? 2 : 1)
+  ) {
+    throw new Error("Showcase V2 requires named use scenarios");
+  }
+
+  unique(
+    definition.examples.map((example) => example.id),
+    "example IDs",
+  );
+
+  for (const example of definition.examples) {
+    requireText(example.id, "example ID");
+    requireText(example.title, "example title");
+    requireText(example.description, "example description");
+    requireText(example.code, "example code");
+    if (typeof example.Component !== "function")
+      throw new Error("Showcase V2 requires an example component");
+  }
+
+  for (const key of ["properties", "methods", "events", "features"] as const) {
+    if (!Array.isArray(definition[key])) throw new Error(`Showcase V2 requires ${key}`);
+  }
+
+  unique(
+    definition.properties.map((prop) => prop.name),
+    "property names",
+  );
+
+  for (const prop of definition.properties) {
+    for (const key of ["name", "type", "description", "source"] as const)
+      requireText(prop[key], `property ${key}`);
+
+    if (
+      typeof prop.required !== "boolean" ||
+      (prop.defaultValue !== null && typeof prop.defaultValue !== "string")
+    ) {
+      throw new Error("Showcase V2 invalid property contract");
+    }
+  }
+
+  for (const methods of [definition.methods, definition.events]) {
+    unique(
+      methods.map((method) => method.name),
+      "method/event names",
+    );
+
+    for (const method of methods) {
+      for (const key of ["name", "signature", "description"] as const)
+        requireText(method[key], key);
+    }
+  }
+
+  unique(
+    definition.features.map((feature) => feature.id),
+    "feature IDs",
+  );
+
+  for (const feature of definition.features) {
+    for (const key of ["id", "name", "description"] as const)
+      requireText(feature[key], `feature ${key}`);
+  }
+
+  if (definition.demoHref && !definition.demoHref.startsWith("/design-system-v2/demos/")) {
+    throw new Error("Showcase V2 demo must target a registered local flow");
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "stage": 8,
+  "date": "2026-11-14",
+  "state": "SOURCE_COPIED_AND_ADAPTED_NOT_BUILT",
+  "originProject": "PraticarFront",
+  "targetProject": "ForgeUI",
+  "component": "AspectRatio",
+  "sourceFiles": {
+    "libraryTSX": "1jEqdxm09B-ZYre4YMGcpn22ioiilDkIC",
+    "libraryCSS": "1HhDv8MEAZldy4nUFrSMr0fE1WnjGjPa3",
+    "libraryIndex": "1K5ZI_6KT_R95fKT0B06imPwgiuYOnIXJ",
+    "definition": "1DEHu-v18KVb90aP3pRmQKn2fM7Kj8Izs",
+    "example": "1oHl9jgyWnBJJW6Ucn1ZVTSXtqtDnfo85",
+    "hook": "1jgJ3EIFWwKOw11oKhh3jw6qeEjSFfdU5",
+    "snippet": "11lj0OfrqxzxnmM_8egYJYkP2rG-JoYj1"
+  },
+  "adaptations": [
+    "AspectRatio TSX/CSS/index copied without change.",
+    "Example/hook/snippet adapted to @forge-ui/web.",
+    "Original image asset /images/showcase/accordion-landscape.svg replaced by local gradient fixture to avoid broken asset.",
+    "OriginalDefinitionPage and loader registered AspectRatio.",
+    "Public API adds AspectRatio and ComponentAspectRatio types."
+  ],
+  "copiedSpecs": [
+    {
+      "name": "InputBase",
+      "destFileId": "1DY_ys13QypdScOH80gSmrdPMEybc-WfI"
+    },
+    {
+      "name": "FieldHint",
+      "destFileId": "1j9jHd3MWuV2ISuqw1n5DX63fnvpYRFRC"
+    },
+    {
+      "name": "FieldError",
+      "destFileId": "1RJaqr-4Asq_3cc6gpuA_zdGOAvPNt99T"
+    },
+    {
+      "name": "Progress",
+      "destFileId": "1Wl2Plq3E2YCg0tuTzxxpdaoRzXjylpes"
+    },
+    {
+      "name": "Slider",
+      "destFileId": "1PuBwYRdWFLATJ-W3I9WeFR_9wnwMNxGp"
+    },
+    {
+      "name": "AspectRatio",
+      "destFileId": "1P_bwrFq8BrO8TFfb8wLoJBa748hWGz1f"
+    },
+    {
+      "name": "Accordion",
+      "destFileId": "19GQ63hyYHesoI5pkqXK6W7gWNwA8i8rV"
+    },
+    {
+      "name": "Tabs",
+      "destFileId": "1ckdinxjfqHAbOrvrYJLbfHagHwO9ugAY"
+    },
+    {
+      "name": "List",
+      "destFileId": "1s3X8HFsCo6HCkdvhLIBZUgVhSvoi4Qct"
+    },
+    {
+      "name": "FormField",
+      "destFileId": "1oEJyZoUz8dgU_ZcF3Q6nm0ymRtMEENGR"
+    }
+  ],
+  "verification": [
+    "Source imports inspected manually",
+    "No checkout-wide build/typecheck/browser tests performed; coverage generator must run after Drive checkout"
+  ],
+  "sourceSha256": {
+    "libraryTSX": "9b9856cc77ac8da6b164c5b80b6ddddc98c8a41cc7d4897c64032a68aa847c69",
+    "libraryCSS": "350a2d0c492e3b3ba447fba149c4f7ff006162bfef8ab7e3f86f1940a04cf9c2",
+    "libraryIndex": "238037c78c4a59d4b791179f50f3c3311cf969c9455ccd91fe179b783ef05fa0",
+    "definition": "3fbebfdea2fd95604513b3cb00e99096120f8f77c84089391c9c4f62f9f9fb57",
+    "example": "a794e8a7c01238ac571b261eaf3c09e4df74cd662a6db7b5560babaec72f57fb",
+    "hook": "c8cc74f087f9111bd6e2c561b826cece5983f8d6e5626a1400c43d9f0d071cb4",
+    "snippet": "ac5b90f7eaee89400018143f7cb92a339475d1c616c455a438c6ece839dbecdf"
+  },
+  "generatedFileSha256": {
+    "OriginalDefinitionPage.tsx": "53098c2d47bc0019c852d82d00ae1fb16fd73a277f47c7c187b393d92381ad99",
+    "STATUS.md": "3b6ffa7a7d5fefd03c184c503bfbf55e67c77d37254bf248dde7852e57c75160",
+    "useAspectRatioExample.ts": "a0ee035e949f0638102362b5d772add732c727fa2ae41971106072c1a3c56d8a",
+    "usage-code.ts": "5b91e3971ac2794ecc9c3111a0d677eb94a692bcaec5b9706dfa4d4c10ab5f5d",
+    "index.ts": "e23d71b46a80a69570487f0fe1de33865790bfadd12e76b6af196a2e578a961f",
+    "AspectRatio.example.tsx": "1102da55e55431216601d5f0490d68fc89cc06f22c7bd682b036539c9da0da0c",
+    "PLAN.md": "8727bd346ec2452165f63c00200b94458326f5870083a9c7327506edee0124ea",
+    "showcase-v2-live-loaders.ts": "6c189d167000fa4611899c9352e2d2fc04ac4b294f6b61863bdc2424c8f04be8",
+    "AspectRatio.example.module.css": "099b94a620cb922c096a4c153af9060bdd8f206717960f98cbb229e1b1d24034"
+  }
+}

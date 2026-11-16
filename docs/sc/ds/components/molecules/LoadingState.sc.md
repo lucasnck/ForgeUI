@@ -1,0 +1,164 @@
+---
+title: "LoadingState"
+scope: "Presentation-only LoadingState with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# LoadingState
+
+## Files
+
+```text
+design-system/components/molecules/LoadingState/LoadingState.module.css (M)
+features/showcase/examples/LoadingState.example.tsx (M)
+features/showcase/examples/LoadingStateContentExamples.tsx (C)
+features/showcase/examples/useLoadingStateExampleCopy.ts (C)
+features/showcase/examples/LoadingStateExamples.module.css (C)
+features/showcase-v2/components/LoadingState/definition.ts (C)
+features/showcase-v2/components/LoadingState/LoadingState.example.tsx (C)
+features/showcase-v2/components/LoadingState/useLoadingStateExample.ts (C)
+features/showcase-v2/components/LoadingState/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Compound part collection](../../helpers/tech-compound-parts.sc.md)
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Spinner.sc.md](../atoms/Spinner.sc.md)
+
+## Contract
+
+```tsx
+import { Button, Heading, LoadingState, LoadingStateHeader, LoadingStateBody, LoadingStateFooter, Text } from "@forge-ui/web";
+
+<LoadingState label="Loading records">
+  <LoadingStateHeader><Heading level={4}>Loading content</Heading></LoadingStateHeader>
+  <LoadingStateBody><Text as="p">Lorem ipsum dolor sit amet.</Text></LoadingStateBody>
+  <LoadingStateFooter><Button onClick={requestCancellation}>Cancel</Button></LoadingStateFooter>
+</LoadingState>
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  padding: var(--space-3);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useId } from "react";
+import type { LoadingStateProps } from "./LoadingState";
+
+export function useLoadingState(input: LoadingStateProps) {
+  const { children, className, label, ...props } = input;
+  const titleId = useId();
+  if (!label.trim()) throw new Error("LoadingState requires a localized label.");
+  return { children, className, props, titleId, label };
+}
+```
+
+## Content
+
+```ts
+"use client";
+
+import { createContext, useContext } from "react";
+
+export interface LoadingStateContextValue { titleId?: string; label: string; }
+export const LoadingStateContext = createContext<LoadingStateContextValue | null>(null);
+
+export function useLoadingStateContext() {
+  const context = useContext(LoadingStateContext);
+  if (!context) throw new Error("LoadingState parts must be rendered inside LoadingState.");
+  return context;
+}
+```
+
+```tsx
+"use client";
+
+import type { NativeSectionRootProps } from "../../../types/collection-contracts";
+import type { ComponentChildrenProps } from "../../../types/compound-composition";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { LoadingStateContext } from "../../../internal/loadingstate/LoadingStateContext";
+import { LoadingStateHeader } from "../../atoms/LoadingStateHeader";
+import { LoadingStateBody } from "../../molecules/LoadingStateBody";
+import { LoadingStateFooter } from "../../atoms/LoadingStateFooter";
+import { useLoadingState } from "./useLoadingState";
+import styles from "./LoadingState.module.css";
+
+export interface LoadingStateProps extends NativeSectionRootProps, ComponentChildrenProps {
+  label: string;
+}
+
+export function LoadingState(props: LoadingStateProps) {
+  const view = useLoadingState(props);
+  const parts = collectCompoundParts(view.children, { header: LoadingStateHeader, body: LoadingStateBody, footer: LoadingStateFooter }, ["body"]);
+  return (
+    <LoadingStateContext value={{ titleId: parts.header ? view.titleId : undefined, label: view.label }}>
+      <section
+        {...view.props}
+        className={[styles.root, view.className].filter(Boolean).join(" ")}
+        data-gap="2"
+        aria-busy={undefined}
+        aria-live={undefined}
+        role={undefined}
+        aria-labelledby={parts.header ? view.titleId : undefined}
+      >
+        {parts.header}
+        {parts.body}
+        {parts.footer}
+      </section>
+    </LoadingStateContext>
+  );
+}
+```
+
+## Tests
+
+- V2 Composed feedback: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server rendering forwards native attributes/classes and produces deterministic semantic regions.
+- Missing required Body, duplicate/unknown regions and orphan contextual parts fail clearly.
+- Optional Header/Footer add no empty wrapper; Header IDs stay scoped.
+- Header-only and Footer-only compositions retain a real required Body with hidden; Body-only compositions omit optional Header/Footer.
+- Additional Body children occupy a full-width content wrapper while Spinner and localized status label remain a single announcement.
+- Only Body owns its status/alert announcement; Footer controls stay outside the live content.
+
+## Criteria
+
+- [x] Given reduced motion, Spinner is static and current label remains announced.
+- [x] The label contract uses Required localized loading description.
+- [x] Body composes one decorative Spinner plus role=status text from label.
+- [x] No timeout, fake completion or automatic data fetch.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+
+- [x] Root owns --space-3 padding and --space-2 separation; child regions do not duplicate the root padding.
+- [x] The complete Showcase composes public Header/Body/Footer and keeps optional actions outside the loading live region.
+- [x] Explicit hidden attributes continue to hide flex regions; hidden required context does not leak a visible spinner or loading label into part previews.
+- [x] Dedicated example copy covers pt-BR, es and en without changing DS public APIs or the shared example dictionary.
+- [x] Integrated visual verification confirms padding, atomic isolation, image sizing and narrow-width layout in the running Showcase.
+
+- [x] V2 **Composed feedback**: Compose public Header/Body/Footer with Heading/Text and a meaningful localized Create/Retry/Cancel/Review action as appropriate; a local caller state shows its outcome and the owner retains announcement/loading semantics.
+- [x] The LoadingState V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useLoadingStateExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

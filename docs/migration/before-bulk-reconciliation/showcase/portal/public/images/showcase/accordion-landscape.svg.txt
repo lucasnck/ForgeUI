@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Paisagem ilustrada">
+<rect width="160" height="160" fill="#c7d9e9"/><circle cx="119" cy="44" r="23" fill="#f5d18b"/>
+<path d="M0 126 52 59l44 54 29-35 35 44v38H0Z" fill="#4d7687"/>
+<path d="M0 143 62 94l42 35 24-15 32 24v22H0Z" fill="#284d60"/>
+</svg>

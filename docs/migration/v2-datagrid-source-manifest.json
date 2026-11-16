@@ -1,0 +1,251 @@
+{
+  "source_project": "PraticarFront",
+  "date": "2026-11-14",
+  "files": [
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Icon/Icon.tsx",
+      "target": "web/library/src/design-system/components/atoms/Icon/Icon.tsx",
+      "sha256": "d04c71f2961dc50c711be86fb9611aad769bd4ecfb5af0c368840a61022e1d99",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Icon/Icon.module.css",
+      "target": "web/library/src/design-system/components/atoms/Icon/Icon.module.css",
+      "sha256": "93b24c5010d14eb21f4b0f3bbd8ddeb0237c22508fd16a4572a0718ddf83af63",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/types/icon.ts",
+      "target": "web/library/src/design-system/types/icon.ts",
+      "sha256": "fdb4efffae9b474bbae99513d3fe10fc9f1999a524209aa5b14133e9f78769c3",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/types/icon-geometry.ts",
+      "target": "web/library/src/design-system/types/icon-geometry.ts",
+      "sha256": "145ab2fca7a18b0a28cde799cca7af4c3ef8dfc70bbf04638f36c4ae73bdfd4c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/helpers/icon-data.generated.ts",
+      "target": "web/library/src/design-system/helpers/icon-data.generated.ts",
+      "sha256": "2eaa1d970c3876384ac99a87b701400cb327c781d4e7374d60d5bb7ce96ba1ed",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/styles/icon-components.module.css",
+      "target": "web/library/src/design-system/styles/icon-components.module.css",
+      "sha256": "1464ba8fd73d1e7e86c75272e48025e3eb8af4449c1318af2fb273064ff6bf5f",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/organisms/DataGrid/DataGrid.tsx",
+      "target": "web/library/src/design-system/components/organisms/DataGrid/DataGrid.tsx",
+      "sha256": "02a1131459384ffe1ed0e1cd5f44cc565a8d40baebef29e7f8bf5c0fd41531c9",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/organisms/DataGrid/useDataGrid.ts",
+      "target": "web/library/src/design-system/components/organisms/DataGrid/useDataGrid.ts",
+      "sha256": "3a9684549107a01bdcca46d4cea909a0fb2485626e91adbfbd7cd0298c562ebd",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/organisms/DataGrid/DataGrid.module.css",
+      "target": "web/library/src/design-system/components/organisms/DataGrid/DataGrid.module.css",
+      "sha256": "bdef2e50b5d674434a9cd11d0a88c453cc6e9d65f2fb683762f2ba7ab8ca0e56",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridHeader/DataGridHeader.tsx",
+      "target": "web/library/src/design-system/components/molecules/DataGridHeader/DataGridHeader.tsx",
+      "sha256": "fc21e1a785bb2a9d930ea6512093be17fcd1de5e4cf8a27a46c91a8bde916b14",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridHeader/useDataGridHeader.ts",
+      "target": "web/library/src/design-system/components/molecules/DataGridHeader/useDataGridHeader.ts",
+      "sha256": "f2bc0235e5ee64aadc16a84543bcad5fa6985b358cc72a6b7bc12f130f568b6c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridHeader/DataGridHeader.module.css",
+      "target": "web/library/src/design-system/components/molecules/DataGridHeader/DataGridHeader.module.css",
+      "sha256": "cef1121de4be721f6baecb7ac9dd45ab32341a3adf09fc31d08297dd53bb5a49",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridBody/DataGridBody.tsx",
+      "target": "web/library/src/design-system/components/molecules/DataGridBody/DataGridBody.tsx",
+      "sha256": "a5e628ba972d8dae177e9a8fc977de1468d37a178f1860f12cb3f0d637e48c4a",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridBody/useDataGridBody.ts",
+      "target": "web/library/src/design-system/components/molecules/DataGridBody/useDataGridBody.ts",
+      "sha256": "2821dff5ed192dd15dd620a7ebc37dd22271bec518ef74dc488e827860c0f666",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridBody/DataGridBody.module.css",
+      "target": "web/library/src/design-system/components/molecules/DataGridBody/DataGridBody.module.css",
+      "sha256": "aa4c78b44c8e93dac5203572f5db404e0f3c30dd40588ee7e627b58cd9ad336f",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridRow/DataGridRow.tsx",
+      "target": "web/library/src/design-system/components/molecules/DataGridRow/DataGridRow.tsx",
+      "sha256": "fc165ad79e3bbc0ed4de60a0e64cdf9e80bab29c57ff87b5d0fab2b2aeefa94d",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridRow/useDataGridRow.ts",
+      "target": "web/library/src/design-system/components/molecules/DataGridRow/useDataGridRow.ts",
+      "sha256": "62b9f6d3131489db66f34304ab6ff8a93b0f572b8ffff512718c86f2eea833fa",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridRow/DataGridRow.module.css",
+      "target": "web/library/src/design-system/components/molecules/DataGridRow/DataGridRow.module.css",
+      "sha256": "ff10c9464a2df4d18d76d3e14ab28b533f6971f064d5765666dc4e1089595ec0",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridColumnHeader/DataGridColumnHeader.tsx",
+      "target": "web/library/src/design-system/components/molecules/DataGridColumnHeader/DataGridColumnHeader.tsx",
+      "sha256": "ace2c1ded929f252f155f5995950f1e0c6cb3c145dec2bfd02784db65e802f35",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridColumnHeader/useDataGridColumnHeader.ts",
+      "target": "web/library/src/design-system/components/molecules/DataGridColumnHeader/useDataGridColumnHeader.ts",
+      "sha256": "4a13e3f2d6e3a2c1427351123b4200a3353f170b5facd8430942566395dad68c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/DataGridColumnHeader/DataGridColumnHeader.module.css",
+      "target": "web/library/src/design-system/components/molecules/DataGridColumnHeader/DataGridColumnHeader.module.css",
+      "sha256": "9e4eb27163ff03c9ed9052e5ee4e5174b2f99c6afa1784da7bf075a912688402",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/DataGridCell/DataGridCell.tsx",
+      "target": "web/library/src/design-system/components/atoms/DataGridCell/DataGridCell.tsx",
+      "sha256": "e440e8eca5d270f15bdb1b28e55f0e674cead83dc17a65ae27c34fb9188dbc8e",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/DataGridCell/useDataGridCell.ts",
+      "target": "web/library/src/design-system/components/atoms/DataGridCell/useDataGridCell.ts",
+      "sha256": "431f5457ed2ccc05ebcba6304eacea15347a66061156a73e22ddc1e7e0d16f8f",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/DataGridCell/DataGridCell.module.css",
+      "target": "web/library/src/design-system/components/atoms/DataGridCell/DataGridCell.module.css",
+      "sha256": "1129e34069b149cb4211ed75780bd06a12e193c9a9aaa4f332cfe396fc9831ba",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/DataGridFooter/DataGridFooter.tsx",
+      "target": "web/library/src/design-system/components/atoms/DataGridFooter/DataGridFooter.tsx",
+      "sha256": "1c648c9f1dd3e7460e6b07b1767e7e44c122a505a1c63b4a44f4fb9cf74bb893",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/DataGridFooter/useDataGridFooter.ts",
+      "target": "web/library/src/design-system/components/atoms/DataGridFooter/useDataGridFooter.ts",
+      "sha256": "0d6aa18f67070a2beebd1d4ae89d4ae36369a9a6b806876a7900f6299575c89b",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/DataGridFooter/DataGridFooter.module.css",
+      "target": "web/library/src/design-system/components/atoms/DataGridFooter/DataGridFooter.module.css",
+      "sha256": "2416860fa075be4141847c34062df5da980fe0ff235272d575ba70f3162b6600",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/internal/datagrid/DataGridContext.ts",
+      "target": "web/library/src/design-system/internal/datagrid/DataGridContext.ts",
+      "sha256": "948ac6d5533a2e658d136c570bc967dc79618c42553a4c5c070fc48d2ccda036",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/internal/datagrid/validateParts.ts",
+      "target": "web/library/src/design-system/internal/datagrid/validateParts.ts",
+      "sha256": "b397fc45d68c21c1b71892be7bfdeb816de7542839cec28c107ac32ac51a1915",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/styles/data-grid-components.module.css",
+      "target": "web/library/src/design-system/styles/data-grid-components.module.css",
+      "sha256": "b1b3a6291cb7dbc3f5885e89abb4ed6d1595fa15f961b8e705177883c32b3b0d",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/hooks/collapse/useCollapse.ts",
+      "target": "web/library/src/design-system/hooks/collapse/useCollapse.ts",
+      "sha256": "694b1237250fa3f531101dde8cd1c36cebd14220dfbc038f0c68ca1d2eb35007",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleState/ScenarioControls.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleState/ScenarioControls.tsx",
+      "sha256": "1412e38635153dc4cc4e5e9025ef5a178f811c10bca687efa549f89400dd830c",
+      "mode": "adapted",
+      "note": "Imports e/ou dependências de apresentação adaptados para Forge UI; hash se refere à versão de destino."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleState/ExampleState.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleState/ExampleState.tsx",
+      "sha256": "fa96be137c8d430622e7c23d643c87b88be1ef8e03a6329217de3528e2715dea",
+      "mode": "adapted",
+      "note": "Imports e/ou dependências de apresentação adaptados para Forge UI; hash se refere à versão de destino."
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleState/ExampleBoundary.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleState/ExampleBoundary.tsx",
+      "sha256": "498ca7d6169952212899bb9dadd4b85393509c3cc526b8458d6db2df6455ffd4",
+      "mode": "adapted-phase6",
+      "note": "Fallback now uses migrated public Alert/AlertBody",
+      "previousSha256": "908cebe264606481071288f1959b68e497f0e09994c3ab62a51533e26a6e8999"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleControls.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleControls.tsx",
+      "sha256": "6f25179d84fd22eaca7375c2f1c889763ef99ead362db66e4b53cb534b6e56be",
+      "mode": "adapted",
+      "note": "Imports e/ou dependências de apresentação adaptados para Forge UI; hash se refere à versão de destino."
+    },
+    {
+      "source": "PraticarFront/src/design-system/assets/icons/icon-sources.json",
+      "target": "web/library/src/design-system/assets/icons/icon-sources.json",
+      "sha256": "8495c5d129deb3540cf25ad9ea8d0186fae9a5aa435070c2c0f75424426674a7",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/assets/icons/LICENSE-upstream.md",
+      "target": "web/library/src/design-system/assets/icons/LICENSE-upstream.md",
+      "sha256": "97c62fcd16d323f5759bbccba7c917ab1676980173a36d80f1492e2c41ad9a6d",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/model/showcase-v2-loaders.ts",
+      "target": "docs/migration/original-showcase-v2/showcase-v2-loaders.source.txt",
+      "sha256": "03bd3be10dd4e5a434a411562f0af0d01e5521e0e1e8818d8d4a4e1412489f73",
+      "mode": "reference-only"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/model/showcase-v2-resource-loaders.ts",
+      "target": "docs/migration/original-showcase-v2/showcase-v2-resource-loaders.source.txt",
+      "sha256": "71aac0b22698995b2b7bc9dfe43e7b2e5715f8f1d18e1d5f7b0ce6b78562a3a2",
+      "mode": "reference-only"
+    }
+  ],
+  "adapted_files": [
+    "web/library/src/design-system/types/collection-contracts.ts",
+    "web/library/src/design-system/types/disclosure.ts",
+    "showcase/portal/src/features/showcase-v2/components/ExampleState/ExampleBoundary.tsx"
+  ],
+  "notes": "O catálogo completo de loaders do PraticarFront ainda depende de demos ausentes; somente os 16 exemplos efetivamente portados possuem carregamento dinâmico no portal Forge UI."
+}

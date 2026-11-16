@@ -1,0 +1,72 @@
+﻿{
+  "schema": "forge-ui/migration-source-manifest/v1",
+  "date": "2026-11-15",
+  "phase": "8-wave2",
+  "sourceProject": "AiWorkspace/PraticarWorkspace/PraticarFront",
+  "destinationProject": "AiWorkspace/ForgeUI",
+  "scope": "Three original web components + three original V2 demonstrations adapted for the public @forge-ui/web API",
+  "components": [
+    {
+      "name": "SimpleGrid",
+      "origin": "src/design-system/components/atoms/SimpleGrid",
+      "target": "web/library/src/design-system/components/atoms/SimpleGrid",
+      "preexistingLibrarySource": true,
+      "publicExportAdded": true,
+      "tsxSourceSha256": "36c7fe2620f04703e9959028b7b526b62144e8cf6152a7ef87d7393acd8efd5c",
+      "cssSourceSha256": "0d9ce4aaaacd1334e64ffa57eb4156decde865cf3f211553eae69f1e7a8e3693",
+      "exampleSourceSha256": "9dcba7aeda549c7435a865315c363b18c17e546d8b3942978ece66a89c153298",
+      "exampleAdaptedSha256": "3b70fac473a2b3d9fba398b8f289e25aa1711831a1918bfb59fc97d2703684c2",
+      "adaptation": "Replace app alias with @forge-ui/web; use public SimpleGridProps type instead of app-only ComponentGridColumns import",
+      "demo": "original-v2-adapted"
+    },
+    {
+      "name": "FieldHint",
+      "origin": "src/design-system/components/atoms/FieldHint",
+      "target": "web/library/src/design-system/components/atoms/FieldHint",
+      "publicExportAdded": true,
+      "tsxSourceSha256": "dc20d8b8963819c14c7007f132d121a96be27e76d4773487b7cf597afd117902",
+      "cssSourceSha256": "0d468c099993bd9a3a55146f5b91b97572cf881c446c728f35d292ceba213758",
+      "exampleSourceSha256": "cbeb82afb616417c52ef2f9b1e54141decbb6420b532a73e56d9324957ad8e0b",
+      "exampleAdaptedSha256": "3936ac8107590eb46903f771358f1978a71d6e62611196d56f06abe79b85cf1b",
+      "adaptation": "Replace app alias with @forge-ui/web",
+      "demo": "original-v2-adapted"
+    },
+    {
+      "name": "FieldError",
+      "origin": "src/design-system/components/atoms/FieldError",
+      "target": "web/library/src/design-system/components/atoms/FieldError",
+      "publicExportAdded": true,
+      "tsxSourceSha256": "49a9df9f1cdf97824a6bc1cf22940fc8bf2945e1601e71eb51beda0876ad6200",
+      "cssSourceSha256": "0d468c099993bd9a3a55146f5b91b97572cf881c446c728f35d292ceba213758",
+      "exampleSourceSha256": "74b0c1c0d0d8abadd005bae54925908e66f4696e7f7179d10fccbc01d0fcbcb7",
+      "exampleAdaptedSha256": "8b75c51beecc1b435bfeb22bd49f4ab9b3c357a0ae55208e205cb4d4c6505aa6",
+      "adaptation": "Replace app alias with @forge-ui/web",
+      "demo": "original-v2-adapted"
+    }
+  ],
+  "touchedFiles": [
+    "web/library/src/index.ts",
+    "showcase/portal/src/features/showcase-v2/components/OriginalDefinitions/OriginalDefinitionPage.tsx",
+    "showcase/portal/src/features/showcase-v2/model/showcase-v2-live-loaders.ts"
+  ],
+  "staticChecks": {
+    "parseErrors": 0,
+    "parseScope": "12 TS/TSX source files parsed with local TypeScript parser; syntax only",
+    "publicComponentExports": 47,
+    "uniquePublicComponentExports": 47,
+    "originalV2DemosRegistered": 16,
+    "legacyAdaptersRemaining": 16
+  },
+  "pending": [
+    "Re-run coverage generator over a full checked-out workspace",
+    "Run TypeScript semantic typecheck",
+    "Run Next.js build",
+    "Run browser, a11y, visual parity and E2E tests"
+  ],
+  "excluded": [
+    "PraticarFront changes",
+    "forge.ps1 changes",
+    "Git remote push",
+    "Consumer integration"
+  ]
+}

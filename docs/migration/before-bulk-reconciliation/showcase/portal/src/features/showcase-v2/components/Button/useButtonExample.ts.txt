@@ -1,0 +1,151 @@
+"use client";
+import { useRef, useState } from "react";
+import type { ButtonProps } from "@forge-ui/web";
+import { useForgePreferences } from "../../preferences/ForgePreferences";
+
+const hierarchyMessages = {
+  "pt-BR": {
+    list: "Listagem",
+    details: "Detalhes",
+    create: "Criar",
+    edit: "Editar",
+    back: "Voltar",
+    retry: "Tentar novamente",
+    remove: "Excluir",
+    cancel: "Cancelar",
+    confirm: "Confirmar exclusão",
+    help: "Esta confirmação simula uma exclusão, sem alterar registros.",
+    feedback: "Última ação",
+  },
+  en: {
+    list: "Listing",
+    details: "Details",
+    create: "Create",
+    edit: "Edit",
+    back: "Back",
+    retry: "Retry",
+    remove: "Delete",
+    cancel: "Cancel",
+    confirm: "Confirm deletion",
+    help: "This confirmation simulates deletion without changing records.",
+    feedback: "Last action",
+  },
+  es: {
+    list: "Listado",
+    details: "Detalles",
+    create: "Crear",
+    edit: "Editar",
+    back: "Volver",
+    retry: "Reintentar",
+    remove: "Eliminar",
+    cancel: "Cancelar",
+    confirm: "Confirmar eliminación",
+    help: "Esta confirmación simula una eliminación sin modificar registros.",
+    feedback: "Última acción",
+  },
+};
+
+export function useButtonHierarchyExample() {
+  const { locale } = useForgePreferences();
+  const copy = hierarchyMessages[locale === "en-US" ? "en" : "pt-BR"];
+  const [open, setOpen] = useState(false);
+  const [action, setAction] = useState("");
+  const cancelRef = useRef<HTMLButtonElement>(null);
+
+  function create() {
+    setAction(copy.create);
+  }
+
+  function edit() {
+    setAction(copy.edit);
+  }
+
+  function back() {
+    setAction(copy.back);
+  }
+
+  function retry() {
+    setAction(copy.retry);
+  }
+
+  function remove() {
+    setOpen(true);
+  }
+
+  function cancel() {
+    setOpen(false);
+    setAction(copy.cancel);
+  }
+
+  function confirm() {
+    setOpen(false);
+    setAction(copy.confirm);
+  }
+
+  return {
+    copy,
+    open,
+    setOpen,
+    action,
+    cancelRef,
+    create,
+    edit,
+    back,
+    retry,
+    remove,
+    cancel,
+    confirm,
+  };
+}
+
+export function useButtonExample() {
+  const [size, setSize] = useState<NonNullable<ButtonProps["size"]>>("md");
+  const [tone, setTone] = useState<NonNullable<ButtonProps["tone"]>>("brand");
+  const [variant, setVariant] = useState<NonNullable<ButtonProps["variant"]>>("solid");
+  const [shape, setShape] = useState("inherited");
+  const [appearance, setAppearance] = useState("default");
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [fullWidth, setFullWidth] = useState(false);
+  const [count, setCount] = useState(0);
+
+  function onClick() {
+    setCount((value) => value + 1);
+  }
+
+  function changeSize(value: string) {
+    setSize(value as NonNullable<ButtonProps["size"]>);
+  }
+
+  function changeTone(value: string) {
+    setTone(value as NonNullable<ButtonProps["tone"]>);
+  }
+
+  function changeVariant(value: string) {
+    setVariant(value as NonNullable<ButtonProps["variant"]>);
+  }
+
+  return {
+    size,
+    tone,
+    variant,
+    shape,
+    appearance,
+    loading,
+    disabled,
+    fullWidth,
+    count,
+    onClick,
+    changeSize,
+    changeTone,
+    changeVariant,
+    setShape,
+    setAppearance,
+    setLoading,
+    setDisabled,
+    setFullWidth,
+    resolvedShape: shape === "inherited" ? undefined : (shape as ButtonProps["shape"]),
+    resolvedAppearance:
+      appearance === "default" ? undefined : (appearance as ButtonProps["appearance"]),
+  };
+}

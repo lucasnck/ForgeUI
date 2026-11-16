@@ -1,0 +1,80 @@
+---
+title: "Duration formatting"
+scope: "Format explicit elapsed seconds as a clock or localized hour-minute-second units"
+status: "DONE"
+type: "helper"
+ds-level: "none"
+---
+
+# Duration formatting
+
+## Files
+
+```text
+design-system/helpers/duration.ts (C)
+design-system/index.ts (M)
+features/showcase-v2/components/Text/duration-fixtures.ts (C)
+features/showcase-v2/components/Text/DurationText.example.tsx (C)
+features/showcase-v2/components/Text/definition.ts (M)
+features/showcase-v2/components/Text/usage-code.ts (M)
+../scripts/check-formatting.cjs (C)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Contract
+
+```ts
+import {formatters, validators} from "@forge-ui/web";
+formatters.durationClock(5400);
+formatters.duration(5400, "pt-BR");
+validators.duration(seconds);
+```
+
+## Content
+
+```ts
+import type {Locale} from "@/lib/contracts/preferences";
+function durationParts(seconds: number) {
+  if (!Number.isSafeInteger(seconds) || seconds < 0) throw new RangeError("Invalid elapsed seconds");
+  return {hours: Math.floor(seconds/3600), minutes: Math.floor(seconds%3600/60), seconds: seconds%60};
+}
+export function formatDurationClock(value: number | null): string {
+  if (value === null) return "";
+  const {hours, minutes, seconds} = durationParts(value);
+  return [String(hours).padStart(2,"0"), String(minutes).padStart(2,"0"), String(seconds).padStart(2,"0")].join(":");
+}
+export function formatDuration(value: number | null, locale: Locale): string {
+  if (value === null) return "";
+  const parts = durationParts(value);
+  const units = [[parts.hours,"hour"], [parts.minutes,"minute"], [parts.seconds,"second"]] as const;
+  const labels = units.filter(([amount,unit]) => amount !== 0 || (value === 0 && unit === "second"))
+    .map(([amount,unit]) => new Intl.NumberFormat(locale, {style:"unit",unit,unitDisplay:"long"}).format(amount));
+  return new Intl.ListFormat(locale, {style:"long",type:"unit"}).format(labels);
+}
+
+export function isValidDuration(value: unknown): boolean {
+  return typeof value === "number" && Number.isSafeInteger(value) && value >= 0;
+}
+```
+
+## Tests
+
+- V2 Elapsed duration display: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Verify zero, subminute, 5400 seconds and more than 24 hours without wrapping.
+- Check correct localized plurals and omitted zero units; null is absent.
+- Reject negative, fractional, unsafe integer, NaN and Infinity inputs without rounding or unit guessing.
+
+## Criteria
+
+- [x] Public numeric unit is explicitly whole elapsed seconds; no milliseconds/date/clock-time inference occurs.
+- [x] Clock output is HH:MM:SS with hours of at least two digits and no 24-hour rollover; 5400 gives 01:30:00.
+- [x] Localized output uses Intl unit/list formatting, explicit locale and no hand-maintained translated unit labels. Zero is zero seconds, not absent.
+- [x] This is elapsed duration, not a calendar interval: no month/year/daylight-saving arithmetic or business-hours calculation.
+- [x] Helpers are pure and do not introduce timers, live regions or automatic ticking.
+
+- [x] Preferred public consumption uses the typed formatters/validators namespaces. Parsing and normalization functions in this source owner are internal DS exports, omitted from the root public barrel. The namespace modules alias the same owning functions rather than copying algorithms.
+
+- [x] V2 **Elapsed duration display** is covered through the public Text consumer examples and typed caller fixtures: Show actual duration/durationClock output for zero and 5400 seconds with explicit locales, plus validator boundaries; this is elapsed duration rather than a civil date or running timer.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.

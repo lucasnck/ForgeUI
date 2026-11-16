@@ -1,0 +1,11 @@
+/** Extracted from PraticarFront collection contracts; app-only imports intentionally excluded. */
+import type { ComponentPropsWithRef, ReactNode } from "react";
+export interface NativeSectionRootProps extends Omit<ComponentPropsWithRef<"section">, "children" | "defaultValue"> {}
+export interface NativeTableCellProps extends Omit<ComponentPropsWithRef<"td">, "role" | "tabIndex" | "aria-rowindex" | "aria-colindex"> { colSpan?: number; rowSpan?: number; }
+export type SortDirection = "ascending" | "descending";
+export interface DataGridSort { columnKey: string; direction: SortDirection; }
+export type DataGridAlignment = "start" | "center" | "end";
+export interface DataGridColumn<Row> { key: string; header: string; renderCell(row: Row): ReactNode; sortable?: boolean; sortLabel?: string; rowHeader?: boolean; align?: DataGridAlignment; }
+
+/** Announcement mode used by the original Alert family. */
+export type AnnouncementPoliteness = "off" | "polite" | "assertive";

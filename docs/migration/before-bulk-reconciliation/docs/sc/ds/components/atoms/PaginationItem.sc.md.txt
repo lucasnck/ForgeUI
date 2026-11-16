@@ -1,0 +1,182 @@
+---
+title: "PaginationItem"
+scope: "Render one controlled page action and demonstrate normal, current and disabled states within minimal Pagination context."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# PaginationItem
+
+## Files
+
+```text
+design-system/components/static-components.contracts.test.ts (M)
+features/showcase/examples/useNavigationExampleCopy.ts (M)
+features/showcase/examples/PaginationBehavior.example.tsx (M)
+features/showcase/examples/PaginationExamples.module.css (M)
+../scripts/check-static-components.cjs (M)
+design-system/components/atoms/PaginationItem/PaginationItem.tsx (M)
+design-system/components/atoms/PaginationItem/PaginationItem.module.css (M)
+design-system/components/atoms/PaginationItem/index.ts (M)
+design-system/internal/pagination/PaginationContext.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/PaginationItem.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/PaginationItem/usePaginationItem.ts (M)
+features/showcase-v2/components/PaginationItem/definition.ts (C)
+features/showcase-v2/components/PaginationItem/PaginationItem.example.tsx (C)
+features/showcase-v2/components/PaginationItem/usePaginationItemExample.ts (C)
+features/showcase-v2/components/PaginationItem/usage-code.ts (C)
+features/showcase-v2/components/Pagination/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Button](Button.sc.md)
+- [Pagination](../molecules/Pagination.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+
+## Contract
+
+```tsx
+import { Pagination, PaginationItem } from "@/design-system";
+
+<Pagination label="Normal page example" page={1} pageCount={3} onPageChange={setPage}>
+  <PaginationItem page={2} label="Page 2" />
+</Pagination>
+<Pagination label="Current page example" page={2} pageCount={3} onPageChange={setPage}>
+  <PaginationItem page={2} label="Page 2" />
+</Pagination>
+<Pagination label="Disabled page example" page={1} pageCount={3} onPageChange={setPage}>
+  <PaginationItem page={2} label="Page 2" disabled />
+</Pagination>
+```
+
+## Styles
+
+```css
+.root {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  min-inline-size: var(--component-height-md);
+  padding-inline: var(--space-1);
+}
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import { usePaginationContext } from "../../../internal/pagination/PaginationContext";
+import type { PaginationItemProps } from "./PaginationItem";
+
+export function usePaginationItem({ label, page, disabled, onClick, children, className, animated = true, "aria-current": current, ...props }: PaginationItemProps) {
+  const pagination = usePaginationContext();
+  if (!label.trim()) throw new Error("PaginationItem requires a nonempty label.");
+  if (!Number.isInteger(page) || page < 1 || page > pagination.pageCount) throw new Error("Invalid PaginationItem target.");
+  const selected = pagination.page === page && current !== false && current !== "false";
+  const unavailable = pagination.disabled || disabled;
+  const handleClick: NonNullable<ComponentPropsWithRef<"button">["onClick"]> = (event) => {
+    if (unavailable) return;
+    onClick?.(event);
+    if (!event.defaultPrevented) pagination.requestPage(page);
+  };
+  return { label, children, className, animated, props, selected, unavailable, handleClick };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { NativeCollectionButtonProps } from "../../../types/compound-composition";
+import type { ComponentAnimatedProps } from "../../../types/animation";
+import { Button } from "../Button";
+import { usePaginationItem } from "./usePaginationItem";
+import styles from "./PaginationItem.module.css";
+
+export interface PaginationItemProps extends NativeCollectionButtonProps, ComponentAnimatedProps {
+  page: number;
+  label: string;
+}
+
+export function PaginationItem(props: PaginationItemProps) {
+  const view = usePaginationItem(props);
+  return (
+    <Button
+      {...view.props}
+      type="button"
+      aria-label={view.label}
+      aria-current={view.selected ? "page" : undefined}
+      disabled={view.unavailable}
+      onClick={view.handleClick}
+      tone="neutral"
+      appearance={view.selected ? "soft" : "ghost"}
+      data-animated={view.animated}
+      className={[styles.root, view.className].filter(Boolean).join(" ")}
+    >
+      {view.children ?? props.page}
+    </Button>
+  );
+}
+```
+
+## Tests
+
+- V2 Controlled pagination: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server markup preserves native owner attributes, named semantic regions and permitted child hierarchy.
+- Invalid root ranges/item targets, orphan Items and unsupported wrappers fail.
+- Current-page/out-of-range/disabled requests are ignored; valid requests run once without changing controlled state.
+- Caller onClick runs before requestPage; defaultPrevented cancels the request and disabled Items run neither handler.
+- aria-current=false or "false" suppresses the current marker; absent aria-current derives from the root, and caller values cannot force a noncurrent target to become current.
+
+## Criteria
+
+- [x] Given PaginationItem, Item represents an explicit numbered or previous/next target; target is an integer in root page range.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence except aria-current=false, which suppresses the derived current marker for directional actions.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Root supplies current state and requestPage, so item has no independent state.
+- [x] Root owns optional li wrappers for semantic list structure.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] inactive ↔ active/selected → Current selection, active-descendant or native activation → Actual item control/background, not a second list surface → stateFeedback; --motion-fast / --ease-standard.
+- [x] Use only the item states supported by its owning contract.
+- [x] Native focus and aria-selected/current/expanded/activedescendant update immediately; arrow navigation never waits for motion.
+- [x] The item does not allocate a presence/selection clock.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] usePaginationItem is colocated with PaginationItem and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] PaginationItemStates renders its own atomic examples instead of re-exporting PaginationStates.
+- [x] Normal, current and disabled variants each contain one visible PaginationItem within a real minimal Pagination owner; no private context imports or orphan-guard changes are used.
+- [x] The default numeric content and one custom previous/next label are illustrated independently from complete navigation.
+- [x] aria-current=false or "false" suppresses the current marker for directional controls; other caller values cannot mark a target current unless the controlled root page matches.
+- [x] Disabled examples cannot run the caller click handler or page-change request; an enabled noncurrent target requests exactly once and stays controlled.
+- [x] Localized captions describe each visible state; behavioral rejection/cancellation coverage remains in meaningful tests rather than duplicating complete navigation in the atomic preview.
+- [x] The atomic preview and corresponding documentation are visually checked at narrow width; keyboard focus reaches enabled page controls and skips disabled controls.
+
+- [x] V2 **Controlled pagination**: Compose twelve pages with initial page=6, indexed PaginationItems and passive ellipses; changing page reports accepted onPageChange while current/disabled semantics and original page numbers remain coherent.
+- [x] The PaginationItem V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. usePaginationItemExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Pagination fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

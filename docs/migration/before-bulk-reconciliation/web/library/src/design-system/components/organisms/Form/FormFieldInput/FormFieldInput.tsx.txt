@@ -1,0 +1,53 @@
+"use client";
+
+import type { FormTextInputType } from "@/lib/forms";
+import type { FieldPath, FieldValues } from "react-hook-form";
+import type {
+  ComponentFullWidthProps,
+  FormFieldRegistrationProps,
+  NativeFormFieldInputProps,
+  VisualProps,
+} from "../../../../types";
+import { FormField } from "../../../molecules/FormField";
+import { Input } from "../../../atoms/Input";
+import { useFormFieldInput } from "./useFormFieldInput";
+import styles from "./FormFieldInput.module.css";
+
+export interface FormFieldInputProps<
+  TValues extends FieldValues,
+  TName extends FieldPath<TValues> = FieldPath<TValues>,
+>
+  extends
+    NativeFormFieldInputProps,
+    VisualProps,
+    ComponentFullWidthProps,
+    FormFieldRegistrationProps<TValues, TName> {
+  inputType?: FormTextInputType;
+}
+
+export function FormFieldInput<
+  TValues extends FieldValues,
+  TName extends FieldPath<TValues> = FieldPath<TValues>,
+>(props: FormFieldInputProps<TValues, TName>) {
+  const view = useFormFieldInput(props);
+
+  return (
+    <div className={styles.root}>
+      <FormField
+        controlId={view.controlId}
+        label={view.label}
+        hint={view.hint}
+        error={view.message}
+      >
+        <Input
+          {...view.inputProps}
+          {...view.registration}
+          type={view.inputType}
+          disabled={view.disabled}
+          invalid={Boolean(view.error)}
+          aria-required={view.required || undefined}
+        />
+      </FormField>
+    </div>
+  );
+}

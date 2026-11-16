@@ -1,0 +1,42 @@
+[
+  {
+    "Route": "/",
+    "Status": 200
+  },
+  {
+    "Route": "/components/button/",
+    "Status": 200
+  },
+  {
+    "Route": "/components/dialog/",
+    "Status": 200
+  },
+  {
+    "Route": "/components/odata-filter/",
+    "Status": 200
+  },
+  {
+    "Route": "/components/form-field-input/",
+    "Status": 200
+  },
+  {
+    "Route": "/templates/application-layout-template/",
+    "Status": 200
+  },
+  {
+    "Route": "/resources/use-presence/",
+    "Status": 200
+  },
+  {
+    "Route": "/resources/design-tokens/",
+    "Status": 200
+  },
+  {
+    "Route": "/demos/records/home/",
+    "Status": 200
+  },
+  {
+    "Route": "/demos/templates/showcase-page-template/catalog/",
+    "Status": 200
+  }
+]

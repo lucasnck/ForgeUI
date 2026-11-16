@@ -1,0 +1,219 @@
+---
+title: "FormFieldInput"
+scope: "Text input with FormField presentation and React Hook Form registration"
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# FormFieldInput
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/atoms/Input/Input.tsx (M)
+design-system/components/organisms/Form/index.ts (C)
+design-system/components/organisms/Form/FormFieldInput/FormFieldInput.tsx (C)
+design-system/components/organisms/Form/FormFieldInput/FormFieldInput.module.css (C)
+design-system/components/organisms/Form/FormFieldInput/index.ts (C)
+features/showcase/examples/FormFieldInput.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/organisms/Form/FormFieldInput/useFormFieldInput.ts (C)
+design-system/types/native-control-contracts.ts (M)
+design-system/types/forms.test.ts (M)
+../scripts/check-forms.cjs (C)
+features/showcase-v2/components/FormFieldInput/definition.ts (C)
+features/showcase-v2/components/FormFieldInput/FormFieldInput.example.tsx (C)
+features/showcase-v2/components/FormFieldInput/useFormFieldInputExample.ts (C)
+features/showcase-v2/components/FormFieldInput/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Form organisms](../../../types/tech-form-field-organisms.sc.md)
+- [RHF integration](../../../../tech-react-hook-form.sc.md)
+- [FormField](../../molecules/FormField.sc.md)
+- [Input](../../atoms/Input.sc.md)
+- [Native contracts](../../../types/tech-native-control-contracts.sc.md)
+- [DS animations](../../../styles/animations/tech-motion-recipes.sc.md)
+- [Component capabilities](../../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { FormFieldInput } from "@/design-system";
+<FormFieldInput<{
+  displayName: string;
+}> name="displayName" label="Display name" hint="How your name appears" autoComplete="name" required/>;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+
+import { useId } from "react";
+import { useFormContext, useFormState } from "react-hook-form";
+import type { FieldPath, FieldValues } from "react-hook-form";
+import type { FormFieldInputProps } from "./FormFieldInput";
+
+export function useFormFieldInput<
+  TValues extends FieldValues,
+  TName extends FieldPath<TValues> = FieldPath<TValues>,
+>({
+  id,
+  name,
+  disabled,
+  label,
+  hint,
+  required = false,
+  inputType = "text",
+  error: displayedError,
+  ...inputProps
+}: FormFieldInputProps<TValues, TName>) {
+  const generatedId = useId();
+  const controlId = id ?? generatedId;
+  const methods = useFormContext<TValues>();
+  if (!methods) throw new Error("FormFieldInput requires FormProvider.");
+  const state = useFormState({ control: methods.control, name, exact: true });
+  const { error } = methods.getFieldState(name, state);
+  const message =
+    displayedError ?? (typeof error?.message === "string" ? error.message : undefined);
+  const registration = methods.register(name, { disabled: disabled || methods.formState.disabled });
+
+  return {
+    inputType,
+    controlId,
+    label,
+    hint,
+    required,
+    disabled: disabled || methods.formState.disabled,
+    inputProps,
+    registration,
+    error,
+    message,
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { FormTextInputType } from "@/lib/forms";
+import type { FieldPath, FieldValues } from "react-hook-form";
+import type {
+  ComponentFullWidthProps,
+  FormFieldRegistrationProps,
+  NativeFormFieldInputProps,
+  VisualProps,
+} from "../../../../types";
+import { FormField } from "../../../molecules/FormField";
+import { Input } from "../../../atoms/Input";
+import { useFormFieldInput } from "./useFormFieldInput";
+import styles from "./FormFieldInput.module.css";
+
+export interface FormFieldInputProps<
+  TValues extends FieldValues,
+  TName extends FieldPath<TValues> = FieldPath<TValues>,
+>
+  extends
+    NativeFormFieldInputProps,
+    VisualProps,
+    ComponentFullWidthProps,
+    FormFieldRegistrationProps<TValues, TName> {
+  inputType?: FormTextInputType;
+}
+
+export function FormFieldInput<
+  TValues extends FieldValues,
+  TName extends FieldPath<TValues> = FieldPath<TValues>,
+>(props: FormFieldInputProps<TValues, TName>) {
+  const view = useFormFieldInput(props);
+
+  return (
+    <div className={styles.root}>
+      <FormField
+        controlId={view.controlId}
+        label={view.label}
+        hint={view.hint}
+        error={view.message}
+      >
+        <Input
+          {...view.inputProps}
+          {...view.registration}
+          type={view.inputType}
+          disabled={view.disabled}
+          invalid={Boolean(view.error)}
+          aria-required={view.required || undefined}
+        />
+      </FormField>
+    </div>
+  );
+}
+```
+
+## Tests
+
+- V2 Registered required field: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Conditional registered field: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- The declared native or controlled value channel forwards one user change while prop updates emit no corrective callback.
+- Caller-prevented and composing input does not trigger an owned selection/completion action.
+- Two mounted instances preserve independent ids, descriptions and native submission values.
+
+## Criteria
+
+- [x] One FormFieldInput JSX element displays the existing label, text input, optional hint and RHF error.
+- [x] Typing/blur update RHF values/dirty/touched exactly once; submit returns the named string value.
+- [x] Nested names work, and a nonexistent field path is rejected when the consumer supplies its form type.
+- [x] Invalid submit focuses the native input through the preserved registration ref.
+- [x] Label htmlFor matches the input id; hint/error/external description IDs are valid and deduplicated.
+- [x] Errors without messages still set aria-invalid; clearing errors removes stale feedback relationships.
+- [x] Reset updates the native value; conditional unmount follows the provider policy.
+- [x] Disabled and readOnly behavior matches the documented submission contract.
+- [x] Atoms/molecules retain no RHF imports; no duplicate label/hint/error markup is introduced.
+- [x] Showcase demonstrates the listed scenarios; relevant types, contracts, accessibility, token and static-export checks pass before catalog registration.
+- [x] The component implementation uses relative owned-module imports rather than the root barrel.
+- [x] The name / label contract uses Required; name is a RHF FieldPath, including nested paths.
+- [x] The type contract uses Fixed text; specialization cannot be selected through a type prop.
+- [x] The id contract uses Explicit unique id or useId; repeated names in separate forms still get distinct IDs.
+- [x] The hint / error contract uses Optional hint; error derives from field state, never supplied separately.
+- [x] The required contract uses false; display/accessibility metadata only, kept consistent with the consumer Zod schema.
+- [x] The value / defaultValue contract uses Owned by useForm defaultValues/reset; no competing props.
+- [x] The onChange / onBlur / ref contract uses Registration owns handlers/ref; do not expose competing callbacks in this first API.
+- [x] The Native required contract uses Not forwarded; `noValidate` and Zod resolver own validation; required sets aria-required.
+- [x] The invalid / aria-invalid contract uses Derived from error presence, including errors without messages.
+- [x] The className / style contract uses Apply to Input; organism wrapper is not externally restyled by these props.
+- [x] The disabled / readOnly contract uses Native behavior; pass disabled to register; readOnly preserves submitted value.
+- [x] The aria-describedby contract uses Preserve supplied IDs; FormField merges mounted hint/error IDs without duplicates.
+- [x] `inputProps` contains only inherited native/visual props, excluding id and the already destructured registration fields.
+- [x] `useFormState` subscribes to the exact field; `getFieldState` handles nested paths without indexing errors by a dotted string.
+- [x] Transition → Trigger → Result.
+- [x] Mounted → registered → Render inside provider → One native registration and DOM ref.
+- [x] Pristine → dirty → Type → RHF receives native change and stores text.
+- [x] Untouched → touched → Blur → RHF receives native blur.
+- [x] Valid ↔ invalid → Validation/setError/clearErrors → Invalid state updates immediately; string message and description IDs follow error.
+- [x] Edited → reset → Consumer reset → DOM value and field state follow RHF reset.
+- [x] Mounted → unmounted → Conditional removal → Library shouldUnregister policy applies; no custom cleanup overriding it.
+- [x] No new tokens or shared visual recipe.
+- [x] The organism adds no motion or delayed error announcement.
+- [x] Validation, focus, reset and registration apply immediately, including under reduced motion.
+- [x] useFormFieldInput is colocated with FormFieldInput and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] V2 **Registered required field**: Use installed React Hook Form FormProvider/useForm with FormFieldInput name="profile.name", label="Label", hint="Hint", placeholder="Placeholder" and submit/reset Buttons. Required validation exposes the connected field error; valid submit displays the typed nested value.
+- [x] V2 **Conditional registered field**: Use an independent FormProvider fixture with a conditional registered field and a readOnly sibling. Caller controls toggle visibility and RHF setError/clearErrors; document default values, retained registration and reset explicitly, without V1 imports.
+- [x] The FormFieldInput V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useFormFieldInputExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

@@ -1,0 +1,132 @@
+---
+title: "Inline"
+scope: "Horizontal group of siblings with wrapping, token-backed gap and axis alignment"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Inline
+
+## Files
+
+```text
+design-system/components/static-components.contracts.test.ts (C)
+features/showcase/examples/InlineExample.module.css (C)
+../scripts/check-static-components.cjs (C)
+design-system/index.ts (M)
+design-system/components/atoms/Inline/Inline.tsx (M)
+design-system/components/atoms/Inline/Inline.module.css (M)
+design-system/components/atoms/Inline/index.ts (M)
+features/showcase/examples/Inline.example.tsx (M)
+features/showcase/components/ShowcaseShared.module.css (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Inline/definition.ts (C)
+features/showcase-v2/components/Inline/Inline.example.tsx (C)
+features/showcase-v2/components/Inline/useInlineExample.ts (C)
+features/showcase-v2/components/Inline/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Layout contracts](../../styles/tech-layout.sc.md)
+- [Layout contracts](../../types/tech-layout-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Button, Inline } from "@forge-ui/web";
+<Inline justify="between">
+ <Button appearance="ghost" tone="neutral">{resetLabel}</Button>
+ <Button type="submit">{saveLabel}</Button>
+</Inline>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import { createElement } from "react";
+import type { HTMLAttributes, RefAttributes } from "react";
+import type {
+  ComponentAlignProps,
+  ComponentJustifyProps,
+  ComponentSpaceProps,
+  LayoutElement,
+} from "../../../types/layout";
+import styles from "./Inline.module.css";
+
+export interface InlineProps
+  extends HTMLAttributes<HTMLElement>, RefAttributes<HTMLElement>,
+    ComponentSpaceProps,
+    ComponentAlignProps,
+    ComponentJustifyProps {
+  as?: LayoutElement;
+  wrap?: boolean;
+}
+
+export function Inline({
+  as = "div",
+  gap,
+  padding,
+  align,
+  justify,
+  wrap = true,
+  className,
+  ...props
+}: InlineProps) {
+  const Element = as;
+  return createElement(Element, {
+    ...props,
+    "className": [styles.root, className].filter(Boolean).join(" "),
+    "data-gap": gap,
+    "data-padding": padding,
+    "data-align": align,
+    "data-justify": justify,
+    "data-wrap": wrap ? undefined : "false",
+  });
+}
+```
+
+## Tests
+
+- V2 Action grouping: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given no props, the rendered element is `div` with no `data-*` attribute; the recipe resolves gap `--space-2`, center alignment, start justification and wrapping enabled.
+- [x] Given each `ComponentSpace`, `ComponentAlign` and `ComponentJustify` value, the matching attribute is rendered and the recipe resolves it.
+- [x] Given `wrap={false}`, `data-wrap="false"` is rendered and long content does not wrap, overflowing instead of shrinking the items.
+- [x] Given default wrapping, long content wraps onto the next line without overlapping or overflowing the container.
+- [x] Given a `className`, it is appended without replacing the recipe classes; native attributes and events pass through.
+- [x] Given the migrated Showcase action rows, no local flex row rule remains and the arrangement is unchanged.
+- [x] Given the module CSS, only the `composes` rule appears.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens` and `npm run test:design-system` pass.
+- [x] Includes the rendered element choice through a constrained `as` prop.
+- [x] Excludes vertical arrangement ([Stack](Stack.sc.md)), grid arrangement ([SimpleGrid](SimpleGrid.sc.md)), breakpoint behavior, and surface concerns ([Surface](Surface.sc.md)).
+- [x] The gap contract uses 2; `ComponentSpace`; resolves to the matching `--space-*` token.
+- [x] The padding contract uses undefined; `ComponentSpace`; applied to the container, absent means none.
+- [x] The align contract uses center; `ComponentAlign`; cross-axis alignment.
+- [x] The justify contract uses start; `ComponentJustify`; main-axis distribution.
+- [x] The wrap contract uses true; `false` renders `data-wrap="false"` and disables wrapping.
+- [x] The as contract uses div; One of `LayoutElement`.
+- [x] Native attributes, events and `className` pass through.
+- [x] `data-wrap` is rendered only when wrapping is disabled, so the default needs no attribute.
+- [x] The recipe resolves `--inline-gap`, `--inline-align`, `--inline-justify`, `--inline-wrap` and `--inline-padding`; the component declares no layout value.
+- [x] Component-local CSS: `src/design-system/components/atoms/Inline/Inline.module.css`.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Action grouping**: Compose secondary Cancel and primary Save Buttons with explicit gap="2" and end alignment; report independent callbacks and allow wrapping in narrow layouts.
+- [x] The Inline V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useInlineExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

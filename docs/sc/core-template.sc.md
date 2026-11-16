@@ -1,0 +1,107 @@
+---
+title: "Resource Specification Template"
+scope: "Code-focused contracts and acceptance for implementation resources"
+---
+
+# Resource Specification Template
+
+Read [Start Here](core/start-here.sc.md) and [Architecture](core/architecture.sc.md). Global guides, catalogs and templates are documentation references, not implementation resources; they have title/scope only.
+
+## Filenames
+
+Use `.sc.md` for specifications. Outside `ds/`, use a lowercase kebab-case filename with the prefix that describes its responsibility:
+
+| Prefix | Responsibility | Examples |
+|---|---|---|
+| `core-` | Project-wide documentation rules, entry points, architecture, catalogs, authoring templates and global integration/navigation policies | `core-start-here.sc.md`, `core-architecture.sc.md`, `core-catalog.sc.md` |
+| `feature-` | Application functionality, feature-owned pages/components/templates, demonstrations, feature contracts, guides and coverage maps | `feature-showcase-v2-guide.sc.md`, `pages/login/feature-login-page.sc.md` |
+| `tech-` | Shared technical mechanisms, infrastructure, helpers, types, styles and tooling | `tech-http-client.sc.md`, `tech-theme-provider.sc.md` |
+
+Keep the current ownership directories. Rendered DS components retain their exact PascalCase resource name under `ds/components/<level>/`, for example `ds/components/atoms/Button.sc.md`; DS hooks/helpers/styles/types retain `tech-<name>.sc.md` in their corresponding directories. A neutral DS `ShowcasePageTemplate` remains a DS component; application Showcase pages, demos and their supporting contracts use `feature-`.
+
+The prefix classifies documentation ownership, not frontmatter type or source identifiers. Keep component/export names intact. Global references have only title/scope even when a feature owns the guide; implementation resources retain the five-field resource header. A filename-only correction preserves implementation status and acceptance evidence.
+
+The canonical reading entry is `core-start-here.sc.md`. When renaming a spec, update its links, catalogs, agent instructions and any verifier path references in the same change. Do not keep an unprefixed duplicate or forwarding SC. Audit the file against this template as well as its name; a correct filename does not establish structural compliance.
+
+## Header
+
+```yaml
+title: "Resource name"
+scope: "Responsibility owned by this resource"
+status: "PENDING"
+type: "component"
+ds-level: "atoms"
+```
+
+`status` is `PENDING` for pending implementation and `DONE` for implemented resources. `type` is `component`, `hook`, `helper`, `style` or `type`. `ds-level` is `atoms`, `molecules`, `organisms`, `templates`, `pages` or `none`; non-components use `none`. Scope appears only in the header. Do not add decision, implementation, setup, dates or delivery history.
+
+DS specs follow resource ownership: `ds/components/<level>/`, `ds/hooks/`, `ds/helpers/`, `ds/styles/` and `ds/types/`. Animation effect specs belong in `ds/styles/animations/`. Application resources retain their application ownership. Split mixed responsibilities only when each resulting resource has a distinct contract.
+
+## Sections
+
+Use one SC per application page under pages/<page>/. Include its exclusive non-technical components in that same file. Keep one page metadata header and one ordered set of standard sections; Files aggregates all owned paths, Dependencies aggregates only external consumed resources, and applicable sections may use named page/component subsections. Implementation subsection bodies still contain code only, and Tests/Criteria retain observable scenarios and checkboxes. Shared templates/components and technical resources keep separate SCs and are linked as dependencies.
+
+Use this order and omit non-applicable sections:
+
+1. Files
+2. Dependencies
+3. Contract
+4. Styles
+5. Form
+6. Api
+7. Animations
+8. Hooks
+9. Content
+10. Tests
+11. Criteria
+
+Files contains only paths relative to `src/` followed by `(C)`, `(M)` or `(D)`, in a text fence. Use `../` for files outside `src/`. Verify existing files before assigning markers. Moves list the old path `(D)`, new path `(C)` and changed consumers `(M)`.
+
+```text
+design-system/components/atoms/Example/Example.tsx (C)
+design-system/components/atoms/Example/useExample.ts (C)
+design-system/index.ts (M)
+```
+
+Dependencies contains only direct links to technical or component specs. Do not list architecture, catalogs, guides or templates. Pure DS resources do not depend on application API infrastructure.
+
+Contract contains only necessary imports and minimal consumption code. Do not introduce a complete example component or state setup.
+
+```tsx
+import { ComponentName } from "@/design-system";
+
+<ComponentName propName="propValue" />
+```
+
+```tsx
+import { useHookName } from "@/design-system";
+
+const { value } = useHookName();
+```
+
+```ts
+import type { NameType } from "@/design-system";
+
+type PropName = NameType;
+```
+
+Styles contains the style code owned by the change. Form contains the `form.ts` code. Api contains verified dependent API operations or contracts when applicable. Hooks contains the component's local view hook code. Content contains the remaining implementation code. These sections contain code fences only; do not convert explanations into comments. Shared declarations and styles have one canonical owner and are imported by consumers.
+
+Animations contains only the names of effects or recipes used by the resource.
+
+```text
+fade
+scale
+```
+
+Components with view logic use a colocated `use<ComponentName>` called at the top of render. Move state, effects, behavioral refs, handlers and shared-hook calls into it. Stateless rendering does not require an empty hook. Use `use<ComponentName>View` when the normal name already belongs to a shared behavior hook. View hooks do not runtime-import rendered components.
+
+Effects are CSS classes; effect names and capabilities belong to type specs. Hooks coordinate retained presence when needed. Keep state, callbacks, native values and focus immediate. Cover disabled animation, reduced motion, interruption, inert/aria-hidden exit and cleanup.
+
+Tests lists meaningful unit scenarios. Type specs include accepted and rejected usage; style specs cover tokens, properties and opt-out behavior. Criteria lists observable acceptance conditions as checkboxes. Retain unique behavior, defaults and accessibility requirements without repeating global rules or dependency inventories.
+
+Scope acceptance to behavior owned by the resource. Do not require an exhaustive manual matrix of devices, touch, IME, screen readers, forced colors, themes, locales or zoom for every component. Native platform behavior is delegated to the native element; shared theme, contrast and motion fallbacks are verified at their canonical owner. Keep component-specific key handling, accessible relationships, focus, cancellation and value contracts. Require a targeted browser check when a concrete visual or integration behavior needs it; absence of a manual platform certification alone does not keep implemented work PENDING.
+
+Catalog entries show the name, owning specification link and minimal Contract. Catalogs describe available exports; pending proposed exports remain in their specs until implementation.
+
+For every new or changed page-navigation flow, require a targeted runtime check of the selected animation in a supported browser with reduced motion disabled. Record source, destination, intent, boundary, route readiness/loading fallback and scroll policy. Wrapper presence, transitionTypes, successful navigation, screenshots after completion and passing builds do not prove motion. Keep visual acceptance unchecked until observed; separately verify direct-entry and reduced-motion fallbacks. Reuse the canonical global transition guide rather than inventing page-specific engines.

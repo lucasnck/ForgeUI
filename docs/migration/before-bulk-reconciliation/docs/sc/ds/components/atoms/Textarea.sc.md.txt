@@ -1,0 +1,151 @@
+---
+title: "Textarea"
+scope: "Native multi-line text control with the shared field contracts"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Textarea
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/atoms/Textarea/Textarea.tsx (M)
+design-system/components/atoms/Textarea/Textarea.module.css (M)
+design-system/components/atoms/Textarea/index.ts (M)
+features/showcase/examples/Textarea.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Textarea/definition.ts (C)
+features/showcase-v2/components/Textarea/Textarea.example.tsx (C)
+features/showcase-v2/components/Textarea/useTextareaExample.ts (C)
+features/showcase-v2/components/Textarea/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Native control contracts](../../types/tech-native-control-contracts.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Shape contracts](../../styles/tech-shape.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { FormField, Textarea } from "@/design-system";
+<FormField controlId="notes" label={notesLabel} hint={notesHint}>
+ <Textarea name="notes" rows={4} value={notes} onChange={onNotesChange}/>
+</FormField>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: control from "../../../styles/field-control.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  resize: vertical;
+}
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Content
+
+```tsx
+import type { ComponentAnimatedProps } from "../../../types/animation";
+import type {
+  NativeTextareaProps,
+} from "../../../types/native-control-contracts";
+import type {
+  ComponentFullWidthProps,
+  ComponentInvalidProps,
+  VisualProps,
+} from "../../../types/component-capabilities";
+import styles from "./Textarea.module.css";
+
+export interface TextareaProps
+  extends NativeTextareaProps,
+    VisualProps,
+    ComponentFullWidthProps,
+    ComponentInvalidProps,
+    ComponentAnimatedProps {}
+
+export function Textarea({
+  invalid,
+  animated = true,
+  className,
+  fullWidth = true,
+  size = "md",
+  tone = "neutral",
+  appearance = "bordered",
+  shape,
+  "aria-invalid": ariaInvalid,
+  ...props
+}: TextareaProps) {
+  return (
+    <textarea
+      {...props}
+      className={[styles.root, className].filter(Boolean).join(" ")}
+      aria-invalid={invalid ?? ariaInvalid}
+      data-animated={animated ? undefined : "false"}
+      data-size={size}
+      data-full-width={fullWidth || undefined}
+      data-tone={tone}
+      data-appearance={appearance}
+      data-shape={shape}
+    />
+  );
+}
+```
+
+## Tests
+
+- V2 Controlled text entry: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given no visual props, the control renders with `data-size="md"`, `data-tone="neutral"`, `data-appearance="bordered"` and `data-full-width="true"`, and no `data-shape` attribute.
+- [x] Given `shape`, the `data-shape` attribute is rendered and the box follows the shared shape recipe; without it, the document shape applies.
+- [x] Given `invalid`, `aria-invalid` reflects it and the shared invalid treatment applies; otherwise the supplied native `aria-invalid` is retained.
+- [x] Given `rows`, the control renders that many visible lines at the control's text size, and the shared minimum block size is respected.
+- [x] Given user input, `onChange` reports `event.currentTarget.value` and the caller owns the next value.
+- [x] Given the control is resized by the user, it grows vertically only and the surrounding layout is unaffected.
+- [x] Given composition with FormField, the injected `id`, `invalid` and `aria-describedby` reach the control.
+- [x] Given the module CSS, only shared `composes` rules and the structural resize keyword appear.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens`, `npm run test:design-system` and `npm run build` pass.
+- [x] Caller supplies value/onChange for controlled input, `rows` and native validation attributes.
+- [x] Excludes character counting, auto-growth, rich text, masking, validation rules and implicit field context.
+- [x] The tone / appearance / shape contract uses neutral / bordered / inherited shape; Canonical visual types; shape follows the document value when the prop is absent.
+- [x] The fullWidth contract uses true; false uses intrinsic width; true fills the parent.
+- [x] The invalid contract uses undefined; Explicit value overrides aria-invalid, including false.
+- [x] The rows contract uses Native default; Caller sets the visible line count; no auto-growth.
+- [x] The value / defaultValue contract uses Native React contract; Caller owns controlled/uncontrolled behavior.
+- [x] The resize contract uses vertical, internal; Not configurable; horizontal resize is excluded.
+- [x] Native attributes, events, ref and className pass through.
+- [x] The component repeats the `data-*` mapping of the other field controls because that mapping is the recipe's public selector contract; it declares no size, tone, appearance, shape or invalid selector of its own.
+- [x] Component-local CSS: `src/design-system/components/atoms/Textarea/Textarea.module.css`.
+- [x] The shared recipe owns sizing, shape, appearance, tone, focus, disabled, invalid and full-width behavior.
+- [x] The module composes shared state feedback and adds only native vertical resize; animated=false and reduced motion disable transitions.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] rest ↔ hover/pressed → Native pointer/keyboard interaction → Existing root background/border targets → --motion-fast / --ease-standard.
+- [x] enabled ↔ disabled → Disabled prop → Native root opacity → --motion-fast / --ease-standard.
+- [x] valid ↔ invalid → Existing invalid/aria-invalid prop → Existing border-color target only → --motion-fast / --ease-standard.
+- [x] Use only states actually defined by the component; focus outline and error semantics are immediate.
+- [x] No validation shake, typing animation, caret movement or delayed submission.
+- [x] Controlled updates retarget from the current interpolated frame.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Controlled text entry**: Compose FormField with label="Label", placeholder="Placeholder" and caller-owned value; type/clear and toggle supported disabled/readOnly/invalid states, reporting the actual value channel once.
+- [x] The Textarea V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTextareaExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

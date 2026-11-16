@@ -1,0 +1,89 @@
+---
+title: "CurrencyValue"
+scope: "Accessible inline display of an exact monetary amount with explicit currency and locale"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# CurrencyValue
+
+## Files
+
+```text
+design-system/components/atoms/CurrencyValue/CurrencyValue.tsx (C)
+design-system/components/atoms/CurrencyValue/CurrencyValue.module.css (C)
+design-system/components/atoms/CurrencyValue/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/CurrencyValue.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-money.cjs (C)
+features/showcase-v2/components/CurrencyValue/definition.ts (C)
+features/showcase-v2/components/CurrencyValue/CurrencyValue.example.tsx (C)
+features/showcase-v2/components/CurrencyValue/useCurrencyValueExample.ts (C)
+features/showcase-v2/components/CurrencyValue/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Money contracts](../../types/tech-money-contracts.sc.md)
+- [Money helpers](../../helpers/tech-money.sc.md)
+- [Text](Text.sc.md)
+
+## Contract
+
+```tsx
+import {CurrencyValue} from "@/design-system";
+<CurrencyValue value="1234.56" currency="BRL" locale="pt-BR" />
+<CurrencyValue value="1234.56" currency="USD" locale="pt-BR" currencyDisplay="symbol" />
+<CurrencyValue value={null} currency="EUR" locale="en" emptyLabel={unavailableLabel} />
+```
+
+## Styles
+
+```css
+.root {
+  font-variant-numeric: tabular-nums;
+}
+```
+
+## Content
+
+```tsx
+import { Text } from "../Text";
+import type { MoneyFormatOptions, MonetaryValue, NativeCurrencyValueProps } from "../../../types/money";
+import { formatMoney } from "../../../helpers/money";
+import styles from "./CurrencyValue.module.css";
+
+export interface CurrencyValueProps extends NativeCurrencyValueProps, MoneyFormatOptions {
+  value: MonetaryValue;
+  emptyLabel?: string;
+}
+export function CurrencyValue({ value, currency, locale, currencyDisplay, useGrouping, emptyLabel = "—", className, ...props }: CurrencyValueProps) {
+  const formatted = formatMoney(value, { currency, locale, currencyDisplay, useGrouping });
+  return <Text {...props} className={[styles.root, className].filter(Boolean).join(" ")}>{value === null ? emptyLabel : formatted}</Text>;
+}
+```
+
+## Tests
+
+- V2 Exact monetary display: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- SSR preserves zero, sign, exact large values, explicit currency and locale.
+- Verify Text typography/ref/native attributes and emptyLabel; no extra focus target, duplicate accessible text or live region.
+- Reject invalid canonical amounts and incompatible scale through the shared formatter.
+
+## Criteria
+
+- [x] Component is a Text-based atom with an inline default; it renders no input, selector, card, invented icon or Header/Body/Footer family.
+- [x] Default currencyDisplay is code so USD, CAD and AUD are distinguishable; symbol/narrowSymbol/name are explicit caller options. Position, spaces, separators and signs come from Intl.
+- [x] Null uses emptyLabel, zero is formatted normally, and negative values retain their sign without imposing automatic red/green business meaning.
+- [x] CurrencyValueProps composes the existing Text contract and shared money options. No local text-size/tone/weight unions or empty view hook are introduced.
+- [x] Showcase illustrates BRL, USD, EUR, JPY and KWD; the same currency in pt-BR/es/en; positive/zero/negative/empty/large exact amounts; code versus symbol; table/card context using the actual atom.
+- [x] No sum or total combines different currencies, and no conversion or price-calculation logic is introduced.
+
+- [x] V2 **Exact monetary display**: Compare value="1234.56" with valid BRL/USD currencies and pt-BR/en locales, then null with emptyLabel="EmptyLabel"; retain valid decimal/currency values instead of generic strings.
+- [x] The CurrencyValue V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useCurrencyValueExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

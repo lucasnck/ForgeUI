@@ -1,0 +1,122 @@
+---
+title: "Page transition recipes"
+scope: "Token-backed content navigation and reveal effects through browser transition pseudo-elements"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Page transition recipes
+
+## Files
+
+```text
+design-system/styles/animations/page-transitions.module.css (C)
+features/showcase-v2/components/StyleResources/PageTransitionRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/PageTransitionRecipes/PageTransitionRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/PageTransitionRecipes/usePageTransitionRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/PageTransitionRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Page transition contracts](../../types/tech-page-transition-contracts.sc.md)
+- [Design tokens](../tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@/design-system/styles/animations/page-transitions.module.css";
+<section className={styles.boundary}>{content}</section>;
+```
+
+## Styles
+
+```css
+.boundary { min-inline-size: var(--zero); }
+:global(html):has(.boundary):global(::view-transition) { pointer-events: none; }
+:global(html):has(.boundary):global(::view-transition-group(root)),
+:global(html):has(.boundary):global(::view-transition-new(root)) { animation: none; }
+:global(html):has(.boundary):global(::view-transition-old(root)) { display: none; }
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-back)) {
+  --page-offset: calc(var(--zero) - var(--space-3));
+}
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-back)) {
+  --page-offset: var(--space-3);
+}
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-back)) {
+  animation: var(--motion-fast) var(--ease-standard) both pageLeave;
+}
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-back)) {
+  animation: var(--motion-normal) var(--ease-standard) both pageEnter;
+}
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-replace)),
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-reveal)) {
+  animation: var(--motion-fast) var(--ease-standard) both pageFadeOut;
+}
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-replace)),
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-reveal)) {
+  animation: var(--motion-normal) var(--ease-standard) both pageFadeIn;
+}
+:global(html):dir(rtl):has(.boundary):global(::view-transition-old(.praticar-page-forward)),
+:global(html):dir(rtl):has(.boundary):global(::view-transition-new(.praticar-page-back)) {
+  --page-offset: var(--space-3);
+}
+:global(html):dir(rtl):has(.boundary):global(::view-transition-new(.praticar-page-forward)),
+:global(html):dir(rtl):has(.boundary):global(::view-transition-old(.praticar-page-back)) {
+  --page-offset: calc(var(--zero) - var(--space-3));
+}
+@keyframes pageEnter {
+  from { opacity: var(--motion-opacity-hidden); translate: var(--page-offset) var(--zero); }
+  to { opacity: var(--motion-opacity-visible); translate: var(--zero) var(--zero); }
+}
+@keyframes pageLeave {
+  from { opacity: var(--motion-opacity-visible); translate: var(--zero) var(--zero); }
+  to { opacity: var(--motion-opacity-hidden); translate: var(--page-offset) var(--zero); }
+}
+@keyframes pageFadeIn { from { opacity: var(--motion-opacity-hidden); } to { opacity: var(--motion-opacity-visible); } }
+@keyframes pageFadeOut { from { opacity: var(--motion-opacity-visible); } to { opacity: var(--motion-opacity-hidden); } }
+@media (prefers-reduced-motion: reduce) {
+  :global(html):has(.boundary):global(::view-transition-old(*)),
+  :global(html):has(.boundary):global(::view-transition-new(*)),
+  :global(html):has(.boundary):global(::view-transition-group(*)) { animation: none !important; }
+}
+```
+
+## Animations
+
+```text
+pageEnter
+pageLeave
+pageFadeIn
+pageFadeOut
+```
+
+## Tests
+
+- V2 Local region transitions: verify its observable state, actual public contract, reset and complete copied code.
+
+- Inspect emitted CSS Modules selectors: exported boundary is locally hashed; browser pseudo-elements and mapped recipe classes remain global and match React classes.
+- Exercise forward/back versus untagged navigation, reveal and replace in one document; verify reduced motion and overlapping transitions.
+
+## Criteria
+
+- [x] The CSS Module compiles with Next.js pure-selector rules: every selector is anchored by the local boundary class through :has; only browser-owned pseudo-element fragments are global.
+- [x] The canonical pageTransitionClasses values match emitted pseudo-element arguments exactly; no accidental class hashing or copy in globals.css.
+- [x] Duration, displacement, opacity and easing consume existing tokens; no animation delay extends request time and no token definitions are duplicated.
+- [x] Recipes animate only the changing content section. The persistent application header/menu are outside that boundary, and the document root snapshot does not fade or slide them.
+- [x] The default root snapshot animation is suppressed within the local anchor, preserving named shared participants and preventing a duplicate page crossfade.
+- [x] RTL reverses forward/back horizontal offsets through document direction selectors; untyped history navigation has no invented direction.
+- [x] Reduced motion removes position/scale animation immediately, including shared participant groups; missing :has, ViewTransition or transition-class support leaves usable content.
+- [x] Snapshot overlay accepts no pointer events. Live DOM remains authoritative, old snapshots never introduce interactive cloned DOM, and no exit-presence delay postpones state/focus.
+- [x] Root-only global selectors are not added to a pure CSS Module; validate actual generated selectors and persistent shell behavior before DONE.
+
+- [x] V2 **Local region transitions**: Switch two local indexed views inside the real PageTransition recipe boundary. Compare supported animation opt-out/reversal and browser fallback while the caller owns navigation and semantic state; do not animate document/body.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

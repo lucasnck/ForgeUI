@@ -1,0 +1,126 @@
+---
+title: "ChoiceGroupFooter"
+scope: "ChoiceGroup compound part: ChoiceGroupFooter. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# ChoiceGroupFooter
+
+## Files
+
+```text
+design-system/components/atoms/ChoiceGroupFooter/ChoiceGroupFooter.module.css (M)
+features/showcase/examples/ChoiceGroupFooter.example.tsx (M)
+features/showcase/examples/useChoiceGroupPreview.ts (C)
+features/showcase-v2/components/ChoiceGroupFooter/definition.ts (C)
+features/showcase-v2/components/ChoiceGroupFooter/ChoiceGroupFooter.example.tsx (C)
+features/showcase-v2/components/ChoiceGroupFooter/useChoiceGroupFooterExample.ts (C)
+features/showcase-v2/components/ChoiceGroupFooter/usage-code.ts (C)
+features/showcase-v2/model/collection-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/components/ChoiceGroup/fixtures.ts (C)
+features/showcase-v2/messages/useShowcaseV2Copy.ts (M)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+
+## Contract
+
+```tsx
+import { ChoiceGroup, ChoiceGroupHeader, ChoiceGroupBody, ChoiceGroupFooter, FieldHint } from "@/design-system";
+<ChoiceGroup aria-label="Preferences"><ChoiceGroupHeader hidden>Preferences</ChoiceGroupHeader><ChoiceGroupBody hidden /><ChoiceGroupFooter><FieldHint>Choose a channel</FieldHint></ChoiceGroupFooter></ChoiceGroup>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  overflow-wrap: anywhere;
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useChoiceGroupContext } from "../../../internal/choicegroup/ChoiceGroupContext";
+import type { ChoiceGroupFooterProps } from "./ChoiceGroupFooter";
+
+export function useChoiceGroupFooter({ children, className, ...nativeProps }: ChoiceGroupFooterProps) {
+  const context = useChoiceGroupContext();
+  return { context, children, className, nativeProps };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { HTMLAttributes } from "react";
+import { useChoiceGroupFooter } from "./useChoiceGroupFooter";
+import styles from "./ChoiceGroupFooter.module.css";
+
+export interface ChoiceGroupFooterProps extends HTMLAttributes<HTMLDivElement> {}
+
+export function ChoiceGroupFooter(props: ChoiceGroupFooterProps) {
+  const { context, children, className, nativeProps } = useChoiceGroupFooter(props);
+  return <div
+    {...nativeProps}
+    id={context.footerId}
+    className={[styles.root, className].filter(Boolean).join(" ")}
+  >{children}</div>;
+}
+```
+
+## Tests
+
+- V2 ChoiceGroupFooter contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Require the scoped ChoiceGroup owner and preserve native region semantics.
+- Verify exactly one first-child legend, stable optional Footer descriptions and isolated instance ids.
+- Native attributes and caller content remain on their documented semantic owner.
+
+## Criteria
+
+- [x] Given ChoiceGroupFooter, Footer messages have stable ids registered with root aria-describedby and are linked to controls; live announcements remain owned by FieldError.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Footer messages have stable ids registered with root aria-describedby and are linked to controls; live announcements remain owned by FieldError.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useChoiceGroupFooter is colocated with ChoiceGroupFooter and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase isolates helper and validation descriptions with hidden required legend and Body; validation examples avoid unsolicited live announcements.
+
+- [x] Hidden required parts remain display:none; visible parts retain tokenized inset and child spacing appropriate to native form composition.
+
+- [x] V2 **ChoiceGroupFooter contextual region**: Compose ChoiceGroupHeader/Body with connected native choice controls and FieldHint in Footer. Show selected-count/help feedback and a secondary reset action through caller state, preserving group naming and avoiding unrelated save semantics. Link to the full owning composition.
+- [x] The ChoiceGroupFooter V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useChoiceGroupFooterExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the ChoiceGroup fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

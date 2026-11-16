@@ -1,0 +1,146 @@
+---
+title: "MaskedInput"
+scope: "Controlled text control whose display follows a caller-supplied mask"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# MaskedInput
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/molecules/MaskedInput/index.ts (C)
+design-system/components/molecules/MaskedInput/MaskedInput.tsx (C)
+design-system/components/molecules/MaskedInput/useMaskedInputView.ts (C)
+features/showcase/examples/MaskedInput.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-inputs.cjs (C)
+features/showcase/examples/InputFamilyExample.tsx (C)
+features/showcase-v2/components/MaskedInput/definition.ts (C)
+features/showcase-v2/components/MaskedInput/MaskedInput.example.tsx (C)
+features/showcase-v2/components/MaskedInput/useMaskedInputExample.ts (C)
+features/showcase-v2/components/MaskedInput/usage-code.ts (C)
+features/showcase-v2/model/specialized-input-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/messages/useShowcaseV2Copy.ts (M)
+features/showcase-v2/components/InputFixtures/HelperResults.tsx (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/components/MaskedInput/fixtures.ts (C)
+```
+
+## Dependencies
+
+- [Mask contracts](../../hooks/tech-mask.sc.md)
+- [Native control contracts](../../types/tech-native-control-contracts.sc.md)
+- [Input](../atoms/Input.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { FormField, MaskedInput } from "@/design-system";
+<FormField controlId="tax-id" label={taxIdLabel} hint={taxIdHint}>
+ <MaskedInput name="taxId" mask={taxIdMask} value={taxId} onValueChange={setTaxId} placeholder={taxIdPlaceholder}/>
+</FormField>;
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useImperativeHandle } from "react";
+import type { KeyboardEvent } from "react";
+import { useMaskedInput } from "../../../hooks/mask/useMaskedInput";
+import type { MaskedInputProps } from "./MaskedInput";
+
+export function useMaskedInputView({ mask, value, onValueChange, onKeyDown, ref, ...props }: MaskedInputProps) {
+  const masked = useMaskedInput({ mask, value, onValueChange });
+  const { inputRef } = masked;
+  useImperativeHandle(ref, () => inputRef.current!, [inputRef]);
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    onKeyDown?.(event);
+    if (!event.defaultPrevented && !props.disabled && !props.readOnly) masked.onKeyDown(event);
+  }
+  return { ...masked, props, handleKeyDown };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import { Input } from "../../atoms/Input";
+import type { NativeMaskedInputProps } from "../../../types/native-control-contracts";
+import type { VisualProps, ComponentFullWidthProps, ComponentInvalidProps } from "../../../types/component-capabilities";
+import { useMaskedInputView } from "./useMaskedInputView";
+
+export interface MaskedInputProps extends NativeMaskedInputProps, VisualProps, ComponentFullWidthProps, ComponentInvalidProps {
+  value: string;
+  onValueChange(value: string): void;
+  mask: string;
+}
+
+export function MaskedInput(props: MaskedInputProps) {
+  const { props: inputProps, inputRef, displayValue, inputMode, maxLength, onChange, handleKeyDown } = useMaskedInputView(props);
+  return (
+    <Input
+      {...inputProps}
+      ref={inputRef}
+      type="text"
+      value={displayValue}
+      inputMode={inputMode}
+      maxLength={maxLength}
+      onChange={onChange}
+      onKeyDown={handleKeyDown}
+    />
+  );
+}
+```
+
+## Tests
+
+- V2 Canonical masked entry: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- The declared native or controlled value channel forwards one user change while prop updates emit no corrective callback.
+- Caller-prevented and composing input does not trigger an owned selection/completion action.
+- Two mounted instances preserve independent ids, descriptions and native submission values.
+
+- Caller onKeyDown runs first; cancellation, disabled and readOnly prevent owned mask deletion.
+
+## Criteria
+
+- [x] Given a raw value, the rendered control shows the mask applied and the literals appear only after the preceding position is filled.
+- [x] Given typing, `onValueChange` receives characters only, without literals, and `value` always round-trips through `applyMask`.
+- [x] Given a paste that already contains literals, the resulting raw value matches the unmasked paste.
+- [x] Given backspace over a separator, the separator is not deleted alone and the caret lands on the previous position.
+- [x] Given a numeric-only mask, the control renders `inputmode="numeric"`; given a mask with letters, it renders `inputmode="text"`.
+- [x] Given the mask length, `maxlength` equals it and no longer value can be entered.
+- [x] Given `invalid`, `aria-invalid` reflects it; given composition with FormField, `id` and `aria-describedby` reach the control.
+- [x] Given the component source, no masking library is imported and no mask literal of its own is declared.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens` and `npm run test:design-system` pass.
+- [x] Includes the raw-value channel, the accessibility attributes the mask dictates (`inputMode`, `maxLength`) and the visual capabilities of the Input atom.
+- [x] Excludes mask semantics (a mask is structural: this component does not know that a tax id has a check digit or that a date has a calendar), calendar pickers, locale formatting, validation messaging and every domain mask.
+- [x] The value / onValueChange contract uses Required; Raw characters only; literals are never stored.
+- [x] The mask contract uses Required; Canonical grammar from the mask contract; consumers use the exported constants when one applies.
+- [x] The fullWidth contract uses true; Forwarded to the Input atom.
+- [x] The invalid contract uses undefined; Forwarded; explicit value overrides `aria-invalid`, including `false`.
+- [x] The inputMode / maxLength contract uses Derived from the mask; Owned by the hook; omitted from `NativeMaskedInputProps`.
+- [x] The type contract uses text; Fixed; omitted from the native contract.
+- [x] The placeholder contract uses undefined; Caller-supplied and localized.
+- [x] Native attributes, events and `className` pass through, including `name`, `required`, `disabled`, `readOnly` and `onBlur`.
+- [x] The component declares no formatting logic and no field style: the hook owns the mask state and caret, and the Input atom owns the visual contract.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Native field value and focus stay unchanged by motion.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useMaskedInputView is colocated with MaskedInput and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] V2 **Canonical masked entry**: Use the actual public mask/preset in the existing Contract with FormField; type/delete/paste a valid fixture and clear it, showing display text separately from onValueChange canonical data.
+- [x] The MaskedInput V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useMaskedInputExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] V2 supporting fixture **Pure mask application** in the MaskedInput example uses the actual [helper contract](../../helpers/tech-mask-helpers.sc.md): Use the actual applyMask/MASK_TOKEN_6 contract with valid, partial and pasted fixtures; compare pure canonical/display results with the real control, preserving caret/IME ownership in the hook rather than a second formatter engine. Computed output is an explicit typed-fixture exception to generic Children text; it is not a new prop or helper page.

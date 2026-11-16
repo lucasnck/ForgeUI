@@ -1,0 +1,94 @@
+---
+title: "Icon Sources and Ingestion"
+scope: "Adopted icon source, canonical naming, normalization, generation, provenance and the vendor swap procedure"
+status: "PENDING"
+type: "helper"
+ds-level: "none"
+---
+
+# Icon Sources and Ingestion
+
+
+## Files
+
+```text
+../scripts/build-icons.cjs (M)
+../scripts/icon-pipeline.cjs (M)
+../scripts/check-icons.cjs (M)
+design-system/assets/icons/icon-sources.json (M)
+design-system/foundations/icon-data.generated.ts (D)
+design-system/helpers/icon-data.generated.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Dependencies
+
+- [Icon geometry](../types/tech-icon-geometry.sc.md)
+
+## Contract
+
+```ts
+import { iconData } from "@/design-system";
+const geometry = iconData[name];
+```
+
+## Content
+
+```js
+const fs = require("node:fs");
+const { OUTPUT_FILE, collectRecords, renderModule, } = require("./icon-pipeline.cjs");
+const { manifest, records } = collectRecords({ write: true });
+fs.writeFileSync(OUTPUT_FILE, renderModule(manifest, records));
+console.log(`Icon data generated for ${records.length} icons from ${manifest.source.package} ${manifest.source.version}.`);
+```
+
+```js
+const path = require("node:path");
+const OUTPUT_FILE = path.normalize("src/design-system/helpers/icon-data.generated.ts");
+function renderModule(_manifest, records) {
+  const body = records.map(record => {
+    const paths = record.paths.map(d => `      ${JSON.stringify(d)},`).join("\n");
+    return `  ${JSON.stringify(record.name)}: {
+    name: ${JSON.stringify(record.name)},
+    viewBox: ${JSON.stringify(record.viewBox)},
+    drawing: ${JSON.stringify(record.drawing)},
+    paths: [
+${paths}
+    ],
+  },`;
+  }).join("\n");
+  return `import type { IconGeometry } from "../types/icon-geometry";
+
+export const iconData = {
+${body}
+} as const satisfies Readonly<Record<string, IconGeometry>>;
+`;
+}
+```
+
+## Tests
+
+- V2 Supported icon geometry: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Regeneration is deterministic and stale generated data fails validation.
+- Missing assets, duplicate names and unsupported SVG attributes identify the offending file.
+- Manifest provenance and license remain present after changing vendors.
+- Source checks reject runtime vendor packages and raw asset imports.
+- Generator output matches the canonical IconGeometry type.
+
+## Criteria
+
+- [x] Names remain canonical; vendor names and provenance are confined to the manifest.
+- [x] Generated data moves to helpers/icon-data.generated.ts and uses types/icon-geometry.ts.
+- [x] Committed normalized geometry makes generation reproducible offline.
+- [x] Each asset has one manifest entry, a 24-unit viewBox and normalized paths.
+- [x] Validation rejects stale output, unsupported attributes and runtime vendor dependencies.
+- [x] Changing sources requires only manifest, assets and regeneration; public Icon props stay stable.
+- [x] Failures name the file and the normalization rule.
+
+- [x] V2 **Supported icon geometry** is covered through the public Icon consumer examples and typed caller fixtures: Use valid iconData names through Icon and typed caller fixtures, reject unsupported names, and retain canonical geometry ownership without copying SVG data into V2.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.
+
+- [ ] Verify the supporting example in a real browser with standard/narrow layout and displayed-output/copyable-snippet agreement. Runtime helper assertions, typed fixtures and SSR do not replace visual verification.

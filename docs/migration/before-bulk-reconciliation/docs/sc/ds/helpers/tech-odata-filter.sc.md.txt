@@ -1,0 +1,198 @@
+---
+title: "OData filter serialization"
+scope: "Pure OData v4 filter serialization for the approved typed expression tree; no HTTP or arbitrary raw expression fragments"
+status: "DONE"
+type: "helper"
+ds-level: "none"
+---
+
+# OData filter serialization
+
+## Files
+
+```text
+design-system/helpers/odata-filter/index.ts (M)
+../package.json (M)
+../scripts/check-odata-filter.cjs (M)
+design-system/types/odata-filter.contracts.test.ts (M)
+design-system/helpers/odata-filter/serializeODataFilter.ts (M)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Dependencies
+
+- [Filter contracts](../types/tech-odata-filter-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { serializeODataFilter } from "@/design-system";
+const filter = serializeODataFilter(expression, fields);
+```
+
+## Content
+
+### GUID and exact decimal literal increment
+
+```ts
+import type { ODataFilterDecimalField } from "../../types/odata-filter";
+
+function guidLiteral(value: unknown): string {
+  if (typeof value !== "string" || value.length !== 36 || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value)) throw new Error("Invalid GUID");
+  return value.toLowerCase();
+}
+
+function assertDecimalSchema(field: ODataFilterDecimalField): void {
+  if (!Number.isSafeInteger(field.precision) || !Number.isSafeInteger(field.scale) || field.precision < 1 || field.precision > 1024 || field.scale < 0 || field.scale > field.precision) throw new Error("Invalid decimal schema");
+}
+
+function decimalLiteral(value: unknown, field: ODataFilterDecimalField): string {
+  assertDecimalSchema(field);
+  if (typeof value !== "string" || value.length > 1024 || value !== value.trim() || !/^-?(?:0|[1-9]\d*)(?:\.\d+)?$/.test(value)) throw new Error("Invalid decimal");
+  const [integer, fraction = ""] = value.replace(/^-/, "").split(".");
+  const integerDigits = integer === "0" ? 0 : integer.length;
+  if (fraction.length > field.scale || integerDigits > field.precision - field.scale) throw new Error("Decimal outside schema precision");
+  return value;
+}
+
+function compareDecimalLiterals(left: string, right: string): number {
+  const parts = (value: string) => {
+    const [integer, fraction = ""] = value.replace(/^-/, "").split(".");
+    const zero = /^0*$/.test(integer + fraction);
+    return { negative: value.startsWith("-") && !zero, integer, fraction };
+  };
+  const a = parts(left);
+  const b = parts(right);
+  if (a.negative !== b.negative) return a.negative ? -1 : 1;
+  const scale = Math.max(a.fraction.length, b.fraction.length);
+  const aDigits = a.integer + a.fraction.padEnd(scale, "0");
+  const bDigits = b.integer + b.fraction.padEnd(scale, "0");
+  const result = a.integer.length === b.integer.length
+    ? (aDigits === bDigits ? 0 : aDigits < bDigits ? -1 : 1)
+    : a.integer.length - b.integer.length;
+  return a.negative ? -Math.sign(result) : Math.sign(result);
+}
+```
+
+```ts
+import type { ODataFilterConditionData, ODataFilterExpression, ODataFilterField, ODataFilterOperator, ODataFilterValueData } from "../../types/odata-filter";
+const comparisons = ["eq", "ne", "gt", "ge", "lt", "le", "between"] as const;
+export function getODataFilterOperators(field: ODataFilterField): readonly ODataFilterOperator[] {
+ if (field.kind === "decimal") assertDecimalSchema(field);
+ const supported: readonly ODataFilterOperator[] = field.kind === "text" ? ["eq", "ne", "contains", "startswith", "endswith"] : field.kind === "boolean" || field.kind === "choice" || field.kind === "guid" ? ["eq", "ne"] : field.kind === "multiChoice" ? ["in"] : comparisons;
+ const operators = field.operators ?? supported;
+ if (!operators.length || operators.some(item => !supported.includes(item))) throw new Error("Invalid operators for field: " + field.id);
+ if (field.defaultOperator && !operators.includes(field.defaultOperator)) throw new Error("Invalid default operator: " + field.id);
+ return operators;
+}
+export function createODataFilterCondition(field: ODataFilterField, id: string, operator = field.defaultOperator ?? getODataFilterOperators(field)[0]): ODataFilterConditionData {
+ if (!getODataFilterOperators(field).includes(operator)) throw new Error("Invalid operator");
+ return {kind: "condition", id, fieldId: field.id, fieldKind: field.kind, operator, value: operator === "between" ? [null, null] : null} as ODataFilterConditionData;
+}
+export function replaceODataFilterConditionValue(condition: ODataFilterConditionData, value: ODataFilterValueData): ODataFilterConditionData {
+ return {...condition, value} as ODataFilterConditionData;
+}
+function quoted(value: string) { return "'" + value.replaceAll("'", "''") + "'"; }
+function validDate(value: string) {
+ if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number(value.slice(0,4)) < 1) return false;
+ const parsed = new Date(value + "T00:00:00Z");
+ return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0,10) === value;
+}
+function literal(value: unknown, field: ODataFilterField): string {
+ if (field.kind === "guid") return guidLiteral(value);
+ if (field.kind === "decimal") return decimalLiteral(value, field);
+ if (value === null || value === undefined) throw new Error("Incomplete value: " + field.id);
+ if (field.kind === "number") { if (typeof value !== "number" || !Number.isFinite(value)) throw new Error("Invalid number"); return String(value); }
+ if (field.kind === "boolean") { if (typeof value !== "boolean") throw new Error("Invalid boolean"); return String(value); }
+ if (typeof value !== "string") throw new Error("Invalid string value");
+ if (field.kind === "text") return quoted(value);
+ if (field.kind === "choice" || field.kind === "multiChoice") { if (!field.options.some(option => option.value === value && !option.disabled)) throw new Error("Unknown choice"); return quoted(value); }
+ if (field.kind === "date") { if (!validDate(value)) throw new Error("Invalid date"); return value; }
+ if (field.kind === "time") { if (!/^([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,7})?)?$/.test(value)) throw new Error("Invalid time"); return value.length === 5 ? value + ":00" : value; }
+ if (field.kind !== "datetime") throw new Error("Invalid field kind");
+ if (!/^\d{4}-\d{2}-\d{2}T([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,3})?)?$/.test(value) || !validDate(value.slice(0,10))) throw new Error("Invalid datetime");
+ if (!/^(Z|[+-](0\d|1[0-3]):[0-5]\d|[+-]14:00)$/.test(field.offset)) throw new Error("Invalid datetime offset");
+ return value + (value.length === 16 ? ":00" : "") + field.offset;
+}
+function rangeComparable(value: string, field: ODataFilterField) {
+ if(field.kind==="time"){const [time,fraction=""]=value.split(".");return (time.length===5?time+":00":time)+"."+fraction.padEnd(7,"0");}
+ if(field.kind==="datetime")return Date.parse(value);
+ return value;
+}
+export function serializeODataFilter(expression: ODataFilterExpression, fields: readonly ODataFilterField[]): string {
+ const schema = new Map<string, ODataFilterField>();
+ for (const field of fields) {
+  if (!field.id.trim() || !field.label.trim() || schema.has(field.id) || !/^[A-Za-z_][A-Za-z0-9_]*(?:\/[A-Za-z_][A-Za-z0-9_]*)*$/.test(field.path)) throw new Error("Invalid field schema");
+  if (!["text","number","guid","decimal","date","time","datetime","boolean","choice","multiChoice"].includes(field.kind)) throw new Error("Invalid field kind");
+  if ((field.kind === "choice" || field.kind === "multiChoice") && (new Set(field.options.map(option=>option.value)).size !== field.options.length || field.options.some(option=>!option.value || !option.label.trim()))) throw new Error("Invalid choices");
+  if (field.kind === "decimal" && (!Number.isSafeInteger(field.precision) || field.precision < 1 || field.precision > 1024 || !Number.isSafeInteger(field.scale) || field.scale < 0 || field.scale > field.precision)) throw new Error("Invalid decimal schema");
+  getODataFilterOperators(field); schema.set(field.id,field);
+ }
+ const visited = new Set<object>();
+ const ids = new Set<string>();
+ function visit(node: ODataFilterExpression, depth: number): string {
+  if (depth > 32 || !node || typeof node !== "object" || visited.has(node)) throw new Error("Invalid expression tree");
+  if (typeof node.id !== "string" || !node.id.trim() || ids.has(node.id)) throw new Error("Invalid expression identity");
+  ids.add(node.id);
+  visited.add(node);
+  if (node.kind === "group") {
+   if (node.operator !== "and" && node.operator !== "or" || !Array.isArray(node.children)) throw new Error("Invalid group");
+   const parts = node.children.map(child => visit(child, depth+1)).filter(Boolean); visited.delete(node);
+   return parts.length ? "(" + parts.join(" " + node.operator + " ") + ")" : "";
+  }
+  if (node.kind !== "condition") throw new Error("Invalid expression node");
+  const field = schema.get(node.fieldId);
+  if (!field || field.kind !== node.fieldKind || !getODataFilterOperators(field).includes(node.operator)) throw new Error("Invalid condition");
+  const path = field.path;
+  if (node.operator === "between") {
+   if (!Array.isArray(node.value) || node.value.length !== 2) throw new Error("Incomplete range");
+   const [low, high] = node.value.map(value => literal(value, field));
+   if (field.kind === "decimal" ? compareDecimalLiterals(low, high) > 0 : field.kind === "number" ? Number(node.value[0]) > Number(node.value[1]) : rangeComparable(low,field) > rangeComparable(high,field)) throw new Error("Reversed range");
+   return "(" + path + " ge " + low + " and " + path + " le " + high + ")";
+  }
+  if (node.operator === "in") {
+   if (!Array.isArray(node.value) || !node.value.length) throw new Error("Incomplete choices");
+   return "(" + [...new Set(node.value)].map(value => path + " eq " + literal(value,field)).join(" or ") + ")";
+  }
+  const value = literal(node.value,field);
+  return ["contains", "startswith", "endswith"].includes(node.operator) ? node.operator + "(" + path + "," + value + ")" : path + " " + node.operator + " " + value;
+ }
+ return visit(expression, 0);
+}
+export function isODataFilterSimpleExpression(expression: ODataFilterExpression, fields: readonly ODataFilterField[]): boolean {
+ if (expression.kind !== "group" || expression.operator !== "and") return false;
+ const seen = new Set<string>();
+ return expression.children.every(node => {
+  if (node.kind !== "condition" || seen.has(node.fieldId)) return false;
+  const field = fields.find(item => item.id === node.fieldId);
+  if (!field || node.fieldKind !== field.kind || node.operator !== (field.defaultOperator ?? getODataFilterOperators(field)[0])) return false;
+  seen.add(node.fieldId); return true;
+ });
+}
+```
+
+## Tests
+
+- V2 Serialized filter acceptance: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+- GUID equality emits unquoted v4 literals; reject v2 guid'...' syntax, quote injection, braces, whitespace and malformed values. Zero GUID remains a valid literal at this pure DS layer; business adapters reject invalid entity selections themselves.
+- Compare decimal ranges that differ beyond IEEE754 precision, negative ranges, signed zero, fractional zero padding and boundary precision/scale; reject exponents, grouping/locale punctuation, NaN/Infinity, leading/trailing whitespace, overprecision and incomplete input without Number conversion.
+
+## Criteria
+
+- [x] Extend the existing helper/schema/condition factories for the proposed guid and decimal kinds from the canonical types SC; do not implement a second admin-only OData serializer. Preserve all checked existing behavior and retain the existing public serializer.
+- [x] Serialize GUID eq/ne as unquoted canonical hexadecimal GUID literals and decimal comparisons/ranges as unquoted invariant exact numeric text, following [OData 4.01 URL conventions](https://docs.oasis-open.org/odata/odata/v4.01/os/part2-url-conventions/odata-v4.01-os-part2-url-conventions.html). Do not use v2 guid'...' or decimal suffixes, quoted text literals, URL concatenation or Number/parseFloat for exact values.
+- [x] Validate decimal schema precision/scale as finite safe integers with 1 <= precision <= 1024 and 0 <= scale <= precision. Enforce representable integer/fraction digits and the 1024-character bound before serialization/range comparison. Compare signs, canonical integer digits and zero-padded fraction digits exactly; use deterministic codepoint comparison, not locale collation or floating point. Semantic equivalent zeros compare equal. A reversed range fails Apply and retains editing values.
+- [x] getODataFilterOperators gives guid eq/ne only and decimal the existing comparison/range set; createODataFilterCondition initializes scalar null or [null,null] without changing old kinds. Unknown or unsupported operators/kinds remain rejected. Tree depth, identity/cycle/path guards and escaping remain canonical.
+- [x] Keep relation lookup, EDM discovery, precision configuration, HTTP IEEE754Compatible negotiation and application authorization outside this pure helper. New cases require targeted tests and touched-source formatting/lint/type checks; no source or catalog availability is implied by this authoring update.
+
+- [x] Serialization accepts only the typed expression and caller schema; unknown fields, invalid property paths, incompatible operators and invalid values are rejected.
+- [x] OData v4 literals escape embedded quotes; zero and false are preserved; dates follow the declared EDM type without implicit locale parsing.
+- [x] Parentheses preserve nested AND/OR meaning; multiple choices use grouped equality comparisons and ranges explicit lower/upper comparisons.
+- [x] No active conditions yields an empty filter; incomplete active conditions are rejected rather than silently omitted.
+- [x] The result is an expression without a URL or HTTP call; the page owns URLSearchParams encoding and execution.
+- [x] Unit tests cover quotes, injection-like values, invalid paths, false, zero, empty groups, invalid dates and nested precedence.
+
+- [x] V2 **Serialized filter acceptance** is covered through the public ODataFilter consumer examples and typed caller fixtures: Use the same valid simple/nested typed expressions as both organism scenarios; inspect the actual serializer output, escaped text and rejected schema/value cases rather than constructing query text in the fixture.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.

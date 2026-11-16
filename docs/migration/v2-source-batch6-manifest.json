@@ -1,0 +1,438 @@
+{
+  "source_project": "PraticarFront",
+  "date": "2026-11-14",
+  "scope": "batch 6 - source component families and 5 original V2 definitions",
+  "files": [
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Avatar/Avatar.module.css",
+      "target": "web/library/src/design-system/components/atoms/Avatar/Avatar.module.css",
+      "sha256": "6632befca3b0861bcc04757a42afe388311ce621d40287bf38f8caf9a3ecca34",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Avatar/Avatar.tsx",
+      "target": "web/library/src/design-system/components/atoms/Avatar/Avatar.tsx",
+      "sha256": "7659f0279d6be88369779ebeb7d7d7471d2fccdca9c53b7869a2c520291d863a",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Avatar/index.ts",
+      "target": "web/library/src/design-system/components/atoms/Avatar/index.ts",
+      "sha256": "e5f2d0e04a56a7dbf8de01d7f12fa824433cd1a9606215b80e6612616ba64b5c",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Avatar/useAvatar.ts",
+      "target": "web/library/src/design-system/components/atoms/Avatar/useAvatar.ts",
+      "sha256": "6e0494f41a440a6cf2d0303deee4e3b4b2158699875c7a499219b78d14ec0c34",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Avatar.sc.md",
+      "target": "docs/sc/ds/atoms/Avatar.sc.md",
+      "sha256": "b7f7f874df4a786dd76889ed7003824d873c97a40fae1e1188c54ca7940df7a0",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Skeleton/Skeleton.module.css",
+      "target": "web/library/src/design-system/components/atoms/Skeleton/Skeleton.module.css",
+      "sha256": "0575c04db28e054560edab105808354ba164b0c4ef0679e4b56bb395c650b366",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Skeleton/Skeleton.tsx",
+      "target": "web/library/src/design-system/components/atoms/Skeleton/Skeleton.tsx",
+      "sha256": "a0b23a12b0552e458d68cc8cb845cae750046849ca732adcc731250db97bb9cc",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Skeleton/index.ts",
+      "target": "web/library/src/design-system/components/atoms/Skeleton/index.ts",
+      "sha256": "e87bed9f4a1c6e6c2e8ccd04c2a8cd3c288d114626618e85544a55ee3f9d8fd3",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/Skeleton.sc.md",
+      "target": "docs/sc/ds/atoms/Skeleton.sc.md",
+      "sha256": "533a610f1177f8735969d43d859cff1e7991368648c2eae56c19b347ba3556d1",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/IconButton/IconButton.module.css",
+      "target": "web/library/src/design-system/components/molecules/IconButton/IconButton.module.css",
+      "sha256": "7da3e58318b2679269d931af40916b524627a5e5d334725e710899a3f56ea99c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/IconButton/IconButton.tsx",
+      "target": "web/library/src/design-system/components/molecules/IconButton/IconButton.tsx",
+      "sha256": "4d37fd182931bec30e3372907ade833f7612ecb6cd9063919d05c35edaf2111c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/IconButton/index.ts",
+      "target": "web/library/src/design-system/components/molecules/IconButton/index.ts",
+      "sha256": "a29197ba48401c2f39a734eebfde1097f513f36d991e4d8a5a499cbfedd96b82",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/IconButton.sc.md",
+      "target": "docs/sc/ds/molecules/IconButton.sc.md",
+      "sha256": "4e17b1f5ea8865f9d19d685fc0879f77277439b46e57df607255d603676cfb33",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Tag/Tag.module.css",
+      "target": "web/library/src/design-system/components/molecules/Tag/Tag.module.css",
+      "sha256": "bca24a06aae1c71e99f3c186d964d1e0dd23bccce3a4c73bc7ac11c92850a1ce",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Tag/Tag.tsx",
+      "target": "web/library/src/design-system/components/molecules/Tag/Tag.tsx",
+      "sha256": "318a77ce504d8907fab3e08c6f89776d89c70e92a0c26a1300c2aa39cb1024a7",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Tag/index.ts",
+      "target": "web/library/src/design-system/components/molecules/Tag/index.ts",
+      "sha256": "0aa3d6febf5065ba17c325ffb5380f044e9c516970c1596af4d2d75df41d08d3",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Tag.sc.md",
+      "target": "docs/sc/ds/molecules/Tag.sc.md",
+      "sha256": "060f259fea626f2892ef3d04af0f5206e0295c6218ef14dbf6365dd50e0e47c0",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Alert/Alert.module.css",
+      "target": "web/library/src/design-system/components/molecules/Alert/Alert.module.css",
+      "sha256": "1b535ea68323a5c7095314fcef18d50a1ac77317efe43a9b4423d15a79003209",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Alert/Alert.tsx",
+      "target": "web/library/src/design-system/components/molecules/Alert/Alert.tsx",
+      "sha256": "6dc5d101ac2f210e8775a144c267cda7ecb13242aa6b173d03b94ec3313662e9",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Alert/index.ts",
+      "target": "web/library/src/design-system/components/molecules/Alert/index.ts",
+      "sha256": "a051b3b577969493746b87723461a5818bc86435a7c983739bae88b0abd0ca67",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Alert/useAlert.ts",
+      "target": "web/library/src/design-system/components/molecules/Alert/useAlert.ts",
+      "sha256": "cc0e5094f967dab6691e01c44c73481a06e57157aaff06afc82bcef9acdee3d6",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/molecules/Alert.sc.md",
+      "target": "docs/sc/ds/molecules/Alert.sc.md",
+      "sha256": "7bbcbe54acc2e4cbb3420543568054d66ff61f3d73a907dd81b1016087ab5e28",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertHeader/AlertHeader.module.css",
+      "target": "web/library/src/design-system/components/atoms/AlertHeader/AlertHeader.module.css",
+      "sha256": "ab620af0ea83d93abcbf582a8b21240147d11324c769559e6ed1ee3302f565b8",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertHeader/AlertHeader.tsx",
+      "target": "web/library/src/design-system/components/atoms/AlertHeader/AlertHeader.tsx",
+      "sha256": "86c920b38c8ab57c6edd5668837330862434bd926629e9c5223864314584b9ae",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertHeader/index.ts",
+      "target": "web/library/src/design-system/components/atoms/AlertHeader/index.ts",
+      "sha256": "4f7ed3f04fd4945725ce09cef35c6986f2dbaae327d35bbf9dc5e67bc4a06997",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertHeader/useAlertHeader.ts",
+      "target": "web/library/src/design-system/components/atoms/AlertHeader/useAlertHeader.ts",
+      "sha256": "895f93093f6638dd21cc14a2de2a7fac09db79f4ad9348859ede9df606a5747b",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/AlertHeader.sc.md",
+      "target": "docs/sc/ds/atoms/AlertHeader.sc.md",
+      "sha256": "3e795028672fbcf6c356f78e2d89d3a90ca73d06586839a597b7b8b2132f3f0b",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertBody/AlertBody.module.css",
+      "target": "web/library/src/design-system/components/atoms/AlertBody/AlertBody.module.css",
+      "sha256": "ab620af0ea83d93abcbf582a8b21240147d11324c769559e6ed1ee3302f565b8",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertBody/AlertBody.tsx",
+      "target": "web/library/src/design-system/components/atoms/AlertBody/AlertBody.tsx",
+      "sha256": "170f5c93e8c246a0281117a45d332c275a60a766490cb0b36c6eecb102d86250",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertBody/index.ts",
+      "target": "web/library/src/design-system/components/atoms/AlertBody/index.ts",
+      "sha256": "b56ac207d0c2c23f254de75b53b939b19ddadc9c1d963f8b5a2c064564dc4f12",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertBody/useAlertBody.ts",
+      "target": "web/library/src/design-system/components/atoms/AlertBody/useAlertBody.ts",
+      "sha256": "a592246a879e879ed80d35c7348237ec33a6fb61938c2ac7f7f236c505887e60",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/AlertBody.sc.md",
+      "target": "docs/sc/ds/atoms/AlertBody.sc.md",
+      "sha256": "6ee69e1af05dd5bf56128f786c57c7f821300c5d7196b617ddc06d2c9b300f27",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertFooter/AlertFooter.module.css",
+      "target": "web/library/src/design-system/components/atoms/AlertFooter/AlertFooter.module.css",
+      "sha256": "ab620af0ea83d93abcbf582a8b21240147d11324c769559e6ed1ee3302f565b8",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertFooter/AlertFooter.tsx",
+      "target": "web/library/src/design-system/components/atoms/AlertFooter/AlertFooter.tsx",
+      "sha256": "506fb7b885d390f529f5ae06c4a27a779108c1919c75efb72bbf02b7bb990b3c",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertFooter/index.ts",
+      "target": "web/library/src/design-system/components/atoms/AlertFooter/index.ts",
+      "sha256": "bd850802fbea33ad7b94ca4ab2741b2d979665ec09cb6142362c238181eef908",
+      "mode": "generated-barrel",
+      "note": "Equivalent public barrel, recreated to avoid source file name collision"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/AlertFooter/useAlertFooter.ts",
+      "target": "web/library/src/design-system/components/atoms/AlertFooter/useAlertFooter.ts",
+      "sha256": "668e2bfd7f42ac766165a94dac21ff3ec277d3ce95c259dd6890ac4c805d78fe",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/docs/sc/ds/components/atoms/AlertFooter.sc.md",
+      "target": "docs/sc/ds/atoms/AlertFooter.sc.md",
+      "sha256": "36cda1054cdf3709b5fe6dec22c3f1ca771f3201d5a7f00cdb4e06a6f8e76243",
+      "mode": "line-ending-normalized",
+      "note": "Historical SC status preserved; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/src/design-system/internal/alert/AlertContext.ts",
+      "target": "web/library/src/design-system/internal/alert/AlertContext.ts",
+      "sha256": "21166d76a33af926578612f2edd2534851d07ace15d0560674e406ebc1ad1780",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/types/loading.ts",
+      "target": "web/library/src/design-system/types/loading.ts",
+      "sha256": "9a2be4172288ac136ad94b31339deffb340cf65a354c546670940375842fd4b1",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/design-system/types/collection-contracts.ts",
+      "target": "web/library/src/design-system/types/collection-contracts.ts",
+      "sha256": "d780b5d193c9782df29325745a93fb9d31e7a4ec13156779458c0b81f3e1326c",
+      "mode": "adapted",
+      "note": "Added AnnouncementPoliteness to previously extracted partial contracts"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Avatar/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Avatar/definition.ts",
+      "sha256": "aaf0131d020789298baab1b45e1f2ed6f123b86d6877cbb5f570cb2f8082de24",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Avatar/Avatar.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Avatar/Avatar.example.tsx",
+      "sha256": "1cb0d19ed7134ec92b4a9766c7f7ffe414f7b7af5b888c7899d848e647d35038",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Avatar/useAvatarExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Avatar/useAvatarExample.ts",
+      "sha256": "a7bd83fcd8d8f7e9299e12cbd96ef461733c85aec27743f998b5663dd5445f82",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Avatar/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Avatar/usage-code.ts",
+      "sha256": "bf507c8384a874b98ade835e8893c64e0cbda244e212a12d94b2e8c805a56ec6",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Skeleton/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Skeleton/definition.ts",
+      "sha256": "62c3fc1cedf913feb252b3f9d2fe8fcbca94a7f6e1d881eefa6502c67190808a",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Skeleton/Skeleton.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Skeleton/Skeleton.example.tsx",
+      "sha256": "3b58ef22e58541be2b59204d829f07680ae52124f5be590299140f2852e90d2e",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Skeleton/useSkeletonExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Skeleton/useSkeletonExample.ts",
+      "sha256": "1320e0c0763c9249291148a24a34aeee7e9a8841b61c7f1fd596a66851da771f",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Skeleton/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Skeleton/usage-code.ts",
+      "sha256": "b0c9f7fce36be5ed0c0a22128a55aea7781a11443b52649cbc10f85b7b132644",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/IconButton/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/IconButton/definition.ts",
+      "sha256": "2ff55f3c788f011d7dc103e6afa2686f16994f4d50cf2e875f31d8c8e1c974b9",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/IconButton/IconButton.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/IconButton/IconButton.example.tsx",
+      "sha256": "33ca0b7bc1041c3a2e715948552e895829c19cb79f759f6dadf255d62b4d9a03",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/IconButton/useIconButtonExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/IconButton/useIconButtonExample.ts",
+      "sha256": "fcaf4de819bd88d7475799910cb701a711d53c5c36e1fa39fbce68b158b40cee",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/IconButton/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/IconButton/usage-code.ts",
+      "sha256": "9d9672400d3ed31a676c6dff982b23eed3b5fc7a891789d96cd66532aba5fe72",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Tag/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Tag/definition.ts",
+      "sha256": "0528607f771c840c40cb6d3c6d2363453689bbdffdba38af8398c391ec38591f",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Tag/Tag.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Tag/Tag.example.tsx",
+      "sha256": "a0fd3f510c3dfcb8edbd0cbb363ddd587506ee3b0e27c2c0382a9a4538882eca",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Tag/useTagExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Tag/useTagExample.ts",
+      "sha256": "5375d9b85d9c2a36477e843a84dfba9a8b7878cf4551fc9b6667e89048a7b77f",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Tag/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Tag/usage-code.ts",
+      "sha256": "fe329953da4b77e5a5d0ee3318ae29ee7d028f5000eddd3c80a2aa5bce2462d8",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Alert/definition.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Alert/definition.ts",
+      "sha256": "b51b524d838c7b65631e75f0110f086ad845b2f6e31ce39415f43a74f8f74871",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Alert/Alert.example.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/Alert/Alert.example.tsx",
+      "sha256": "471c1d0eea54f7ece023ce3caf9497e83cf713fbc68fb5370fec3a893e9dcf22",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Alert/useAlertExample.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Alert/useAlertExample.ts",
+      "sha256": "1facc6833fe1b6fcfb93f81cd6758eda8df3b52ebb7af911d2cdad1a9edcb833",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/Alert/usage-code.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/Alert/usage-code.ts",
+      "sha256": "bbb822d85a477c62f62791c7417f04ab0634f33b9fe75576678d57c4719901af",
+      "mode": "adapted",
+      "note": "Imports translated to @forge-ui/web, local SC path; original behavior and contracts retained"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ResourceExamples/ResourceState.tsx",
+      "target": "showcase/portal/src/features/showcase-v2/components/ResourceExamples/ResourceState.tsx",
+      "sha256": "96216f6f303d81d86d41962c4391895dfc77c765403da033d1da3d3441938a08",
+      "mode": "exact-copy"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ResourceExamples/useResourceExampleCopy.ts",
+      "target": "showcase/portal/src/features/showcase-v2/components/ResourceExamples/useResourceExampleCopy.ts",
+      "sha256": "c251c7fd68c752dd9d820d625cf9a7166c3e52343c62942341797fedaa91b15a",
+      "mode": "adapted",
+      "note": "Locale provider changed to ForgePreferences; es dictionary retained for future"
+    },
+    {
+      "source": "Forge UI local fixture (original file unavailable on Drive)",
+      "target": "showcase/portal/public/images/showcase/accordion-landscape.svg",
+      "sha256": "bcc59e0db0dab9c45553440d5f2500c6aa98bdd6fde2b2415170015ae423a630",
+      "mode": "new-fixture",
+      "note": "Local substitute preserves original valid/broken Avatar source selection"
+    },
+    {
+      "source": "PraticarFront/docs/sc/core-catalog-ds.sc.md (source snapshot)",
+      "target": "docs/migration/original-showcase-v2/core-catalog-ds.sc.md",
+      "sha256": "d329b3b10b9136f9f05fe6521259c781ce7319ea6d270ff49f657644fa9a9858",
+      "mode": "line-ending-normalized",
+      "note": "Historical reference only; not an accepted Forge SC; content preserved, CRLF normalized to LF"
+    },
+    {
+      "source": "PraticarFront/docs/sc/feature-showcase-v2-ds-coverage.sc.md (source snapshot)",
+      "target": "docs/migration/original-showcase-v2/feature-showcase-v2-ds-coverage.sc.md",
+      "sha256": "322bd9751b1dc41bbba5c03377af922529151b6ae789651e87a771dd77a96124",
+      "mode": "line-ending-normalized",
+      "note": "Historical reference only; not an accepted Forge SC; content preserved, CRLF normalized to LF"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+---
+title: "Radio"
+scope: "Native radio input with a visible selected dot and shared hit target"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Radio
+
+## Files
+
+```text
+design-system/components/atoms/Radio/Radio.tsx (M)
+design-system/components/atoms/Radio/Radio.module.css (M)
+design-system/components/atoms/Radio/index.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Radio.example.tsx (M)
+features/showcase/examples/control-variations.ts (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Radio/definition.ts (C)
+features/showcase-v2/components/Radio/Radio.example.tsx (C)
+features/showcase-v2/components/Radio/useRadioExample.ts (C)
+features/showcase-v2/components/Radio/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Interactive primitives](../../styles/tech-interactive-primitives.sc.md)
+- [Native controls](../../types/tech-native-control-contracts.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+- [Interactive native controls](../../types/tech-interactive-controls.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { Radio } from "@forge-ui/web";
+<fieldset>
+ <legend>Delivery</legend>
+ <Radio name="delivery" value="email" aria-label="Email"/>
+ <Radio name="delivery" value="sms" aria-label="SMS"/>
+</fieldset>;
+```
+
+## Styles
+
+```css
+.control {
+  composes: radio from "../../../styles/interactive-primitives.module.css";
+}
+```
+
+```css
+.control {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+}
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Content
+
+```tsx
+import type { ReactElement } from "react";
+import type { ComponentAnimatedProps } from "../../../types/animation";
+import type {
+  NativeRadioProps,
+} from "../../../types/interactive-controls";
+import type {
+  ComponentSizedProps,
+  ComponentToneProps,
+  ComponentFullWidthProps,
+  ComponentInvalidProps,
+} from "../../../types/component-capabilities";
+
+export interface RadioProps
+  extends NativeRadioProps,
+    ComponentSizedProps,
+    ComponentToneProps,
+    ComponentFullWidthProps,
+    ComponentAnimatedProps,
+    ComponentInvalidProps {}
+import styles from "./Radio.module.css";
+
+export function Radio({
+  className,
+  fullWidth = false,
+  invalid,
+  animated = true,
+  size = "md",
+  tone = "brand",
+  "aria-invalid": ariaInvalid,
+  ...props
+}: RadioProps): ReactElement {
+  return (
+    <span
+      className={styles.root}
+      data-size={size}
+      data-tone={tone}
+      data-full-width={fullWidth || undefined}
+    >
+      <input
+        {...props}
+        className={[styles.control, className].filter(Boolean).join(" ")}
+        type="radio"
+        aria-invalid={invalid ?? ariaInvalid}
+        data-animated={animated}
+      />
+    </span>
+  );
+}
+
+```
+
+## Tests
+
+- V2 Exclusive native choice: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Same-name selection is exclusive; only the checked value is submitted; native required/disabled validity remains intact.
+- [x] Space/arrow-key/label activation preserve native grouping, including browser-specific unchecked entry behavior.
+- [x] Five sizes, seven tones, widths, checked/unchecked, focus, disabled, required, invalid and controlled/uncontrolled states are demonstrated.
+- [x] Exactly one Atom registration exists in Showcase; examples cover its supported public capabilities.
+- [x] Lint, type, token and static-export checks pass; canonical interfaces/recipes are reused.
+- [x] The Defaults contract uses size md, tone brand, fullWidth false.
+- [x] The Constraint 1 contract uses Native checked/onChange or defaultChecked; never both modes.
+- [x] The Constraint 2 contract uses invalid undefined preserves native aria-invalid, explicit false overrides it.
+- [x] The Constraint 3 contract uses Fixed input type radio; external Label/aria-label/aria-labelledby names the input.
+- [x] The Constraint 4 contract uses Native required/name/value/ref are forwarded..
+- [x] Defaults are those in Signature.
+- [x] Root composes checkable and fullWidth from their existing recipes.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] unchecked ↔ checked → Native change or controlled checked → Existing .control background-color and border-color → --motion-fast / --ease-standard.
+- [x] enabled ↔ disabled → Native disabled prop → Existing .control opacity via stateFeedback → --motion-fast / --ease-standard.
+- [x] Invalid/focus outlines remain immediate.
+- [x] Preserve all current Props capabilities and the native radio form channel; animated=false disables authored transitions.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Exclusive native choice**: Compose fieldset/Legend and three same-name Radios, stable item-1..3 values and Label 1..3; report the single native checked value and FormData.
+- [x] The Radio V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useRadioExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

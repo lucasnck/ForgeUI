@@ -1,0 +1,90 @@
+---
+title: "ApplicationLayoutHeader"
+scope: "ApplicationLayoutTemplate public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# ApplicationLayoutHeader
+
+## Files
+
+```text
+features/showcase/examples/ApplicationLayoutPartExamples.tsx (C)
+features/showcase/examples/IsolatedExampleDocument.tsx (C)
+features/showcase/examples/IsolatedExampleDocument.module.css (C)
+features/showcase/examples/useIsolatedExampleDocument.ts (C)
+design-system/components/atoms/ApplicationLayoutHeader/ApplicationLayoutHeader.tsx (C)
+design-system/components/atoms/ApplicationLayoutHeader/ApplicationLayoutHeader.module.css (C)
+design-system/components/atoms/ApplicationLayoutHeader/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ApplicationLayoutHeader.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-layout.cjs (C)
+features/showcase-v2/components/ApplicationLayoutHeader/definition.ts (C)
+features/showcase-v2/components/ApplicationLayoutHeader/ApplicationLayoutHeader.example.tsx (C)
+features/showcase-v2/components/ApplicationLayoutHeader/useApplicationLayoutHeaderExample.ts (C)
+features/showcase-v2/components/ApplicationLayoutHeader/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+app/design-system-v2/(demos)/demos/templates/application-layout-header/[scenario]/page.tsx (C)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [ApplicationLayoutTemplate.sc.md](../templates/ApplicationLayoutTemplate.sc.md)
+
+## Contract
+
+```tsx
+import { ApplicationLayoutTemplate, Heading, Link, Text } from "@/design-system";
+<ApplicationLayoutTemplate header={<Heading level={1}>Application</Heading>} navigation={<nav aria-label="Main"><Link href="/">Home</Link></nav>} footer={<Text>Footer</Text>}><p>Page content</p></ApplicationLayoutTemplate>;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+```
+
+## Content
+
+```tsx
+import type { ComponentPropsWithRef } from "react";
+import styles from "./ApplicationLayoutHeader.module.css";
+
+export interface ApplicationLayoutHeaderProps extends ComponentPropsWithRef<"header"> {}
+
+export function ApplicationLayoutHeader({ children, className, ...props }: ApplicationLayoutHeaderProps) {
+  return <header {...props} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</header>;
+}
+```
+
+## Tests
+
+- V2 ApplicationLayoutHeader contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given ApplicationLayoutHeader, Page-level region renders through the neutral top-level Template, or in its own isolated Showcase document; no hardcoded brand, navigation destination or provider.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Nested usage must not create duplicate page landmarks.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+
+- [x] Showcase renders the actual public component in an isolated document, preserving one main per document, inherited locale/theme and functional caller-owned actions.
+
+- [x] The feature supplies inner padding with Container and the preview content recipe; the structural page region does not invent Card borders or close actions.
+
+- [x] V2 **ApplicationLayoutHeader contextual region**: Render ApplicationLayoutHeader through public ApplicationLayoutTemplate using header/footer slots or children for Body; the owner creates the public region wrappers, so do not duplicate them as orphan parts. Use a real Heading or owner title slot with Children/Title text; any decorative icon has an aligned Inline gap="2" row outside heading text. Hide/omit optional siblings only where allowed by the owner; link to the full ApplicationLayoutTemplate composition.
+- [x] The ApplicationLayoutHeader V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useApplicationLayoutHeaderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] This template/region preview renders inside a titled iframe backed by the finite static template demo route listed in Files. Enumerate its named scenarios with generateStaticParams and dynamicParams=false. Each frame has its own correct main landmark, theme/locale composition and keyboard access; the catalog keeps one main and no duplicate main-content id. Render a demo-only export inside the frame, never recursively embed the preview. Copied usage remains direct public DS consumption without iframe scaffolding.

@@ -1,0 +1,79 @@
+---
+title: "Selection, panel and open-state contracts"
+scope: "Selection, panel and open-state contracts. Shared presentation data and controlled/uncontrolled state conventions for component families."
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Selection, panel and open-state contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/selection-navigation.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Dependencies
+
+- [Compound composition](tech-compound-composition.sc.md)
+- [Native contracts](tech-native-control-contracts.sc.md)
+
+## Contract
+
+```ts
+import type { ComponentOpenProps, ChoiceOption } from "@/design-system";
+type Open = ComponentOpenProps;
+type Option = ChoiceOption;
+```
+
+## Content
+
+```ts
+import type { VisualProps } from "@/design-system";
+
+export interface ComponentOpenProps {
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?(open: boolean): void;
+}
+
+export interface ChoiceOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+
+export interface ListBoxOption extends ChoiceOption, VisualProps {}
+
+export interface MenuAction {
+  id: string;
+  label: string;
+  disabled?: boolean;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for NavigationMenu, Menu, Stepper retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile controlled/uncontrolled boolean open channels and matching callbacks.
+- Compile choice values/labels and declared menu actions; reject missing required fields and incompatible callbacks.
+
+## Criteria
+
+- [x] ComponentOpenProps exposes optional controlled/default booleans and a matching onOpenChange request.
+- [x] ChoiceOption has a required string value and label and optional disabled state.
+- [x] MenuAction has a required string id and label and optional disabled state.
+- [x] Shared descriptors retain string identifiers and labels; runtime uniqueness and accessible labeling are owned by consuming component and hook resources.
+
+- [x] V2 typed usage fixtures cover NavigationMenu, Menu, Stepper: Current/selected identity, navigation values and controlled requests. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.
+
+- [x] ListBoxOption extends ChoiceOption and canonical VisualProps; plain ChoiceOption data remains valid. Other choice consumers do not advertise unsupported styling.

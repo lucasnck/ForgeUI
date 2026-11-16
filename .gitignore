@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+.forge/
+*.log
+!docs/migration/validation/*.log
+*.zip
+*.tgz
+*.gdoc

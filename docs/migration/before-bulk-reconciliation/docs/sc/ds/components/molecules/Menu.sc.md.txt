@@ -1,0 +1,144 @@
+---
+title: "Menu"
+scope: "Aggregate scoped Menu parts and consume DS-owned behavior; no duplicate item markup or hook state."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Menu
+
+## Files
+
+```text
+design-system/components/molecules/Menu/Menu.tsx (C)
+design-system/components/molecules/Menu/Menu.module.css (C)
+design-system/components/molecules/Menu/index.ts (C)
+design-system/internal/menu/MenuContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/Menu.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/molecules/Menu/useMenu.ts (C)
+features/showcase-v2/components/Menu/definition.ts (C)
+features/showcase-v2/components/Menu/Menu.example.tsx (C)
+features/showcase-v2/components/Menu/useMenuExample.ts (C)
+features/showcase-v2/components/Menu/usage-code.ts (C)
+features/showcase-v2/components/Menu/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-roving-focus.sc.md](../../hooks/tech-roving-focus.sc.md)
+- [MenuItem.sc.md](../atoms/MenuItem.sc.md)
+- [MenuBody.sc.md](../atoms/MenuBody.sc.md)
+
+## Contract
+
+```tsx
+import { Menu, MenuHeader, MenuBody, MenuItem, MenuFooter } from "@/design-system";
+<Menu label="Actions" onAction={runAction}><MenuHeader>Document</MenuHeader><MenuBody><MenuItem value="download" label="Download"/></MenuBody><MenuFooter>Related help</MenuFooter></Menu>;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; --stack-gap: var(--zero); min-inline-size: var(--zero); }
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useContext, useRef } from "react";
+import { DropdownMenuContext } from "../../../internal/dropdownmenu/DropdownMenuContext";
+import { useRovingFocus } from "../../../hooks/focus/useRovingFocus";
+import type { MenuIdentity } from "../../../internal/menu/MenuContext";
+import type { MenuProps } from "./Menu";
+export function useMenu(input: MenuProps, identities: readonly MenuIdentity[]) {
+  const { onAction, onDismiss, label, children, animated = true, className, onKeyDown, ...props } = input;
+  if (!label.trim()) throw new Error("Menu requires a nonempty label.");
+  const dropdown = useContext(DropdownMenuContext);
+  function dismiss() { onDismiss?.(); dropdown?.dismiss(); }
+  const first = identities.find((item) => !item.disabled)?.value;
+  const bodyRef = useRef<HTMLUListElement>(null);
+  const focus = useRovingFocus({ orientation: "vertical", loop: true, typeahead: true, initialId: first, fallbackRef: bodyRef });
+  function activate(value: string) { if (!focus.isEnabled(value)) return; onAction(value); dismiss(); }
+  const handleKeyDown: NonNullable<MenuProps["onKeyDown"]> = (event) => {
+    onKeyDown?.(event);
+    if (!event.defaultPrevented && event.key === "Escape" && !event.nativeEvent.isComposing && !event.ctrlKey && !event.altKey && !event.metaKey && (onDismiss || dropdown)) { event.preventDefault(); dismiss(); }
+  };
+  return { props, children, className, handleKeyDown, context: { label, focus, activate, dismiss: onDismiss || dropdown ? dismiss : undefined, bodyRef, fallback: first === undefined, animated } };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import { Children, Fragment, isValidElement } from "react";
+import type { ReactNode, ReactElement } from "react";
+import type { NativeCollectionRootProps, ComponentChildrenProps, ComponentAnimatedProps } from "../../../types";
+import type { MenuIdentity } from "../../../internal/menu/MenuContext";
+import { MenuContext } from "../../../internal/menu/MenuContext";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { MenuHeader } from "../../atoms/MenuHeader";
+import { MenuBody } from "../../atoms/MenuBody";
+import { MenuFooter } from "../../atoms/MenuFooter";
+import { MenuItem } from "../../atoms/MenuItem";
+import { useMenu } from "./useMenu";
+import styles from "./Menu.module.css";
+export interface MenuProps extends NativeCollectionRootProps, ComponentChildrenProps, ComponentAnimatedProps { label: string; onAction(value: string): void; onDismiss?(): void; }
+function collectItems(children: ReactNode, items: MenuIdentity[] = []) {
+  Children.forEach(children, (child) => { if (child == null || typeof child === "boolean") return;
+    if (!isValidElement<MenuIdentity & { children?: ReactNode }>(child)) throw new Error("Invalid Menu child.");
+    if (child.type === Fragment && child.key !== null) { collectItems(child.props.children, items); return; }
+    if (child.type !== MenuItem || !child.props.value.trim() || items.some((item) => item.value === child.props.value)) throw new Error("Menu requires direct items with nonempty unique identities.");
+    items.push({ value: child.props.value, disabled: child.props.disabled });
+  }); return items;
+}
+export function Menu(input: MenuProps) {
+  const parts = collectCompoundParts(input.children, { header: MenuHeader, body: MenuBody, footer: MenuFooter }, ["body"]);
+  const items = collectItems((parts.body as ReactElement<{ children: ReactNode }>).props.children);
+  const { props, className, handleKeyDown, context } = useMenu(input, items);
+  return <MenuContext value={context}><div {...props} className={[styles.root, className].filter(Boolean).join(" ")} onKeyDown={handleKeyDown}>{parts.header}{parts.body}{parts.footer}</div></MenuContext>;
+}
+```
+
+## Tests
+
+- V2 Indexed action menu: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- `npm run test:overlays` verifies real React SSR: scoped menu items, one enabled tab stop, omitted closed popup and one named nonmodal dialog panel. Real keyboard, pointer and focus acceptance remain separate.
+
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] The children contract uses Explicit public parts; keyed fragments allowed; no arbitrary descendant cloning.
+- [x] The Region absence contract uses Omit absent footer/header; no empty wrapper.
+- [x] The label / onAction contract uses Required.
+- [x] The onDismiss contract uses undefined.
+- [x] Native Item buttons activate actions; useRovingFocus owns arrows/Home/End/typeahead and no selection.
+- [x] Escape requests dismissal only once; Tab remains natural, including optional footer actions.
+- [x] Header/Footer must not alter menu arrow ordering.
+- [x] No nested menu items/checkbox/radio menu items are added.
+- [x] Public native attributes go to their semantic owner.
+- [x] Normalize permitted direct parts/keyed fragments with private collectCompoundParts; it receives actual imported component identities, never displayName strings.
+- [x] Forward caller events before owned handlers and respect defaultPrevented.
+- [x] No new token family or motion is added.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useMenu is colocated with Menu and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] V2 **Indexed action menu**: Compose MenuHeader/Body/Footer with three MenuItems labeled Label 1..3 and stable values; navigate enabled actions, invoke onAction once and display the emitted key locally.
+- [x] The Menu V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useMenuExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

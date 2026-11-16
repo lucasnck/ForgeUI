@@ -1,0 +1,92 @@
+import parsePhoneNumber, {
+  getCountries,
+  getCountryCallingCode,
+  validatePhoneNumberLength,
+  AsYouType,
+} from "libphonenumber-js/max";
+import type { CountryCode } from "libphonenumber-js";
+import type { Locale } from "@/lib/contracts/preferences";
+import type { PhoneCountry, PhoneCountryOption, PhoneParseResult } from "../types/phone";
+import { phoneCountryLabels } from "./phone-country-labels";
+
+export function formatPhoneDraft(text: string, country: PhoneCountry | null): string {
+  if (!/^\+?[0-9() .-]*$/.test(text) || !/[0-9+]/.test(text)) return text;
+  const context = country && isSupportedPhoneCountry(country) ? country : undefined;
+
+  return new AsYouType(context).input(text);
+}
+
+export function isSupportedPhoneCountry(country: PhoneCountry): country is CountryCode {
+  return getCountries().some((candidate) => candidate === country);
+}
+
+export function parsePhone(text: string, country: PhoneCountry | null = null): PhoneParseResult {
+  if (country !== null && !isSupportedPhoneCountry(country))
+    throw new RangeError("Unsupported phone country");
+  const draft = text.trim();
+  if (!draft) return { kind: "empty" };
+  if (!/^\+?[0-9() .-]*$/.test(draft) || !/[0-9+]/.test(draft)) return { kind: "invalid", text };
+  if (!draft.startsWith("+") && country === null) return { kind: "incomplete", text };
+  if (/^\+0/.test(draft)) return { kind: "invalid", text };
+  if (/^\+\d{0,2}$/.test(draft)) return { kind: "incomplete", text };
+  const context = country && isSupportedPhoneCountry(country) ? country : undefined;
+  const parsed = parsePhoneNumber(draft, { defaultCountry: context, extract: false });
+
+  if (
+    !parsed ||
+    parsed.ext ||
+    !parsed.isPossible() ||
+    !/^\+[1-9][0-9]{1,14}$/.test(parsed.number)
+  ) {
+    const reason = validatePhoneNumberLength(draft, context);
+
+    return { kind: reason === "TOO_SHORT" ? "incomplete" : "invalid", text };
+  }
+
+  const compatible =
+    context &&
+    getCountryCallingCode(context) === parsed.countryCallingCode &&
+    (!parsed.country || parsed.country === context);
+
+  return {
+    kind: "possible",
+    number: parsed.number,
+    country: compatible ? context : (parsed.country ?? null),
+  };
+}
+
+export function formatPhone(
+  number: string | null,
+  options: { international?: boolean } = {},
+): string {
+  if (number === null) return "";
+  if (!/^\+[1-9][0-9]{1,14}$/.test(number)) throw new RangeError("Invalid canonical phone");
+  const parsed = parsePhoneNumber(number, { extract: false });
+  if (!parsed || parsed.ext || !parsed.isPossible())
+    throw new RangeError("Invalid canonical phone");
+  return options.international === false ? parsed.formatNational() : parsed.formatInternational();
+}
+
+export function getPhoneCountries(locale: Locale): PhoneCountryOption[] {
+  return Object.entries(phoneCountryLabels[locale]).map(([country, label]) => ({
+    country,
+    callingCode: getCountryCallingCode(country as CountryCode),
+    label,
+  }));
+}
+
+export function isValidPhone(value: unknown, country: PhoneCountry | null = null): boolean {
+  if (typeof value !== "string" || (country !== null && !isSupportedPhoneCountry(country)))
+    return false;
+
+  try {
+    const result = parsePhone(value, country);
+
+    return (
+      result.kind === "possible" &&
+      Boolean(parsePhoneNumber(result.number, { extract: false })?.isValid())
+    );
+  } catch {
+    return false;
+  }
+}

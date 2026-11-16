@@ -1,0 +1,172 @@
+---
+title: "ODataFilter"
+scope: "Controlled simple-field and advanced nested-condition filter presentations; placement and data fetching belong to the page"
+status: "PENDING"
+type: "component"
+ds-level: "organisms"
+---
+
+# ODataFilter
+
+## Files
+
+```text
+features/showcase/examples/useDataGridFilterPagination.ts (M)
+features/showcase/examples/evaluate-record-filter.ts (M)
+features/showcase/examples/DataGridRecordsExamples.module.css (M)
+features/showcase/examples/DataGridFilterPagination.example.tsx (M)
+../scripts/check-odata-filter.cjs (M)
+features/showcase/examples/useODataFilterExample.ts (M)
+features/showcase/examples/useDataGridRecordsCopy.ts (M)
+design-system/components/organisms/ODataFilter/ODataFilter.tsx (M)
+design-system/components/organisms/ODataFilter/useODataFilter.ts (M)
+design-system/components/organisms/ODataFilter/ODataFilter.module.css (M)
+design-system/components/organisms/ODataFilter/index.ts (M)
+features/showcase/examples/ODataFilter.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+design-system/index.ts (M)
+features/showcase-v2/components/ODataFilter/definition.ts (M)
+features/showcase-v2/components/ODataFilter/ODataFilter.example.tsx (M)
+features/showcase-v2/components/ODataFilter/ODataFilterPlacement.example.tsx (M)
+features/showcase-v2/components/ODataFilter/useODataFilterPlacementExample.ts (M)
+features/showcase-v2/components/ODataFilter/useODataFilterExample.ts (M)
+features/showcase-v2/components/ODataFilter/usage-code.ts (M)
+features/showcase-v2/components/ODataFilter/fixtures.ts (M)
+features/showcase-v2/components/ODataFilter/useODataFilterExactExample.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [ListPageTemplate](../templates/ListPageTemplate.sc.md)
+- [Card](../molecules/Card.sc.md)
+- [Popover](../molecules/Popover.sc.md)
+- [DataGrid](DataGrid.sc.md)
+- [Filter serialization](../../helpers/tech-odata-filter.sc.md)
+
+- [Button](../atoms/Button.sc.md)
+
+- [ODataFilterGroup](../molecules/ODataFilterGroup.sc.md)
+
+- [ODataFilterCondition](../molecules/ODataFilterCondition.sc.md)
+
+- [Filter contracts](../../types/tech-odata-filter-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { ODataFilter } from "@/design-system";
+<ODataFilter mode="simple" fields={fields} value={expression} onValueChange={setExpression} onApply={apply} labels={labels} />;
+<ODataFilter mode="advanced" fields={fields} value={expression} onValueChange={setExpression} onApply={apply} labels={labels} />;
+<ODataFilter mode="advanced" actionsLayout="stack" fields={fields} value={expression} onValueChange={setExpression} onApply={apply} labels={labels} />;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; --stack-gap: var(--space-2); min-inline-size: var(--zero); }
+.actions { composes: inline from "../../../styles/layout-components.module.css"; --inline-gap: var(--space-1); }
+.actions[data-layout="stack"] { flex-direction: column; align-items: stretch; }
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useId,useRef,useState } from "react";
+import { createODataFilterCondition,isODataFilterSimpleExpression,serializeODataFilter } from "../../../helpers/odata-filter";
+import type { ODataFilterConditionData,ODataFilterConjunction,ODataFilterExpression,ODataFilterGroupData } from "../../../types/odata-filter";
+import type { ODataFilterProps,ODataFilterNodeProps } from "./ODataFilter";
+export function useODataFilter(input:ODataFilterProps) {
+ const {mode,fields,value,onValueChange,onApply,onCancel,labels,disabled=false,actionsLayout="inline",className,...props}=input;
+ const [error,setError]=useState<string|null>(null);
+ const unsupported=mode==="simple"&&!isODataFilterSimpleExpression(value,fields);
+ const simpleConditions=fields.map(field=>value.kind==="group"?value.children.find((node):node is ODataFilterConditionData=>node.kind==="condition"&&node.fieldId===field.id)??createODataFilterCondition(field,value.id+"-"+field.id):createODataFilterCondition(field,value.id+"-"+field.id));
+ function change(next:ODataFilterExpression){if(!disabled){setError(null);onValueChange(next);}}
+ function changeSimple(next:ODataFilterConditionData){
+  if(disabled||value.kind!=="group"||unsupported)return;
+  const absent=next.value===null||Array.isArray(next.value)&&(next.value.length===0||next.value.every(item=>item===null));
+  const exists=value.children.some(node=>node.kind==="condition"&&node.fieldId===next.fieldId);
+  const children=absent?value.children.filter(node=>node.kind!=="condition"||node.fieldId!==next.fieldId):exists?value.children.map(node=>node.kind==="condition"&&node.fieldId===next.fieldId?next:node):[...value.children,next];
+  change({...value,children});
+ }
+ function apply(){if(disabled||unsupported)return;let filter:string;try{filter=serializeODataFilter(value,fields);}catch{setError(labels.invalid);return;}setError(null);onApply(value,filter);}
+ function clear(){change({kind:"group",id:value.id,operator:"and",children:[]});}
+ function cancel(){if(!disabled)onCancel?.();}
+ return {mode,actionsLayout,fields,value,onCancel,labels,disabled,className,props,error,unsupported,simpleConditions,change,changeSimple,apply,clear,cancel};
+}
+export function useODataFilterNode({node,fields,labels,disabled,path,onChange,onRemove}:ODataFilterNodeProps) {
+ const namespace=useId();const sequence=useRef(0);
+ function id(){return `${node.id}-${namespace}-${++sequence.current}`;}
+ function changeChild(childId:string){return(next:ODataFilterExpression)=>{if(!disabled&&node.kind==="group")onChange({...node,children:node.children.map(child=>child.id===childId?next:child)});};}
+ function removeChild(childId:string){return()=>{if(!disabled&&node.kind==="group")onChange({...node,children:node.children.filter(child=>child.id!==childId)});};}
+ function conjunction(operator:ODataFilterConjunction){if(!disabled&&node.kind==="group")onChange({...node,operator});}
+ function addCondition(){const field=fields.find(field=>!field.disabled);if(!disabled&&node.kind==="group"&&field)onChange({...node,children:[...node.children,createODataFilterCondition(field,id())]});}
+ function addGroup(){if(!disabled&&node.kind==="group"){const group:ODataFilterGroupData={kind:"group",id:id(),operator:"or",children:[]};onChange({...node,children:[...node.children,group]});}}
+ return {node,fields,labels,disabled,path,onChange,onRemove,changeChild,removeChild,conjunction,addCondition,addGroup};
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { HTMLAttributes } from "react";
+import type { ODataFilterExpression,ODataFilterField,ODataFilterLabels,ODataFilterMode,ODataFilterActionsLayout } from "../../../types/odata-filter";
+import { ODataFilterCondition } from "../../molecules/ODataFilterCondition";
+import { ODataFilterGroup } from "../../molecules/ODataFilterGroup";
+import { Button } from "../../atoms/Button";
+import { useODataFilter,useODataFilterNode } from "./useODataFilter";
+import styles from "./ODataFilter.module.css";
+export interface ODataFilterProps extends HTMLAttributes<HTMLDivElement> {
+ mode:ODataFilterMode;fields:readonly ODataFilterField[];value:ODataFilterExpression;onValueChange(value:ODataFilterExpression):void;
+ onApply(value:ODataFilterExpression,filter:string):void;onCancel?():void;labels:ODataFilterLabels;disabled?:boolean;actionsLayout?:ODataFilterActionsLayout;
+}
+export interface ODataFilterNodeProps {
+ node:ODataFilterExpression;fields:readonly ODataFilterField[];labels:ODataFilterLabels;disabled?:boolean;path:string;
+ onChange(value:ODataFilterExpression):void;onRemove?():void;
+}
+function ODataFilterNode(input:ODataFilterNodeProps) {
+ const view=useODataFilterNode(input);
+ if(view.node.kind==="condition")return <ODataFilterCondition fields={view.fields} value={view.node} onValueChange={view.onChange} onRemove={view.onRemove} labels={view.labels} disabled={view.disabled}/>;
+ return <ODataFilterGroup label={`${view.labels.group} ${view.path}`} value={view.node.operator} onValueChange={view.conjunction} onAddCondition={view.addCondition} onAddGroup={view.addGroup} onRemove={view.onRemove} labels={view.labels} disabled={view.disabled}>{view.node.children.map((node,index)=><ODataFilterNode key={node.id} node={node} fields={view.fields} labels={view.labels} disabled={view.disabled} path={`${view.path}.${index+1}`} onChange={view.changeChild(node.id)} onRemove={view.removeChild(node.id)}/>)}</ODataFilterGroup>;
+}
+export function ODataFilter(input:ODataFilterProps) {
+ const view=useODataFilter(input);
+ return <div {...view.props} className={[styles.root,view.className].filter(Boolean).join(" ")}>{view.unsupported?<p role="status">{view.labels.unsupported}</p>:view.mode==="simple"?<div className={styles.root}>{view.simpleConditions.map(condition=><ODataFilterCondition key={condition.fieldId} simple fields={view.fields} value={condition} onValueChange={view.changeSimple} labels={view.labels} disabled={view.disabled}/>)}</div>:<ODataFilterNode node={view.value} fields={view.fields} labels={view.labels} disabled={view.disabled} path="1" onChange={view.change}/>}<p role="alert" hidden={!view.error}>{view.error}</p><div className={styles.actions} data-layout={view.actionsLayout}><Button fullWidth={view.actionsLayout==="stack"} tone="neutral" appearance="bordered" onClick={view.apply} disabled={view.disabled||view.unsupported}>{view.labels.apply}</Button><Button fullWidth={view.actionsLayout==="stack"} tone="neutral" appearance="ghost" onClick={view.clear} disabled={view.disabled}>{view.labels.clear}</Button>{view.onCancel&&<Button fullWidth={view.actionsLayout==="stack"} appearance="ghost" tone="neutral" onClick={view.cancel} disabled={view.disabled}>{view.labels.cancel}</Button>}</div></div>;
+}
+```
+
+## Tests
+
+- V2 Simple typed fields: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Advanced nested conditions: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Consume the delivered guid/decimal canonical field kinds through ODataFilterCondition and the existing serializer in both simple and advanced mode. Preserve current Props, one controlled expression owner, apply/cancel/clear semantics and checked coverage below; this increment keeps the SC PENDING until implemented.
+- [x] Incomplete GUID/decimal input remains editable text and produces localized invalid feedback on Apply without onApply or silent condition removal. Decimal ranges keep both exact entered strings; toggling simple/advanced modes does not convert precision, values or operators.
+- [ ] Extend existing V1/V2 filter examples and typed consumer fixtures with at least one GUID equality and high-precision decimal range, preserving fixture identity and all current examples. Do not create a generic admin/API demo or advertise newly proposed exports in catalogs before delivery. Verify concrete focus/error/clear behavior and scoped format/lint/type/serializer tests; API negotiation is application-owned.
+
+- [x] The page selects simple or advanced mode: simple for client/partner pages and advanced for admin pages; the DS does not inspect roles.
+- [x] Simple mode renders page-defined fields/operators, including search, boolean radios, single choice, checkboxes and numeric/date intervals.
+- [x] Advanced mode supports choosing fields/operators, adding/removing conditions and nested AND/OR groups using the same model.
+- [x] Both modes share value editors and expression contracts; switching cannot silently discard expressions that simple mode cannot represent.
+- [x] Apply validates and requests application once; clear requests an empty expression; cancel requests dismissal without a request.
+- [x] Showcase demonstrates all editors and both modes, with the same filter in a fixed left aside and in a Popover opened by a filter IconButton.
+- [x] The page owns placement and popup state; Popover composition preserves form-control semantics, focus and dismissal.
+- [x] All copy/options come from the caller; empty, populated, incomplete, clear and rejected-update states are illustrated.
+- [x] Relevant type, behavior, SSR, token and targeted browser checks pass before DONE.
+
+- [x] V2 **Simple typed fields**: Use mode="simple" with local text/number/boolean schema, stable conditions and complementary result Text. onValueChange owns expression; Apply displays actual serialized output and filters local indexed records, while Clear restores an empty valid group.
+- [x] V2 **Advanced nested conditions**: Use mode="advanced" with the same schema and nested and/or groups. Add/remove a condition/group, change conjunction/value and Apply; display the expression and real serializer output or validation error without a backend or handcrafted query text.
+- [x] The ODataFilter V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useODataFilterExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] V2 supporting fixture **Serialized filter acceptance** in the ODataFilter example uses the actual [helper contract](../../helpers/tech-odata-filter.sc.md): Use the same valid simple/nested typed expressions as both organism scenarios; inspect the actual serializer output, escaped text and rejected schema/value cases rather than constructing query text in the fixture. Computed output is an explicit typed-fixture exception to generic Children text; it is not a new prop or helper page.
+
+- [x] V2 **Sidebar filters** composes ListPageTemplate filters with a labeled aside and public Card/Header/Body, the controlled ODataFilter and an adjacent DataGrid of indexed fixtures.
+- [x] V2 **Dropdown filters** composes public Popover/Header/Body and filter IconButton with the same controlled schema and result grid; Apply commits and closes, Cancel/outside/Escape restores the accepted expression and closes with canonical focus restoration. Each placement has minimal public JSX code and explicit example state, without private V1 imports, new DS exports or custom showcase CSS.
+
+- [ ] Apply uses explicit `tone="neutral" appearance="bordered"`; Clear and optional Cancel use `tone="neutral" appearance="ghost"`. Filtering remains a supporting task and does not compete with the listing Create action. Preserve disabled state, controlled draft/apply/clear/cancel callbacks and serialization; verify the actual rendered action attributes with the existing ODataFilter regression.

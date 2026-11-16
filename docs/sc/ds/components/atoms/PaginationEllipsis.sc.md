@@ -1,0 +1,97 @@
+---
+title: "PaginationEllipsis"
+scope: "Represent an inert visual gap between explicit page targets without an action or selection state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# PaginationEllipsis
+
+## Files
+
+```text
+design-system/components/atoms/PaginationEllipsis/PaginationEllipsis.tsx (C)
+design-system/components/atoms/PaginationEllipsis/PaginationEllipsis.module.css (C)
+design-system/components/atoms/PaginationEllipsis/index.ts (C)
+design-system/types/compound-composition.ts (M)
+design-system/types/contracts.test.ts (M)
+design-system/index.ts (M)
+design-system/components/static-components.contracts.test.ts (M)
+features/showcase/examples/PaginationEllipsis.example.tsx (C)
+features/showcase/examples/useNavigationExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-static-components.cjs (M)
+features/showcase-v2/components/PaginationEllipsis/definition.ts (C)
+features/showcase-v2/components/PaginationEllipsis/PaginationEllipsis.example.tsx (C)
+features/showcase-v2/components/PaginationEllipsis/usePaginationEllipsisExample.ts (C)
+features/showcase-v2/components/PaginationEllipsis/usage-code.ts (C)
+features/showcase-v2/components/Pagination/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Compound composition contracts](../../types/tech-compound-composition.sc.md)
+
+## Contract
+
+```tsx
+import { PaginationEllipsis } from "@forge-ui/web";
+
+<PaginationEllipsis />
+```
+
+## Styles
+
+```css
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--component-height-md);
+  min-block-size: var(--component-height-md);
+  color: var(--color-text-muted);
+}
+```
+
+## Content
+
+```tsx
+import type { NativePaginationEllipsisProps } from "../../../types/compound-composition";
+import styles from "./PaginationEllipsis.module.css";
+
+export interface PaginationEllipsisProps extends NativePaginationEllipsisProps {}
+
+export function PaginationEllipsis({ id, className, style, title, hidden, dir, lang, ref }: PaginationEllipsisProps) {
+  return <span id={id} style={style} title={title} hidden={hidden} dir={dir} lang={lang} ref={ref} aria-hidden="true" className={[styles.root, className].filter(Boolean).join(" ")}>…</span>;
+}
+```
+
+## Tests
+
+- V2 Controlled pagination: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Native span markup contains one visual ellipsis with aria-hidden=true and no current-page state, role or tab index.
+- Caller aria-hidden=false, role=button and tabIndex=0 cannot turn the marker into a semantic or keyboard action.
+- Type acceptance permits passive native id/className/style/title/hidden/dir/lang/ref; children, events, role, tabIndex and page targets are rejected.
+- Pagination wraps mixed PageItem/Ellipsis children in list items without interpreting the gap as a page target.
+
+## Criteria
+
+- [x] PaginationEllipsis and PaginationEllipsisProps are available through the component barrel and public DS export.
+- [x] The marker is a native span with fixed visual … content, aria-hidden=true, no required accessible label, no owned click behavior and no keyboard tab stop.
+- [x] The marker has no current-page, disabled, selection, request callback or independent state machine.
+- [x] Passive native attributes and ref reach the span through canonical NativePaginationEllipsisProps; events, children, semantic action roles and tabIndex are absent from the public contract.
+- [x] Pagination accepts the actual public marker identity and keyed fragments without permitting arbitrary wrappers.
+- [x] The atom Showcase illustrates only the marker; the full page window belongs to Pagination's own example.
+- [x] Local dimensions and colors use existing DS tokens; no animation, dependency package or additional token family is introduced.
+- [x] Gap placement and the displayed page window remain caller-owned; the marker does not imply missing targets can be activated.
+
+- [x] V2 **Controlled pagination**: Compose twelve pages with initial page=6, indexed PaginationItems and passive ellipses; changing page reports accepted onPageChange while current/disabled semantics and original page numbers remain coherent.
+- [x] The PaginationEllipsis V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. usePaginationEllipsisExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Pagination fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

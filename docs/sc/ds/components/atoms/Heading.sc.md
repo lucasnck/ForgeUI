@@ -1,0 +1,200 @@
+---
+title: "Heading"
+scope: "Semantic h1–h6 headings with a token-backed level ladder and typography overrides"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Heading
+
+## Files
+
+```text
+features/showcase/examples/useIsolatedExampleDocument.ts (C)
+features/showcase/examples/HeadingLevelOneExample.module.css (C)
+features/showcase/examples/useHeadingLevelOneExample.ts (C)
+features/showcase/examples/HeadingLevelOneExample.tsx (C)
+design-system/components/static-components.contracts.test.ts (C)
+../scripts/check-static-components.cjs (C)
+design-system/index.ts (M)
+design-system/components/atoms/Heading/Heading.tsx (M)
+design-system/components/atoms/Heading/Heading.module.css (M)
+design-system/components/atoms/Heading/index.ts (M)
+design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.tsx (M)
+design-system/components/templates/ShowcasePageTemplate/ShowcasePageTemplate.module.css (M)
+features/showcase/examples/Heading.example.tsx (M)
+features/showcase/examples/ShowcasePageTemplate.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Text/fixtures.ts (C)
+features/showcase-v2/components/Heading/definition.ts (C)
+features/showcase-v2/components/Heading/Heading.example.tsx (C)
+features/showcase-v2/components/Heading/useHeadingExample.ts (C)
+features/showcase-v2/components/Heading/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Typography contracts](../../styles/tech-typography.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [ShowcasePageTemplate](../templates/ShowcasePageTemplate.sc.md)
+- [Typography contracts](../../types/tech-typography-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Heading } from "@forge-ui/web";
+<Heading level={2}>{sectionTitle}</Heading>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: text from "../../../styles/text-components.module.css";
+  composes: size from "../../../styles/text-components.module.css";
+  composes: tone from "../../../styles/text-components.module.css";
+  composes: weight from "../../../styles/text-components.module.css";
+}
+
+.root[data-heading-level="1"] {
+  --heading-font-size: var(--font-size-4xl);
+  --heading-line-height: var(--line-height-display);
+  --heading-font-weight: var(--font-weight-bold);
+  --heading-letter-spacing: var(--letter-spacing-display);
+}
+
+.root[data-heading-level="2"] {
+  --heading-font-size: var(--font-size-3xl);
+  --heading-line-height: var(--line-height-heading);
+  --heading-font-weight: var(--font-weight-bold);
+  --heading-letter-spacing: var(--letter-spacing-tight);
+}
+
+.root[data-heading-level="3"] {
+  --heading-font-size: var(--font-size-2xl);
+  --heading-line-height: var(--line-height-heading);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-tight);
+}
+
+.root[data-heading-level="4"] {
+  --heading-font-size: var(--font-size-xl);
+  --heading-line-height: var(--line-height-compact);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-normal);
+}
+
+.root[data-heading-level="5"] {
+  --heading-font-size: var(--font-size-lg);
+  --heading-line-height: var(--line-height-compact);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-normal);
+}
+
+.root[data-heading-level="6"] {
+  --heading-font-size: var(--font-size-md);
+  --heading-line-height: var(--line-height-normal);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-normal);
+}
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes, RefAttributes } from "react";
+import type {
+  ComponentFontWeightProps,
+  ComponentHeadingLevelProps,
+  ComponentTextSizeProps,
+  ComponentTextToneProps,
+} from "../../../types/typography";
+import styles from "./Heading.module.css";
+
+const HEADING_ELEMENTS = {
+  1: "h1",
+  2: "h2",
+  3: "h3",
+  4: "h4",
+  5: "h5",
+  6: "h6",
+} as const;
+
+export interface HeadingProps
+  extends HTMLAttributes<HTMLHeadingElement>, RefAttributes<HTMLHeadingElement>,
+    ComponentFontWeightProps,
+  ComponentHeadingLevelProps,
+    ComponentTextSizeProps,
+    ComponentFontWeightProps,
+    ComponentTextToneProps {}
+
+export function Heading({
+  level,
+  size,
+  tone,
+  weight,
+  className,
+  ...props
+}: HeadingProps) {
+  const Element = HEADING_ELEMENTS[level];
+  return (
+    <Element
+      {...props}
+      className={[styles.root, className].filter(Boolean).join(" ")}
+      data-heading-level={level}
+      data-text-size={size}
+      data-text-tone={tone}
+      data-text-weight={weight}
+    />
+  );
+}
+```
+
+## Tests
+
+- V2 Semantic typography: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Parent Showcase contains exactly one h1; the level 1 public Heading preview has its own named document and one h1.
+- Preview SSR is an empty srcDoc iframe; no document/window is read during module evaluation or render.
+- Theme, locale, direction and latest style resources mirror into the preview without remounting its document or adding a route.
+- Style load listeners and both attribute/style observers clean up during unmount and Strict Mode replay.
+
+## Criteria
+
+- [x] An explicit canonical `weight` overrides the level default through the shared weight recipe; absence preserves the level ladder.
+
+- [x] Given each level value, the rendered element is the matching `h1`–`h6` and no other element is produced.
+- [x] Given no `size`, the level ladder resolves the tokens in the table, and each ladder value is declared exactly once.
+- [x] Given an explicit `size`, the rendered size wins over the level ladder independently of declaration order in the stylesheet.
+- [x] Given `tone`, the rendered color follows the semantic text token; the default is `--color-text-default`.
+- [x] Given a `className`, it is appended to the recipe classes without replacing them.
+- [x] Given a long unbroken title, it wraps inside its container without horizontal overflow.
+- [x] Given the migrated Template and Showcase, each page still renders exactly one `h1` and no nested page landmark.
+- [x] Given the module CSS, only token references and `composes` rules appear.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens`, `npm run test:design-system` and `npm run build` pass.
+- [x] Excludes arbitrary elements, page landmark structure, layout and spacing, and the copy itself.
+- [x] The level contract uses Required; `1`–`6`, renders `h1`–`h6`; the semantic outline comes from this value.
+- [x] The Level contract uses Font size; Line height; Weight; Letter spacing.
+- [x] The 1 contract uses `--font-size-4xl`; `--line-height-display`; `--font-weight-bold`; `--letter-spacing-display`.
+- [x] The 2 contract uses `--font-size-3xl`; `--line-height-heading`; `--font-weight-bold`; `--letter-spacing-tight`.
+- [x] The 3 contract uses `--font-size-2xl`; `--line-height-heading`; `--font-weight-semibold`; `--letter-spacing-tight`.
+- [x] The 4 contract uses `--font-size-xl`; `--line-height-compact`; `--font-weight-semibold`; `--letter-spacing-normal`.
+- [x] The 5 contract uses `--font-size-lg`; `--line-height-compact`; `--font-weight-semibold`; `--letter-spacing-normal`.
+- [x] The 6 contract uses `--font-size-md`; `--line-height-normal`; `--font-weight-semibold`; `--letter-spacing-normal`.
+- [x] Native attributes, events and `className` pass through.
+- [x] `data-heading-level`, `data-text-size` and `data-text-tone` are rendered for the resolved values.
+- [x] The lookup keeps the element union out of JSX inference and renders exactly one semantic tag per level.
+- [x] The excerpt shows level 1; the delivered module declares all six levels with the tokens in the table.
+- [x] `data-text-size` is omitted when `size` is absent, so the level default resolves through the second tier of the recipe.
+- [x] Component-local CSS: `src/design-system/components/atoms/Heading/Heading.module.css`.
+- [x] The excerpt shows level 1; the delivered module declares all six levels on `.root[data-heading-level]` with the tokens in the table, so no extra level class or self-composition is needed.
+- [x] The Template example keeps its compact header through an explicit `size`, without nesting a second `h1` landmark in the preview.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Semantic typography**: Use children="Children" and a long editable text; supported semantic/typography settings update the real element while content wraps within the parent.
+- [x] The Heading V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useHeadingExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

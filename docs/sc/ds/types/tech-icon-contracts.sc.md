@@ -1,0 +1,54 @@
+---
+title: "Icon contracts"
+scope: "Icon contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Icon contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/foundations/types.ts (D)
+design-system/types/icon.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Dependencies
+
+- [Component capabilities](tech-component-capabilities.sc.md)
+
+## Contract
+
+```ts
+import type { ComponentIconSize } from "@forge-ui/web";
+type Contract = ComponentIconSize;
+```
+
+## Content
+
+```ts
+import type { ComponentSize } from "./component-capabilities";
+
+export type ComponentIconSize = ComponentSize | "inherit";
+```
+
+## Tests
+
+- V2 Consumer snippets for Icon, IconButton retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile the shared five sizes and inherit; reject arbitrary pixel sizes and unsupported literals.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+
+- [x] V2 typed usage fixtures cover Icon, IconButton: Supported icon names/sizes and inherited inline scale. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

@@ -1,0 +1,69 @@
+---
+title: "Brazilian postal code formatters"
+scope: "Pure Brazilian CEP normalization and complete-value display without address lookup"
+status: "DONE"
+type: "helper"
+ds-level: "none"
+---
+
+# Brazilian postal code formatters
+
+## Files
+
+```text
+features/showcase-v2/components/PostalCodeInput/fixtures.ts (C)
+design-system/helpers/postal-code.ts (C)
+design-system/index.ts (M)
+../scripts/check-formatting.cjs (C)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Contract
+
+```ts
+import {formatters, validators} from "@/design-system";
+formatters.cep("01234567");
+validators.cep(cep);
+```
+
+## Content
+
+```ts
+export function normalizeCep(value: string): string {
+  const text = value.trim();
+  if (text === "") return "";
+  if (/^[0-9]{8}$/.test(text)) return text;
+  if (/^[0-9]{5}-[0-9]{3}$/.test(text)) return text.replace("-", "");
+  throw new RangeError("Invalid CEP format");
+}
+export function formatCep(value: string | null): string {
+  if (value === null) return "";
+  const raw = normalizeCep(value);
+  return raw === "" ? "" : `${raw.slice(0,5)}-${raw.slice(5)}`;
+}
+
+export function isValidCep(value: unknown): boolean {
+  if (typeof value !== "string") return false;
+  try { return normalizeCep(value).length === 8; } catch { return false; }
+}
+```
+
+## Tests
+
+- V2 Postal code display: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Preserve leading zeros, raw/formatted idempotence, null/empty display and outer-whitespace normalization.
+- Reject partial/overlength values, alphabetic input, malformed punctuation, embedded spaces and number arguments.
+
+## Criteria
+
+- [x] Normalization yields eight ASCII digits or empty string; formatting yields `00000-000` or empty text, preserving every original digit.
+- [x] This explicitly named CEP helper is Brazilian; no international postal-code rule is inferred from locale. It does not strip arbitrary invalid characters or truncate input.
+- [x] No address lookup, existence/coverage claim or input masking lifecycle is introduced. Complete formatting does not certify a real address; partial editing remains a control responsibility.
+- [x] Helpers are pure, independently exported and reusable in grids/details/forms; empty display text and localized error messaging remain caller-owned.
+
+- [x] Preferred public consumption uses the typed formatters/validators namespaces. Parsing and normalization functions in this source owner are internal DS exports, omitted from the root public barrel. The namespace modules alias the same owning functions rather than copying algorithms.
+
+- [x] V2 **Postal code display** is covered through the public PostalCodeInput consumer examples and typed caller fixtures: Use 01234567 plus valid/invalid boundary fixtures through actual CEP formatter/validator APIs; preserve leading zeroes and distinguish format validity from address lookup.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.

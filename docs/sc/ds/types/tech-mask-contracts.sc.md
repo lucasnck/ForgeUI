@@ -1,0 +1,68 @@
+---
+title: "Mask contracts"
+scope: "Mask contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Mask contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/mask.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```ts
+import type { MaskedInputOptions } from "@forge-ui/web";
+type Contract = MaskedInputOptions;
+```
+
+## Content
+
+```ts
+import type {
+  RefObject,
+  ChangeEvent,
+  KeyboardEvent,
+} from "react";
+
+export interface MaskedInputOptions {
+  mask: string;
+  value: string;
+  onValueChange(value: string): void;
+}
+
+export interface MaskedInputContract {
+  inputRef: RefObject<HTMLInputElement | null>;
+  displayValue: string;
+  complete: boolean;
+  inputMode: "numeric" | "text";
+  maxLength: number;
+  onChange(event: ChangeEvent<HTMLInputElement>): void;
+  onKeyDown(event: KeyboardEvent<HTMLInputElement>): void;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for MaskedInput, useMaskedInput retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile required mask/raw value/onValueChange options; reject missing callbacks and non-string raw values.
+- Compile input refs, numeric/text inputMode and typed change/keyboard callbacks; reject incompatible refs and input modes.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+
+- [x] V2 typed usage fixtures cover MaskedInput, useMaskedInput: Valid mask descriptors, canonical/display values and immutable presets. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

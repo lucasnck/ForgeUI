@@ -1,0 +1,141 @@
+---
+title: "Tag"
+scope: "Compose text and optional named removal action"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Tag
+
+## Files
+
+```text
+design-system/components/molecules/Tag/Tag.tsx (M)
+design-system/components/molecules/Tag/Tag.module.css (M)
+design-system/components/molecules/Tag/index.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Tag.example.tsx (M)
+features/showcase/examples/control-variations.ts (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Tag/definition.ts (C)
+features/showcase-v2/components/Tag/Tag.example.tsx (C)
+features/showcase-v2/components/Tag/useTagExample.ts (C)
+features/showcase-v2/components/Tag/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Status primitives](../../styles/tech-status-primitives.sc.md)
+- [IconButton](IconButton.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { Tag } from "@forge-ui/web";
+<Tag onRemove={removeFrontend} removeLabel="Remove Frontend">Frontend</Tag>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: compact from "../../../styles/status-components.module.css";
+}
+.content {
+  min-inline-size: var(--zero);
+}
+```
+
+## Content
+
+```tsx
+import { IconButton } from "../IconButton";
+import type { HTMLAttributes, ReactElement } from "react";
+import type {
+  VisualProps,
+  ComponentFullWidthProps,
+} from "../../../types/component-capabilities";
+
+export interface TagProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    VisualProps,
+    ComponentFullWidthProps {
+  onRemove?: () => void;
+  removeLabel?: string;
+  disabled?: boolean;
+}
+import styles from "./Tag.module.css";
+
+export function Tag({
+  children,
+  className,
+  onRemove,
+  removeLabel,
+  disabled = false,
+  size = "md",
+  tone = "neutral",
+  appearance = "soft",
+  shape,
+  fullWidth = false,
+  ...props
+}: TagProps): ReactElement {
+  if (onRemove && !removeLabel?.trim()) {
+    throw new Error("A removable Tag requires removeLabel.");
+  }
+  return (
+    <span
+      {...props}
+      className={[styles.root, className].filter(Boolean).join(" ")}
+      data-size={size}
+      data-tone={tone}
+      data-appearance={appearance}
+      data-shape={shape}
+      data-full-width={fullWidth || undefined}
+    >
+      <span className={styles.content}>{children}</span>
+      {onRemove && (
+        <IconButton
+          icon="close"
+          label={removeLabel!}
+          size="xs"
+          appearance="ghost"
+          disabled={disabled}
+          onClick={onRemove}
+        />
+      )}
+    </span>
+  );
+}
+```
+
+## Tests
+
+- V2 Indexed tag removal: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Five sizes, seven tones, six appearances, three shapes, widths, long labels and static/removable/disabled-removal modes are demonstrated.
+- [x] Removal has one accessible action, disabled invokes nothing, and native keyboard activation invokes onRemove once.
+- [x] Tag never hides itself; parent changes collection and recovers focus after focused removal.
+- [x] Exactly one Molecule registration exists in Showcase; examples cover its supported public capabilities.
+- [x] Lint, type, token and static-export checks pass; canonical interfaces/recipes are reused.
+- [x] Consumer owns collection updates, selection and focus recovery; root is never an interactive element.
+- [x] The Defaults contract uses size md, tone neutral, appearance soft, fullWidth false; inherited shape.
+- [x] The Constraint 1 contract uses Without onRemove no action exists; with onRemove require nonempty localized removeLabel.
+- [x] The Constraint 2 contract uses disabled false disables removal only; label remains readable.
+- [x] The Constraint 3 contract uses No automatic hiding, selected state or business filtering.
+- [x] Defaults are those in Signature.
+- [x] Shared gap uses --space-1.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Indexed tag removal**: Compose three contextual tags with Children 1..3 and distinct remove labels; remove item 2 once and preserve keys/labels 1 and 3, then reset the original collection.
+- [x] The Tag V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTagExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

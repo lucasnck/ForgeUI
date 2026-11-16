@@ -1,0 +1,116 @@
+---
+title: "Layout contracts"
+scope: "Layout contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Layout contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/foundations/types.ts (D)
+design-system/types/layout.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```ts
+import type { ComponentSpace } from "@forge-ui/web";
+type Contract = ComponentSpace;
+```
+
+## Content
+
+```ts
+export type ComponentSpace =
+  | "0"
+  | "1"
+  | "2"
+  | "3"
+  | "4"
+  | "5"
+  | "6"
+  | "8"
+  | "10"
+  | "12"
+  | "16"
+  | "20";
+
+export type ComponentAlign =
+  | "start"
+  | "center"
+  | "end"
+  | "stretch"
+  | "baseline";
+
+export type ComponentJustify = "start" | "center" | "end" | "between";
+
+export type ComponentBreakpoint = "base" | "mobile" | "wide";
+
+export type ComponentGridColumns = "1" | "2" | "3" | "4";
+
+export type ComponentContainerSize = "narrow" | "wide";
+
+export type ComponentElevation = "flat" | "raised" | "floating";
+
+export type ComponentAspectRatio = "square" | "video" | "photo" | "portrait";
+
+export type LayoutElement =
+  | "span"
+  | "div"
+  | "section"
+  | "article"
+  | "aside"
+  | "nav"
+  | "header"
+  | "footer"
+  | "ul"
+  | "ol"
+  | "li"
+  | "form";
+
+export interface ComponentResponsive<Value extends string> {
+  base: Value;
+  mobile?: Value;
+  wide?: Value;
+}
+
+export interface ComponentSpaceProps {
+  gap?: ComponentSpace;
+  padding?: ComponentSpace;
+}
+
+export interface ComponentAlignProps {
+  align?: ComponentAlign;
+}
+
+export interface ComponentJustifyProps {
+  justify?: ComponentJustify;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for Inline, Stack, SimpleGrid retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile declared spacing, alignment, justification, elevation, container and aspect-ratio values; reject arbitrary numeric CSS values.
+- Compile responsive maps for base/mobile/wide; reject unknown breakpoint keys and unsupported mapped values.
+- Compile permitted LayoutElement tags and reject unsupported tags.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+
+- [x] V2 typed usage fixtures cover Inline, Stack, SimpleGrid: Supported spacing/alignment/responsive columns without literal CSS duplication. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.
+
+- [x] LayoutElement supports span for valid noninteractive Inline content inside native disclosure triggers.

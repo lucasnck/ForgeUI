@@ -1,0 +1,230 @@
+---
+title: "Modal"
+scope: "Aggregate scoped Modal parts and consume DS-owned behavior; no duplicate item markup or hook state."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Modal
+
+## Files
+
+```text
+features/showcase-v2/components/Modal/usage-code.ts (C)
+features/showcase-v2/components/Modal/definition.ts (C)
+features/showcase-v2/components/Modal/Modal.example.tsx (C)
+features/showcase-v2/components/Modal/useModalExample.ts (C)
+design-system/components/molecules/Modal/Modal.tsx (C)
+design-system/components/molecules/Modal/Modal.module.css (C)
+design-system/components/molecules/Modal/index.ts (C)
+design-system/internal/modal/ModalContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/Modal.example.tsx (C)
+features/showcase/examples/ModalPartExamples.module.css (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase/examples/ModalPartExamples.tsx (C)
+design-system/components/molecules/Modal/useModalView.ts (C)
+design-system/styles/animations/modal-animations.module.css (C)
+```
+
+## Dependencies
+
+- [DialogClose](../atoms/DialogClose.sc.md)
+- [Icon](../atoms/Icon.sc.md)
+- [Stack](../atoms/Stack.sc.md)
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-modal-interactions.sc.md](../../hooks/tech-modal-interactions.sc.md)
+- [tech-overlay-interactions.sc.md](../../hooks/tech-overlay-interactions.sc.md)
+- [ModalHeader.sc.md](ModalHeader.sc.md)
+- [ModalBody.sc.md](../atoms/ModalBody.sc.md)
+- [ModalFooter.sc.md](../atoms/ModalFooter.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+- [Modal contracts](../../types/tech-modal-contracts.sc.md)
+- [Selection, panel and open-state contracts](../../types/tech-selection-navigation.sc.md)
+
+## Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@forge-ui/web";
+<Modal open={visible} onOpenChange={setVisible}><ModalHeader title="Confirm"/><ModalBody>Confirmation content</ModalBody><ModalFooter><button type="button" onClick={() => setVisible(false)}>Cancel</button></ModalFooter></Modal>;
+```
+
+## Styles
+
+```css
+.root {
+  position: fixed;
+  inset: var(--zero);
+  margin: auto;
+  padding: var(--zero);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  max-inline-size: min(var(--layout-container-narrow), calc(var(--size-full) - var(--space-4)));
+  max-block-size: calc(var(--size-full) - var(--space-4));
+  background: var(--color-surface-default);
+  color: var(--color-text-default);
+  box-shadow: var(--shadow-floating);
+}
+.root::backdrop {
+  background: var(--color-surface-inverse);
+  opacity: var(--opacity-pulse);
+}
+.root:not([open]) {
+  pointer-events: none;
+}
+.surface {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  --stack-gap: var(--zero);
+}
+```
+
+## Animations
+
+```text
+nativeModalPresence
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useId, useMemo } from "react";
+import type { MouseEvent, PointerEvent, Ref } from "react";
+import { useModal } from "../../../hooks/modal";
+import type { ModalProps } from "./Modal";
+
+function mergeDialogRefs(ownedRef: { current: HTMLDialogElement | null }, suppliedRef: Ref<HTMLDialogElement> | undefined) {
+  return (node: HTMLDialogElement | null) => {
+    ownedRef.current = node;
+    if (typeof suppliedRef === "function") {
+      const cleanup = suppliedRef(node);
+      if (cleanup) return () => { ownedRef.current = null; cleanup(); };
+    } else if (suppliedRef) suppliedRef.current = node;
+  };
+}
+
+export function useModalView(input: ModalProps) {
+  const { open, defaultOpen, onOpenChange, closeOnOutsideClick = false, onClick: callerClick, onPointerDown: callerPointerDown, onPointerCancel: callerPointerCancel, initialFocusRef, returnFocusRef, children, animated = true, animationEffect = "fade", className, "aria-label": suppliedLabel, ref: suppliedRef, ...props } = input;
+  const { open: acceptedOpen, dialogRef: ownedRef, requestOpen, onCancel, onClose, onClick: modalClick, onPointerDown: modalPointerDown, onPointerCancel: modalPointerCancel } = useModal({ open, defaultOpen, onOpenChange, closeOnOutsideClick, initialFocusRef, returnFocusRef, requiredInitialFocus: props.role === "alertdialog" });
+  function onClick(event: MouseEvent<HTMLDialogElement>) { callerClick?.(event); modalClick(event); }
+  function onPointerDown(event: PointerEvent<HTMLDialogElement>) { callerPointerDown?.(event); modalPointerDown(event); }
+  function onPointerCancel(event: PointerEvent<HTMLDialogElement>) { callerPointerCancel?.(event); modalPointerCancel(event); }
+  const titleId = useId();
+  const label = suppliedLabel?.trim() || undefined;
+  const dialogRef = useMemo(() => mergeDialogRefs(ownedRef, suppliedRef), [ownedRef, suppliedRef]);
+  return { props, context: { open: acceptedOpen, requestOpen, titleId }, dialogRef, titleId, label, className, children, animated, animationEffect, onCancel, onClose, onClick, onPointerDown, onPointerCancel };
+}
+```
+
+
+## Content
+
+```tsx
+"use client";
+
+import type { RefObject } from "react";
+import type { ModalDismissProps, ComponentAnimationEffectProps, ComponentChildrenProps, ComponentOpenProps, NativeModalRootProps } from "../../../types";
+import { ModalContext } from "../../../internal/modal/ModalContext";
+import { useModalView } from "./useModalView";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { ModalHeader } from "../ModalHeader";
+import { ModalBody } from "../../atoms/ModalBody";
+import { ModalFooter } from "../../atoms/ModalFooter";
+import styles from "./Modal.module.css";
+import effects from "../../../styles/animations/modal-animations.module.css";
+
+export interface ModalProps extends NativeModalRootProps, ModalDismissProps, ComponentChildrenProps, ComponentOpenProps, ComponentAnimationEffectProps {
+  initialFocusRef?: RefObject<HTMLElement | null>;
+  returnFocusRef?: RefObject<HTMLElement | null>;
+}
+
+export function Modal(input: ModalProps) {
+  const { props, context, dialogRef, titleId, label, className, children, animated, animationEffect, onCancel, onClose, onPointerDown, onPointerCancel, onClick } = useModalView(input);
+  const parts = collectCompoundParts(children, { header: ModalHeader, body: ModalBody, footer: ModalFooter }, label ? ["body"] : ["header", "body"]);
+  return (
+    <ModalContext value={context}>
+      <dialog
+        {...props}
+        ref={dialogRef}
+        aria-label={label}
+        aria-labelledby={label ? undefined : titleId}
+        aria-hidden={context.open ? undefined : true}
+        inert={!context.open}
+        onCancel={onCancel}
+        onClose={onClose}
+        onPointerDown={onPointerDown}
+        onPointerCancel={onPointerCancel}
+        onClick={onClick}
+        className={[styles.root, effects.root, className].filter(Boolean).join(" ")}
+        data-animation-effect={animationEffect}
+        data-animated={animated}
+      >
+        <div className={styles.surface}>
+          {parts.header}{parts.body}{parts.footer}
+        </div>
+      </dialog>
+    </ModalContext>
+  );
+}
+```
+
+
+## Tests
+
+- Verify the named V2 Modal scenario, actual public owner/parts, property documentation and independent reset.
+- Open and dismiss the dialog through its supported controls and keyboard; verify focus return and cleanup after reset.
+
+- Closing content is immediately inert and hidden from accessibility; native close restores focus while supported discrete CSS transitions finish paint only.
+- Native entry and exit respect animated=false, none and reduced motion without presence timers or completion events. Unsupported discrete transitions retain immediate native behavior.
+
+
+- Accepted dismissal changes semantics immediately while controlled rejection preserves supplied open state.
+- Nested layers deliver Escape to one eligible owner without losing keyboard focus.
+- Closing and unmount dispose lifecycle ownership and restore focus to the connected configured target.
+
+## Criteria
+
+- [x] closeOnOutsideClick defaults to false. When enabled, a primary click beginning and ending outside native dialog bounds requests onOpenChange(false); inside clicks, drag across bounds, canceled pointers, caller-prevented events and nested dialog events do not dismiss. Controlled refusal keeps the dialog open; accepted close restores focus through the existing lifecycle. The option is not forwarded to the DOM.
+
+- [x] The children contract uses Explicit public parts; keyed fragments allowed; no arbitrary descendant cloning.
+- [x] The Region absence contract uses Omit absent footer/header; no empty wrapper.
+- [x] The open / defaultOpen contract uses undefined / false.
+- [x] The returnFocusRef contract uses undefined; captured connected opener fallback.
+- [x] The Outside action contract uses No default backdrop dismissal.
+- [x] Header/Body/optional Footer are explicit children; exactly one visible Header title is required unless root supplies nonempty aria-label, in which case aria-labelledby is omitted. useModal owns native showModal/close, controlled cancellation and focus return.
+- [x] Shared useOverlay owns layer integration without locking page scrolling; the native dialog remains fixed and centered in the viewport.
+- [x] Native dialog owns modality; do not invent a second focus trap.
+- [x] Do not alias Modal to the nonmodal Popover.
+- [x] The requested [Dialog](../organisms/Dialog.sc.md) façade and [AlertDialog](../organisms/AlertDialog.sc.md) reuse this single Modal/useModal engine; their public part aliases have the same constructor identity.
+- [x] Public native attributes go to their semantic owner.
+- [x] Normalize permitted direct parts/keyed fragments with private collectCompoundParts; it receives actual imported component identities, never displayName strings.
+- [x] Forward caller events before owned handlers and respect defaultPrevented.
+- [x] No new token family or motion is added.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] closed → open → Accepted authoritative open → Native dialog paint, not the focused trigger → fade / optional scale / opt-out none; --motion-normal / --ease-standard.
+- [x] Native showModal/close/focus semantics remain owned by useModal; close is immediate and no exit effect postpones modality release.
+- [x] Initial focus remains immediate; native CSS entry transitions are independent of focus-within.
+- [x] Header/Body/Footer do not animate independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] useModalView is colocated with Modal and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] The native backdrop needs token-backed styling and no modal coordinates.
+
+- [x] Root Showcase demonstrates the complete Header/Body/Footer composition; dedicated part examples do not reuse the full root demo.
+
+- [x] The Informational dialog example composes a trigger Button, controlled Modal, ModalHeader title="Title", ModalBody containing Text with Children and ModalFooter containing a close Button; close reports onOpenChange and returns focus to its trigger.
+- [x] The Composed input dialog example uses ModalHeader, ModalBody containing Label and Input with placeholder="Placeholder", and ModalFooter containing cancel/confirm Buttons. Confirm reports the local value and closes; cancel discards it. This is local example behavior, not a new Modal submission API.
+- [x] Properties document actual open/onOpenChange, dismissal, animation, native dialog and initial/return focus contracts. Resources describe Modal as the aggregator, required Body, Header required without an explicit accessible label, and optional Footer.
+- [x] Trigger controls and reset remain usable when closed; Escape, configured backdrop dismissal, focus containment and focus return follow existing Modal behavior. Reset closes the dialog and restores local input/event state; unmount cleans up the top-layer dialog.
+- [x] The complete preview lives in Modal. Part pages use the public owner context rather than private context imports or orphan parts; no showcase page landmark is duplicated.
+- [x] V2 uses real public exports and colocated example view logic; reset restores local controls and feedback, and V1 remains unchanged.
+
+- [x] Each V2 scenario includes minimal copyable TSX in the catalog format: public imports and direct JSX with valid owner/parts; application-owned values and callbacks remain external, without wrapper components, hook bodies or showcase dependencies.
+
+- [x] V2 informational/input dialogs provide a named Header close action; the input example groups its Label/Input with Stack gap="1" and retains secondary Cancel before primary Confirm.

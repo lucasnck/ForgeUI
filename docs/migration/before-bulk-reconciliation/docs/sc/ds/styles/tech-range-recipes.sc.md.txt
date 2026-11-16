@@ -1,0 +1,139 @@
+---
+title: "Range indicator recipes"
+scope: "Shared track geometry, scalar interpolation and indeterminate presentation"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Range indicator recipes
+
+
+
+## Files
+
+```text
+design-system/styles/range-components.module.css (M)
+features/showcase-v2/components/StyleResources/RangeRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/RangeRecipes/RangeRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/RangeRecipes/useRangeRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/RangeRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Range contracts](../types/tech-range-contracts.sc.md)
+- [Animation contracts](../types/tech-animation-contracts.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@/design-system/styles/range-components.module.css";
+<span className={styles.range}/>;
+```
+
+## Styles
+
+```css
+.range {
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: action from "./toned-components.module.css";
+  --range-height: var(--length-2);
+  display: block;
+  inline-size: var(--length-20);
+  max-inline-size: var(--size-full);
+  block-size: var(--range-height);
+  accent-color: var(--control-background);
+  border: var(--border-width-thin) var(--border-style-default)
+    var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-subtle);
+  overflow: hidden;
+}
+.range[data-size="xs"] {
+  --range-height: var(--length-1);
+}
+.range[data-size="sm"] {
+  --range-height: var(--length-1);
+}
+.range[data-size="lg"] {
+  --range-height: var(--length-3);
+}
+.range[data-size="xl"] {
+  --range-height: var(--length-4);
+}
+.progress {
+  composes: range;
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: action from "./toned-components.module.css";
+}
+.meter {
+  composes: range;
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: action from "./toned-components.module.css";
+}
+
+.visual {
+  display: block;
+  inline-size: var(--size-full);
+  block-size: var(--size-full);
+  overflow: hidden;
+}
+.fill {
+  fill: var(--control-background);
+  transform-box: view-box;
+}
+.fill[data-animated="true"] {
+  transition: width var(--motion-normal) var(--ease-standard);
+}
+.fill[data-indeterminate="true"][data-animated="true"] {
+  animation: rangeIndeterminate var(--motion-pulse-duration) var(--ease-linear)
+    infinite;
+}
+@keyframes rangeIndeterminate {
+  from {
+    transform: translateX(var(--translation-center));
+  }
+  to {
+    transform: translateX(var(--size-full));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fill[data-animated],
+  .fill[data-indeterminate][data-animated] {
+    transition: none;
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  .fill {
+    fill: var(--color-system-highlight);
+  }
+}
+```
+
+
+## Tests
+
+- V2 Range presentation: verify its observable state, actual public contract, reset and complete copied code.
+
+- Progress and meter track sizes and tones resolve the shared recipes.
+- Indeterminate geometry uses the canonical tokens; reduced motion and animated=false settle immediately.
+- No runtime CSS percentage width or duplicated range normalization is introduced.
+
+## Criteria
+
+- [x] Normalized native values and accessible names remain available independently of the decorative SVG track and its motion.
+- [x] User-authorized renderer revision: native progress/meter retain their normalized data and accessible names inside VisuallyHidden. A private RangeTrack SVG provides the visible filled track independently of browser-native pseudo-elements. All three public range consumers extend existing ComponentAnimatedProps (default true); numeric widths are SVG geometry data, never inline CSS. Transition uses --motion-normal/--ease-standard; indeterminate Progress uses --motion-pulse-duration/--ease-linear. No delayed semantic value, fabricated task progress or component timer. Own native progress/meter adaptation, finite range normalization and one track sizing recipe. Progress measures task completion; Meter measures a scalar within a known range. No polling, timers, percent state duplication, API or feature dependency.
+- [x] Track size xs/sm/md/lg/xl — height length-1/1/2/3/4; md default
+- [x] Numeric range data belongs in native value/min/max attributes. Do not inject runtime CSS widths or duplicate normalized values in state.
+- [x] range-components.module.css exports range, progress, meter, visual and fill. Shared size/tone/fullWidth recipes remain canonical. Wrapper uses the existing surface, border and radius tokens. SVG viewBox is 0 0 100 1, preserveAspectRatio none; rect width is the normalized ratio times 100 and height is 1. These are vector geometry attributes, not CSS style values. fill uses --control-background and transitions width via the existing motion tokens only while data-animated=true. A separate indeterminate segment has fixed geometric width 30 and a token-backed translation animation. Reduced motion disables both transition and animation. Forced colors uses the Highlight system token.
+- [x] Meter ratio uses (value-min)/(max-min), with half-scaled arithmetic only when extent overflows; avoid NaN for extremely small valid ranges. One native accessible element and one decorative SVG render per component. No duplicate progressbar/meter role or native vendor styling remains. No public RangeTrack export/catalog entry.
+- [x] Native thresholds stay ordered and progress/meter semantics remain distinct.
+- [x] Native names, fullWidth, five sizes and seven tones use the canonical adapter and token recipes; static rendering and targeted browser integration are verified without a repeated platform certification matrix.
+
+- [x] V2 **Range presentation**: Compare actual Slider/ProgressBar/Meter consumers and their shared range recipes with valid value/max/thresholds. Show track/fill tokens and immediate semantics, keeping private RangeTrack unregistered.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

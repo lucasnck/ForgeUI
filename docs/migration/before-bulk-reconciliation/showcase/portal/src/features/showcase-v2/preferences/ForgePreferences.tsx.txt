@@ -1,0 +1,16 @@
+"use client";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
+type Theme = "light" | "dark" | "contrast" | "liquid-glass";
+type Locale = "pt-BR" | "en-US";
+// Note: values are string unions, not imported at runtime from the original application.
+type Preferences = { locale: Locale; theme: Theme; setLocale: (locale: Locale) => void; setTheme: (theme: Theme) => void; };
+const Context = createContext<Preferences | null>(null);
+export function ForgePreferencesProvider({children}: {children:ReactNode}) {
+ const [locale,setLocale] = useState<Locale>("pt-BR");
+ const [theme,setTheme] = useState<Theme>("light");
+ useEffect(()=>{ document.documentElement.dataset.theme = theme; document.documentElement.lang = locale; }, [locale,theme]);
+ const value = useMemo(()=>({locale,theme,setLocale,setTheme}),[locale,theme]);
+ return <Context.Provider value={value}>{children}</Context.Provider>;
+}
+export function useForgePreferences(): Preferences { const state = useContext(Context); if(!state) throw new Error("ForgePreferencesProvider required"); return state; }

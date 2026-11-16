@@ -1,0 +1,211 @@
+---
+title: "FormFieldInternationalTelephoneInput"
+scope: "International telephone field bound to RHF with canonical phone values"
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# FormFieldInternationalTelephoneInput
+
+## Files
+
+```text
+design-system/components/organisms/Form/FormFieldInternationalTelephoneInput/FormFieldInternationalTelephoneInput.tsx (C)
+design-system/components/organisms/Form/FormFieldInternationalTelephoneInput/useFormFieldInternationalTelephoneInput.ts (C)
+design-system/components/organisms/Form/FormFieldInternationalTelephoneInput/index.ts (C)
+design-system/components/organisms/Form/index.ts (M)
+design-system/index.ts (M)
+design-system/types/form-field-organisms.ts (M)
+design-system/types/forms.test.ts (M)
+features/showcase/examples/FormAdapters.example.tsx (C)
+features/showcase/examples/useFormAdaptersExample.ts (C)
+features/showcase/model/showcase-registry.ts (M)
+```
+
+## Dependencies
+
+- [FormField](../../molecules/FormField.sc.md)
+- [RHF integration](../../../../tech-react-hook-form.sc.md)
+- [Form registration types](../../../types/tech-form-field-organisms.sc.md)
+- [InternationalTelephoneInput](../../molecules/InternationalTelephoneInput.sc.md)
+
+## Contract
+
+```tsx
+import { FormFieldInternationalTelephoneInput } from "@/design-system";
+<FormFieldInternationalTelephoneInput name="fieldName" label="Field label" locale="en" countryLabel="Country" internationalLabel="International" invalidMessage="Invalid phone" />;
+```
+
+## Hooks
+
+```ts
+"use client";
+import { useEffect, useId, useState } from "react";
+
+import { useFormContext, useController } from "react-hook-form";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type { PhoneInputValue } from "../../../../types";
+import type { FormFieldInternationalTelephoneInputProps } from "./FormFieldInternationalTelephoneInput";
+
+export function useFormFieldInternationalTelephoneInput<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, PhoneInputValue> = FieldPathByValue<
+    TValues,
+    PhoneInputValue
+  >,
+>({
+  id,
+  name,
+  label,
+  hint,
+  error: displayedError,
+  disabled,
+  required,
+  ...inputProps
+}: FormFieldInternationalTelephoneInputProps<TValues, TName>) {
+  const generatedId = useId();
+  const methods = useFormContext<TValues>();
+  if (!methods) throw new Error("FormFieldInternationalTelephoneInput requires FormProvider.");
+  const [resetKey, setResetKey] = useState(0);
+  const subscribe = methods.subscribe;
+  useEffect(
+    () =>
+      subscribe({
+        formState: { values: true },
+        callback: (state) => {
+          if (!state.name) setResetKey((key) => key + 1);
+        },
+      }),
+    [subscribe],
+  );
+  const { field, fieldState } = useController({ control: methods.control, name, disabled });
+  const value: unknown = field.value;
+  if (
+    value === null ||
+    typeof value !== "object" ||
+    !("number" in value) ||
+    !("country" in value) ||
+    !(value.number === null || typeof value.number === "string") ||
+    !(value.country === null || typeof value.country === "string")
+  )
+    throw new Error("Telephone fields require canonical phone values.");
+  const canonical: PhoneInputValue = { number: value.number, country: value.country };
+  const message =
+    displayedError ??
+    (typeof fieldState.error?.message === "string" ? fieldState.error.message : undefined);
+
+  return {
+    resetKey,
+    invalid: Boolean(fieldState.error) || Boolean(displayedError),
+    controlId: id ?? generatedId,
+    label,
+    hint,
+    message,
+    required,
+    inputProps,
+    fieldName: field.name,
+    inputRef: field.ref,
+    onBlur: field.onBlur,
+    onChange: field.onChange,
+    disabled: field.disabled,
+    value: canonical,
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type {
+  FormFieldTelephonePresentationProps,
+  NativeFormFieldTelephoneProps,
+  FormFieldRegistrationProps,
+  VisualProps,
+  ComponentFullWidthProps,
+  PhoneInputValue,
+} from "../../../../types";
+
+import { InternationalTelephoneInput } from "../../../molecules/InternationalTelephoneInput";
+import { FormField } from "../../../molecules/FormField";
+import { useFormFieldInternationalTelephoneInput } from "./useFormFieldInternationalTelephoneInput";
+export interface FormFieldInternationalTelephoneInputProps<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, PhoneInputValue> = FieldPathByValue<
+    TValues,
+    PhoneInputValue
+  >,
+>
+  extends
+    NativeFormFieldTelephoneProps,
+    FormFieldRegistrationProps<TValues, TName>,
+    VisualProps,
+    ComponentFullWidthProps,
+    FormFieldTelephonePresentationProps {}
+
+export function FormFieldInternationalTelephoneInput<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, PhoneInputValue> = FieldPathByValue<
+    TValues,
+    PhoneInputValue
+  >,
+>(props: FormFieldInternationalTelephoneInputProps<TValues, TName>) {
+  const {
+    resetKey,
+    invalid,
+    controlId,
+    label,
+    hint,
+    message,
+    inputProps,
+    fieldName,
+    inputRef,
+    onBlur,
+    value,
+    onChange,
+    disabled,
+    required,
+  } = useFormFieldInternationalTelephoneInput(props);
+
+  return (
+    <FormField controlId={controlId} label={label} hint={hint} error={message}>
+      <InternationalTelephoneInput
+        key={resetKey}
+        data-form-draft={fieldName}
+        {...inputProps}
+        name={fieldName}
+        ref={inputRef}
+        id={controlId}
+        onBlur={onBlur}
+        value={value}
+        onValueChange={onChange}
+        disabled={disabled}
+        invalid={invalid}
+        aria-required={required || undefined}
+      />
+    </FormField>
+  );
+}
+```
+
+## Tests
+
+- `node scripts/check-form-view.cjs`: real RHF adapters, SSR, field ordering, error relationships, reset, unregister and focus delegation.
+- Showcase V1: default and alternate/error compositions registered.
+- Four authentication forms render with exactly one native form in pt-BR, en and es; the token container retains submission ownership.
+- Browser keyboard, hydration and visual verification remain pending.
+
+- Country selector interaction, formatted display versus stored value, reset, focus and error handling.
+- Type-safe nested FieldPath and invalid-path rejection.
+- FormProvider absence, independent repeated instances, reset and conditional unmount.
+
+## Criteria
+
+- [x] Consumes the existing DS primitive and FormField without recreating visuals.
+- [x] Integrates once with the caller-owned React Hook Form context; no nested useForm.
+- [x] Preserves accessible label, focus, hint/error relationships, keyboard behavior and native semantics.
+- [x] Props and value channel match the actual existing primitive signature and RHF field type.
+- [x] Builds in supported static/SSR rendering and does not access browser APIs during render.
+- [x] Only touched supported files pass Prettier, ESLint, typechecking and relevant component tests.

@@ -1,0 +1,90 @@
+---
+title: "Control Shape Contracts"
+scope: "Document-level control shape, per-component override and the shared shaped recipe"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Control Shape Contracts
+
+
+
+## Files
+
+```text
+design-system/styles/shaped-components.module.css (M)
+features/showcase-v2/components/StyleResources/ShapeRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/ShapeRecipes/ShapeRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/ShapeRecipes/useShapeRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/ShapeRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](tech-design-tokens.sc.md)
+- [Native control contracts](../types/tech-native-control-contracts.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@/design-system/styles/shaped-components.module.css";
+<div className={styles.shaped}/>;
+```
+
+## Styles
+
+```css
+.shaped {
+  border-radius: var(--control-shape-radius, var(--shape-radius));
+}
+.shaped[data-shape="square"] {
+  --control-shape-radius: var(--zero);
+}
+.shaped[data-shape="rounded"] {
+  --control-shape-radius: var(--radius-md);
+}
+.shaped[data-shape="pill"] {
+  --control-shape-radius: var(--radius-full);
+}
+```
+
+## Tests
+
+- V2 Inherited and explicit shape: verify its observable state, actual public contract, reset and complete copied code.
+
+- Ancestor square/rounded/pill values resolve to the declared radius tokens.
+- A local shape override wins; omitting it preserves ancestor inheritance.
+- Forced colors preserves the silhouette without a second radius definition.
+
+## Criteria
+
+- [x] Given no `data-shape` attribute anywhere, a shaped control resolves `--radius-md`.
+- [x] Given `data-shape="square"`, `"rounded"` or `"pill"` on `<html>` or on an ancestor container, every shaped control inside resolves `--zero`, `--radius-md` or `--radius-full` respectively.
+- [x] Given a control with the `shape` prop, the rendered radius follows that value even when an ancestor declares a different shape.
+- [x] Given a control without the `shape` prop, the root renders no `data-shape` attribute and the ancestor value applies.
+- [x] Given any consumer, no local rule declares the control silhouette radius; each shape value is defined once in the recipe and each radius once in `tokens.css`.
+- [x] Given `npm run test:tokens`, the capability adds no numeric or color literal and every reference resolves.
+- [x] Given Button, Input, Select and Checkbox, all three values render through the same recipe without a component-specific shape selector.
+- [x] Given forced colors, the silhouette radius is unchanged and remains visible.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens` and `npm run test:design-system` pass.
+- [x] The values are the canonical `ComponentShape` union: `square`, `rounded` and `pill`.
+- [x] Excludes surface and container radius (popup surface, panels, templates), non-radius styling, user-preference persistence and any selector UI.
+- [x] An infrastructure preference may drive the same `data-shape` attribute later without changing this contract.
+- [x] The `ComponentShape` value `square` contract uses `--zero`; No corner radius.
+- [x] The `ComponentShape` value `rounded` contract uses `--radius-md`; Default, and the value used when nothing is declared.
+- [x] The `ComponentShape` value `pill` contract uses `--radius-full`; Fully rounded silhouette.
+- [x] The Document attribute contract uses `data-shape` on `<html>` or on any ancestor container; Sets `--shape-radius` for the subtree.
+- [x] The No declaration anywhere contract uses `:root` default; `--radius-md`; the control renders no `data-shape` attribute.
+- [x] Components must not declare a local radius for the control silhouette; the recipe owns it.
+- [x] `data-shape` is the only attribute that drives the shape, and it is never rendered with a default value.
+- [x] Each value appears exactly once in the recipe, and every declaration is a token reference or a structural keyword.
+- [x] The recipe is `src/design-system/styles/shaped-components.module.css`, owned by this SC.
+- [x] Consumers compose it and keep component-specific states local:
+- [x] The recipe adds no color, spacing, shadow or motion value, so no theme-specific rule is required.
+
+- [x] V2 **Inherited and explicit shape**: Compare actual document-inherited shape with supported per-control square/rounded/pill overrides on real Button/Input samples. Inspect the shared shaped recipe and resolved radius tokens; scoped preview changes must not leave global document settings mutated.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

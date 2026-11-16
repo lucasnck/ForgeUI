@@ -1,0 +1,81 @@
+---
+title: "Grid navigation contracts"
+scope: "Grid navigation contracts shared value and capability contracts"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Grid navigation contracts
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/types/grid-navigation.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Dependencies
+
+- [Focus contracts](tech-focus-contracts.sc.md)
+
+## Contract
+
+```ts
+import type { GridCellAddress } from "@/design-system";
+type Contract = GridCellAddress;
+```
+
+## Content
+
+```ts
+import type {
+  RefObject,
+  KeyboardEvent,
+} from "react";
+import type {
+  NavigationDirection,
+} from "./focus";
+
+export interface GridCellAddress {
+  rowKey: string;
+  columnKey: string;
+}
+
+export interface GridNavigationOptions {
+  rowKeys: readonly string[];
+  columnKeys: readonly string[];
+  direction?: NavigationDirection;
+  pageRows?: number;
+  fallbackRef?: RefObject<HTMLElement | null>;
+  resolveRemovedCell?(previous: GridCellAddress): GridCellAddress | null;
+}
+
+export interface GridNavigationContract {
+  active: GridCellAddress | null;
+  registerCell(address: GridCellAddress, ref: RefObject<HTMLElement | null>): () => void;
+  tabIndex(address: GridCellAddress): number;
+  onCellFocus(address: GridCellAddress): void;
+  focusCell(address: GridCellAddress): void;
+  onCellKeyDown(event: KeyboardEvent<HTMLElement>, address: GridCellAddress): void;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for DataGrid, TreeGrid, useGridNavigation retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile keyed cell addresses, readonly row/column collections and typed cell refs.
+- Reject incomplete addresses, non-string keys and incompatible keyboard handlers.
+
+## Criteria
+
+- [x] Each shared declaration has one canonical owner and remains exported through @/design-system.
+
+- [x] V2 typed usage fixtures cover DataGrid, TreeGrid, useGridNavigation: Typed row/column identity, active cell and keyboard navigation. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

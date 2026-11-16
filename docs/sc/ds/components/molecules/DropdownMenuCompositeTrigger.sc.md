@@ -1,0 +1,94 @@
+---
+title: "DropdownMenu composite trigger"
+scope: "Incremental custom public Button trigger contract for the existing DropdownMenu without a second disclosure implementation"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# DropdownMenu composite trigger
+
+## Files
+
+```text
+design-system/components/molecules/DropdownMenu/DropdownMenu.tsx (M)
+design-system/components/molecules/DropdownMenu/useDropdownMenu.ts (M)
+features/showcase/examples/DropdownMenu.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase-v2/components/DropdownMenu/definition.ts (C)
+features/showcase-v2/components/DropdownMenu/DropdownMenu.example.tsx (C)
+features/showcase-v2/components/DropdownMenu/useDropdownMenuExample.ts (C)
+features/showcase-v2/components/DropdownMenu/usage-code.ts (C)
+features/showcase-v2/components/Menu/fixtures.ts (C)
+features/showcase-v2/components/Menu/useMenuPreview.ts (C)
+features/showcase-v2/model/menu-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [DropdownMenu baseline](DropdownMenu.sc.md)
+- [Button](../atoms/Button.sc.md)
+- [IconButton](IconButton.sc.md)
+- [Menu](Menu.sc.md)
+- [Avatar](../atoms/Avatar.sc.md)
+- [Collection contracts](../../types/tech-collection-contracts.sc.md)
+- [Compound composition](../../types/tech-compound-composition.sc.md)
+- [Selection/navigation contracts](../../types/tech-selection-navigation.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { DropdownMenu, Button, Avatar, Menu, MenuBody, MenuItem } from "@forge-ui/web";
+<DropdownMenu label={accountTriggerLabel} trigger={<Button type="button" aria-label={accountTriggerLabel}><Avatar decorative label={displayName} initials={initials} /> {displayName}</Button>}>
+  <Menu label={accountMenuLabel} onAction={handleAction}>
+    <MenuBody><MenuItem value="profile-preview" label={profilePreviewLabel} /></MenuBody>
+  </Menu>
+</DropdownMenu>;
+```
+
+## Content
+
+```tsx
+import type { ReactElement } from "react";
+import type { ButtonProps } from "../../atoms/Button";
+import type { NativeCollectionRootProps, ComponentChildrenProps, ComponentOpenProps, ComponentAnimationEffectProps } from "../../../types";
+export interface DropdownMenuProps extends NativeCollectionRootProps, ComponentChildrenProps, ComponentOpenProps, ComponentAnimationEffectProps {
+  label: string;
+  disabled?: boolean;
+  trigger?: ReactElement<ButtonProps>;
+}
+```
+
+## Tests
+
+- V2 Composite identity trigger: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Existing label-only trigger remains unchanged; custom Button renders avatar/name once without a nested button.
+- Custom Button/IconButton opens via click, Enter/Space and ArrowDown/ArrowUp; focus enters first/last enabled action respectively.
+- Callback/object refs receive the same real trigger node and clean up; caller event prevention cancels owned handling and combined handlers run once.
+- Disabled/loading custom trigger and disabled root prevent opening; controlled rejection preserves the accepted expanded state.
+- Escape and accepted menu action close and restore trigger focus; outside pointer preserves its target focus, and Tab moves onward.
+- Replace avatar/name/context while closing, rapidly reopen and disable motion; one trigger/menu and no obsolete focus target remain.
+
+## Criteria
+
+- [x] This is an incremental specification of the existing DropdownMenu export, not a new DropdownMenuCompositeTrigger component, context, hook, registry entry or open-state machine. The delivered baseline SC stays DONE.
+- [x] Optional trigger accepts only a direct public Button or IconButton, following the already available Popover custom-trigger pattern; reject arbitrary elements, nested interactive controls and cloned trees.
+- [x] Omitting trigger preserves the current label-only native Button and all existing defaults. label remains a required nonempty localized fallback/action name, and an icon-only trigger has an explicit accessible name.
+- [x] Render exactly one interactive trigger. Clone only this explicit supported element, preserve its children/native attributes/className and public ref, and provide owned disclosure attributes/ref/type=button without leaking trigger into the root DOM.
+- [x] useDropdownMenu remains the view-logic owner and is called at render top. Reuse useCollapse, useOverlay, usePresence and the existing Menu keyboard/dismissal contract rather than duplicate lifecycle code.
+- [x] Root disabled, custom disabled and custom loading combine to disable disclosure. Root-owned aria-expanded, aria-controls and aria-haspopup=menu reflect accepted open state and the one real menu; consumers cannot spoof those values.
+- [x] Caller custom-trigger click/key handlers and root handlers run in native propagation order exactly once; preventDefault is respected before owned toggle/navigation. No second synthetic click or double toggle is introduced.
+- [x] Object/callback refs and native focus/blur handling remain supported after clone. Context changes retain the same mounted Button DOM node and update its visible/accessibility name.
+- [x] ArrowDown/ArrowUp open at first/last enabled item, Enter/Space activate normally, menu arrows/Home/End/typeahead remain canonical, and Escape/accepted action return focus immediately after accepted close.
+- [x] Outside pointer and Tab onward do not steal destination focus. Rejected controlled closes remain authoritative; exiting pixels are inert/aria-hidden and never retain a second accessible menu.
+- [x] Standalone DropdownMenu Showcase gains a composed avatar/name trigger variation under its existing entry; no account/partner business model is added to DS.
+- [x] Catalog entries remain unchanged while this increment is PENDING; document the optional trigger in the existing DropdownMenu catalog contract only after implementation and validation.
+
+- [x] V2 **Composite identity trigger**: Extend the existing DropdownMenu V2 definition with one public Button containing Avatar/Text in Inline gap="2" align="center". Open, invoke an indexed MenuItem and dismiss; preserve one trigger/ref, disabled/loading behavior and focus return. Do not create a separate component export, route or registration.
+- [x] The DropdownMenu V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useDropdownMenuExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

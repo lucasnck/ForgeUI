@@ -1,0 +1,124 @@
+---
+title: "AutocompleteFooter"
+scope: "Autocomplete compound part: AutocompleteFooter. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# AutocompleteFooter
+
+## Files
+
+```text
+features/showcase/examples/QueryInputPartExamples.tsx (C)
+design-system/components/atoms/AutocompleteFooter/AutocompleteFooter.module.css (C)
+design-system/components/atoms/AutocompleteFooter/AutocompleteFooter.tsx (C)
+design-system/components/atoms/AutocompleteFooter/index.ts (C)
+design-system/components/atoms/AutocompleteFooter/useAutocompleteFooter.ts (C)
+design-system/internal/autocomplete/AutocompleteContext.ts (C)
+design-system/internal/query-input/QueryInputContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/AutocompleteFooter.example.tsx (C)
+features/showcase/examples/QueryInputExample.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-query-inputs.cjs (C)
+features/showcase-v2/components/AutocompleteFooter/definition.ts (C)
+features/showcase-v2/components/AutocompleteFooter/AutocompleteFooter.example.tsx (C)
+features/showcase-v2/components/AutocompleteFooter/useAutocompleteFooterExample.ts (C)
+features/showcase-v2/components/AutocompleteFooter/usage-code.ts (C)
+features/showcase-v2/components/Autocomplete/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+
+## Contract
+
+```tsx
+import { Autocomplete, AutocompleteBody, AutocompleteFooter } from "@/design-system";
+<Autocomplete options={options} query={query} onQueryChange={setQuery} aria-label="Search"><AutocompleteBody hidden /><AutocompleteFooter>Additional help</AutocompleteFooter></Autocomplete>;
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useAutocompleteContext } from "../../../internal/autocomplete/AutocompleteContext";
+import type { AutocompleteFooterProps } from "./AutocompleteFooter";
+
+export function useAutocompleteFooter({ children, className, ...props }: AutocompleteFooterProps) {
+  const field = useAutocompleteContext();
+  return { field, props, children, className };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { HTMLAttributes } from "react";
+import { useAutocompleteFooter } from "./useAutocompleteFooter";
+import styles from "./AutocompleteFooter.module.css";
+
+export interface AutocompleteFooterProps extends HTMLAttributes<HTMLDivElement> {}
+
+export function AutocompleteFooter(input: AutocompleteFooterProps) {
+  const { field, children, props, className } = useAutocompleteFooter(input);
+  return <div {...props} id={field.footerId} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</div>;
+}
+```
+
+## Tests
+
+- V2 AutocompleteFooter contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Scoped parts require their matching owner and preserve native label/body/footer attributes.
+- Header label references the actual input id and only a present Footer contributes its owned description id, including server markup.
+- Missing optional regions add no empty wrapper; two instances preserve distinct associations.
+
+## Criteria
+
+- [x] Given AutocompleteFooter, Footer id is merged into the input aria-describedby by root; only mounted footer ids are referenced.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Footer id is merged into the input aria-describedby by root; only mounted footer ids are referenced.
+- [x] Caller owns any live announcements.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useAutocompleteFooter is colocated with AutocompleteFooter and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **AutocompleteFooter contextual region**: Compose the actual Autocomplete owner with its required Body and indexed options. Footer shows a query/result hint and a named Clear action that updates caller query through the real channel; filtering/empty feedback remains caller-owned. Link to the full owning composition.
+- [x] The AutocompleteFooter V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useAutocompleteFooterExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Autocomplete fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

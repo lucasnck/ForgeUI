@@ -1,0 +1,170 @@
+---
+title: "ModalHeader"
+scope: "Modal compound part: ModalHeader. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# ModalHeader
+
+## Files
+
+```text
+features/showcase-v2/components/ModalHeader/usage-code.ts (C)
+features/showcase-v2/components/ModalHeader/definition.ts (C)
+features/showcase-v2/components/ModalHeader/ModalHeader.example.tsx (C)
+features/showcase-v2/components/ModalHeader/useModalHeaderExample.ts (C)
+design-system/components/molecules/ModalHeader/ModalHeader.tsx (C)
+design-system/components/molecules/ModalHeader/ModalHeader.module.css (C)
+design-system/components/molecules/ModalHeader/index.ts (C)
+design-system/internal/modal/ModalContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ModalHeader.example.tsx (C)
+features/showcase/examples/ModalPartExamples.module.css (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase/examples/ModalPartExamples.tsx (C)
+design-system/components/molecules/ModalHeader/useModalHeader.ts (C)
+```
+
+## Dependencies
+
+- [DialogClose](../atoms/DialogClose.sc.md)
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-modal-interactions.sc.md](../../hooks/tech-modal-interactions.sc.md)
+- [Heading](../atoms/Heading.sc.md)
+
+## Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@forge-ui/web";
+<Modal><ModalHeader title="Confirm"/><ModalBody>Confirmation details</ModalBody><ModalFooter><button type="button">Action</button></ModalFooter></Modal>;
+```
+
+## Styles
+
+```css
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-inline-size: var(--zero);
+  padding: var(--space-3);
+  border-block-end: var(--border-width-thin) solid var(--color-border-default);
+  color: var(--color-text-default);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-inline-size: var(--zero);
+  overflow-wrap: anywhere;
+}
+
+.root[data-divider="false"] {
+  border-block-end-width: var(--zero);
+}
+
+.root > :not(.title) {
+  flex-shrink: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Hooks
+
+```ts
+"use client";
+import { useModalContext } from "../../../internal/modal/ModalContext";
+import type { ModalHeaderProps } from "./ModalHeader";
+export function useModalHeader(input: ModalHeaderProps) {
+  const { title, icon, divider = true, children, ...props } = input;
+  if (!title.trim()) throw new Error("ModalHeader requires a nonempty title.");
+  const modal = useModalContext();
+  return { modal, props, title, icon, divider, children };
+}
+```
+
+
+## Content
+
+```tsx
+"use client";
+import { Heading } from "../../atoms/Heading";
+import styles from "./ModalHeader.module.css";
+import type { ComponentPropsWithRef, ReactNode } from "react";
+export interface ModalHeaderProps extends ComponentPropsWithRef<"header"> {
+  title: string;
+  icon?: ReactNode;
+  divider?: boolean;
+}
+import { useModalHeader } from "./useModalHeader";
+export function ModalHeader(props: ModalHeaderProps) {
+  const view = useModalHeader(props);
+  return (
+    <header {...view.props} className={[styles.root, view.props.className].filter(Boolean).join(" ")} data-divider={view.divider}>
+      <div className={styles.title}>
+        {view.icon}
+        <Heading level={2} id={view.modal.titleId}>{view.title}</Heading>
+      </div>
+      {view.children}
+    </header>
+  );
+}
+```
+
+
+## Tests
+
+- Verify the named V2 ModalHeader scenario, actual public owner/parts, property documentation and independent reset.
+- Open and dismiss the dialog through its supported controls and keyboard; verify focus return and cleanup after reset.
+
+- Showcase Header examples independently demonstrate title only, decorative icon with title, and a named close action.
+- Header title group wraps without shrinking its close action; its lower border separates Body content.
+
+
+- Accepted dismissal changes semantics immediately while controlled rejection preserves supplied open state.
+- Nested layers deliver Escape to one eligible owner without losing keyboard focus.
+- Closing and unmount dispose lifecycle ownership and restore focus to the connected configured target.
+
+## Criteria
+
+- [x] Given ModalHeader, Header renders a nonempty visible title with the root-owned titleId; native dialog aria-labelledby points only to that title, not footer/action text.
+- [x] The title contract uses Required nonempty visible dialog title.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Header renders a nonempty visible title with the root-owned titleId; native dialog aria-labelledby points only to that title, not footer/action text.
+- [x] Header is required unless root receives an explicit aria-label.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Preserve Header/Body/Footer hierarchy and mount/focus policy from that visual owner.
+- [x] Optional sections do not fade independently.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] useModalHeader is colocated with ModalHeader and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] divider defaults to true; divider=false removes only the lower border while padding, gap and title relationships remain stable.
+- [x] Showcase isolates title, icon/title, named close action and divider variants inside public Modal composition without a Footer preview.
+
+- [x] Only Header is visible in its dedicated previews; the required empty Body is hidden, and Footer is absent.
+
+- [x] The Dialog heading example uses ModalHeader title="Title", a default visible decorative icon, and a named ghost DialogClose icon action in public Modal context. Required Body is hidden and Footer omitted; controls toggle divider/icon without removing the visible close action.
+- [x] Properties document required title, icon, divider, children and native header attributes. Resources identify the Modal context and title labeling; keyboard dismissal closes and returns focus to the trigger. Link to the complete Modal entry.
+- [x] V2 uses real public exports and colocated example view logic; reset restores local controls and feedback, and V1 remains unchanged.
+
+- [x] Each V2 scenario includes minimal copyable TSX in the catalog format: public imports and direct JSX with valid owner/parts; application-owned values and callbacks remain external, without wrapper components, hook bodies or showcase dependencies.
+
+- [x] The V2 base preview and minimal usage snippet preserve meaningful spacing, action hierarchy and visible dismissal where applicable; browser validation includes the reported visual states.

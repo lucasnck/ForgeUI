@@ -1,0 +1,186 @@
+---
+title: "Typography Contracts"
+scope: "Canonical text size, tone and weight contracts with a token-backed typography recipe"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Typography Contracts
+
+
+
+## Files
+
+```text
+design-system/styles/text-components.module.css (M)
+features/showcase-v2/components/StyleResources/TypographyRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/TypographyRecipes/TypographyRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/TypographyRecipes/useTypographyRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/TypographyRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Brand identity](../../tech-brand-identity.sc.md)
+- [Design tokens](tech-design-tokens.sc.md)
+- [Typography contracts](../types/tech-typography-contracts.sc.md)
+
+## Contract
+
+```tsx
+import styles from "@/design-system/styles/text-components.module.css";
+<div className={styles.text}/>;
+```
+
+## Styles
+
+```css
+.text {
+  --text-font-size: initial;
+  --text-font-weight: initial;
+  --text-color: initial;
+  --heading-font-size: initial;
+  --heading-line-height: initial;
+  --heading-font-weight: initial;
+  --heading-letter-spacing: initial;
+  overflow-wrap: anywhere;
+  font-size: var(
+    --text-font-size,
+    var(--heading-font-size, var(--font-size-md))
+  );
+  line-height: var(--heading-line-height, var(--line-height-normal));
+  font-weight: var(
+    --text-font-weight,
+    var(--heading-font-weight, var(--font-weight-regular))
+  );
+  letter-spacing: var(--heading-letter-spacing, var(--letter-spacing-normal));
+  color: var(--text-color, var(--color-text-default));
+  margin: var(--zero);
+}
+
+.size[data-text-size="xs"] {
+  --text-font-size: var(--font-size-xs);
+}
+
+.size[data-text-size="sm"] {
+  --text-font-size: var(--font-size-sm);
+}
+
+.size[data-text-size="md"] {
+  --text-font-size: var(--font-size-md);
+}
+
+.size[data-text-size="lg"] {
+  --text-font-size: var(--font-size-lg);
+}
+
+.size[data-text-size="xl"] {
+  --text-font-size: var(--font-size-xl);
+}
+
+.size[data-text-size="2xl"] {
+  --text-font-size: var(--font-size-2xl);
+}
+
+.size[data-text-size="3xl"] {
+  --text-font-size: var(--font-size-3xl);
+}
+
+.size[data-text-size="4xl"] {
+  --text-font-size: var(--font-size-4xl);
+}
+
+.size[data-text-size="5xl"] {
+  --text-font-size: var(--font-size-5xl);
+}
+
+.size[data-text-size="6xl"] {
+  --text-font-size: var(--font-size-6xl);
+}
+
+.size[data-text-size="7xl"] {
+  --text-font-size: var(--font-size-7xl);
+}
+
+.tone[data-text-tone="default"] {
+  --text-color: var(--color-text-default);
+}
+
+.tone[data-text-tone="muted"] {
+  --text-color: var(--color-text-muted);
+}
+
+.tone[data-text-tone="brand"] {
+  --text-color: var(--color-text-brand);
+}
+
+.tone[data-text-tone="danger"] {
+  --text-color: var(--color-text-danger);
+}
+
+.tone[data-text-tone="success"] {
+  --text-color: var(--color-text-success);
+}
+
+.tone[data-text-tone="inverse"] {
+  --text-color: var(--color-text-inverse);
+}
+
+.weight[data-text-weight="regular"] {
+  --text-font-weight: var(--font-weight-regular);
+}
+
+.weight[data-text-weight="medium"] {
+  --text-font-weight: var(--font-weight-medium);
+}
+
+.weight[data-text-weight="semibold"] {
+  --text-font-weight: var(--font-weight-semibold);
+}
+
+.weight[data-text-weight="bold"] {
+  --text-font-weight: var(--font-weight-bold);
+}
+```
+
+## Tests
+
+- V2 Semantic text scale: verify its observable state, actual public contract, reset and complete copied code.
+
+- Text sizes, tones, weights and heading scales resolve the canonical font tokens.
+- Semantic element choice does not change the selected visual recipe.
+- Inherited text and forced colors remain legible without hardcoded colors.
+
+## Criteria
+
+- [x] Given a size, tone or weight value, the recipe sets the matching custom property and the consumer renders the matching token value; no literal font size, weight or color appears in any consumer module.
+- [x] Given `size`, `tone` and `weight` all passed, each one resolves independently and none overrides another.
+- [x] Given a consumer default size, tone or weight, an explicit prop wins and the default applies only when the prop is absent.
+- [x] Given a semantic heading default (`--heading-*`), an explicit `size` or `weight` prop wins without depending on declaration order in the stylesheet.
+- [x] Given `ComponentTextTone`, no value maps to a missing token, and `warning`/`info` are absent until matching text color tokens exist.
+- [x] Given the recipe, every declaration is a token reference, and `npm run test:tokens` passes with no numeric or color literal.
+- [x] Given the four themes and forced colors, text colors resolve through the semantic tokens without a component-level override.
+- [x] Given both consumers, the same recipe serves body text and headings without a duplicated size or weight declaration.
+- [x] Excludes element semantics and rendered tag choice (component-owned), layout and spacing, copy and localization, font asset loading and font-family switching, and the control size scale (`ComponentSize`), which measures control heights, not text.
+- [x] All nine declarations live in `types/typography.ts` and are exported by `@/design-system`.
+- [x] Components extend these interfaces; they never inline a size, tone, weight, level or element union.
+- [x] The `size` xs…7xl contract uses `--font-size-xs`…`--font-size-7xl`; One value per existing step, in the same order.
+- [x] The `tone` default / muted / brand contract uses `--color-text-default` / `--color-text-muted` / `--color-text-brand`; .
+- [x] The `tone` danger / success / inverse contract uses `--color-text-danger` / `--color-text-success` / `--color-text-inverse`; .
+- [x] The `weight` regular / medium / semibold / bold contract uses `--font-weight-regular` / `--font-weight-medium` / `--font-weight-semibold` / `--font-weight-bold`; .
+- [x] The `level` 1…6 contract uses `--font-size-*`, `--line-height-*`, `--font-weight-*`, `--letter-spacing-*` per heading step; Mapping is owned by [Heading](../components/atoms/Heading.sc.md).
+- [x] The Default size / tone / weight contract uses `md` / `default` / `regular`; Resolved by the shared recipe when the consumer passes no explicit value.
+- [x] The recipe exposes two tiers of custom properties so an explicit `size`, `tone` or `weight` always wins over a semantic default without relying on declaration order.
+- [x] The excerpt shows one representative value per family; the delivered recipe declares every value from the table above, plus local custom-property resets that prevent nested consumers inheriting another component’s selection.
+- [x] Consumers compose `text`, `size`, `tone` and `weight` and reuse the single set of declarations in `text`.
+- [x] `--heading-*` properties are written by [Heading](../components/atoms/Heading.sc.md) for its level defaults and reset locally by [Text](../components/atoms/Text.sc.md).
+- [x] Consumers compose it and declare no literal font size, line height, weight, letter spacing or text color:
+- [x] Every declaration in the recipe is a token reference or a structural keyword, so no numeric or color literal is introduced and no theme-specific rule is required.
+- [x] The capability adds no motion, so no reduced-motion alternative applies.
+
+- [x] V2 **Semantic text scale**: Render real Heading/Text/Label samples consuming the text recipes, with Children text and long wrapping content. Compare supported font-size/weight/line-height token settings and keep semantic heading level independent of visual size.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

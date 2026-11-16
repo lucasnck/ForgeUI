@@ -1,0 +1,166 @@
+---
+title: "NavigationMenu"
+scope: "Presentation-only NavigationMenu with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# NavigationMenu
+
+## Files
+
+```text
+features/showcase/examples/NavigationMenuPartExamples.tsx (C)
+design-system/components/organisms/NavigationMenu/NavigationMenu.tsx (C)
+design-system/components/organisms/NavigationMenu/NavigationMenu.module.css (C)
+design-system/components/organisms/NavigationMenu/index.ts (C)
+design-system/internal/navigationmenu/NavigationMenuContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/NavigationMenu.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/internal/navigationmenu/NavigationItemContext.ts (C)
+design-system/internal/navigationmenu/validateNavigationItems.ts (C)
+design-system/components/static-components.contracts.test.ts (M)
+../scripts/check-static-components.cjs (M)
+features/showcase-v2/components/NavigationMenu/definition.ts (C)
+features/showcase-v2/components/NavigationMenu/NavigationMenu.example.tsx (C)
+features/showcase-v2/components/NavigationMenu/useNavigationMenuExample.ts (C)
+features/showcase-v2/components/NavigationMenu/usage-code.ts (C)
+features/showcase-v2/components/NavigationMenu/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-disclosure-hooks.sc.md](../../hooks/tech-disclosure-hooks.sc.md)
+- [Link.sc.md](../atoms/Link.sc.md)
+- [usePresence](../../hooks/tech-presence.sc.md)
+
+## Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuHeader, NavigationMenuBody, NavigationMenuItem, NavigationMenuSublist, NavigationMenuFooter } from "@forge-ui/web";
+<NavigationMenu label="Main navigation"><NavigationMenuHeader>Main</NavigationMenuHeader><NavigationMenuBody><NavigationMenuItem label="Home" href="/"/><NavigationMenuItem label="Resources"><NavigationMenuSublist><NavigationMenuItem label="Guide" href="/guide/"/></NavigationMenuSublist></NavigationMenuItem></NavigationMenuBody><NavigationMenuFooter>Related navigation</NavigationMenuFooter></NavigationMenu>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  padding: var(--space-3);
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { NativeSectionRootProps } from "../../../types/collection-contracts";
+import type { ComponentChildrenProps } from "../../../types/compound-composition";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { NavigationMenuContext } from "../../../internal/navigationmenu/NavigationMenuContext";
+import { NavigationMenuHeader } from "../../atoms/NavigationMenuHeader";
+import { NavigationMenuBody } from "../../atoms/NavigationMenuBody";
+import { NavigationMenuFooter } from "../../atoms/NavigationMenuFooter";
+import { NavigationMenuItem } from "../../molecules/NavigationMenuItem";
+import styles from "./NavigationMenu.module.css";
+
+export interface NavigationMenuProps extends NativeSectionRootProps, ComponentChildrenProps { label: string; }
+export function NavigationMenu({ label, children, className, ...props }: NavigationMenuProps) {
+  if (!label.trim()) throw new Error("NavigationMenu requires a nonempty localized name.");
+  const parts = collectCompoundParts(children, { header: NavigationMenuHeader, body: NavigationMenuBody, footer: NavigationMenuFooter }, ["body"]);
+  return <NavigationMenuContext value={{ label, Item: NavigationMenuItem }}>
+    <nav {...props} role={undefined} aria-label={label} className={[styles.root, className].filter(Boolean).join(" ")} data-gap="2">
+      {parts.header}{parts.body}{parts.footer}
+    </nav>
+  </NavigationMenuContext>;
+}
+```
+
+```tsx
+"use client";
+
+import { createContext, useContext } from "react";
+import type { CollapseContract } from "../../types/disclosure";
+
+export const NavigationItemContext = createContext<CollapseContract | null>(null);
+export function useNavigationItemContext() {
+  const value = useContext(NavigationItemContext);
+  if (!value) throw new Error("NavigationMenuSublist must be rendered inside a NavigationMenuItem group.");
+  return value;
+}
+```
+
+```tsx
+"use client";
+
+import { createContext, useContext } from "react";
+import type { ElementType } from "react";
+
+export const NavigationMenuContext = createContext<{ label: string; Item: ElementType } | null>(null);
+export function useNavigationMenuContext() {
+  const value = useContext(NavigationMenuContext);
+  if (!value) throw new Error("NavigationMenu parts must be rendered inside NavigationMenu.");
+  return value;
+}
+```
+
+```tsx
+import { Children, Fragment, isValidElement } from "react";
+import type { ElementType, ReactNode } from "react";
+
+export function validateNavigationItems(children: ReactNode, Item: ElementType): void {
+  Children.forEach(children, (child) => {
+    if (child === null || child === undefined || typeof child === "boolean") return;
+    if (isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment && child.key !== null) {
+      validateNavigationItems(child.props.children, Item);
+      return;
+    }
+    if (!isValidElement(child) || child.type !== Item) throw new Error("Navigation lists accept only NavigationMenuItem children and keyed fragments.");
+  });
+}
+```
+
+## Tests
+
+- V2 Flat local destinations: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Hierarchical destinations: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Server-render native navigation hierarchy and collapsed inert disclosures; reject invalid or orphan parts. Verify native keyboard, caller cancellation, nested scopes and focus repair in the browser.
+
+## Criteria
+
+- [x] Given a navigation link, native new-tab/keyboard behavior is preserved.
+- [x] Given a subgroup closes, descendants become hidden and its trigger receives repaired focus.
+- [x] The label contract uses Required localized nav name.
+- [x] The children contract uses One Body, optional Header/Footer.
+- [x] Native navigation links, not Menu/menubar action roles.
+- [x] Body/sublist are ul; public NavigationMenuItem is li.
+- [x] A leaf requires href; an item with Sublist instead renders a native disclosure button via useCollapse and must not have a competing href.
+- [x] Native Tab visits links/triggers; Enter follows a link, Space activates a disclosure trigger.
+- [x] Arrow keys are not invented.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+- [x] Root/nav/Header/Footer have no extra transition.
+
+- [x] Token-backed root spacing and list gaps keep the navigation composition inset while preserving native nav/ul/li/link and disclosure semantics.
+
+- [x] V2 **Flat local destinations**: Compose Header/Body/Footer with three NavigationMenuItems Label 1..3 targeting existing local anchors; activation and one current destination follow the actual public contract.
+- [x] V2 **Hierarchical destinations**: Compose a parent NavigationMenuItem, NavigationMenuSublist, two indexed child items and an indexed sibling; the current public API has no disabled-leaf capability. Exercise accepted expansion/collapse and keyboard traversal with stable keys and original depth-first indices.
+- [x] The NavigationMenu V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useNavigationMenuExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

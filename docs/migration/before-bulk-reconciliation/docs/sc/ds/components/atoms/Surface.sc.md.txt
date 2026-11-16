@@ -1,0 +1,108 @@
+---
+title: "Surface"
+scope: "Token-backed panel surface with elevation, shape, padding and semantic background"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Surface
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/atoms/Surface/Surface.tsx (M)
+design-system/components/atoms/Surface/Surface.module.css (M)
+design-system/components/atoms/Surface/index.ts (M)
+features/showcase/examples/Surface.example.tsx (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Surface/definition.ts (C)
+features/showcase-v2/components/Surface/Surface.example.tsx (C)
+features/showcase-v2/components/Surface/useSurfaceExample.ts (C)
+features/showcase-v2/components/Surface/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Layout contracts](../../styles/tech-layout.sc.md)
+- [Shape contracts](../../styles/tech-shape.sc.md)
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Layout contracts](../../types/tech-layout-contracts.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { Stack, Surface, Text } from "@/design-system";
+<Surface padding="6" elevation="floating">
+ <Stack gap="2">
+  <Text as="p" weight="semibold">{title}</Text>
+  <Text as="p" tone="muted">{description}</Text>
+ </Stack>
+</Surface>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: surface from "../../../styles/layout-components.module.css";
+  composes: stack from "../../../styles/layout-components.module.css";
+  composes: shaped from "../../../styles/shaped-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes } from "react";
+import type { ComponentAlignProps, ComponentElevation, ComponentShapeProps, ComponentSpaceProps, LayoutElement, } from "../../../types";
+import styles from "./Surface.module.css";
+export interface SurfaceProps extends HTMLAttributes<HTMLElement>, ComponentSpaceProps, ComponentAlignProps, ComponentShapeProps {
+  as?: LayoutElement;
+  elevation?: ComponentElevation;
+}
+export function Surface({ as = "div", elevation = "raised", gap, padding, align, shape, className, ...props }: SurfaceProps) {
+  const Element = as;
+  return (<Element {...props} className={[styles.root, className].filter(Boolean).join(" ")} data-elevation={elevation === "flat" ? undefined : elevation} data-gap={gap} data-padding={padding} data-align={align} data-shape={shape}/>);
+}
+```
+
+## Tests
+
+- V2 Composed content layout: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given no props, the element is `div` with `data-elevation="raised"` and no `data-shape`; the recipe resolves the raised shadow and the document shape.
+- [x] Given `elevation="flat"`, no `data-elevation` attribute is rendered and the shadow resolves to none.
+- [x] Given `elevation="floating"`, the recipe resolves `--shadow-floating`.
+- [x] Given `padding` or `gap`, the matching attribute is rendered and the recipe resolves the `--space-*` token.
+- [x] Given `shape`, `data-shape` is rendered and the radius follows the shared shape recipe.
+- [x] Given the four themes and forced colors, the panel keeps a distinguishable boundary against the page.
+- [x] Given a `className`, it is appended without replacing the recipe classes, and no role or tabindex is added.
+- [x] Given the module CSS, only `composes` rules appear.
+- [x] Given the delivery, `npm run lint`, `npm run test:contracts`, `npm run test:tokens` and `npm run test:design-system` pass.
+- [x] Includes the rendered element choice through a constrained `as` prop.
+- [x] Excludes content structure, card anatomy (title, media, actions â€” a future `Card` molecule composes this atom), grids and arrangement ([Stack](Stack.sc.md), [Inline](Inline.sc.md), [SimpleGrid](SimpleGrid.sc.md)), and any interaction state such as hover, focus or disabled.
+- [x] The elevation contract uses raised; `flat`, `raised` or `floating`; `flat` renders no attribute and no shadow.
+- [x] The padding contract uses undefined; `ComponentSpace`; absent means the consumer owns spacing.
+- [x] The gap contract uses 4; `ComponentSpace`; resolved by the composed stack recipe.
+- [x] The align contract uses stretch; `ComponentAlign`; cross-axis alignment of the panel children.
+- [x] The shape contract uses Inherited from the document shape; rounded when nothing is declared; Rendered as `data-shape` only when passed.
+- [x] The as contract uses div; One of `LayoutElement`.
+- [x] Native attributes, events and `className` pass through.
+- [x] The component is not focusable and adds no role: a panel is a visual boundary, and its `section`/`article` semantics come from `as` when the content needs them.
+- [x] The recipe composes `surface`, `stack` and `shaped`: the panel declares background, border and the shadow per elevation, while the gap and alignment come from the stack recipe rather than being duplicated here.
+- [x] Component-local CSS: `src/design-system/components/atoms/Surface/Surface.module.css`.
+- [x] The layout recipe owns background, border, elevation and padding; gap and alignment are reused from the stack recipe, and the radius from the shape recipe.
+- [x] Every declaration is a token reference, so the atom adds no new token and no theme-specific rule; forced colors replaces the background and border with system colours through the existing token overrides.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Composed content layout**: Compose Heading, Text and an Inline action row; controls change only supported gap/padding/size/elevation settings for this component, preserving readable gutters and hierarchy.
+- [x] The Surface V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useSurfaceExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

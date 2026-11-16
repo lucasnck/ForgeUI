@@ -1,0 +1,126 @@
+---
+title: "ApplicationLayoutTemplate"
+scope: "Presentation-only ApplicationLayoutTemplate with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "templates"
+---
+
+# ApplicationLayoutTemplate
+
+## Files
+
+```text
+features/showcase/examples/ApplicationLayoutPartExamples.tsx (C)
+features/showcase/examples/IsolatedExampleDocument.tsx (C)
+features/showcase/examples/IsolatedExampleDocument.module.css (C)
+features/showcase/examples/useIsolatedExampleDocument.ts (C)
+design-system/components/templates/ApplicationLayoutTemplate/ApplicationLayoutTemplate.tsx (C)
+design-system/components/templates/ApplicationLayoutTemplate/ApplicationLayoutTemplate.module.css (C)
+design-system/components/templates/ApplicationLayoutTemplate/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ApplicationLayoutTemplate.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-layout.cjs (C)
+features/showcase-v2/components/ApplicationLayoutTemplate/definition.ts (C)
+features/showcase-v2/components/ApplicationLayoutTemplate/ApplicationLayoutTemplate.example.tsx (C)
+features/showcase-v2/components/ApplicationLayoutTemplate/useApplicationLayoutTemplateExample.ts (C)
+features/showcase-v2/components/ApplicationLayoutTemplate/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+app/design-system-v2/(demos)/demos/templates/application-layout-template/[scenario]/page.tsx (C)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Heading.sc.md](../atoms/Heading.sc.md)
+- [Link.sc.md](../atoms/Link.sc.md)
+- [Text.sc.md](../atoms/Text.sc.md)
+- [ApplicationLayoutHeader](../atoms/ApplicationLayoutHeader.sc.md)
+- [ApplicationLayoutBody](../atoms/ApplicationLayoutBody.sc.md)
+- [ApplicationLayoutFooter](../atoms/ApplicationLayoutFooter.sc.md)
+
+## Contract
+
+```tsx
+import { ApplicationLayoutTemplate, Heading, Link, Text } from "@/design-system";
+<ApplicationLayoutTemplate header={<Heading level={1}>Application</Heading>} navigation={<nav aria-label="Main"><Link href="/">Home</Link></nav>} footer={<Text>Footer</Text>}><p>Page content</p></ApplicationLayoutTemplate>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+```
+
+## Content
+
+```tsx
+import { createElement, type ReactNode } from "react";
+import type { ComponentChildrenProps, NativeSectionRootProps } from "../../../types";
+import { ApplicationLayoutHeader } from "../../atoms/ApplicationLayoutHeader";
+import { ApplicationLayoutBody } from "../../atoms/ApplicationLayoutBody";
+import { ApplicationLayoutFooter } from "../../atoms/ApplicationLayoutFooter";
+import styles from "./ApplicationLayoutTemplate.module.css";
+
+export interface ApplicationLayoutTemplateProps extends NativeSectionRootProps, ComponentChildrenProps {
+  mainId?: string;
+  header?: ReactNode;
+  navigation?: ReactNode;
+  toolbar?: ReactNode;
+  footer?: ReactNode;
+}
+
+export function ApplicationLayoutTemplate({ children, mainId = "main-content", header, navigation, toolbar, footer, className, ...props }: ApplicationLayoutTemplateProps) {
+  const hasHeader = header !== undefined && header !== null && typeof header !== "boolean" && header !== "";
+  const hasFooter = footer !== undefined && footer !== null && typeof footer !== "boolean" && footer !== "";
+  return createElement("div", {
+    ...props,
+    className: [styles.root, className].filter(Boolean).join(" "),
+    "data-gap": "2",
+  },
+    hasHeader ? <ApplicationLayoutHeader>{header}</ApplicationLayoutHeader> : null,
+    navigation,
+    toolbar,
+    <ApplicationLayoutBody id={mainId}>{children}</ApplicationLayoutBody>,
+    hasFooter ? <ApplicationLayoutFooter>{footer}</ApplicationLayoutFooter> : null,
+  );
+}
+```
+## Tests
+
+- V2 Application shell: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Minimal content shell: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+The isolated demo uses the shared ExampleState technical grid with its explicit localized heading. Feedback is separate from record content and remains directly visible in its document.
+
+## Criteria
+
+- [x] Given page composition, exactly one main exists and absent slots render no empty region.
+- [x] Given identity/provider changes, entered content state is retained.
+- [x] The children contract uses Required page content.
+- [x] The header / navigation / toolbar / footer contract uses undefined; named slots omit absent wrappers.
+- [x] The mainId contract uses main-content; one top-level page template; caller can override skip-link target.
+- [x] Header/Body/Footer are independently documented and are the sole renderer path for named slots.
+- [x] Body owns exactly one main landmark; header/footer use page-level landmarks only for top-level application composition.
+- [x] Do not nest another Template/main inside this Body.
+- [x] Caller supplies named nav/toolbar slots with their own semantics.
+- [x] Intrinsic stacking/wrapping first; a responsive sidebar grid requires its own token-backed layout requirement, not an arbitrary CSS width.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+
+- [x] Showcase renders the actual public component in an isolated document, preserving one main per document, inherited locale/theme and functional caller-owned actions.
+
+- [x] V2 **Application shell**: Compose header/navigation/toolbar/footer slots with Heading, Breadcrumb, Toolbar and indexed NavigationMenu; children shows a neutral record region. Preserve the native main landmark in an isolated frame document; a unique mainId prevents id collisions but does not by itself prevent nested main landmarks.
+- [x] V2 **Minimal content shell**: Omit optional header/footer/navigation and render Stack/Text children; absent regions leave no empty placeholders and the template introduces no authentication or product policy.
+- [x] The ApplicationLayoutTemplate V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useApplicationLayoutTemplateExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] This template/region preview renders inside a titled iframe backed by the finite static template demo route listed in Files. Enumerate its named scenarios with generateStaticParams and dynamicParams=false. Each frame has its own correct main landmark, theme/locale composition and keyboard access; the catalog keeps one main and no duplicate main-content id. Render a demo-only export inside the frame, never recursively embed the preview. Copied usage remains direct public DS consumption without iframe scaffolding.

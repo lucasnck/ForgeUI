@@ -1,0 +1,163 @@
+---
+title: "ListBox"
+scope: "Presentation-only ListBox with explicit public parts and caller-owned data/actions."
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# ListBox
+
+## Files
+
+```text
+design-system/components/organisms/ListBox/ListBox.tsx (C)
+design-system/components/organisms/ListBox/ListBox.module.css (C)
+design-system/components/organisms/ListBox/index.ts (C)
+design-system/internal/listbox/ListBoxContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ListBox.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/organisms/ListBox/useListBox.ts (C)
+features/showcase-v2/components/ListBox/definition.ts (C)
+features/showcase-v2/components/ListBox/ListBox.example.tsx (C)
+features/showcase-v2/components/ListBox/useListBoxExample.ts (C)
+features/showcase-v2/components/ListBox/usage-code.ts (C)
+features/showcase-v2/components/List/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+features/showcase-v2/model/grid-list-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/components/ListBox/fixtures.ts (C)
+features/showcase-v2/components/ListBox/useListBoxPreview.ts (C)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-listbox-state.sc.md](../../hooks/tech-listbox-state.sc.md)
+- [ListBoxItem.sc.md](../atoms/ListBoxItem.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Selection, panel and open-state contracts](../../types/tech-selection-navigation.sc.md)
+
+## Contract
+
+```tsx
+import { ListBox, ListBoxHeader, ListBoxBody, ListBoxFooter } from "@forge-ui/web";
+<ListBox label="Cities" options={[{ value: "one", label: "First city" }, { value: "two", label: "Second city" }]} selectionMode="single"><ListBoxHeader>Cities</ListBoxHeader><ListBoxBody /><ListBoxFooter>Choose a city</ListBoxFooter></ListBox>;
+```
+
+## Styles
+
+```css
+.root { composes: stack from "../../../styles/layout-components.module.css"; padding: var(--space-3); min-inline-size: var(--zero); color: var(--color-text-default); }
+
+.root[hidden] { display: none; }
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useId, useRef, useEffect } from "react";
+import { useListBoxState } from "../../../hooks/listbox/useListBoxState";
+import type { ListBoxProps } from "./ListBox";
+export function useListBox(input: ListBoxProps) {
+  const { id, options, value, defaultValue, onValueChange, selectionMode = "single", disabled = false, label, children, name, form, invalid, animated = true, className, "aria-invalid": ariaInvalid, "aria-describedby": describedBy, ...props } = input;
+  if (!label.trim() || options.some((option) => !option.label.trim())) throw new Error("ListBox requires nonempty labels.");
+  const generatedId = useId();
+  const bodyRef = useRef<HTMLUListElement>(null);
+  const formControlRef = useRef<HTMLInputElement>(null);
+  const state = useListBoxState({ options, value, defaultValue, onValueChange, selectionMode, disabled, fallbackRef: bodyRef });
+  const resetRef = useRef(state.reset);
+  useEffect(() => { resetRef.current = state.reset; });
+  useEffect(() => {
+    const associatedForm = formControlRef.current?.form;
+    if (!associatedForm) return;
+    const reset = (event: Event) => { queueMicrotask(() => { if (!event.defaultPrevented) resetRef.current(); }); };
+    associatedForm.addEventListener("reset", reset);
+    return () => associatedForm.removeEventListener("reset", reset);
+  }, [name, form]);
+  const selected = state.selected.filter((key) => options.some((option) => option.value === key && !option.disabled));
+  return { props, children, className, selected, name, form, disabled, formControlRef,
+    context: { ...state, bodyRef, label, options, selectionMode, disabled, invalid: invalid ?? ariaInvalid, listboxId: id ?? generatedId, describedBy, animated },
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { NativeSectionRootProps, ComponentChildrenProps, ComponentSelectionProps, ComponentInvalidProps, ComponentAnimatedProps, ChoiceOption, SelectionMode } from "../../../types";
+import { ListBoxContext } from "../../../internal/listbox/ListBoxContext";
+import { collectCompoundParts } from "../../../helpers/compound";
+import { ListBoxHeader } from "../../atoms/ListBoxHeader";
+import { ListBoxBody } from "../../molecules/ListBoxBody";
+import { ListBoxFooter } from "../../atoms/ListBoxFooter";
+import { useListBox } from "./useListBox";
+import styles from "./ListBox.module.css";
+export interface ListBoxProps extends NativeSectionRootProps, ComponentChildrenProps, ComponentSelectionProps<readonly string[]>, ComponentInvalidProps, ComponentAnimatedProps {
+  label: string; options: readonly ChoiceOption[]; selectionMode?: SelectionMode; disabled?: boolean; name?: string; form?: string;
+}
+export function ListBox(input: ListBoxProps) {
+  const { props, children, className, context, selected, name, form, disabled, formControlRef } = useListBox(input);
+  const parts = collectCompoundParts(children, { header: ListBoxHeader, body: ListBoxBody, footer: ListBoxFooter }, ["body"]);
+  return <ListBoxContext value={context}><section {...props} className={[styles.root, className].filter(Boolean).join(" ")} data-gap="2">
+    {parts.header}{parts.body}{parts.footer}
+    {name && <><input ref={formControlRef} type="hidden" disabled form={form} />{selected.map((key) => <input key={key} type="hidden" disabled={disabled} name={name} form={form} value={key} />)}</>}
+  </section></ListBoxContext>;
+}
+```
+
+## Tests
+
+- V2 Single record selection: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Filtered multiple selection: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- `npm run test:overlays` verifies real React SSR: one listbox owner, canonical options, selected hidden values, named empty fallback and outside-family failure. Browser keyboard/FormData/reset acceptance remains separate.
+
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given ArrowDown, focus moves without selection; Space/Enter updates once.
+- [x] Given name, FormData submits selected values only.
+- [x] The label / options contract uses Required; unique values and plain labels.
+- [x] The selectionMode / value / defaultValue contract uses single / undefined / [].
+- [x] The disabled / invalid / name / form contract uses false / undefined / undefined / undefined.
+- [x] Header/Footer are outside Body ul role=listbox.
+- [x] Body renders canonical ListBoxItem for each option and one root hook owns focus/selection.
+- [x] Disabled options stay visible but cannot activate; all-disabled listbox gets a named root fallback tab stop.
+- [x] Caller validation uses invalid/descriptions on the actual listbox.
+- [x] Do not add virtualization or popup active-descendant ownership by default.
+- [x] Use data-gap="2" on the owned stack.
+- [x] Semantic child controls reuse existing Button/Input/Surface recipes; do not copy their palette or sizing selectors.
+- [x] Header/Body/Footer do not fade separately.
+- [x] useListBox is colocated with ListBox and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Native form reset restores only uncontrolled defaults when the renderer associates a name/form; delegate to the single selection hook owner without onValueChange, remounting or duplicate state.
+
+- [x] The root owns token-backed internal spacing without replacing native listbox option semantics.
+
+- [x] V2 **Single record selection**: Compose ListBoxHeader/Body/Footer and five options Label 1..5 with stable values; select one enabled option by keyboard/pointer and display accepted selection/native form values, skipping disabled options.
+- [x] V2 **Filtered multiple selection**: Compose a separate SearchInput with selectionMode="multiple" and caller filtering for matching/empty results. Selection/removal preserves original indices and distinguishes filtering from record deletion; reset restores options and selected keys.
+- [x] The ListBox V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useListBoxExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the List fixture module listed in Files; part pages do not create a second index/key sequence for the same records.
+
+- [x] Filtered V2 selection retains caller keys without deleting records. visibleSelected excludes unavailable/disabled keys, and lastNativeValues records only the last actual FormData submission; clear/reset restores coherent keys and values.
+
+- [x] Public ListBoxOption descriptors forward canonical visual fields to generated ListBoxItem while existing ChoiceOption data remains assignable and selection/native form behavior stays intact.

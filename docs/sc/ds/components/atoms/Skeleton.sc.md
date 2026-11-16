@@ -1,0 +1,94 @@
+---
+title: "Skeleton"
+scope: "Aria-hidden placeholder for rectangle/text/circle geometry"
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Skeleton
+
+## Files
+
+```text
+design-system/components/atoms/Skeleton/Skeleton.tsx (M)
+design-system/components/atoms/Skeleton/Skeleton.module.css (M)
+design-system/components/atoms/Skeleton/index.ts (M)
+design-system/index.ts (M)
+features/showcase/examples/Skeleton.example.tsx (M)
+features/showcase/examples/control-variations.ts (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/examples/ShowcaseExamples.module.css (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+features/showcase-v2/components/Skeleton/definition.ts (C)
+features/showcase-v2/components/Skeleton/Skeleton.example.tsx (C)
+features/showcase-v2/components/Skeleton/useSkeletonExample.ts (C)
+features/showcase-v2/components/Skeleton/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Loading indicators](../../styles/tech-loading-indicators.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Loading contracts](../../types/tech-loading-contracts.sc.md)
+
+## Contract
+
+```tsx
+import { Skeleton } from "@forge-ui/web";
+<Skeleton kind="text" size="md" animated/>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: skeletonSize pulse from "../../../styles/loading-components.module.css";
+}
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes, ReactElement } from "react";
+import type { ComponentSizedProps, ComponentShapeProps, ComponentFullWidthProps, ComponentAnimatedProps, ComponentSkeletonKindProps, } from "../../../types";
+import styles from "./Skeleton.module.css";
+export interface SkeletonProps extends HTMLAttributes<HTMLSpanElement>, ComponentSizedProps, ComponentShapeProps, ComponentFullWidthProps, ComponentAnimatedProps, ComponentSkeletonKindProps {
+}
+export function Skeleton({ className, size = "md", kind = "rectangle", shape, fullWidth = true, animated = true, ...props }: SkeletonProps): ReactElement {
+  return (<span {...props} className={[styles.root, className].filter(Boolean).join(" ")} aria-hidden="true" role={undefined} aria-live={undefined} tabIndex={undefined} data-size={size} data-kind={kind} data-shape={shape} data-full-width={(kind !== "circle" && fullWidth) || undefined} data-animated={animated}>
+   {null}
+  </span>);
+}
+```
+
+## Tests
+
+- V2 Loading presentation: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Five sizes, three kinds, valid shared shapes, widths and animated/static modes are demonstrated.
+- [x] Circle never stretches; reduced motion retains geometry and forced colors keeps a visible fallback.
+- [x] Placeholder contributes no name/live role/keyboard stop and never replaces caller content automatically.
+- [x] Exactly one Atom registration exists in Showcase; examples cover its supported public capabilities.
+- [x] Lint, type, token and static-export checks pass; canonical interfaces/recipes are reused.
+- [x] Consumer owns loading lifecycle and busy/status text.
+- [x] Exclude fake data, random widths, timers and content replacement.
+- [x] The Defaults contract uses size md, kind rectangle, animated true, fullWidth true for rectangle/text.
+- [x] The Constraint 1 contract uses Circle ignores fullWidth/shape and preserves diameter.
+- [x] The Constraint 2 contract uses Rectangle/text inherit shared shape.
+- [x] The Constraint 3 contract uses No children or focusable/live role rendered; aria-hidden enforced.
+- [x] The Constraint 4 contract uses Dimensions use the shared scale, never arbitrary width/height props..
+- [x] Defaults are those in Signature.
+- [x] Consumer places aria-busy on loading region, not each placeholder.
+- [x] placeholder pulse → Existing animated=true → Existing pulse recipe → --motion-pulse-duration / --ease-pulse.
+
+- [x] V2 **Loading presentation**: Place the indicator beside Text and one named loading status; toggle consumer loading and supported appearance settings without duplicate announcements or fabricated progress.
+- [x] The Skeleton V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useSkeletonExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

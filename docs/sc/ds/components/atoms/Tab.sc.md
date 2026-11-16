@@ -1,0 +1,230 @@
+---
+title: "Tab"
+scope: "Tabs compound part: Tab. No independent family state machine."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# Tab
+
+## Files
+
+```text
+design-system/components/atoms/Tab/Tab.tsx (C)
+design-system/components/atoms/Tab/Tab.module.css (C)
+design-system/components/atoms/Tab/index.ts (C)
+design-system/internal/tabs/TabsContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/Tab.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/atoms/Tab/useTab.ts (C)
+features/showcase-v2/components/Tab/definition.ts (C)
+features/showcase-v2/components/Tab/Tab.example.tsx (C)
+features/showcase-v2/components/Tab/useTabExample.ts (C)
+features/showcase-v2/components/Tab/usage-code.ts (C)
+features/showcase-v2/model/collection-control-options.ts (C)
+features/showcase-v2/model/showcase-v2-control-options.ts (M)
+features/showcase-v2/components/Tabs/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [tech-roving-focus.sc.md](../../hooks/tech-roving-focus.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+
+## Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel } from "@forge-ui/web";
+<Tabs label="Details"><TabsHeader><Tab value="one">Overview</Tab></TabsHeader><TabsBody hidden><TabPanel value="one">Overview content</TabPanel></TabsBody></Tabs>;
+```
+
+## Styles
+
+```css
+.root {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+}
+
+.root[aria-selected="true"] {
+  --control-appearance-background: var(--control-background);
+  --control-appearance-foreground: var(--control-foreground);
+}
+
+.root.attached {
+  border-end-start-radius: var(--zero);
+  border-end-end-radius: var(--zero);
+}
+
+@media (forced-colors: active) {
+  .root[aria-selected="true"] {
+    border-block-end-color: var(--color-system-highlight);
+    border-block-end-width: var(--border-width-focus);
+  }
+}
+```
+
+## Animations
+
+```text
+stateFeedback
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useRef, useLayoutEffect, useImperativeHandle } from "react";
+import { useTabsContext } from "../../../internal/tabs/TabsContext";
+import type { TabProps } from "./Tab";
+export function useTab(input: TabProps) {
+  const {
+    attached = false,
+    value,
+    disabled = false,
+    children,
+    onFocus,
+    onClick,
+    ref,
+    className,
+    ...props
+  } = input;
+  const tabs = useTabsContext();
+  const tabRef = useRef<HTMLButtonElement>(null);
+  useImperativeHandle(ref, () => tabRef.current!, []);
+  const register = tabs.focus.registerItem;
+  useLayoutEffect(
+    () =>
+      register({
+        id: value,
+        ref: tabRef,
+        textValue: tabRef.current?.textContent ?? "",
+        disabled,
+      }),
+    [register, value, children, disabled],
+  );
+  const handleFocus: NonNullable<TabProps["onFocus"]> = (event) => {
+    onFocus?.(event);
+    if (!event.defaultPrevented) tabs.focus.onItemFocus(value);
+  };
+  const handleClick: NonNullable<TabProps["onClick"]> = (event) => {
+    onClick?.(event);
+    if (!event.defaultPrevented && !disabled) tabs.select(value);
+  };
+  return {
+    attached,
+    props,
+    children,
+    className,
+    disabled,
+    tabRef,
+    id: tabs.tabId(value),
+    panelId: tabs.panelId(value),
+    selected: tabs.selected === value,
+    tabIndex: tabs.focus.tabIndex(value),
+    animated: tabs.animated,
+    handleFocus,
+    handleClick,
+  };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+import type { NativeCollectionButtonProps, VisualProps } from "../../../types";
+import { Button } from "../Button";
+import { useTab } from "./useTab";
+import styles from "./Tab.module.css";
+export interface TabProps extends NativeCollectionButtonProps, VisualProps {
+  value: string;
+  attached?: boolean;
+}
+export function Tab(input: TabProps) {
+  const {
+    props,
+    children,
+    className,
+    disabled,
+    tabRef,
+    id,
+    panelId,
+    selected,
+    tabIndex,
+    animated,
+    attached,
+    handleFocus,
+    handleClick,
+  } = useTab(input);
+  return (
+    <Button
+      {...props}
+      shape={input.shape ?? "rounded"}
+      tone={input.tone ?? "brand"}
+      appearance={input.appearance ?? "ghost"}
+      ref={tabRef}
+      id={id}
+      type="button"
+      role="tab"
+      disabled={disabled}
+      aria-selected={selected}
+      aria-controls={panelId}
+      tabIndex={tabIndex}
+      data-selected={selected || undefined}
+      data-animated={animated}
+      className={[styles.root, attached && styles.attached, className]
+        .filter(Boolean)
+        .join(" ")}
+      onFocus={handleFocus}
+      onClick={handleClick}
+    >
+      {children}
+    </Button>
+  );
+}
+```
+
+## Tests
+
+- V2 Linked tab panels: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- `npm run test:overlays` verifies real React SSR: first enabled selection, controlled unavailable fallback, one tab stop, mounted hidden panels and scoped parts. `npm run test:hooks` verifies accepted local selection and rejected controlled requests. Browser keyboard/focus coverage remains separate.
+
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given Tab, Tab registers root focus and renders type=button role=tab, aria-selected, aria-controls and root-computed tabindex.
+- [x] The children contract uses Native React content; only allowed semantic descendants.
+- [x] The value contract uses Required stable item identity, unique within its root.
+- [x] The Native attrs contract uses Forward to semantic owner; relationship/role attributes supplied by context take precedence.
+- [x] The Missing region contract uses Owner omits it; no generated empty wrapper.
+- [x] Disabled is native.
+- [x] Header/Body/Footer naming describes composition responsibility, not an automatic HTML landmark.
+- [x] A semantic heading is explicit; do not introduce section landmarks for every item.
+- [x] Use existing atom recipes when composing Button, Input, Checkbox, Radio, Heading or Tag.
+- [x] No new tokens, size axis or timing constants.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] inactive ↔ active/selected → Current selection, active-descendant or native activation → Actual item control/background, not a second list surface → stateFeedback; --motion-fast / --ease-standard.
+- [x] Use only the item states supported by its owning contract.
+- [x] Native focus and aria-selected/current/expanded/activedescendant update immediately; arrow navigation never waits for motion.
+- [x] The item does not allocate a presence/selection clock.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] useTab is colocated with Tab and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **Linked tab panels**: Compose three Tabs and matching TabPanels with required public Header/Body and optional Footer, stable item-1..3 values and Children 1..3; supported navigation updates accepted selection and correct panel relationships.
+- [x] The Tab V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTabExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the Tabs fixture module listed in Files; part pages do not create a second index/key sequence for the same records.
+
+- [x] Selected tabs use a filled tone without an underline or text decoration. Tab inherits canonical VisualProps; attached defaults to false and only attached=true squares the bottom corners. The V2 Properties grid edits attached and every visual axis; reset restores rounded corners. Keyboard selection and native disabled behavior remain intact.

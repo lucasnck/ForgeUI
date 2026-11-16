@@ -1,0 +1,142 @@
+---
+title: "ConfirmationModal"
+scope: "Composed confirmation dialog with localized title, close action, content and confirm/cancel footer"
+status: "DONE"
+type: "component"
+ds-level: "organisms"
+---
+
+# ConfirmationModal
+
+## Files
+
+```text
+../scripts/check-overlays.cjs (M)
+design-system/components/organisms/ConfirmationModal/ConfirmationModal.tsx (C)
+design-system/components/organisms/ConfirmationModal/useConfirmationModal.ts (C)
+design-system/components/organisms/ConfirmationModal/ConfirmationModal.module.css (C)
+design-system/components/organisms/ConfirmationModal/index.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/ConfirmationModal.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase-v2/components/ConfirmationModal/definition.ts (C)
+features/showcase-v2/components/ConfirmationModal/ConfirmationModal.example.tsx (C)
+features/showcase-v2/components/ConfirmationModal/useConfirmationModalExample.ts (C)
+features/showcase-v2/components/ConfirmationModal/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Modal](../molecules/Modal.sc.md)
+- [ModalHeader](../molecules/ModalHeader.sc.md)
+- [ModalBody](../atoms/ModalBody.sc.md)
+- [ModalFooter](../atoms/ModalFooter.sc.md)
+- [DialogClose](../atoms/DialogClose.sc.md)
+- [Button](../atoms/Button.sc.md)
+
+## Contract
+
+```tsx
+import { ConfirmationModal } from "@forge-ui/web";
+<ConfirmationModal title={title} closeLabel={closeLabel} cancelLabel={cancelLabel} confirmLabel={confirmLabel} open={open} onOpenChange={setOpen} onConfirm={approve}>{content}</ConfirmationModal>;
+```
+
+## Styles
+
+```css
+.close {
+  composes: squareAction from "../../../styles/interactive-primitives.module.css";
+}
+```
+
+## Animations
+
+```text
+modal-animations
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useRef } from "react";
+import type { ConfirmationModalProps } from "./ConfirmationModal";
+
+export function useConfirmationModal(input: ConfirmationModalProps) {
+  const { title, closeLabel, cancelLabel, confirmLabel, onConfirm, loading = false, loadingLabel, children, initialFocusRef, ...props } = input;
+  const cancelRef = useRef<HTMLButtonElement>(null);
+  if (![title, closeLabel, cancelLabel, confirmLabel].every(value => value.trim())) {
+    throw new Error("ConfirmationModal requires nonempty title and action labels.");
+  }
+  return { title, closeLabel, cancelLabel, confirmLabel, onConfirm, loading, loadingLabel, children, props, cancelRef, initialFocusRef: initialFocusRef ?? cancelRef };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import { Button } from "../../atoms/Button";
+import { DialogClose } from "../../atoms/DialogClose";
+import { Icon } from "../../atoms/Icon";
+import { ModalBody } from "../../atoms/ModalBody";
+import { ModalFooter } from "../../atoms/ModalFooter";
+import { Modal, type ModalProps } from "../../molecules/Modal";
+import { ModalHeader } from "../../molecules/ModalHeader";
+import type { ComponentLoadingProps } from "../../../types/component-capabilities";
+import { useConfirmationModal } from "./useConfirmationModal";
+import styles from "./ConfirmationModal.module.css";
+
+export interface ConfirmationModalProps extends ModalProps, ComponentLoadingProps {
+  title: string;
+  closeLabel: string;
+  cancelLabel: string;
+  confirmLabel: string;
+  onConfirm(): void;
+}
+
+export function ConfirmationModal(input: ConfirmationModalProps) {
+  const view = useConfirmationModal(input);
+  return (
+    <Modal {...view.props} initialFocusRef={view.initialFocusRef}>
+      <ModalHeader title={view.title}>
+        <DialogClose aria-label={view.closeLabel} appearance="ghost" tone="neutral" className={styles.close}>
+          <Icon name="close" size="inherit" />
+        </DialogClose>
+      </ModalHeader>
+      <ModalBody>{view.children}</ModalBody>
+      <ModalFooter>
+        <DialogClose ref={view.cancelRef} appearance="ghost" tone="neutral">{view.cancelLabel}</DialogClose>
+        <Button loading={view.loading} loadingLabel={view.loadingLabel} onClick={view.onConfirm}>{view.confirmLabel}</Button>
+      </ModalFooter>
+    </Modal>
+  );
+}
+```
+
+## Tests
+
+- V2 Immediate confirmation: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+- V2 Pending confirmation: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- One native Modal and one confirmation callback per activation.
+- Cancel, close and Escape never invoke confirmation.
+- Initial focus defaults to the cancel action; caller may provide an explicit target.
+- Loading prevents repeated confirmation; consumers own async work and accepted closure.
+
+## Criteria
+
+- [x] Header, body and footer compose the existing parts without a second disclosure state machine.
+- [x] All labels are nonblank and supplied by the caller; body accepts caller content.
+- [x] Confirm requests the caller action without automatically closing or starting API work; cancel and close use Modal ownership.
+- [x] Default initial focus is cancel, native close returns focus, loading blocks confirmation.
+- [x] SSR, types, contracts, token checks, Showcase and targeted browser behavior pass.
+
+- [x] V2 **Immediate confirmation**: Use controlled ConfirmationModal with title="Title", children="Children" and meaningful close/cancel/confirm labels. onConfirm increments a local count and the caller closes; cancel/close/Escape never confirm.
+- [x] V2 **Pending confirmation**: The caller starts a deterministic cancellable local operation onConfirm and drives loading/loadingLabel. Display pending/result feedback and close on caller completion; reset/unmount cancels obsolete work without adding a promise API to the component.
+- [x] The ConfirmationModal V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useConfirmationModalExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

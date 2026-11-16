@@ -1,0 +1,108 @@
+---
+title: "Native control interfaces"
+scope: "Canonical native attribute adaptations for input, select, textarea and checkable controls"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# Native control interfaces
+
+## Files
+
+```text
+design-system/types/contracts.test.ts (C)
+design-system/types/behavior-contracts.test.ts (C)
+design-system/types/forms.test.ts (C)
+design-system/foundations/types.ts (D)
+design-system/types/native-control-contracts.ts (C)
+design-system/types/index.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```ts
+import type { NativeInputProps } from "@/design-system";
+type Contract = NativeInputProps;
+```
+
+## Content
+
+```ts
+import type { ComponentPropsWithRef } from "react";
+
+export interface NativeInputProps
+  extends Omit<ComponentPropsWithRef<"input">, "size"> {}
+
+export interface NativeSelectProps
+  extends Omit<ComponentPropsWithRef<"select">, "size"> {}
+
+export interface NativeTextareaProps
+  extends Omit<ComponentPropsWithRef<"textarea">, "size"> {}
+
+export interface NativeCheckboxProps
+  extends Omit<NativeInputProps, "type" | "children"> {}
+
+export interface NativeMaskedInputProps
+  extends Omit<
+    NativeInputProps,
+    | "type"
+    | "children"
+    | "inputMode"
+    | "maxLength"
+    | "value"
+    | "defaultValue"
+    | "onChange"
+  > {}
+
+export interface NativeEmailInputProps
+  extends Omit<
+    NativeInputProps,
+    | "type"
+    | "inputMode"
+    | "autoComplete"
+    | "autoCapitalize"
+    | "autoCorrect"
+    | "spellCheck"
+    | "list"
+    | "value"
+    | "defaultValue"
+    | "onChange"
+  > {}
+
+export interface NativeFormFieldInputProps
+  extends Omit<
+    NativeInputProps,
+    | "name"
+    | "type"
+    | "value"
+    | "defaultValue"
+    | "children"
+    | "onChange"
+    | "onBlur"
+    | "ref"
+    | "required"
+    | "aria-invalid"
+  > {}
+```
+
+## Tests
+
+- V2 Consumer snippets for Input, Select, Checkbox retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+
+- Compile native input/select/textarea refs, events, disabled and invalid attributes.
+- Reject numeric native size where the DS owns semantic size and caller type/children on checkable adaptations.
+- Reject conflicting fixed email/masked-input channels while preserving supported form attributes.
+
+## Criteria
+
+- [x] Canonical native interfaces inherit supported React refs, form attributes and event channels.
+- [x] Native numeric size is excluded where semantic ComponentSize owns the field.
+- [x] Checkable adaptations exclude caller type and children; fixed email adaptations exclude competing owned channels; query/mask consumers use the separate input-specializations resource.
+- [x] Component Props extend these named interfaces without repeating their Omit adaptations.
+- [x] Definitions move to types/native-control-contracts.ts while legacy type imports remain compatible during partial migration.
+
+- [x] V2 typed usage fixtures cover Input, Select, Checkbox: Inherited native attributes/ref/events and canonical supported capabilities. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.

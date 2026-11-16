@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-14",
+  "phase": "Showcase V2 renderer/store and DS Card compound",
+  "status": "partial (browser/build untested)",
+  "countComponents": 27,
+  "countActiveDemos": 13,
+  "origin": "PraticarFront Google Drive",
+  "files": [
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleScope/example-store.ts",
+      "driveSourceFileId": "1hxJSWXXYLUMAXJnhZRrJ_knHW0rpFlxE",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleScope/example-store.ts",
+      "mode": "exact-copy",
+      "sha256": "3c3dab3ff109cacb84edefbc55d82def95b768612ea07d84c2220dbbbefa6f1a",
+      "sourceSha256": "3c3dab3ff109cacb84edefbc55d82def95b768612ea07d84c2220dbbbefa6f1a"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleScope/ExampleScope.tsx",
+      "driveSourceFileId": "1ioRKq4Yg5AXia9aW7WPHuFW6KYBFKjL_",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleScope/ExampleScope.tsx",
+      "mode": "exact-copy",
+      "sha256": "ad0f8551079f0f7f01c6d4fc9f03dbe6b49ef49c0e8c8b968486973ff0a1fa85",
+      "sourceSha256": "ad0f8551079f0f7f01c6d4fc9f03dbe6b49ef49c0e8c8b968486973ff0a1fa85"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleScope/useExampleScope.ts",
+      "driveSourceFileId": "102P61wjA_60IUpWWiz7U2mZf7e1hQfxU",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleScope/useExampleScope.ts",
+      "mode": "exact-copy",
+      "sha256": "da23f38d5c9ecc8e1f33d1326b57bf737bd6dd95797919d8b4050ce94ae320aa",
+      "sourceSha256": "da23f38d5c9ecc8e1f33d1326b57bf737bd6dd95797919d8b4050ce94ae320aa"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleCode/ExampleCode.tsx",
+      "driveSourceFileId": "1ydh8HyBFneXOlv2k2jmf5UnU6v-P721o",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleCode/ExampleCode.tsx",
+      "mode": "adapted",
+      "sha256": "cae9e934c7629c0ffc66ac71b4d66b48b69f1f03983896c2943f051d85b55785",
+      "sourceSha256": "25f32ffce2c7dfa834123ec9dee78becdbf94f58e104d070cbe033fc4152abf2"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ExampleCode/useExampleCode.ts",
+      "driveSourceFileId": "1fg1X15oJwj7CdraxQS444ONj7u3Y_kt4",
+      "target": "showcase/portal/src/features/showcase-v2/components/ExampleCode/useExampleCode.ts",
+      "mode": "exact-copy",
+      "sha256": "e70a6fe3f7a2d0c9410594c4477c637950580ebd94d3bb7dd3b9004c23c1f926",
+      "sourceSha256": "e70a6fe3f7a2d0c9410594c4477c637950580ebd94d3bb7dd3b9004c23c1f926"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/PropertyGrid/PropertyEditor.tsx",
+      "driveSourceFileId": "1xfuud0oz2UahR3XzuTZrhsiPAiSE0h_r",
+      "target": "showcase/portal/src/features/showcase-v2/components/PropertyGrid/PropertyEditor.tsx",
+      "mode": "adapted",
+      "sha256": "41e52bb631032ab6da59f78898defaa4b7e23936b2546edab8b1bca488c50f95",
+      "sourceSha256": "66f61d765f35ba8c2beba84996c24325885d9242e990d1ceea71963d1d6aa4d8"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/PropertyGrid/usePropertyGrid.ts",
+      "driveSourceFileId": "1-VhvqRI2oxNlqXwWwaJ-aEJO5g-FYCd9",
+      "target": "showcase/portal/src/features/showcase-v2/components/PropertyGrid/usePropertyGrid.ts",
+      "mode": "exact-copy",
+      "sha256": "350c28a489dd2c2da063b6b70fa6ec92db23e5600f5bcf96957ea913e3a3de94",
+      "sourceSha256": "350c28a489dd2c2da063b6b70fa6ec92db23e5600f5bcf96957ea913e3a3de94"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ShowcaseV2Template/ShowcaseV2Template.tsx",
+      "driveSourceFileId": "1r8CGBm_oJ0zxfBae2yg_tKpDVZUVGT0D",
+      "target": "showcase/portal/src/features/showcase-v2/components/ShowcaseV2Template/ShowcaseV2Template.tsx",
+      "mode": "adapted",
+      "sha256": "da91bc53cf1c61bc1003e3e1e2a524848ecaab558b3918192d39fa06189f9d5e",
+      "sourceSha256": "69424da20aa748774aa244092cda672dda8ca049d47583b52a05d84f677078d1"
+    },
+    {
+      "source": "PraticarFront/src/features/showcase-v2/components/ShowcaseV2Template/useShowcaseV2Template.ts",
+      "driveSourceFileId": "10LrBkGUnHfNyHKrTWJS9nj5N4eMhhNcP",
+      "target": "showcase/portal/src/features/showcase-v2/components/ShowcaseV2Template/useShowcaseV2Template.ts",
+      "mode": "exact-copy",
+      "sha256": "ca3a98215a713567a8fa45b1c1416f6d1f4ef52304780aa22358d2032ecc9c67",
+      "sourceSha256": "ca3a98215a713567a8fa45b1c1416f6d1f4ef52304780aa22358d2032ecc9c67"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Card/Card.tsx",
+      "driveSourceFileId": "18sH7mxQh0FueUqlkzszDassjPmpmgWSW",
+      "target": "web/library/src/design-system/components/molecules/Card/Card.tsx",
+      "mode": "exact-copy",
+      "sha256": "22c9a1cff1ed62039cf59fb1004e5688c0160945ae13879e605db00ad3bfc767",
+      "sourceSha256": "22c9a1cff1ed62039cf59fb1004e5688c0160945ae13879e605db00ad3bfc767"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/molecules/Card/useCard.ts",
+      "driveSourceFileId": "1muP76aJ9PMX1ssL2EsMWSYkOFKbNfifq",
+      "target": "web/library/src/design-system/components/molecules/Card/useCard.ts",
+      "mode": "exact-copy",
+      "sha256": "19189cda1fd6b33a141eaf730717ab838cdcccbdeafd728161e5d6347e286450",
+      "sourceSha256": "19189cda1fd6b33a141eaf730717ab838cdcccbdeafd728161e5d6347e286450"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/CardHeader/CardHeader.tsx",
+      "driveSourceFileId": "1OaTAkETyAtOYiwr3tGV3QW1mpGHpL4Mc",
+      "target": "web/library/src/design-system/components/atoms/CardHeader/CardHeader.tsx",
+      "mode": "exact-copy",
+      "sha256": "868720eb67918bcdabdce31845dcbf102a240eb6aa3bd98d83c476536dda0fb4",
+      "sourceSha256": "868720eb67918bcdabdce31845dcbf102a240eb6aa3bd98d83c476536dda0fb4"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/CardBody/CardBody.tsx",
+      "driveSourceFileId": "1uKh99j6R0LfFsuW5RnNa5u2sZecn7lkV",
+      "target": "web/library/src/design-system/components/atoms/CardBody/CardBody.tsx",
+      "mode": "exact-copy",
+      "sha256": "efe5db6de830bd304edf7e0b8d8dcc6efcc911a7974c9ab09d593f33e0accd6b",
+      "sourceSha256": "efe5db6de830bd304edf7e0b8d8dcc6efcc911a7974c9ab09d593f33e0accd6b"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/CardFooter/CardFooter.tsx",
+      "driveSourceFileId": "1Nqb8Z-5MQVK8WV9heZ7lwXMlSABQB6Q9",
+      "target": "web/library/src/design-system/components/atoms/CardFooter/CardFooter.tsx",
+      "mode": "exact-copy",
+      "sha256": "593d3359ac10a63e1fc68fd0cff41271faac4d92fb637b996cf3f85f8ab680cb",
+      "sourceSha256": "593d3359ac10a63e1fc68fd0cff41271faac4d92fb637b996cf3f85f8ab680cb"
+    },
+    {
+      "source": "PraticarFront/src/design-system/components/atoms/Surface/Surface.tsx",
+      "driveSourceFileId": "1TiXaL8HHYMz1fdKAf6gGIhocccC48dDE",
+      "target": "web/library/src/design-system/components/atoms/Surface/Surface.tsx",
+      "mode": "exact-copy",
+      "sha256": "2c54da1735c0dc0c3d1325346e01d1c5455ae1d334720a0fa0ea1ad515017f29",
+      "sourceSha256": "2c54da1735c0dc0c3d1325346e01d1c5455ae1d334720a0fa0ea1ad515017f29"
+    },
+    {
+      "source": "PraticarFront/src/design-system/helpers/compound.ts",
+      "driveSourceFileId": "1I1Zu6z7rR72NK55Hv1Hz2LGfRiOvYZ-m",
+      "target": "web/library/src/design-system/helpers/compound.ts",
+      "mode": "exact-copy",
+      "sha256": "fb4c301d2704d04dd9bf609db4b6bc4b866568c1060bb1fc7259559aecf9ae67",
+      "sourceSha256": "fb4c301d2704d04dd9bf609db4b6bc4b866568c1060bb1fc7259559aecf9ae67"
+    },
+    {
+      "source": "PraticarFront/src/design-system/internal/card/CardContext.ts",
+      "driveSourceFileId": "1w3tSk_CfW27t5yF-p7m8XWSq5KMd6Ryx",
+      "target": "web/library/src/design-system/internal/card/CardContext.ts",
+      "mode": "exact-copy",
+      "sha256": "b2d1a5f97217843592ee847d0a3e8af52517f414f427a0ea9815956aaa531b6c",
+      "sourceSha256": "b2d1a5f97217843592ee847d0a3e8af52517f414f427a0ea9815956aaa531b6c"
+    }
+  ],
+  "adaptations": [
+    "Replaced original DataGrid presentation with semantic table in PropertyGrid and TechnicalGrid while DataGrid is pending",
+    "Original ExamplePreview Card public composition with local disclosure instead of useCollapse/ScenarioControls/ExampleBoundary",
+    "Ported Card collection-contracts.ts subset to avoid references to PraticarFront modal/selection types",
+    "Derived editable schema and reduced 13 definition fixtures from original V2 store API; 221 original definitions not yet ported"
+  ],
+  "stillPending": [
+    "DataGrid",
+    "showcase-v2-loaders",
+    "all original named example definitions",
+    "ScenarioControls",
+    "ExampleBoundary",
+    "useCollapse",
+    "typecheck",
+    "build Next",
+    "browser review"
+  ]
+}

@@ -1,0 +1,24 @@
+/** Independently supported editors for the first 13 migrated DS component demos.
+ * Derived from the original V2 property store/editors; do not claim 221 controls migrated. */
+import type { PropertySchema } from "../components/ExampleScope/example-store";
+const sizes = ["xs","sm","md","lg","xl"] as const;
+const tones = ["brand","neutral","success","danger","warning","info"] as const;
+const size = {kind:"select", options:sizes, defaultValue:"md"} as const;
+const tone = {kind:"select", options:tones, defaultValue:"brand"} as const;
+const disabled = {kind:"boolean",defaultValue:false} as const;
+const invalid = {kind:"boolean",defaultValue:false} as const;
+export const showcaseV2ControlOptions: Readonly<Record<string,PropertySchema>> = {
+  Button:{ size,tone,disabled,loading:{kind:"boolean",defaultValue:false},variant:{kind:"select", options:["solid","soft","outline","ghost"],defaultValue:"solid"}},
+  Badge:{size,tone},
+  Input:{size,tone,disabled,invalid},
+  Checkbox:{size,tone,disabled,invalid},
+  Text:{size,tone},
+  Spinner:{size,tone},
+  Textarea:{size,tone,disabled,invalid},
+  Switch:{size,tone,disabled,invalid},
+  Radio:{size,tone,disabled,invalid},
+  Label:{size,tone},
+  Divider:{},
+  Heading:{level:{kind:"select",options:["1","2","3","4","5","6"],valueType:"number",defaultValue:2},tone},
+  VisuallyHidden:{},
+};

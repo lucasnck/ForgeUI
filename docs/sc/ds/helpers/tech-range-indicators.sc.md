@@ -1,0 +1,121 @@
+---
+title: "Range normalization"
+scope: "Pure normalization of native progress and meter values"
+status: "PENDING"
+type: "helper"
+ds-level: "none"
+---
+
+# Range normalization
+
+
+## Files
+
+```text
+../scripts/check-helpers.cjs (C)
+design-system/foundations/range.ts (D)
+design-system/helpers/range.ts (C)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+../scripts/check-showcase-v2.cjs (M)
+```
+
+## Dependencies
+
+- [Range contracts](../types/tech-range-contracts.sc.md)
+
+## Contract
+
+```ts
+import { normalizeProgressRange, normalizeMeterRange } from "@forge-ui/web";
+const progress = normalizeProgressRange(value, max);
+const meter = normalizeMeterRange(measurement);
+```
+
+## Content
+
+```ts
+import type {
+  ComponentMeterValueProps,
+  MeterRange,
+  ProgressRange,
+} from "../types/range";
+
+export function normalizeProgressRange(
+  value?: number,
+  max?: number,
+): ProgressRange {
+  const maximum =
+    max !== undefined && Number.isFinite(max) && max > 0 ? max : 100;
+  const normalizedValue =
+    value === undefined || !Number.isFinite(value)
+      ? undefined
+      : Math.min(maximum, Math.max(0, value));
+  return { value: normalizedValue, max: maximum };
+}
+
+export function normalizeMeterRange(
+  input: ComponentMeterValueProps,
+): MeterRange {
+  let minimum =
+    input.min !== undefined && Number.isFinite(input.min) ? input.min : 0;
+  let maximum =
+    input.max !== undefined && Number.isFinite(input.max) && input.max > minimum
+      ? input.max
+      : minimum + 100;
+  if (!Number.isFinite(maximum) || maximum <= minimum) {
+    minimum = 0;
+    maximum = 100;
+  }
+  const clamp = (value: number) => Math.min(maximum, Math.max(minimum, value));
+  const low = clamp(
+    input.low !== undefined && Number.isFinite(input.low) ? input.low : minimum,
+  );
+  const high = Math.max(
+    low,
+    clamp(
+      input.high !== undefined && Number.isFinite(input.high)
+        ? input.high
+        : maximum,
+    ),
+  );
+  return {
+    value: clamp(Number.isFinite(input.value) ? input.value : minimum),
+    min: minimum,
+    max: maximum,
+    low,
+    high,
+    optimum: clamp(
+      input.optimum !== undefined && Number.isFinite(input.optimum)
+        ? input.optimum
+        : minimum / 2 + maximum / 2,
+    ),
+  };
+}
+```
+
+## Tests
+
+- V2 Normalized range boundaries: verify valid/boundary input/output and minimal consumer code against the actual helper signature.
+
+- Progress defaults to max=100 and treats missing or non-finite values as indeterminate.
+- Finite progress is clamped to the valid positive range.
+- Meter repairs invalid bounds without overflow and orders low/high thresholds.
+- Non-finite thresholds and optimum use documented defaults.
+- Extreme finite bounds compute a finite midpoint.
+
+## Criteria
+
+- [x] Progress max is finite and positive or defaults to 100.
+- [x] Missing or non-finite progress is indeterminate; finite values clamp to 0..max.
+- [x] Meter min is finite or 0; max exceeds min or falls back to min+100.
+- [x] An overflowing or non-increasing fallback resets meter bounds to 0..100.
+- [x] Meter values clamp to bounds; non-finite values become min.
+- [x] Low and high use finite inputs or min/max, remain in bounds, and high is never below low.
+- [x] Optimum clamps a finite input or uses the finite midpoint min/2+max/2.
+- [x] Normalization is pure and does not mutate inputs, store copied state or produce runtime CSS.
+
+- [x] V2 **Normalized range boundaries** is covered through the public ProgressBar consumer examples and typed caller fixtures: Use actual normalizeProgressRange/normalizeMeterRange fixtures for valid/out-of-range inputs and supported missing values; compare public Progress/Meter semantics and reject invented elapsed progress or fabricated input correction callbacks.
+- [x] V2 imports only the actual helper export or documented public helper subpath, keeps typed data valid and documents output ownership. No standalone helper route/kind, private dependency or duplicated implementation is introduced; this pending item is consumer acceptance, not loss of existing API availability.
+
+- [ ] Verify the supporting example in a real browser with standard/narrow layout and displayed-output/copyable-snippet agreement. Runtime helper assertions, typed fixtures and SSR do not replace visual verification.

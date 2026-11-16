@@ -1,0 +1,88 @@
+---
+title: "Legend"
+scope: "Expose a native legend as the first child of a fieldset. Excludes separate labels for individual controls."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Legend
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/molecules/Legend/index.ts (C)
+design-system/components/molecules/Legend/Legend.module.css (C)
+design-system/components/molecules/Legend/Legend.tsx (C)
+features/showcase/examples/Legend.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-inputs.cjs (C)
+features/showcase-v2/components/Legend/definition.ts (C)
+features/showcase-v2/components/Legend/Legend.example.tsx (C)
+features/showcase-v2/components/Legend/useLegendExample.ts (C)
+features/showcase-v2/components/Legend/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import { Legend } from "@forge-ui/web";
+<fieldset><Legend>Contact preferences</Legend></fieldset>;
+```
+
+## Styles
+
+```css
+.root {
+  padding: var(--zero);
+  color: var(--color-text-default);
+  font-size: var(--font-size-sm);
+}
+```
+
+## Content
+
+```tsx
+import type { HTMLAttributes } from "react";
+import styles from "./Legend.module.css";
+
+export interface LegendProps extends HTMLAttributes<HTMLLegendElement> {}
+
+export function Legend({ children, className, ...props }: LegendProps) {
+  return <legend {...props} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</legend>;
+}
+```
+
+## Tests
+
+- V2 Connected field description: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Render native markup without browser globals and verify no role or keyboard behavior is introduced.
+- Preserve the native id and caller content without adding control semantics.
+
+## Criteria
+
+- [x] Given the public props, rendering and callbacks follow the defaults and constraints above; unsupported channels are not added.
+- [x] Verify: Native fieldset/legend association provides the group name.
+- [x] Verify: The legend does not introduce role, tabindex or keyboard handlers.
+- [x] Text and focus consume canonical semantic tokens and recipes; shared contrast and forced-color fallbacks are owned by the token/style specifications.
+- [x] The owned layout accommodates caller content; preference changes do not reset caller-owned values.
+- [x] Given reduced motion, no required interaction depends on animation; no document/window access occurs during module evaluation or static rendering.
+- [x] The children contract uses Native optional content; Use a nonempty visible group name.
+- [x] The parent contract uses Required fieldset; Must be the first legend child.
+- [x] Native fieldset/legend association provides the group name.
+- [x] The legend does not introduce role, tabindex or keyboard handlers.
+- [x] No new tokens, shared recipe or visual value union is introduced by this component.
+- [x] Use current semantic token overrides for themes; caller supplies locale text and the component inherits direction.
+- [x] Native Option and pure layout/text primitives do not receive an invented animation axis.
+
+- [x] V2 **Connected field description**: Compose the required Input/FormField or native fieldset context from this Contract; connect unique ids and show prop-name text, then verify label focus and hint/error relationships without duplicate announcements.
+- [x] The Legend V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useLegendExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

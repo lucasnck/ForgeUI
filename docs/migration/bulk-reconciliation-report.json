@@ -1,0 +1,2864 @@
+[
+  {
+    "file": "web/library/src/support/contracts/preferences.ts",
+    "origin": "src/lib/contracts/preferences.ts",
+    "beforeSha256": null,
+    "afterSha256": "9d88a294e9d8cc18de19257ec44125e162ade5517ebcddbb8c28bdaeea3c3f05"
+  },
+  {
+    "file": "web/library/src/support/contracts/selection.ts",
+    "origin": "src/lib/contracts/selection.ts",
+    "beforeSha256": null,
+    "afterSha256": "a51d7303c3cd2087e23a68cf7ec475a5e4c9aa7f9c5e176801c371b0c93f805a"
+  },
+  {
+    "file": "web/library/src/support/formatting/intl.ts",
+    "origin": "src/lib/formatting",
+    "beforeSha256": null,
+    "afterSha256": "a8713cbac204efa46ac91d2fa427a04e1c37f71c1cc46f19f395f846a50f9459"
+  },
+  {
+    "file": "web/library/src/support/forms/form-config.ts",
+    "origin": "src/lib/forms",
+    "beforeSha256": null,
+    "afterSha256": "bd8cc37bf75b3151f3dd566a259da8b70174cac942fda4a414ee73ba1d4b87a2"
+  },
+  {
+    "file": "web/library/src/support/forms/form-config.types.ts",
+    "origin": "src/lib/forms",
+    "beforeSha256": null,
+    "afterSha256": "1fad3f556e8dab3de805def8beb00e9c09db78b5b19449aab7ff4cf856c52b6c"
+  },
+  {
+    "file": "web/library/src/support/forms/index.ts",
+    "origin": "src/lib/forms",
+    "beforeSha256": null,
+    "afterSha256": "9fc968dede161dc539614a7072309b76b843deea7e569206136df54dfa4133da"
+  },
+  {
+    "file": "web/library/src/support/theme/context.ts",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "fac604f46b836909f4eed51935f51e9598ea40d50a71901c6bda49925aa4d934"
+  },
+  {
+    "file": "web/library/src/support/theme/index.ts",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "9a668d6789974662ee477daa9917f1dd5a9b9390668ff385540ff463a1c81956"
+  },
+  {
+    "file": "web/library/src/support/theme/theme.ts",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "dd548e6cc5a77d667944617c33bea31c7392ac6d21e65a9625859d8a48626567"
+  },
+  {
+    "file": "web/library/src/support/theme/ThemeProvider.tsx",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "734452f7e161e1c4ed3ed61c013b13b6eb44593b4122f05634c32aaa53942962"
+  },
+  {
+    "file": "web/library/src/support/theme/ThemeScript.tsx",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "83aebad762f5eac02ae72dccd81ce277ffac9619e68f5457b160d833d2bde508"
+  },
+  {
+    "file": "web/library/src/support/theme/useTheme.ts",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "9e384c7689d815855b6d6053a2ac0ba4f52eb3fe912dfcb2414924ca44c1f1c4"
+  },
+  {
+    "file": "web/library/src/support/theme/useThemeProvider.ts",
+    "origin": "src/infrastructure/theme",
+    "beforeSha256": null,
+    "afterSha256": "7698872cdba28e0194ea357e412b0e84766cc08bc611a18f2595814be76355d6"
+  },
+  {
+    "file": "web/library/src/support/i18n/context.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "77eefdb87df1c96028f7fec90b665cd01b73ced2d0f6b22b2522ea397bd41954"
+  },
+  {
+    "file": "web/library/src/support/i18n/dictionary.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "23adb2b964beb3b7b0420d5cb3fbdda1290661081e718f159256b26d5cd7dfce"
+  },
+  {
+    "file": "web/library/src/support/i18n/formatters.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "120500c0f9f44d915dee4ce107922058bd4568bfaaa874858df3e59695fff96b"
+  },
+  {
+    "file": "web/library/src/support/i18n/I18nProvider.tsx",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "13f68ce0877df9128bb1ed02ebd28c2e2148def1e0eb4654870ad62749f292b6"
+  },
+  {
+    "file": "web/library/src/support/i18n/index.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "4dcc24596bbb02dd7a288d5556988eeae7e75746c9e0bb563a5f14cbeea162af"
+  },
+  {
+    "file": "web/library/src/support/i18n/locale.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "7f8c596609dbf8acea5f1b4ffbd6ade4ea52cf8cc2909b71623d879058bb0cda"
+  },
+  {
+    "file": "web/library/src/support/i18n/messages/en.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "520021a87d44cb3176edeb828121208f41990ab294da25e128e0a0fe85390991"
+  },
+  {
+    "file": "web/library/src/support/i18n/messages/es.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "d3897fe7ca739414dafc543723d6f1f71c4fed58c5452c2b1a809ee054c5fa5d"
+  },
+  {
+    "file": "web/library/src/support/i18n/messages/pt-BR.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "d8536b337a6ef0839aabe864b48d85dcf562bb8ee5f12cb81c231739ab5fea6d"
+  },
+  {
+    "file": "web/library/src/support/i18n/useI18nProvider.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "3f74a6357cba62b7facf1521081e8686a9b33a5a951c388c33bee8b74814b182"
+  },
+  {
+    "file": "web/library/src/support/i18n/useLocale.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "8162949e45261fcd56a556653793ff3ef368d622ad1089ccd7f709f25c5b1dee"
+  },
+  {
+    "file": "web/library/src/support/i18n/useTranslation.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": null,
+    "afterSha256": "af775937ef6a88b16269ec23c8966e286271cc189188edd894399ee03bf82c33"
+  },
+  {
+    "file": "web/library/src/design-system/types/collection-contracts.ts",
+    "origin": "src/design-system/types/collection-contracts.ts",
+    "beforeSha256": "d780b5d193c9782df29325745a93fb9d31e7a4ec13156779458c0b81f3e1326c",
+    "afterSha256": "defb58f65ebc7beee09fa754b5f68918294ed74f5f94f7aed8ea44baf5297641"
+  },
+  {
+    "file": "web/library/src/design-system/types/disclosure.ts",
+    "origin": "src/design-system/types/disclosure.ts",
+    "beforeSha256": "66357d4effde2335f5520a81a89ed10c08aa6453d25c45877e85b8b7ba0caeb8",
+    "afterSha256": "e8b95546efc129609a87b32b1f3f7b7885352053245167de2eced734dc04bd0c"
+  },
+  {
+    "file": "web/library/src/design-system/components/molecules/CurrencyInput/CurrencyInput.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "841ad9bf6ad49a6e47385031dbbe0cebc19f8fcc39f18b4631cd958307681135",
+    "afterSha256": "7bfc37553a14c9cf19d8dcc2b3542850116003b96b0dc79d808c2e81ac8855f0"
+  },
+  {
+    "file": "web/library/src/design-system/components/molecules/InternationalTelephoneInput/InternationalTelephoneInput.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "43b77af5d59ad93bea47500746d665e32bedea6b8a139e94f9afeb9f1c1a5722",
+    "afterSha256": "e85e0ebdf900d5c9dbfabdacac50707846ee9664c1c7f528f51ec0b6a7655823"
+  },
+  {
+    "file": "web/library/src/design-system/components/organisms/Form/FormFieldInput/FormFieldInput.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "6f8e801098e8aa9c809fca33e2bbcbd0acd9154792efea3cacd5ce3aa05dca45",
+    "afterSha256": "90d20a6006cf9907d0e159be24da4eb499588fe86ad7495063f023236dcab005"
+  },
+  {
+    "file": "web/library/src/design-system/components/organisms/Form/FormFieldRadioGroup/FormFieldRadioGroup.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "be371e1e9f5159b3876ee2c9194283f38ce0fa3867a857d1b790744279594285",
+    "afterSha256": "83bd3c95470783dd2a82a97852137d9274ae929bad70f5a20ccc6fa4398583a2"
+  },
+  {
+    "file": "web/library/src/design-system/components/organisms/Form/FormFieldSelect/FormFieldSelect.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "5e8a57b8c8d673b661d44b4d1e7fedec4c858579660963f35cbc504ce572d45b",
+    "afterSha256": "d0c5ed2e60ac31bfc0ec9e66b8b22e885df38be422351f89da89f8fa976ce5b8"
+  },
+  {
+    "file": "web/library/src/design-system/components/organisms/Form/FormView/FormView.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "7f531891c0ca488a0990ab70e4d1c5c60b4672abb52eac364a287cacb6cf2a20",
+    "afterSha256": "ca61aeb565658916a315c59c3d68d63b43325099c3a5cf0d889e444ba16ef4a9"
+  },
+  {
+    "file": "web/library/src/design-system/components/organisms/Form/FormView/FormViewField.tsx",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "d21f59ef1724a98c1d834a6f4a89bfba49efd8f08dbb80d5e6f6c2456452fc63",
+    "afterSha256": "932882efcdaa5ce584c3adf7b591ea31b0aa6c775b9f2890ff0e02b92120d885"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/date-only.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "cbf32ac88957cac4ec1b3a5ef7b9217e2cd10fb7cfbd2981fb7346165fcb2d2a",
+    "afterSha256": "8af94adfc16929de1fca112143ba2d0fa436ef71885ab7c09cbb98f342b470e2"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/duration.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "cdcaa35586d7634b035ea239f3edd69d8891167bb21f81b898c6cc627cdd3c30",
+    "afterSha256": "c951d4059e65952bb6ce88ac664dd27a3f137ed73f1ab74aa886eb24082c01a2"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/file-size.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "2d73822d57f7cfd1fb7cbb97bab0cfefd2bb5c106d3a2efae153a637968e82bd",
+    "afterSha256": "ef2433323d8fada44561b2b3101f8a42f229f41f1e479d0a2ad5d28c0d2a4bda"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/formatters.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "4e6de1ad446aa967b7f5f6a52c2de6e8854aeedbdd1d3d2cf0e3dde1ca885ebb",
+    "afterSha256": "dda984c50552c880fde182f5400ba0be4c1d7d8a8e44b1252fff3630bb51d0b2"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/money.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "345d710282fb2350fdd853064ae39961191c357c87fde5723846c93ab5f7e6ef",
+    "afterSha256": "4674c16e780fff089251d06ca30070ae65d93a7b623ec4f6ea5fc4be1c68dee0"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/phone-country-labels.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "e47dae18953f809b22074a79d5c092c74baa6a0d8e53f459e2f6a9b1631ef85b",
+    "afterSha256": "ca896bf8903e840c0ed716affd26474396a0d30564c8b020d6a1e80f982c8aa4"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/phone.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "3c7cf55d4fde948ed455ff0957af9dbaf15c89946706f6e99d50e06eb3e1970e",
+    "afterSha256": "175bdda6560de5547024e93cfc4dfd8f992e1681271320da3997693b4cb32863"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/relative-time.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "4755945610bbd0b74d9c0f7a6f09798b09f680aaa31c523df98a07461ebcc4c9",
+    "afterSha256": "c9ee1c9cfd4eda293f3d351ec0fb419fe8fe7c67329159678a54b1137854be96"
+  },
+  {
+    "file": "web/library/src/design-system/helpers/validators.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "d2da04a116dd607e84741183aa88c145caf8607407123182e2e4fdb2cc577fe8",
+    "afterSha256": "478f64d7793d65902446d49d9151a10ce116bc63fc96880fbcd2778569a4dca7"
+  },
+  {
+    "file": "web/library/src/design-system/types/money.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "6fca3affd6248f057b59eef302772894beebed360fa903871a7ab8f76f381030",
+    "afterSha256": "264c15989d0ce9d5c19f7f1e9cf27ebb345c016cb8d061b138f3a544809d1298"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Modal/useModalExample.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "d4ec0135f0fcf7150239254c123ffefb9e144ad635cd72ae59f95103a79ba74d",
+    "afterSha256": "35f81702ce25a839127ab117219dcb5482ecde6153415d3d74889dc1ab3b9664"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ModalBody/useModalBodyExample.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "75e89cf6792ef50ba03387f719cf2e196dc1fa2ffbf9f9b4ee3b0db181f1a18d",
+    "afterSha256": "d8979eab4fbf72963c41005eda2f12c00da95752596fd0d30377ed76c8abc768"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ModalFooter/useModalFooterExample.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "c10c5a15f058cd191ae3c74585b1ce5c822e6c36f8b1c7fded8bb24c119ec74e",
+    "afterSha256": "cb876a05861d18ab91989db5e82f6f1a184fa18c2b3138f9e7d00e0403492682"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ModalHeader/useModalHeaderExample.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "27e1264bccb0113f24d18d923f9f2a56b65b292b12141dba600471999201aba9",
+    "afterSha256": "ea7a6e4ff8142589982366000d75b8ff35d9aa422dbff90e800e9e305046afaa"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ShowcaseV2Preferences/useShowcaseV2Preferences.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "da5b00ace88879829b3c30b3f5c2fb25d02eb8dd0c33734bc4c8965e2fa2c3de",
+    "afterSha256": "4a6cfd1c00b66f8a69d11f3f703c12a5871455f333b80aeff090fb2e8afa03c8"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Stepper/useStepperPreview.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "d3e5b49c7e2ae932c98bdd46cde21df25cc1f80763faa061b6696ccb917e5ae1",
+    "afterSha256": "be8e17f5d04f25b9f84a31f837c06046f5bc567719611eb8dc422cc262df2b98"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TemplateDemo/useTemplateDemoCopy.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "88747d7243b9b787e86b52462b6af872de90f177968d54e07bdb3848ba925912",
+    "afterSha256": "458aabc438662f496390d73519f6058ce5de540005e67ffe0151100ce5b9711b"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TemplateDemos/useTemplateDemo.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "3317f1bfb53ca97f09b12508068ce62152e813004dc4b5e051514c8f9dd05b70",
+    "afterSha256": "a87efcb5b69184b2491b78a8e5cc7f101494288012df0f641b9ad0bd8e86706a"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TemplateDemos/useTemplateFrame.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "3957288c25ef9fb003997cfb44735af2e974046248c5c4f7f89808f416ad1ac4",
+    "afterSha256": "194f65bf503703b27261f39e15ed3e5e568d16b587a057bde43c621b352d7aa2"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TokenResource/useTokenResourceExample.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "8743e0eafd696632a61f76385531eb87d0be372693e06b549a286bc51f7b7dc9",
+    "afterSha256": "59ca2930cfd177a986c819a93581dd7f75e03f09818e1f80dd9786761e86aae8"
+  },
+  {
+    "file": "web/library/src/index.ts",
+    "origin": "source design-system/index.ts reconciled with existing public API",
+    "beforeSha256": "4d9cf1cb66f6f2db205f4bbfd4bb81c523e9df2c2994ed183f1a1c42f01e4df2",
+    "afterSha256": "cf877e325fbc8c63dd522e5ba9a9399fc0150e0f93097037dbec16a147d1bf81"
+  },
+  {
+    "file": "web/library/src/support/i18n/index.ts",
+    "origin": "src/infrastructure/i18n",
+    "beforeSha256": "4dcc24596bbb02dd7a288d5556988eeae7e75746c9e0bb563a5f14cbeea162af",
+    "afterSha256": "44ee0e61fa9a5bcb56eecf6728ab8c4f83f27ccece7247e87707bcd95c048551"
+  },
+  {
+    "file": "web/library/src/design-system/types/preferences.ts",
+    "origin": "canonical locale contract",
+    "beforeSha256": "5e6cc1161a316745401d367275051b029a11c554b94c71b0fd7f3c8cbaf2e8d8",
+    "afterSha256": "73910febacde6b58fffccb10f5edffacef5af822e0c4b95460adcad8fab524c0"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/preferences/ForgePreferences.tsx",
+    "origin": "shared theme and locale providers for all examples",
+    "beforeSha256": "a6966a6d9ab1a9a371d312ef2662744a2e55378c68ad20241a7f3ea2b043df6b",
+    "afterSha256": "dde9ab236cd1b5825bfec5e9a66666bc60e67195f333238179014dbed754bbdd"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ShowcaseV2Preferences/ShowcaseV2Preferences.tsx",
+    "origin": "canonical language options",
+    "beforeSha256": "a01373a3c26645d0156f38d59a108f9dd1ad1b871c83f4090f91d574b6e3b28a",
+    "afterSha256": "9e92644c7bbc97a77fa6fab38b02ad35fe7412e2d1cb98e0b33d297860723880"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/messages/useShowcaseV2Copy.ts",
+    "origin": "full source dictionary with retained Forge branding",
+    "beforeSha256": "2eca977950035fd33987afff356c006426b6d16dfb161b21bede15869c6e21be",
+    "afterSha256": "c4ecd689fc42ad9d22c41ded205079f8fcdc2ffb8058d8750c2bb3de58b3a717"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/preferences/ForgePreferences.tsx",
+    "origin": "shared theme and locale providers for all examples",
+    "beforeSha256": "dde9ab236cd1b5825bfec5e9a66666bc60e67195f333238179014dbed754bbdd",
+    "afterSha256": "5315bc0db67ae40038d7417fb9ac2e3b8917017e2123bc32d0dabc726925daa2"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Button/useButtonExample.ts",
+    "origin": "canonical locale comparison",
+    "beforeSha256": "beaf32da22d1edc2bb54f7ccc2f4a5be7ad4c87447be69a720b60cebb546f2c0",
+    "afterSha256": "e5fce39f6d50afcf8af2b4885557c23b55fffd3d33ba22c60901fa7263206d33"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/DataGrid/useDataGridExample.ts",
+    "origin": "canonical locale comparison",
+    "beforeSha256": "829e0aacde38924e4aacc7f9646fdcf95549c659fcb3bb31ef75b9768b403a8f",
+    "afterSha256": "94226606c5c93f4fdeb64d8fb952f706ddce2fe80fc48d4dce5c94d6f6c414eb"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TemplateDemo/TemplateDemoPages.module.css",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "b26dec30f4c3f22ca2d46260ed68f08cee1c926d2cd3c7d6a6eae5c6028d7956",
+    "afterSha256": "94a52b9cbcce54a4283f2826464fb4275c7e279c0f89c6c715b263369621191d"
+  },
+  {
+    "file": "docs/sc/tech-brand-identity.sc.md",
+    "origin": "docs/sc/tech-brand-identity.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "06000bd82aa471aa2e3825ab8acdd079155588e076b3d7af4d46fe5ce727544d"
+  },
+  {
+    "file": "docs/sc/tech-react-hook-form.sc.md",
+    "origin": "docs/sc/tech-react-hook-form.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "9ee00c6724160b490c27d7d55a6078d102fd95ee27a49ac5dfe8d218a7fa23bb"
+  },
+  {
+    "file": "docs/sc/tech-theming.sc.md",
+    "origin": "docs/sc/tech-theming.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "c733c630be44096655da506002f2db3002ce5fc9c2e65ae697c4a79ac4c507b4"
+  },
+  {
+    "file": "docs/sc/tech-form-config.sc.md",
+    "origin": "docs/sc/tech-form-config.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "fcf1c786607e52dc57e72b167045b3e00e1f7f198d428475dce3aabcb60167a9"
+  },
+  {
+    "file": "docs/sc/tech-preference-contracts.sc.md",
+    "origin": "docs/sc/tech-preference-contracts.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "07ea3e6a34cc4e9ed95abcbfa421bac3f40776d2676699375ef6fcb86e00f309"
+  },
+  {
+    "file": "docs/sc/tech-form-config-types.sc.md",
+    "origin": "docs/sc/tech-form-config-types.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "24c0e70c6c4a66a3cad177d2b135270e486aca97cfa6ca59b5c8a74e0519c5dd"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds.sc.md",
+    "origin": "docs/sc/core-catalog-ds.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "2408e1f188fdf080a0b87935b9818f33168566b7c9449a6fc445411b2373e6e2"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds-template.sc.md",
+    "origin": "docs/sc/core-catalog-ds-template.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "98a07d92fc70c01ce2512c0e7ec131caf54f90f7a8bbdc9508a4b54968a1faef"
+  },
+  {
+    "file": "docs/sc/core-template.sc.md",
+    "origin": "docs/sc/core-template.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "4c1cf9b5db4febf406b59d95183cdb093502611e8f17e8e123634dc9da8013ab"
+  },
+  {
+    "file": "docs/sc/core-catalog-template.sc.md",
+    "origin": "docs/sc/core-catalog-template.sc.md",
+    "beforeSha256": null,
+    "afterSha256": "769764cb61635a5f8ecbb53ccf4f7738fd8132bddd3628f26c86600719f4b2fc"
+  },
+  {
+    "file": "web/library/src/design-system/types/forms.test.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "83d3d3e1d7457962324b030906134b14abe890bcfd8373d220972b3d791ed404",
+    "afterSha256": "076f04084051c7c86d838642d08ec1ec869381e95c4974338a1ed9324355d0c9"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Skeleton/definition.ts",
+    "origin": "canonical catalog specification path",
+    "beforeSha256": "62c3fc1cedf913feb252b3f9d2fe8fcbca94a7f6e1d881eefa6502c67190808a",
+    "afterSha256": "97d8901938997637795ecd4fd84d37fecc452525704975ae3006d4a5e5877f48"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Avatar/definition.ts",
+    "origin": "canonical catalog specification path",
+    "beforeSha256": "aaf0131d020789298baab1b45e1f2ed6f123b86d6877cbb5f570cb2f8082de24",
+    "afterSha256": "809d082f5c313697db1569f381597fc1a848f879b59fb2fbb76bcc1647f81418"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/IconButton/definition.ts",
+    "origin": "canonical catalog specification path",
+    "beforeSha256": "2ff55f3c788f011d7dc103e6afa2686f16994f4d50cf2e875f31d8c8e1c974b9",
+    "afterSha256": "53ad9f7d08076ff64b95bd3eba1f6a162863063bda872cb09e61f2a2b1e65a7a"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Alert/definition.ts",
+    "origin": "canonical catalog specification path",
+    "beforeSha256": "b51b524d838c7b65631e75f0110f086ad845b2f6e31ce39415f43a74f8f74871",
+    "afterSha256": "3d509532840c82ee6c7001db7fccd9d9c537dd6bf9fca2dc0c5b5c2cde41fc2a"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/Tag/definition.ts",
+    "origin": "canonical catalog specification path",
+    "beforeSha256": "0528607f771c840c40cb6d3c6d2363453689bbdffdba38af8398c391ec38591f",
+    "afterSha256": "3d804732fbc0509c05f7b697539f4fa6518bdea626eaf2bc85d94f858c9fd2ca"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/create/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/create/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "a9a4b6dc659efc3e9deb08679ad817fedf4cfa134edea1c3037fd740a4899f5e"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/details/[id]/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/details/[id]/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "fbfe9e415a2372f70210466839d41253ae33de2280b62bfa9d7c7247ecb84ec1"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/edit/[id]/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/edit/[id]/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "cbaf7765141f82c211e0ee79b0b91410e97d9ef87ecbe3d90c15074ccbf86848"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/home/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/home/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "9edfece4c90bfb2b651bb4c84b9844529b9b829fa90cba3f4b7f8e896f39ad5c"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/layout.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/layout.tsx",
+    "beforeSha256": null,
+    "afterSha256": "c4f64404cf8cd9bb9fa00107c3275640d67c1b2ab516b86f7ea9f4df0d05257b"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/list/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/list/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "24167815254e0c7d90b1224df17516e482bb0b3358683fb2397bcd9b63543f97"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/templates/application-layout-template/[scenario]/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/templates/application-layout-template/[scenario]/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "08271e5cf4900421672efc883f72450972c9fe56786a0ee34f0bea2e4d449ee6"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/templates/showcase-page-template/[scenario]/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/templates/showcase-page-template/[scenario]/page.tsx",
+    "beforeSha256": null,
+    "afterSha256": "5c4750c928e99910cda5945f95a87cf831d69dd439c9b9692142b5bb5318fcce"
+  },
+  {
+    "file": "showcase/portal/public/images/showcase/accordion-landscape.svg",
+    "origin": "public/images/showcase/accordion-landscape.svg",
+    "beforeSha256": "bcc59e0db0dab9c45553440d5f2500c6aa98bdd6fde2b2415170015ae423a630",
+    "afterSha256": "b6cb21f1b60d2f4aff62e37c06b7af4d83c37f41477a06595427910f54506b10"
+  },
+  {
+    "file": "web/library/src/design-system/styles/globals.css",
+    "origin": "src/design-system/styles/globals.css",
+    "beforeSha256": "0d2fd5641400e204f21e1d07598dd452f475f0e67d7deb26f80b9d5886fb8a69",
+    "afterSha256": "21a11f0a03557f36ee970ebd6e1d8e7492774824b7d1a6f32dfe4196f3ad5751"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/model/showcase-v2-control-options.ts",
+    "origin": "src/features/showcase-v2/model/showcase-v2-control-options.ts",
+    "beforeSha256": "41bafe33def30b5ee0a1374c0bdb557e7077ce5f479900adc26b298ed4a4d23c",
+    "afterSha256": "3928fa970d4c048eee26c6f3907c74d8b23ee322cb33f2ad4275c17614ba321e"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/DetailPageTemplate/definition.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "7c41140dffd33d9599be3155f6a4d1b56b1b6596a5ee3b02cb93d2f297b86777",
+    "afterSha256": "0b83b9e12bc5abb895912d500f7aa13efd8ad73d325ea552213eb6143e7ebeb0"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/DetailPageTemplate/usage-code.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "7dc1874ba41e36d15eec7700e52ecafa7e844e2c7ef5b817098170c5d01abfbc",
+    "afterSha256": "24b5e1cc417f1cddc23bfb58e0f52042b7389839ee6ddf88c9426e1a86541f5a"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/FormPageTemplate/definition.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "60280f6d7d9f407e7a9d94cff85ee05db76c0e6c91a318f5dee43628755d50f3",
+    "afterSha256": "1ce3a1e14c0b9488e95261569478f39e70921532caad924a74f24bb9e89228b0"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/HomePageTemplate/definition.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "83b802b75d168695df1b67f3374472a1c366a20c3b68d8e2fc535cf9a1d730d4",
+    "afterSha256": "bd9a233fed21d87d8ee7190ba7ca2680fddd8d870899dad5a4a6a170d8a14090"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ListPageTemplate/definition.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "df395f4365f1967f14c81a09937a2aad91b9d37573cd0d677f8965f58b48e187",
+    "afterSha256": "fe7fa503ed1298b65613963cf28c48294e71b5e4392df972047a97a138715ae8"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ListPageTemplate/usage-code.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "66a11d4e1e3ae389447b1f432ddd8fbe3ca50428468a08fa817e42f7222fb840",
+    "afterSha256": "6309502cd052f72e2d1752c955a29e000f9e7b7203f0b3443e6adf9426f9c220"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/PresenceResource/definition.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "6c44ca523863a7f0504f900edbb7f7a6ebc00fad09d6bfc2ce005d703ca08a00",
+    "afterSha256": "ebf6c0e1212397737683776a7ec92cb3ba56d01b813c4ab103bde634e40bcad1"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TemplateDemo/useTemplateDemo.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "330fd7bb41815a19d13d9bbdc05988714326644909679d98b88235af32b3a007",
+    "afterSha256": "b8d805045b8be4b3ddd762bca04e48852e8de28f2db2f80080c62a209103016f"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TemplateDemos/useTemplateFrame.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "194f65bf503703b27261f39e15ed3e5e568d16b587a057bde43c621b352d7aa2",
+    "afterSha256": "df095431a4d9e1ce8eda19fcd4c47206f0f6bf5d530a56b15514897958b4f9f2"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/TokenResource/definition.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "857319a8d0a6dee19b7be31b8d9e1839b63d5294f99a6351c128bca59ff5013f",
+    "afterSha256": "9c14e73ef66e9d8d86e8b72fd5d8394d8e1bc842fe3920807609de9fac49b153"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/model/showcase-v2-validation.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "ff8d025c92b698be3f006eeb54fdc60137ae8892393b770ae942618866b4b2d1",
+    "afterSha256": "5213098483da0ec99cf6aa5c6a678b06eb7bd7ccc8fe2b4b7454da6a52cf6402"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/model/template-demo.fixtures.ts",
+    "origin": "classified generic support aliases",
+    "beforeSha256": "d40d0da5eff547d2e975ed2d6b344c9b5e1e7e1a518dd4b26d8e5d0552831d43",
+    "afterSha256": "8c15a56a6e9896025c3d1bfc2a1551120e1de9cfd2630c35d079efb6ee7480dc"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/create/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/create/page.tsx",
+    "beforeSha256": "a9a4b6dc659efc3e9deb08679ad817fedf4cfa134edea1c3037fd740a4899f5e",
+    "afterSha256": "2e16caf365c0a72deba7c9ef5aa8449cdec12f5ae356d3182185028faee56b35"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/details/[id]/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/details/[id]/page.tsx",
+    "beforeSha256": "fbfe9e415a2372f70210466839d41253ae33de2280b62bfa9d7c7247ecb84ec1",
+    "afterSha256": "59000dea946ddefbe0cab53952b0361e8ae0283840489d3085883ae968bf29fd"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/edit/[id]/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/edit/[id]/page.tsx",
+    "beforeSha256": "cbaf7765141f82c211e0ee79b0b91410e97d9ef87ecbe3d90c15074ccbf86848",
+    "afterSha256": "3c31a4b29678365f13a0601b6bb0127a83d17c52d09ea58f4ecd2f8b473d6a74"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/home/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/home/page.tsx",
+    "beforeSha256": "9edfece4c90bfb2b651bb4c84b9844529b9b829fa90cba3f4b7f8e896f39ad5c",
+    "afterSha256": "660c816a1421f32fe72bd766a99753de495580cdc39b08df3ff6983b3bbebbb5"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/layout.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/layout.tsx",
+    "beforeSha256": "c4f64404cf8cd9bb9fa00107c3275640d67c1b2ab516b86f7ea9f4df0d05257b",
+    "afterSha256": "6ccf5cafb40264df0dc7f13e5b926379c077f8115ae81c7a81111a131f610f40"
+  },
+  {
+    "file": "showcase/portal/src/app/(demos)/demos/records/list/page.tsx",
+    "origin": "src/app/design-system-v2/(demos)/demos/records/list/page.tsx",
+    "beforeSha256": "24167815254e0c7d90b1224df17516e482bb0b3358683fb2397bcd9b63543f97",
+    "afterSha256": "cd31d197d5f87d6d67e082ef7c9572286d9a0c5a4eeb8b330e5bf9b786c4a003"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds.sc.md",
+    "origin": "docs/sc/core-catalog-ds.sc.md",
+    "beforeSha256": "2408e1f188fdf080a0b87935b9818f33168566b7c9449a6fc445411b2373e6e2",
+    "afterSha256": "c85da4fa6f93bef20ba9c9533571fbbd05228108da22af503194af5aaf112ab1"
+  },
+  {
+    "file": "docs/sc/ds/atoms/AlertBody.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "6ee69e1af05dd5bf56128f786c57c7f821300c5d7196b617ddc06d2c9b300f27",
+    "afterSha256": "a55c8fd3401143be6926f7521d4934a710692454314b08a1647c02cba9e262ab"
+  },
+  {
+    "file": "docs/sc/ds/atoms/AlertFooter.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "36cda1054cdf3709b5fe6dec22c3f1ca771f3201d5a7f00cdb4e06a6f8e76243",
+    "afterSha256": "2c2793530caf2dfccba32e7bc4c9940602073d54173a9b10a45a6a5505a54ded"
+  },
+  {
+    "file": "docs/sc/ds/atoms/AlertHeader.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "3e795028672fbcf6c356f78e2d89d3a90ca73d06586839a597b7b8b2132f3f0b",
+    "afterSha256": "c70411fec8174feb29bef942e2624300d36a859fe8189fb2040e2dd0b538c722"
+  },
+  {
+    "file": "docs/sc/ds/atoms/Avatar.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "b7f7f874df4a786dd76889ed7003824d873c97a40fae1e1188c54ca7940df7a0",
+    "afterSha256": "5b6d39a87a355d38dfa0529350f618b1d8e593fb90cb409ff5d4b3c34124ab4b"
+  },
+  {
+    "file": "docs/sc/ds/atoms/DataGridCell.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "16169b87c84a59d4da7ffca99b274a817e2610efbb9ec617c95d9d3ad6827688",
+    "afterSha256": "f39ef016024cbaa1eaa4014611dd7f5c1f098bb6808b31300ba4152ff7d7520b"
+  },
+  {
+    "file": "docs/sc/ds/atoms/DataGridFooter.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "dc267bb9b2af5bfca07e3cb8352920d73d22cd9f395731008f6fbeded7aff7d2",
+    "afterSha256": "1d1766a3c1e3903533131f9e44611212ac4ffa40526ec1af2af4ff84ae6e8733"
+  },
+  {
+    "file": "docs/sc/ds/atoms/Icon.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "9663087beaa3eb239231a4d942d52b4bff8152b2ad214314a91cbf1b58cb1dab",
+    "afterSha256": "d7711b483e5ec133497821e8f38091c9d3597137b7984007bf009738a401862e"
+  },
+  {
+    "file": "docs/sc/ds/atoms/Skeleton.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "533a610f1177f8735969d43d859cff1e7991368648c2eae56c19b347ba3556d1",
+    "afterSha256": "dc08bcfe751b2ea93bc3117d75151e08360c27cbcb032381ee4e9aac7e11fe81"
+  },
+  {
+    "file": "docs/sc/ds/molecules/Alert.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "7bbcbe54acc2e4cbb3420543568054d66ff61f3d73a907dd81b1016087ab5e28",
+    "afterSha256": "4dc119ad0d7d626c055762490567fa7f14caeed8074cebbaaf7e56bf322c0dd0"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridBody.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "5ef14e941b007bb9918afe7538b95b72072fdba01f1b86b5ace30049d70692cc",
+    "afterSha256": "33bc26f80cb1118d3d70ab8c8de8fca781c0a7a4e86df440021294ce83c95edf"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridColumnHeader.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "e09e4f9632ab4eda481516b2f14ef944b1e8bf6376a088bb8740f34aeb762b78",
+    "afterSha256": "255d2ed77aa46172a49bf24a9b936af1be1fceb49f59c323b25c92700b0a6425"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridHeader.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "aa3ee8d1fb3bfb11e2d6830d61d4d06fec4df360581ffde487a4428cbe0302a9",
+    "afterSha256": "a7d3e6277510a4b86a83fa231d246d9bae658377f6e1b7372fa96b854ebda8d0"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridRow.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "4ac101918b4e7aa9523b1d82dcc24814fdc47b288a27bef315941921615cc4ec",
+    "afterSha256": "4d8ad3e1a2b4a4303adfd98c7abccaf01b1e9e37b182ca0549bb101d738f2a94"
+  },
+  {
+    "file": "docs/sc/ds/molecules/IconButton.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "4e17b1f5ea8865f9d19d685fc0879f77277439b46e57df607255d603676cfb33",
+    "afterSha256": "01f6c9813ee13460cd3e550e2a2b1c1aa1ba598dbc7b9f11996d10dec7430962"
+  },
+  {
+    "file": "docs/sc/ds/molecules/Tag.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "060f259fea626f2892ef3d04af0f5206e0295c6218ef14dbf6365dd50e0e47c0",
+    "afterSha256": "8cacd089c778ae02a35f600f47e58375f221b0140b08191e9eab98c075ff5741"
+  },
+  {
+    "file": "docs/sc/ds/organisms/DataGrid.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "174394ac2ff989982f12b463f5780e9b3c0695d3af163e3a9b9f381afd005708",
+    "afterSha256": "91e23099a0bdbc5e9493ca0ac6c0454959f05535b82ff85fd1b0cd4402fb4712"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds.sc.md",
+    "origin": "Forge-only component catalog; source mixed catalog preserved in before-image",
+    "beforeSha256": "c85da4fa6f93bef20ba9c9533571fbbd05228108da22af503194af5aaf112ab1",
+    "afterSha256": "ab9660bba0e9af39bb4f1754ee2c73dc2b1207dfffd2d8055fa1e4cf9209ca4c"
+  },
+  {
+    "file": "docs/sc/core-catalog.sc.md",
+    "origin": "resource catalog from actual matrix",
+    "beforeSha256": null,
+    "afterSha256": "c8a9ccad904c27a7571a3088d58cd684e9e7e169f56124a15824263629b3789e"
+  },
+  {
+    "file": "docs/sc/core-template.sc.md",
+    "origin": "local Forge architecture and authoring entry point",
+    "beforeSha256": "4c1cf9b5db4febf406b59d95183cdb093502611e8f17e8e123634dc9da8013ab",
+    "afterSha256": "1bbbc22221b29d6728fb46295b7fce8cefcdef816f9d2f9e4221fe50a1f44d14"
+  },
+  {
+    "file": "docs/sc/ds/README.md",
+    "origin": "canonical specification ownership",
+    "beforeSha256": "823b81f317786b0e24453e81c69722641ac814cc6ef851f6984deac62cba80ea",
+    "afterSha256": "da4da97aa21f062efb8462d7a8a80c78e2a91765a4b739ae4a4b22da506e8cf2"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AccordionBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a39f9e8e54a3d4d8e618d96deec46329b3d6359b81112ba09c1de334e541b44f",
+    "afterSha256": "0d86cfd261c219201096926b4d7789bcc2d0cfa2ffbbe0e003d1b9f66146930f"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AccordionFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "48b544b7a285aff166a03e71e092ff36787d69433d59654aaead53eea94d1897",
+    "afterSha256": "69fb76374fe7aeaeefe49608978cf64a1e0727396b5022f3b8388b1712bcb8c6"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AccordionHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ec7f0aef27303d7555d32252135ab73aa50abc8c515488925c9ef5f16d0ca006",
+    "afterSha256": "94d73c2d14c20b5303c984e4c5119c95571369cfa01d5414d5817913338662c5"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AlertBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6ee69e1af05dd5bf56128f786c57c7f821300c5d7196b617ddc06d2c9b300f27",
+    "afterSha256": "390469f753fc2053aec00a9251c716db28708d5a4a38b1aa2886a2a7531f47b1"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AlertDialogBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a24d5b9ed6fd3eb008740fbe7a7bc687f51b98b31a7a9718d420696d7ea60aaa",
+    "afterSha256": "10b640fb253789e4fb491a069043ddba7e831a69631bd657fb21e6a08a26bbc0"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AlertDialogFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e898b0dbd67a7e2bd57381e060811036f7ab2002876863f5c6d14121ec6ac48b",
+    "afterSha256": "0f3dd4394c82eef561e01ec0af7185fecf0b14cfa05829a02d2af3c764bff54e"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AlertFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "36cda1054cdf3709b5fe6dec22c3f1ca771f3201d5a7f00cdb4e06a6f8e76243",
+    "afterSha256": "770e7933ce32e653f0d84bdf37ed2d27cfad4d57719c57fa76e31eb986b4b3a4"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AlertHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3e795028672fbcf6c356f78e2d89d3a90ca73d06586839a597b7b8b2132f3f0b",
+    "afterSha256": "44438b506cd0db0c3273d43347fa6a20b4c6ba3ebbabf7047a78b925406b5236"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ApplicationLayoutBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "89405bab98913777546a56d2efc3d6371d5f9bc95423af37033d1243e52b4250",
+    "afterSha256": "ef72a71f1bda81183e7006244f6216d8435b3afb9c47f7e9162cb9aac2c1df42"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ApplicationLayoutFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ad4246f4d6c02dd6a1843f99fc465553cb25aeacdc2a084787024b7f4128f22d",
+    "afterSha256": "5f929fc7edf8f746de779425eb6b465b201081ecf0ab4e8093016d822aff70ae"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ApplicationLayoutHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6b5738544908c810f90fac5f1b9a01872afaadbdb46ac50159dd450169803e67",
+    "afterSha256": "5bf227726bb6f3b6c193d4b203ba7bab5e411266bf6c767814d2b58af228527a"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AspectRatio.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8e77d7bf98ea6d7fabace1c54fb1e947c046fe9bc54211bc45ffea204d2a31e5",
+    "afterSha256": "714a0f7aff64bbed0991a6c173512d6a4b8e78631cb1e106e6b4c4bed1a4bf67"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AutocompleteFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "cfb9148a618cb6df5fd7f0dba10bdc683caf72bc7426ea019449a50953a60570",
+    "afterSha256": "5f6cbeda46de96a16687356cf22f521feffec43dcccc71db94af9de508155b41"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/AutocompleteHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "349ad2a89038bfcc02f4226fe85cc4f66f097c440197d968bc1e60321f28aadb",
+    "afterSha256": "e9becc9a81d0f01f911db96b9341b56308756e77f130c22118b2251cb3a2bfe0"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Avatar.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b7f7f874df4a786dd76889ed7003824d873c97a40fae1e1188c54ca7940df7a0",
+    "afterSha256": "588967390612b7d4423fd6975da64254a5f895ee3cd659817676637f2f3808b1"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Badge.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "889f848dd75bc6836b4ea115e37d3509becc919ba1b6b8b0bce71b711d16a503",
+    "afterSha256": "8525c8ede21e1ff6efe2ad3b3847886c7a05c1ba1a9a7fb782932523daabb5c3"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/BreadcrumbItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "007014e4d4c5e3eb7e1738905c9b4193222636e3c8bec5a392a3d230e2663da3",
+    "afterSha256": "ace73d9c82ab6f0a02e6da1e1cfa8724d439a23766050cf447202015ffe56fe2"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Button.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ff071c9a43a8c57ece1734f4ef1b5c64649460a95b1444435dea9180d987cd0e",
+    "afterSha256": "82e4e44d2854cbeea9aa2443380a7575aa9dd4fc8d0a0001a1c10d4f459e82de"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CardBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "eeb34e1267482c77d8b9e8ffea56fa246fef9065fc11b3043bb5e5466f8f14e6",
+    "afterSha256": "e607c42e9cda291338f76dd0dab430bd0ab31c75cb2670d84c3dfce98365ac4b"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CardFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "25aadca7c6d2b50a967d8ecd98c6e18c1e04861cb3384cbf621de8cd4728cf59",
+    "afterSha256": "46f61acf0d3a9dbcf776177589d4c262a4716c3c2af6acd9982d0cd2fded8ca6"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CardHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "460ce8d5b62ad52c7023de75d0baaec9b5b22608e815df43edd31af690383bfb",
+    "afterSha256": "c55db1be22e1283746256d164d197a5ee19f43adcafc9b02d4b25cb408e8ce5d"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Checkbox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0d87dbbf9a00029f5ed55421f80deabe2a4227d89bbdbe47d9a560e0adf8dc13",
+    "afterSha256": "1d84fac2edaae066862f1499d146901879a3445f362dff30e8164f9b959a6690"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ChoiceGroupBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "15254da626f37ebaf794c47f6202fa1511c5e22875a3e60a6c5dd4ed61dbad3c",
+    "afterSha256": "dca81430890bfa45f5b28fe882e46efdcfc064a0ca8576b6c8875bfd6c6e3547"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ChoiceGroupFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "03eee0facfe363bd32f507c0eb21c85d0d6c7e670c89300b61b5516df7494e79",
+    "afterSha256": "940b32e53ab3e36da7de94bab3e62ea41977441fd7e420731e8487ccccd4e56b"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ChoiceGroupHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "834b49cf7b0273bc608d7b59ab114369176ec393279e2bf84dd31ed761d3d0bd",
+    "afterSha256": "bacc08b02247d1fcd8841846badd35257e5fed050cf04487647bed1b9b1a8b06"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CollapseBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5c5205e8a89a408348ca2651440c50b7a24afcf84baf926c4934d93f93ba77a7",
+    "afterSha256": "1d5127d847c71b9fe0b295e50db1d103559da942f404d80380cb0ad9c1893415"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CollapseFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4f84b8c76f9c4b4190df29064439b0ee9973d57745ad82d40b52ff87cdcd5ada",
+    "afterSha256": "3d61a69ab3fc7687b591af3be9ec15f51d6fa40b299dfaed26fc7bc9c765c350"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CollapseHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "cc860a746bd0634878f1fccb5cd3846434166104367cd5c1f2afcb8aeb0e560e",
+    "afterSha256": "ca8705716a28dd9465b0aa4cff69ecf93c2a4be773ed34a0207bd64b4db87324"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ComboboxFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "91daf285353500f5e19b5819f25d8bec98a1634103d8d185c653a5fcf0c2decb",
+    "afterSha256": "fa49b91f8b5b08bc2972a6b30ac03379717d50a6abc9be7a38b46299561877ea"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ComboboxHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "01ac0ee4e4a2801d7c20a17bd929c296ca31ef04fad193befd5eb5195179fa95",
+    "afterSha256": "af2e439c1791a18a5082cd41161cf3cffc6bff76d0fc4b798b198f03368a0f74"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Container.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "09575046528bbf51d2e228c06407a15aafba53807bf2061c90bf8646da4be9be",
+    "afterSha256": "96c7828955593c29e6a7e8bacbcc3f65f4ec0a3edd449074fb619db50339407c"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/CurrencyValue.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6ae7b0fe8a0bc9766488fc0b8d52ec21beaf7c1b6c598669eb856fea7adf8a54",
+    "afterSha256": "73d70586fe169fbcaddf07990d83366392e684218096fb640ebb74f294c510d7"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/DataGridCell.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "16169b87c84a59d4da7ffca99b274a817e2610efbb9ec617c95d9d3ad6827688",
+    "afterSha256": "f874f53384638176b0b44e152b002656fbeb6a7a218b9a577dfab8f330dae7e8"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/DataGridFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "dc267bb9b2af5bfca07e3cb8352920d73d22cd9f395731008f6fbeded7aff7d2",
+    "afterSha256": "c89640a3eb2a770a72c464e9264bed5708d508a585c1bad0172f84695d930228"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/DialogBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "963af13c148eda1c75ffd5f90c768956deef7f3e5073faf87a795630cde7d9f6",
+    "afterSha256": "f4b70ee410745c58cd4456cf17a723784a7851626586d7eef0068c6b8dfa8968"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/DialogClose.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b7d4b21a292ed39186ae0b68f3f251ba0fb3a073d83d4be822d176ec02299c6c",
+    "afterSha256": "f9ef3aa9a8e3a9055459a228c2dada1aabe9319f0b2f3f332b8869aa214b8c1e"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/DialogFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0e8183c275cfe4715f978435ac8c6694bf7c4e1030c44c24fa0e510d7dedc54c",
+    "afterSha256": "2a32dc495d8b5c7438da6c068f9025ef9996c385c6424a770b9854ab04d309d8"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Divider.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "14fc16e0e845ffe99b7d3b03c8f88cc1df1573f93ea6335b12a64b00462fa1c5",
+    "afterSha256": "e195aff773e7b025d9c3666e8e48c4bf758b47b4c13ac99b48c5af1c3f1319cf"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/EmptyStateBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8921c018092f48b5ed9fe77470b1457ddb4017f2458e55bd94ed263dc43b2c97",
+    "afterSha256": "4659c83754dd71f53b5632216fbc164227296b9098025ec1e2db63ff1d613425"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/EmptyStateFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4ca09e67e2516c4b7fc875b201b2bd842f7eccb178b603db3bb284e651d8eb87",
+    "afterSha256": "d6751275709c4ab19474fddabe3563ef68e554c28faff954efa64109d43fd275"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/EmptyStateHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b5ff19c845297ad20bd49b5341dbdd873abaa1804f8aae42115ebccc219ba2ac",
+    "afterSha256": "fbd7da11ccabf7a9f3a53f32a941ca95a765b5afcef96e6eab532a637fe8a981"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ErrorStateBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "f7491786f4cb4d92212b2b14c8a36680230a6eb395f62864087aca366646a232",
+    "afterSha256": "8748d2504c996857e298a4a4ceb9af93b2705a7ef8d4e1ea422298e5d38208ab"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ErrorStateFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6cf52ddaf665db510cf685c313504c7510933f8f8178c24b26d68bc3ded25187",
+    "afterSha256": "83553581705f9c03b7d46f36ae87714638a0a25bd4d5cbce53037cbd4c19fa4d"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ErrorStateHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "787f50f898aacad36146593b2a41f57b83655ab993ea2efd8a8cf0cd27a4ede5",
+    "afterSha256": "dabf2ec31e494fd37246e08996a26c92befca888b58369b116cba8e3c939fcef"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FieldError.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9a3c4db966557cf0de4b2abd3cca404763c8b5358d8f1f47bc5d1200b2ae0f23",
+    "afterSha256": "726b2ca35e5f5d0151c1c14980e29abdc8bbd1454ad7c31d4650b24e98e37600"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FieldHint.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0d2177397c54dc1e115579dacf637c8d36061be384055776c04052753ee11dc2",
+    "afterSha256": "3f0290e34d144862ea850b880b5744c35c157c0fb326855cc1dc15dc55471b87"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FormBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ab1ee17379ab77459b6c144afd24980b243f12c6602165c4958639b993f8e212",
+    "afterSha256": "56bbeced14cd12eb415f0e42cd67cf6cf948758b3e455bff959529f4987ded8c"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FormFieldBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5faed9ea268fb618a2c8ea8d8a77bc92809360691ed56795d5d306f6fa9c3e90",
+    "afterSha256": "ea3f53bbebb3aa8ffb5c1e071c765cd746330c3d753a938713be22cc5a20ee1b"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FormFieldHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4e2059db398daf18a0650f1e5e658fa2427fbd3b762e5911f2c715a53b97c7ea",
+    "afterSha256": "3e08417331d19d9735f56e50880c7cf595ff8b55182a15b5fa9f5049f29526ed"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FormFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d4764c033d0b3939f7a63ef3ab1400de7724d1e452e16bd4a5f239de36909528",
+    "afterSha256": "5fbf52e9135113cab81e94c654b8b77c882911fce6f8965e365b7cec5bb50ecb"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/FormHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "836b177482b2466fa013976fccde4e7a20147475007a1bdbdc9da4573a8941db",
+    "afterSha256": "a310d086b660aff8be2c5297bde263d2176b21b4d517a0d2a7b99ad4356c759e"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Heading.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2a35980cd6f3f2c85a1be5b49b37f5c6274dc3c22055b7f669286c62d30fd4dc",
+    "afterSha256": "dbea6c4be2b4bd0f7a2acfa11009251d017b86699a47128cb8a02f0b5eed082a"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Icon.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9663087beaa3eb239231a4d942d52b4bff8152b2ad214314a91cbf1b58cb1dab",
+    "afterSha256": "3070fb74dabe18368c38785dac5759f0727b76af95b5417ef92f0e1d550bf4f8"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Inline.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9e90dbc58cb04381a6da8d013b6ed60d49b295381cdf690749abbf09070a7d9a",
+    "afterSha256": "8894d2e206e6931c8fed0c1f41c857eb61edcde994a2add1a4ee8e1f50159408"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Input.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5faac7423e302d9d5e0479b27a6387b931aadc5027dba26d2a3a8a299d2d716c",
+    "afterSha256": "1f5f7778ebe7b2e43e90ba163820f5f8284912b1107729d55840ad0c5f2edf3e"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Label.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7e96fa223eb58d209725b6eed9ccd08c7894f793d370f0156bebe7cf21867e67",
+    "afterSha256": "93f2cbe387c9dfa82e5b59cc393bdcc8e7523746de3f6a93bb0a04d38ca81a53"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Link.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "954860652714d5ce08a05ddbbb7b61dfcceb9c513e2aad608541bea9512acc80",
+    "afterSha256": "6570727940ce706e8cf3c5f4ad698bc70a6b4008fa5668b1dd89effe40f4cfb8"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9c3ae3e099cde5cfd14f314540251d88accbe05c19493a21c9af639bcc586f0c",
+    "afterSha256": "69d6591e6e300645fba6fe57dd3ab0d2bd4b3e97c07208532fabd38504b3ea6f"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListBoxFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8a9ffe9636db1a678f0567745900377e06de7d2fb0682145c65ab0cb300624b9",
+    "afterSha256": "90dd8e99c71f3d9782acb0c7021db9eea847cbaf691ec9d5bf6c3c29ae69f8d1"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListBoxHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b3b605cf4f72975119da7755f93657fd20345a9f9cf1535fe9c038de5d9c481e",
+    "afterSha256": "55aad5ad1cedb60950b01d1e7befd140ab96aff1a9d0013104ef0ca7c4864333"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListBoxItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "26acf97b57615fb41e834ef135c12824c4d217254bb30d9752fd5451e91122c5",
+    "afterSha256": "19d2581cd628932593910c1014b504eba67643ef7507d586a441384df82e97cd"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a4e754628449b72da4bd39a18411343ffc4cf764ebfd2f9caac7901a1317c7b3",
+    "afterSha256": "ab0540776519e26b14a98210900e92207e49451f8787b7993926891a63301e23"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "01f45b1777ecd86d76414cfd4647adc1127c128d18e7531fa0f841b1e0677c0b",
+    "afterSha256": "49e2b74b07210d3e9f271466a64977faedd488100cbdeb60504f0ce671c2ffc3"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ListItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a4f19a305de59e7ef9a84c0c833f564f1e606c5fb5782b5448c0efdc1c5d0784",
+    "afterSha256": "b593bfdfaf8089396b3028c71ffe0e72f88c24423a752e4e9d27d6750c12e1cd"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/LoadingStateFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ad11136b1244351d370c03613dbec51b94b55e63f626defdd7e6ab3cce78b761",
+    "afterSha256": "6c86e533e493b5f6551feb13730e7235e3012191838f585d2baafc2d74cdefd3"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/LoadingStateHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9f4b97631ac859981c9db286329b7dbd214dc111714476f7f84d02e26807fa35",
+    "afterSha256": "db97ad76ed5bb71b9c6ae6231a59394ddb4d03913bfc3ad0b274d6c4e2cbe3e4"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/MenuBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d381ea72bab470d7f4366c96cc349f943360653456ff03c3e05cbbb42bf24e1c",
+    "afterSha256": "cf0b3ae7bdb637ae844ec6c83db21b2d9fa9df8b3583539bf151b1bcff11b8f8"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/MenuFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0ba3ddebf56f409f598ebccbca75cd7bdb9bffc957735b9636f48505ec159d86",
+    "afterSha256": "1accc9c2aecca0e07b2fc4b29852bcb23180f745a0a431e1f8dd735bb296e445"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/MenuHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "06141fc64f6e4820e0223af68c71aaed043621e589d212cfa8b546241497bd7e",
+    "afterSha256": "2c4a12f95099ee52ae6f5612c4ec6ea98ba6f77e8916f3a1f1532c06182543bd"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/MenuItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "429732d7867665ea86e27634416a0e57d142bc28ec62f2c17886ad4e9f0e226f",
+    "afterSha256": "b6782fc3fcbcd48fe7b9dcbecb5178580e773274a34e01573f96aa421af5a434"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Meter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "46ae59416c87552e9171c2fc8083f838aff5442a5e497140503d1efc682269b6",
+    "afterSha256": "e77137d51a1e81968fa2100a9426ba2b573394a7931cc66be60d4baa3e412156"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ModalBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "fde98ae68828040b3f6e6802cec7150082181750b6505356993f3c46ea76517d",
+    "afterSha256": "24acf7672d3cc91de25a29476eb415ee866eb1a0ff1719edc1b38ea8cccf0a28"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ModalFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "00e370cf2143c3fc6f87c917cbf549e62ab81508eb59f9ee78b8bd23bf63a6c2",
+    "afterSha256": "87a8ec3e671ac0a39557434ded1e5409fb46a82b696230337b010a27f8f23676"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/NavigationMenuBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e76bf8278e15d6d6614ae0ea1fe38d1690ede45838a8ad4756d277f5e89d2206",
+    "afterSha256": "2c25a8496d647a2e25edb648a46f772ba9f0e4280818a9247be02ae3db8469eb"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/NavigationMenuFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ffb69fd1bfbb9296157d949a05914d335f362a2fdd7b3d0c3d137a14aa3e70ed",
+    "afterSha256": "118de5007c8febf74a519ecc6ecc6e0167696b7a547b18d7fe4c8e0db6e00ab0"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/NavigationMenuHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7a72811c75f3205cff33eb22c5aa82e77d1a8bcbfa35533a9ab57c2265e4f30a",
+    "afterSha256": "289de8cef5e3ffc9bd70be6fa1e6a8be353c50dbe63a4b10a5fbb926ae1f60d7"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/NavigationMenuSublist.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a68587bc8e3e71e38a41db2532a884d9cb41afd340a95bf6bcb3060fda337ae8",
+    "afterSha256": "257357da93d73e695c53961dec65a434f41399a55dc8b31f63602d242932895e"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Option.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1d6bd8ba47bdd3852f1b07787733602c2ba7c300cf5c4de3492788ca33b9bc9b",
+    "afterSha256": "560a165f3b9e1fb29efd772ad0a86ab2c44767fde9627c775f48bb204ff91e2c"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/OverlayPortal.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "dca01c656d0110b1f2c65c437fa859cc71f904f209f002623706263cb11bd219",
+    "afterSha256": "07a43b40805d17b71cf69b61e8bbabee2e4cc222990d54845a3adeb8a9af85d7"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/PaginationEllipsis.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ea2fc10c54e5e691e87143dec948203cfa69b722cde83cbe8bc523f0f6e032d7",
+    "afterSha256": "47c32d2abd8d9f6aa88fbb04a465243455a07d36b03f35a18282af6f58d0f7a0"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/PaginationItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8441684b7e01564c420bfc61ec4421e4c285cfb06f2450cae0ad1b066b56711e",
+    "afterSha256": "9b141b2d6b9766925be5cb6d0710a2e5e1b24759f4ea634e270ff1ded210abd1"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/PopoverBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0def154b73fd8c4dbc43f8a28f039f9f208a9d9604b90a6a01d62638528d5447",
+    "afterSha256": "262f298f69662777144e68d8a25af234ace2c265d52fddb34e8fc86c31c97f1f"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/PopoverFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "418608be8662e44e9dd0a51d57b119a1901715c03d43ff3665610882008de9dd",
+    "afterSha256": "ba26239798ccb615dec9ec3a8049df2afca9bfe7455a16faf0fed79972c2d2bc"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/PopoverHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ca8afddbb313a911564d32ec1d162e9fbb415b364d5444a2d4809dba3fb3f265",
+    "afterSha256": "234091de6b2561f9a6dadf9c9a620ffd663d7fa8609076ac8cabdb75616ce140"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/PopupListboxItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "f9e67df2251de9d71f95e453629c1788e521b558bc02b18c50cbe3c21bc94113",
+    "afterSha256": "c07d7fd46a53499421f24c73d2c11b9bc15bca7906cd28cca903c6eb35764de9"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Progress.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "11bf927f6b88eb67b2816eb8459bfc4d83d7cca7d14162100cfed8758b363ac3",
+    "afterSha256": "fc6acaf7c1451d3c1c34e61a8532e89c91c7a4ec5effcfd51e92b2dd6d811e50"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Radio.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "aaab093b2ac06b64ed25217ba06fb3583624c0a717e0f9cb43c5c64c88c663b8",
+    "afterSha256": "8e190240ef99f5391d0388678c2b5c51f03a3529094ee33e07c4d5fbd0cb772b"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Select.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2e7dc86722d0fa8753c4d20e1b34f189ca253062050be5f905cbd090e4941bda",
+    "afterSha256": "6999c2585610b9df694c8da6e06813f65d5c189742a916f2ac6d2c3cec345f26"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/SharedElement.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9a5bb898e1864975c7861a427eb519928fafef5ef0223601e789aac63d3f7472",
+    "afterSha256": "36a77932c1cc2bbb5a353b7ad11ce93284180ab1ba731ce04ae5c238fc3951ca"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/SimpleGrid.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "180b06bea0a9f2842e9bfc89a7b26d5a80479bfc4bc204aaaed953f629fdac65",
+    "afterSha256": "41b6f9f4fa6f1f2ce3e28b4e324c835f402b6ba01f41e9198ff8ca35e56067fd"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Skeleton.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "533a610f1177f8735969d43d859cff1e7991368648c2eae56c19b347ba3556d1",
+    "afterSha256": "ceb336a51ed1590922c8406434d191b2dc39de2031db4fdeba8c70dc87123ef4"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Spinner.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "28a0f621cc47d6a3fd80ee09ad4f52a3490030cf41398008afa7ae0ab6e76c52",
+    "afterSha256": "bc1f47faa4ec3a68bb53fc39e94066854c3253d826ec50ecd4e7a13fe8074941"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Stack.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "94542a1e041f2479d2e3d5ff3c16a038f57b43f26998d613268eb40df845ff06",
+    "afterSha256": "d544e0664ae405215e23c54ee47435b461974885c36c1c936ad0c0a63540e081"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/StepperBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6d7071693a4c10b0b2a11e3aaeba7b9726c90b57e586c89cfc2749fbfcc75e96",
+    "afterSha256": "94c31f446774158712d394c7ae43d93c98bcedac7c40e79fa7dbe9c16ff75847"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/StepperFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d421bbee8b971273f662e8dbefa829971e83be4738353d01247eef18469573c0",
+    "afterSha256": "d3ee212385732084d671c4a3f4a7ab31e3acb5d7affa7fb7c86b4c1247f15a21"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/StepperHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3a384f8ef4d032d0f29d6a5d386c28e6b55d75c12edb3dee0acb91623a7191d4",
+    "afterSha256": "d8330b0512747cc81767fdfe3b2a6885d373c1a19c33fdb7f5813e25331842b1"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/StepperPanel.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ec88b7d0d2cb97eea5844101417e92ef900c9beecb5b35c83dd05ad9b1009fef",
+    "afterSha256": "6164df336600c48af1522c31b6141cf0d66c18d7c22b3c071817961daabb7df7"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Surface.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3bf87afb9e27f748bc3eac828444d3ca003fa7dccd1bf2bc78937916b5f9c653",
+    "afterSha256": "ef70ad8be1240c4056c8af72bb229b4d74fb8f91399c7efd55ba8967b5bfe3be"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Switch.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e89fd66e753046ad4e99467c9a3139b3ea299395052664f195535f2f7e202d82",
+    "afterSha256": "b2d02e2ed87ef49619595336ca6461a098c9cd63679ddd36d37d3d0fcee85eee"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Tab.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7804d731bcd8d822f9eee00d1e50c1522836fa27c4c0f1ce55a00c5dbe745dc3",
+    "afterSha256": "355aa06f71bc9f698d516c6c4b37f73304f9a701e8c5ae6d84476d637467c97c"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TabPanel.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "37b8eee77467e89826f7730a73faa0008e07dd2d3e0367abe355e22c50f9411c",
+    "afterSha256": "1a7f9de0483b60bf30a18c4f46b1394f6e5829e782a1be64219950f5ff626708"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TabsBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "59b44f56de1c301cae5584ad88ce166c4b26f9cc9e6baf5c346497a3d1148963",
+    "afterSha256": "8dcf21d2a91ede9e9226f20d600b837676bfb25ececfcd1582c5561fa1e6c191"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TabsFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7c13514d9ae129c28467f20df70f6fde5f54f90effb336ec7c2efff299767cb4",
+    "afterSha256": "007b40df3b25fcad10b68a2386118051c820a855030d50ed02d3bf65340e4931"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TabsHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e7f53eb57f922c740ec29d92996655257fd94ac53adc2c3be6c282a133b1f902",
+    "afterSha256": "b19c720451977e787d36d6adde30c11a1a7de65a38d7696738edf116775c0dfb"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Text.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4c7a2a225452622c9405b36a6b8937bd9c29f447731a687d343205058f2e32f2",
+    "afterSha256": "da7db484a9fa3827954a3564d2e3c772c5eb45a8dcdbfe96ac68aac82972ab05"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/Textarea.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "fdb0a516a9b20c1ec54087a8db9fe74f9f154786feeb3630ee881f889f69dd25",
+    "afterSha256": "2ee76b8a1229633bc49de3ced380f70963161f4c88e805d2f5ca5042cf05f909"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ToastBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e870a14dfe3b9c791a1ed077ec3fb91d75a0b61909960acb0e2028feb6a1ea54",
+    "afterSha256": "a59596c5e0ee4b235c6eefe8f0fdb8894a2dd2011485dc237d2bf1e053ae7d7f"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ToastHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3aef3e7988ef7cd945f67daffc53b439230ede432d3f6c521844ec8514056e22",
+    "afterSha256": "78876894fbc867bdc49667e605215883644a786dac02b41b359017df87f4c3eb"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/ToolbarItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5e5dedd4e6636dedb34a01a80a82da045abb1aa38fc62391f37064a7b6487896",
+    "afterSha256": "69c0457ec9550971b38fe6bb1f35534c2ba38dbebb2dc33338688c1bee872842"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TreeFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3d050ae236ec640f8bd42ba377d709bdf60ef35961fb2d45cf99cb60f174ab05",
+    "afterSha256": "31ff100fe18336555bd5b57da9d01c8ed105968b78049df902151ef371170ca7"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TreeGridCell.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0a2f41f9336e9b050358e6c63d7699615f41be1d61f71ff554a123e1f165ab81",
+    "afterSha256": "c61f0e990d7dfc13e75ca3c39b18ecea69e1cebe33eca2eb6e77295da1bb74b1"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TreeGridColumnHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "02caa690386df884f01a85905d91f1b8b8a5e628d1a61ec159c01af977d652e7",
+    "afterSha256": "4cc25f693b8cde8c5a1426cc641b4416da5227f4103a8cfd3b68a410a2138bff"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TreeGridFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "629126f3be87aba3a09cfc46b9810e3cd9353d502be03715c305395d14fb136a",
+    "afterSha256": "c729f5a4f982d61cee447d077caa52ad8bfac506176bbe69f89b22526167b4f8"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/TreeHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a9b57f7233c135ffdc447befbf9f699588f0516a819082de8fda87a9bfee6a21",
+    "afterSha256": "3674286a8a00a17936c7e8dd54ef53e337150e0f1f38714cb1c1ec480a1fe025"
+  },
+  {
+    "file": "docs/sc/ds/components/atoms/VisuallyHidden.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e88ac118da057b190eb06a39778b9e855ccdce416db069095974ccf6c5658c72",
+    "afterSha256": "1baf3914d4f9302fc9cb36bd1d0196fd1777a8bff6bb04599f3f0fbfb790562c"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Accordion.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4ded505115604ae7924f9a945f599a2f70be4efc17e8344e331c7e77609f82a5",
+    "afterSha256": "aab57f296ba33e5fced9025a9bbfc4e48c32f1f95489724a905a65f1d8f55b8b"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/AccordionItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1a7f9baa81c88142d8122ac4a2ff7c4a0a48a8bb1a33dfbae02b4e1fbd68b7e9",
+    "afterSha256": "aa789caf8b6d620413523b7f46f7147b15e71a59329e83fc74e64f6b1bd98dcf"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Alert.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7bbcbe54acc2e4cbb3420543568054d66ff61f3d73a907dd81b1016087ab5e28",
+    "afterSha256": "3bbff8042caca974f72b75d9001021018c7684d9645f35a0e4962a4b52ba64d8"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/AlertDialogHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "08ebdffd8686a5e49871d2fda3888b15f087b022ffae4809b6de607f0ac076fa",
+    "afterSha256": "ce76ad9233d587db13ec3a8cc1873d1113c43b5426ddcd3db852b621e7d15b5e"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Autocomplete.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "63243adcd7724775b67374a459ba0fd9d78ddb2fbc1562938c4105c463bf25c4",
+    "afterSha256": "6de470ebe0434544607e80dabe2d1c653ea413a248d280858dcac5e21de1eba2"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/AutocompleteBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "75edc7c67e5ae58b4cc997420f9036e2533535d05f8aab78c6cbb917ba3d048b",
+    "afterSha256": "f57de2686bf814732117ecb5214944067fe773f486ec6be36b22b253e0a2f2f2"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Breadcrumb.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9f9dc9dd44358d70fe7395d22b86b4204d377a24e960c4da8719b6ed982d95fc",
+    "afterSha256": "d417dd34cdf4c030696fafda79ffb949d6fb1936b9cec106853b3c50de88aaf3"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ButtonGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "bed4233ef76739cc0e300b5d879a7de8f71ba6ec2cca52f87e610f66d6c0350d",
+    "afterSha256": "8545128f8de46bc1f4f9f0a0b642f7c68460ca7d9c32b47af2e4820e71c4f090"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Card.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "29fa756b6195db42d8d89a06fb6e62344a5fad0efc36259b2fc5f9fc15663f3d",
+    "afterSha256": "72af283dadcffc82f16d9f57f28dca5c7f7f0b77245860765323ae33ccbed040"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/CheckboxGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5fc5e7d3d41afb2a568c4585f43391a47b1874d9d923b7ca476b9fbc506963c1",
+    "afterSha256": "ba39a6c27a0a8fc489a508d42751d8f855f31963ab86e1cf7813aeb9f4353cd1"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/CheckboxGroupItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "01ac0d288657c52f96a69cb961514db81010cac193f2e75d2daaa49e6219db47",
+    "afterSha256": "0c4c4a0e52f651d75b69e915820e6b6b8867812103c6b7bdb0b1490751aface1"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ChoiceGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7d3cf975ce3dd6d772db2f868673a809b46cc381c9d634a1fea924d33831705b",
+    "afterSha256": "0cbc163cbedcf5266c11725acad0a22034aec76f0192dcad83f6b98d95772851"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Collapse.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6e4d29dbad503de29c624dc2676a6ae1d78186d644e46a7b553068e7b8e0b63f",
+    "afterSha256": "bb605198003dc1661d0dc44585a0a1a369203c48cd4aa2e35ba50d218d12c931"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ColorInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c73e1f8b0cb177e423f4f761ff6958f2faf96d61c59e9115aa551c7385cfb13f",
+    "afterSha256": "bf31791cdcadbf07d76cfcb6be7beef08e8dbfb2e00d97f9e9c2126e4a218fbe"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Combobox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e903aa2dc3f3a4787646c4be845d881c71360de4c496387539f354f7c2912912",
+    "afterSha256": "9cc7b0e65a0b56f1c02a5238d2a292ed5b0dc592ff3a963bd5466c7164244e49"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ComboboxBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "bf7753aabdef9fd51a75da07caa7449e957e0629885592711b87d7cd4c094877",
+    "afterSha256": "f145e16bcd4fc0a547b961608f84882fc77e8775ba880222db4574de92841176"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/CurrencyInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7a9c56229bf65b0d622fb8e8844b6489afce11cc1af4676e22cf39473dab0362",
+    "afterSha256": "49459801a7b9997c0fb17760216336fb54ae7df7acfffb01c90fa73bd84d79f6"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DataGridBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5ef14e941b007bb9918afe7538b95b72072fdba01f1b86b5ace30049d70692cc",
+    "afterSha256": "204b1383c034a5932d335478e149addf7a3a528b005ea0410650596d0fb5eaf7"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DataGridColumnHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e09e4f9632ab4eda481516b2f14ef944b1e8bf6376a088bb8740f34aeb762b78",
+    "afterSha256": "77469662441bfc327d5e2376a16ac699f68bc654af6576f71a3e21150090f4d9"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DataGridHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "aa3ee8d1fb3bfb11e2d6830d61d4d06fec4df360581ffde487a4428cbe0302a9",
+    "afterSha256": "83077709933c1576e366b2b16a941970ae4c5a3c094c83baa29653c0988078e6"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DataGridRow.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4ac101918b4e7aa9523b1d82dcc24814fdc47b288a27bef315941921615cc4ec",
+    "afterSha256": "85209aacd124edecf8b64f67717a87093f0b73ae9ae7ac5ca5ec94daf5b81c44"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DateInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ce0e8178adbfe8da74d78066f6d28bd3e4c327b7a76fe74096ee239631032023",
+    "afterSha256": "24c9527e44eafa75f7a691346efbd85096f56131d2cee860ed2ffaad779f6b6f"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DateTimeInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "887d2e700e90e00370e5eb28d2f9a2c39b0ee988ed8a191b1cddba72abfbe576",
+    "afterSha256": "79c7b64b0933a7c22c475047a6a6e7fcd859b71796f2e14951b694673483b088"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DialogHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ac3d16a8c453bfee9a69cc38917cc90f071029f5c228a43981186b51334fc1c3",
+    "afterSha256": "9ee5d48cecb44bf7cb90fe22d1261422d395f1407c1520b063c0fd5f3301aa4a"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Disclosure.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7aea71ab6a3dbe8f04d5b04931fbe4bb4b0cd7c6f3eddbe3b14a51cf2338c375",
+    "afterSha256": "9150cff5f124c4deb9b7b1eb179c423676488fd2b241b618f283e7b389af0da3"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DropdownMenu.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a2f26379e6a22185a64e507da16dda1afc97766371c06ca28c650db1a74449e4",
+    "afterSha256": "e80d74ea7fce4d0272059957eaa1385156a4dd2a7c440672d9aae2f348cd677a"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/DropdownMenuCompositeTrigger.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8e9206380ce1daa10837dfca6d5cd1d84152f69c2255a1b65e7ffaa4e6244db2",
+    "afterSha256": "72a4aef717fe087accd7a0b89c4d8aa14b5fa3da4e998add65eac1d9460e47c1"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/EmailInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "64a57f9edf34ee2788c782f751c9d3181003c4a98d3d4991cd9fa0fcad98c774",
+    "afterSha256": "4c694710d89eb9ce5d10ab5253c35e627a38ca1ee6cc48e831ce3b6fd4a47e12"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/EmptyState.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d1e4eb64cbe237126190fd21858b21b97e3770bedf8e290a526207fba0c5c282",
+    "afterSha256": "5a72c323f08dbb42a30f81782193ac972a3ef446a31dd97f919c290809b15337"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ErrorState.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6f4bf5128f1805b1d4045c856db5b90bf7767a46e5ea07160b2a22419b20df5b",
+    "afterSha256": "a9d08b82d85b00764e220722af16649eff7b049fb83d9b85a677066dc7923c3d"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/FileInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "52f1da610d8d69f834acae1cf5b00b3f38490c6ea8d085da4cb9e08543790ebd",
+    "afterSha256": "278c7dd9f9a91a2fb8a2d7651af2d149b9397414f8c08d2a5f3014ae5b044cd3"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/FormField.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "f6ca456998e9c279a7b33e0f41c92fe595417e5b8c16ee40544930a0e3108370",
+    "afterSha256": "56f06c06aae55c2f385e68fad4ba64cb91ea4b5fed06346f3f5c42db4768cb0b"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/FormFieldFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0935a29c483e694ad4892dba57eeb2d2b328f3838945e00b9e0716653590aee5",
+    "afterSha256": "a5ad3f8f732dbb90ce75b0a2b17c092da4e436d425a6d424640d52e1a963c696"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/IconButton.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4e17b1f5ea8865f9d19d685fc0879f77277439b46e57df607255d603676cfb33",
+    "afterSha256": "6fb8b21e79b8d81c9f18b5ea58b8d6c2a426656fb5cc6bf788eefd3b10d3c510"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/InputAddon.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "31cdfad4e3bede7dc5d50b18b98f6e2f4b3af41d38ed359325de50c418cb20c5",
+    "afterSha256": "167ee4ca88eeff1eb7c9284b75750345a147c68444b67f66d881898f0426efa9"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/InputBase.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9d8e1e266021c538ea7e963fd2830fae0d79f92535120722b6df708ea2fc5c8d",
+    "afterSha256": "e197765d77a5452e393d9ca5306768c1a4339a7d1fe55883623d6f5760b4df2f"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/InputGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "09684572d48c0f0131545fd43234f6c6aa0776e3084c7336d45581c405ea8249",
+    "afterSha256": "f25418fab5dd96d44a085877b674c64316c50066ed393db775af917faf5c49ff"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/InternationalTelephoneInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ed19264d043a397de9642538cf1c0f930e3467e0207868a108033e6cdabf8089",
+    "afterSha256": "e52e2ffb73fb567f6d65e08f666fdf09e99c2aed61fb87006051cc2fcf26d343"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Legend.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5055a4d9ee6e5e2606afe0cf8051921655213391b71eb9a7a1b5c9fbd02a1eee",
+    "afterSha256": "facf1aa1bfb95a26774491e6e1b4eb5a3507b9c91c60f6290832fecefd6c5dd4"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/List.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c812dafffe181a762dcb46114aa1f5453ddfff66a1312d880b4d9794d3cede9b",
+    "afterSha256": "182fd4e88e08e5f67a1f1f250fa9fdea8f31322057da19063e629dd8919b7bd5"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ListBoxBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7bf614461fe2f324108d3926bcea310cf901f3cd6b39d7ed07cf8513a8c11b40",
+    "afterSha256": "90a863e40d91f412994f615f2485424876fb911b6e6374837c5b5c5f996f1416"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/LoadingState.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2b5aca5a0294b07af3d99965685f96deaa74d09a40526f2ebaa7e81f5b0392a0",
+    "afterSha256": "201a33128beebc75206c8eea911309bc1c9be0416a3c65e6a9960c592b090496"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/LoadingStateBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "bb5ca05f0a437a5063042f33d2ac1cffd8cf0d7b9875c1faaac627ea400d8dc9",
+    "afterSha256": "aef7dfffc31bc96c3cd57619fb5a4b65dc610313f883c95dde72caa60ebaa4b6"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/LocaleSelector.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b2a8b86f932f08d32434ffa37e70055b3f01c4e3cb6150fd2eab35353b2ccd58",
+    "afterSha256": "dc517921d26f4b8483ba598a82967b1cdf80b4163724ac1e2f602301c860d1d3"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/MaskedInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "65f12fbe2a991a5cb98fc0b3d13a6001fdf482cd6334088b41dc2637068b4708",
+    "afterSha256": "519884ae15af43b02dd3f9ee1ef30a4b2161730ab1ef9bdaaca5cf1e2c8ed485"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Menu.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "183b649157d462565c19600fc52461f348a9957578680849299078c6ed11bb5d",
+    "afterSha256": "c10e78f389d2310d4bfde42d0ffbca6f405136dcc33eb3fff7d055f8d55a9c6f"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Modal.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4643bc2d26c07456c5746303a6b5c87ac1070a3d9baf76a59b811b21cffb9c4d",
+    "afterSha256": "69b0d66e5a7f88e4fff416c74c9e35b6f1abb90293a7a1698ddc4b2826636c0c"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ModalHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8918aa28a046994f8774ddd86519ea7469b3def62307f842e72d98a925dd8ca2",
+    "afterSha256": "4e1afa928e0945d5f51618f152e002c5d1efeaf63c496d623c7a2bed1a910231"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/NavigationMenuItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "188afbb0f461ab0bbacbb7e0056624b472ee6dfba9520d777938282350229c99",
+    "afterSha256": "50baa375dfb98c982b487e35eea44aa6a8f1cce196892b755e3f73910ea9c622"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/NumberInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b966b96d9c6f02a011c7c67c1ed5f89d2016ae014652b5a8e4a74ee2dd1b2182",
+    "afterSha256": "ff333fbf62b95fc390a197782003b38a1a25e8ca4fe7112d8ae55adee0043815"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ODataFilterCondition.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "01d8d4344cb620b244fcf3e177b465d08cbe7e8849ce1dc843f71a5e191ffd1a",
+    "afterSha256": "541b3a9cdbad2441503b9acd99fd1fe92c8cd21eeb0a1e9c3cddccb703aa05c1"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ODataFilterGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8b8e432147b686f427c085e06a04a3a75b96260c4ae6141c4b042967094c858e",
+    "afterSha256": "c6c89612974c580013826f0aab987ca67337001d60bae69430f85dfded9514d2"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ODataFilterValue.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "025ceef1fa3119b9572bb12bdbae3656ff6c40e2510abb312645f4913b927f56",
+    "afterSha256": "7cc4e8ad02a172f01302c76c48d677e6d3b81aa03e7ec17b0c03fbefa1dfa344"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/PageHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7e68aeb756bbca42e2e1ed61371b5fc54b9808b7d1cfaee08c14d8c8b030042c",
+    "afterSha256": "28f2d9249af0948841f9f574722702e66363ff5609c80d9e474e4ce22b4123f0"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/PageTransition.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "024266f2d8ba770615b0ca634431371e2ccb79dd182ecb05290f497543aa67a7",
+    "afterSha256": "497337f8544887a8e1f6bde014dc98be1d8b1fd29cbcfe9a367e8ee1effb44c9"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Pagination.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "fe4cd0cb2f7607e1c3055d67624fb0bbc1c6dccc6c9d2c291cfd71c48dd7b7b9",
+    "afterSha256": "f80fb8729ecf0b4e467d7e01bc4e70431b72f72dbf0011ebd481fa46deeba5c4"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/PasswordInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a90e77c95d1cf787a741e71d4e21476ff30c74c5371be2fd6bb53a5215132294",
+    "afterSha256": "3111bfc3997efcca72d5262ad731b85db44b6d2ea5b0781d190b632ad1f1ea90"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/PercentageInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a637ca0aa89fb25a75aba10811e268fd1ba5d6f5b20729a3082880581891a7d1",
+    "afterSha256": "f6d1d04398378f5bb215f736296a1778b9d817d828a1b6050286d1b7594c0a7c"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Popover.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c2b4f03587267ff714e2eaa9df3529b2150b3aca1a746ef160fb3eb4295f86dd",
+    "afterSha256": "191e5b041f289f969254701ef854725251287f0fa1ac2b164a965269e4fe1776"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/PopupListbox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "80ea405b83a4bc24ede3075807d12e44b6989dd247bfb0adf1910850297b8e2e",
+    "afterSha256": "e4e983206578e84d6b3ccc9450f454030c56741d5abff2646ce007dd29318442"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/PostalCodeInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "13cc3f17a5b39d3ebd5836d6678a810c7c0794a8af3be400320ec1e224226e59",
+    "afterSha256": "46965d9081b6224c432ed7474eded63201b9bfda5d277fc258805a39499ce9f5"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ProgressBar.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7468c7573c6f8005f091a047ee1dcb9291949b294183f8fc9956a3e1f32542d9",
+    "afterSha256": "7a160c0eba940b61e0d64bd07a90bd0671e2999c5176160eddb410b22b98ed68"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/RadioGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ce67664c89b375586908029efdbf01b223aca69a9e1f4e96d2c60d44cc34b82a",
+    "afterSha256": "b34588afe3f1c4d678180ee8adaea7ce92d4af66693ab023f7b7ce87cc406534"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/RadioGroupItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2b6c386291cb382fff65f0867a01287409f139801b5d2ec4ff33ee4f9696f474",
+    "afterSha256": "1a2396c04fd08a44f96f257f3ca5abe2ed86fb64df9c239bafa90fb59979cc4a"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/SearchInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5b841583e22070974c2b664c212b42fc2495299e6ccc15a612049d8887b52b7c",
+    "afterSha256": "5f384cc1f5c2b0e033fec7512f60d7097537d424babcef4c9b439d17a57b83a9"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Slider.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2dc7eca9460066ff25c4fd83610aca952a337b40f9efddd6be29880642843db1",
+    "afterSha256": "1162fa30162a49ad82a6dcca9e0d99e9c311c4f154f3bebfe1b813e535c94607"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/StepperItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4296c0bb523a087302093dd8e13a721228a1d472aede66bb2054b6bc74052402",
+    "afterSha256": "fa78a7514cd10100edc234cd80d2b5b5b74880fe1805e6842b21668bd369fd8c"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Tabs.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b057c64a4562891b435ca0692b18af649d433d385da1b4cb9faa116e46b8e6a9",
+    "afterSha256": "b3069f45038d55920d03f26ee119be4d4a03cdb3c863a2c451e241206a0c1f68"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Tag.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "060f259fea626f2892ef3d04af0f5206e0295c6218ef14dbf6365dd50e0e47c0",
+    "afterSha256": "268f7f9c5c6929070176d50a25a306b6d2350602c02973532ffea0cc0df4848b"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TagGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b7575409dabad50f9b2654e3ca21b0c0ff0971eb4f6e33e73f04bcf164ea5ddf",
+    "afterSha256": "15fc6158a5907d44f3cc2f0e741a342c408781252567a3f23babe8ff0d0aa59a"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TagGroupItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ec12833f79c8f1c485da265439f54f8c756c5458662898b80d3edbf07a4fb58c",
+    "afterSha256": "7131788b721650354d386ce46134fe3a7884ab26acc9a6ecc1d1870364094015"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TaxIdInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4a512bd624d4078f06db9a86444ec14481abf4bfab27cfc0a35216cf49452031",
+    "afterSha256": "c9887d1dda287ecb423f25b662a4ea6ee783450c42a5177774b1c73cec2f9e52"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TelephoneInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c61d3ccd915005da3a52ffb1b558458f0c9cc3bac7e69ffb207b4721157fcf1b",
+    "afterSha256": "55ca8b74d2e2dfdaf5c07d733c359d531ea6b8a84d366f7945f84942241d0383"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ThemeSelector.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a7982f16d852733f2a495f80462bd054b9ebf7a3236082ff19216a682b0e8b3c",
+    "afterSha256": "782950d1b2df686f268afd2b6a654a6bd6391920e30ff597451f33a78f18d5e1"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TimeInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5a7b81cb0dd6483cf18762dd0fc946046a9bfe839f0d5749e5a0ddf2e52c1b3a",
+    "afterSha256": "835c15319e9f9995f77853f8dbfb4c432bfc72412695a90095b52448c76940b8"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Toast.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "428548d76523cfa5b7436bad7c26e4853e1b7ff90163977363c50eb254b83d34",
+    "afterSha256": "a34393d47a8e6853f72ce745d3e340a4a3764e797e045039d2afc521973999ef"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/ToastFooter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "874c79b8b62bdca4e876d2c6f92d465944e763b66fce115811560b9b97105372",
+    "afterSha256": "7e5ef02cb1f64068e95cd5a0b2bd1dd610a2a443a535640307c5a1e8b1abf471"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TokenInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b7ab024d02b0c827c436ce06b9b2fa490b71733cb6c59286bc62c2acc869e70f",
+    "afterSha256": "469461b0a2b258f62fdc7b8ad92e7c3d5cc387e371135926c06974ae5de935e6"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Toolbar.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3c0a0d9fa919325f1f04be63da4631f9567f1f732784cbf18866b5fd50aac024",
+    "afterSha256": "9cf900afba10b0c48c9870c0fd3a480c8572604b01a54bba4d6ca2c985255f80"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/Tooltip.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ab835960545ad07c66ff6a5a0c7572d29caec6d64201122ca5f511580ff6819a",
+    "afterSha256": "1e19233a705ef3a6bec038ffcba11a7ff80149152400976018d39c6a0b205808"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TreeBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5f0e379c6ac0bdc06889d2a2a3cf9e2baf60b3882a6416b55e3643db7503cc20",
+    "afterSha256": "15e88a3d3980214db7a60ada2e520773436b2340575dec516b5691759a7423ff"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TreeGridBody.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "91f7b546f2ee27f01cba8bd7996714d182098146b6e9ce8f4d24d3799387fcc3",
+    "afterSha256": "933da1ad3805069c9b6391c21ca9ecb999b2dd8e299276aa061bf09a641fa3bb"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TreeGridHeader.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ca8cd9b46a289f1a0b0507a3ac4be5f899fa5f649889106f25bffb25b654c8b5",
+    "afterSha256": "dc86c4640dc5dc269e8d5265218028ae08edc77b3d2febba1d600b515198a7ad"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TreeGridRow.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6dc02de99e9be1d5f7a2e84974216ccfbde5303b6beec638a51322ecaf95aa82",
+    "afterSha256": "5cd8f76315097c1b8e42cacabe26e82903c67457ce6c3a67c05377e45534b220"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TreeGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "68d63a8940db4c95b52e61f383d5e85b05d4a504da2dcbeffaafb54b0154327f",
+    "afterSha256": "bbacc6ee021b14626a7610b11377bbe781f845f217b6923e5139aad5caadfd28"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/TreeItem.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c30b9f7ac2deed61af3996376a819c5e068886105a453cf3e956d9672f093b15",
+    "afterSha256": "db36f69e50bff30011e1c5af07c1a5d7c595be8f011a003ecee8d14953b0d121"
+  },
+  {
+    "file": "docs/sc/ds/components/molecules/UrlInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "cd3be313bd799215b68478baac70c7ada7a3f2a2958cb28e276b70c37e0a47c8",
+    "afterSha256": "0f939eab904634ceed7f3f9828e3fa0c0bc046c670a237ce0873e9349a81777f"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/AlertDialog.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "04127915b07283337e3a0ac2c1df3a070cd78f980fb0ab0b5d553afecda8672e",
+    "afterSha256": "44d71302870249dfbd2787cf586a18994113ba27f08238d6d78fc806fc741513"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/ConfirmationModal.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "aab5ec8eddb1b2b17bebd54d2db1242369210fd7fa553a49e28eee2c244ea3a4",
+    "afterSha256": "fd988e50ea2945fc54200fc54fa3c0df704b4bab60f6dde10ac577e2ad2be794"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/DataGrid.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "174394ac2ff989982f12b463f5780e9b3c0695d3af163e3a9b9f381afd005708",
+    "afterSha256": "5588aaa3a710ce9eb5efc61a0fdf868cc343fe1efa9cb066a9b1d454ea1fa508"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Dialog.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "766e7f34264ce953c6fc91c52e1ee10263dbd052c11c7a3345543a114b21a8b5",
+    "afterSha256": "a67cb107798d27235151775a07602ae5d28a79dcd725318df51d8fc8e393bc43"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldAutocomplete.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0f7cd84c579edfa1a734d35e765d1a2d314b9679748a11c4e6beb87eb0b42ae7",
+    "afterSha256": "04832e2e2142163aa922ef857b56010741d724f3fce2797c69db1c909ffe4de9"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldCheckbox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1a0e018ffee5c68ef45282ab5ca2bd5b9e15466823ea7b0d23ca31c30a7ecc0e",
+    "afterSha256": "b5639e62d12576f473177c110e8ccce6e9e745a4251019f37bb5297ab0ad533e"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldCheckboxGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "89e56d7dd110d7fde1b7b25900078c0e2ea9d3495e54d79f5eab793e94e93832",
+    "afterSha256": "4b07b64881eb9b3a01d2843e8b5bb3756de88caecbf3da9188ddb2d4ecc2e7b0"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldColorInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "32607322eaca0964506614cfdd21dbc5032e41010673ee7e8d15678e1e65525f",
+    "afterSha256": "e6c0cbb61a3cac4e331cfc3ec164ed3f26dd0a99a3137c54db4d4026d55ec9e6"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldCombobox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "bd3758141fa5c3021a02fa38c36a28167fcb59c13a19fbd90857d86c4feb5fdd",
+    "afterSha256": "2cc4e71dfc7d20f715038a0bccd9e73ee6bd3b7049c73f8c1b2e075b68d55de5"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldCurrencyInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a250783c4d3b0888e31aa24f6ab35fac6ed0d3c01fcd8643a86d16d6f44012ae",
+    "afterSha256": "ec4f7fb32c86552ee17c7c1385f0bb47f102e583f89add55a57f2b1bc127983a"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldDateInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1deba10daef7aab2689ef62ae758f304401cbc89113699505efc4cf06bba8b97",
+    "afterSha256": "063df4df6b4452c5388baef270787766f85e06f87855353c2cbfd4079377cf9e"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldDateTimeInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3bb204f5a197a00b453abe2491d3a040681cafbb8479042d45feb0188b8905d8",
+    "afterSha256": "3c53b8b7b0499189e01603d3a860584631b76999830268a7a36036d11b12b3fe"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldEmailInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "280dbf1ac194597d0619b6c8272c4b84c670a4a845080542e09fd5e65a982adc",
+    "afterSha256": "346860e21c03778bfb18033fa0cfbf5c31ead66ae0ecf915884ac3ff69693744"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldFileInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2268b28650c4b3b4bd0c528ae3a2f58dbf4419a9fb89eb42cb0667eab160349f",
+    "afterSha256": "edeb008aa1bba8461f0b8f45688fd46c1da18e54458c4ca04263ca9d05b2fee5"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "71b4469f4400a12067fb88bdf0c13ee9e07567efd9486645b46d106d266dada4",
+    "afterSha256": "cc66a24b8f139ba8d5db7c5d569c52dd8f92d8c57bcde2ad1a36640fd9f43df7"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldInternationalTelephoneInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "11bda13f521ac361cb1b276fc715532604e4390acbfbf882dff7d38aecea9c08",
+    "afterSha256": "af5d5baf32c9454e2d131432d0f71081252b94c86fe86d0edb9fe93cdadd94a1"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldListBox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d53654000b3811b6dbc4c7c6eed7036ea0f25ebecc9dd1228420f8f536c84bfb",
+    "afterSha256": "301719a5d0eb0e2179872fd4153f50e048a113f846eb0e4f844b1d8e2331f86b"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldMaskedInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8e57c29e44fc7926524550c07c2c5d4160c67ba8aa5b9de7d8c980363866d467",
+    "afterSha256": "698438b47dc868bf35aa977d67cb384f8ee80917a9b0c0028372aedec4baa4e7"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldNumberInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c8c2e2d0fcd25d7e48f8672629811c51239017e60a00e41e2ee0535dbcc01202",
+    "afterSha256": "47c8fe560444fddbb7d393fda3f7ca39254b658ade3bff9b5062fb463cc787e9"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldPasswordInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5987034ba0f2242467f6d1ea11cf43d53b9fba226b6bdc9e28a8e70be70120e4",
+    "afterSha256": "d4bdb0f2fc0681658f8e6e5a8099c7403dacee20d480b0f351afea552372c740"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldPercentageInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d81aa04b75a08c7fb1b1ef8bb6a90141cc4ba8f0dae237c7a1125276cb5ded97",
+    "afterSha256": "8914cc34d336f1df675e54d844703cc039c749ad4ecc5585ae58a25bed9b6f33"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldPostalCodeInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "be09d0df1cf20c35e7f76d4fec49f311121c1dfc003935aefe23ba9af433eac1",
+    "afterSha256": "6e1f1c78c6734488ae79b7150aaa941dcc684b8b1a5fe09134a7360372b20d32"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldRadioGroup.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7da0becff8b58b7caa1a75c2dbb7878a084718186793e0a1907be41981e7e8e5",
+    "afterSha256": "70c45897f85591f8e22af3d895c8c2c377915109ad53aef0d4fbbb983d3222ba"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldSearchInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1b756e676e16c9edd601cbd5fbb1761e202bf3dcc7cbcd15a43a2907de5a0310",
+    "afterSha256": "c844d486ad07181b659d847b58ae9d85e61d1455128d2231f57bba5735926347"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldSelect.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "47a026b0e987bc4dda19fff6a2642e8dbbcd67d8c45a5c614a929dbffa2115e3",
+    "afterSha256": "40d10220ea084550242e49837afcaba44f6b1b5e68341b8cc4311267dd0fb664"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldSlider.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0583515f26f91822e46215490ed179bc55ec00565391acb97563b75f3d7d332a",
+    "afterSha256": "9fe9ad89d3889a8b2fdcd29638716ce143e494eb74740be2244105a82b692488"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldSwitch.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "302458bda82af094e4ba72af952dd83ba424aff66c8093650a9e61490ed44c3a",
+    "afterSha256": "6960cb5fccb81c200f442c4132fe8db0399601ddbc6d18f52267d60ebc54f258"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldTaxIdInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "59bd56a408dcceb2cbbdf2ea6f9a7c2e392092817049571610a232da1f1ad917",
+    "afterSha256": "b65660ba4d21dae29d8dcc091b1d0dfddc2297f3bdf6f1bcc7035b6393baf5f5"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldTelephoneInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ad4a6243096bcff87d33361916cf106b3e45bb1302b3789e231b922074aef85f",
+    "afterSha256": "98debd0032a78c87a8bfeffd3b6bf214f112cc2703fe98755c69c936ee4d6e54"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldTextarea.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "112d92cd798b57bfa5de2878b72c48bf8d3d6e526ec894b6be0f41faccb8c544",
+    "afterSha256": "271f2209cd3efe8d5a910681332439c9b10aedad90968e172648805203f1817f"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldTimeInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9d7cd2641ad823a425c222d0859b817b394a745fe2c5cf71c2e92d27acbc62cb",
+    "afterSha256": "ea6c67ee603c711e1782b0c0394578c963e6778081202ddcb417a5317bc3d5ae"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldTokenInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d46bcb4c923f6f7be8232aca5023febc306cfb3536088a57a0d0213a283f0ecb",
+    "afterSha256": "0ffdbddf7994784a4f4ff67c5e0e001906fe0af0e9ab96f6ef73ddbe06acb202"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormFieldUrlInput.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a188966e6bbb653a51804751a2763bb58b5f6c9d5aec4688b01f9d675608a381",
+    "afterSha256": "97e95e94f8482fa75d952999ad41d0c9daf29a6c77fa5c65d37e31feb781c75e"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form/FormView.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "f2f216243cc5ad24c9ee39874b5e472efa202d92cd2a99d65c872f2117e488c6",
+    "afterSha256": "accf380a74b2bb6441d5dd985db61c2716496435359cd53ed31a219575f85c2e"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Form.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "877c9450c8b2225066229a0895c94a76e662c101ecb0a545211dabc5266f54c8",
+    "afterSha256": "c1f68882518bd9123adaf46da9dd0b0f6a736a63c622e7492959584a4697ec9e"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/ListBox.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "eda6e868805d21027174f4930b4e47725d58ab5e9f2017fdadf88f0fa56ceebe",
+    "afterSha256": "21d313478fb7b80aa01f9269dfd3e1fc178d0ea5e1366d5499f3a3173b01cd3e"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/MapView.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "cbaed561be6d1e50fef821aca70e3bba9bc963eb837ce182bf7b3635ba296577",
+    "afterSha256": "c8fa07c3fcf57f010f45080a662c345fc24dbcf7592739ed931cc935a53bb5bb"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/NavigationMenu.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2338dc9208a284ddd31d09167ed8403a8fb5a9565cc022948fbd7a863a23cb42",
+    "afterSha256": "03920d37c00aff8f4066264a5b61c28e0b77cfd027717841090bd23cb1fac15d"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/ODataFilter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "9f374a5624ba39dcffe14c408769d3c55837a053a1bdb0ad61a76936dffc92ac",
+    "afterSha256": "2a296b693de6be766eece8d5ce526558e1e7af8cf0b5f477b09286c91cbfa061"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Stepper.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c4ad15f90fb77d49f8b08f4d13af11e50824ab65ea176489d52907236ddcedd8",
+    "afterSha256": "823fe2f5c1f08cd2eb1d450d73e3fb06e8394daeffa045f0e11b8c612c189e66"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/ToastRegion.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d4201f6205dcadadcc886ac3ee3579e3fefefdd79e96e12bc2d2e7fb43b53f62",
+    "afterSha256": "41a434210ef1360c2bf22c0f1a318de67ed3d1273475f6b955939fc4a6636286"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/Tree.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3d4a6e5535c6178f73b64eb0b4840dd18fe602dc640807cb946ffe98f1b2fd85",
+    "afterSha256": "c9867ee72ba5b62adcfdfd23856198ac319b4e229c86d4af8b8b374a79ae27f1"
+  },
+  {
+    "file": "docs/sc/ds/components/organisms/TreeGrid.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1348bad5b9d6f3be86f616937d85a62916635a085562c91988ad016e83ce36f9",
+    "afterSha256": "b4f2fb204935b056f26d0b9180bffb213972646f3702e1571b91fb790027946f"
+  },
+  {
+    "file": "docs/sc/ds/components/templates/ApplicationLayoutTemplate.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "01358a16d802fca6d3535c4b359fe55ece9cb888554289a89953df139bacd9f9",
+    "afterSha256": "f38bd73b35ce9c615cc2589f8ec5f930fc9801dbd519d7024d8e3c53058abb51"
+  },
+  {
+    "file": "docs/sc/ds/components/templates/DetailPageTemplate.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "58be72f43986d517e5a88d3c66a1d7a7b82f48c6e1a3bf3dda1918a768930d62",
+    "afterSha256": "91956a0531cdac56903049dadf6c8ce9d256e9e7220cac9525cafe826f302fef"
+  },
+  {
+    "file": "docs/sc/ds/components/templates/FormPageTemplate.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "af5c5312784a71e506cc0d6b464c1ee2d9f0459836dec6cb065374c163eb2c7a",
+    "afterSha256": "11d09da33d05d3e386c7eb7fff55344a76035950515a618252fa9c10024c5e2b"
+  },
+  {
+    "file": "docs/sc/ds/components/templates/HomePageTemplate.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "28e8b51058aecd2cd01c1efa3deac70e60f8715e1fd0288f55b5625bdd173e65",
+    "afterSha256": "204e446bd473fb7ea31b7ea4cc0dde04895b1bef8ed493c38efcb9426885363e"
+  },
+  {
+    "file": "docs/sc/ds/components/templates/ListPageTemplate.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2d1239bb5bf90d721d9ee1b5764cceb8a3e74f9fadcf1dd7103097cb6a41cb12",
+    "afterSha256": "2b4328c40e341d43c5a7919abd77fb091d2642cb8c7277927fb7566086f1dfc3"
+  },
+  {
+    "file": "docs/sc/ds/components/templates/ShowcasePageTemplate.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "d14b76a3a3bfea7ad181dcaf1b25c9d0d39174c68c1480be0975d250506fab6d",
+    "afterSha256": "7cf0e711c73a805e80fd0fa4a9ce3e37f5e25d2289e9b585a077a2fca03700e3"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-brazilian-document-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0fa0cc2040e8c8ef414a2ac8b75ff015f473ee43201646a9c1d26c10e6758eba",
+    "afterSha256": "a4bdbdf354e3521f7fe94658b9f4687df49e783a7c57ff7d6773ae898f9dc921"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-date-only-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5dd35fc45fbfdf9794ee800eef5021e7985e6c9e35f5fcd4c3b872f1f12eb779",
+    "afterSha256": "325a83e042fd4295b60f188f86242c47b51cd0c427cc9d23d563c5127be13a66"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-duration-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "068da3c2311bd3d4b8ff31c072b97e860cf7a8e852f194bb817fa0b6eb690eeb",
+    "afterSha256": "1d8eacf6db715533e3b4f960986914d1ee51a4fc5aff58060773b9ce0b00ed12"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-file-size-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "24ae6b990dd182f5f088033cbe9fe171df189b565a1c84d81cd8847b7aaa598b",
+    "afterSha256": "74044deaf810fff6f0a12ace3b17f4ae721fdc3585bd573f561423a975fa7515"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-formatting-api.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2a7bf9ed7c8e78e9229f04e94ea5774636af67f8b6101c370b66c506c16facc2",
+    "afterSha256": "a7ae27adb1209b0386b188a2e61170df2b0aae0977d274d26ce5b4e868cab1f4"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-icon-sources.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a9856f14e6c9184995fe40ac5fd841615fae8aee9d3f28d8c846eae2bf0c7f53",
+    "afterSha256": "b819c4cb34434ee9195901c766e8cb280372f3bc9028d0d6a24a87ce20193482"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-map-geometry.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "baa33c6c78ec4b0a6fe9b46f8f03134634449ef77983a0dfb7e4156f7e25ffdd",
+    "afterSha256": "947b60e80a096b967f7edb917de5fa4397c1f2b3c3a7895f621a167825d7c7fa"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-mask-helpers.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "67b0e52b9683771c172d538f6551cf21d068e3398387262334fe750fec0ff7f6",
+    "afterSha256": "890effa3cedae055698eb8b7948779a260dfb10a560afaffbebf98ff5bf07583"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-money.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e179f08a318bd0ef7b6f7028addf52c2e0ef49ce0f43983369ebb371a9c00a03",
+    "afterSha256": "b285a1a26f80003f8bcda8398548311da4add78b69e002888d0f3bcea4693991"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-odata-filter.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "770f82a29564e82b4e0d3d6506704493aa9688cd955b6105893beb77dc973ba9",
+    "afterSha256": "769ce9a3003e7b7f1d7564f08687858526826225e7aa4b60caea5df0142cc97e"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-phone-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5b870172d15869589d9a9d92ea5048fc2dceeb7b23fb0cd9adf319c2dae77693",
+    "afterSha256": "aa27588be1fa649ba21e3457118fa8184d3029c1ab31433d3879f5ded9cd6d0b"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-postal-code-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5506e9eeae434a3e2fe466e8d630189f5fad2b8d0f52d58b302a980a5757e04a",
+    "afterSha256": "7ebbc706bd7555a1a415b13c2c90f74090bb46fb2802fcb24748d74b84de1cc0"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-range-indicators.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c9478844d82ea710237bc07a06eb3a9927a187457a83d4a9d5cb358ba0b5fee8",
+    "afterSha256": "3ce278695a94a033112aa2651fa2d1ee3e83c1102ef49979b8f89e20f5d0bc1b"
+  },
+  {
+    "file": "docs/sc/ds/helpers/tech-relative-time-formatters.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b0757ee0a3c755b55acac50340eaa41baf27fa57e0be150489f5306c57a66456",
+    "afterSha256": "e98e01fa3a461f0e70935a756b3e324d4501b38e107b4f30830ca2182fb205a0"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-disclosure-hooks.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a943ba945cbc108847d35bff2ffbfac839e944a757a2f37be1faf6dbef806df4",
+    "afterSha256": "9217d8dfb6d24e38ca6986e8bbf2dddb759e847e444ed8a10c50a1d8ac227714"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-grid-navigation.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "95f101e7ca46c0241ecf8400fc782e63baf56b03beb5a4b28f3e4b3fc6013e72",
+    "afterSha256": "55af9037b934393d1672df7945a7c088c37c8d13901d9e23046de88e2b938ee7"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-listbox-state.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "0f41d1c62e0c3e75c7e4d6eabf165d774800895e442829721e7e6e115b5bc696",
+    "afterSha256": "ab7a5ec67859d9d2de979a32fd221ac87d67091c7d8abd691aba79b6b448a229"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-mask.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "736a33b98a6e225e19168988d21b42177469ece5994ede3a8403f5b7365206fd",
+    "afterSha256": "ad7f83fb44d0d559f3b83f3622a5e4d6b0c260e911da99c7a15202786650d95d"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-modal-interactions.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a25f4e29796563a068ab10d94fe881feb15fbb6f6d27a1198dc2eb886b981d4e",
+    "afterSha256": "9e770011d72a6e461d12af544c320ae843b634adfa6a1cdb7975d2480347000d"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-notifications.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "027ff5b94e203437c28555f01b12be42f67f4c7eb82bd7cfcb7f520e9f9129c8",
+    "afterSha256": "a44694b02b92dfac9a3cf4ca04824a3ff3077d3312c1e41e5e6dfdf224bd91eb"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-overlay-interactions.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a26e234147f4b574cd82a9ac31cb3fc86ece8b06d63ba6f91a6db86c474353ee",
+    "afterSha256": "a603c5aa72f1b7a8c425109eebb6be94e34082dbe7f47d5d6876b86da303f28f"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-popup-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "f284ba676d366054506f39d1ea0f9c731d97f6ed7ae62c0d67409b2047cf443a",
+    "afterSha256": "2101e7b04ee5376c794091ad0784239dd6896dbeb339b7a61a21c3dd6a92e3a3"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-presence.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "5cd6820f8fdf6a5958edbdc9c32e1257d202b392b848fff57283481f439a7cec",
+    "afterSha256": "ec5f02594dea48936d096c1e72ff4ac99172e9e7e78bf47499d0cc44b4c88b96"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-roving-focus.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "985ebe7666244820f2a41da5b7855e349bff616d460fa49d007482ee9c602aa4",
+    "afterSha256": "7d25fc1178fd3f8930fda05c0f8347c6fec7f9d20afff99283dacac0799b715b"
+  },
+  {
+    "file": "docs/sc/ds/hooks/tech-tree-state.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3334b5eeb1155744e1ba4e5f1cc6f9173f5cbae7af27ad914bc297a353fb814b",
+    "afterSha256": "8fff61f0c019c72d7c2f71b0ea8d89fa94be58b2f4e922c7e55a8503fa879801"
+  },
+  {
+    "file": "docs/sc/ds/styles/animations/tech-motion-recipes.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "bbc3bedb6f1858d7602dba799f33ad127b881bc5efe8afa9140646432cda84ce",
+    "afterSha256": "592df2af81998a5fea9a52b60e491cdef4bc844b0cbc45e267dca11263bdee4d"
+  },
+  {
+    "file": "docs/sc/ds/styles/animations/tech-page-transitions.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3c601312df52bd85fe29f7873f037048a430cef466a09fd08c9f06e547db04b8",
+    "afterSha256": "0dbedb87db6a455baf02d1806354b20601cfefcc0f8b547ee5d396bf1e4d024c"
+  },
+  {
+    "file": "docs/sc/ds/styles/animations/tech-shared-element-transitions.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "81604b723709ab8552d5936bcd3433dc63a64d720d0aca0c694717dd8ff4dee2",
+    "afterSha256": "05bbda57fd396642e894f632dd9d9e751cf8b038e6bf477e7997df03cee27bf7"
+  },
+  {
+    "file": "docs/sc/ds/styles/animations/tech-surface-animations.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "74d497a04a92d820edde478fb63dcc58ed8ed97ecb83d758cdbc181a00bae75e",
+    "afterSha256": "d862f0d439d7f4999a10b96e502848dfb959cf5e8d7dba5dd22314fae3c0cd70"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-design-tokens.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "6d7882931834709c372ff397fdb3391bd778a52a72ddd3ea15d0fcd7833893fb",
+    "afterSha256": "0fed8c7f5fca98cd82a9d04c991f12430409d9f955d2c5b2e7a270dd777bdf52"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-icon.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "50a28b879763578e62529cffd14fa8c86e3ad9269bfa52395e540af82e1704a9",
+    "afterSha256": "25f517bfbea05191955cc4b7e4923c9364534c2768f42eae701226b6b15c2b90"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-interactive-primitives.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "e7ae82d950076b1ba6df5a7e8d48e0c7689e6b570a022a558faceb9d192b4324",
+    "afterSha256": "ab3d00b9e8b5754151293d088b6354ff25f1894c3ba4e60621837c353c0ac0f1"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-layout.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "725152701ba43f58e0927cbd7dd35ba003e4edd2ea52c9e0e27f42a6e716f2d5",
+    "afterSha256": "805bf845247b4f0c5a66e53ddb5eafff6186f501bc25692aaa6165c8814411a1"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-loading-indicators.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "3767b5001b79d3bdd15b1b2e9cf486386c4623ffdafb3593abde728b7d84d6de",
+    "afterSha256": "4ceacf543905653f5e6a3a5faaf506f40f255a3df89e8e261aaa641c88a6e4bc"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-native-control-recipes.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "80d8dbf0edd9e65dda392f410b8c213855042c2d2e0aa13ff450800502f62e9d",
+    "afterSha256": "02265b822ac2b8d7b24c87b279ff88dd7c56b533f11890d5b049323ffc3473f8"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-overlay-scroll-lock.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "bd1d2a7f33008ae56810ae3726cbb166b8d3551f1a6e2e748e6fff25cfdf7a4e",
+    "afterSha256": "293aeb7681dfc8a2017504357720f43aa7007dbfa002da28080a03313a9d6d84"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-popup-recipes.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c19d3d1e83eff821456a217536914efa68677118c7c4d2c81fbd53901fea4e88",
+    "afterSha256": "fc35dbc7a65cd080502513a713a53b2b14db3dbca16889b29dc0e2e0fb3beccf"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-range-recipes.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "c89a5f1606e376d340f6015446891fb9396389d247ec9476e06d21c0132c15ff",
+    "afterSha256": "fcb02e2dd52500b0489ed2e1d26871aec6c2e2a291e8c0b3272c00d0eb1c1a60"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-shape.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2ff51372b273dee38fbfd54776eab7f822eecc395a608d0d50fa667b9f475832",
+    "afterSha256": "5275aff1cd862f93c024443ec57e1cf1778584ec7d22f3a9fca81fe11e342075"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-status-primitives.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "33650d2bf3d4bd3e084efb8f235f25e6371a741ff1832218d8f43f5a89be7e13",
+    "afterSha256": "bc3dc24c9838c8ab7ad91dbb04e4c19061dc89b3df2596561438417b81e99156"
+  },
+  {
+    "file": "docs/sc/ds/styles/tech-typography.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b6e9297d2b18f236b571d7f14a2ddcc42f615cb67e02e4f1236cd346b2cca1ac",
+    "afterSha256": "fb25fce23f66522904b213f485b48f02110fbe5e5bd98f2008c320f939c05225"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-animation-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b57ed2a8e3b251754e10fb72f7a41cf84c6a30976112807a6ba7f5f586ef2c55",
+    "afterSha256": "35f9e6ae3b12a7f4b2772fdd73c6c0c242e7848cff8be51e5319b5788f6dc13a"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-collection-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ef04a7ae793472122b31a15c6e53f992e7bfe62864e48d00cb55416609721e3a",
+    "afterSha256": "42e954365216124b495b8a638b74453499b2b57ada27d408ff50289ba9f156cc"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-component-capabilities.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "b6feb57ab842d2af3bab7864b4030e33ad27dd155239c457b12087342ee669f1",
+    "afterSha256": "cd310c2853a88ad58dd3f9f1edbda699ca6a51bfc17f0fbfa9b05e942c010e8d"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-compound-composition.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "f9b70b2730aaacc8b18a5bbbaa016c2788b23d4ba38496db29b76007b418f56b",
+    "afterSha256": "2ea14a3ca2cfcd3088a38e4207e6123bdee049be92bac2fb0b5f5f4896646469"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-disclosure-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8425767a5b6cd940848cea6ceaf6db948dda7c6e92807dbf86f85ff5990dcee3",
+    "afterSha256": "0b9700401130b36573dfbadc2cfd98baff8cb3af84ad9650824a8fd66112d636"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-focus-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "536a8ca5725c9dd1bbd2a6397f830490cdd629ea6153a54c99025dd5801f3fa1",
+    "afterSha256": "bada1424b0ed46c6895d76305a0d497912b0eef931e2cb97828b17652cbd500b"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-form-field-organisms.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ddec3badf671c48164ce6525efd5e732a83b64f7350d51685469211ccee5083f",
+    "afterSha256": "ef00eef74e8bc1f6f0330e1d704a017839617a98c7ff7df5f8875d04a5e4c7aa"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-grid-navigation-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8093beca09965524b1e53d3706915502c6612077baf0432574d49c72e8daa653",
+    "afterSha256": "3523664fe6a0bdd9dea1620682a696cae1987eb5e0a7806476d9b41dcf0a5960"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-icon-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7b50dc3d32fcec4095707cecae73527c26c2b8a0a1372227761aef199a72ffca",
+    "afterSha256": "6687e7de7b5d89c0ec89d8e46ef5ca0629e143198f0eee1b4dd2d532e7f1dbd6"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-icon-geometry.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4baaf7851e0ae0a3ecbaca4f176ecc6817044e17ad025005eabf6fa300b50d91",
+    "afterSha256": "c59180839e4ba3f25dac7e871a6d7e4ba651455b27e09b844569aff23be69b07"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-input-specializations.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "cb4284329d11406d864e81bf13dfcd5f177d3ef2141ed4d7dbea00dad9ec6f17",
+    "afterSha256": "81455df64f13f5d7d58513df34dee51c9b705514e8b8553b40175415f3638253"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-interactive-controls.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a6915782b522638fd5dfb69880e907555fe30ed2b46c9fa9e729ab82c0733759",
+    "afterSha256": "6358fd333736fcde66e83d6318eaad25c9e5c3c3ff6d401747431f487bf264fb"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-layout-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "36140f4606b6c8aeebe83532e6e1107d63850d4a152a02d8d9e2ef3809b313d6",
+    "afterSha256": "32f87561e47c9a8445d5ef9d874b229875141417bafdb82833cda6975e0d5880"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-listbox-state-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "2079b104c5c607b7d4db9150392ba918e28fa6faa18513b2b709fd17d4f87caf",
+    "afterSha256": "da9a88571f6b66ae75978b82801bfc3429a2c81cec963a99d80275e05a8c194f"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-loading-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4da2040e94905f1ac2d87d961869ae3bcadbcccb80b9d14762cd05d4519ac701",
+    "afterSha256": "158f15f44d449ec78aa80ccdd02979ca776fba1a68f64b5e9b7b109f62f9db5e"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-map-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "23c8bb8cf4cbdb8868a7a54d85a20cfb66792bea0263c55872dca07b77e3462f",
+    "afterSha256": "20069ee40672e6c8933fb5777e6c7b628b5d676273922e7a5a487e2838e3d968"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-mask-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "14fce54538d7bd348bdfc21363c8649732d30a96c153acdc3ae98175348d06a9",
+    "afterSha256": "54161647ea1c535d0a01ac53422daa88cf73e736a338e22f814754cd5c786b8f"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-modal-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1bf643641e61d328cb179b2a6da8caf08bcfcb8e3eecf9b8339ee75c6193536f",
+    "afterSha256": "2c238caefe575037fc914b501bc7fd4e28c61cacb752a8e14dd574e475d3b4a9"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-money-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ce5d072fd403d2329ea62cebe851babd933a5414ae71ba16f3fc6272a535065e",
+    "afterSha256": "0ab2d369a4719351eeae4917ca222c4c89059120a77fe0f7440bfc67a9dd9505"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-native-control-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "ba8b9e185ef5cde592be3b87a67e65d1b8859469cf353170dc6a74bb256e1f64",
+    "afterSha256": "ec0409efae6eb0722aafe237a20f4ac2da87d1f15f73cf4ec370134c36bd2c93"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-notification-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "1493be78b8e0e255fd8d83b7359ba11d1a0cb10456bf4e23deb55ca616a7e1f2",
+    "afterSha256": "9aa259005f2b4dca480155eb58332c2cff16db1b146523610ef30c5aebc674c7"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-odata-filter-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "aed56792584c0cd195bb6522ad04d3ff7e52b6c04506c4f7a7ea00e8b371ed1c",
+    "afterSha256": "8fe207ed8b95aec4d2ec08a80bf5d9e209a0ab02f804661d0df58a6cf373fbb8"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-overlay-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4afaa2de5bb37a03aaa8e012afbe8938810934ea355eadbdcf54c0dd689fa5a6",
+    "afterSha256": "f6e367599b8115bf0b7b0ada040005e9963dbce2117483545bfb5e7795046a20"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-page-transition-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "7278bd8d0284add772f5f0df81bf4f1bc1b1e916887e0e59fad6e632cadbaca2",
+    "afterSha256": "fdbd2fef033c59cc97e23af8ab04eed39b9a73abe14aef4fb6f1e2ad92faef3a"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-phone-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "8fc01abe49573b8a51ae690a3610542ad01d7461be50fb39320a74f100be26e1",
+    "afterSha256": "0ceb30c7099887aa643c312d09fa0405a805867e8fc43433a18e11db468bdd36"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-popup-types.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "4808542a6fc8d448165204b0f70b51a66dcb499a7e5f28dc905cb8f5bbc4e2eb",
+    "afterSha256": "8260c55f72b610238e456fc640ada52d29d06b97b15c2210a5070b5f1dbecb2e"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-range-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "a024106741ed0e222bd958b07c147792dfb78944e8bea0e410b287a53cc5c631",
+    "afterSha256": "0ea7c0f17c1e84399feb6ce99e340afa3c84bbf7c03146697166066892c8bbfb"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-selection-navigation.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "37d5f982727b142bdb25db1693e73d17b2a0b4e6abf3e07ce08873f79efd7f08",
+    "afterSha256": "bc438bb82c01d54b1fd15d2b15883dba9881f60bfe4a57b2f3e22e4a0b51a1f0"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-tree-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "58811b2d9ffc89b3c86a6222720fcbc0cb46450b8a6367aa241a8565fb2da409",
+    "afterSha256": "d1ef50936f33ff44016661ac8d8b50bdf5b59efe9ed985c77533fb5eb7a219d8"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-typography-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "55161534ccd579bcd02b2294b803b0d058d89bde804621d29457a4519c2a654d",
+    "afterSha256": "6b004b94b6b15ba4f184ebbc970466f428936f8ad3ba086d817d21be52d8121f"
+  },
+  {
+    "file": "docs/sc/ds/types/tech-virtual-window-contracts.sc.md",
+    "origin": "public package imports in specification usage examples",
+    "beforeSha256": "be5c37c48eef40e09e767038b7eb1c17f38b7166a9f2bf30e989ac127761fcab",
+    "afterSha256": "ab0d3a5a65c4591014c7a320cf03619f7347f70e64040bbe973f7e42bb5ea311"
+  },
+  {
+    "file": "docs/sc/ds/atoms/AlertBody.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "a55c8fd3401143be6926f7521d4934a710692454314b08a1647c02cba9e262ab",
+    "afterSha256": "69ad886e23047020732211e24406738c37dcfe4b121f692c78867581aa93e31f"
+  },
+  {
+    "file": "docs/sc/ds/atoms/AlertFooter.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "2c2793530caf2dfccba32e7bc4c9940602073d54173a9b10a45a6a5505a54ded",
+    "afterSha256": "dead71f796afd5acd49287cbbe0fd89c8c4f3c42eaff802258951574b4f75887"
+  },
+  {
+    "file": "docs/sc/ds/atoms/AlertHeader.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "c70411fec8174feb29bef942e2624300d36a859fe8189fb2040e2dd0b538c722",
+    "afterSha256": "c0768079663cb576a0e880492c6d2d107d8ee5a781e15489ff71d308d3b4314d"
+  },
+  {
+    "file": "docs/sc/ds/atoms/Avatar.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "5b6d39a87a355d38dfa0529350f618b1d8e593fb90cb409ff5d4b3c34124ab4b",
+    "afterSha256": "f025cbc219bce4ecc22134bd6ae54749380b12023c2527e149e1dc29b18846db"
+  },
+  {
+    "file": "docs/sc/ds/atoms/DataGridCell.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "f39ef016024cbaa1eaa4014611dd7f5c1f098bb6808b31300ba4152ff7d7520b",
+    "afterSha256": "f72905a60d81ed57c4bd4ab40ba05126348e84195ef218ecc1f124b6e5fb516d"
+  },
+  {
+    "file": "docs/sc/ds/atoms/DataGridFooter.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "1d1766a3c1e3903533131f9e44611212ac4ffa40526ec1af2af4ff84ae6e8733",
+    "afterSha256": "adf95c6dbe235e0fe5205821cf5d40de56aa00d406c75824ea2ee3f8ffdc3e93"
+  },
+  {
+    "file": "docs/sc/ds/atoms/Icon.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "d7711b483e5ec133497821e8f38091c9d3597137b7984007bf009738a401862e",
+    "afterSha256": "a6b2a731b7812e48f2f75621af461283fd96f6d17ec70efa3dbd50b40ccbc5bc"
+  },
+  {
+    "file": "docs/sc/ds/atoms/Skeleton.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "dc08bcfe751b2ea93bc3117d75151e08360c27cbcb032381ee4e9aac7e11fe81",
+    "afterSha256": "0bf62e2cb805b900799be4617aced9d9eceb362f2a066755874bfe3233e8715c"
+  },
+  {
+    "file": "docs/sc/ds/molecules/Alert.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "4dc119ad0d7d626c055762490567fa7f14caeed8074cebbaaf7e56bf322c0dd0",
+    "afterSha256": "6c4329d60e7f6f7d6eb9fbc7fac29c201448e4c106b446d24d87d52cc1444bc8"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridBody.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "33bc26f80cb1118d3d70ab8c8de8fca781c0a7a4e86df440021294ce83c95edf",
+    "afterSha256": "5ed9ca3b630f589cf27653d76e61c547fb112e5532cac4e62278c0c3d72e99fe"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridColumnHeader.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "255d2ed77aa46172a49bf24a9b936af1be1fceb49f59c323b25c92700b0a6425",
+    "afterSha256": "802934380c57ba8758dc20e9dcde21a1cc83b9e12fa97ec75bf0aebfb5ec4a4d"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridHeader.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "a7d3e6277510a4b86a83fa231d246d9bae658377f6e1b7372fa96b854ebda8d0",
+    "afterSha256": "c20b46d4f87faecf260aeb619ecf24ea6324b710b124f375abbc7df3fcdb56cf"
+  },
+  {
+    "file": "docs/sc/ds/molecules/DataGridRow.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "4d8ad3e1a2b4a4303adfd98c7abccaf01b1e9e37b182ca0549bb101d738f2a94",
+    "afterSha256": "61ce316a9147fb09e444707702b5d0f4fccc4ff026ae0c8d84eb5e4322fa6f8e"
+  },
+  {
+    "file": "docs/sc/ds/molecules/IconButton.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "01f6c9813ee13460cd3e550e2a2b1c1aa1ba598dbc7b9f11996d10dec7430962",
+    "afterSha256": "26391056c0cecfa148942abe65e73b8da96e543b3a9dedb1006944d019b86404"
+  },
+  {
+    "file": "docs/sc/ds/molecules/Tag.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "8cacd089c778ae02a35f600f47e58375f221b0140b08191e9eab98c075ff5741",
+    "afterSha256": "518000495be9c8264fc1eac85bbf8b270e7754016503dbbba52d3162a01b00c3"
+  },
+  {
+    "file": "docs/sc/ds/organisms/DataGrid.sc.md",
+    "origin": "legacy specification redirect",
+    "beforeSha256": "91e23099a0bdbc5e9493ca0ac6c0454959f05535b82ff85fd1b0cd4402fb4712",
+    "afterSha256": "37038e352c9a95c537b4f27ce3555cf4fda3c988db55c5a86285e27289508e2e"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds.sc.md",
+    "origin": "Forge-only component catalog; source mixed catalog preserved in before-image",
+    "beforeSha256": "ab9660bba0e9af39bb4f1754ee2c73dc2b1207dfffd2d8055fa1e4cf9209ca4c",
+    "afterSha256": "6868bcbf4a0f178967fb7989bc6aa633d04e1250b6c04aebf508a6541ff3736f"
+  },
+  {
+    "file": "docs/sc/core-catalog.sc.md",
+    "origin": "resource catalog from actual matrix",
+    "beforeSha256": "c8a9ccad904c27a7571a3088d58cd684e9e7e169f56124a15824263629b3789e",
+    "afterSha256": "3f39f485979338d3fc8ba118e03c82d9eea16580b22598027110aae6ba142f70"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds.sc.md",
+    "origin": "docs/sc/core-catalog-ds.sc.md",
+    "beforeSha256": "6868bcbf4a0f178967fb7989bc6aa633d04e1250b6c04aebf508a6541ff3736f",
+    "afterSha256": "c85da4fa6f93bef20ba9c9533571fbbd05228108da22af503194af5aaf112ab1"
+  },
+  {
+    "file": "docs/sc/core-template.sc.md",
+    "origin": "docs/sc/core-template.sc.md",
+    "beforeSha256": "1bbbc22221b29d6728fb46295b7fce8cefcdef816f9d2f9e4221fe50a1f44d14",
+    "afterSha256": "4c1cf9b5db4febf406b59d95183cdb093502611e8f17e8e123634dc9da8013ab"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/ExamplePreview/ExamplePreview.tsx",
+    "origin": "canonical copy-code label available in every locale",
+    "beforeSha256": "d0c80ed6d916ed88df314e8be41a57242130aed626e0e566c61aa09c6333f8c3",
+    "afterSha256": "99c35c1ca9e85c220194e4b5c548f5e93f8853300164ee43ce5888f5cf62f1c5"
+  },
+  {
+    "file": "showcase/portal/src/features/showcase-v2/components/LiveExamples/LiveComponentPage.tsx",
+    "origin": "canonical copy-code label available in every locale",
+    "beforeSha256": "fa8fa3686ea11e8afe6a617f977d1ac82151ac2942e693788e6c0d024ae07677",
+    "afterSha256": "00ebf5f80d1b4c2d33345d5dcac5f049d6c31a85fc394f60a061023363974f28"
+  },
+  {
+    "file": "docs/sc/core-catalog-ds.sc.md",
+    "origin": "Forge-only component catalog; source mixed catalog preserved in before-image",
+    "beforeSha256": "c85da4fa6f93bef20ba9c9533571fbbd05228108da22af503194af5aaf112ab1",
+    "afterSha256": "6868bcbf4a0f178967fb7989bc6aa633d04e1250b6c04aebf508a6541ff3736f"
+  },
+  {
+    "file": "docs/sc/core-template.sc.md",
+    "origin": "local Forge architecture and authoring entry point",
+    "beforeSha256": "4c1cf9b5db4febf406b59d95183cdb093502611e8f17e8e123634dc9da8013ab",
+    "afterSha256": "1bbbc22221b29d6728fb46295b7fce8cefcdef816f9d2f9e4221fe50a1f44d14"
+  }
+]

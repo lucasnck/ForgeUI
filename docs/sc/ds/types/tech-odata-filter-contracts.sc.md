@@ -1,0 +1,92 @@
+---
+title: "OData filter contracts"
+scope: "Canonical field/editor/operator definitions and a typed AND/OR expression tree"
+status: "DONE"
+type: "type"
+ds-level: "none"
+---
+
+# OData filter contracts
+
+## Files
+
+```text
+../scripts/check-odata-filter.cjs (M)
+design-system/types/odata-filter.contracts.test.ts (M)
+design-system/types/odata-filter.ts (M)
+design-system/index.ts (M)
+../scripts/fixtures/showcase-v2-contracts.ts (M)
+```
+
+## Contract
+
+```tsx
+import type { ODataFilterField, ODataFilterExpression } from "@forge-ui/web";
+const schema: readonly ODataFilterField[] = fields;
+const value: ODataFilterExpression = expression;
+```
+
+## Content
+
+```ts
+export type ODataFilterConjunction = "and" | "or";
+export type ODataFilterMode = "simple" | "advanced";
+export type ODataFilterActionsLayout = "inline" | "stack";
+export type ODataFilterOperator = "eq" | "ne" | "contains" | "startswith" | "endswith" | "gt" | "ge" | "lt" | "le" | "between" | "in";
+export type ODataFilterScalar = string | number | boolean;
+export type ODataFilterValueData = ODataFilterScalar | null | readonly string[] | readonly [string | number | null, string | number | null];
+export interface ODataFilterOption { value: string; label: string; disabled?: boolean }
+interface FieldBase { id: string; path: string; label: string; placeholder?: string; disabled?: boolean }
+interface FieldOperators<T extends ODataFilterOperator> { operators?: readonly T[]; defaultOperator?: T }
+export interface ODataFilterTextField extends FieldBase, FieldOperators<"eq" | "ne" | "contains" | "startswith" | "endswith"> { kind: "text"; editor?: "input" | "search" }
+export interface ODataFilterNumberField extends FieldBase, FieldOperators<"eq" | "ne" | "gt" | "ge" | "lt" | "le" | "between"> { kind: "number" }
+export type ODataFilterGuidValue = string;
+export type ODataFilterDecimalValue = string;
+export interface ODataFilterGuidField extends FieldBase, FieldOperators<"eq" | "ne"> { kind: "guid" }
+export interface ODataFilterDecimalField extends FieldBase, FieldOperators<"eq" | "ne" | "gt" | "ge" | "lt" | "le" | "between"> { kind: "decimal"; precision: number; scale: number }
+export interface ODataFilterTemporalField extends FieldBase, FieldOperators<"eq" | "ne" | "gt" | "ge" | "lt" | "le" | "between"> { kind: "date" | "time" }
+export interface ODataFilterDateTimeField extends FieldBase, FieldOperators<"eq" | "ne" | "gt" | "ge" | "lt" | "le" | "between"> { kind: "datetime"; offset: string }
+export interface ODataFilterBooleanField extends FieldBase, FieldOperators<"eq" | "ne"> { kind: "boolean" }
+export interface ODataFilterChoiceField extends FieldBase, FieldOperators<"eq" | "ne"> { kind: "choice"; editor?: "radio" | "select" | "combobox"; options: readonly ODataFilterOption[] }
+export interface ODataFilterMultiChoiceField extends FieldBase, FieldOperators<"in"> { kind: "multiChoice"; options: readonly ODataFilterOption[] }
+export type ODataFilterField = ODataFilterTextField | ODataFilterNumberField | ODataFilterGuidField | ODataFilterDecimalField | ODataFilterTemporalField | ODataFilterDateTimeField | ODataFilterBooleanField | ODataFilterChoiceField | ODataFilterMultiChoiceField;
+interface ConditionBase { kind: "condition"; id: string; fieldId: string }
+type TextCondition = ConditionBase & { fieldKind: "text"; operator: "eq" | "ne" | "contains" | "startswith" | "endswith"; value: string | null };
+type GuidCondition = ConditionBase & { fieldKind: "guid"; operator: "eq" | "ne"; value: ODataFilterGuidValue | null };
+type BooleanCondition = ConditionBase & { fieldKind: "boolean"; operator: "eq" | "ne"; value: boolean | null };
+type ChoiceCondition = ConditionBase & { fieldKind: "choice"; operator: "eq" | "ne"; value: string | null };
+type MultiChoiceCondition = ConditionBase & { fieldKind: "multiChoice"; operator: "in"; value: readonly string[] | null };
+type ComparableCondition<K extends "number" | "decimal" | "date" | "time" | "datetime", V> = ConditionBase & { fieldKind: K } & ({ operator: "eq" | "ne" | "gt" | "ge" | "lt" | "le"; value: V | null } | { operator: "between"; value: readonly [V | null, V | null] | null });
+export type ODataFilterConditionData = TextCondition | GuidCondition | BooleanCondition | ChoiceCondition | MultiChoiceCondition | ComparableCondition<"number", number> | ComparableCondition<"decimal", ODataFilterDecimalValue> | ComparableCondition<"date" | "time" | "datetime", string>;
+export interface ODataFilterGroupData { kind: "group"; id: string; operator: ODataFilterConjunction; children: readonly ODataFilterExpression[] }
+export type ODataFilterExpression = ODataFilterConditionData | ODataFilterGroupData;
+export interface ODataFilterLabels {
+ field: string; operator: string; value: string; remove: string; addCondition: string; addGroup: string; group: string;
+ and: string; or: string; apply: string; clear: string; cancel: string; all: string; yes: string; no: string;
+ minimum: string; maximum: string; invalid: string; unsupported: string;
+ operatorLabels: Readonly<Record<ODataFilterOperator, string>>;
+}
+```
+
+## Tests
+
+- V2 Consumer snippets for ODataFilter retain actual signature/shape and reject unsupported values without advertising an unimplemented standalone page.
+- Accept GUID equality/inequality and decimal string equality/ranges; reject GUID contains/between, decimal boolean/number values and unsupported string operators in compile-time consumer fixtures.
+
+## Criteria
+
+- [x] Extend the canonical type owner with the proposed guid/decimal field kinds and named string value contracts; preserve the existing union/API and checked behavior below. The public barrel exposes the new canonical types; existing catalog entries remain available.
+- [x] GUID conditions support eq/ne only. Decimal conditions support eq/ne/gt/ge/lt/le/between with string or null values; number values remain exclusive to the existing number kind. The value string can contain incomplete editing input, which must fail serializer validation on Apply rather than coerce or truncate.
+- [x] Decimal schema carries positive integer precision and nonnegative integer scale not exceeding precision, matched to the consuming EDM property. Runtime schema/literal validation remains the pure serialization owner's responsibility. No currency, locale, relation lookup, backend permission or HTTP negotiation belongs to DS types.
+- [x] Add positive/negative type fixtures, preserve all existing consumer types, format/lint only touched supported source and run DS type/contract checks separately from application API integration.
+
+- [x] One canonical expression tree supports simple fixed fields and advanced nested AND/OR groups; mode is independent of placement.
+- [x] Discriminated field definitions bind compatible operators and value shapes to text, numbers, dates, booleans and choices.
+- [x] Field ids, property paths, labels and caller-owned options have explicit contracts.
+- [x] Absence is distinguishable from false, zero and an empty string; incomplete editing values cannot silently become valid applied expressions.
+- [x] Positive and negative type cases cover operator/value compatibility, ranges and nested groups; no role or API contracts belong here.
+
+- [x] V2 typed usage fixtures cover ODataFilter: Typed schema fields, conditions/conjunctions and valid expression values. Include an accepted public consumption and a rejected unsupported value/shape for each relevant union/interface boundary, using the actual source types rather than a second local declaration.
+- [x] V2 typed fixtures identify this canonical source; any existing consuming Properties/Contract references the same owner; native inherited members remain delegated and repeated fixture labels keep stable one-based identity where applicable. Types have no invented runtime methods, independent visual page or new resource kind. The accepted and rejected consumer fixtures use the available canonical exports.
+
+- [x] `ODataFilterActionsLayout` canonically exports the existing `inline` and `stack` values through the public DS barrel; ODataFilterProps imports that type rather than declaring another union. Accepted and rejected public type usage verifies the unchanged literal set.

@@ -1,0 +1,126 @@
+---
+title: "Surface animations"
+scope: "Token-backed none, fade and scale effects"
+status: "DONE"
+type: "style"
+ds-level: "none"
+---
+
+# Surface animations
+
+## Files
+
+```text
+design-system/styles/animations/surface-animations.module.css (C)
+features/showcase-v2/components/StyleResources/SurfaceAnimationRecipes/definition.ts (C)
+features/showcase-v2/components/StyleResources/SurfaceAnimationRecipes/SurfaceAnimationRecipes.example.tsx (C)
+features/showcase-v2/components/StyleResources/SurfaceAnimationRecipes/useSurfaceAnimationRecipesExample.ts (C)
+features/showcase-v2/components/StyleResources/SurfaceAnimationRecipes/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-resources.ts (M)
+features/showcase-v2/model/showcase-v2-resource-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Design Tokens and Visual Foundations](../tech-design-tokens.sc.md)
+
+## Contract
+
+```tsx
+import effects from "@/design-system/styles/animations/surface-animations.module.css";
+<div className={effects[animationEffect]} data-motion-state={phase} data-animated={animated}>{children}</div>;
+```
+
+## Styles
+
+```css
+.none {
+  opacity: var(--motion-opacity-visible);
+  transform: none;
+}
+.fade {
+  transition-property: opacity;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.scale {
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.fade[data-motion-state="entering"],
+.fade[data-motion-state="exiting"],
+.scale[data-motion-state="entering"],
+.scale[data-motion-state="exiting"] {
+  opacity: var(--motion-opacity-hidden);
+}
+.scale[data-motion-state="entering"],
+.scale[data-motion-state="exiting"] {
+  transform: scale(var(--motion-scale-enter));
+}
+.fade[data-motion-state="entered"],
+.scale[data-motion-state="entered"] {
+  opacity: var(--motion-opacity-visible);
+}
+.scale[data-motion-state="entered"] {
+  transform: scale(var(--motion-scale-rest));
+}
+.none,
+.fade[data-animated="false"],
+.scale[data-animated="false"] {
+  transition: none;
+  opacity: var(--motion-opacity-visible);
+  transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @starting-style {
+    .fade[data-motion-state="entered"][data-animated="true"],
+    .scale[data-motion-state="entered"][data-animated="true"] {
+      opacity: var(--motion-opacity-hidden);
+    }
+    .scale[data-motion-state="entered"][data-animated="true"] {
+      transform: scale(var(--motion-scale-enter));
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade[data-motion-state],
+  .scale[data-motion-state] {
+    transition: none;
+    opacity: var(--motion-opacity-visible);
+    transform: none;
+  }
+}
+```
+
+## Animations
+
+```text
+none
+fade
+scale
+```
+
+## Tests
+
+- V2 Surface effect comparison: verify its observable state, actual public contract, reset and complete copied code.
+
+- Each effect selects only its named properties and tokens.
+- Disabled and reduced motion override entering/exiting declarations.
+- Entry transitions remain enabled when native focus or a virtual active descendant is established.
+
+## Criteria
+
+- [x] none leaves the open surface immediately visible and disables presence retention.
+- [x] fade changes opacity only; scale changes opacity and bounded token-backed scale.
+- [x] Reduced motion and animated=false expose final pixels without waiting for completion events.
+- [x] Focus and ARIA relationships update immediately; receiving focus does not cancel the selected entry transition.
+- [x] Consumers apply semantic state, callbacks and native values immediately.
+- [x] Retained exit content is inert and aria-hidden; no retained action remains executable.
+- [x] The effect module remains CSS-only; lifecycle coordination stays with the consumer view hook and usePresence.
+- [x] New effect classes are not cataloged as available until their source is implemented.
+
+- [x] V2 **Surface effect comparison**: Select the actual none/fade/scale effects on a named passive Surface coordinated by usePresence. Open/close/reverse, compare enabled/reduced motion, and preserve immediate inert/aria-hidden semantics while CSS owns only the pixels.
+- [x] Each selected V2 resource has exactly two primary sections: dynamic example and Contract. Hooks document actual Parameters/Returns; styles document real classes/attributes/token dependencies. Do not render Usage/resources or Related examples.
+- [x] The preview uses actual public behavior/recipes, stable indexed fixture strings where repeated, colocated view logic and reset cleanup. Copy shows minimal public consumption (hook call inside caller context or real CSS/CSS-module application), with no wrapper/state implementation or duplicated resource engine. Register only after type, behavior and relevant visual acceptance is delivered.

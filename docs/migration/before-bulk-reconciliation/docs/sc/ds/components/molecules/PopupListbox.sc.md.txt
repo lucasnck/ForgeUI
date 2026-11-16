@@ -1,0 +1,172 @@
+---
+title: "PopupListbox"
+scope: "Presentational option list for text-input popups: renders the hook's listbox/option attributes, the shared popup surface and pointer acceptance"
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# PopupListbox
+
+## Files
+
+```text
+../scripts/check-query-inputs.cjs (C)
+design-system/index.ts (M)
+design-system/components/molecules/PopupListbox/PopupListbox.tsx (M)
+design-system/components/molecules/PopupListbox/PopupListbox.module.css (M)
+design-system/components/molecules/PopupListbox/index.ts (M)
+features/showcase/examples/PopupListbox.example.tsx (M)
+features/showcase/examples/useExampleCopy.ts (M)
+features/showcase/model/showcase-registry.ts (M)
+../scripts/check-design-system.cjs (M)
+design-system/components/molecules/PopupListbox/usePopupListboxView.ts (C)
+features/showcase-v2/components/PopupListbox/definition.ts (C)
+features/showcase-v2/components/PopupListbox/PopupListbox.example.tsx (C)
+features/showcase-v2/components/PopupListbox/usePopupListboxExample.ts (C)
+features/showcase-v2/components/PopupListbox/usage-code.ts (C)
+features/showcase-v2/components/PopupListbox/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [Popup contracts](../../hooks/tech-popup-contracts.sc.md)
+- [PopupListboxItem](../atoms/PopupListboxItem.sc.md)
+- [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
+- [usePresence](../../hooks/tech-presence.sc.md)
+- [Popup recipes](../../styles/tech-popup-recipes.sc.md)
+- [Popup contracts](../../types/tech-popup-types.sc.md)
+- [Animation contracts](../../types/tech-animation-contracts.sc.md)
+- [Surface animations](../../styles/animations/tech-surface-animations.sc.md)
+
+## Contract
+
+```tsx
+import { PopupListbox } from "@/design-system";
+<PopupListbox popup={popup} items={suggestion.domains} getOptionLabel={(domain) => `@${domain}`} listboxLabel={providerSuggestionsLabel}/>;
+```
+
+## Styles
+
+```css
+.list {
+  composes: popup from "../../../styles/popup-components.module.css";
+}
+```
+
+## Animations
+
+```text
+none
+fade
+scale
+```
+
+## Hooks
+
+```tsx
+"use client";
+
+import { useRef } from "react";
+import { usePresence } from "../../../hooks/motion";
+import type { PopupListboxProps } from "./PopupListbox";
+
+export function usePopupListboxView<Item>({ popup, items, getOptionLabel, getOptionKey, listboxLabel, animated = true, animationEffect = "scale" }: PopupListboxProps<Item>) {
+  const elementRef = useRef<HTMLUListElement>(null);
+  const open = popup.isOpen && items.length > 0;
+  const { present, phase, onTransitionEnd } = usePresence({ open, elementRef, enabled: animated && animationEffect !== "none" });
+  return { popup, items, getOptionLabel, getOptionKey, listboxLabel, animated, animationEffect, elementRef, open, present, phase, onTransitionEnd };
+}
+```
+
+## Content
+
+```tsx
+"use client";
+
+import type { ComponentAnimationEffectProps } from "../../../types/animation";
+import type { ComponentPopupProps, PopupListboxContract } from "../../../types/popup";
+import { PopupListboxItem } from "../../atoms/PopupListboxItem";
+import { usePopupListboxView } from "./usePopupListboxView";
+import effects from "../../../styles/animations/surface-animations.module.css";
+import styles from "./PopupListbox.module.css";
+
+export interface PopupListboxProps<Item> extends ComponentPopupProps, ComponentAnimationEffectProps {
+  popup: PopupListboxContract;
+  items: readonly Item[];
+  getOptionLabel(item: Item): string;
+  getOptionKey?(item: Item, index: number): string;
+}
+
+export function PopupListbox<Item>(input: PopupListboxProps<Item>) {
+  const { popup, items, getOptionLabel, getOptionKey, listboxLabel, animationEffect, animated, elementRef, open, present, phase, onTransitionEnd } = usePopupListboxView(input);
+  if (!present) return null;
+  return (
+    <ul {...popup.listboxAttributes} ref={elementRef} className={[styles.list, effects[animationEffect]].join(" ")} aria-label={listboxLabel} aria-hidden={!open || undefined} inert={!open || undefined} data-animated={animated} data-motion-state={phase} data-motion-focus={popup.activeIndex >= 0 || undefined} onTransitionEnd={onTransitionEnd}>
+      {items.map((item, index) => (
+        <PopupListboxItem key={getOptionKey?.(item, index) ?? popup.optionId(index)} popup={popup} index={index} label={getOptionLabel(item)} animated={animated} />
+      ))}
+    </ul>
+  );
+}
+```
+
+## Tests
+
+- V2 Public popup adapter: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- An initially closed or empty list renders no surface; a later exit retains only inert aria-hidden content.
+- Each pointer-handler factory captures its own option index and accepts once.
+- Closed retained options cannot request selection.
+- animationEffect=none and animated=false settle without transition events.
+- Virtual active-option relationships update immediately without cancelling the entry transition.
+
+## Criteria
+
+- [x] Given a closed contract, PopupListbox renders nothing; given an open contract with an empty `items`, it also renders nothing.
+- [x] Given an open contract and three items, exactly one `ul[id][role=listbox]` and three `li[role=option]` elements render, in the caller's order.
+- [x] Given an active index, only that option has `aria-selected="true"` and `data-active`, and the controlling input contract's `aria-activedescendant` resolves to that option id.
+- [x] Given `listboxLabel`, the list exposes it as its accessible name; given no label, the list renders without an `aria-label` attribute.
+- [x] Given rendered option text, it is exactly `getOptionLabel(item)`, and no matching, filtering or value formatting happens inside the component.
+- [x] Given no `getOptionKey`, keys equal `popup.optionId(index)`; given `getOptionKey`, the returned value is used.
+- [x] Given a pointer press on an option, `pointerdown` default is prevented and `popup.acceptOption(index)` runs once for that index, with no handler on `click`.
+- [x] Given two items with identical labels, both options render with distinct ids.
+- [x] Given the module CSS, it declares only `composes` rules and no token, numeric or color value.
+- [x] Given the delivery, `npm run lint`, `npm run typecheck:design-system`, `npm run test:contracts`, `npm run test:tokens` and `npm run test:design-system` pass.
+- [x] Includes the open/closed decision, the listbox surface, one option element per item, option labelling, keys, the active-option marking and pointer acceptance through the contract's `acceptOption`.
+- [x] Excludes disclosure and active-option state, keyboard handling, matching, filtering, ordering, value resolution and completion (owned by [Popup contracts](../../hooks/tech-popup-contracts.sc.md) and each control), rich or multi-line option content, icons, grouping, disabled options, multi-selection, scrolling and virtualization, and every business, API, session or locale concern.
+- [x] Props are declared as a generic interface extending `ComponentPopupProps` and `ComponentAnimationEffectProps`; `listboxLabel` is inherited and never redeclared, and the ARIA attribute bags stay owned by `Popup contracts`.
+- [x] The popup contract uses Required; Instance returned by `usePopupListbox` in the current render of the consuming control; never a cached or re-created object.
+- [x] The items contract uses Required; Same length as the contract's `count`; rendering stops when it is empty.
+- [x] The getOptionLabel contract uses Required; Returns the option's visible and accessible text; plain string, localized by the consumer.
+- [x] The getOptionKey contract uses `popup.optionId(index)`; Stable identity for items that can reorder or repeat; the default key matches the option id contract.
+- [x] The animated contract uses true; false settles presence immediately; reduced motion also settles it.
+- [x] The listboxLabel contract uses undefined; Inherited from `ComponentPopupProps`; optional localized accessible name for the list.
+- [x] Initial closed/empty renders return null. usePresence coordinates the mounted list ref and visual removal only.
+- [x] A retained exiting shell is inert and aria-hidden; pointer acceptance additionally checks the current open flag.
+- [x] Pointer acceptance runs on `pointerdown` with `preventDefault`, before the control can blur, and is deliberately not repeated on `click`, so one press accepts exactly one option.
+- [x] The open/closed decision, the active option and the ids come from the contract, which is the single owner of the disclosure transitions.
+- [x] Component-local CSS: `src/design-system/components/molecules/PopupListbox/PopupListbox.module.css`.
+- [x] All visual declarations belong to the shared recipe; this module only attaches it.
+- [x] The popup surface, placement below the anchor, inline-size matching, active-option background, forced-colors outline, ellipsis framing and the absence of a scroll region are owned by [Popup contracts](../../hooks/tech-popup-contracts.sc.md#styles).
+- [x] Motion uses the shared surface animation effect classes and usePresence lifecycle.
+- [x] Reduced motion and animated=false settle immediately; visual retention never delays semantic dismissal.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] closed → open → Accepted authoritative open → Dedicated visual .list, not the focused trigger → scale/fade/none; --motion-normal / --ease-standard.
+- [x] open → closed → Accepted authoritative close → Inert retained visual shell only when supported → Same recipe; usePresence completion/fallback.
+- [x] The dedicated list surface now consumes one usePresence owner and supports retained inert pixels during exit.
+- [x] Semantic dismissal, trigger focus return and pointer-target focus stay immediate.
+- [x] Focus is established immediately without cancelling the selected entry transition.
+- [x] Preserve one root popup hook and option-only list hierarchy; adding visual retention does not let inactive options stay selectable.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+- [x] usePopupListboxView is colocated with PopupListbox and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+- [x] Server snapshots and module evaluation never read browser globals; mounted presence refs/effects belong only to visual lifecycle.
+- [x] animationEffect defaults to scale; none disables presence retention while preserving native popup semantics.
+- [x] Effect classes remain in the surface animation module and never delay pointer acceptance or keyboard focus.
+
+- [x] V2 **Public popup adapter**: Use the real usePopupListbox hook, returned trigger/listbox attributes and five indexed items; navigate enabled options and accept one value without importing internal context.
+- [x] The PopupListbox V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. usePopupListboxExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

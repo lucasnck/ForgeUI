@@ -1,0 +1,4 @@
+import type { ComponentPropsWithRef, RefObject } from "react";
+/** Public collapse state contract shared by consumers and Showcase V2. */
+export interface CollapseOptions { open?: boolean; defaultOpen?: boolean; onOpenChange?(open: boolean): void; disabled?: boolean; id?: string; }
+export interface CollapseContract { disabled: boolean; open: boolean; triggerRef: RefObject<HTMLButtonElement | null>; bodyRef: RefObject<HTMLDivElement | null>; triggerProps: ComponentPropsWithRef<"button">; bodyProps: ComponentPropsWithRef<"div">; requestOpen(open: boolean): void; toggle(): void; }

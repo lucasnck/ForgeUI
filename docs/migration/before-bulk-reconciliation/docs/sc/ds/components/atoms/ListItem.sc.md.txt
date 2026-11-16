@@ -1,0 +1,97 @@
+---
+title: "ListItem"
+scope: "List public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "atoms"
+---
+
+# ListItem
+
+## Files
+
+```text
+features/showcase/examples/ListItem.example.tsx (M)
+features/showcase/examples/useListExampleCopy.ts (C)
+features/showcase/examples/ListExamples.module.css (C)
+features/showcase/examples/ListContentExamples.tsx (C)
+features/showcase-v2/components/ListItem/definition.ts (C)
+features/showcase-v2/components/ListItem/ListItem.example.tsx (C)
+features/showcase-v2/components/ListItem/useListItemExample.ts (C)
+features/showcase-v2/components/ListItem/usage-code.ts (C)
+features/showcase-v2/components/List/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [List.sc.md](../molecules/List.sc.md)
+
+## Contract
+
+```tsx
+import { List, ListBody, ListItem } from "@/design-system";
+
+<List label="Result item example">
+  <ListBody><ListItem>Lorem ipsum dolor sit amet.</ListItem></ListBody>
+</List>
+```
+
+## Styles
+
+```css
+.root {
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+```
+
+## Content
+
+```tsx
+import type { NativeCollectionItemProps } from "../../../types/compound-composition";
+import styles from "./ListItem.module.css";
+
+export interface ListItemProps extends NativeCollectionItemProps {}
+
+export function ListItem({ children, className, ...props }: ListItemProps) {
+  return <li {...props} className={[styles.root, className].filter(Boolean).join(" ")}>{children}</li>;
+}
+```
+
+## Tests
+
+- Footer composition uses the existing inline recipe through native `data-justify="end"` on ListFooter and its owned gap/wrap; do not nest a shrinking action row or add a DS justify prop. Minimal code preserves the same owner layout.
+
+- V2 Indexed content list: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Native li markup preserves caller content and native passive attributes inside a real ListBody ul.
+- Each atomic example uses one ListItem without inserting wrappers between ul and li.
+- Icon content is decorative; image content includes a localized alt and fits the available width.
+
+## Criteria
+
+- [x] Given ListItem, A plain li primitive requires ul/ol parent and accepts caller content.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] A plain li primitive requires ul/ol parent and accepts caller content.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+
+- [x] Showcase demonstrates this component independently with only the required public family context and distinct content variations, without duplicating the complete-family preview.
+
+- [x] Item examples each show exactly one li in a real public List/ListBody owner: text, decorative icon plus text, and image plus text.
+- [x] No Header, Footer, listbox role, option role, selected state or duplicate list state machine is introduced.
+- [x] Dedicated example copy provides pt-BR, es and en without modifying the shared example dictionary or the DS public API.
+- [x] Integrated visual verification confirms atomic isolation, native list hierarchy, spacing, image sizing and narrow-width layout in the running Showcase.
+
+- [x] V2 **Indexed content list**: Compose ListHeader/Body/Footer with three ListItems, Heading/Text and a local action; caller-owned filtering preserves Children 1..3 and can show empty content without adding unsupported List props.
+- [x] The ListItem V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useListItemExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
+- [x] Contextual V2 collection data reuses the List fixture module listed in Files; part pages do not create a second index/key sequence for the same records.

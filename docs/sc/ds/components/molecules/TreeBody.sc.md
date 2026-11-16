@@ -1,0 +1,107 @@
+---
+title: "TreeBody"
+scope: "Tree public part with independently specified semantics and no duplicate family state."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# TreeBody
+
+## Files
+
+```text
+features/showcase/examples/TreePartExamples.tsx (C)
+design-system/components/molecules/TreeBody/TreeBody.tsx (C)
+design-system/components/molecules/TreeBody/TreeBody.module.css (C)
+design-system/components/molecules/TreeBody/index.ts (C)
+design-system/internal/tree/TreeContext.ts (C)
+design-system/index.ts (M)
+features/showcase/examples/TreeBody.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+design-system/components/molecules/TreeBody/useTreeBody.ts (C)
+features/showcase-v2/components/TreeBody/definition.ts (C)
+features/showcase-v2/components/TreeBody/TreeBody.example.tsx (C)
+features/showcase-v2/components/TreeBody/useTreeBodyExample.ts (C)
+features/showcase-v2/components/TreeBody/usage-code.ts (C)
+features/showcase-v2/components/Tree/fixtures.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-animations.sc.md](../../styles/animations/tech-motion-recipes.sc.md)
+- [tech-collection-contracts.sc.md](../../types/tech-collection-contracts.sc.md)
+- [tech-compound-composition.sc.md](../../types/tech-compound-composition.sc.md)
+- [Tree.sc.md](../organisms/Tree.sc.md)
+- [TreeItem](TreeItem.sc.md)
+
+## Contract
+
+```tsx
+import { Tree, TreeBody } from "@forge-ui/web";
+<Tree label="Resources" nodes={[{ key: "guide", label: "Guide" }]}><TreeBody /></Tree>;
+```
+
+## Styles
+
+```css
+.root { min-inline-size: var(--zero); min-block-size: var(--component-height-md); composes: interactive from "../../../styles/interactive-components.module.css"; list-style: none; margin: var(--zero); padding: var(--zero); }
+
+.root[hidden] { display: none; }
+```
+
+## Hooks
+
+```tsx
+"use client";
+import { useImperativeHandle } from "react";
+import { useTreeContext } from "../../../internal/tree/TreeContext";
+import type { TreeBodyProps } from "./TreeBody";
+export function useTreeBody(input: TreeBodyProps) { const { ref, className, ...props } = input; const tree = useTreeContext(); useImperativeHandle(ref, () => tree.bodyRef.current!, [tree.bodyRef]); return { props, className, bodyRef: tree.bodyRef, label: tree.label, nodes: tree.nodes, fallback: tree.fallback }; }
+```
+
+## Content
+
+```tsx
+"use client";
+import type { NativeCollectionListProps } from "../../../types";
+import { TreeItem } from "../TreeItem";
+import { useTreeBody } from "./useTreeBody";
+import styles from "./TreeBody.module.css";
+export interface TreeBodyProps extends NativeCollectionListProps {}
+export function TreeBody(input: TreeBodyProps) {
+  const { props, className, bodyRef, label, nodes, fallback } = useTreeBody(input);
+  return <ul {...props} ref={bodyRef} role="tree" aria-label={label} tabIndex={fallback ? 0 : undefined} className={[styles.root, className].filter(Boolean).join(" ")}>{nodes.map((node, index) => <TreeItem key={node.key} node={node} level={1} position={index + 1} siblingCount={nodes.length} />)}</ul>;
+}
+```
+
+## Tests
+
+- V2 TreeBody contextual region: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+- Actual browser verification covers nested branch arrows, skipped disabled nodes, collapsed descendant traversal, named all-disabled fallback, and an external Footer collapse that preserves Footer focus.
+
+- `npm run test:overlays` verifies actual React SSR semantics and family guards.
+- `npm run test:hooks` verifies keyboard control and focus repair; browser validation is separate.
+- Disabled or unregistered items are skipped during the family’s documented keyboard traversal.
+- Caller-prevented activation runs no owned selection/action and does not duplicate callbacks.
+- Nested scopes and unmount cleanup preserve independent registration and stable relationship ids.
+
+## Criteria
+
+- [x] Given TreeBody, Body owns role=tree, named root fallback and root sibling metadata.
+- [x] The Native attributes / children contract uses Forward to semantic owner; context-owned role/id/ARIA fields take precedence.
+- [x] The Missing region contract uses Parent omits it; no empty wrapper.
+- [x] Body owns role=tree, named root fallback and root sibling metadata.
+- [x] Use the existing control/surface recipes for composed atoms; local spacing consumes --space-2 only where this part owns it.
+- [x] useTreeBody is colocated with TreeBody and called at the top of render; state, effects, behavioral refs and handlers remain in that hook.
+
+- [x] Showcase demonstrates this component independently with only the required family context, distinct supported content/state variations and no duplicated complete-family preview.
+
+- [x] V2 **TreeBody contextual region**: Render TreeBody through public Tree with the minimum valid siblings. Show Text children="Children" or the actual owner-generated options/records, preserving required siblings and owner semantics. Hide/omit optional siblings only where allowed by the owner; link to the full Tree composition.
+- [x] The TreeBody V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useTreeBodyExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Collection strings use original one-based prop-name text (Label 1, Title 1, Children 1), stable keys and deterministic depth-first indices for nesting. Sorting/filtering/paging preserve identity; caller-owned fixture logic stays outside DS source.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.

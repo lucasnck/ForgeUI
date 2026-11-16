@@ -1,0 +1,3666 @@
+---
+title: "Component Catalog"
+scope: "Minimal consumption contracts for available rendered resources"
+---
+
+# Component Catalog
+
+## Atoms
+
+### CurrencyValue
+
+[Specification](ds/components/atoms/CurrencyValue.sc.md)
+
+#### Contract
+
+```tsx
+import {CurrencyValue} from "@/design-system";
+<CurrencyValue value="1234.56" currency="BRL" locale="pt-BR" />;
+```
+
+
+### SharedElement
+
+[Specification](ds/components/atoms/SharedElement.sc.md)
+
+#### Contract
+
+```tsx
+import { SharedElement } from "@/design-system";
+<SharedElement name={recordTitleName} animated={animated}>{record.name}</SharedElement>;
+```
+
+### OverlayPortal
+
+[Specification](ds/components/atoms/OverlayPortal.sc.md)
+
+#### Contract
+
+```tsx
+import { OverlayPortal } from "@/design-system";
+
+<OverlayPortal>{panel}</OverlayPortal>;
+```
+
+
+### Checkbox
+
+[Specification](ds/components/atoms/Checkbox.sc.md)
+
+#### Contract
+
+```tsx
+import { Checkbox } from "@/design-system";
+
+<Checkbox size="md" tone="brand" aria-label="Enable option" />
+```
+
+### Button
+
+[Specification](ds/components/atoms/Button.sc.md)
+
+#### Contract
+
+```tsx
+import { Button } from "@/design-system";
+
+<Button type="submit">Save</Button>;
+```
+
+### Input
+
+[Specification](ds/components/atoms/Input.sc.md)
+
+#### Contract
+
+```tsx
+import { Input } from "@/design-system";
+
+<Input type="email" aria-label="Email" autoComplete="email" />;
+```
+
+### Select
+
+[Specification](ds/components/atoms/Select.sc.md)
+
+#### Contract
+
+```tsx
+import { Select } from "@/design-system";
+
+<Select aria-label="Category" defaultValue="general">
+  <option value="general">General</option>
+  <option value="other">Other</option>
+</Select>;
+```
+
+### Text
+
+[Specification](ds/components/atoms/Text.sc.md)
+
+#### Contract
+
+```tsx
+import { Text } from "@/design-system";
+
+<Text as="p" size="lg" weight="medium">
+  {body}
+</Text>;
+```
+
+### Heading
+
+[Specification](ds/components/atoms/Heading.sc.md)
+
+#### Contract
+
+```tsx
+import { Heading } from "@/design-system";
+
+<Heading level={2} size="lg">
+  {sectionTitle}
+</Heading>;
+```
+
+### Divider
+
+[Specification](ds/components/atoms/Divider.sc.md)
+
+#### Contract
+
+```tsx
+import { Divider } from "@/design-system";
+
+<Divider />;
+```
+
+### Link
+
+[Specification](ds/components/atoms/Link.sc.md)
+
+#### Contract
+
+```tsx
+import { Link } from "@/design-system";
+
+<Link href={privacyUrl}>{privacyLabel}</Link>;
+```
+
+### Textarea
+
+[Specification](ds/components/atoms/Textarea.sc.md)
+
+#### Contract
+
+```tsx
+import { FormField, Textarea } from "@/design-system";
+
+<FormField controlId="notes" label={notesLabel}>
+  <Textarea name="notes" rows={4} />
+</FormField>;
+```
+
+### VisuallyHidden
+
+[Specification](ds/components/atoms/VisuallyHidden.sc.md)
+
+#### Contract
+
+```tsx
+import { Button, VisuallyHidden } from "@/design-system";
+
+<Button type="submit">
+  {savingGlyph}
+  <VisuallyHidden>{savingLabel}</VisuallyHidden>
+</Button>;
+```
+
+### Icon
+
+[Specification](ds/components/atoms/Icon.sc.md)
+
+#### Contract
+
+```tsx
+import { Icon } from "@/design-system";
+
+<Icon name="chevron-down" size="sm" />;
+
+<button type="button" aria-label={closeLabel}>
+  <Icon name="close" />
+</button>;
+```
+
+### Stack
+
+[Specification](ds/components/atoms/Stack.sc.md)
+
+#### Contract
+
+```tsx
+import { Stack } from "@/design-system";
+
+<Stack gap="3">
+  <Text as="p">{lead}</Text>
+  <Text as="p" tone="muted">{hint}</Text>
+</Stack>;
+```
+
+### Inline
+
+[Specification](ds/components/atoms/Inline.sc.md)
+
+#### Contract
+
+```tsx
+import { Inline } from "@/design-system";
+
+<Inline justify="between">
+  <Button appearance="ghost" tone="neutral">{resetLabel}</Button>
+  <Button type="submit">{saveLabel}</Button>
+</Inline>;
+```
+
+### Surface
+
+[Specification](ds/components/atoms/Surface.sc.md)
+
+#### Contract
+
+```tsx
+import { Surface } from "@/design-system";
+
+<Surface padding="6" elevation="floating">
+  {children}
+</Surface>;
+```
+
+### SimpleGrid
+
+[Specification](ds/components/atoms/SimpleGrid.sc.md)
+
+#### Contract
+
+```tsx
+import { SimpleGrid } from "@/design-system";
+
+<SimpleGrid columns={{ base: "1", mobile: "2", wide: "4" }} gap="4">
+  {items}
+</SimpleGrid>;
+```
+
+### Container
+
+[Specification](ds/components/atoms/Container.sc.md)
+
+#### Contract
+
+```tsx
+import { Container } from "@/design-system";
+
+<Container size="narrow">
+  {content}
+</Container>;
+```
+
+### AspectRatio
+
+[Specification](ds/components/atoms/AspectRatio.sc.md)
+
+#### Contract
+
+```tsx
+import { AspectRatio } from "@/design-system";
+
+<AspectRatio ratio="video">
+  <img src={coverUrl} alt={coverAlt} className={styles.cover} />
+</AspectRatio>;
+```
+
+### Label
+
+[Specification](ds/components/atoms/Label.sc.md)
+
+#### Contract
+
+```tsx
+import { Label } from "@/design-system";
+
+<Label htmlFor="email" required>Email</Label>
+```
+
+### FieldHint
+
+[Specification](ds/components/atoms/FieldHint.sc.md)
+
+#### Contract
+
+```tsx
+import { FieldHint } from "@/design-system";
+
+<FieldHint id="email-hint">Use your work email</FieldHint>
+```
+
+### FieldError
+
+[Specification](ds/components/atoms/FieldError.sc.md)
+
+#### Contract
+
+```tsx
+import { FieldError } from "@/design-system";
+
+<FieldError id="email-error" announce={false}>Enter a valid email</FieldError>
+```
+
+### Radio
+
+[Specification](ds/components/atoms/Radio.sc.md)
+
+#### Contract
+
+```tsx
+import { Radio } from "@/design-system";
+
+<fieldset>
+  <legend>Delivery</legend>
+  <Radio name="delivery" value="email" aria-label="Email" />
+  <Radio name="delivery" value="sms" aria-label="SMS" />
+</fieldset>
+```
+
+### Switch
+
+[Specification](ds/components/atoms/Switch.sc.md)
+
+#### Contract
+
+```tsx
+import { Switch } from "@/design-system";
+
+<Switch id="notifications" name="notifications" aria-label="Notifications" />
+```
+
+### Avatar
+
+[Specification](ds/components/atoms/Avatar.sc.md)
+
+#### Contract
+
+```tsx
+import { Avatar } from "@/design-system";
+
+<Avatar label="Ana Silva" initials="AS" size="md" />
+```
+
+### Badge
+
+[Specification](ds/components/atoms/Badge.sc.md)
+
+#### Contract
+
+```tsx
+import { Badge } from "@/design-system";
+
+<Badge tone="success" appearance="solid">Active</Badge>
+```
+
+### Progress
+
+[Specification](ds/components/atoms/Progress.sc.md)
+
+#### Contract
+
+```tsx
+import { Progress } from "@/design-system";
+
+<Progress label="Upload" value={40} max={100} />
+```
+
+### Meter
+
+[Specification](ds/components/atoms/Meter.sc.md)
+
+#### Contract
+
+```tsx
+import { Meter } from "@/design-system";
+
+<Meter label="Storage usage" value={65} min={0} max={100} low={25} high={75} aria-valuetext="65 percent" />
+```
+
+### Skeleton
+
+[Specification](ds/components/atoms/Skeleton.sc.md)
+
+#### Contract
+
+```tsx
+import { Skeleton } from "@/design-system";
+
+<Skeleton kind="text" size="md" animated />
+```
+
+### Spinner
+
+[Specification](ds/components/atoms/Spinner.sc.md)
+
+#### Contract
+
+```tsx
+import { Spinner } from "@/design-system";
+
+<Spinner size="md" decorative={false} label="Loading" />
+```
+
+### ModalBody
+
+[Specification](ds/components/atoms/ModalBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/design-system";
+<Modal><ModalHeader title="Confirm"/><ModalBody>Confirmation details</ModalBody><ModalFooter><button type="button">Action</button></ModalFooter></Modal>;
+```
+
+### ModalFooter
+
+[Specification](ds/components/atoms/ModalFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/design-system";
+<Modal><ModalHeader title="Confirm"/><ModalBody>Confirmation details</ModalBody><ModalFooter><button type="button">Action</button></ModalFooter></Modal>;
+```
+
+### ToastHeader
+
+[Specification](ds/components/atoms/ToastHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { ToastRegion, Toast, ToastHeader, ToastBody } from "@/design-system";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastHeader>Saved</ToastHeader><ToastBody hidden /></Toast>} />;
+```
+
+### ToastBody
+
+[Specification](ds/components/atoms/ToastBody.sc.md)
+
+#### Contract
+
+```tsx
+import { ToastRegion, Toast, ToastBody } from "@/design-system";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastBody>Changes saved.</ToastBody></Toast>} />;
+```
+
+### DialogClose
+
+[Specification](ds/components/atoms/DialogClose.sc.md)
+
+#### Contract
+
+```tsx
+import { Dialog, DialogHeader, DialogBody, DialogFooter, DialogClose } from "@/design-system";
+<Dialog open={open} onOpenChange={setOpen}><DialogHeader title="Details"/><DialogBody>Details content</DialogBody><DialogFooter><DialogClose>Close</DialogClose></DialogFooter></Dialog>;
+```
+
+### DialogBody
+
+[Specification](ds/components/atoms/DialogBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Dialog, DialogBody } from "@/design-system";
+<Dialog aria-label="Details"><DialogBody>Details content</DialogBody></Dialog>;
+```
+
+### DialogFooter
+
+[Specification](ds/components/atoms/DialogFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Dialog, DialogFooter, ModalBody, DialogClose } from "@/design-system";
+<Dialog aria-label="Details"><ModalBody hidden /><DialogFooter><DialogClose>Close</DialogClose></DialogFooter></Dialog>;
+```
+
+### AlertDialogBody
+
+[Specification](ds/components/atoms/AlertDialogBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, AlertDialogBody } from "@/design-system";
+<Modal aria-label="Details"><AlertDialogBody>Details content</AlertDialogBody></Modal>;
+```
+
+### AlertDialogFooter
+
+[Specification](ds/components/atoms/AlertDialogFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, AlertDialogFooter, ModalBody, DialogClose } from "@/design-system";
+<Modal aria-label="Details"><ModalBody hidden /><AlertDialogFooter><DialogClose>Close</DialogClose></AlertDialogFooter></Modal>;
+```
+
+### CardHeader
+
+[Specification](ds/components/atoms/CardHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Card, CardHeader, CardBody, Heading } from "@/design-system";
+
+<Card><CardHeader><Heading level={4}>Record title</Heading></CardHeader><CardBody hidden /></Card>;
+```
+
+### CardBody
+
+[Specification](ds/components/atoms/CardBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Card, CardBody } from "@/design-system";
+
+<Card><CardBody><p>Lorem ipsum dolor sit amet.</p></CardBody></Card>;
+```
+
+### CardFooter
+
+[Specification](ds/components/atoms/CardFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Card, CardBody, CardFooter, Divider, Button } from "@/design-system";
+
+<Card aria-label="Footer actions"><CardBody hidden /><CardFooter><Divider /><Button onClick={confirm}>Confirm</Button></CardFooter></Card>;
+```
+
+### AlertHeader
+
+[Specification](ds/components/atoms/AlertHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Alert, AlertHeader, AlertBody, Heading } from "@/design-system";
+<Alert announcement="off"><AlertHeader><Heading level={3}>Saved</Heading></AlertHeader><AlertBody hidden /></Alert>;
+```
+
+### AlertBody
+
+[Specification](ds/components/atoms/AlertBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Alert, AlertBody, Text } from "@/design-system";
+<Alert announcement="off"><AlertBody><Text as="p">Changes saved.</Text></AlertBody></Alert>;
+```
+
+### AlertFooter
+
+[Specification](ds/components/atoms/AlertFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Alert, AlertBody, AlertFooter, Button } from "@/design-system";
+<Alert announcement="off"><AlertBody hidden /><AlertFooter><Button onClick={review}>Review</Button></AlertFooter></Alert>;
+```
+
+### ListHeader
+
+[Specification](ds/components/atoms/ListHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Heading, List, ListHeader, ListBody } from "@/design-system";
+
+<List>
+  <ListHeader><Heading level={4}>Results</Heading></ListHeader>
+  <ListBody hidden />
+</List>
+```
+
+### ListBody
+
+[Specification](ds/components/atoms/ListBody.sc.md)
+
+#### Contract
+
+```tsx
+import { List, ListBody, ListItem, Text } from "@/design-system";
+
+<List label="Results">
+  <ListBody><ListItem><Text as="p">Lorem ipsum dolor sit amet.</Text></ListItem></ListBody>
+</List>
+```
+
+### ListFooter
+
+[Specification](ds/components/atoms/ListFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Button, List, ListBody, ListFooter } from "@/design-system";
+
+<List label="Results">
+  <ListBody hidden />
+  <ListFooter><Button onClick={showDetails}>Show details</Button></ListFooter>
+</List>
+```
+
+### EmptyStateHeader
+
+[Specification](ds/components/atoms/EmptyStateHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { EmptyState, EmptyStateHeader, EmptyStateBody } from "@/design-system";
+<EmptyState><EmptyStateHeader>Title</EmptyStateHeader><EmptyStateBody hidden /></EmptyState>;
+```
+
+### EmptyStateBody
+
+[Specification](ds/components/atoms/EmptyStateBody.sc.md)
+
+#### Contract
+
+```tsx
+import { EmptyState, EmptyStateBody } from "@/design-system";
+<EmptyState><EmptyStateBody>Description</EmptyStateBody></EmptyState>;
+```
+
+### EmptyStateFooter
+
+[Specification](ds/components/atoms/EmptyStateFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { EmptyState, EmptyStateFooter, EmptyStateBody } from "@/design-system";
+<EmptyState><EmptyStateBody hidden /><EmptyStateFooter>Actions</EmptyStateFooter></EmptyState>;
+```
+
+### ErrorStateHeader
+
+[Specification](ds/components/atoms/ErrorStateHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { ErrorState, ErrorStateHeader, ErrorStateBody } from "@/design-system";
+<ErrorState announcement="off"><ErrorStateHeader>Title</ErrorStateHeader><ErrorStateBody hidden /></ErrorState>;
+```
+
+### ErrorStateBody
+
+[Specification](ds/components/atoms/ErrorStateBody.sc.md)
+
+#### Contract
+
+```tsx
+import { ErrorState, ErrorStateBody } from "@/design-system";
+<ErrorState announcement="off"><ErrorStateBody>Description</ErrorStateBody></ErrorState>;
+```
+
+### ErrorStateFooter
+
+[Specification](ds/components/atoms/ErrorStateFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { ErrorState, ErrorStateFooter, ErrorStateBody } from "@/design-system";
+<ErrorState announcement="off"><ErrorStateBody hidden /><ErrorStateFooter>Actions</ErrorStateFooter></ErrorState>;
+```
+
+### LoadingStateHeader
+
+[Specification](ds/components/atoms/LoadingStateHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Heading, LoadingState, LoadingStateHeader, LoadingStateBody } from "@/design-system";
+
+<LoadingState label="Loading records">
+  <LoadingStateHeader><Heading level={4}>Loading content</Heading></LoadingStateHeader>
+  <LoadingStateBody hidden />
+</LoadingState>
+```
+
+### LoadingStateFooter
+
+[Specification](ds/components/atoms/LoadingStateFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Button, LoadingState, LoadingStateBody, LoadingStateFooter } from "@/design-system";
+
+<LoadingState label="Loading records">
+  <LoadingStateBody hidden />
+  <LoadingStateFooter><Button onClick={requestCancellation}>Cancel</Button></LoadingStateFooter>
+</LoadingState>
+```
+
+### ListItem
+
+[Specification](ds/components/atoms/ListItem.sc.md)
+
+#### Contract
+
+```tsx
+import { List, ListBody, ListItem } from "@/design-system";
+
+<List label="Result item example">
+  <ListBody><ListItem>Lorem ipsum dolor sit amet.</ListItem></ListBody>
+</List>
+```
+
+### Option
+
+[Specification](ds/components/atoms/Option.sc.md)
+
+#### Contract
+
+```tsx
+import { Select, Option } from "@/design-system";
+<Select aria-label="Preference"><Option value="first">First</Option></Select>;
+```
+
+### CollapseHeader
+
+[Specification](ds/components/atoms/CollapseHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Collapse, CollapseHeader, CollapseBody } from "@/design-system";
+<Collapse><CollapseHeader>Details</CollapseHeader><CollapseBody hidden /></Collapse>;
+```
+
+### CollapseBody
+
+[Specification](ds/components/atoms/CollapseBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Collapse, CollapseHeader, CollapseBody } from "@/design-system";
+<Collapse defaultOpen animated={false}><CollapseHeader hidden>Details</CollapseHeader><CollapseBody>Content</CollapseBody></Collapse>;
+```
+
+### CollapseFooter
+
+[Specification](ds/components/atoms/CollapseFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Collapse, CollapseHeader, CollapseBody, CollapseFooter, Button } from "@/design-system";
+<Collapse defaultOpen animated={false}><CollapseHeader hidden>Actions</CollapseHeader><CollapseBody hidden /><CollapseFooter><Button onClick={save}>Save</Button></CollapseFooter></Collapse>;
+```
+
+### BreadcrumbItem
+
+[Specification](ds/components/atoms/BreadcrumbItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Breadcrumb, BreadcrumbItem } from "@/design-system";
+<Breadcrumb label="Navigation"><BreadcrumbItem current>Current page</BreadcrumbItem></Breadcrumb>;
+```
+
+### PaginationEllipsis
+
+[Specification](ds/components/atoms/PaginationEllipsis.sc.md)
+
+#### Contract
+
+```tsx
+import { PaginationEllipsis } from "@/design-system";
+
+<PaginationEllipsis />;
+```
+
+### PaginationItem
+
+[Specification](ds/components/atoms/PaginationItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Pagination, PaginationItem } from "@/design-system";
+<Pagination label="Pages" page={1} pageCount={3} onPageChange={setPage}><PaginationItem page={1} label="Page 1"/><PaginationItem page={2} label="Page 2"/></Pagination>;
+```
+
+### ChoiceGroupHeader
+
+[Specification](ds/components/atoms/ChoiceGroupHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { ChoiceGroup, ChoiceGroupHeader, ChoiceGroupBody } from "@/design-system";
+<ChoiceGroup><ChoiceGroupHeader>Preferences</ChoiceGroupHeader><ChoiceGroupBody hidden /></ChoiceGroup>;
+```
+
+### ChoiceGroupBody
+
+[Specification](ds/components/atoms/ChoiceGroupBody.sc.md)
+
+#### Contract
+
+```tsx
+import { ChoiceGroup, ChoiceGroupHeader, ChoiceGroupBody, Checkbox, Label } from "@/design-system";
+<ChoiceGroup aria-label="Preferences"><ChoiceGroupHeader hidden>Preferences</ChoiceGroupHeader><ChoiceGroupBody><label><Checkbox name="email" />Email</label></ChoiceGroupBody></ChoiceGroup>;
+```
+
+### ChoiceGroupFooter
+
+[Specification](ds/components/atoms/ChoiceGroupFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { ChoiceGroup, ChoiceGroupHeader, ChoiceGroupBody, ChoiceGroupFooter, FieldHint } from "@/design-system";
+<ChoiceGroup aria-label="Preferences"><ChoiceGroupHeader hidden>Preferences</ChoiceGroupHeader><ChoiceGroupBody hidden /><ChoiceGroupFooter><FieldHint>Choose a channel</FieldHint></ChoiceGroupFooter></ChoiceGroup>;
+```
+
+### AccordionHeader
+
+[Specification](ds/components/atoms/AccordionHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from "@/design-system";
+<Accordion level={2}><AccordionItem value="details"><AccordionHeader>Details</AccordionHeader><AccordionBody>Content</AccordionBody></AccordionItem></Accordion>;
+```
+
+### AccordionBody
+
+[Specification](ds/components/atoms/AccordionBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from "@/design-system";
+<Accordion level={2}><AccordionItem value="details"><AccordionHeader>Details</AccordionHeader><AccordionBody>Content</AccordionBody></AccordionItem></Accordion>;
+```
+
+### AccordionFooter
+
+[Specification](ds/components/atoms/AccordionFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionBody, AccordionFooter } from "@/design-system";
+<Accordion level={2}><AccordionItem value="details"><AccordionHeader>Details</AccordionHeader><AccordionBody>Content</AccordionBody><AccordionFooter>Related action</AccordionFooter></AccordionItem></Accordion>;
+```
+
+### ListBoxHeader
+
+[Specification](ds/components/atoms/ListBoxHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { ListBox, ListBoxHeader, ListBoxBody } from "@/design-system";
+<ListBox label="Options" options={[]}><ListBoxHeader>Options</ListBoxHeader><ListBoxBody hidden /></ListBox>;
+```
+
+### ListBoxFooter
+
+[Specification](ds/components/atoms/ListBoxFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { ListBox, ListBoxBody, ListBoxFooter } from "@/design-system";
+<ListBox label="Options" options={[]}><ListBoxBody hidden /><ListBoxFooter>Additional information</ListBoxFooter></ListBox>;
+```
+
+### ListBoxItem
+
+[Specification](ds/components/atoms/ListBoxItem.sc.md)
+
+#### Contract
+
+```tsx
+import { ListBox, ListBoxBody } from "@/design-system";
+<ListBox label="Options" options={[{ value: "one", label: "First option" }]}><ListBoxBody /></ListBox>;
+```
+
+### FormHeader
+
+[Specification](ds/components/atoms/FormHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Form, FormBody, FormHeader, Heading } from "@/design-system";
+
+<Form aria-label="Contact details" onValidSubmit={saveForm}>
+  <FormHeader><Heading level={4}>Contact details</Heading></FormHeader>
+  <FormBody hidden />
+</Form>
+```
+
+### FormBody
+
+[Specification](ds/components/atoms/FormBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Form, FormHeader, FormBody, FormField, Input } from "@/design-system";
+
+<Form aria-label="Contact details" onValidSubmit={saveForm}>
+  <FormHeader hidden />
+  <FormBody>
+    <FormField controlId="contact-name" label="Name"><Input name="name" required /></FormField>
+    <FormField controlId="contact-email" label="Email"><Input name="email" type="email" required /></FormField>
+  </FormBody>
+</Form>
+```
+
+### FormFooter
+
+[Specification](ds/components/atoms/FormFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Button, Divider, Form, FormHeader, FormBody, FormFooter } from "@/design-system";
+
+<Form aria-label="Form actions" onValidSubmit={saveForm}>
+  <FormHeader hidden />
+  <FormBody hidden />
+  <FormFooter>
+    <Divider />
+    <Button type="submit" name="intent" value="submit">Submit</Button>
+    <Button type="button" appearance="ghost" onClick={cancel}>Cancel</Button>
+  </FormFooter>
+</Form>
+```
+
+### ToolbarItem
+
+[Specification](ds/components/atoms/ToolbarItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Toolbar, ToolbarItem } from "@/design-system";
+<Toolbar label="Actions"><ToolbarItem itemKey="save" onClick={save}>Save</ToolbarItem></Toolbar>;
+```
+
+### TabsHeader
+
+[Specification](ds/components/atoms/TabsHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel } from "@/design-system";
+<Tabs label="Details"><TabsHeader><Tab value="one">Overview</Tab></TabsHeader><TabsBody hidden><TabPanel value="one">Overview content</TabPanel></TabsBody></Tabs>;
+```
+
+### TabsBody
+
+[Specification](ds/components/atoms/TabsBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel } from "@/design-system";
+<Tabs label="Details"><TabsHeader hidden><Tab value="one">Overview</Tab></TabsHeader><TabsBody><TabPanel value="one">Overview content</TabPanel></TabsBody></Tabs>;
+```
+
+### TabsFooter
+
+[Specification](ds/components/atoms/TabsFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel, TabsFooter } from "@/design-system";
+<Tabs label="Details"><TabsHeader hidden><Tab value="one">Overview</Tab></TabsHeader><TabsBody hidden><TabPanel value="one">Overview content</TabPanel></TabsBody><TabsFooter>Additional information</TabsFooter></Tabs>;
+```
+
+### Tab
+
+[Specification](ds/components/atoms/Tab.sc.md)
+
+#### Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel } from "@/design-system";
+<Tabs label="Details"><TabsHeader><Tab value="one" size="md" tone="brand" appearance="ghost" shape="rounded" attached>Overview</Tab></TabsHeader><TabsBody hidden><TabPanel value="one">Overview content</TabPanel></TabsBody></Tabs>;
+```
+
+### TabPanel
+
+[Specification](ds/components/atoms/TabPanel.sc.md)
+
+#### Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel } from "@/design-system";
+<Tabs label="Details"><TabsHeader hidden><Tab value="one">Overview</Tab></TabsHeader><TabsBody><TabPanel value="one">Overview content</TabPanel></TabsBody></Tabs>;
+```
+
+### MenuHeader
+
+[Specification](ds/components/atoms/MenuHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Menu, MenuBody, MenuHeader } from "@/design-system";
+<Menu label="Actions" onAction={runAction}><MenuHeader>Actions</MenuHeader><MenuBody hidden /></Menu>;
+```
+
+### MenuBody
+
+[Specification](ds/components/atoms/MenuBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Menu, MenuBody, MenuItem } from "@/design-system";
+<Menu label="Actions" onAction={runAction}><MenuBody><MenuItem value="download" label="Download"/></MenuBody></Menu>;
+```
+
+### MenuFooter
+
+[Specification](ds/components/atoms/MenuFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Menu, MenuBody, MenuFooter } from "@/design-system";
+<Menu label="Actions" onAction={runAction}><MenuBody hidden /><MenuFooter>Additional information</MenuFooter></Menu>;
+```
+
+### MenuItem
+
+[Specification](ds/components/atoms/MenuItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Menu, MenuBody, MenuItem } from "@/design-system";
+<Menu label="Actions" onAction={runAction}><MenuBody><MenuItem value="download" label="Download"/></MenuBody></Menu>;
+```
+
+### PopoverHeader
+
+[Specification](ds/components/atoms/PopoverHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Popover, PopoverHeader, PopoverBody } from "@/design-system";
+<Popover triggerLabel="Open example" label="Details"><PopoverHeader divider={false}>Details</PopoverHeader><PopoverBody hidden></PopoverBody></Popover>;
+```
+
+### PopoverBody
+
+[Specification](ds/components/atoms/PopoverBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Popover, PopoverHeader, PopoverBody } from "@/design-system";
+<Popover triggerLabel="Open example" label="Details"><PopoverHeader hidden>Details</PopoverHeader><PopoverBody>Details content</PopoverBody></Popover>;
+```
+
+### PopoverFooter
+
+[Specification](ds/components/atoms/PopoverFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Popover, PopoverHeader, PopoverBody, PopoverFooter } from "@/design-system";
+<Popover triggerLabel="Open example" label="Details"><PopoverHeader hidden>Details</PopoverHeader><PopoverBody hidden></PopoverBody><PopoverFooter divider={false}>Additional information</PopoverFooter></Popover>;
+```
+
+### FormFieldHeader
+
+[Specification](ds/components/atoms/FormFieldHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { FormField, FormFieldHeader, FormFieldBody, Input } from "@/design-system";
+<FormField controlId="email" label="Email"><FormFieldHeader /><FormFieldBody hidden><Input /></FormFieldBody></FormField>;
+```
+
+
+### FormFieldBody
+
+[Specification](ds/components/atoms/FormFieldBody.sc.md)
+
+#### Contract
+
+```tsx
+import { FormField, FormFieldHeader, FormFieldBody, Input, FormFieldFooter } from "@/design-system";
+<FormField controlId="name" label="Name"><FormFieldHeader>Name</FormFieldHeader><FormFieldBody><Input /></FormFieldBody><FormFieldFooter hint="Hint" /></FormField>;
+```
+
+
+### ApplicationLayoutHeader
+
+[Specification](ds/components/atoms/ApplicationLayoutHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { ApplicationLayoutTemplate, Heading, Link, Text } from "@/design-system";
+<ApplicationLayoutTemplate header={<Heading level={1}>Application</Heading>} navigation={<nav aria-label="Main"><Link href="/">Home</Link></nav>} footer={<Text>Footer</Text>}><p>Page content</p></ApplicationLayoutTemplate>;
+```
+
+
+### ApplicationLayoutBody
+
+[Specification](ds/components/atoms/ApplicationLayoutBody.sc.md)
+
+#### Contract
+
+```tsx
+import { ApplicationLayoutTemplate, Heading, Link, Text } from "@/design-system";
+<ApplicationLayoutTemplate header={<Heading level={1}>Application</Heading>} navigation={<nav aria-label="Main"><Link href="/">Home</Link></nav>} footer={<Text>Footer</Text>}><p>Page content</p></ApplicationLayoutTemplate>;
+```
+
+
+### ApplicationLayoutFooter
+
+[Specification](ds/components/atoms/ApplicationLayoutFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { ApplicationLayoutTemplate, Heading, Link, Text } from "@/design-system";
+<ApplicationLayoutTemplate header={<Heading level={1}>Application</Heading>} navigation={<nav aria-label="Main"><Link href="/">Home</Link></nav>} footer={<Text>Footer</Text>}><p>Page content</p></ApplicationLayoutTemplate>;
+```
+
+
+### ComboboxHeader
+
+[Specification](ds/components/atoms/ComboboxHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Combobox, ComboboxBody, ComboboxHeader } from "@/design-system";
+<Combobox options={options} query={query} onQueryChange={setQuery} aria-label="Search" selectedValue={selected} onSelectionChange={setSelected}><ComboboxHeader>Search</ComboboxHeader><ComboboxBody hidden /></Combobox>;
+```
+
+### ComboboxFooter
+
+[Specification](ds/components/atoms/ComboboxFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Combobox, ComboboxBody, ComboboxFooter } from "@/design-system";
+<Combobox options={options} query={query} onQueryChange={setQuery} aria-label="Search" selectedValue={selected} onSelectionChange={setSelected}><ComboboxBody hidden /><ComboboxFooter>Additional help</ComboboxFooter></Combobox>;
+```
+
+### AutocompleteHeader
+
+[Specification](ds/components/atoms/AutocompleteHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Autocomplete, AutocompleteBody, AutocompleteHeader } from "@/design-system";
+<Autocomplete options={options} query={query} onQueryChange={setQuery} aria-label="Search"><AutocompleteHeader>Search</AutocompleteHeader><AutocompleteBody hidden /></Autocomplete>;
+```
+
+### AutocompleteFooter
+
+[Specification](ds/components/atoms/AutocompleteFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Autocomplete, AutocompleteBody, AutocompleteFooter } from "@/design-system";
+<Autocomplete options={options} query={query} onQueryChange={setQuery} aria-label="Search"><AutocompleteBody hidden /><AutocompleteFooter>Additional help</AutocompleteFooter></Autocomplete>;
+```
+
+### PopupListboxItem
+
+[Specification](ds/components/atoms/PopupListboxItem.sc.md)
+
+#### Contract
+
+```tsx
+import { PopupListboxItem } from "@/design-system";
+<ul {...popup.listboxAttributes}><PopupListboxItem popup={popup} index={0} label="First option"/></ul>;
+```
+
+### NavigationMenuHeader
+
+[Specification](ds/components/atoms/NavigationMenuHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuBody, NavigationMenuHeader } from "@/design-system";
+<NavigationMenu label="Navigation"><NavigationMenuHeader>Navigation</NavigationMenuHeader><NavigationMenuBody hidden /></NavigationMenu>;
+```
+
+### NavigationMenuBody
+
+[Specification](ds/components/atoms/NavigationMenuBody.sc.md)
+
+#### Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuBody, NavigationMenuItem } from "@/design-system";
+<NavigationMenu label="Navigation"><NavigationMenuBody><NavigationMenuItem label="Page" href="#page" /></NavigationMenuBody></NavigationMenu>;
+```
+
+### NavigationMenuFooter
+
+[Specification](ds/components/atoms/NavigationMenuFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuBody, NavigationMenuFooter } from "@/design-system";
+<NavigationMenu label="Navigation"><NavigationMenuBody hidden /><NavigationMenuFooter>Additional information</NavigationMenuFooter></NavigationMenu>;
+```
+
+### NavigationMenuSublist
+
+[Specification](ds/components/atoms/NavigationMenuSublist.sc.md)
+
+#### Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuBody, NavigationMenuSublist, NavigationMenuItem } from "@/design-system";
+<NavigationMenu label="Navigation"><NavigationMenuBody><NavigationMenuItem label="Pages"><NavigationMenuSublist><NavigationMenuItem label="Page" href="#page" /></NavigationMenuSublist></NavigationMenuItem></NavigationMenuBody></NavigationMenu>;
+```
+
+### StepperHeader
+
+[Specification](ds/components/atoms/StepperHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Stepper, StepperBody, StepperHeader, StepperItem, StepperPanel } from "@/design-system";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader><StepperItem value="details" label="Details" /><StepperItem value="review" label="Review" /></StepperHeader><StepperBody hidden><StepperPanel value="details" /><StepperPanel value="review" /></StepperBody></Stepper>;
+```
+
+### StepperBody
+
+[Specification](ds/components/atoms/StepperBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Stepper, StepperBody, StepperHeader, StepperItem, StepperPanel } from "@/design-system";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader hidden><StepperItem value="details" label="Details" /></StepperHeader><StepperBody><StepperPanel value="details">Lorem ipsum dolor sit amet.</StepperPanel></StepperBody></Stepper>;
+```
+
+### StepperFooter
+
+[Specification](ds/components/atoms/StepperFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Stepper, StepperHeader, StepperItem, StepperBody, StepperPanel, StepperFooter, Button } from "@/design-system";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader><StepperItem value="details" label="Details"/><StepperItem value="review" label="Review"/></StepperHeader><StepperBody><StepperPanel value="details">Details fields</StepperPanel><StepperPanel value="review">Review fields</StepperPanel></StepperBody><StepperFooter><Button onClick={nextStep}>Next</Button></StepperFooter></Stepper>;
+```
+
+### StepperPanel
+
+[Specification](ds/components/atoms/StepperPanel.sc.md)
+
+#### Contract
+
+```tsx
+import { Stepper, StepperBody, StepperHeader, StepperItem, StepperPanel } from "@/design-system";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader hidden><StepperItem value="details" label="Details" /></StepperHeader><StepperBody><StepperPanel value="details">Lorem ipsum dolor sit amet.</StepperPanel></StepperBody></Stepper>;
+```
+
+### TreeHeader
+
+[Specification](ds/components/atoms/TreeHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Tree, TreeBody, TreeHeader } from "@/design-system";
+<Tree label="Resources" nodes={[]}><TreeHeader>Resources</TreeHeader><TreeBody hidden /></Tree>;
+```
+
+### TreeFooter
+
+[Specification](ds/components/atoms/TreeFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Tree, TreeBody, TreeFooter } from "@/design-system";
+<Tree label="Resources" nodes={[]}><TreeBody hidden /><TreeFooter>Choose a resource</TreeFooter></Tree>;
+```
+
+### DataGridCell
+
+[Specification](ds/components/atoms/DataGridCell.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridBody, DataGridHeader } from "@/design-system";
+<DataGrid label="Records" rows={rows} columns={columns} getRowKey={getRowKey}><DataGridHeader hidden /><DataGridBody /></DataGrid>;
+```
+
+### DataGridFooter
+
+[Specification](ds/components/atoms/DataGridFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridBody, DataGridFooter, DataGridHeader } from "@/design-system";
+<DataGrid label="Records" rows={[]} columns={columns} getRowKey={getRowKey}><DataGridHeader hidden /><DataGridBody hidden /><DataGridFooter>Summary and actions</DataGridFooter></DataGrid>;
+```
+
+### TreeGridColumnHeader
+
+[Specification](ds/components/atoms/TreeGridColumnHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridHeader } from "@/design-system";
+<TreeGrid label="Resources" nodes={[]} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader /><TreeGridBody hidden /></TreeGrid>;
+```
+
+### TreeGridCell
+
+[Specification](ds/components/atoms/TreeGridCell.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridHeader } from "@/design-system";
+<TreeGrid label="Resources" nodes={nodes} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader hidden /><TreeGridBody /></TreeGrid>;
+```
+
+### TreeGridFooter
+
+[Specification](ds/components/atoms/TreeGridFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridFooter, TreeGridHeader } from "@/design-system";
+<TreeGrid label="Resources" nodes={[]} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader hidden /><TreeGridBody hidden /><TreeGridFooter>Summary and actions</TreeGridFooter></TreeGrid>;
+```
+
+## Molecules
+
+### CurrencyInput
+
+[Specification](ds/components/molecules/CurrencyInput.sc.md)
+
+#### Contract
+
+```tsx
+import {CurrencyInput} from "@/design-system";
+<CurrencyInput value={amount} onValueChange={setAmount} currency="BRL" locale={locale} invalidMessage={invalidMessage} />;
+```
+
+### InternationalTelephoneInput
+
+[Specification](ds/components/molecules/InternationalTelephoneInput.sc.md)
+
+#### Contract
+
+```tsx
+import {InternationalTelephoneInput} from "@/design-system";
+<InternationalTelephoneInput value={phone} onValueChange={setPhone} locale={locale} countryLabel={countryLabel} internationalLabel={internationalLabel} invalidMessage={invalidMessage} />;
+```
+
+
+### PageHeader
+
+[Specification](ds/components/molecules/PageHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { PageHeader } from "@/design-system";
+<PageHeader titleId="page-title" pageTitle={title} identity={identity} actions={actions} divider />;
+```
+
+### PageTransition
+
+[Specification](ds/components/molecules/PageTransition.sc.md)
+
+#### Contract
+
+```tsx
+import { PageTransition } from "@/design-system";
+<PageTransition key={screenKey} animated={animated}>{page}</PageTransition>;
+```
+
+### FormField
+
+[Specification](ds/components/molecules/FormField.sc.md)
+
+#### Contract
+
+```tsx
+import { FormField, Input } from "@/design-system";
+
+<FormField controlId="email" label="Email">
+  <Input type="email" name="email" />
+</FormField>;
+```
+
+### EmailInput
+
+[Specification](ds/components/molecules/EmailInput.sc.md)
+
+#### Contract
+
+```tsx
+import { EmailInput } from "@/design-system";
+
+<EmailInput
+  value={email}
+  onValueChange={setEmail}
+  providers={["gmail.com", "outlook.com", "hotmail.com", "yahoo.com"]}
+  aria-label="Email"
+/>;
+```
+
+### PopupListbox
+
+[Specification](ds/components/molecules/PopupListbox.sc.md)
+
+#### Contract
+
+```tsx
+import { PopupListbox } from "@/design-system";
+
+<PopupListbox
+  popup={popup}
+  items={suggestions}
+  getOptionLabel={(domain) => `@${domain}`}
+  listboxLabel={providerSuggestionsLabel}
+/>;
+```
+
+### LocaleSelector
+
+[Specification](ds/components/molecules/LocaleSelector.sc.md)
+
+#### Contract
+
+```tsx
+import { LocaleSelector } from "@/design-system";
+
+<LocaleSelector value={locale} onValueChange={onLocaleChange} label={label} options={options} />;
+```
+
+### ThemeSelector
+
+[Specification](ds/components/molecules/ThemeSelector.sc.md)
+
+#### Contract
+
+```tsx
+import { ThemeSelector } from "@/design-system";
+
+<ThemeSelector value={theme} onValueChange={onThemeChange} label={label} options={options} />;
+```
+
+### IconButton
+
+[Specification](ds/components/molecules/IconButton.sc.md)
+
+#### Contract
+
+```tsx
+import { IconButton } from "@/design-system";
+
+<IconButton icon="close" label="Close" size="md" />
+```
+
+### Tag
+
+[Specification](ds/components/molecules/Tag.sc.md)
+
+#### Contract
+
+```tsx
+import { Tag } from "@/design-system";
+
+<Tag onRemove={removeFrontend} removeLabel="Remove Frontend">Frontend</Tag>
+```
+
+### TagGroup
+
+[Specification](ds/components/molecules/TagGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { TagGroup } from "@/design-system";
+
+<TagGroup aria-label="Skills" items={skillTags} />
+```
+
+### ProgressBar
+
+[Specification](ds/components/molecules/ProgressBar.sc.md)
+
+#### Contract
+
+```tsx
+import { ProgressBar } from "@/design-system";
+
+<ProgressBar label="Upload" value={40} max={100} valueText="40 percent" />
+```
+
+### Modal and parts
+
+[Modal specification](ds/components/molecules/Modal.sc.md), [Header](ds/components/molecules/ModalHeader.sc.md), [Body](ds/components/atoms/ModalBody.sc.md), [Footer](ds/components/atoms/ModalFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/design-system";
+
+<Modal open={visible} onOpenChange={setVisible} animationEffect="fade">
+  <ModalHeader title="Confirm" />
+  <ModalBody>Confirmation content</ModalBody>
+  <ModalFooter><button type="button" onClick={() => setVisible(false)}>Cancel</button></ModalFooter>
+</Modal>;
+```
+
+### Modal
+
+[Specification](ds/components/molecules/Modal.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/design-system";
+<Modal open={visible} onOpenChange={setVisible}><ModalHeader title="Confirm"/><ModalBody>Confirmation content</ModalBody><ModalFooter><button type="button" onClick={() => setVisible(false)}>Cancel</button></ModalFooter></Modal>;
+```
+
+### ModalHeader
+
+[Specification](ds/components/molecules/ModalHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/design-system";
+<Modal><ModalHeader title="Confirm"/><ModalBody>Confirmation details</ModalBody><ModalFooter><button type="button">Action</button></ModalFooter></Modal>;
+```
+
+### Toast
+
+[Specification](ds/components/molecules/Toast.sc.md)
+
+#### Contract
+
+```tsx
+import { ToastRegion, Toast, ToastHeader, ToastBody, ToastFooter } from "@/design-system";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastHeader>{record.title}</ToastHeader><ToastBody>{record.message}</ToastBody><ToastFooter>{record.action}</ToastFooter></Toast>} />;
+```
+
+### ToastFooter
+
+[Specification](ds/components/molecules/ToastFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { ToastRegion, Toast, ToastFooter, ToastBody } from "@/design-system";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastBody hidden /><ToastFooter>Additional information</ToastFooter></Toast>} />;
+```
+
+### DialogHeader
+
+[Specification](ds/components/molecules/DialogHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Dialog, DialogHeader, ModalBody } from "@/design-system";
+<Dialog aria-label="Details"><DialogHeader title="Details"/><ModalBody hidden /></Dialog>;
+```
+
+### AlertDialogHeader
+
+[Specification](ds/components/molecules/AlertDialogHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { Modal, AlertDialogHeader, ModalBody } from "@/design-system";
+<Modal aria-label="Details"><AlertDialogHeader title="Details"/><ModalBody hidden /></Modal>;
+```
+
+### InputBase
+
+[Specification](ds/components/molecules/InputBase.sc.md)
+
+#### Contract
+
+```tsx
+import { InputBase } from "@/design-system";
+<InputBase id="title" name="title" aria-label="Title"/>;
+```
+
+### InputGroup
+
+[Specification](ds/components/molecules/InputGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { Button, Icon, Input, InputGroup } from "@/design-system";
+<InputGroup trailing={<Button appearance="ghost" tone="neutral" aria-label={clearLabel} onClick={onClear}>
+   <Icon name="close"/>
+  </Button>}>
+ <Input value={query} onChange={onQueryChange} fullWidth/>
+</InputGroup>;
+```
+
+### InputAddon
+
+[Specification](ds/components/molecules/InputAddon.sc.md)
+
+#### Contract
+
+```tsx
+import { InputGroup, InputAddon, Input } from "@/design-system";
+<InputGroup trailing={<InputAddon id="duration-unit">minutes</InputAddon>}><Input aria-label="Duration" aria-describedby="duration-unit"/></InputGroup>;
+```
+
+### Legend
+
+[Specification](ds/components/molecules/Legend.sc.md)
+
+#### Contract
+
+```tsx
+import { Legend } from "@/design-system";
+<fieldset><Legend>Contact preferences</Legend></fieldset>;
+```
+
+### MaskedInput
+
+[Specification](ds/components/molecules/MaskedInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormField, MaskedInput } from "@/design-system";
+<FormField controlId="tax-id" label={taxIdLabel} hint={taxIdHint}>
+ <MaskedInput name="taxId" mask={taxIdMask} value={taxId} onValueChange={setTaxId} placeholder={taxIdPlaceholder}/>
+</FormField>;
+```
+
+### ColorInput
+
+[Specification](ds/components/molecules/ColorInput.sc.md)
+
+#### Contract
+
+```tsx
+import { ColorInput } from "@/design-system";
+<ColorInput name="color" aria-label="Accent color" defaultValue="#000000"/>;
+```
+
+### DateInput
+
+[Specification](ds/components/molecules/DateInput.sc.md)
+
+#### Contract
+
+```tsx
+import { MASK_DATE_DMY } from "@/design-system";
+import { DateInput } from "@/design-system";
+<DateInput mask={MASK_DATE_DMY} value={rawDate} onValueChange={setRawDate} aria-label="Date, day month year"/>;
+```
+
+### DateTimeInput
+
+[Specification](ds/components/molecules/DateTimeInput.sc.md)
+
+#### Contract
+
+```tsx
+import { DateTimeInput } from "@/design-system";
+<DateTimeInput name="appointment" aria-label="Appointment date and time"/>;
+```
+
+### FileInput
+
+[Specification](ds/components/molecules/FileInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FileInput } from "@/design-system";
+<FileInput name="attachment" aria-label="Attachment" accept="application/pdf" onFilesChange={setFiles}/>;
+```
+
+### NumberInput
+
+[Specification](ds/components/molecules/NumberInput.sc.md)
+
+#### Contract
+
+```tsx
+import { NumberInput } from "@/design-system";
+<NumberInput name="quantity" aria-label="Quantity" min={0} step={1}/>;
+```
+
+### PasswordInput
+
+[Specification](ds/components/molecules/PasswordInput.sc.md)
+
+#### Contract
+
+```tsx
+import { PasswordInput } from "@/design-system";
+<PasswordInput name="password" aria-label="Password" revealLabel="Show password" concealLabel="Hide password"/>;
+```
+
+### PercentageInput
+
+[Specification](ds/components/molecules/PercentageInput.sc.md)
+
+#### Contract
+
+```tsx
+import { PercentageInput } from "@/design-system";
+<PercentageInput name="rate" aria-label="Rate in percent" step={0.1}/>;
+```
+
+### PostalCodeInput
+
+[Specification](ds/components/molecules/PostalCodeInput.sc.md)
+
+#### Contract
+
+```tsx
+import { PostalCodeInput } from "@/design-system";
+<PostalCodeInput mask={postalCodeMask} value={rawValue} onValueChange={setRawValue} aria-label="Postal code"/>;
+```
+
+### SearchInput
+
+[Specification](ds/components/molecules/SearchInput.sc.md)
+
+#### Contract
+
+```tsx
+import { SearchInput } from "@/design-system";
+<SearchInput name="query" aria-label="Search" clearLabel="Clear search"/>;
+```
+
+### TaxIdInput
+
+[Specification](ds/components/molecules/TaxIdInput.sc.md)
+
+#### Contract
+
+```tsx
+import { TaxIdInput } from "@/design-system";
+<TaxIdInput mask={taxIdMask} value={rawValue} onValueChange={setRawValue} aria-label="Tax identifier"/>;
+```
+
+### TelephoneInput
+
+[Specification](ds/components/molecules/TelephoneInput.sc.md)
+
+#### Contract
+
+```tsx
+import { TelephoneInput } from "@/design-system";
+<TelephoneInput name="phone" aria-label="Telephone" autoComplete="tel"/>;
+```
+
+### TimeInput
+
+[Specification](ds/components/molecules/TimeInput.sc.md)
+
+#### Contract
+
+```tsx
+import { TimeInput } from "@/design-system";
+<TimeInput name="startTime" aria-label="Start time" step={60}/>;
+```
+
+### TokenInput
+
+[Specification](ds/components/molecules/TokenInput.sc.md)
+
+#### Contract
+
+```tsx
+import { MASK_TOKEN_6 } from "@/design-system";
+import { TokenInput } from "@/design-system";
+<TokenInput mask={MASK_TOKEN_6} value={token} onValueChange={setToken} aria-label="Six digit verification code"/>;
+```
+
+### UrlInput
+
+[Specification](ds/components/molecules/UrlInput.sc.md)
+
+#### Contract
+
+```tsx
+import { UrlInput } from "@/design-system";
+<UrlInput name="website" aria-label="Website"/>;
+```
+
+### Card
+
+[Specification](ds/components/molecules/Card.sc.md)
+
+#### Contract
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter, Button } from "@/design-system";
+<Card><CardHeader>Record title</CardHeader><CardBody>Record description</CardBody><CardFooter><Button>Open</Button></CardFooter></Card>;
+```
+
+### Alert
+
+[Specification](ds/components/molecules/Alert.sc.md)
+
+#### Contract
+
+```tsx
+import { Alert, AlertHeader, AlertBody, AlertFooter, Button } from "@/design-system";
+<Alert announcement="polite"><AlertHeader>Saved</AlertHeader><AlertBody>Changes saved.</AlertBody><AlertFooter><Button onClick={review}>Review</Button></AlertFooter></Alert>;
+```
+
+### List
+
+[Specification](ds/components/molecules/List.sc.md)
+
+#### Contract
+
+```tsx
+import { List, ListHeader, ListBody, ListItem, ListFooter } from "@/design-system";
+<List label="Results"><ListHeader>Results</ListHeader><ListBody><ListItem>First result</ListItem><ListItem>Second result</ListItem></ListBody><ListFooter>Two results</ListFooter></List>;
+```
+
+### EmptyState
+
+[Specification](ds/components/molecules/EmptyState.sc.md)
+
+#### Contract
+
+```tsx
+import { EmptyState, EmptyStateHeader, EmptyStateBody, EmptyStateFooter, Button } from "@/design-system";
+<EmptyState><EmptyStateHeader>No records</EmptyStateHeader><EmptyStateBody>Create a record to begin.</EmptyStateBody><EmptyStateFooter><Button onClick={createRecord}>Create</Button></EmptyStateFooter></EmptyState>;
+```
+
+### ErrorState
+
+[Specification](ds/components/molecules/ErrorState.sc.md)
+
+#### Contract
+
+```tsx
+import { ErrorState, ErrorStateHeader, ErrorStateBody, ErrorStateFooter, Button } from "@/design-system";
+<ErrorState announcement="polite"><ErrorStateHeader>Unable to load</ErrorStateHeader><ErrorStateBody>Try again when ready.</ErrorStateBody><ErrorStateFooter><Button onClick={retry}>Retry</Button></ErrorStateFooter></ErrorState>;
+```
+
+### LoadingState
+
+[Specification](ds/components/molecules/LoadingState.sc.md)
+
+#### Contract
+
+```tsx
+import { LoadingState, LoadingStateHeader, LoadingStateBody, LoadingStateFooter } from "@/design-system";
+<LoadingState label="Loading records"><LoadingStateHeader>Loading</LoadingStateHeader><LoadingStateBody>Please wait.</LoadingStateBody><LoadingStateFooter></LoadingStateFooter></LoadingState>;
+```
+
+### LoadingStateBody
+
+[Specification](ds/components/molecules/LoadingStateBody.sc.md)
+
+#### Contract
+
+```tsx
+import { LoadingState, LoadingStateBody, Text } from "@/design-system";
+
+<LoadingState label="Loading records">
+  <LoadingStateBody><Text as="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text></LoadingStateBody>
+</LoadingState>
+```
+
+### Collapse
+
+[Specification](ds/components/molecules/Collapse.sc.md)
+
+#### Contract
+
+```tsx
+import { Collapse, CollapseHeader, CollapseBody, CollapseFooter } from "@/design-system";
+<Collapse defaultOpen={false}><CollapseHeader>Details</CollapseHeader><CollapseBody>Content</CollapseBody><CollapseFooter>Action</CollapseFooter></Collapse>;
+```
+
+### ButtonGroup
+
+[Specification](ds/components/molecules/ButtonGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { ButtonGroup, Button } from "@/design-system";
+<ButtonGroup label="Editing actions"><Button>Save</Button><Button>Cancel</Button></ButtonGroup>;
+```
+
+### Breadcrumb
+
+[Specification](ds/components/molecules/Breadcrumb.sc.md)
+
+#### Contract
+
+```tsx
+import { Breadcrumb, BreadcrumbItem } from "@/design-system";
+<Breadcrumb label="Breadcrumb"><BreadcrumbItem href="/">Home</BreadcrumbItem><BreadcrumbItem current>Settings</BreadcrumbItem></Breadcrumb>;
+```
+
+### Pagination
+
+[Specification](ds/components/molecules/Pagination.sc.md)
+
+#### Contract
+
+```tsx
+import { Pagination, PaginationItem } from "@/design-system";
+<Pagination label="Pages" page={1} pageCount={3} onPageChange={setPage}><PaginationItem page={1} label="Page 1"/><PaginationItem page={2} label="Page 2"/><PaginationItem page={3} label="Next page">Next</PaginationItem></Pagination>;
+```
+
+### ChoiceGroup
+
+[Specification](ds/components/molecules/ChoiceGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { ChoiceGroup, ChoiceGroupHeader, ChoiceGroupBody, Checkbox, ChoiceGroupFooter } from "@/design-system";
+<ChoiceGroup><ChoiceGroupHeader>Preferences</ChoiceGroupHeader><ChoiceGroupBody><label><Checkbox name="emailUpdates"/>Email updates</label></ChoiceGroupBody><ChoiceGroupFooter>Choose your preferences</ChoiceGroupFooter></ChoiceGroup>;
+```
+
+### CheckboxGroup
+
+[Specification](ds/components/molecules/CheckboxGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { CheckboxGroup, ChoiceGroupHeader, ChoiceGroupBody, CheckboxGroupItem, ChoiceGroupFooter } from "@/design-system";
+<CheckboxGroup name="contact"><ChoiceGroupHeader>Contact</ChoiceGroupHeader><ChoiceGroupBody><CheckboxGroupItem value="email" label="Email"/><CheckboxGroupItem value="sms" label="SMS"/></ChoiceGroupBody><ChoiceGroupFooter>Choose a channel</ChoiceGroupFooter></CheckboxGroup>;
+```
+
+### CheckboxGroupItem
+
+[Specification](ds/components/molecules/CheckboxGroupItem.sc.md)
+
+#### Contract
+
+```tsx
+import { CheckboxGroup, ChoiceGroupBody, CheckboxGroupItem } from "@/design-system";
+<CheckboxGroup name="contact" legend="Contact"><ChoiceGroupBody><CheckboxGroupItem value="email" label="Email"/></ChoiceGroupBody></CheckboxGroup>;
+```
+
+### RadioGroup
+
+[Specification](ds/components/molecules/RadioGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { RadioGroup, ChoiceGroupHeader, ChoiceGroupBody, RadioGroupItem, ChoiceGroupFooter } from "@/design-system";
+<RadioGroup name="contact"><ChoiceGroupHeader>Contact</ChoiceGroupHeader><ChoiceGroupBody><RadioGroupItem value="email" label="Email"/><RadioGroupItem value="sms" label="SMS"/></ChoiceGroupBody><ChoiceGroupFooter>Choose a channel</ChoiceGroupFooter></RadioGroup>;
+```
+
+### RadioGroupItem
+
+[Specification](ds/components/molecules/RadioGroupItem.sc.md)
+
+#### Contract
+
+```tsx
+import { RadioGroup, ChoiceGroupBody, RadioGroupItem } from "@/design-system";
+<RadioGroup name="contact" legend="Contact"><ChoiceGroupBody><RadioGroupItem value="email" label="Email"/></ChoiceGroupBody></RadioGroup>;
+```
+
+### Accordion
+
+[Specification](ds/components/molecules/Accordion.sc.md)
+
+#### Contract
+
+```tsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionBody, AccordionFooter } from "@/design-system";
+<Accordion level={2} multiple={false}><AccordionItem value="first"><AccordionHeader>First</AccordionHeader><AccordionBody>First content</AccordionBody></AccordionItem><AccordionItem value="second"><AccordionHeader>Second</AccordionHeader><AccordionBody>Second content</AccordionBody><AccordionFooter>Action</AccordionFooter></AccordionItem></Accordion>;
+```
+
+### AccordionItem
+
+[Specification](ds/components/molecules/AccordionItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionBody } from "@/design-system";
+<Accordion level={2}><AccordionItem value="details"><AccordionHeader>Details</AccordionHeader><AccordionBody>Content</AccordionBody></AccordionItem></Accordion>;
+```
+
+### ListBoxBody
+
+[Specification](ds/components/molecules/ListBoxBody.sc.md)
+
+#### Contract
+
+```tsx
+import { ListBox, ListBoxBody } from "@/design-system";
+<ListBox label="Options" options={[{ value: "one", label: "First option" }]}><ListBoxBody /></ListBox>;
+```
+
+### Toolbar
+
+[Specification](ds/components/molecules/Toolbar.sc.md)
+
+#### Contract
+
+```tsx
+import { Toolbar, ToolbarItem } from "@/design-system";
+<Toolbar label="Editing actions"><ToolbarItem itemKey="save">Save</ToolbarItem><ToolbarItem itemKey="copy">Copy</ToolbarItem><ToolbarItem itemKey="paste">Paste</ToolbarItem></Toolbar>;
+```
+
+### Tabs
+
+[Specification](ds/components/molecules/Tabs.sc.md)
+
+#### Contract
+
+```tsx
+import { Tabs, TabsHeader, Tab, TabsBody, TabPanel, TabsFooter } from "@/design-system";
+<Tabs label="Details" defaultValue="summary"><TabsHeader><Tab value="summary">Summary</Tab><Tab value="history">History</Tab></TabsHeader><TabsBody><TabPanel value="summary">Summary content</TabPanel><TabPanel value="history">History content</TabPanel></TabsBody><TabsFooter>Common action</TabsFooter></Tabs>;
+```
+
+### Menu
+
+[Specification](ds/components/molecules/Menu.sc.md)
+
+#### Contract
+
+```tsx
+import { Menu, MenuHeader, MenuBody, MenuItem, MenuFooter } from "@/design-system";
+<Menu label="Actions" onAction={runAction}><MenuHeader>Document</MenuHeader><MenuBody><MenuItem value="download" label="Download"/></MenuBody><MenuFooter>Related help</MenuFooter></Menu>;
+```
+
+### Popover
+
+[Specification](ds/components/molecules/Popover.sc.md)
+
+#### Contract
+
+```tsx
+import { IconButton, Popover, PopoverHeader, PopoverBody, PopoverFooter } from "@/design-system";
+<Popover triggerLabel="Options" label="Options"><PopoverHeader>Options</PopoverHeader><PopoverBody>Content</PopoverBody><PopoverFooter>Apply action</PopoverFooter></Popover>;
+```
+
+### FormFieldFooter
+
+[Specification](ds/components/molecules/FormFieldFooter.sc.md)
+
+#### Contract
+
+```tsx
+import { FormField, FormFieldHeader, FormFieldBody, Input, FormFieldFooter } from "@/design-system";
+<FormField controlId="name" label="Name"><FormFieldHeader>Name</FormFieldHeader><FormFieldBody><Input /></FormFieldBody><FormFieldFooter hint="Hint" /></FormField>;
+```
+
+
+### Slider
+
+[Specification](ds/components/molecules/Slider.sc.md)
+
+#### Contract
+
+```tsx
+import { Slider } from "@/design-system";
+<Slider name="volume" aria-label="Volume" defaultValue={50}/>;
+```
+
+
+### TagGroupItem
+
+[Specification](ds/components/molecules/TagGroupItem.sc.md)
+
+#### Contract
+
+```tsx
+import { TagGroup, TagGroupItem } from "@/design-system";
+<TagGroup aria-label="Skills"><TagGroupItem tag={{ children: "Frontend", onRemove: removeTag, removeLabel: "Remove Frontend" }}/></TagGroup>;
+```
+
+
+### DropdownMenu
+
+[Specification](ds/components/molecules/DropdownMenu.sc.md)
+
+#### Contract
+
+```tsx
+import { DropdownMenu, Menu, MenuHeader, MenuBody, MenuItem, MenuFooter } from "@/design-system";
+<DropdownMenu label="Actions" trigger={accountButton}><Menu label="Actions" onAction={runAction}><MenuHeader>Document</MenuHeader><MenuBody><MenuItem value="download" label="Download"/></MenuBody><MenuFooter>Related help</MenuFooter></Menu></DropdownMenu>;
+```
+
+### Tooltip
+
+[Specification](ds/components/molecules/Tooltip.sc.md)
+
+#### Contract
+
+```tsx
+import { Tooltip, Button } from "@/design-system";
+<Tooltip content="Save your changes"><Button>Save</Button></Tooltip>;
+```
+
+### Combobox
+
+[Specification](ds/components/molecules/Combobox.sc.md)
+
+#### Contract
+
+```tsx
+import { Combobox, ComboboxHeader, ComboboxBody, ComboboxFooter } from "@/design-system";
+<Combobox options={filteredOptions} query={query} onQueryChange={setQuery} selectedValue={selected} onSelectionChange={setSelected}><ComboboxHeader>City</ComboboxHeader><ComboboxBody /><ComboboxFooter>Choose a city</ComboboxFooter></Combobox>;
+```
+
+### ComboboxBody
+
+[Specification](ds/components/molecules/ComboboxBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Combobox, ComboboxBody } from "@/design-system";
+<Combobox options={options} query={query} onQueryChange={setQuery} aria-label="Search" selectedValue={selected} onSelectionChange={setSelected}><ComboboxBody /></Combobox>;
+```
+
+### Autocomplete
+
+[Specification](ds/components/molecules/Autocomplete.sc.md)
+
+#### Contract
+
+```tsx
+import { Autocomplete, AutocompleteHeader, AutocompleteBody, AutocompleteFooter } from "@/design-system";
+<Autocomplete options={filteredOptions} query={query} onQueryChange={setQuery}><AutocompleteHeader>City</AutocompleteHeader><AutocompleteBody /><AutocompleteFooter>Choose a city</AutocompleteFooter></Autocomplete>;
+```
+
+### AutocompleteBody
+
+[Specification](ds/components/molecules/AutocompleteBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Autocomplete, AutocompleteBody } from "@/design-system";
+<Autocomplete options={options} query={query} onQueryChange={setQuery} aria-label="Search"><AutocompleteBody /></Autocomplete>;
+```
+
+### NavigationMenuItem
+
+[Specification](ds/components/molecules/NavigationMenuItem.sc.md)
+
+#### Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuBody, NavigationMenuItem } from "@/design-system";
+<NavigationMenu label="Navigation"><NavigationMenuBody><NavigationMenuItem label="Page" href="#page" /></NavigationMenuBody></NavigationMenu>;
+```
+
+### StepperItem
+
+[Specification](ds/components/molecules/StepperItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Stepper, StepperHeader, StepperItem, StepperBody, StepperPanel, StepperFooter, Button } from "@/design-system";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader><StepperItem value="details" label="Details"/><StepperItem value="review" label="Review"/></StepperHeader><StepperBody><StepperPanel value="details">Details fields</StepperPanel><StepperPanel value="review">Review fields</StepperPanel></StepperBody><StepperFooter><Button onClick={nextStep}>Next</Button></StepperFooter></Stepper>;
+```
+
+### TreeBody
+
+[Specification](ds/components/molecules/TreeBody.sc.md)
+
+#### Contract
+
+```tsx
+import { Tree, TreeBody } from "@/design-system";
+<Tree label="Resources" nodes={[{ key: "guide", label: "Guide" }]}><TreeBody /></Tree>;
+```
+
+### TreeItem
+
+[Specification](ds/components/molecules/TreeItem.sc.md)
+
+#### Contract
+
+```tsx
+import { Tree, TreeBody } from "@/design-system";
+<Tree label="Resources" nodes={[{ key: "guide", label: "Guide" }]}><TreeBody /></Tree>;
+```
+
+### TreeGroup
+
+[Specification](ds/components/molecules/TreeGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { Tree, TreeBody } from "@/design-system";
+<Tree label="Resources" nodes={[{ key: "root", label: "Resources", children: [{ key: "guide", label: "Guide" }] }]} defaultExpandedValue={["root"]}><TreeBody /></Tree>;
+```
+
+### Disclosure
+
+[Specification](ds/components/molecules/Disclosure.sc.md)
+
+#### Contract
+
+```tsx
+import { Disclosure } from "@/design-system";
+<Disclosure label="Details"><p>Details</p></Disclosure>;
+```
+
+### DataGridHeader
+
+[Specification](ds/components/molecules/DataGridHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridBody, DataGridHeader } from "@/design-system";
+<DataGrid label="Records" rows={[]} columns={columns} getRowKey={getRowKey}><DataGridHeader /><DataGridBody hidden /></DataGrid>;
+```
+
+### DataGridBody
+
+[Specification](ds/components/molecules/DataGridBody.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridBody, DataGridHeader } from "@/design-system";
+<DataGrid label="Records" rows={rows} columns={columns} getRowKey={getRowKey}><DataGridHeader hidden /><DataGridBody /></DataGrid>;
+```
+
+### DataGridRow
+
+[Specification](ds/components/molecules/DataGridRow.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridBody, DataGridHeader } from "@/design-system";
+<DataGrid label="Records" rows={rows} columns={columns} getRowKey={getRowKey}><DataGridHeader hidden /><DataGridBody /></DataGrid>;
+```
+
+### DataGridColumnHeader
+
+[Specification](ds/components/molecules/DataGridColumnHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridBody, DataGridHeader } from "@/design-system";
+<DataGrid label="Records" rows={[]} columns={columns} getRowKey={getRowKey}><DataGridHeader /><DataGridBody hidden /></DataGrid>;
+```
+
+### TreeGridHeader
+
+[Specification](ds/components/molecules/TreeGridHeader.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridHeader } from "@/design-system";
+<TreeGrid label="Resources" nodes={[]} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader /><TreeGridBody hidden /></TreeGrid>;
+```
+
+### TreeGridBody
+
+[Specification](ds/components/molecules/TreeGridBody.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridHeader } from "@/design-system";
+<TreeGrid label="Resources" nodes={nodes} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader hidden /><TreeGridBody /></TreeGrid>;
+```
+
+### TreeGridRow
+
+[Specification](ds/components/molecules/TreeGridRow.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridBody, TreeGridHeader } from "@/design-system";
+<TreeGrid label="Resources" nodes={nodes} columns={columns} getNodeLabel={getNodeLabel}><TreeGridHeader hidden /><TreeGridBody /></TreeGrid>;
+```
+
+### ODataFilterValue
+
+[Specification](ds/components/molecules/ODataFilterValue.sc.md)
+
+#### Contract
+
+```tsx
+import { ODataFilterValue } from "@/design-system";
+<ODataFilterValue field={field} value={value} onValueChange={setValue} label={label} labels={labels} />;
+```
+
+### ODataFilterCondition
+
+[Specification](ds/components/molecules/ODataFilterCondition.sc.md)
+
+#### Contract
+
+```tsx
+import { ODataFilterCondition } from "@/design-system";
+<ODataFilterCondition fields={fields} value={condition} onValueChange={setCondition} labels={labels} />;
+```
+
+### ODataFilterGroup
+
+[Specification](ds/components/molecules/ODataFilterGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { ODataFilterGroup } from "@/design-system";
+<ODataFilterGroup label={groupLabel} value={operator} onValueChange={setOperator} labels={labels}>{conditions}</ODataFilterGroup>;
+```
+
+## Organisms
+
+### ToastRegion
+
+[Specification](ds/components/organisms/ToastRegion.sc.md)
+
+#### Contract
+
+```tsx
+import { ToastRegion, Toast, ToastHeader, ToastBody, ToastFooter } from "@/design-system";
+<ToastRegion label="Notifications" defaultRecords={records} renderToast={record => <Toast record={record}><ToastHeader>{record.title}</ToastHeader><ToastBody>{record.message}</ToastBody><ToastFooter>{record.action}</ToastFooter></Toast>} />;
+```
+
+### Dialog
+
+[Specification](ds/components/organisms/Dialog.sc.md)
+
+#### Contract
+
+```tsx
+import { Dialog, DialogHeader, DialogBody, DialogFooter, DialogClose } from "@/design-system";
+<Dialog open={open} onOpenChange={setOpen}><DialogHeader title="Details"/><DialogBody>Details content</DialogBody><DialogFooter><DialogClose>Close</DialogClose></DialogFooter></Dialog>;
+```
+
+### AlertDialog
+
+[Specification](ds/components/organisms/AlertDialog.sc.md)
+
+#### Contract
+
+```tsx
+import { AlertDialog, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, DialogClose, Button } from "@/design-system";
+<AlertDialog open={open} onOpenChange={setOpen} description="This action cannot be undone." initialFocusRef={cancelRef}><AlertDialogHeader title="Confirm deletion"/><AlertDialogBody>Review the selected record.</AlertDialogBody><AlertDialogFooter><DialogClose ref={cancelRef}>Cancel</DialogClose><Button onClick={confirmDeletion}>Delete</Button></AlertDialogFooter></AlertDialog>;
+```
+
+### ListBox
+
+[Specification](ds/components/organisms/ListBox.sc.md)
+
+#### Contract
+
+```tsx
+import { ListBox, ListBoxHeader, ListBoxBody, ListBoxFooter } from "@/design-system";
+<ListBox label="Cities" options={[{ value: "one", label: "First city" }, { value: "two", label: "Second city" }]} selectionMode="single"><ListBoxHeader>Cities</ListBoxHeader><ListBoxBody /><ListBoxFooter>Choose a city</ListBoxFooter></ListBox>;
+```
+
+### Form
+
+[Specification](ds/components/organisms/Form.sc.md)
+
+#### Contract
+
+```tsx
+import { Form, FormHeader, FormBody, FormField, Input, FormFooter, Button } from "@/design-system";
+<Form onValidSubmit={saveForm}><FormHeader>Details</FormHeader><FormBody><FormField controlId="name" label="Name"><Input name="name" required/></FormField></FormBody><FormFooter><Button type="submit">Save</Button></FormFooter></Form>;
+```
+
+### FormFieldInput
+
+[Specification](ds/components/organisms/Form/FormFieldInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldInput } from "@/design-system";
+<FormFieldInput<{
+  displayName: string;
+}> name="displayName" label="Display name" hint="How your name appears" autoComplete="name" required/>;
+```
+
+
+### NavigationMenu
+
+[Specification](ds/components/organisms/NavigationMenu.sc.md)
+
+#### Contract
+
+```tsx
+import { NavigationMenu, NavigationMenuHeader, NavigationMenuBody, NavigationMenuItem, NavigationMenuSublist, NavigationMenuFooter } from "@/design-system";
+<NavigationMenu label="Main navigation"><NavigationMenuHeader>Main</NavigationMenuHeader><NavigationMenuBody><NavigationMenuItem label="Home" href="/"/><NavigationMenuItem label="Resources"><NavigationMenuSublist><NavigationMenuItem label="Guide" href="/guide/"/></NavigationMenuSublist></NavigationMenuItem></NavigationMenuBody><NavigationMenuFooter>Related navigation</NavigationMenuFooter></NavigationMenu>;
+```
+
+### Stepper
+
+[Specification](ds/components/organisms/Stepper.sc.md)
+
+#### Contract
+
+```tsx
+import { Stepper, StepperHeader, StepperItem, StepperBody, StepperPanel, StepperFooter, Button } from "@/design-system";
+<Stepper label="Setup" value="details" onStepChange={setStep}><StepperHeader><StepperItem value="details" label="Details"/><StepperItem value="review" label="Review"/></StepperHeader><StepperBody><StepperPanel value="details">Details fields</StepperPanel><StepperPanel value="review">Review fields</StepperPanel></StepperBody><StepperFooter><Button onClick={nextStep}>Next</Button></StepperFooter></Stepper>;
+```
+
+### Tree
+
+[Specification](ds/components/organisms/Tree.sc.md)
+
+#### Contract
+
+```tsx
+import { Tree, TreeHeader, TreeBody, TreeFooter } from "@/design-system";
+<Tree label="Resources" nodes={[{ key: "root", label: "Resources", children: [{ key: "guide", label: "Guide" }] }]}><TreeHeader>Resources</TreeHeader><TreeBody /><TreeFooter>Choose a resource</TreeFooter></Tree>;
+```
+
+### DataGrid
+
+[Specification](ds/components/organisms/DataGrid.sc.md)
+
+#### Contract
+
+```tsx
+import { DataGrid, DataGridHeader, DataGridBody, DataGridFooter } from "@/design-system";
+<DataGrid label="Records" rows={[{ id: "1", name: "First" }]} getRowKey={(row) => row.id} columns={[{ key: "name", header: "Name", renderCell: (row) => row.name }]}><DataGridHeader /><DataGridBody /><DataGridFooter>Summary</DataGridFooter></DataGrid>;
+```
+
+### TreeGrid
+
+[Specification](ds/components/organisms/TreeGrid.sc.md)
+
+#### Contract
+
+```tsx
+import { TreeGrid, TreeGridHeader, TreeGridBody, TreeGridFooter } from "@/design-system";
+<TreeGrid label="Resources" nodes={[{ key: "root", item: { name: "Resources" }, children: [{ key: "guide", item: { name: "Guide" } }] }]} columns={[{ key: "name", header: "Name", getCellText: (row) => row.name }]} getNodeLabel={(row) => row.name}><TreeGridHeader /><TreeGridBody /><TreeGridFooter>Resource hierarchy</TreeGridFooter></TreeGrid>;
+```
+
+### ODataFilter
+
+[Specification](ds/components/organisms/ODataFilter.sc.md)
+
+#### Contract
+
+```tsx
+import { ODataFilter } from "@/design-system";
+<ODataFilter mode="simple" fields={fields} value={expression} onValueChange={setExpression} onApply={apply} labels={labels} />;
+<ODataFilter mode="advanced" fields={fields} value={expression} onValueChange={setExpression} onApply={apply} labels={labels} />;
+```
+
+### ConfirmationModal
+
+[Specification](ds/components/organisms/ConfirmationModal.sc.md)
+
+#### Contract
+
+```tsx
+import { ConfirmationModal } from "@/design-system";
+<ConfirmationModal title={title} closeLabel={closeLabel} cancelLabel={cancelLabel} confirmLabel={confirmLabel} open={open} onOpenChange={setOpen} onConfirm={approve}>{content}</ConfirmationModal>;
+```
+
+### FormFieldTextarea
+
+[Specification](ds/components/organisms/Form/FormFieldTextarea.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldTextarea } from "@/design-system";
+
+<FormFieldTextarea<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldNumberInput
+
+[Specification](ds/components/organisms/Form/FormFieldNumberInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldNumberInput } from "@/design-system";
+
+<FormFieldNumberInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldPercentageInput
+
+[Specification](ds/components/organisms/Form/FormFieldPercentageInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldPercentageInput } from "@/design-system";
+
+<FormFieldPercentageInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldDateTimeInput
+
+[Specification](ds/components/organisms/Form/FormFieldDateTimeInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldDateTimeInput } from "@/design-system";
+
+<FormFieldDateTimeInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldTimeInput
+
+[Specification](ds/components/organisms/Form/FormFieldTimeInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldTimeInput } from "@/design-system";
+
+<FormFieldTimeInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldTelephoneInput
+
+[Specification](ds/components/organisms/Form/FormFieldTelephoneInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldTelephoneInput } from "@/design-system";
+
+<FormFieldTelephoneInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldUrlInput
+
+[Specification](ds/components/organisms/Form/FormFieldUrlInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldUrlInput } from "@/design-system";
+
+<FormFieldUrlInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldColorInput
+
+[Specification](ds/components/organisms/Form/FormFieldColorInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldColorInput } from "@/design-system";
+
+<FormFieldColorInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldDateInput
+
+[Specification](ds/components/organisms/Form/FormFieldDateInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldDateInput } from "@/design-system";
+
+<FormFieldDateInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  mask="00/00/0000"
+/>;
+```
+
+### FormFieldTaxIdInput
+
+[Specification](ds/components/organisms/Form/FormFieldTaxIdInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldTaxIdInput } from "@/design-system";
+
+<FormFieldTaxIdInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  mask="000.000.000-00"
+/>;
+```
+
+### FormFieldPostalCodeInput
+
+[Specification](ds/components/organisms/Form/FormFieldPostalCodeInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldPostalCodeInput } from "@/design-system";
+
+<FormFieldPostalCodeInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  mask="00000-000"
+/>;
+```
+
+### FormFieldTokenInput
+
+[Specification](ds/components/organisms/Form/FormFieldTokenInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldTokenInput } from "@/design-system";
+
+<FormFieldTokenInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  mask="000000"
+/>;
+```
+
+### FormFieldEmailInput
+
+[Specification](ds/components/organisms/Form/FormFieldEmailInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldEmailInput } from "@/design-system";
+
+<FormFieldEmailInput<{ email: string }>
+  name="email"
+  label={emailLabel}
+  providers={emailProviders}
+  listboxLabel={emailSuggestionsLabel}
+  required
+/>;
+```
+
+### FormFieldSearchInput
+
+[Specification](ds/components/organisms/Form/FormFieldSearchInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldSearchInput } from "@/design-system";
+
+<FormFieldSearchInput<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  clearLabel={clearLabel}
+/>;
+```
+
+### FormFieldSwitch
+
+[Specification](ds/components/organisms/Form/FormFieldSwitch.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldSwitch } from "@/design-system";
+
+<FormFieldSwitch<{ value: boolean }>
+  name="value"
+  label={fieldLabel}
+/>;
+```
+
+### FormFieldSlider
+
+[Specification](ds/components/organisms/Form/FormFieldSlider.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldSlider } from "@/design-system";
+
+<FormFieldSlider<{ value: number }>
+  name="value"
+  label={fieldLabel}
+  min={0}
+  max={100}
+  step={1}
+/>;
+```
+
+### FormFieldAutocomplete
+
+[Specification](ds/components/organisms/Form/FormFieldAutocomplete.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldAutocomplete } from "@/design-system";
+
+<FormFieldAutocomplete<{ value: string }>
+  name="value"
+  label={fieldLabel}
+  options={options}
+  listboxLabel={suggestionsLabel}
+/>;
+```
+
+### FormFieldCurrencyInput
+
+[Specification](ds/components/organisms/Form/FormFieldCurrencyInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldCurrencyInput } from "@/design-system";
+import type { MonetaryValue } from "@/design-system";
+
+<FormFieldCurrencyInput<{ value: MonetaryValue }>
+  name="value"
+  label={fieldLabel}
+  currency="BRL"
+  locale="pt-BR"
+  invalidMessage={invalidMoneyMessage}
+/>;
+```
+
+### FormFieldFileInput
+
+[Specification](ds/components/organisms/Form/FormFieldFileInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldFileInput } from "@/design-system";
+
+<FormFieldFileInput<{ value: readonly File[] }>
+  name="value"
+  label={fieldLabel}
+  multiple
+  accept="image/*"
+/>;
+```
+
+### FormFieldCombobox
+
+[Specification](ds/components/organisms/Form/FormFieldCombobox.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldCombobox } from "@/design-system";
+
+<FormFieldCombobox<{ value: string | null }>
+  name="value"
+  label={fieldLabel}
+  options={options}
+  listboxLabel={suggestionsLabel}
+/>;
+```
+
+### FormFieldCheckboxGroup
+
+[Specification](ds/components/organisms/Form/FormFieldCheckboxGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldCheckboxGroup } from "@/design-system";
+
+<FormFieldCheckboxGroup<{ value: readonly string[] }>
+  name="value"
+  label={fieldLabel}
+  options={options}
+/>;
+```
+
+### FormFieldListBox
+
+[Specification](ds/components/organisms/Form/FormFieldListBox.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldListBox } from "@/design-system";
+
+<FormFieldListBox<{ value: readonly string[] }>
+  name="value"
+  label={fieldLabel}
+  options={options}
+  selectionMode="multiple"
+/>;
+```
+
+### MapView
+
+[Specification](ds/components/organisms/MapView.sc.md)
+
+#### Contract
+
+```tsx
+import { MapView } from "@/design-system";
+<MapView scene={scene} renderer={renderer} status={status} label={label} description={description} labels={labels} />;
+```
+
+## Templates
+
+### HomePageTemplate
+
+[Specification](ds/components/templates/HomePageTemplate.sc.md)
+
+#### Contract
+
+```tsx
+import { HomePageTemplate } from "@/design-system";
+<HomePageTemplate titleId="home-title" pageTitle={title} quickActions={shortcuts} summary={summary}>{recentContent}</HomePageTemplate>;
+```
+
+### ShowcasePageTemplate
+
+[Specification](ds/components/templates/ShowcasePageTemplate.sc.md)
+
+#### Contract
+
+```tsx
+import { ShowcasePageTemplate } from "@/design-system";
+
+<ShowcasePageTemplate title={title} navigation={navigation} toolbar={toolbar}>
+  {children}
+</ShowcasePageTemplate>;
+```
+
+### ApplicationLayoutTemplate
+
+[Specification](ds/components/templates/ApplicationLayoutTemplate.sc.md)
+
+#### Contract
+
+```tsx
+import { ApplicationLayoutTemplate, Heading, Link, Text } from "@/design-system";
+<ApplicationLayoutTemplate header={<Heading level={1}>Application</Heading>} navigation={<nav aria-label="Main"><Link href="/">Home</Link></nav>} footer={<Text>Footer</Text>}><p>Page content</p></ApplicationLayoutTemplate>;
+```
+
+
+### ListPageTemplate
+
+[Specification](ds/components/templates/ListPageTemplate.sc.md)
+
+#### Contract
+
+```tsx
+import { ListPageTemplate } from "@/design-system";
+<ListPageTemplate titleId="records-title" pageTitle={title} filters={filterPanel} pagination={pagination}>{dataGrid}</ListPageTemplate>;
+```
+
+### DetailPageTemplate
+
+[Specification](ds/components/templates/DetailPageTemplate.sc.md)
+
+#### Contract
+
+```tsx
+import { DetailPageTemplate } from "@/design-system";
+<DetailPageTemplate titleId="record-title" pageTitle={recordTitle} identity={recordIdentity} actions={actions} aside={relatedInformation}>{detailSections}</DetailPageTemplate>;
+```
+
+### FormPageTemplate
+
+[Specification](ds/components/templates/FormPageTemplate.sc.md)
+
+#### Contract
+
+```tsx
+import { FormPageTemplate } from "@/design-system";
+<FormPageTemplate titleId="record-form-title" pageTitle={formTitle} identity={knownRecordIdentity} actions={backAction} notice={formNotice}>{recordForm}</FormPageTemplate>;
+```
+
+## Pages
+
+### LocalNotificationsPage
+
+[Specification](pages/local-notifications/feature-local-notifications-page.sc.md)
+
+#### Contract
+
+```tsx
+import { LocalNotificationsPage } from "@/features/local-notifications";
+<LocalNotificationsPage />;
+```
+
+## Application Components
+
+### LocalNotificationSuggestion
+
+[Specification](components/feature-local-notification-suggestion.sc.md)
+
+#### Contract
+
+```tsx
+import { LocalNotificationSuggestion } from "@/features/local-notifications";
+<LocalNotificationSuggestion context={context} onCode={applyCode} />;
+```
+
+### LocalNotificationsShortcut
+
+[Specification](components/feature-local-notification-suggestion.sc.md)
+
+#### Contract
+
+```tsx
+import { LocalNotificationsShortcut } from "@/features/local-notifications";
+<LocalNotificationsShortcut />;
+```
+
+### InstitutionalHomePage
+
+[Specification](pages/home/feature-institutional-home-page.sc.md)
+
+#### Contract
+
+```tsx
+import { InstitutionalHomePage } from "@/features/public";
+<InstitutionalHomePage />;
+```
+
+### PublicSiteTemplate
+
+[Specification](templates/feature-public-site-template.sc.md)
+
+#### Contract
+
+```tsx
+import { PublicSiteTemplate } from "@/features/public";
+<PublicSiteTemplate contentWidth="full">{content}</PublicSiteTemplate>;
+```
+
+### PublicSiteHeader
+
+[Specification](components/feature-public-site-header.sc.md)
+
+#### Contract
+
+```tsx
+import { PublicSiteHeader } from "@/features/public";
+<PublicSiteHeader />;
+```
+
+### PublicSiteFooter
+
+[Specification](components/feature-public-site-footer.sc.md)
+
+#### Contract
+
+```tsx
+import { PublicSiteFooter } from "@/features/public";
+<PublicSiteFooter />;
+```
+
+### PortalPreferences
+
+[Specification](components/feature-portal-preferences.sc.md)
+
+#### Contract
+
+```tsx
+import { PortalPreferences } from "@/features/preferences";
+<PortalPreferences />;
+```
+
+### PortalLayout
+
+[Specification](tech-portal-layout.sc.md)
+
+#### Contract
+
+```tsx
+import { PortalLayout } from "@/components/PortalLayout";
+<PortalLayout preferences={selectors} account={accountMenu} navigation={navigation} footer={footer}>{page}</PortalLayout>;
+```
+
+### ThemeProvider
+
+[Specification](tech-theme-provider.sc.md)
+
+#### Contract
+
+```tsx
+import { ThemeProvider } from "../../web/library/src/support/theme";
+
+<ThemeProvider defaultTheme="system">{children}</ThemeProvider>;
+```
+
+### ThemeScript
+
+[Specification](tech-theme-script.sc.md)
+
+#### Contract
+
+```tsx
+import { ThemeScript } from "../../web/library/src/support/theme";
+
+<ThemeScript defaultTheme="system" />;
+```
+
+### I18nProvider
+
+[Specification](tech-i18n-provider.sc.md)
+
+#### Contract
+
+```tsx
+import { I18nProvider } from "../../web/library/src/support/i18n";
+
+<I18nProvider defaultLocale="pt-BR">{children}</I18nProvider>;
+```
+
+### BrandLogo
+
+[Specification](tech-brand-logo.sc.md)
+
+#### Contract
+
+```tsx
+import { BrandLogo } from "@/components/BrandLogo";
+
+<BrandLogo size="xs" />;
+```
+
+### AppShell
+
+[Specification](tech-app-shell.sc.md)
+
+#### Contract
+
+```tsx
+import { AppShell } from "@/components/AppShell";
+
+<AppShell>{children}</AppShell>;
+```
+
+
+### ShowcaseForm
+
+[Specification](feature-showcase-form.sc.md)
+
+#### Contract
+
+```tsx
+import { ShowcaseForm } from "@/features/showcase/components/ShowcaseForm/ShowcaseForm";
+<ShowcaseForm onSubmit={onSubmit}/>;
+```
+
+### ShowcaseV2Renderer
+
+[Specification](feature-showcase-v2-renderer.sc.md)
+
+#### Contract
+
+```tsx
+import { ShowcaseV2Renderer, type ShowcaseV2Definition } from "@/features/showcase-v2";
+
+declare const definition: ShowcaseV2Definition;
+<ShowcaseV2Renderer definition={definition} />;
+```
+
+### ShowcaseV2Layout
+
+[Specification](pages/feature-showcase-v2-page.sc.md)
+
+#### Contract
+
+```tsx
+import { ShowcaseV2Layout, ShowcaseV2Page } from "@/features/showcase-v2";
+
+<ShowcaseV2Layout><ShowcaseV2Page /></ShowcaseV2Layout>;
+```
+
+### TemplateDemoProvider
+
+[Specification](feature-showcase-v2-template-demo.sc.md)
+
+#### Contract
+
+```tsx
+import { TemplateDemoProvider, TemplateDemoHome } from "@/features/showcase-v2";
+
+<TemplateDemoProvider><TemplateDemoHome /></TemplateDemoProvider>;
+```
+
+### PartnerLandingPage
+
+[Specification](pages/partners/feature-partner-landing-page.sc.md)
+
+#### Contract
+
+```tsx
+import { PartnerLandingPage } from "@/features/public";
+<PartnerLandingPage />;
+```
+
+### LoginPage
+
+[Specification](pages/login/feature-login-page.sc.md)
+
+#### Contract
+
+```tsx
+import { LoginPage } from "@/features/auth";
+<LoginPage />;
+```
+
+### AuthenticationPageTemplate
+
+[Specification](components/feature-authentication-page-template.sc.md)
+
+#### Contract
+
+```tsx
+import { AuthenticationPageTemplate } from "@/features/auth";
+<AuthenticationPageTemplate>{children}</AuthenticationPageTemplate>;
+```
+
+### AuthenticationPageContent
+
+[Specification](components/feature-authentication-page-content.sc.md)
+
+#### Contract
+
+```tsx
+import { AuthenticationPageContent } from "@/features/auth";
+<AuthenticationPageContent title={title}>{form}</AuthenticationPageContent>;
+```
+
+### RouteAccessGuard
+
+[Specification](components/feature-route-access-guard.sc.md)
+
+#### Contract
+
+```tsx
+import { RouteAccessGuard } from "@/features/auth";
+<RouteAccessGuard access="guest-only">{children}</RouteAccessGuard>;
+```
+
+### AccessSessionProvider
+
+[Specification](components/feature-access-session-provider.sc.md)
+
+#### Contract
+
+```tsx
+import { AccessSessionProvider } from "@/features/auth";
+<AccessSessionProvider>{children}</AccessSessionProvider>;
+```
+
+### SsoProviderButtons
+
+[Specification](components/feature-sso-provider-buttons.sc.md)
+
+#### Contract
+
+```tsx
+import { SsoProviderButtons } from "@/features/auth";
+<SsoProviderButtons providers={providers} prefix={prefix} onSelect={onSelect} />;
+```
+
+### RegistrationPage
+
+[Specification](pages/registration/feature-registration-page.sc.md)
+
+#### Contract
+
+```tsx
+import { RegistrationPage } from "@/features/auth";
+<RegistrationPage />;
+```
+
+
+### TokenChallenge
+
+[Specification](components/feature-token-challenge.sc.md)
+
+#### Contract
+
+```tsx
+import { TokenChallenge } from "@/features/token-challenge";
+<TokenChallenge challenge={challenge} reason={reason} onConfirm={confirm} />;
+```
+
+### PasswordRecoveryPage
+
+[Specification](pages/password-recovery/feature-password-recovery-page.sc.md)
+
+#### Contract
+
+```tsx
+import { PasswordRecoveryPage } from "@/features/auth";
+<PasswordRecoveryPage />;
+```
+
+### PasswordResetPage
+
+[Specification](pages/password-reset/feature-password-reset-page.sc.md)
+
+#### Contract
+
+```tsx
+import { PasswordResetPage } from "@/features/auth";
+<PasswordResetPage />;
+```
+
+### ActivationPage
+
+[Specification](pages/activation/feature-activation-page.sc.md)
+
+#### Contract
+
+```tsx
+import { ActivationPage } from "@/features/auth";
+
+<ActivationPage />;
+```
+
+### FormView
+
+[Specification](ds/components/organisms/Form/FormView.sc.md)
+
+#### Contract
+
+```tsx
+import { FormView } from "@/design-system";
+<FormView config={formConfig} methods={methods} onSubmit={submit} />;
+```
+
+### FormFieldPasswordInput
+
+[Specification](ds/components/organisms/Form/FormFieldPasswordInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldPasswordInput } from "@/design-system";
+<FormFieldPasswordInput name="password" label="Password" revealLabel="Show" concealLabel="Hide" />;
+```
+
+### FormFieldMaskedInput
+
+[Specification](ds/components/organisms/Form/FormFieldMaskedInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldMaskedInput } from "@/design-system";
+<FormFieldMaskedInput name="document" label="Document" mask="000-00" />;
+```
+
+### FormFieldInternationalTelephoneInput
+
+[Specification](ds/components/organisms/Form/FormFieldInternationalTelephoneInput.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldInternationalTelephoneInput } from "@/design-system";
+<FormFieldInternationalTelephoneInput name="phone" label="Phone" locale="en" countryLabel="Country" internationalLabel="International" invalidMessage="Invalid phone" />;
+```
+
+### FormFieldSelect
+
+[Specification](ds/components/organisms/Form/FormFieldSelect.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldSelect } from "@/design-system";
+<FormFieldSelect name="choice" label="Choice" options={[{value:"a",label:"Option A"}]} />;
+```
+
+### FormFieldCheckbox
+
+[Specification](ds/components/organisms/Form/FormFieldCheckbox.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldCheckbox } from "@/design-system";
+<FormFieldCheckbox name="active" label="Active" />;
+```
+
+### FormFieldRadioGroup
+
+[Specification](ds/components/organisms/Form/FormFieldRadioGroup.sc.md)
+
+#### Contract
+
+```tsx
+import { FormFieldRadioGroup } from "@/design-system";
+<FormFieldRadioGroup name="choice" label="Choice" options={[{value:"a",label:"Option A"}]} />;
+```
+
+### SsoReturnPage
+
+[Specification](pages/sso-return/feature-sso-return-page.sc.md)
+
+#### Contract
+
+```tsx
+import { SsoReturnPage } from "@/features/auth";
+<SsoReturnPage microsoft />;
+```
+
+### PortalPageTemplate
+
+[Specification](components/feature-portal-page-template.sc.md)
+
+#### Contract
+
+```tsx
+import { PortalPageTemplate } from "@/features/portal";
+<PortalPageTemplate navigation={navigation} context={partnershipSelector} preferences={preferences}>
+  {children}
+</PortalPageTemplate>;
+```
+
+### AdminPageTemplate
+
+[Specification](components/feature-admin-page-template.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminPageTemplate } from "@/features/admin";
+<AdminPageTemplate navigation={adminNavigation} portalLink={portalLink}>
+  {children}
+</AdminPageTemplate>;
+```
+
+### PortalEntryPage
+
+[Specification](pages/feature-portal-entry-page.sc.md)
+
+#### Contract
+
+```tsx
+import { PortalEntryPage } from "@/features/portal";
+<PortalEntryPage />;
+```
+
+### SecurityProvider
+
+[Specification](tech-contextual-security.sc.md)
+
+#### Contract
+
+```tsx
+import { SecurityProvider } from "@/features/security";
+<SecurityProvider partnerGuid={partnerGuid} suspended={contextUnavailable}>{children}</SecurityProvider>;
+```
+
+### PermissionGate
+
+[Specification](components/feature-permission-gate.sc.md)
+
+#### Contract
+
+```tsx
+import { PermissionGate } from "@/features/security";
+<PermissionGate role={requiredRoleCode} fallback={fallback}>{children}</PermissionGate>;
+```
+
+### PartnershipSelector
+
+[Specification](components/feature-partnership-selector.sc.md)
+
+#### Contract
+
+```tsx
+import { PartnershipSelector } from "@/features/portal";
+<PartnershipSelector label={label} partnerships={partnerships} value={partnerGuid} onChange={selectPartner} pending={pending} />;
+```
+
+### PortalContextProvider
+
+[Specification](pages/feature-portal-entry-page.sc.md)
+
+#### Contract
+
+```tsx
+import { PortalContextProvider } from "@/features/portal";
+<PortalContextProvider>{children}</PortalContextProvider>;
+```
+
+### AdminEntryPage
+
+[Specification](pages/feature-admin-entry-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminEntryPage } from "@/features/admin";
+<AdminEntryPage />;
+```
+
+### AdminAccessBoundary
+
+[Specification](pages/feature-admin-entry-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminAccessBoundary } from "@/features/admin";
+<AdminAccessBoundary>{children}</AdminAccessBoundary>;
+```
+
+### AuthenticatedHeader
+
+[Specification](components/feature-authenticated-header.sc.md)
+
+#### Contract
+
+```tsx
+import { AuthenticatedHeader } from "@/features/portal";
+<AuthenticatedHeader brand={brandLogo} userMenu={userMenu} preferences={preferences} />;
+```
+
+### AuthenticatedUserMenu
+
+[Specification](components/feature-authenticated-user-menu.sc.md)
+
+#### Contract
+
+```tsx
+import { AuthenticatedUserMenu } from "@/features/portal";
+<AuthenticatedUserMenu onPartnerships={showPartnerships} onAccount={showAccountDetails} />;
+```
+
+### AuthenticatedHeaderControls
+
+[Specification](components/feature-authenticated-user-menu.sc.md)
+
+#### Contract
+
+```tsx
+import { AuthenticatedHeaderControls } from "@/features/portal";
+<AuthenticatedHeaderControls partnerships={partnershipControls} />;
+```
+
+### AdminShell
+
+[Specification](components/feature-admin-navigation.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminShell } from "@/features/admin";
+<AdminShell>{children}</AdminShell>;
+```
+
+### AdminAccessPage
+
+[Specification](pages/admin-access/feature-admin-access-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminAccessPage } from "@/features/admin";
+<AdminAccessPage />;
+```
+
+### AdminPartnersPage
+
+[Specification](pages/admin-partners/feature-admin-partners-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminPartnersPage } from "@/features/admin";
+<AdminPartnersPage />;
+```
+
+### AdminCustomersPage
+
+[Specification](pages/admin-customers/feature-admin-customers-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminCustomersPage } from "@/features/admin";
+<AdminCustomersPage />;
+```
+
+### AdminFleetPage
+
+[Specification](pages/admin-fleet/feature-admin-fleet-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminFleetPage } from "@/features/admin";
+<AdminFleetPage />;
+```
+
+### AdminCatalogPage
+
+[Specification](pages/admin-catalog/feature-admin-catalog-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminCatalogPage } from "@/features/admin";
+<AdminCatalogPage />;
+```
+
+### AdminRidesPage
+
+[Specification](pages/admin-rides/feature-admin-rides-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminRidesPage } from "@/features/admin";
+<AdminRidesPage />;
+```
+
+### AdminFinancePage
+
+[Specification](pages/admin-finance/feature-admin-finance-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminFinancePage } from "@/features/admin";
+<AdminFinancePage />;
+```
+
+### AdminCompliancePage
+
+[Specification](pages/admin-compliance/feature-admin-compliance-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminCompliancePage } from "@/features/admin";
+<AdminCompliancePage />;
+```
+
+### AdminCommunicationsPage
+
+[Specification](pages/admin-communications/feature-admin-communications-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminCommunicationsPage } from "@/features/admin";
+<AdminCommunicationsPage />;
+```
+
+### AdminOperationsPage
+
+[Specification](pages/admin-operations/feature-admin-operations-page.sc.md)
+
+#### Contract
+
+```tsx
+import { AdminOperationsPage } from "@/features/admin";
+<AdminOperationsPage />;
+```

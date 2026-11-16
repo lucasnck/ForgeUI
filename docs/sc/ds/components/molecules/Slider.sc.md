@@ -1,0 +1,90 @@
+---
+title: "Slider"
+scope: "One native horizontal range input. Excludes multiple thumbs and custom pointer behavior."
+status: "DONE"
+type: "component"
+ds-level: "molecules"
+---
+
+# Slider
+
+## Files
+
+```text
+design-system/index.ts (M)
+design-system/components/molecules/Slider/Slider.tsx (C)
+design-system/components/molecules/Slider/index.ts (C)
+features/showcase/examples/Slider.example.tsx (C)
+features/showcase/model/showcase-registry.ts (M)
+features/showcase-v2/components/Slider/definition.ts (C)
+features/showcase-v2/components/Slider/Slider.example.tsx (C)
+features/showcase-v2/components/Slider/useSliderExample.ts (C)
+features/showcase-v2/components/Slider/usage-code.ts (C)
+features/showcase-v2/model/showcase-v2-index.ts (M)
+features/showcase-v2/model/showcase-v2-loaders.ts (M)
+```
+
+## Dependencies
+
+- [tech-design-tokens.sc.md](../../styles/tech-design-tokens.sc.md)
+- [tech-input-specializations.sc.md](../../types/tech-input-specializations.sc.md)
+- [Input.sc.md](../atoms/Input.sc.md)
+- [Component capabilities](../../types/tech-component-capabilities.sc.md)
+
+## Contract
+
+```tsx
+import { Slider } from "@forge-ui/web";
+<Slider name="volume" aria-label="Volume" defaultValue={50}/>;
+```
+
+## Content
+
+```tsx
+import { Input } from "../../atoms/Input";
+import type { NativeRangeInputProps } from "../../../types/input-specializations";
+import type { VisualProps, ComponentFullWidthProps, ComponentInvalidProps } from "../../../types/component-capabilities";
+
+export interface SliderProps extends NativeRangeInputProps, VisualProps, ComponentFullWidthProps, ComponentInvalidProps {
+  valueText?: string;
+}
+
+export function Slider({ valueText, ...props }: SliderProps) {
+  return <Input min={0} max={100} step={1} {...props} type="range" aria-valuetext={valueText ?? props["aria-valuetext"]} />;
+}
+```
+## Tests
+
+- V2 Measured range: verify the specified actions/outcome, reset and agreement with its minimal copyable code.
+
+## Criteria
+
+- [x] Given the public props, rendering and callbacks follow the defaults and constraints above; unsupported channels are not added.
+- [x] Verify: Native range supplies slider role, pointer/touch, focus and keyboard stepping.
+- [x] Verify: Do not add redundant role or intercept arrows/Home/End.
+- [x] Verify: If valueText is supplied, caller recomputes it with each value change.
+- [x] Given two instances, control/panel ids and accessible associations never collide; native names and FormData semantics are preserved where applicable.
+- [x] Native interactions remain delegated to the control; custom handlers intercept only documented keys, respect composition and prevent activation when disabled.
+- [x] Text and focus consume canonical semantic tokens and recipes; shared contrast and forced-color fallbacks are owned by the token/style specifications.
+- [x] The owned layout accommodates caller content; preference changes do not reset caller-owned values.
+- [x] Given reduced motion, no required interaction depends on animation; no document/window access occurs during module evaluation or static rendering.
+- [x] The fullWidth / invalid contract uses true / undefined; Forward to Input; explicit invalid wins over aria-invalid.
+- [x] The value / defaultValue / onChange contract uses Native; Never switch controlled mode after mount; event contains the native string.
+- [x] The disabled / required contract uses false; Preserve native semantics; readOnly is excluded from NativeRangeInputProps.
+- [x] The type / min / max / step contract uses range / 0 / 100 / 1; min < max; positive step.
+- [x] The valueText contract uses undefined; Localized current aria-valuetext.
+- [x] Native range supplies slider role, pointer/touch, focus and keyboard stepping.
+- [x] Do not add redundant role or intercept arrows/Home/End.
+- [x] If valueText is supplied, caller recomputes it with each value change.
+- [x] Native range does not support readOnly; use disabled.
+- [x] No new tokens, shared recipe or visual value union is introduced by this component.
+- [x] Use current semantic token overrides for themes; caller supplies locale text and the component inherits direction.
+- [x] State, callbacks, native form values and focus update immediately.
+- [x] Value changes remain immediate in the native input/progress/meter and accessible value text.
+- [x] No fabricated progress, smoothing timer or delayed change callback.
+- [x] A custom track interpolation requires its own reviewed renderer/acceptance revision.
+- [x] Interruption: latest props win, no duplicate semantic callback, no focus loss or completion-event dependency.
+
+- [x] V2 **Measured range**: Compose a named measurement/range and caller controls using valid min/max/value relationships and supported step/thresholds. Show actual value feedback immediately; only interactive Slider receives editing actions, and progress never fabricates elapsed work.
+- [x] The Slider V2 definition documents actual public props/defaults and native/capability sources, methods/events and owned resources; controls change supported settings only. useSliderExample owns preview controls/state/callbacks rather than an empty hook. Reset restores base settings, fixtures and feedback.
+- [x] Each V2 scenario supplies minimal public-import/direct-JSX code in usage-code.ts with required owner/parts and caller variables. Copy preserves the displayed string; token spacing, connected labels, action hierarchy and relevant narrow/alternate states follow the V2 guide. Register only after this pending example acceptance is delivered.
