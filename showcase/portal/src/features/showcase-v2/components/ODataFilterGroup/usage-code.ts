@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { ODataFilterCondition, ODataFilterGroup } from "@forge-ui/web";\n<ODataFilterGroup\n  label="Label"\n  value={filterConjunction}\n  onValueChange={onFilterConjunctionChange}\n  onAddCondition={onAddFilterCondition}\n  labels={filterLabels}\n>\n  <ODataFilterCondition\n    fields={filterFields}\n    value={filterCondition}\n    onValueChange={onFilterConditionChange}\n    labels={filterLabels}\n  />\n</ODataFilterGroup>;\n';

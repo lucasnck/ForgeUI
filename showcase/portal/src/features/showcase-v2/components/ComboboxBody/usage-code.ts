@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { Combobox, ComboboxBody } from "@forge-ui/web";\n<Combobox\n  aria-label="Label"\n  placeholder="Placeholder"\n  options={filteredQueryOptions}\n  query={query}\n  onQueryChange={onQueryValueChange}\n  selectedValue={selectedValue}\n  onSelectionChange={onQuerySelectionChange}\n>\n  <ComboboxBody title="Title" />\n</Combobox>;\n';

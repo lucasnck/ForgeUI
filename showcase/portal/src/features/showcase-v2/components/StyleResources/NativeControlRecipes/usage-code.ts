@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Input, Label, Select, Textarea } from "@forge-ui/web";\n\n<>\n  <Label htmlFor="field">Label 1</Label><Input id="field" value={value} onChange={onChange} placeholder="Placeholder 1" fullWidth/>\n  <Label htmlFor="select">Label 2</Label><Select id="select"><option value="item-1">Label 1</option><option value="item-2">Label 2</option></Select>\n  <Label htmlFor="notes">Label 3</Label><Textarea id="notes" placeholder="Placeholder 3" fullWidth/>\n</>;';

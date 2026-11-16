@@ -1,0 +1,10 @@
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  padding: var(--space-3);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}

@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-inline-size: var(--zero);
+  padding: var(--space-3);
+  border-block-end: var(--border-width-thin) solid var(--color-border-default);
+  color: var(--color-text-default);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-inline-size: var(--zero);
+  overflow-wrap: anywhere;
+}
+
+.root[data-divider="false"] {
+  border-block-end-width: var(--zero);
+}
+
+.root > :not(.title) {
+  flex-shrink: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}

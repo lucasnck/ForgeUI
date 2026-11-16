@@ -1,0 +1,5 @@
+.root {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  min-inline-size: var(--component-height-md);
+  padding-inline: var(--space-1);
+}

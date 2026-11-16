@@ -1,0 +1,8 @@
+.root {
+  composes: avatar from "../../../styles/status-components.module.css";
+}
+.image {
+  inline-size: var(--size-full);
+  block-size: var(--size-full);
+  object-fit: cover;
+}

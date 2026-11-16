@@ -1,0 +1,15 @@
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.content {
+  flex-basis: var(--size-full);
+  min-inline-size: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}

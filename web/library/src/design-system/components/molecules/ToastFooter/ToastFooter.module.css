@@ -1,0 +1,11 @@
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  --inline-gap: var(--space-2);
+}
+
+.root[hidden] {
+  display: none;
+}

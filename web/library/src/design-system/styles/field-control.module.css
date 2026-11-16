@@ -1,0 +1,25 @@
+.control {
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: sized from "./sized-components.module.css";
+  composes: shaped from "./shaped-components.module.css";
+  composes: interactive from "./interactive-components.module.css";
+  composes: field from "./toned-components.module.css";
+  composes: appearance from "./appearance-components.module.css";
+  --control-background: var(--color-surface-default);
+  --control-foreground: var(--color-text-default);
+  --control-border: var(--color-border-default);
+  display: block;
+  inline-size: fit-content;
+  max-inline-size: var(--size-full);
+  min-inline-size: var(--zero);
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+.control[aria-invalid="true"] {
+  --control-state-border: var(--color-text-danger);
+}
+.control[data-appearance="solid"][aria-invalid="true"] {
+  --control-appearance-background: var(--color-action-danger-background);
+  --control-appearance-foreground: var(--color-action-foreground);
+}

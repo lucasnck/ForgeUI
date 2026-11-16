@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  TreeGrid,\n  TreeGridHeader,\n  TreeGridBody,\n  Surface,\n} from "@forge-ui/web";\n<Surface padding="2" shape="rounded">\n  <TreeGrid\n    label="Label"\n    title="Title"\n    nodes={treeGridNodes.slice(0, 1)}\n    columns={treeGridColumns}\n    getNodeLabel={getTreeGridLabel}\n    expandedValue={expandedValues}\n    onExpandedValueChange={onTreeExpandedChange}\n  >\n    <TreeGridHeader title="Title" />\n    <TreeGridBody title="Title" />\n  </TreeGrid>\n</Surface>;\n';

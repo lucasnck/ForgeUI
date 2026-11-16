@@ -1,0 +1,154 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import {
+  Badge, Button, Checkbox, Divider, Heading, Input, Label, Radio, Spinner,
+  Switch, Text, Textarea, VisuallyHidden,
+} from "@forge-ui/web";
+import type { ComponentSize, ComponentTone } from "@forge-ui/web";
+
+type ComponentKey =
+  | "Button" | "Badge" | "Input" | "Checkbox" | "Text" | "Spinner"
+  | "Textarea" | "Switch" | "Radio" | "Label" | "Divider" | "Heading" | "VisuallyHidden";
+type Theme = "light" | "dark" | "contrast" | "liquid-glass";
+type ButtonVariant = "solid" | "soft" | "ghost" | "outline";
+type TextTone = "default" | "muted" | "brand" | "danger" | "success" | "inverse";
+type Example = {
+  key: ComponentKey;
+  description: string;
+  contract: string;
+  props: string[];
+  states: string[];
+};
+
+const examples: Example[] = [
+  { key: "Button", description: "Ação nativa com tons, estados, tamanhos e variantes.", contract: "HTML button com props nativas e estado de loading.", props: ["size", "tone", "variant", "loading", "disabled", "fullWidth"], states: ["hover", "focus", "disabled", "loading"] },
+  { key: "Badge", description: "Rótulo compacto para status e metadados.", contract: "HTML span não interativo, conforme contexto semântico.", props: ["size", "tone", "appearance", "shape"], states: ["default", "tone"] },
+  { key: "Input", description: "Campo de entrada de texto com validação visual.", contract: "HTML input com eventos e atributos nativos.", props: ["size", "tone", "appearance", "invalid", "disabled"], states: ["focus", "invalid", "disabled"] },
+  { key: "Checkbox", description: "Controle nativo para escolhas booleanas.", contract: "HTML input type=checkbox com valor controlado e nome acessível.", props: ["size", "tone", "checked", "disabled", "invalid"], states: ["checked", "unchecked", "disabled"] },
+  { key: "Text", description: "Tipografia semântica e reutilizável.", contract: "Renderiza span, p, small ou strong, com tom tipográfico.", props: ["as", "size", "tone", "weight"], states: ["default", "muted", "brand"] },
+  { key: "Spinner", description: "Indicador de progresso indeterminado.", contract: "Definir label/role=status quando não decorativo.", props: ["size", "tone", "animated", "decorative", "label"], states: ["animated", "static"] },
+  { key: "Textarea", description: "Campo multilinha com aparência e feedback de validação.", contract: "HTML textarea com atributos nativos, placeholder, invalid e largura total.", props: ["size", "tone", "appearance", "invalid", "disabled", "fullWidth"], states: ["focus", "invalid", "disabled"] },
+  { key: "Switch", description: "Alternância binária com estilo de chave.", contract: "HTML input type=checkbox com role=switch, checked e rótulo acessível.", props: ["size", "tone", "checked", "disabled", "invalid"], states: ["on", "off", "disabled"] },
+  { key: "Radio", description: "Seleção única dentro de um grupo de opções.", contract: "HTML input type=radio; cada opção deve compartilhar name e ter rótulo.", props: ["size", "tone", "name", "checked", "disabled", "invalid"], states: ["checked", "unchecked", "disabled"] },
+  { key: "Label", description: "Rótulo associado a um controle de formulário.", contract: "HTML label com htmlFor obrigatório e indicador visual required.", props: ["htmlFor", "required", "size", "tone", "weight"], states: ["optional", "required"] },
+  { key: "Divider", description: "Separador visual entre regiões de conteúdo.", contract: "HTML hr sem interação, com estilos semânticos de borda.", props: ["className", "aria-hidden"], states: ["default"] },
+  { key: "Heading", description: "Hierarquia de títulos baseada em níveis semânticos.", contract: "Renderiza h1 a h6 pelo level, preservando tokens de tipografia.", props: ["level", "size", "tone", "weight"], states: ["levels 1–6"] },
+  { key: "VisuallyHidden", description: "Texto acessível sem ocupar espaço visual.", contract: "HTML span visualmente oculto para manter o nome acessível.", props: ["children", "className"], states: ["screen-reader"] },
+];
+
+const catalogLater = ["Select", "Tabs", "Accordion", "Tooltip", "Dialog", "DataGrid", "Form", "Tree", "ODataFilter", "Showcase V2 — demais exemplos"];
+const nativeControlKeys: ComponentKey[] = ["Button", "Input", "Checkbox", "Textarea", "Switch", "Radio"];
+const invalidKeys: ComponentKey[] = ["Input", "Checkbox", "Textarea", "Switch", "Radio"];
+const textKeys: ComponentKey[] = ["Text", "Heading", "Label"];
+const toTextTone = (tone: ComponentTone): TextTone =>
+  (["brand", "danger", "success", "inverse"].includes(tone) ? tone : "default") as TextTone;
+
+function sourceFor(key: ComponentKey, size: ComponentSize, tone: ComponentTone, disabled: boolean, variant: ButtonVariant, level: number) {
+  const common = `size="${size}" tone="${tone}"`;
+  const disabledProp = disabled ? " disabled" : "";
+  switch (key) {
+    case "Button": return `<Button ${common} variant="${variant}"${disabledProp}>Salvar alterações</Button>`;
+    case "Badge": return `<Badge ${common} appearance="soft">Em andamento</Badge>`;
+    case "Input": return `<Input ${common}${disabledProp} placeholder="Digite um valor" aria-label="Exemplo de input" />`;
+    case "Checkbox": return `<Checkbox ${common}${disabledProp} aria-label="Receber notificações" />`;
+    case "Text": return `<Text as="p" size="${size}" tone="${toTextTone(tone)}">Texto do Forge UI</Text>`;
+    case "Spinner": return `<Spinner ${common} decorative={false} label="Carregando" />`;
+    case "Textarea": return `<Textarea ${common}${disabledProp} aria-label="Descrição" placeholder="Escreva a descrição" />`;
+    case "Switch": return `<Switch ${common}${disabledProp} aria-label="Notificações" />`;
+    case "Radio": return `<Radio ${common}${disabledProp} name="plano" value="pro" aria-label="Plano Pro" />`;
+    case "Label": return `<><Label htmlFor="project-name" required>Nome do projeto</Label><Input id="project-name" /></>`;
+    case "Divider": return `<Divider aria-hidden="true" />`;
+    case "Heading": return `<Heading level={${level}} tone="${toTextTone(tone)}">Título do projeto</Heading>`;
+    case "VisuallyHidden": return `<Button><span aria-hidden="true">⌕</span><VisuallyHidden>Buscar</VisuallyHidden></Button>`;
+  }
+}
+
+interface PreviewProps {
+  selected: ComponentKey;
+  size: ComponentSize;
+  tone: ComponentTone;
+  disabled: boolean;
+  variant: ButtonVariant;
+  loading: boolean;
+  invalid: boolean;
+  headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+function Preview({ selected, size, tone, disabled, variant, loading, invalid, headingLevel }: PreviewProps) {
+  const [checked, setChecked] = useState(true);
+  const [switchEnabled, setSwitchEnabled] = useState(true);
+  const [radioSelection, setRadioSelection] = useState("pro");
+  switch (selected) {
+    case "Button": return <div className="sample-layout">
+      <Button size={size} tone={tone} disabled={disabled} variant={variant} loading={loading} loadingLabel="Carregando...">Salvar alterações</Button>
+      <Button size={size} tone="neutral" variant="outline" disabled={disabled}>Cancelar</Button>
+    </div>;
+    case "Badge": return <div className="sample-layout"><Badge size={size} tone={tone} appearance="soft">Em andamento</Badge><Badge size={size} tone="success" appearance="solid">Concluído</Badge><Badge size={size} tone="danger" appearance="outlined">Erro</Badge></div>;
+    case "Input": return <div className="sample-input"><Label htmlFor="forge-input-preview">Nome do projeto</Label><Input id="forge-input-preview" size={size} tone={tone} invalid={invalid} disabled={disabled} placeholder="Ex.: Meu design system" /><small>{invalid ? "Verifique o valor informado." : "Use um nome descritivo."}</small></div>;
+    case "Checkbox": return <div className="sample-layout sample-checkable"><Checkbox size={size} tone={tone} disabled={disabled} invalid={invalid} checked={checked} onChange={(e) => setChecked(e.target.checked)} aria-label="Receber notificações"/><span>Receber notificações</span></div>;
+    case "Text": return <div className="sample-copy"><Text as="p" tone={toTextTone(tone)} size={size} weight="semibold">Componentes para interfaces consistentes.</Text><Text as="p" size="sm" tone="muted">Tipografia, semântica e tokens.</Text></div>;
+    case "Spinner": return <div className="sample-layout"><Spinner size={size} tone={tone} decorative={false} label="Carregando exemplo"/><span>Aguarde um instante</span></div>;
+    case "Textarea": return <div className="sample-input"><Label htmlFor="forge-textarea-preview">Descrição</Label><Textarea id="forge-textarea-preview" size={size} tone={tone} disabled={disabled} invalid={invalid} rows={4} placeholder="Descreva o projeto..." /><small>{invalid ? "Descrição inválida." : "Campo multilinha nativo."}</small></div>;
+    case "Switch": return <div className="sample-layout sample-checkable"><Switch size={size} tone={tone} checked={switchEnabled} disabled={disabled} invalid={invalid} onChange={(e) => setSwitchEnabled(e.target.checked)} aria-label="Ativar notificações"/><span>Notificações {switchEnabled ? "ativadas" : "desativadas"}</span></div>;
+    case "Radio": return <div role="group" aria-label="Escolha um plano" className="sample-layout sample-checkable">{["free", "pro"].map((choice) => <label className="sample-layout" key={choice}><Radio size={size} tone={tone} disabled={disabled} invalid={invalid} name="forge-plan-preview" value={choice} checked={radioSelection === choice} onChange={() => setRadioSelection(choice)} aria-label={`Plano ${choice}`}/><span>{choice === "free" ? "Gratuito" : "Pro"}</span></label>)}</div>;
+    case "Label": return <div className="sample-input"><Label htmlFor="forge-label-preview" required size={size} tone={toTextTone(tone)}>Nome do projeto</Label><Input id="forge-label-preview" placeholder="Digite o nome" /></div>;
+    case "Divider": return <div className="sample-divider"><Text as="p">Primeira seção</Text><Divider aria-hidden="true"/><Text as="p" tone="muted">Segunda seção</Text></div>;
+    case "Heading": return <div className="sample-copy"><Heading level={headingLevel} tone={toTextTone(tone)}>Título do projeto</Heading><Text as="p" size="sm" tone="muted">Nível semântico h{headingLevel}</Text></div>;
+    case "VisuallyHidden": return <div className="sample-layout"><Button size={size} tone={tone} aria-describedby="forge-hidden-explanation"><span aria-hidden="true">⌕</span><VisuallyHidden>Buscar no catálogo</VisuallyHidden></Button><Text as="span" size="sm" tone="muted" id="forge-hidden-explanation">O botão tem um nome acessível oculto visualmente.</Text></div>;
+  }
+}
+
+export function ShowcaseClient() {
+  const [selected, setSelected] = useState<ComponentKey>("Button");
+  const [search, setSearch] = useState("");
+  const [theme, setTheme] = useState<Theme>("light");
+  const [size, setSize] = useState<ComponentSize>("md");
+  const [tone, setTone] = useState<ComponentTone>("brand");
+  const [variant, setVariant] = useState<ButtonVariant>("solid");
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [invalid, setInvalid] = useState(false);
+  const [headingLevel, setHeadingLevel] = useState<1|2|3|4|5|6>(2);
+  const [copied, setCopied] = useState(false);
+  const matched = useMemo(() => examples.filter(({ key, description }) => `${key} ${description}`.toLowerCase().includes(search.trim().toLowerCase())), [search]);
+  const active = examples.find(({ key }) => key === selected)!;
+  const snippetImports = selected === "Label" ? "Label, Input" : selected === "VisuallyHidden" ? "Button, VisuallyHidden" : selected;
+  const snippet = `import { ${snippetImports} } from "@forge-ui/web";\n\n${sourceFor(selected, size, tone, disabled, variant, headingLevel)}`;
+  const setThemeOnDocument = (value: Theme) => { setTheme(value); document.documentElement.dataset.theme = value; };
+  const copySnippet = async () => { try { await navigator.clipboard.writeText(snippet); setCopied(true); } catch { setCopied(false); } };
+
+  return <div className="workspace">
+    <aside className="sidebar" aria-label="Catálogo de componentes">
+      <div className="brand-name"><div className="brand-symbol" aria-hidden="true">F</div><div>FORGE <strong>UI</strong><span>DESIGN SYSTEM</span></div></div>
+      <div className="sidebar-section-label">CATÁLOGO</div>
+      <label className="visually-hidden" htmlFor="catalog-search">Buscar componentes</label>
+      <input id="catalog-search" className="catalog-search" type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar componentes..." />
+      <div className="sidebar-group"><div className="sidebar-label">Átomos <span>{matched.length}</span></div>
+        {matched.length ? matched.map((item) => <button type="button" className={`navigation-item ${selected === item.key ? "navigation-item-active" : ""}`} aria-current={selected === item.key ? "page" : undefined} key={item.key} onClick={() => { setSelected(item.key); setCopied(false); }}><span>{item.key}</span><span className="nav-chevron">›</span></button>) : <p className="empty-search">Nenhum resultado nesta fase.</p>}
+      </div>
+      <div className="sidebar-group"><div className="sidebar-label">Próximas migrações</div>{catalogLater.slice(0,5).map((name) => <div className="navigation-pending" key={name}>{name}<span aria-label="Pendente">○</span></div>)}</div>
+      <div className="sidebar-bottom"><span className="status-dot"/>13 átomos · Migração parcial<div className="version">Forge UI · fase 2</div></div>
+    </aside>
+    <main className="content">
+      <header className="topbar"><div className="breadcrumbs">Biblioteca <span>/</span> Web <span>/</span> <strong>{selected}</strong></div><div className="top-actions"><label htmlFor="theme-control">Tema</label><select id="theme-control" value={theme} onChange={(e) => setThemeOnDocument(e.target.value as Theme)}><option value="light">Claro</option><option value="dark">Escuro</option><option value="contrast">Alto contraste</option><option value="liquid-glass">Liquid Glass</option></select><span className="top-release">FASE 2</span></div></header>
+      <div className="inner-content"><div className="eyebrow">COMPONENTE · ÁTOMO</div><div className="title-row"><div><h1>{selected}</h1><p>{active.description}</p></div><span className="status-pill">Código extraído · build pendente</span></div>
+      <section className="section-block"><div className="section-heading"><div><h2>Playground</h2><p>Altere propriedades para visualizar o componente real da biblioteca.</p></div></div>
+        <div className="playground"><div className="preview-pane"><div className="preview-head"><span className="preview-circle"/>PREVIEW</div><div className="preview-stage"><Preview key={selected} selected={selected} size={size} tone={tone} disabled={disabled} variant={variant} loading={loading} invalid={invalid} headingLevel={headingLevel}/></div></div>
+        <div className="controls-pane"><div className="controls-title">PROPRIEDADES</div>
+          {selected !== "Divider" && selected !== "VisuallyHidden" && <div className="control-field"><label htmlFor="size">Tamanho</label><select id="size" value={size} onChange={(e) => setSize(e.target.value as ComponentSize)}>{["xs", "sm", "md", "lg", "xl"].map((x) => <option value={x} key={x}>{x}</option>)}</select></div>}
+          {selected !== "Divider" && selected !== "VisuallyHidden" && <div className="control-field"><label htmlFor="tone">Tom</label><select id="tone" value={tone} onChange={(e) => setTone(e.target.value as ComponentTone)}>{(textKeys.includes(selected) ? ["brand", "danger", "success", "neutral"] : ["brand", "neutral", "success", "danger", "warning", "info"]).map((x) => <option value={x} key={x}>{x}</option>)}</select></div>}
+          {selected === "Button" && <div className="control-field"><label htmlFor="variant">Variante</label><select id="variant" value={variant} onChange={(e) => setVariant(e.target.value as ButtonVariant)}>{["solid", "soft", "outline", "ghost"].map((x) => <option value={x} key={x}>{x}</option>)}</select></div>}
+          {selected === "Heading" && <div className="control-field"><label htmlFor="heading-level">Nível</label><select id="heading-level" value={headingLevel} onChange={(e) => setHeadingLevel(Number(e.target.value) as 1|2|3|4|5|6)}>{[1,2,3,4,5,6].map((x) => <option value={x} key={x}>h{x}</option>)}</select></div>}
+          {nativeControlKeys.includes(selected) && <label className="toggle-field"><input type="checkbox" checked={disabled} onChange={(e) => setDisabled(e.target.checked)}/> Desabilitado</label>}
+          {selected === "Button" && <label className="toggle-field"><input type="checkbox" checked={loading} onChange={(e) => setLoading(e.target.checked)}/> Carregando</label>}
+          {invalidKeys.includes(selected) && <label className="toggle-field"><input type="checkbox" checked={invalid} onChange={(e) => setInvalid(e.target.checked)}/> Inválido</label>}
+        </div></div>
+      </section>
+      <section className="section-block"><div className="section-heading code-head"><div><h2>Utilização</h2><p>Importação pública pelo pacote local.</p></div><button type="button" className="copy-button" onClick={copySnippet}>{copied ? "Copiado" : "Copiar código"}</button></div><pre className="code-block"><code>{snippet}</code></pre></section>
+      <section className="section-block"><div className="section-heading"><div><h2>Contrato</h2><p>{active.contract}</p></div></div><div className="detail-grid"><div className="detail-card"><h3>Props demonstradas</h3><div className="tag-list">{active.props.map((x) => <code key={x}>{x}</code>)}</div></div><div className="detail-card"><h3>Estados relevantes</h3><div className="tag-list">{active.states.map((x) => <code key={x}>{x}</code>)}</div></div></div></section>
+      <footer className="footer-note">Origem: PraticarFront/src/design-system · Esta é uma migração parcial: cobertura completa, build e inspeção visual seguem pendentes.</footer>
+      </div>
+    </main>
+  </div>;
+}

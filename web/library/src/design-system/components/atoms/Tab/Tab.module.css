@@ -1,0 +1,20 @@
+.root {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+}
+
+.root[aria-selected="true"] {
+  --control-appearance-background: var(--control-background);
+  --control-appearance-foreground: var(--control-foreground);
+}
+
+.root.attached {
+  border-end-start-radius: var(--zero);
+  border-end-end-radius: var(--zero);
+}
+
+@media (forced-colors: active) {
+  .root[aria-selected="true"] {
+    border-block-end-color: var(--color-system-highlight);
+    border-block-end-width: var(--border-width-focus);
+  }
+}

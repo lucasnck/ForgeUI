@@ -1,0 +1,11 @@
+.root {
+  composes: control from "../../../styles/field-control.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  appearance: none;
+}
+
+@media (forced-colors: active) {
+  .root {
+    appearance: auto;
+  }
+}

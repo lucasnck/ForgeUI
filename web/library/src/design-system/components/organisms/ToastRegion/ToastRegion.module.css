@@ -1,0 +1,12 @@
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+.list {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  list-style: none;
+  padding: var(--zero);
+  margin: var(--zero);
+}

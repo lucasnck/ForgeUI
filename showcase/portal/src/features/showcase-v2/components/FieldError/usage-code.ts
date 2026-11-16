@@ -1,0 +1,2 @@
+﻿export const basicCode =
+  'import { Stack, Label, Input, FieldError } from "@forge-ui/web";\n\n<Stack gap="1">\n  <Label htmlFor="field">Label</Label>\n  <Input\n    id="field"\n    placeholder="Placeholder"\n    aria-describedby="description"\n    invalid\n  />\n  <FieldError id="description" announce={false}>\n    Children\n  </FieldError>\n</Stack>;';

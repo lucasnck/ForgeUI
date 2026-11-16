@@ -1,0 +1,15 @@
+.anchor {
+  composes: anchor from "../../../styles/popup-components.module.css";
+  display: inline-block;
+}
+.surface {
+  composes: popup from "../../../styles/popup-components.module.css";
+  composes: fade from "../../../styles/animations/surface-animations.module.css";
+}
+.surface::before {
+  content: "";
+  position: absolute;
+  inset-inline: var(--zero);
+  inset-block-start: calc(var(--zero) - var(--space-1));
+  block-size: var(--space-1);
+}

@@ -1,0 +1,78 @@
+.stateColor {
+  transition-property: background-color, border-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.stateOpacity {
+  transition-property: opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.stateFeedback {
+  transition-property: background-color, border-color, opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.surfacePresence {
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.surfacePresence[data-motion-state="entering"],
+.surfacePresence[data-motion-state="exiting"] {
+  opacity: var(--motion-opacity-hidden);
+  transform: scale(var(--motion-scale-enter));
+}
+.surfacePresence[data-motion-state="entered"] {
+  opacity: var(--motion-opacity-visible);
+  transform: scale(var(--motion-scale-rest));
+}
+.disclosurePresence {
+  display: grid;
+  grid-template-rows: var(--motion-grid-expanded);
+  transition-property: grid-template-rows, opacity;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.disclosurePresence[data-motion-state="entering"],
+.disclosurePresence[data-motion-state="exiting"] {
+  grid-template-rows: var(--motion-grid-collapsed);
+  opacity: var(--motion-opacity-hidden);
+}
+.disclosurePresence[data-motion-state="entered"] {
+  opacity: var(--motion-opacity-visible);
+}
+.disclosurePresence:is([data-motion-state="entering"], [data-motion-state="entered"]):focus-within {
+  grid-template-rows: var(--motion-grid-expanded);
+  opacity: var(--motion-opacity-visible);
+  transition: none;
+}
+.clip {
+  min-block-size: var(--zero);
+  overflow: hidden;
+}
+.stateColor[data-animated="false"],
+.stateOpacity[data-animated="false"],
+.stateFeedback[data-animated="false"],
+.surfacePresence[data-animated="false"],
+.disclosurePresence[data-animated="false"] {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stateColor,
+  .stateOpacity,
+  .stateFeedback,
+  .surfacePresence,
+  .disclosurePresence {
+    transition: none;
+  }
+  .surfacePresence {
+    transform: none;
+  }
+}
+@media (forced-colors: active) {
+  .stateColor,
+  .stateFeedback {
+    transition: none;
+  }
+}

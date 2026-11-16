@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { Menu, MenuBody, MenuItem, Surface } from "@forge-ui/web";\n<Surface padding="2" shape="rounded">\n  <Menu label="Label" title="Title" onAction={onAction} onDismiss={onDismiss}>\n    <MenuBody title="Title">\n      <MenuItem value="item-1" label="Label 1" title="Title 1" />\n      <MenuItem value="item-2" label="Label 2" title="Title 2" disabled />\n      <MenuItem value="item-3" label="Label 3" title="Title 3" />\n    </MenuBody>\n  </Menu>\n</Surface>;\n';

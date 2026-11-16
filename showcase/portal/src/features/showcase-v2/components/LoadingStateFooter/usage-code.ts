@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  LoadingState,\n  LoadingStateBody,\n  LoadingStateFooter,\n  Inline,\n  Button,\n} from "@forge-ui/web";\n\n<LoadingState label="Label">\n  <LoadingStateBody>Children</LoadingStateBody>\n  <LoadingStateFooter>\n    <Inline gap="2" justify="end">\n      <Button variant="outline" onClick={onCancel}>\n        Cancel\n      </Button>\n    </Inline>\n  </LoadingStateFooter>\n</LoadingState>;';

@@ -1,0 +1,32 @@
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert/strict';
+const temp=await fs.mkdtemp(path.join(os.tmpdir(),'forge-bulk-test-'));
+try{
+ const source=path.join(temp,'PraticarFront'),target=path.join(temp,'ForgeUI');
+ for(const dir of ['src/design-system/components/atoms/Test','src/features/showcase-v2/components/Test','docs/sc/ds/components/atoms'])await fs.mkdir(path.join(source,dir),{recursive:true});
+ const from='src/design-system/components/atoms/Test/Test.tsx';
+ await fs.writeFile(path.join(source,from),`import { ComponentSize } from '@/design-system/types/component-capabilities';\nimport { foo } from './foo';\n`);
+ await fs.writeFile(path.join(source,'src/features/showcase-v2/components/Test/definition.ts'),`import { Button } from '@/design-system';\nimport { thing } from '@/features/showcase-v2/model/thing';\n`);
+ await fs.writeFile(path.join(source,'docs/sc/ds/components/atoms/Test.sc.md'),'Source SC');
+ const script=fileURLToPath(new URL('./migrate-from-praticarfront.mjs',import.meta.url));
+ const run=()=>spawnSync(process.execPath,[script,'--source',source,'--target',target,'--apply'],{encoding:'utf8'});
+ const r1=run();assert.equal(r1.status,0,r1.stdout+' '+r1.stderr);
+ const code=await fs.readFile(path.join(target,from.replace('src/design-system','web/library/src/design-system')),'utf8');
+ assert.match(code,/from ['"]\.\.\/\.\.\/\.\.\/types\/component-capabilities['"]/);assert.match(code,/from '\.\/foo'/);
+ const demo=await fs.readFile(path.join(target,'showcase/portal/src/features/showcase-v2/components/Test/definition.ts'),'utf8');
+ assert.match(demo,/@forge-ui\/web/);assert.match(demo,/\.\.\/\.\.\/model\/thing/);
+ const customized = "import { business } from '@/business'; // customized";
+ await fs.writeFile(path.join(target,'web/library/src/design-system/components/atoms/Test/Test.tsx'),customized);
+ const r2=run();assert.equal(r2.status,2);assert.equal(await fs.readFile(path.join(target,'web/library/src/design-system/components/atoms/Test/Test.tsx'),'utf8'),customized);
+ const report = JSON.parse(await fs.readFile(path.join(target,'docs/migration/bulk-migration-report.json'),'utf8'));
+ assert.equal(report.items.find(item => item.from === from).status, 'preserved');
+ assert.notEqual(report.items.find(item => item.from === from).targetSha256, report.items.find(item => item.from === from).proposedSha256);
+ assert.ok(report.unresolved.some(item => item.alias === '@/business'));
+ const overlap=spawnSync(process.execPath,[script,'--source',source,'--target',path.join(source,'nested'),'--apply'],{encoding:'utf8'});
+ assert.notEqual(overlap.status,0);assert.match(overlap.stderr,/must not overlap/);
+ console.log('bulk migration contract tests: PASS');
+}finally{await fs.rm(temp,{recursive:true,force:true});}

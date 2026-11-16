@@ -1,0 +1,3 @@
+.root {
+  composes: compact from "../../../styles/status-components.module.css";
+}

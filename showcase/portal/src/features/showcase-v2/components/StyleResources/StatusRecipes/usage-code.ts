@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Alert, AlertHeader, AlertBody, AlertFooter, Inline, Icon, Text, Button } from "@forge-ui/web";\n\n<Alert>\n  <AlertHeader><Inline gap="2"><Icon name="info"/><Text>Title 1</Text></Inline></AlertHeader>\n  <AlertBody>Description 1</AlertBody>\n  <AlertFooter><Inline gap="2" justify="end"><Button variant="outline" onClick={onDismiss}>Dismiss</Button></Inline></AlertFooter>\n</Alert>;';

@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  Surface,\n  ListBox,\n  ListBoxHeader,\n  ListBoxBody,\n  Heading,\n  Inline,\n  Icon,\n} from "@forge-ui/web";\n<Surface padding="2" shape="rounded">\n  <ListBox label="Label" options={[]}>\n    <ListBoxHeader title="Title">\n      <Inline gap="2" align="center">\n        <Icon name="info" size="sm" />\n        <Heading level={3}>Children</Heading>\n      </Inline>\n    </ListBoxHeader>\n    <ListBoxBody hidden />\n  </ListBox>\n</Surface>;\n';

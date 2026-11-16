@@ -1,0 +1,17 @@
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  appearance: none;
+  background: var(--color-transparent);
+  border: var(--zero);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  min-block-size: var(--component-height-md);
+  padding: var(--space-2);
+  inline-size: var(--size-full);
+  overflow-wrap: anywhere;
+}

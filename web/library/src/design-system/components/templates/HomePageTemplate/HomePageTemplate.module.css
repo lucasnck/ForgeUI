@@ -1,0 +1,9 @@
+.root {
+  min-inline-size: var(--zero);
+}
+.root[hidden] {
+  display: none;
+}
+.content {
+  min-inline-size: var(--zero);
+}

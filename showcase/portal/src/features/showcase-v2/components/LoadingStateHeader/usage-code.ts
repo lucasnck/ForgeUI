@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  LoadingState,\n  LoadingStateHeader,\n  LoadingStateBody,\n  Inline,\n  Heading,\n  Icon,\n} from "@forge-ui/web";\n\n<LoadingState label="Label">\n  <LoadingStateHeader>\n    <Inline gap="2" align="center">\n      <Icon name="info" size="inherit" />\n      <Heading level={3} size="md">\n        Children\n      </Heading>\n    </Inline>\n  </LoadingStateHeader>\n  <LoadingStateBody hidden>Children</LoadingStateBody>\n</LoadingState>;';

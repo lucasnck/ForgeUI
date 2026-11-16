@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  List,\n  ListBody,\n  ListItem,\n  Text,\n  ListHeader,\n  Inline,\n  Icon,\n  Heading,\n} from "@forge-ui/web";\n\n<List label="Label">\n  <ListHeader>\n    <Inline gap="2" align="center">\n      <Icon name="info" size="inherit" />\n      <Heading level={3} size="md">\n        Children\n      </Heading>\n    </Inline>\n  </ListHeader>\n  <ListBody hidden />\n</List>;';

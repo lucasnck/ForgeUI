@@ -1,0 +1,100 @@
+.text {
+  --text-font-size: initial;
+  --text-font-weight: initial;
+  --text-color: initial;
+  --heading-font-size: initial;
+  --heading-line-height: initial;
+  --heading-font-weight: initial;
+  --heading-letter-spacing: initial;
+  overflow-wrap: anywhere;
+  font-size: var(--text-font-size, var(--heading-font-size, var(--font-size-md)));
+  line-height: var(--heading-line-height, var(--line-height-normal));
+  font-weight: var(--text-font-weight, var(--heading-font-weight, var(--font-weight-regular)));
+  letter-spacing: var(--heading-letter-spacing, var(--letter-spacing-normal));
+  color: var(--text-color, var(--color-text-default));
+  margin: var(--zero);
+}
+
+.size[data-text-size="xs"] {
+  --text-font-size: var(--font-size-xs);
+}
+
+.size[data-text-size="sm"] {
+  --text-font-size: var(--font-size-sm);
+}
+
+.size[data-text-size="md"] {
+  --text-font-size: var(--font-size-md);
+}
+
+.size[data-text-size="lg"] {
+  --text-font-size: var(--font-size-lg);
+}
+
+.size[data-text-size="xl"] {
+  --text-font-size: var(--font-size-xl);
+}
+
+.size[data-text-size="2xl"] {
+  --text-font-size: var(--font-size-2xl);
+}
+
+.size[data-text-size="3xl"] {
+  --text-font-size: var(--font-size-3xl);
+}
+
+.size[data-text-size="4xl"] {
+  --text-font-size: var(--font-size-4xl);
+}
+
+.size[data-text-size="5xl"] {
+  --text-font-size: var(--font-size-5xl);
+}
+
+.size[data-text-size="6xl"] {
+  --text-font-size: var(--font-size-6xl);
+}
+
+.size[data-text-size="7xl"] {
+  --text-font-size: var(--font-size-7xl);
+}
+
+.tone[data-text-tone="default"] {
+  --text-color: var(--color-text-default);
+}
+
+.tone[data-text-tone="muted"] {
+  --text-color: var(--color-text-muted);
+}
+
+.tone[data-text-tone="brand"] {
+  --text-color: var(--color-text-brand);
+}
+
+.tone[data-text-tone="danger"] {
+  --text-color: var(--color-text-danger);
+}
+
+.tone[data-text-tone="success"] {
+  --text-color: var(--color-text-success);
+}
+
+.tone[data-text-tone="inverse"] {
+  --text-color: var(--color-text-inverse);
+}
+
+.weight[data-text-weight="regular"] {
+  --text-font-weight: var(--font-weight-regular);
+}
+
+.weight[data-text-weight="medium"] {
+  --text-font-weight: var(--font-weight-medium);
+}
+
+.weight[data-text-weight="semibold"] {
+  --text-font-weight: var(--font-weight-semibold);
+}
+
+.weight[data-text-weight="bold"] {
+  --text-font-weight: var(--font-weight-bold);
+}

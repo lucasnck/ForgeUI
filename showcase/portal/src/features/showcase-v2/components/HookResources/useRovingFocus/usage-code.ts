@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Button, useRovingFocus } from "@forge-ui/web";\nconst focus = useRovingFocus({ orientation: "horizontal", direction: "ltr", loop: true, fallbackRef });\n<div role="toolbar" aria-label="Label" ref={fallbackRef} tabIndex={-1}>\n  <Button ref={itemRef} tabIndex={focus.tabIndex("item-1")}\n    onFocus={() => focus.onItemFocus("item-1")} onKeyDown={focus.onKeyDown}>Children 1</Button>\n</div>;\n// Each mounted item registers with focus.registerItem({ id: "item-1", ref: itemRef, textValue: "Children 1" }); run cleanup on unmount.';

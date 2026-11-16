@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { PageTransition, Surface, Text } from "@forge-ui/web";\nimport { startTransition, addTransitionType } from "react";\nimport { pageTransitionTypes } from "@forge-ui/web";\n\n// In your navigation handler:\nstartTransition(() => { addTransitionType(pageTransitionTypes.forward); onNavigate(); });\n\n<PageTransition animated={animated}>\n  <Surface key={viewKey} padding="3"><Text>Title 1</Text><Text>Description 1</Text></Surface>\n</PageTransition>;';

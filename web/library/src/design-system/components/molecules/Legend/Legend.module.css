@@ -1,0 +1,5 @@
+.root {
+  padding: var(--zero);
+  color: var(--color-text-default);
+  font-size: var(--font-size-sm);
+}

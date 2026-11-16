@@ -1,0 +1,8 @@
+.root {
+  display: block;
+  inline-size: var(--size-full);
+  block-size: var(--border-width-thin);
+  margin: var(--zero);
+  border: none;
+  background: var(--color-border-subtle);
+}

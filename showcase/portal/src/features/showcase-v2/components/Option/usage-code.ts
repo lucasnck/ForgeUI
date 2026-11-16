@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { Stack, Label, Select, Option } from "@forge-ui/web";\n\n<Stack gap="1">\n  <Label htmlFor="choice">Label</Label>\n  <Select id="choice" name="value" value={value} onChange={onChange} fullWidth>\n    <Option value="item-1">Children 1</Option>\n    <Option value="item-2">Children 2</Option>\n    <Option value="item-3">Children 3</Option>\n  </Select>\n</Stack>;';

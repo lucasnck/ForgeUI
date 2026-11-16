@@ -1,0 +1,16 @@
+.interactive:focus-visible {
+  outline: var(--border-width-focus) var(--border-style-default) var(--color-focus-ring);
+  outline-offset: var(--control-focus-offset, var(--length-1));
+}
+.interactive:disabled {
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled);
+}
+@media (forced-colors: active) {
+  .interactive {
+    --control-system-border: var(--control-forced-border, var(--color-system-field-text));
+  }
+  .interactive:focus-visible {
+    outline-color: var(--color-system-highlight);
+  }
+}

@@ -1,0 +1,48 @@
+.root {
+  composes: text from "../../../styles/text-components.module.css";
+  composes: size from "../../../styles/text-components.module.css";
+  composes: tone from "../../../styles/text-components.module.css";
+  composes: weight from "../../../styles/text-components.module.css";
+}
+
+.root[data-heading-level="1"] {
+  --heading-font-size: var(--font-size-4xl);
+  --heading-line-height: var(--line-height-display);
+  --heading-font-weight: var(--font-weight-bold);
+  --heading-letter-spacing: var(--letter-spacing-display);
+}
+
+.root[data-heading-level="2"] {
+  --heading-font-size: var(--font-size-3xl);
+  --heading-line-height: var(--line-height-heading);
+  --heading-font-weight: var(--font-weight-bold);
+  --heading-letter-spacing: var(--letter-spacing-tight);
+}
+
+.root[data-heading-level="3"] {
+  --heading-font-size: var(--font-size-2xl);
+  --heading-line-height: var(--line-height-heading);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-tight);
+}
+
+.root[data-heading-level="4"] {
+  --heading-font-size: var(--font-size-xl);
+  --heading-line-height: var(--line-height-compact);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-normal);
+}
+
+.root[data-heading-level="5"] {
+  --heading-font-size: var(--font-size-lg);
+  --heading-line-height: var(--line-height-compact);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-normal);
+}
+
+.root[data-heading-level="6"] {
+  --heading-font-size: var(--font-size-md);
+  --heading-line-height: var(--line-height-normal);
+  --heading-font-weight: var(--font-weight-semibold);
+  --heading-letter-spacing: var(--letter-spacing-normal);
+}

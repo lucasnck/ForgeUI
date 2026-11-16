@@ -1,0 +1,3 @@
+.fullWidth[data-full-width] {
+  inline-size: var(--size-full);
+}

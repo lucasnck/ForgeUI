@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Button, Stack, Text, Inline, useCollapse } from "@forge-ui/web";\nconst collapse = useCollapse({ open, onOpenChange, id: "collapse" });\n<>\n  <Button {...collapse.triggerProps} ref={collapse.triggerRef} onClick={collapse.toggle}>Children</Button>\n  <div {...collapse.bodyProps} ref={collapse.bodyRef}><Stack gap="2"><Text>Children</Text><Inline justify="end"><Button variant="outline" onClick={collapse.toggle}>Close</Button></Inline></Stack></div>\n</>;';

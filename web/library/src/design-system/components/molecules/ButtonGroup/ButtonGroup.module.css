@@ -1,0 +1,7 @@
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  min-inline-size: var(--zero);
+  inline-size: fit-content;
+  max-inline-size: var(--size-full);
+}

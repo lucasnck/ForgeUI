@@ -1,0 +1,23 @@
+.root {
+  min-inline-size: var(--zero);
+}
+.root[hidden] {
+  display: none;
+}
+.content {
+  min-inline-size: var(--zero);
+}
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--space-3);
+}
+.aside {
+  flex: var(--zero) var(--opacity-full) var(--length-32);
+  min-inline-size: var(--zero);
+}
+.results {
+  flex: var(--opacity-full) var(--opacity-full) var(--length-40);
+  min-inline-size: var(--zero);
+}

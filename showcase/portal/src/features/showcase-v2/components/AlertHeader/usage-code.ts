@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  Alert,\n  AlertHeader,\n  AlertBody,\n  Inline,\n  Heading,\n  Icon,\n} from "@forge-ui/web";\n\n<Alert announcement="off">\n  <AlertHeader>\n    <Inline gap="2" align="center">\n      <Icon name="info" size="inherit" />\n      <Heading level={3} size="md">\n        Children\n      </Heading>\n    </Inline>\n  </AlertHeader>\n  <AlertBody hidden>Children</AlertBody>\n</Alert>;';

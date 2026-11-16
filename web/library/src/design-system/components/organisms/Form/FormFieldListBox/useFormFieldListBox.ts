@@ -1,0 +1,93 @@
+"use client";
+import { useId, useCallback } from "react";
+import { useFormContext, useController } from "react-hook-form";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+
+import type { FocusEvent } from "react";
+import type { FormFieldListBoxProps } from "./FormFieldListBox";
+
+export function useFormFieldListBox<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, readonly string[]> = FieldPathByValue<
+    TValues,
+    readonly string[]
+  >,
+>({
+  id,
+  name,
+  label,
+  hint,
+  error: displayedError,
+  required,
+  disabled: callerDisabled,
+  options,
+  ...inputProps
+}: FormFieldListBoxProps<TValues, TName>) {
+  const generatedId = useId();
+  const controlId = id ?? generatedId;
+  const methods = useFormContext<TValues>();
+  if (!methods) throw new Error("FormFieldListBox requires FormProvider.");
+  const disabled = callerDisabled || methods.formState.disabled;
+  const { field, fieldState } = useController({ control: methods.control, name, disabled });
+  const value: unknown = field.value;
+  const fieldRef = field.ref;
+  const message =
+    displayedError ??
+    (typeof fieldState.error?.message === "string" ? fieldState.error.message : undefined);
+  const invalid = Boolean(fieldState.error) || Boolean(displayedError);
+
+  if (!Array.isArray(value) || value.some((key) => typeof key !== "string"))
+    throw new Error("Selection groups require string-array defaults.");
+  const describedBy =
+    [
+      ...new Set(
+        [
+          ...(inputProps["aria-describedby"]?.split(/\s+/).filter(Boolean) ?? []),
+          hint ? controlId + "-hint" : "",
+          message ? controlId + "-error" : "",
+        ].filter(Boolean),
+      ),
+    ].join(" ") || undefined;
+  const rootRef = useCallback(
+    (node: HTMLElement | null) => {
+      fieldRef(
+        node
+          ? {
+              focus() {
+                (
+                  node.querySelector<HTMLElement>('[role="option"][tabindex="0"]') ??
+                  node.querySelector<HTMLElement>('[role="option"]:not([aria-disabled="true"])') ??
+                  node.querySelector<HTMLElement>('[role="listbox"]')
+                )?.focus();
+              },
+            }
+          : null,
+      );
+    },
+    [fieldRef],
+  );
+
+  function blur(event: FocusEvent<HTMLElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget)) field.onBlur();
+  }
+
+  return {
+    controlId,
+    label,
+    hint,
+    message,
+    invalid,
+    required,
+    disabled,
+    inputProps,
+    options,
+    binding: {
+      name: field.name,
+      ref: rootRef,
+      value,
+      onValueChange: field.onChange,
+      onBlur: blur,
+      "aria-describedby": describedBy,
+    },
+  };
+}

@@ -1,0 +1,8 @@
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}

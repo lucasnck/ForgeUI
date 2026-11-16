@@ -1,0 +1,64 @@
+@import "./tokens.css";
+@import "./scrollbars.css";
+@import "./overlay-scroll-lock.css";
+
+* {
+  box-sizing: border-box;
+}
+html {
+  min-width: var(--zero);
+  background: var(--color-surface-page);
+}
+body {
+  margin: var(--zero);
+  background: var(--page-background);
+  color: var(--color-text-default);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: var(--color-transparent);
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+a {
+  color: var(--color-text-brand);
+  text-underline-offset: var(--underline-offset);
+}
+img,
+svg {
+  max-width: var(--size-full);
+}
+:focus-visible {
+  outline: var(--border-width-focus) var(--border-style-default) var(--color-focus-ring);
+  outline-offset: var(--length-1);
+}
+::selection {
+  background: var(--color-action-brand-background);
+  color: var(--color-action-foreground);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,73 @@
+.range {
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: action from "./toned-components.module.css";
+  --range-height: var(--length-2);
+  display: block;
+  inline-size: var(--length-20);
+  max-inline-size: var(--size-full);
+  block-size: var(--range-height);
+  accent-color: var(--control-background);
+  border: var(--border-width-thin) var(--border-style-default) var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-subtle);
+  overflow: hidden;
+}
+.range[data-size="xs"] {
+  --range-height: var(--length-1);
+}
+.range[data-size="sm"] {
+  --range-height: var(--length-1);
+}
+.range[data-size="lg"] {
+  --range-height: var(--length-3);
+}
+.range[data-size="xl"] {
+  --range-height: var(--length-4);
+}
+.progress {
+  composes: range;
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: action from "./toned-components.module.css";
+}
+.meter {
+  composes: range;
+  composes: fullWidth from "./full-width-components.module.css";
+  composes: action from "./toned-components.module.css";
+}
+
+.visual {
+  display: block;
+  inline-size: var(--size-full);
+  block-size: var(--size-full);
+  overflow: hidden;
+}
+.fill {
+  fill: var(--control-background);
+  transform-box: view-box;
+}
+.fill[data-animated="true"] {
+  transition: width var(--motion-normal) var(--ease-standard);
+}
+.fill[data-indeterminate="true"][data-animated="true"] {
+  animation: rangeIndeterminate var(--motion-pulse-duration) var(--ease-linear) infinite;
+}
+@keyframes rangeIndeterminate {
+  from {
+    transform: translateX(var(--translation-center));
+  }
+  to {
+    transform: translateX(var(--size-full));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fill[data-animated],
+  .fill[data-indeterminate][data-animated] {
+    transition: none;
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  .fill {
+    fill: var(--color-system-highlight);
+  }
+}

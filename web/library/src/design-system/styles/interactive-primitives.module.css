@@ -1,0 +1,154 @@
+.squareAction[data-size] {
+  inline-size: var(--control-size-height);
+  padding: var(--zero);
+}
+.radio {
+  composes: indicator from "./checkable-components.module.css";
+  composes: interactive from "./interactive-components.module.css";
+  appearance: auto;
+  border-radius: var(--radius-circle);
+  margin: var(--zero);
+  cursor: pointer;
+}
+.radio[aria-invalid="true"]:not(:focus-visible) {
+  outline: var(--border-width-thin) var(--border-style-default) var(--color-text-danger);
+  outline-offset: var(--length-1);
+}
+.switchTarget {
+  composes: checkable from "./checkable-components.module.css";
+  composes: fullWidth from "./full-width-components.module.css";
+  position: relative;
+  --switch-width: var(--switch-track-width-md);
+  --switch-height: var(--switch-track-height-md);
+  --switch-thumb: var(--switch-thumb-size-md);
+}
+.switchTarget[data-size="xs"] {
+  --switch-width: var(--switch-track-width-xs);
+  --switch-height: var(--switch-track-height-xs);
+  --switch-thumb: var(--switch-thumb-size-xs);
+}
+.switchTarget[data-size="sm"] {
+  --switch-width: var(--switch-track-width-sm);
+  --switch-height: var(--switch-track-height-sm);
+  --switch-thumb: var(--switch-thumb-size-sm);
+}
+.switchTarget[data-size="lg"] {
+  --switch-width: var(--switch-track-width-lg);
+  --switch-height: var(--switch-track-height-lg);
+  --switch-thumb: var(--switch-thumb-size-lg);
+}
+.switchTarget[data-size="xl"] {
+  --switch-width: var(--switch-track-width-xl);
+  --switch-height: var(--switch-track-height-xl);
+  --switch-thumb: var(--switch-thumb-size-xl);
+}
+.switchInput {
+  composes: interactive from "./interactive-components.module.css";
+  position: absolute;
+  inset: var(--zero);
+  inline-size: var(--size-full);
+  block-size: var(--size-full);
+  opacity: var(--zero);
+  margin: var(--zero);
+  cursor: pointer;
+}
+.switchInput:disabled {
+  opacity: var(--zero);
+}
+.switchTrack {
+  position: relative;
+  inline-size: var(--switch-width);
+  block-size: var(--switch-height);
+  flex-shrink: var(--zero);
+  border-radius: var(--radius-full);
+  outline: var(--border-width-thin) var(--border-style-default) var(--color-border-default);
+  pointer-events: none;
+}
+.switchTrack::before {
+  content: "";
+  position: absolute;
+  inset: var(--zero);
+  border-radius: inherit;
+  background: var(--color-text-muted);
+  opacity: var(--switch-track-opacity);
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
+.switchThumb {
+  position: absolute;
+  inset-inline-start: var(--zero);
+  inset-block-start: var(--size-half);
+  inline-size: var(--switch-thumb);
+  block-size: var(--switch-thumb);
+  border-radius: var(--radius-circle);
+  background: var(--color-text-default);
+  color: var(--color-text-default);
+  border: var(--border-width-thin) var(--border-style-default) var(--color-border-default);
+  transform: translateY(var(--translation-center));
+  transition-property: inset-inline-start, background-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+  pointer-events: none;
+}
+.switchThumb::before {
+  content: "";
+  position: absolute;
+  inset: var(--zero);
+  border-radius: var(--radius-circle);
+  background: var(--color-current);
+  box-shadow: var(--zero) var(--zero) var(--zero) var(--switch-state-layer-spread)
+    var(--color-current);
+  opacity: var(--zero);
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+.switchInput:checked + .switchTrack::before {
+  background: var(--checkable-accent);
+}
+.switchInput:checked + .switchTrack .switchThumb {
+  inset-inline-start: calc(var(--switch-width) - var(--switch-thumb));
+  background: var(--checkable-accent);
+  color: var(--checkable-accent);
+}
+.switchInput:not(:disabled):hover + .switchTrack .switchThumb::before,
+.switchInput:not(:disabled):focus-visible + .switchTrack .switchThumb::before {
+  opacity: var(--opacity-decorative);
+}
+.switchInput:not(:disabled):active + .switchTrack .switchThumb::before {
+  opacity: var(--opacity-pulse);
+}
+.switchInput:disabled + .switchTrack {
+  opacity: var(--opacity-disabled);
+}
+.switchInput[aria-invalid="true"] + .switchTrack {
+  outline-color: var(--color-text-danger);
+}
+.switchInput:disabled + .switchTrack .switchThumb::before {
+  opacity: var(--zero);
+  transition: none;
+}
+.switchInput:not(:disabled):focus-visible + .switchTrack {
+  outline: var(--border-width-focus) var(--border-style-default) var(--color-focus-ring);
+  outline-offset: var(--length-1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .switchThumb,
+  .switchTrack::before,
+  .switchThumb::before {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .switchTrack {
+    outline-color: var(--color-system-field-text);
+  }
+  .switchInput:checked + .switchTrack::before {
+    background: var(--color-system-highlight);
+  }
+  .switchThumb,
+  .switchInput:checked + .switchTrack .switchThumb {
+    background: var(--color-system-canvas-text);
+    color: var(--color-system-canvas-text);
+  }
+  .switchInput:not(:disabled):focus-visible + .switchTrack {
+    outline-color: var(--color-system-highlight);
+  }
+}

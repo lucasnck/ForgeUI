@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  FormField,\n  FormFieldHeader,\n  FormFieldBody,\n  FormFieldFooter,\n  Input,\n} from "@forge-ui/web";\n\n<FormField controlId="field" label="Label">\n  <FormFieldHeader />\n  <FormFieldBody>\n    <Input\n      name="value"\n      placeholder="Placeholder"\n      value={value}\n      onChange={onChange}\n      fullWidth\n    />\n  </FormFieldBody>\n  <FormFieldFooter hint="Hint" error={error} />\n</FormField>;';

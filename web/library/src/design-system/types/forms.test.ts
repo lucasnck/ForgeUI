@@ -1,0 +1,334 @@
+import type { z } from "zod";
+import type { FormFieldRegistrationProps } from "../index";
+import type { FormFieldInputProps } from "../components/organisms/Form/FormFieldInput";
+import type { FormConfig, FormFieldsConfig } from "../../support/forms";
+
+type Assert<Value extends true> = Value;
+type Assignable<Constraint, Value extends Constraint> = Value;
+type Values = { displayName: string; profile: { age: number } };
+type Schema = { displayName: z.ZodString };
+type Transformation = z.ZodEffects<z.ZodString, number, string>;
+
+export type NestedField = Assignable<FormFieldRegistrationProps<Values>["name"], "profile.age">;
+export type SelectedField = Assignable<
+  FormFieldRegistrationProps<Values, "displayName">,
+  { name: "displayName"; label: string }
+>;
+export type FormFieldNames = Assignable<
+  FormFieldsConfig<Schema>["displayName"]["name"],
+  "displayName"
+>;
+export type TransformInputDefault = Assignable<
+  FormConfig<{ age: Transformation }>["defaultValues"]["age"],
+  string
+>;
+export type TransformOutput = Assignable<
+  z.output<FormConfig<{ age: Transformation }>["schema"]>["age"],
+  number
+>;
+export type DisplayMetadataOptional = Assert<
+  undefined extends FormFieldsConfig<Schema>["displayName"]["required"] ? true : false
+>;
+
+// @ts-expect-error Names use the selected form's FieldPath vocabulary.
+export type UnknownField = FormFieldRegistrationProps<Values, "unknown">;
+
+export type WrongSelectedField = Assignable<
+  FormFieldRegistrationProps<Values, "displayName">["name"],
+  // @ts-expect-error An explicitly selected field cannot become another path.
+  "profile.age"
+>;
+// @ts-expect-error Rendered registration requires a localized label.
+export type MissingLabel = Assignable<FormFieldRegistrationProps<Values>, { name: "displayName" }>;
+// @ts-expect-error Literal names must correspond to configuration keys.
+export type WrongConfigName = Assignable<FormFieldsConfig<Schema>["displayName"]["name"], "other">;
+
+export type WrongDefaultInput = Assignable<
+  FormConfig<{ age: Transformation }>["defaultValues"]["age"],
+  // @ts-expect-error Raw defaults use schema inputs, not parsed transformed output.
+  number
+>;
+
+export type AdapterNestedPath = Assignable<FormFieldInputProps<Values>["name"], "profile.age">;
+export type AdapterOwnsNativeChannels = Assert<
+  Extract<
+    keyof FormFieldInputProps<Values>,
+    "ref" | "onChange" | "onBlur" | "value" | "defaultValue" | "type"
+  > extends never
+    ? true
+    : false
+>;
+// @ts-expect-error Registered adapters reject nonexistent names.
+export type AdapterWrongPath = FormFieldInputProps<Values, "missing">;
+
+import type { FormRendererMetadata } from "../../support/forms";
+type RendererAccepts<Shape, Value extends Shape> = Value;
+type RendererRejects<Value extends false> = Value;
+export type PasswordRenderer = RendererAccepts<
+  FormRendererMetadata<string>,
+  { kind: "password"; props: { autoComplete: "new-password" } }
+>;
+export type SelectRenderer = RendererAccepts<
+  FormRendererMetadata<"a" | "b">,
+  { kind: "select"; options: readonly [{ value: "a"; label: "Label 1" }] }
+>;
+export type CheckboxRenderer = RendererAccepts<FormRendererMetadata<boolean>, { kind: "checkbox" }>;
+export type PhoneRenderer = RendererAccepts<
+  FormRendererMetadata<{ number: string | null; country: string | null }>,
+  { kind: "internationalTelephone" }
+>;
+export type MaskRenderer = RendererAccepts<
+  FormRendererMetadata<string>,
+  { kind: "maskedInput"; mask: "###" }
+>;
+export type RadioRenderer = RendererAccepts<
+  FormRendererMetadata<string>,
+  { kind: "radioGroup"; options: readonly [{ value: "a"; label: "Label 1" }] }
+>;
+export type UnknownRendererRejected = RendererRejects<
+  { kind: "unknown" } extends FormRendererMetadata<string> ? true : false
+>;
+export type CheckboxStringRejected = RendererRejects<
+  { kind: "checkbox" } extends FormRendererMetadata<string> ? true : false
+>;
+export type SelectWithoutOptionsRejected = RendererRejects<
+  { kind: "select" } extends FormRendererMetadata<string> ? true : false
+>;
+export type WrongOptionRejected = RendererRejects<
+  {
+    kind: "select";
+    options: readonly [{ value: "c"; label: "Label 1" }];
+  } extends FormRendererMetadata<"a" | "b">
+    ? true
+    : false
+>;
+export type CallbackOverrideRejected = RendererRejects<
+  { kind: "input"; props: { onChange(): void } } extends FormRendererMetadata<string> ? true : false
+>;
+export type PasswordOptionsRejected = RendererRejects<
+  { kind: "password"; options: readonly [] } extends FormRendererMetadata<string> ? true : false
+>;
+import type {
+  FormFieldCheckboxProps,
+  FormFieldPasswordInputProps,
+  FormFieldInternationalTelephoneInputProps,
+  FormViewProps,
+} from "../components/organisms/Form";
+type AdapterValues = {
+  label: string;
+  active: boolean;
+  phone: { number: string | null; country: string | null };
+};
+export type CheckboxPath = FormFieldCheckboxProps<AdapterValues, "active">;
+export type PasswordPath = FormFieldPasswordInputProps<AdapterValues, "label">;
+export type TelephonePath = FormFieldInternationalTelephoneInputProps<AdapterValues, "phone">;
+// @ts-expect-error Checkbox adapters require boolean paths.
+export type CheckboxWrongValue = FormFieldCheckboxProps<AdapterValues, "label">;
+// @ts-expect-error Telephone adapters require the canonical phone object.
+export type TelephoneWrongValue = FormFieldInternationalTelephoneInputProps<AdapterValues, "label">;
+export type TransformedFormView = FormViewProps<{ age: Transformation }>;
+
+import type {
+  FormFieldTextareaProps,
+  FormFieldNumberInputProps,
+  FormFieldPercentageInputProps,
+  FormFieldDateTimeInputProps,
+  FormFieldTimeInputProps,
+  FormFieldTelephoneInputProps,
+  FormFieldUrlInputProps,
+  FormFieldColorInputProps,
+  FormFieldDateInputProps,
+  FormFieldTaxIdInputProps,
+  FormFieldPostalCodeInputProps,
+  FormFieldTokenInputProps,
+  FormFieldEmailInputProps,
+  FormFieldSearchInputProps,
+  FormFieldSwitchProps,
+  FormFieldSliderProps,
+  FormFieldAutocompleteProps,
+  FormFieldCurrencyInputProps,
+  FormFieldFileInputProps,
+  FormFieldComboboxProps,
+  FormFieldCheckboxGroupProps,
+  FormFieldListBoxProps,
+} from "../components/organisms/Form";
+export type TextareaAdapterPath = FormFieldTextareaProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type TextareaInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldTextareaProps<{ value: string }>["name"] ? true : false
+>;
+export type NumberInputAdapterPath = FormFieldNumberInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type NumberInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldNumberInputProps<{ value: string }>["name"] ? true : false
+>;
+export type PercentageInputAdapterPath = FormFieldPercentageInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type PercentageInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldPercentageInputProps<{ value: string }>["name"] ? true : false
+>;
+export type DateTimeInputAdapterPath = FormFieldDateTimeInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type DateTimeInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldDateTimeInputProps<{ value: string }>["name"] ? true : false
+>;
+export type TimeInputAdapterPath = FormFieldTimeInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type TimeInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldTimeInputProps<{ value: string }>["name"] ? true : false
+>;
+export type TelephoneInputAdapterPath = FormFieldTelephoneInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type TelephoneInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldTelephoneInputProps<{ value: string }>["name"] ? true : false
+>;
+export type UrlInputAdapterPath = FormFieldUrlInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type UrlInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldUrlInputProps<{ value: string }>["name"] ? true : false
+>;
+export type ColorInputAdapterPath = FormFieldColorInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type ColorInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldColorInputProps<{ value: string }>["name"] ? true : false
+>;
+export type DateInputAdapterPath = FormFieldDateInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type DateInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldDateInputProps<{ value: string }>["name"] ? true : false
+>;
+export type TaxIdInputAdapterPath = FormFieldTaxIdInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type TaxIdInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldTaxIdInputProps<{ value: string }>["name"] ? true : false
+>;
+export type PostalCodeInputAdapterPath = FormFieldPostalCodeInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type PostalCodeInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldPostalCodeInputProps<{ value: string }>["name"] ? true : false
+>;
+export type TokenInputAdapterPath = FormFieldTokenInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type TokenInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldTokenInputProps<{ value: string }>["name"] ? true : false
+>;
+export type EmailInputAdapterPath = FormFieldEmailInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type EmailInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldEmailInputProps<{ value: string }>["name"] ? true : false
+>;
+export type SearchInputAdapterPath = FormFieldSearchInputProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type SearchInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldSearchInputProps<{ value: string }>["name"] ? true : false
+>;
+export type SwitchAdapterPath = FormFieldSwitchProps<
+  { value: boolean; nested: { other: boolean } },
+  "nested.other"
+>;
+export type SwitchInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldSwitchProps<{ value: boolean }>["name"] ? true : false
+>;
+export type SliderAdapterPath = FormFieldSliderProps<
+  { value: number; nested: { other: number } },
+  "nested.other"
+>;
+export type SliderInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldSliderProps<{ value: number }>["name"] ? true : false
+>;
+export type AutocompleteAdapterPath = FormFieldAutocompleteProps<
+  { value: string; nested: { other: string } },
+  "nested.other"
+>;
+export type AutocompleteInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldAutocompleteProps<{ value: string }>["name"] ? true : false
+>;
+export type CurrencyInputAdapterPath = FormFieldCurrencyInputProps<
+  { value: string | null; nested: { other: string | null } },
+  "nested.other"
+>;
+export type CurrencyInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldCurrencyInputProps<{ value: string | null }>["name"] ? true : false
+>;
+export type FileInputAdapterPath = FormFieldFileInputProps<
+  { value: readonly File[]; nested: { other: readonly File[] } },
+  "nested.other"
+>;
+export type FileInputInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldFileInputProps<{ value: readonly File[] }>["name"] ? true : false
+>;
+export type ComboboxAdapterPath = FormFieldComboboxProps<
+  { value: string | null; nested: { other: string | null } },
+  "nested.other"
+>;
+export type ComboboxInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldComboboxProps<{ value: string | null }>["name"] ? true : false
+>;
+export type CheckboxGroupAdapterPath = FormFieldCheckboxGroupProps<
+  { value: readonly string[]; nested: { other: readonly string[] } },
+  "nested.other"
+>;
+export type CheckboxGroupInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldCheckboxGroupProps<{ value: readonly string[] }>["name"] ? true : false
+>;
+export type ListBoxAdapterPath = FormFieldListBoxProps<
+  { value: readonly string[]; nested: { other: readonly string[] } },
+  "nested.other"
+>;
+export type ListBoxInvalidAdapterPath = RendererRejects<
+  "missing" extends FormFieldListBoxProps<{ value: readonly string[] }>["name"] ? true : false
+>;
+export type EmailNeedsProviders = RendererRejects<
+  { kind: "email" } extends FormRendererMetadata<string> ? true : false
+>;
+export type CurrencyNeedsPresentation = RendererRejects<
+  { kind: "currency" } extends FormRendererMetadata<string | null> ? true : false
+>;
+export type SliderRejectsText = RendererRejects<
+  { kind: "slider" } extends FormRendererMetadata<string> ? true : false
+>;
+export type FilesRejectText = RendererRejects<
+  { kind: "file" } extends FormRendererMetadata<string> ? true : false
+>;
+export type GroupRejectsScalar = RendererRejects<
+  { kind: "checkboxGroup"; options: readonly [] } extends FormRendererMetadata<string>
+    ? true
+    : false
+>;
+export type DateNeedsMask = RendererRejects<
+  { kind: "date" } extends FormRendererMetadata<string> ? true : false
+>;
+export type EmailHasNoValueOverride = RendererRejects<
+  "value" extends keyof FormFieldEmailInputProps<{ value: string }> ? true : false
+>;
+export type FileHasNoReadonly = RendererRejects<
+  "readOnly" extends keyof FormFieldFileInputProps<{ value: readonly File[] }> ? true : false
+>;

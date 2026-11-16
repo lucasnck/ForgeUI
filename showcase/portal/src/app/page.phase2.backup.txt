@@ -1,0 +1,2 @@
+import { ForgeV2Home } from "../features/showcase-v2/ForgeV2Portal";
+export default function Page() { return <ForgeV2Home />; }

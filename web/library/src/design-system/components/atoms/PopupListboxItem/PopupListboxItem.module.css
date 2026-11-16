@@ -1,0 +1,5 @@
+.root {
+  composes: option from "../../../styles/popup-components.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  transition-property: opacity;
+}

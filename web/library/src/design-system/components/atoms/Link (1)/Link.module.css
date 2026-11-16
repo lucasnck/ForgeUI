@@ -1,0 +1,5 @@
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  --control-focus-offset: var(--length-1);
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.root {
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  display: flex;
+  flex-wrap: wrap;
+  inline-size: fit-content;
+  max-inline-size: var(--size-full);
+  gap: var(--space-1);
+  margin: var(--zero);
+  padding: var(--zero);
+  list-style: none;
+}
+.item {
+  min-inline-size: var(--zero);
+  max-inline-size: var(--size-full);
+}

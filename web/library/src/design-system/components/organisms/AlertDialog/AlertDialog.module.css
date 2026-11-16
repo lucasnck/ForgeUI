@@ -1,0 +1,4 @@
+.description {
+  margin-block-start: var(--zero);
+  margin-block-end: var(--space-2);
+}

@@ -1,0 +1,46 @@
+import type { Locale } from "../../support/contracts/preferences";
+
+export function normalizeDateOnly(value: string): string {
+  if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)) throw new RangeError("Invalid civil date");
+  const [year, month, day] = value.split("-").map(Number);
+  if (year < 1) throw new RangeError("Invalid civil date");
+  const date = new Date(0);
+  date.setUTCHours(0, 0, 0, 0);
+  date.setUTCFullYear(year, month - 1, day);
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  )
+    throw new RangeError("Invalid civil date");
+  return value;
+}
+
+export function formatDateOnly(
+  value: string | null,
+  locale: Locale,
+  options: Pick<Intl.DateTimeFormatOptions, "dateStyle"> = {},
+): string {
+  if (value === null) return "";
+  const raw = normalizeDateOnly(value);
+  const [year, month, day] = raw.split("-").map(Number);
+  const date = new Date(0);
+  date.setUTCHours(0, 0, 0, 0);
+  date.setUTCFullYear(year, month - 1, day);
+  return new Intl.DateTimeFormat(locale, {
+    dateStyle: options.dateStyle ?? "short",
+    timeZone: "UTC",
+    calendar: "gregory",
+  }).format(date);
+}
+
+export function isValidDateOnly(value: unknown): boolean {
+  if (typeof value !== "string") return false;
+
+  try {
+    normalizeDateOnly(value);
+    return true;
+  } catch {
+    return false;
+  }
+}

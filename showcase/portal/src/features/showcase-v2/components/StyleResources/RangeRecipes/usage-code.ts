@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Slider, ProgressBar, Meter, Label } from "@forge-ui/web";\n\n<>\n  <Label htmlFor="range">Label 1</Label><Slider id="range" value={value} min={0} max={100} onChange={onChange} fullWidth/>\n  <Label htmlFor="progress">Label 2</Label><ProgressBar label="Label 2" id="progress" value={value} max={100}/>\n  <Label htmlFor="meter">Label 3</Label><Meter label="Label 3" id="meter" value={value} min={0} max={100} low={30} high={70} optimum={50}/>\n</>;';

@@ -1,0 +1,8 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--component-height-md);
+  min-block-size: var(--component-height-md);
+  color: var(--color-text-muted);
+}

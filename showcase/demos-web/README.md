@@ -1,0 +1,1 @@
+Os exemplos executáveis do showcase residem atualmente em `showcase/portal/src/components/`. O objetivo futuro é compartilhar fixtures e casos de uso com documentação, preservando isolamento da biblioteca.

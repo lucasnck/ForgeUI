@@ -1,0 +1,88 @@
+.boundary {
+  min-inline-size: var(--zero);
+}
+:global(html):has(.boundary):global(::view-transition) {
+  pointer-events: none;
+}
+:global(html):has(.boundary):global(::view-transition-group(root)),
+:global(html):has(.boundary):global(::view-transition-new(root)) {
+  animation: none;
+}
+:global(html):has(.boundary):global(::view-transition-old(root)) {
+  display: none;
+}
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-back)) {
+  --page-offset: calc(var(--zero) - var(--space-3));
+}
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-back)) {
+  --page-offset: var(--space-3);
+}
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-back)) {
+  animation: var(--motion-fast) var(--ease-standard) both pageLeave;
+}
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-forward)),
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-back)) {
+  animation: var(--motion-normal) var(--ease-standard) both pageEnter;
+}
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-replace)),
+:global(html):has(.boundary):global(::view-transition-old(.praticar-page-reveal)) {
+  animation: var(--motion-fast) var(--ease-standard) both pageFadeOut;
+}
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-replace)),
+:global(html):has(.boundary):global(::view-transition-new(.praticar-page-reveal)) {
+  animation: var(--motion-normal) var(--ease-standard) both pageFadeIn;
+}
+:global(html):dir(rtl):has(.boundary):global(::view-transition-old(.praticar-page-forward)),
+:global(html):dir(rtl):has(.boundary):global(::view-transition-new(.praticar-page-back)) {
+  --page-offset: var(--space-3);
+}
+:global(html):dir(rtl):has(.boundary):global(::view-transition-new(.praticar-page-forward)),
+:global(html):dir(rtl):has(.boundary):global(::view-transition-old(.praticar-page-back)) {
+  --page-offset: calc(var(--zero) - var(--space-3));
+}
+@keyframes pageEnter {
+  from {
+    opacity: var(--motion-opacity-hidden);
+    translate: var(--page-offset) var(--zero);
+  }
+  to {
+    opacity: var(--motion-opacity-visible);
+    translate: var(--zero) var(--zero);
+  }
+}
+@keyframes pageLeave {
+  from {
+    opacity: var(--motion-opacity-visible);
+    translate: var(--zero) var(--zero);
+  }
+  to {
+    opacity: var(--motion-opacity-hidden);
+    translate: var(--page-offset) var(--zero);
+  }
+}
+@keyframes pageFadeIn {
+  from {
+    opacity: var(--motion-opacity-hidden);
+  }
+  to {
+    opacity: var(--motion-opacity-visible);
+  }
+}
+@keyframes pageFadeOut {
+  from {
+    opacity: var(--motion-opacity-visible);
+  }
+  to {
+    opacity: var(--motion-opacity-hidden);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(html):has(.boundary):global(::view-transition-old(*)),
+  :global(html):has(.boundary):global(::view-transition-new(*)),
+  :global(html):has(.boundary):global(::view-transition-group(*)) {
+    animation: none !important;
+  }
+}

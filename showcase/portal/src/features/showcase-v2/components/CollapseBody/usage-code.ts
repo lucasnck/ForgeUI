@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  Surface,\n  Collapse,\n  CollapseHeader,\n  CollapseBody,\n  Text,\n} from "@forge-ui/web";\n\n<Surface padding="2" shape="rounded">\n  <Collapse open={open} onOpenChange={onOpenChange}>\n    <CollapseHeader hidden>Children</CollapseHeader>\n    <CollapseBody>\n      <Surface elevation="flat" padding="4">\n        <Text>Children</Text>\n      </Surface>\n    </CollapseBody>\n  </Collapse>\n</Surface>;\n';

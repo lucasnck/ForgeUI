@@ -1,0 +1,12 @@
+.root {
+  composes: switchTarget from "../../../styles/interactive-primitives.module.css";
+}
+.control {
+  composes: switchInput from "../../../styles/interactive-primitives.module.css";
+}
+.track {
+  composes: switchTrack from "../../../styles/interactive-primitives.module.css";
+}
+.thumb {
+  composes: switchThumb from "../../../styles/interactive-primitives.module.css";
+}

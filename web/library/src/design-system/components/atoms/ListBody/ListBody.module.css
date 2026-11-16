@@ -1,0 +1,15 @@
+.root {
+  margin: var(--space-0);
+  padding-inline-start: var(--space-3);
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.root > li + li {
+  margin-block-start: var(--space-2);
+}
+
+.root[hidden] {
+  display: none;
+}

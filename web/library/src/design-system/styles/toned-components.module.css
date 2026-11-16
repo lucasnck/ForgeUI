@@ -1,0 +1,93 @@
+.action {
+  --control-background: var(--color-action-brand-background);
+  --control-foreground: var(--color-action-foreground);
+  --control-soft-background: var(--color-surface-subtle);
+  --control-accent-foreground: var(--color-text-default);
+  --control-accent-border: var(--color-border-default);
+}
+.action:not([data-tone]),
+.action[data-tone="brand"] {
+  --control-foreground: var(--color-action-brand-foreground);
+}
+.action[data-tone="neutral"] {
+  --control-background: var(--color-action-neutral-background);
+}
+.action[data-tone="danger"] {
+  --control-background: var(--color-action-danger-background);
+}
+.action[data-tone="success"] {
+  --control-background: var(--color-action-success-background);
+}
+.action[data-tone="warning"] {
+  --control-background: var(--color-action-warning-background);
+}
+.action[data-tone="info"] {
+  --control-background: var(--color-action-info-background);
+}
+.action[data-tone="sand"] {
+  --control-background: var(--color-action-sand-background);
+  --control-foreground: var(--color-action-sand-foreground);
+  --control-soft-background: var(--color-surface-sand);
+  --control-accent-foreground: var(--color-text-sand);
+  --control-accent-border: var(--color-text-sand);
+}
+.action[data-tone="violet"] {
+  --control-background: var(--color-action-violet-background);
+  --control-accent-foreground: var(--color-text-violet);
+  --control-accent-border: var(--color-text-violet);
+}
+.action[data-tone="forest"] {
+  --control-background: var(--color-action-forest-background);
+  --control-accent-foreground: var(--color-text-forest);
+  --control-accent-border: var(--color-text-forest);
+}
+.action[data-tone="sky"] {
+  --control-background: var(--color-action-sky-background);
+  --control-accent-foreground: var(--color-text-sky);
+  --control-accent-border: var(--color-text-sky);
+}
+.action[data-tone="inverse"] {
+  --control-background: var(--color-surface-inverse);
+  --control-foreground: var(--color-text-inverse);
+}
+.field {
+  --control-solid-foreground: var(--color-action-foreground);
+}
+.field[data-tone="neutral"] {
+  --control-solid-background: var(--color-action-neutral-background);
+}
+.field[data-tone="brand"] {
+  --control-solid-background: var(--color-action-brand-background);
+  --control-solid-foreground: var(--color-action-brand-foreground);
+}
+.field[data-tone="danger"] {
+  --control-state-border: var(--color-text-danger);
+  --control-solid-background: var(--color-action-danger-background);
+}
+.field[data-tone="success"] {
+  --control-state-border: var(--color-text-success);
+  --control-solid-background: var(--color-action-success-background);
+}
+.field[data-tone="warning"] {
+  --control-solid-background: var(--color-action-warning-background);
+}
+.field[data-tone="info"] {
+  --control-solid-background: var(--color-action-info-background);
+}
+.field[data-tone="sand"] {
+  --control-solid-background: var(--color-action-sand-background);
+  --control-solid-foreground: var(--color-action-sand-foreground);
+}
+.field[data-tone="violet"] {
+  --control-solid-background: var(--color-action-violet-background);
+}
+.field[data-tone="forest"] {
+  --control-solid-background: var(--color-action-forest-background);
+}
+.field[data-tone="sky"] {
+  --control-solid-background: var(--color-action-sky-background);
+}
+.field[data-tone="inverse"] {
+  --control-solid-background: var(--color-surface-inverse);
+  --control-solid-foreground: var(--color-text-inverse);
+}

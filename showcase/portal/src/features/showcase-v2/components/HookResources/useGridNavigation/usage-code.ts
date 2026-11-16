@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { useGridNavigation } from "@forge-ui/web";\nconst grid = useGridNavigation({ rowKeys, columnKeys, fallbackRef, pageRows: 2 });\n<div role="grid" ref={fallbackRef} tabIndex={-1}>\n  <div role="row"><div role="gridcell" ref={cellRef}\n    tabIndex={grid.tabIndex(address)} onFocus={() => grid.onCellFocus(address)}\n    onKeyDown={(event) => grid.onCellKeyDown(event, address)}>Children 1</div></div>\n</div>;\n// Register each cell with grid.registerCell(address, cellRef); return its cleanup on unmount.';

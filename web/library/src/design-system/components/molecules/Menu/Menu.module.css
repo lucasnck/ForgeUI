@@ -1,0 +1,5 @@
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--zero);
+  min-inline-size: var(--zero);
+}

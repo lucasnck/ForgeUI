@@ -1,0 +1,10 @@
+.root {
+  composes: anchor from "../../../styles/popup-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  inline-size: fit-content;
+  min-inline-size: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}

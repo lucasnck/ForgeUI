@@ -1,0 +1,14 @@
+.root {
+  flex-wrap: wrap;
+}
+.root > .country {
+  flex: auto;
+  flex-basis: var(--length-40);
+  min-inline-size: var(--zero);
+  max-inline-size: var(--size-full);
+}
+.root > input:not([type="hidden"]) {
+  flex: auto;
+  flex-basis: var(--length-40);
+  min-inline-size: var(--zero);
+}

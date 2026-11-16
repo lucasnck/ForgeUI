@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  Surface,\n  Form,\n  FormHeader,\n  FormBody,\n  Text,\n  FormField,\n  Input,\n} from "@forge-ui/web";\n<Surface padding="2" shape="rounded">\n  <Form onValidSubmit={onValidSubmit} loading={loading}>\n    <FormHeader hidden />\n    <FormBody>\n      <Text>Children</Text>\n      <FormField controlId="field-name" label="Label">\n        <Input name="Name" placeholder="Placeholder" required />\n      </FormField>\n    </FormBody>\n  </Form>\n</Surface>;\n';

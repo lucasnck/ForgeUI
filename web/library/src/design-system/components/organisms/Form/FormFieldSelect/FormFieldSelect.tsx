@@ -1,0 +1,67 @@
+"use client";
+import type { FieldPathByValue, FieldValues } from "react-hook-form";
+import type {
+  NativeFormFieldSelectProps,
+  FormFieldRegistrationProps,
+  VisualProps,
+  ComponentFullWidthProps,
+} from "../../../../types";
+import type { FormFieldOption } from "../../../../../support/forms";
+import { Select } from "../../../atoms/Select";
+import { FormField } from "../../../molecules/FormField";
+import { useFormFieldSelect } from "./useFormFieldSelect";
+export interface FormFieldSelectProps<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>
+  extends
+    NativeFormFieldSelectProps,
+    FormFieldRegistrationProps<TValues, TName>,
+    VisualProps,
+    ComponentFullWidthProps {
+  readOnly?: boolean;
+  options: readonly FormFieldOption<string>[];
+}
+
+export function FormFieldSelect<
+  TValues extends FieldValues,
+  TName extends FieldPathByValue<TValues, string> = FieldPathByValue<TValues, string>,
+>(props: FormFieldSelectProps<TValues, TName>) {
+  const {
+    controlId,
+    label,
+    hint,
+    message,
+    inputProps,
+    fieldName,
+    inputRef,
+    value,
+    change,
+    onBlur,
+    disabled,
+    required,
+  } = useFormFieldSelect(props);
+
+  return (
+    <FormField controlId={controlId} label={label} hint={hint} error={message}>
+      <Select
+        {...inputProps}
+        name={fieldName}
+        ref={inputRef}
+        value={value}
+        onChange={change}
+        onBlur={onBlur}
+        id={controlId}
+        disabled={disabled}
+        invalid={Boolean(message)}
+        aria-required={required || undefined}
+      >
+        {props.options.map((option) => (
+          <option key={option.value} value={option.value} disabled={option.disabled}>
+            {option.label}
+          </option>
+        ))}
+      </Select>
+    </FormField>
+  );
+}

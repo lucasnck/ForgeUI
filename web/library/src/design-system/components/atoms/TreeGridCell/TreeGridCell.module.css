@@ -1,0 +1,8 @@
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  composes: text from "../../../styles/text-components.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  color: var(--color-text-default);
+}

@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  RadioGroup,\n  ChoiceGroupHeader,\n  ChoiceGroupBody,\n  RadioGroupItem,\n  Stack,\n} from "@forge-ui/web";\n\n<RadioGroup name="Name" defaultValue={"item-1"}>\n  <ChoiceGroupHeader>Children</ChoiceGroupHeader>\n  <ChoiceGroupBody>\n    <Stack gap="2">\n      <RadioGroupItem value="item-1" label="Label 1" title="Title 1" />\n      <RadioGroupItem value="item-2" label="Label 2" title="Title 2" />\n      <RadioGroupItem value="item-3" label="Label 3" title="Title 3" />\n    </Stack>\n  </ChoiceGroupBody>\n</RadioGroup>;\n';

@@ -1,0 +1,20 @@
+.participant {
+  display: inline-block;
+  max-inline-size: var(--size-full);
+  vertical-align: baseline;
+}
+:global(html):has(.participant):global(::view-transition-group(.praticar-shared-element)) {
+  animation-duration: var(--motion-normal);
+  animation-timing-function: var(--ease-standard);
+}
+:global(html):has(.participant):global(::view-transition-old(.praticar-shared-element)),
+:global(html):has(.participant):global(::view-transition-new(.praticar-shared-element)) {
+  animation-duration: var(--motion-fast);
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(html):has(.participant):global(::view-transition-group(.praticar-shared-element)),
+  :global(html):has(.participant):global(::view-transition-old(.praticar-shared-element)),
+  :global(html):has(.participant):global(::view-transition-new(.praticar-shared-element)) {
+    animation: none !important;
+  }
+}

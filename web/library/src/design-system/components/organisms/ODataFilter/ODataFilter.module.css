@@ -1,0 +1,13 @@
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  --stack-gap: var(--space-2);
+  min-inline-size: var(--zero);
+}
+.actions {
+  composes: inline from "../../../styles/layout-components.module.css";
+  --inline-gap: var(--space-1);
+}
+.actions[data-layout="stack"] {
+  flex-direction: column;
+  align-items: stretch;
+}

@@ -1,0 +1,23 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { useTheme } from "../../../../../../../web/library/src/support/theme";
+
+export function useTokenResourceExample() {
+  const { resolvedTheme } = useTheme();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [values, setValues] = useState<Record<string, string>>({});
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const result: Record<string, string> = {};
+      rootRef.current?.querySelectorAll<HTMLElement>("[data-token]").forEach((sample) => {
+        const token = sample.dataset.token;
+        const property = sample.dataset.property;
+        if (token && property) result[token] = getComputedStyle(sample).getPropertyValue(property);
+      });
+      setValues(result);
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [resolvedTheme]);
+  return { rootRef, values };
+}

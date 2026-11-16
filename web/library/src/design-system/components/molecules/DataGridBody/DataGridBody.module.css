@@ -1,0 +1,8 @@
+.root {
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}
+
+.root[hidden] {
+  display: none;
+}

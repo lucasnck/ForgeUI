@@ -1,0 +1,12 @@
+.root {
+  min-inline-size: var(--zero);
+  min-block-size: var(--component-height-md);
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  list-style: none;
+  margin: var(--zero);
+  padding: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}

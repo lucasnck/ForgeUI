@@ -1,0 +1,10 @@
+.root {
+  composes: grid from "../../../styles/data-grid-components.module.css";
+}
+
+.viewport {
+  composes: viewport from "../../../styles/data-grid-components.module.css";
+}
+.table {
+  composes: table from "../../../styles/data-grid-components.module.css";
+}

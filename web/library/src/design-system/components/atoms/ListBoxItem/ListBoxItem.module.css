@@ -1,0 +1,25 @@
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  composes: sized from "../../../styles/sized-components.module.css";
+  composes: shaped from "../../../styles/shaped-components.module.css";
+  composes: action from "../../../styles/toned-components.module.css";
+  composes: appearance from "../../../styles/appearance-components.module.css";
+  cursor: pointer;
+}
+.root[data-selected="true"] {
+  --control-appearance-background: var(--control-background);
+  --control-appearance-foreground: var(--control-foreground);
+  border-color: var(--control-foreground);
+  font-weight: var(--font-weight-semibold);
+}
+.root[aria-disabled="true"] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+@media (forced-colors: active) {
+  .root[data-selected="true"] {
+    border-color: var(--color-system-highlight);
+    border-width: var(--border-width-focus);
+  }
+}

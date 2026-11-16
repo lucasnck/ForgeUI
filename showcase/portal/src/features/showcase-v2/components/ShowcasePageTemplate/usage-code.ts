@@ -1,0 +1,4 @@
+export const basicCode =
+  'import {\n  ShowcasePageTemplate,\n  Text,\n  Inline,\n  LocaleSelector,\n  ThemeSelector,\n} from "@forge-ui/web";\n<ShowcasePageTemplate\n  title="Title"\n  navigation={templateNavigation}\n  toolbar={\n    <Inline gap="2" align="center">\n      <LocaleSelector {...localeSelectorProps} />\n      <ThemeSelector {...themeSelectorProps} />\n    </Inline>\n  }\n>\n  <Text>Children</Text>\n</ShowcasePageTemplate>;\n';
+export const secondaryCode =
+  'import {\n  ShowcasePageTemplate,\n  Text,\n  Inline,\n  LocaleSelector,\n  ThemeSelector,\n} from "@forge-ui/web";\n<ShowcasePageTemplate\n  title="Title"\n  toolbar={\n    <Inline gap="2" align="center">\n      <LocaleSelector {...localeSelectorProps} />\n      <ThemeSelector {...themeSelectorProps} />\n    </Inline>\n  }\n>\n  <Text>Children</Text>\n</ShowcasePageTemplate>;\n';

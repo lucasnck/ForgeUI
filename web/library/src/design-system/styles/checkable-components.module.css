@@ -1,0 +1,59 @@
+.checkable {
+  --checkable-target: var(--component-height-md);
+  --checkable-indicator: var(--length-3);
+  --checkable-accent: var(--color-checkable-brand-background);
+  min-block-size: var(--checkable-target);
+  min-inline-size: var(--checkable-target);
+  inline-size: fit-content;
+  max-inline-size: var(--size-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkable[data-size="xs"] {
+  --checkable-target: var(--component-height-xs);
+}
+.checkable[data-size="sm"] {
+  --checkable-target: var(--component-height-sm);
+}
+.checkable[data-size="lg"] {
+  --checkable-target: var(--component-height-lg);
+  --checkable-indicator: var(--length-4);
+}
+.checkable[data-size="xl"] {
+  --checkable-target: var(--component-height-xl);
+  --checkable-indicator: var(--length-5);
+}
+.checkable[data-tone="neutral"] {
+  --checkable-accent: var(--color-action-neutral-background);
+}
+.checkable[data-tone="success"] {
+  --checkable-accent: var(--color-action-success-background);
+}
+.checkable[data-tone="warning"] {
+  --checkable-accent: var(--color-action-warning-background);
+}
+.checkable[data-tone="danger"] {
+  --checkable-accent: var(--color-action-danger-background);
+}
+.checkable[data-tone="info"] {
+  --checkable-accent: var(--color-action-info-background);
+}
+.checkable[data-tone="inverse"] {
+  --checkable-accent: var(--color-text-inverse);
+}
+.indicator {
+  composes: shaped from "./shaped-components.module.css";
+  inline-size: var(--checkable-indicator);
+  block-size: var(--checkable-indicator);
+  border: var(--border-width-thin) var(--border-style-default) var(--color-border-default);
+  background: var(--color-surface-default);
+  accent-color: var(--checkable-accent);
+  appearance: none;
+}
+
+@media (forced-colors: active) {
+  .indicator {
+    appearance: auto;
+  }
+}

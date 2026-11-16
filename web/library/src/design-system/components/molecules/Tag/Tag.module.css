@@ -1,0 +1,6 @@
+.root {
+  composes: compact from "../../../styles/status-components.module.css";
+}
+.content {
+  min-inline-size: var(--zero);
+}

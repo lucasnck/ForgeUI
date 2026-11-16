@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Button, useToastRegion } from "@forge-ui/web";\nconst queue = useToastRegion({ records, onRecordsChange, fallbackRef });\n<Button ref={fallbackRef} onClick={() => queue.add({ id: "item-1", title: "Title 1", message: "Message 1", duration: "persistent", dismissLabel: "Dismiss" })}>Add</Button>;\n// Render queue.records, register each record\'s root/action refs, and announce queue.announcement once per sequence.\n// Update records through onRecordsChange\'s controlled owner; add throws for duplicate ids.';

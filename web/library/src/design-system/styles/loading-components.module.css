@@ -1,0 +1,90 @@
+.rotating[data-animated="true"] {
+  animation: indicatorSpin var(--motion-spin-duration) var(--ease-linear) infinite;
+}
+.pulse[data-animated="true"] {
+  animation: indicatorPulse var(--motion-pulse-duration) var(--ease-pulse) infinite alternate;
+}
+.spinnerSize {
+  --spinner-size: var(--length-4);
+  inline-size: var(--spinner-size);
+  block-size: var(--spinner-size);
+}
+.spinnerTone {
+  composes: action from "./toned-components.module.css";
+  color: var(--color-current);
+}
+.spinnerTone[data-tone] {
+  color: var(--control-background);
+}
+.skeletonSize {
+  composes: shaped from "./shaped-components.module.css";
+  --skeleton-height: var(--component-height-md);
+  --skeleton-text-height: var(--length-3);
+  display: inline-block;
+  inline-size: var(--length-20);
+  max-inline-size: var(--size-full);
+  block-size: var(--skeleton-height);
+}
+.skeletonSize[data-kind="text"] {
+  block-size: var(--skeleton-text-height);
+}
+.skeletonSize[data-kind="circle"] {
+  inline-size: var(--skeleton-height);
+  block-size: var(--skeleton-height);
+  border-radius: var(--radius-circle);
+}
+.spinnerSize[data-size="xs"] {
+  --spinner-size: var(--length-2);
+}
+.skeletonSize[data-size="xs"] {
+  --skeleton-height: var(--component-height-xs);
+  --skeleton-text-height: var(--length-2);
+}
+.spinnerSize[data-size="sm"] {
+  --spinner-size: var(--length-3);
+}
+.skeletonSize[data-size="sm"] {
+  --skeleton-height: var(--component-height-sm);
+  --skeleton-text-height: var(--length-2);
+}
+.spinnerSize[data-size="lg"] {
+  --spinner-size: var(--length-5);
+}
+.skeletonSize[data-size="lg"] {
+  --skeleton-height: var(--component-height-lg);
+  --skeleton-text-height: var(--length-3);
+}
+.spinnerSize[data-size="xl"] {
+  --spinner-size: var(--length-6);
+}
+.skeletonSize[data-size="xl"] {
+  --skeleton-height: var(--component-height-xl);
+  --skeleton-text-height: var(--length-4);
+}
+@keyframes indicatorSpin {
+  to {
+    transform: rotate(var(--rotation-full));
+  }
+}
+@keyframes indicatorPulse {
+  from {
+    opacity: var(--opacity-full);
+  }
+  to {
+    opacity: var(--opacity-pulse);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rotating[data-animated],
+  .pulse[data-animated] {
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  .spinnerTone[data-tone] {
+    color: var(--color-system-canvas-text);
+  }
+  .skeletonSize {
+    outline: var(--border-width-thin) var(--border-style-default) var(--color-system-canvas-text);
+  }
+}

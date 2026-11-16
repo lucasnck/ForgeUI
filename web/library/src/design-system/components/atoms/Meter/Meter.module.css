@@ -1,0 +1,3 @@
+.root {
+  composes: meter from "../../../styles/range-components.module.css";
+}

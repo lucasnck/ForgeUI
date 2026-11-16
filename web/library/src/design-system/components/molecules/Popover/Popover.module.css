@@ -1,0 +1,10 @@
+.root {
+  composes: anchor from "../../../styles/popup-components.module.css";
+  min-inline-size: var(--zero);
+}
+.surface {
+  composes: popup from "../../../styles/popup-components.module.css";
+  composes: stack from "../../../styles/layout-components.module.css";
+  padding: var(--zero);
+  --stack-gap: var(--zero);
+}

@@ -1,0 +1,6 @@
+.root {
+  padding: var(--space-2);
+  text-align: start;
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+}

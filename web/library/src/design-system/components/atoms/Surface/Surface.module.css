@@ -1,0 +1,5 @@
+.root {
+  composes: surface from "../../../styles/layout-components.module.css";
+  composes: stack from "../../../styles/layout-components.module.css";
+  composes: shaped from "../../../styles/shaped-components.module.css";
+}

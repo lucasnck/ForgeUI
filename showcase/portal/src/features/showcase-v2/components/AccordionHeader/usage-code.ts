@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  Surface,\n  Accordion,\n  AccordionItem,\n  AccordionHeader,\n  AccordionBody,\n} from "@forge-ui/web";\n\n<Surface padding="2" shape="rounded">\n  <Accordion\n    level={3}\n    value={expandedValues}\n    onValueChange={onExpandedValuesChange}\n  >\n    <AccordionItem value="item-1">\n      <AccordionHeader>Children 1</AccordionHeader>\n      <AccordionBody hidden />\n    </AccordionItem>\n  </Accordion>\n</Surface>;\n';

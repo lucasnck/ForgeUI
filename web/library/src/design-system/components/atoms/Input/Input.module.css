@@ -1,0 +1,8 @@
+.root {
+  composes: control from "../../../styles/field-control.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+}
+
+.root::placeholder {
+  color: var(--color-text-muted);
+}

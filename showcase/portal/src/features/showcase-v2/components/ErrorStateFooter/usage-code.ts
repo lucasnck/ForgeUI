@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  ErrorState,\n  ErrorStateBody,\n  ErrorStateFooter,\n  Inline,\n  Button,\n} from "@forge-ui/web";\n\n<ErrorState announcement="off">\n  <ErrorStateBody>Children</ErrorStateBody>\n  <ErrorStateFooter>\n    <Inline gap="2" justify="end">\n      <Button variant="outline" onClick={onCancel}>\n        Cancel\n      </Button>\n      <Button onClick={onAction}>Retry</Button>\n    </Inline>\n  </ErrorStateFooter>\n</ErrorState>;';

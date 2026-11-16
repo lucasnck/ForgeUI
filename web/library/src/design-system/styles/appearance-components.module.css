@@ -1,0 +1,32 @@
+.appearance {
+  background: var(--control-appearance-background, var(--control-background));
+  color: var(--control-appearance-foreground, var(--control-foreground));
+  border: var(--border-width-thin) var(--border-style-default)
+    var(
+      --control-system-border,
+      var(
+        --control-state-border,
+        var(--control-appearance-border, var(--control-border, var(--color-transparent)))
+      )
+    );
+}
+.appearance[data-appearance="solid"] {
+  --control-appearance-background: var(--control-solid-background, var(--control-background));
+  --control-appearance-foreground: var(--control-solid-foreground, var(--control-foreground));
+}
+.appearance[data-appearance="soft"] {
+  --control-appearance-background: var(--control-soft-background, var(--color-surface-subtle));
+  --control-appearance-foreground: var(--control-accent-foreground, var(--color-text-default));
+}
+.appearance[data-appearance="outlined"],
+.appearance[data-appearance="bordered"] {
+  --control-appearance-background: var(--color-surface-default);
+  --control-appearance-foreground: var(--control-accent-foreground, var(--color-text-default));
+  --control-appearance-border: var(--control-accent-border, var(--color-border-default));
+}
+.appearance[data-appearance="ghost"],
+.appearance[data-appearance="none"] {
+  --control-appearance-background: var(--color-transparent);
+  --control-appearance-foreground: var(--control-accent-foreground, var(--color-text-default));
+  --control-appearance-border: var(--color-transparent);
+}

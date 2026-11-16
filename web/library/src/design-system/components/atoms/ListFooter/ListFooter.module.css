@@ -1,0 +1,12 @@
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+  --inline-gap: var(--space-2);
+  --inline-wrap: wrap;
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+
+.root[hidden] {
+  display: none;
+}

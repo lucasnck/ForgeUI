@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  Menu,\n  MenuHeader,\n  MenuBody,\n  Surface,\n  Heading,\n  Inline,\n  Icon,\n} from "@forge-ui/web";\n<Surface padding="2" shape="rounded">\n  <Menu label="Label" title="Title" onAction={onAction} onDismiss={onDismiss}>\n    <MenuHeader title="Title">\n      <Inline gap="2" align="center">\n        <Icon name="info" size="sm" />\n        <Heading level={3}>Children</Heading>\n      </Inline>\n    </MenuHeader>\n    <MenuBody hidden />\n  </Menu>\n</Surface>;\n';

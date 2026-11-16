@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  EmptyState,\n  EmptyStateBody,\n  EmptyStateFooter,\n  Inline,\n  Button,\n} from "@forge-ui/web";\n\n<EmptyState>\n  <EmptyStateBody>Children</EmptyStateBody>\n  <EmptyStateFooter>\n    <Inline gap="2" justify="end">\n      <Button variant="outline" onClick={onCancel}>\n        Cancel\n      </Button>\n      <Button onClick={onAction}>Create</Button>\n    </Inline>\n  </EmptyStateFooter>\n</EmptyState>;';

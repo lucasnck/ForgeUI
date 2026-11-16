@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Input, Label, MASK_TOKEN_6, useMaskedInput } from "@forge-ui/web";\nconst masked = useMaskedInput({ mask: MASK_TOKEN_6, value, onValueChange });\n<>\n  <Label htmlFor="code">Label</Label>\n  <Input id="code" placeholder="Placeholder" ref={masked.inputRef} value={masked.displayValue}\n    onChange={masked.onChange} onKeyDown={masked.onKeyDown} inputMode={masked.inputMode} maxLength={masked.maxLength}/>\n</>;';

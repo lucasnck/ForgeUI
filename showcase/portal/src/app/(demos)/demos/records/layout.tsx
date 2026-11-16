@@ -1,0 +1,10 @@
+import type { ReactNode } from "react";
+import { TemplateDemoProvider, TemplateDemoChrome } from "../../../../features/showcase-v2";
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <TemplateDemoProvider>
+      <TemplateDemoChrome>{children}</TemplateDemoChrome>
+    </TemplateDemoProvider>
+  );
+}

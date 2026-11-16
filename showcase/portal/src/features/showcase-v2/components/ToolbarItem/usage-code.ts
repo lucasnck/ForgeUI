@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { Toolbar, ToolbarItem } from "@forge-ui/web";\n\n<Toolbar label="Label">\n  <ToolbarItem itemKey="item-1" title="Title 1" onClick={onAction}>\n    Children 1\n  </ToolbarItem>\n  <ToolbarItem itemKey="item-2" title="Title 2" onClick={onAction}>\n    Children 2\n  </ToolbarItem>\n  <ToolbarItem itemKey="item-3" title="Title 3" onClick={onAction}>\n    Children 3\n  </ToolbarItem>\n</Toolbar>;\n';

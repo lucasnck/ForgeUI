@@ -1,0 +1,2 @@
+﻿export const basicCode =
+  'import { Stack, Label, Input, FieldHint } from "@forge-ui/web";\n\n<Stack gap="1">\n  <Label htmlFor="field">Label</Label>\n  <Input id="field" placeholder="Placeholder" aria-describedby="description" />\n  <FieldHint id="description">Children</FieldHint>\n</Stack>;';

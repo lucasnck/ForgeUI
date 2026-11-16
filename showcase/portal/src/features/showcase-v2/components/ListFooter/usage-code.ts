@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  List,\n  ListBody,\n  ListItem,\n  Text,\n  ListFooter,\n  Button,\n} from "@forge-ui/web";\n\n<List label="Label">\n  <ListBody>\n    <ListItem>\n      <Text>Children 1</Text>\n    </ListItem>\n    <ListItem>\n      <Text>Children 2</Text>\n    </ListItem>\n    <ListItem>\n      <Text>Children 3</Text>\n    </ListItem>\n  </ListBody>\n  <ListFooter data-justify="between">\n    <Text>3 / 6</Text>\n    <Button onClick={onAction}>Show more</Button>\n  </ListFooter>\n</List>;';

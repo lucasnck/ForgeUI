@@ -1,0 +1,29 @@
+.icon {
+  --icon-size: var(--length-6);
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+  flex-shrink: var(--zero);
+  vertical-align: var(--icon-align-offset);
+  color: inherit;
+  stroke-width: var(--icon-stroke-width);
+}
+
+.size[data-icon-size="xs"] {
+  --icon-size: var(--length-4);
+}
+
+.size[data-icon-size="sm"] {
+  --icon-size: var(--length-5);
+}
+
+.size[data-icon-size="lg"] {
+  --icon-size: var(--length-7);
+}
+
+.size[data-icon-size="xl"] {
+  --icon-size: var(--length-8);
+}
+
+.size[data-icon-size="inherit"] {
+  --icon-size: var(--icon-size-inherit);
+}

@@ -1,0 +1,11 @@
+.root {
+  min-inline-size: var(--zero);
+}
+.list {
+  composes: inline from "../../../styles/layout-components.module.css";
+  --inline-gap: var(--space-0);
+  --inline-wrap: wrap;
+  margin: var(--zero);
+  padding: var(--zero);
+  list-style: none;
+}

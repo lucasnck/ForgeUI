@@ -1,0 +1,11 @@
+.root {
+  composes: stack from "../../../styles/layout-components.module.css";
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  list-style: none;
+  margin: var(--zero);
+  padding: var(--space-1);
+}
+
+.root[hidden] {
+  display: none;
+}

@@ -1,0 +1,108 @@
+.grid {
+  composes: fullWidth from "./full-width-components.module.css";
+  --data-grid-row-height: var(--component-height-md);
+  --data-grid-padding: var(--space-2);
+  min-inline-size: var(--zero);
+  max-inline-size: var(--size-full);
+  inline-size: fit-content;
+  background: var(--color-surface-default);
+  color: var(--color-text-default);
+  border-radius: var(--radius-sm);
+}
+.grid[data-size="xs"] {
+  --data-grid-row-height: var(--component-height-xs);
+  --data-grid-padding: var(--space-2);
+}
+.grid[data-size="sm"] {
+  --data-grid-row-height: var(--component-height-sm);
+  --data-grid-padding: var(--space-2);
+}
+.grid[data-size="lg"] {
+  --data-grid-row-height: var(--component-height-lg);
+  --data-grid-padding: var(--space-3);
+}
+.grid[data-size="xl"] {
+  --data-grid-row-height: var(--component-height-xl);
+  --data-grid-padding: var(--space-4);
+}
+.grid[data-borders="true"] {
+  border: var(--border-width-thin) var(--border-style-default) var(--color-border-default);
+}
+.viewport {
+  min-inline-size: var(--zero);
+  max-inline-size: var(--size-full);
+  overflow-x: auto;
+  border-radius: inherit;
+}
+.viewport:focus-visible {
+  outline: var(--border-width-focus) var(--border-style-default) var(--color-focus-ring);
+  outline-offset: calc(var(--zero) - var(--border-width-focus));
+}
+.table {
+  inline-size: var(--size-full);
+  min-inline-size: var(--length-58);
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+.table :is(th, td) {
+  block-size: var(--data-grid-row-height);
+  padding: var(--space-2) var(--data-grid-padding);
+  text-align: start;
+  vertical-align: middle;
+}
+.header {
+  background: var(--color-surface-subtle);
+  border-block-end: var(--border-width-thin) var(--border-style-default) var(--color-border-default);
+}
+.columnHeader {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.cell {
+  color: inherit;
+  font-weight: var(--font-weight-regular);
+}
+.table [data-align="end"] {
+  text-align: end;
+}
+.table [data-align="center"] {
+  text-align: center;
+}
+.grid[data-row-lines="true"] .row:not(:last-child) > :is(th, td) {
+  border-block-end: var(--border-width-thin) var(--border-style-default) var(--color-border-subtle);
+}
+.grid[data-column-lines="true"] .table :is(th, td):not(:last-child) {
+  border-inline-end: var(--border-width-thin) var(--border-style-default) var(--color-border-subtle);
+}
+.grid[data-alternating="true"] .row:nth-child(even) {
+  background: var(--color-surface-subtle);
+}
+.row:hover,
+.row:focus-within {
+  background: var(--color-surface-accent);
+}
+.sortButton {
+  inline-size: var(--size-full);
+  min-block-size: var(--zero);
+  padding: var(--zero);
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  justify-content: start;
+}
+.sortButton > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.footer {
+  composes: inline from "./layout-components.module.css";
+  --inline-justify: space-between;
+  padding: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  border-block-start: var(--border-width-thin) var(--border-style-default)
+    var(--color-border-default);
+}

@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@forge-ui/web";\n\n<Tabs label="Label" defaultValue="item-1">\n  <TabsHeader>\n    <Tab value="item-1" title="Title 1">\n      Children 1\n    </Tab>\n    <Tab value="item-2" title="Title 2">\n      Children 2\n    </Tab>\n  </TabsHeader>\n  <TabsBody>\n    <TabPanel value="item-1" title="Title 1">\n      Children 1\n    </TabPanel>\n    <TabPanel value="item-2" title="Title 2">\n      Children 2\n    </TabPanel>\n  </TabsBody>\n</Tabs>;\n';

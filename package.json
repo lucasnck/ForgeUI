@@ -1,0 +1,29 @@
+{
+  "name": "forge-ui-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "web/library",
+    "showcase/portal"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @forge-ui/showcase",
+    "build": "npm run build --workspace @forge-ui/showcase",
+    "typecheck": "npm run typecheck --workspace @forge-ui/web && npm run typecheck --workspace @forge-ui/showcase",
+    "check": "npm run test:migrate:bulk && npm run test:showcase-store && npm run verify:workspace && npm run verify:v2 && npm run coverage && npm run verify:docs && npm run verify:phase6 && npm run audit:bulk:targets && npm run typecheck && npm run build",
+    "verify:workspace": "node scripts/verify-workspace.mjs",
+    "test:showcase-store": "node scripts/test-example-store.mjs",
+    "verify:v2": "node scripts/test-v2-contracts.mjs",
+    "coverage": "node scripts/generate-migration-coverage.mjs",
+    "verify:phase6": "node scripts/test-phase6-contracts.mjs",
+    "verify:docs": "node scripts/verify-sc-manifests.mjs && node scripts/audit-sc-links.mjs",
+    "migrate:bulk": "node scripts/migrate-from-praticarfront.mjs --apply",
+    "audit:migrate:bulk": "node scripts/migrate-from-praticarfront.mjs",
+    "test:migrate:bulk": "node scripts/test-bulk-migration.mjs",
+    "audit:bulk": "node scripts/audit-bulk-migration.mjs",
+    "audit:bulk:targets": "node scripts/audit-bulk-migration.mjs --target-only"
+  }
+}

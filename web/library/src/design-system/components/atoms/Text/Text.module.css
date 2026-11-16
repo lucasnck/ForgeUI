@@ -1,0 +1,6 @@
+.root {
+  composes: text from "../../../styles/text-components.module.css";
+  composes: size from "../../../styles/text-components.module.css";
+  composes: tone from "../../../styles/text-components.module.css";
+  composes: weight from "../../../styles/text-components.module.css";
+}

@@ -1,0 +1,137 @@
+"use client";
+import type { ShowcaseV2Definition } from "../../model/showcase-v2.types";
+import { basicCode } from "./usage-code";
+import { IconButtonExample } from "./IconButton.example";
+const definition = {
+  slug: "icon-button",
+  name: "IconButton",
+  level: "molecules",
+  specification: "docs/sc/ds/components/molecules/IconButton.sc.md",
+  description: "An accessible icon action with native button semantics.",
+  properties: [
+    {
+      name: "label",
+      type: "string",
+      required: true,
+      source: "ComponentAccessibleNameProps",
+      defaultValue: null,
+      description: "Meaningful accessible name supplied by the caller.",
+    },
+    {
+      name: "size",
+      type: "ComponentSize",
+      required: false,
+      source: "ComponentSizedProps",
+      defaultValue: "md",
+      description: "Canonical visual size, independent of semantic heading level.",
+    },
+    {
+      name: "tone",
+      type: "ComponentTone",
+      required: false,
+      source: "ComponentToneProps",
+      defaultValue: "brand",
+      description: "Canonical semantic tone; inverse requires an inverse surface.",
+    },
+    {
+      name: "appearance",
+      type: "ComponentAppearance",
+      required: false,
+      source: "ComponentAppearanceProps",
+      defaultValue: null,
+      description: "Canonical presentation recipe; preserves native semantics.",
+    },
+    {
+      name: "shape",
+      type: "ComponentShape",
+      required: false,
+      source: "ComponentShapeProps",
+      defaultValue: null,
+      description: "Optional shape override; otherwise inherits the document recipe.",
+    },
+    {
+      name: "loading",
+      type: "boolean",
+      required: false,
+      source: "ComponentLoadingProps",
+      defaultValue: "false",
+      description: "Busy native action state; prevents activation while loading.",
+    },
+    {
+      name: "loadingLabel",
+      type: "string",
+      required: false,
+      source: "ComponentLoadingProps",
+      defaultValue: null,
+      description: "Optional accessible busy label.",
+    },
+    {
+      name: "variant",
+      type: "ComponentVariant",
+      required: false,
+      source: "ComponentVariantProps",
+      defaultValue: "solid",
+      description: "Supported public variant option; follows its canonical source contract.",
+    },
+    {
+      name: "icon",
+      type: "IconName",
+      required: true,
+      source: "IconButtonProps",
+      defaultValue: null,
+      description: "Supported icon geometry identifier.",
+    },
+    {
+      name: "native attributes",
+      type: 'Omit<ComponentPropsWithRef<"button">, "children">',
+      required: false,
+      defaultValue: null,
+      description:
+        "Native attributes/events subject to this inherited contract and owner-reserved IDs/roles. Restricted native channels remain restricted.",
+      source: "IconButtonProps",
+    },
+    {
+      name: "title",
+      type: "string | undefined",
+      required: false,
+      defaultValue: null,
+      description: "Inherited public property; edits apply to this example only.",
+      source: "IconButtonProps",
+    },
+    {
+      name: "disabled",
+      type: "boolean | undefined",
+      required: false,
+      defaultValue: null,
+      description: "Inherited public property; edits apply to this example only.",
+      source: "IconButtonProps",
+    },
+  ],
+  methods: [],
+  events: [
+    {
+      name: "onClick",
+      signature: "(event: MouseEvent<HTMLButtonElement>) => void",
+      description: "Native button activation invokes the supplied callback; disabled prevents it.",
+    },
+  ],
+  features: [
+    {
+      id: "source",
+      name: "Canonical implementation",
+      description:
+        "src/design-system/components/molecules/IconButton/IconButton.tsx · src/design-system/components/molecules/IconButton/IconButton.module.css",
+    },
+  ],
+  examples: [
+    {
+      id: "basic",
+      title: "Named icon action",
+      description:
+        "Activate by keyboard or pointer; disabled/loading prevents additional callbacks.",
+      code: basicCode,
+      Component: IconButtonExample,
+    },
+  ],
+} satisfies ShowcaseV2Definition;
+export default definition;

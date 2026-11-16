@@ -1,0 +1,15 @@
+.shaped {
+  border-radius: var(--control-shape-radius, var(--shape-radius));
+}
+
+.shaped[data-shape="square"] {
+  --control-shape-radius: var(--zero);
+}
+
+.shaped[data-shape="rounded"] {
+  --control-shape-radius: var(--radius-md);
+}
+
+.shaped[data-shape="pill"] {
+  --control-shape-radius: var(--radius-full);
+}

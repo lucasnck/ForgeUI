@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { InternationalTelephoneInput, FormField } from "@forge-ui/web";\n\n<FormField controlId="international-telephone-input" label="Label" hint="Hint">\n  <InternationalTelephoneInput\n    name="Name"\n    placeholder="Placeholder"\n    value={phone}\n    onValueChange={onPhoneChange}\n    locale="pt-BR"\n    countries={["BR", "US", "PT"]}\n    countryLabel="CountryLabel"\n    internationalLabel="InternationalLabel"\n    invalidMessage="InvalidMessage"\n  />\n</FormField>;\n';

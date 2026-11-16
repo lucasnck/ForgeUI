@@ -1,0 +1,8 @@
+.root {
+  composes: spinnerSize spinnerTone rotating from "../../../styles/loading-components.module.css";
+  display: inline-block;
+  flex-shrink: var(--zero);
+  border: var(--border-width-thick) var(--border-style-default) var(--color-current);
+  border-inline-end-color: var(--color-transparent);
+  border-radius: var(--radius-circle);
+}

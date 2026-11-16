@@ -1,0 +1,104 @@
+"use client";
+import { useId, useState } from "react";
+import type { ChangeEvent } from "react";
+import type { StepperProps } from "@forge-ui/web";
+import { useLocale } from "../../../../../../../web/library/src/support/i18n";
+import { steps } from "./fixtures";
+
+export function useStepperPreview(
+  review = false,
+  selectedOverride?: string,
+  accept?: (next: string) => void,
+) {
+  const id = useId();
+  const { locale } = useLocale();
+  const copy =
+    locale === "pt-BR"
+      ? {
+          back: "Voltar",
+          next: "Avançar",
+          review: "Revisar",
+          required: "Preencha os campos anteriores para avançar.",
+        }
+      : locale === "es"
+        ? {
+            back: "Volver",
+            next: "Siguiente",
+            review: "Revisar",
+            required: "Complete los campos anteriores para continuar.",
+          }
+        : {
+            back: "Back",
+            next: "Next",
+            review: "Review",
+            required: "Complete the previous fields to continue.",
+          };
+  const [selected, setSelected] = useState("item-1");
+  const value = selectedOverride ?? selected;
+  const [drafts, setDrafts] = useState<readonly string[]>(["", ""]);
+  const [requested, setRequested] = useState<string | null>(null);
+  const [requests, setRequests] = useState(0);
+  const [rejected, setRejected] = useState(0);
+  const [error, setError] = useState(false);
+  const index = steps.findIndex((item) => item.id === value);
+
+  const change: StepperProps["onStepChange"] = (next) => {
+    setRequested(next);
+    setRequests((n) => n + 1);
+    const destination = steps.findIndex((item) => item.id === next);
+
+    if (review && drafts.slice(0, Math.min(destination, 2)).some((text) => !text.trim())) {
+      setError(true);
+      setRejected((n) => n + 1);
+      return;
+    }
+
+    setError(false);
+    setSelected(next);
+    accept?.(next);
+  };
+
+  function previous() {
+    change(steps[Math.max(0, index - 1)].id);
+  }
+
+  function next() {
+    change(steps[Math.min(steps.length - 1, index + 1)].id);
+  }
+
+  function editDraft(position: number, event: ChangeEvent<HTMLInputElement>) {
+    const text = event.target.value;
+    setDrafts((current) => current.map((value, i) => (i === position ? text : value)));
+    setError(false);
+  }
+
+  function draftChange(position: number) {
+    return (event: ChangeEvent<HTMLInputElement>) => editDraft(position, event);
+  }
+
+  function reviewStep(value: string) {
+    return () => change(value);
+  }
+
+  return {
+    draftChange,
+    reviewStep,
+    id,
+    copy,
+    value,
+    index,
+    drafts,
+    error,
+    change,
+    previous,
+    next,
+    editDraft,
+    state: {
+      value,
+      requested,
+      requests,
+      rejected,
+      ...(review ? { drafts } : {}),
+    },
+  };
+}

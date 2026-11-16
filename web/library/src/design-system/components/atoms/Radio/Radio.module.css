@@ -1,0 +1,8 @@
+.root {
+  composes: checkable from "../../../styles/checkable-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+}
+.control {
+  composes: radio from "../../../styles/interactive-primitives.module.css";
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+}

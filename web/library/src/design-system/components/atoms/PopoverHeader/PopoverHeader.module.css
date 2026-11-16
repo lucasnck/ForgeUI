@@ -1,0 +1,13 @@
+.root {
+  min-inline-size: var(--zero);
+  padding: var(--space-2);
+  border-block-end: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.root[data-divider="false"] {
+  border-block-end-width: var(--zero);
+}
+
+.root[hidden] {
+  display: none;
+}

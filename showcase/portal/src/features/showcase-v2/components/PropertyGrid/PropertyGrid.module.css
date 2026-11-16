@@ -1,0 +1,7 @@
+.scroller { overflow-x:auto; inline-size:100%; border:var(--border-width-thin) solid var(--color-border-subtle); border-radius:var(--radius-sm); }
+.table { border-collapse:collapse; inline-size:100%; font-size:var(--font-size-sm); color:var(--color-text-default); }
+.table th,.table td { padding:var(--space-2); text-align:start; vertical-align:middle; border-bottom:var(--border-width-thin) solid var(--color-border-subtle); }
+.table thead { background:var(--color-surface-subtle); }
+.table tbody tr:last-child th,.table tbody tr:last-child td { border-bottom:0; }
+.table td:last-child { min-inline-size:var(--length-18); }
+.caption { position:absolute; block-size:1px; inline-size:1px; overflow:hidden; clip-path:inset(50%); }

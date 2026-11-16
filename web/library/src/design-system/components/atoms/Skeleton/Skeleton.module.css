@@ -1,0 +1,5 @@
+.root {
+  composes: skeletonSize pulse from "../../../styles/loading-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  background: var(--color-surface-subtle);
+}

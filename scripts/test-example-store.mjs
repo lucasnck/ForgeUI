@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+/** Runtime contract test for the original Showcase V2 property store. Requires the workspace's TypeScript dev dependency; no React/Next runtime needed. */
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
+const require = createRequire(import.meta.url);
+const ts = require('typescript');
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const code = readFileSync(join(root,'showcase/portal/src/features/showcase-v2/components/ExampleScope/example-store.ts'),'utf8');
+const js = ts.transpileModule(code, {compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
+const exports = {};
+vm.runInNewContext(js,{exports,module:{exports}});
+const store = exports.createExampleStore('Button', {size:{kind:'select',options:['sm','md','lg'],defaultValue:'md'}, disabled:{kind:'boolean',defaultValue:false},label:{kind:'text'}},[{name:'size',required:false},{name:'label',required:true}]);
+let emissions = 0;
+const unsubscribe = store.subscribe(()=>emissions++);
+store.edit('size','sm');
+if(store.getOverrides().size!=='sm') throw Error('Property override was not saved.');
+store.edit('label','');
+if(Object.hasOwn(store.getOverrides(),'label'))throw Error('Required name/label should not accept empty string.');
+let handled=false;
+store.register({id:'a',label:'disabled',kind:'boolean',value:false},value=>{handled=true;store.setProperty('disabled',value)});
+store.edit('disabled',true);
+if(!handled || store.getOverrides().disabled!==true) throw Error('Registered editor did not call handler.');
+store.clear();
+if(Object.keys(store.getOverrides()).length!==0 || store.getSnapshot().controls.length!==0)throw Error('Reset did not clear overrides and registered controls.');
+unsubscribe();
+if(emissions<3)throw Error('Store did not notify subscribers.');
+console.log('[forge] Original Showcase V2 store: edit, registered editor, subscriber, reset PASS');

@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { ToastRegion, Toast, ToastBody, Text, Button } from "@forge-ui/web";\n<ToastRegion\n  label="Label"\n  records={toastRecords}\n  onRecordsChange={onToastRecordsChange}\n  renderToast={(record) => (\n    <Toast record={record}>\n      <ToastBody>\n        <Text>Children</Text>\n        <Button type="button" onClick={() => onDismissToast(record.id)}>\n          {record.dismissLabel}\n        </Button>\n      </ToastBody>\n    </Toast>\n  )}\n/>;\n';

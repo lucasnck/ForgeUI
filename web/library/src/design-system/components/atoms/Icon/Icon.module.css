@@ -1,0 +1,4 @@
+.root {
+  composes: icon from "../../../styles/icon-components.module.css";
+  composes: size from "../../../styles/icon-components.module.css";
+}

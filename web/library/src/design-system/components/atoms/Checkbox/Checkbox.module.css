@@ -1,0 +1,19 @@
+.root {
+  composes: checkable from "../../../styles/checkable-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+}
+.control {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  composes: indicator from "../../../styles/checkable-components.module.css";
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  margin: var(--zero);
+  cursor: pointer;
+}
+.control:checked {
+  background: var(--checkable-accent);
+  border-color: var(--checkable-accent);
+}
+.control[aria-invalid="true"]:not(:focus-visible) {
+  outline: var(--border-width-thin) var(--border-style-default) var(--color-text-danger);
+  outline-offset: var(--length-1);
+}

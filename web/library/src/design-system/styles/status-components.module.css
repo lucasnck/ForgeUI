@@ -1,0 +1,64 @@
+.compact {
+  composes: shaped from "./shaped-components.module.css";
+  composes: action from "./toned-components.module.css";
+  composes: appearance from "./appearance-components.module.css";
+  composes: fullWidth from "./full-width-components.module.css";
+  --status-height: var(--length-5);
+  --status-padding: var(--length-2);
+  --status-font: var(--font-size-md);
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--status-height);
+  max-inline-size: var(--size-full);
+  min-inline-size: var(--zero);
+  padding-inline: var(--status-padding);
+  font-size: var(--status-font);
+  gap: var(--space-1);
+  overflow-wrap: anywhere;
+}
+.avatar {
+  composes: shaped from "./shaped-components.module.css";
+  --avatar-size: var(--length-6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--avatar-size);
+  block-size: var(--avatar-size);
+  flex-shrink: var(--zero);
+  overflow: hidden;
+  background: var(--color-surface-subtle);
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+}
+.compact[data-size="xs"] {
+  --status-height: var(--length-3);
+  --status-padding: var(--length-1);
+  --status-font: var(--font-size-xs);
+}
+.avatar[data-size="xs"] {
+  --avatar-size: var(--length-4);
+}
+.compact[data-size="sm"] {
+  --status-height: var(--length-4);
+  --status-padding: var(--length-1);
+  --status-font: var(--font-size-sm);
+}
+.avatar[data-size="sm"] {
+  --avatar-size: var(--length-5);
+}
+.compact[data-size="lg"] {
+  --status-height: var(--length-6);
+  --status-padding: var(--length-2);
+  --status-font: var(--font-size-lg);
+}
+.avatar[data-size="lg"] {
+  --avatar-size: var(--length-7);
+}
+.compact[data-size="xl"] {
+  --status-height: var(--length-7);
+  --status-padding: var(--length-3);
+  --status-font: var(--font-size-xl);
+}
+.avatar[data-size="xl"] {
+  --avatar-size: var(--length-8);
+}

@@ -1,0 +1,16 @@
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  flex-wrap: nowrap;
+  inline-size: fit-content;
+  max-inline-size: var(--size-full);
+  min-inline-size: var(--zero);
+}
+
+.root > input {
+  flex: auto;
+}
+
+.root > :not(input) {
+  flex-shrink: var(--zero);
+}

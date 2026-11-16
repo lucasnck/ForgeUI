@@ -1,0 +1,3 @@
+.root {
+  composes: cell from "../../../styles/data-grid-components.module.css";
+}

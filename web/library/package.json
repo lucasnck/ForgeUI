@@ -1,0 +1,32 @@
+{
+  "name": "@forge-ui/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./styles": "./src/design-system/styles/globals.css",
+    "./styles/*": "./src/design-system/styles/*",
+    "./tokens.css": "./src/design-system/styles/tokens.css",
+    "./i18n": "./src/support/i18n/index.ts",
+    "./theme": "./src/support/theme/index.ts",
+    "./forms": "./src/support/forms/index.ts"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.2",
+    "libphonenumber-js": "^1.13.16",
+    "react-hook-form": "^7.92.0",
+    "zod": "^3.25.76"
+  }
+}

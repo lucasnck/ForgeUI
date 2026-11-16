@@ -1,0 +1,22 @@
+.root {
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  min-inline-size: var(--zero);
+}
+.label {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  display: block;
+  padding: var(--space-2);
+  border: var(--border-width-thin) var(--border-style-default) var(--color-transparent);
+}
+.root[data-selected="true"] > .label {
+  background: var(--color-surface-subtle);
+  border-color: var(--color-border-default);
+}
+.root[aria-disabled="true"] > .label {
+  opacity: var(--opacity-disabled);
+}
+@media (forced-colors: active) {
+  .root[data-selected="true"] > .label {
+    border-color: var(--color-system-highlight);
+  }
+}

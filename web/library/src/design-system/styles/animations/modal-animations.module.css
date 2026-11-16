@@ -1,0 +1,45 @@
+/* Native close releases modality and focus immediately. Discrete transitions
+   retain only the closing paint; unsupported browsers use instant native close. */
+@supports (transition-behavior: allow-discrete) {
+  @media (prefers-reduced-motion: no-preference) {
+    .root[data-animated="true"]:not([data-animation-effect="none"]) {
+      opacity: var(--motion-opacity-hidden);
+      transition-property: opacity, transform, display, overlay;
+      transition-duration: var(--motion-normal);
+      transition-timing-function: var(--ease-standard);
+      transition-behavior: allow-discrete;
+    }
+
+    .root[data-animated="true"][data-animation-effect="scale"] {
+      transform: scale(var(--motion-scale-enter));
+    }
+
+    .root[data-animated="true"][open]:not([data-animation-effect="none"]) {
+      opacity: var(--motion-opacity-visible);
+      transform: scale(var(--motion-scale-rest));
+    }
+
+    .root[data-animated="true"]:not([data-animation-effect="none"])::backdrop {
+      opacity: var(--motion-opacity-hidden);
+      transition-property: opacity, display, overlay;
+      transition-duration: var(--motion-normal);
+      transition-timing-function: var(--ease-standard);
+      transition-behavior: allow-discrete;
+    }
+
+    .root[data-animated="true"][open]:not([data-animation-effect="none"])::backdrop {
+      opacity: var(--opacity-pulse);
+    }
+
+    @starting-style {
+      .root[data-animated="true"][open]:not([data-animation-effect="none"]),
+      .root[data-animated="true"][open]:not([data-animation-effect="none"])::backdrop {
+        opacity: var(--motion-opacity-hidden);
+      }
+
+      .root[data-animated="true"][open][data-animation-effect="scale"] {
+        transform: scale(var(--motion-scale-enter));
+      }
+    }
+  }
+}

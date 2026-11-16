@@ -1,0 +1,5 @@
+import { TemplateDemoList } from "../../../../../features/showcase-v2";
+
+export default function Page() {
+  return <TemplateDemoList />;
+}

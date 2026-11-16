@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  ErrorState,\n  ErrorStateHeader,\n  ErrorStateBody,\n  Inline,\n  Heading,\n  Icon,\n} from "@forge-ui/web";\n\n<ErrorState announcement="off">\n  <ErrorStateHeader>\n    <Inline gap="2" align="center">\n      <Icon name="info" size="inherit" />\n      <Heading level={3} size="md">\n        Children\n      </Heading>\n    </Inline>\n  </ErrorStateHeader>\n  <ErrorStateBody hidden>Children</ErrorStateBody>\n</ErrorState>;';

@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Button, Heading, useAccordion } from "@forge-ui/web";\nconst accordion = useAccordion({ value, onValueChange, multiple: false });\n<>\n  <Heading level={4}><Button id="item-1" aria-expanded={accordion.isExpanded("item-1")} aria-controls="body-1" onClick={() => accordion.toggle("item-1")}>Label 1</Button></Heading>\n  <div id="body-1" aria-labelledby="item-1" hidden={!accordion.isExpanded("item-1")}>Children 1</div>\n</>;\n// Register each mounted item through accordion.registerItem("item-1") and run its cleanup on unmount.';

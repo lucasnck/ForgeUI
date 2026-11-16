@@ -1,0 +1,3 @@
+.root {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+}

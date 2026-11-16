@@ -1,0 +1,57 @@
+.none {
+  opacity: var(--motion-opacity-visible);
+  transform: none;
+}
+.fade {
+  transition-property: opacity;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.scale {
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--ease-standard);
+}
+.fade[data-motion-state="entering"],
+.fade[data-motion-state="exiting"],
+.scale[data-motion-state="entering"],
+.scale[data-motion-state="exiting"] {
+  opacity: var(--motion-opacity-hidden);
+}
+.scale[data-motion-state="entering"],
+.scale[data-motion-state="exiting"] {
+  transform: scale(var(--motion-scale-enter));
+}
+.fade[data-motion-state="entered"],
+.scale[data-motion-state="entered"] {
+  opacity: var(--motion-opacity-visible);
+}
+.scale[data-motion-state="entered"] {
+  transform: scale(var(--motion-scale-rest));
+}
+.none,
+.fade[data-animated="false"],
+.scale[data-animated="false"] {
+  transition: none;
+  opacity: var(--motion-opacity-visible);
+  transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @starting-style {
+    .fade[data-motion-state="entered"][data-animated="true"],
+    .scale[data-motion-state="entered"][data-animated="true"] {
+      opacity: var(--motion-opacity-hidden);
+    }
+    .scale[data-motion-state="entered"][data-animated="true"] {
+      transform: scale(var(--motion-scale-enter));
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade[data-motion-state],
+  .scale[data-motion-state] {
+    transition: none;
+    opacity: var(--motion-opacity-visible);
+    transform: none;
+  }
+}

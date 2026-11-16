@@ -1,0 +1,3 @@
+.root {
+  composes: inline from "../../../styles/layout-components.module.css";
+}

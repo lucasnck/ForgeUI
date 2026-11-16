@@ -1,0 +1,4 @@
+.root {
+  composes: selector from "../../../styles/preference-selector.module.css";
+  --selector-min-width: var(--length-20);
+}

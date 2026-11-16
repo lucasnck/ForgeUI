@@ -1,0 +1,37 @@
+import { isValidInstant } from "../../support/formatting/intl";
+import type { Locale } from "../../support/contracts/preferences";
+
+export function formatRelativeTime(
+  value: Date | number | null,
+  reference: Date | number,
+  locale: Locale,
+  options: Intl.RelativeTimeFormatOptions = {},
+): string {
+  if (value === null) return "";
+  const target = value instanceof Date ? value.getTime() : value;
+  const origin = reference instanceof Date ? reference.getTime() : reference;
+  if (!isValidInstant(value) || !isValidInstant(reference)) throw new RangeError("Invalid instant");
+  const delta = (target - origin) / 1000;
+  const magnitude = Math.abs(delta);
+  const units: readonly (readonly [Intl.RelativeTimeFormatUnit, number])[] = [
+    ["year", 31536000],
+    ["month", 2592000],
+    ["week", 604800],
+    ["day", 86400],
+    ["hour", 3600],
+    ["minute", 60],
+    ["second", 1],
+  ];
+  const [unit, divisor] =
+    units.find(([, seconds]) => magnitude >= seconds) ?? units[units.length - 1];
+  const count = Math.trunc(delta / divisor);
+
+  return new Intl.RelativeTimeFormat(locale, { numeric: "auto", ...options }).format(
+    count === 0 ? 0 : count,
+    unit,
+  );
+}
+
+export function isValidRelativeTime(value: unknown, reference: unknown): boolean {
+  return isValidInstant(value) && isValidInstant(reference);
+}

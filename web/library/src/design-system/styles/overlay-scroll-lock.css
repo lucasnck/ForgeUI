@@ -1,0 +1,3 @@
+:root[data-overlay-scroll-locked="true"] {
+  overflow: hidden;
+}

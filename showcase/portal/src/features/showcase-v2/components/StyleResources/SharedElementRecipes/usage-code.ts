@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { PageTransition, SharedElement, Surface, Text } from "@forge-ui/web";\nimport { startTransition, addTransitionType } from "react";\nimport { pageTransitionTypes } from "@forge-ui/web";\n\n// In your navigation handler:\nstartTransition(() => { addTransitionType(pageTransitionTypes.forward); onNavigate(); });\n\n<PageTransition animated={animated}>\n  <Surface key={viewKey} padding="3"><SharedElement name="record-1" animated={animated}><Text>Title 1</Text></SharedElement><Text>Description 1</Text></Surface>\n</PageTransition>;';

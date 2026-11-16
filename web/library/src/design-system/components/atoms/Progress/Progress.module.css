@@ -1,0 +1,3 @@
+.root {
+  composes: progress from "../../../styles/range-components.module.css";
+}

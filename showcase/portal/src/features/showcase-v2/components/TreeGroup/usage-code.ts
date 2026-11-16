@@ -1,0 +1,2 @@
+export const basicCode =
+  'import { Tree, TreeBody, Surface } from "@forge-ui/web";\n<Surface padding="2" shape="rounded">\n  <Tree\n    label="Label"\n    title="Title"\n    nodes={treeNodes.slice(0, 1)}\n    value={treeValue}\n    onValueChange={onTreeValueChange}\n    expandedValue={expandedValues}\n    onExpandedValueChange={onTreeExpandedChange}\n  >\n    <TreeBody title="Title" />\n  </Tree>\n</Surface>;\n';

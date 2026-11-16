@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  EmptyState,\n  EmptyStateHeader,\n  EmptyStateBody,\n  Inline,\n  Heading,\n  Icon,\n} from "@forge-ui/web";\n\n<EmptyState>\n  <EmptyStateHeader>\n    <Inline gap="2" align="center">\n      <Icon name="info" size="inherit" />\n      <Heading level={3} size="md">\n        Children\n      </Heading>\n    </Inline>\n  </EmptyStateHeader>\n  <EmptyStateBody hidden>Children</EmptyStateBody>\n</EmptyState>;';

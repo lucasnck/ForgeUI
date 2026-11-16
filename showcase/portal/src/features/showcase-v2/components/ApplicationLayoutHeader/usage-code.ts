@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  ApplicationLayoutTemplate,\n  Container,\n  Stack,\n  Heading,\n  Text,\n} from "@forge-ui/web";\n<ApplicationLayoutTemplate\n  mainId="main-content"\n  header={\n    <Container padding="4">\n      <Heading level={1}>Children</Heading>\n    </Container>\n  }\n>\n  <Container padding="4">\n    <Stack gap="4">\n      <Text>Children</Text>\n    </Stack>\n  </Container>\n</ApplicationLayoutTemplate>;\n';

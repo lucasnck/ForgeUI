@@ -1,0 +1,2 @@
+export const basicCode =
+  'import {\n  PageTransition,\n  SharedElement,\n  Card,\n  CardHeader,\n  CardBody,\n  Heading,\n  Text,\n} from "@forge-ui/web";\n<PageTransition key={recordView} animated={animated}>\n  <Card>\n    <CardHeader>\n      <Heading level={3}>\n        <SharedElement name="record-item-1" animated={animated} title="Title">\n          Children\n        </SharedElement>\n      </Heading>\n    </CardHeader>\n    <CardBody>\n      <Text>{recordView === "detail" ? "Description 1" : "Title 1"}</Text>\n    </CardBody>\n  </Card>\n</PageTransition>;\n';

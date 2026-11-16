@@ -1,0 +1,23 @@
+.root {
+  min-inline-size: var(--zero);
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+.trigger {
+  max-inline-size: var(--size-full);
+  text-align: start;
+}
+.panel {
+  composes: disclosurePresence from "../../../styles/motion-components.module.css";
+}
+.clip {
+  composes: clip from "../../../styles/motion-components.module.css";
+}
+.content {
+  padding: var(--space-2);
+}
+
+.root > a[aria-current="page"] {
+  color: var(--color-text-brand);
+  font-weight: var(--font-weight-semibold);
+}

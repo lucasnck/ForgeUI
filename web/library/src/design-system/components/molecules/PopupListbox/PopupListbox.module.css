@@ -1,0 +1,3 @@
+.list {
+  composes: popup from "../../../styles/popup-components.module.css";
+}

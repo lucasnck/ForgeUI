@@ -1,0 +1,17 @@
+export const basicCode = `import { ListPageTemplate, Inline, Link } from "@forge-ui/web";
+
+<ListPageTemplate
+  titleId="list-title"
+  pageTitle="PageTitle"
+  actions={
+    <Inline gap="2">
+      <Link href="/demos/records/home/" className={actionLinkClassName} data-size="md" data-tone="neutral" data-appearance="ghost" onClick={onBack}>Home</Link>
+      <Link href="/demos/records/create/" className={actionLinkClassName} data-size="md" data-tone="brand" data-appearance="solid" onClick={onCreate}>Create</Link>
+    </Inline>
+  }
+  filters={filters}
+  pagination={pagination}
+>
+  {dataGrid}
+</ListPageTemplate>;
+`;

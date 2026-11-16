@@ -1,0 +1,66 @@
+import type { ShowcaseV2ResourceDefinition } from "../../model/showcase-v2-resource.types";
+import { showcaseV2Resources } from "../../model/showcase-v2-resources";
+import { TokenResourceExample } from "./TokenResource.example";
+const definition = {
+  ...showcaseV2Resources[2],
+  description:
+    "Selected public design tokens as real color, spacing, typography and shadow specimens. Change the global theme to compare their resolved appearance and values.",
+  examples: [
+    {
+      id: "token-gallery",
+      title: "Token specimens",
+      description:
+        "Exact token names with measured CSS values from the rendered samples. This is a curated selection, not the complete token inventory.",
+      code: `.panel {
+  padding: var(--space-4);
+  color: var(--color-text-default);
+  background: var(--color-surface-default);
+  font-size: var(--font-size-md);
+  box-shadow: var(--shadow-raised);
+}`,
+      Component: TokenResourceExample,
+    },
+  ],
+  contracts: [
+    {
+      title: "Token families",
+      entries: [
+        {
+          name: "--color-*",
+          type: "CSS color",
+          description:
+            "Semantic surfaces, text, actions and focus colors adapt to the current theme. Text and surface samples are not automatically valid contrast pairs.",
+        },
+        {
+          name: "--space-*",
+          type: "CSS length",
+          description: "Shared spacing scale; sample bars show the resolved length.",
+        },
+        {
+          name: "--font-size-*",
+          type: "CSS length",
+          description: "Real text specimens use the theme font family and selected size.",
+        },
+        {
+          name: "--shadow-*",
+          type: "CSS box-shadow",
+          description: "Raised and floating elevation; themes may reduce or remove a shadow.",
+        },
+      ],
+    },
+  ],
+  notes: [
+    "Use existing semantic variables instead of duplicating literal values. The application root already loads the DS tokens.",
+    "Values are computed from actual samples after hydration and on theme changes; the initial placeholder is deterministic. Theme switching preserves the public token names.",
+    "Color samples include token names and values so color is not the only identifier. Use the related component pages to inspect full interaction and contrast contexts.",
+  ],
+  related: [
+    {
+      name: "Motion recipes",
+      href: "/resources/motion-recipes/",
+    },
+    { name: "Card", href: "/components/card/" },
+    { name: "Button", href: "/components/button/" },
+  ],
+} satisfies ShowcaseV2ResourceDefinition;
+export default definition;

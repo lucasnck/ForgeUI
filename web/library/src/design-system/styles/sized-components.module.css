@@ -1,0 +1,33 @@
+.sized {
+  --control-size-height: var(--component-height-md);
+  --control-size-font: var(--font-size-md);
+  --control-size-padding-block: var(--component-padding-block-md);
+  --control-size-padding-inline: var(--component-padding-inline-md);
+  min-block-size: var(--control-size-height);
+  font-size: var(--control-size-font);
+  padding: var(--control-size-padding-block) var(--control-size-padding-inline);
+}
+.sized[data-size="xs"] {
+  --control-size-height: var(--component-height-xs);
+  --control-size-font: var(--font-size-xs);
+  --control-size-padding-block: var(--component-padding-block-xs);
+  --control-size-padding-inline: var(--component-padding-inline-xs);
+}
+.sized[data-size="sm"] {
+  --control-size-height: var(--component-height-sm);
+  --control-size-font: var(--font-size-sm);
+  --control-size-padding-block: var(--component-padding-block-sm);
+  --control-size-padding-inline: var(--component-padding-inline-sm);
+}
+.sized[data-size="lg"] {
+  --control-size-height: var(--component-height-lg);
+  --control-size-font: var(--font-size-lg);
+  --control-size-padding-block: var(--component-padding-block-lg);
+  --control-size-padding-inline: var(--component-padding-inline-lg);
+}
+.sized[data-size="xl"] {
+  --control-size-height: var(--component-height-xl);
+  --control-size-font: var(--font-size-xl);
+  --control-size-padding-block: var(--component-padding-block-xl);
+  --control-size-padding-inline: var(--component-padding-inline-xl);
+}

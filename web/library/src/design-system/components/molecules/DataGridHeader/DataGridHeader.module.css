@@ -1,0 +1,7 @@
+.root {
+  composes: header from "../../../styles/data-grid-components.module.css";
+}
+
+.root[hidden] {
+  display: none;
+}

@@ -1,0 +1,3 @@
+.root {
+  composes: squareAction from "../../../styles/interactive-primitives.module.css";
+}

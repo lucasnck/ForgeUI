@@ -1,0 +1,19 @@
+.root {
+  min-inline-size: var(--zero);
+}
+.content {
+  min-inline-size: var(--zero);
+  flex: var(--opacity-full);
+  overflow-wrap: anywhere;
+}
+.heading {
+  min-inline-size: var(--zero);
+  flex: var(--opacity-full) var(--opacity-full) var(--length-32);
+}
+.actions {
+  margin-inline-start: auto;
+  max-inline-size: var(--size-full);
+}
+.root[hidden] {
+  display: none;
+}

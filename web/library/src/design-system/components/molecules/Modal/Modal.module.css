@@ -1,0 +1,28 @@
+.root {
+  position: fixed;
+  inset: var(--zero);
+  margin: auto;
+  padding: var(--zero);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  max-inline-size: min(var(--layout-container-narrow), calc(var(--size-full) - var(--space-4)));
+  max-block-size: calc(var(--size-full) - var(--space-4));
+  background: var(--surface-background, var(--color-surface-default));
+  background-image: var(--surface-reflection);
+  -webkit-backdrop-filter: var(--surface-backdrop-filter);
+  backdrop-filter: var(--surface-backdrop-filter);
+  color: var(--color-text-default);
+  box-shadow: var(--shadow-floating);
+}
+.root::backdrop {
+  background: var(--color-surface-inverse);
+  opacity: var(--opacity-pulse);
+}
+.root:not([open]) {
+  pointer-events: none;
+}
+.surface {
+  composes: stack from "../../../styles/layout-components.module.css";
+  min-inline-size: var(--zero);
+  --stack-gap: var(--zero);
+}

@@ -1,0 +1,13 @@
+.root {
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  display: grid;
+  gap: var(--space-1);
+  inline-size: var(--length-20);
+  max-inline-size: var(--size-full);
+}
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1);
+}

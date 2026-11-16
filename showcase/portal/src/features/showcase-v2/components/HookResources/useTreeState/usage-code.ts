@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Button, useTreeState } from "@forge-ui/web";\nconst tree = useTreeState({ nodes, value, onValueChange, expandedValue, onExpandedValueChange });\n<>\n  <Button aria-expanded={tree.isExpanded("item-1")} onClick={() => tree.setExpanded("item-1", !tree.isExpanded("item-1"))}>Label 1</Button>\n  <ul>{tree.visibleNodes.map(({ node }) => <li key={node.key}><Button disabled={node.disabled} onClick={() => tree.select(node.key)}>{node.label}</Button></li>)}</ul>\n</>;';

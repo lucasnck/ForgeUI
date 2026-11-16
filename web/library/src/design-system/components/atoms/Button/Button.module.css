@@ -1,0 +1,22 @@
+.root {
+  composes: stateFeedback from "../../../styles/motion-components.module.css";
+  composes: fullWidth from "../../../styles/full-width-components.module.css";
+  composes: sized from "../../../styles/sized-components.module.css";
+  composes: shaped from "../../../styles/shaped-components.module.css";
+  composes: interactive from "../../../styles/interactive-components.module.css";
+  composes: action from "../../../styles/toned-components.module.css";
+  composes: appearance from "../../../styles/appearance-components.module.css";
+  --control-focus-offset: var(--length-1);
+  --control-forced-border: var(--color-system-button-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: inherit;
+  line-height: inherit;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+.root:hover:not(:disabled) {
+  filter: var(--filter-hover);
+}

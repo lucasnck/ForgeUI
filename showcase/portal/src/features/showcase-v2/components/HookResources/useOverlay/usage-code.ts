@@ -1,0 +1,2 @@
+export const usageCode =
+  'import { Button, useOverlay } from "@forge-ui/web";\nconst overlay = useOverlay({ open, triggerRef, panelRef, onEscape, onOutside, lockScroll: true });\n<>\n  <Button ref={triggerRef} onClick={onOpen}>Open</Button>\n  {open && <div ref={panelRef} role="region" aria-label="Label">\n    Children\n    <Button onClick={onClose}>Close</Button>\n  </div>}\n</>;\n// onClose changes caller-owned open and calls overlay.restoreTriggerFocus().\n// Register external owned branches with overlay.registerBranch(element); clean up on unmount.';

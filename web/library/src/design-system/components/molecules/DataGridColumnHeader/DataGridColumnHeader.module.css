@@ -1,0 +1,7 @@
+.root {
+  composes: columnHeader from "../../../styles/data-grid-components.module.css";
+}
+
+.sortButton {
+  composes: sortButton from "../../../styles/data-grid-components.module.css";
+}

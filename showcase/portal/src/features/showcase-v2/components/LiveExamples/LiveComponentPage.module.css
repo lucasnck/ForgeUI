@@ -1,0 +1,7 @@
+
+.section { max-inline-size:var(--layout-container-wide); }
+.preview { display:flex; justify-content:center; align-items:center; padding:var(--space-6); min-block-size:220px; border:1px solid var(--color-border-subtle); border-radius:var(--radius-md); background:var(--color-surface-subtle); }
+.editors { display:flex; flex-wrap:wrap; align-items:end; gap:var(--space-2); padding:var(--space-2); border:1px solid var(--color-border-subtle); border-radius:var(--radius-sm); }
+.editors label { display:grid; gap:var(--space-1); font-size:var(--font-size-sm); }
+.editors .check { display:flex; align-items:center; gap:var(--space-1); padding:var(--space-1); }
+.code { padding:var(--space-3); overflow:auto; border:1px solid var(--color-border-subtle); border-radius:var(--radius-sm); background:var(--color-surface-subtle); color:var(--color-text-default); white-space:pre-wrap; }
