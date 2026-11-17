@@ -1,0 +1,92 @@
+---
+title: "Flutter AlertDialogFooter"
+scope: "Native app contract preserving the Web AlertDialogFooter capabilities and ownership"
+status: "PENDING"
+type: "component"
+ds-level: "atoms"
+---
+
+# Flutter AlertDialogFooter
+
+## Files
+
+```text
+components/forge_modal.dart (C)
+../forge_ui.dart (M)
+```
+
+## Dependencies
+
+- [Shared Web AlertDialogFooter](../../../../ds/components/atoms/AlertDialogFooter.sc.md)
+- [Native API and model adaptation](../../types/tech-native-contracts.sc.md)
+- [Flutter theme adapter](../../../tech-flutter-theme-adapter.sc.md)
+- [App AlertDialog](../organisms/AlertDialog.sc.md)
+- [App ModalFooter](ModalFooter.sc.md)
+
+## Contract
+
+```dart
+import 'package:forge_ui/forge_ui.dart';
+
+ForgeAlertDialogFooter(
+  child: content,
+)
+```
+
+## Tests
+
+### Native behavior
+
+- Expose the same native part contract as ModalFooter and recognize both names as the same canonical compound role. Do not duplicate the Modal lifecycle or state.
+- Accept alias and canonical part interchangeably under Modal/Dialog/AlertDialog without duplicate headers, bodies, footers or controllers.
+- Preserve all ModalFooter properties, defaults and semantic relationships; native type/role registration must retain Web alias compatibility even when Dart names differ.
+- Orphan aliases fail as their canonical counterparts do; Header title/Body focus scope/Footer close requests remain owned by the same modal.
+
+### Implemented native API
+
+The resolved public Dart constructor is shown below. This records source availability, not complete Web parity, native-device acceptance or compiled preview availability. The proposed equivalence and remaining Criteria below still apply.
+
+```dart
+ForgeAlertDialogFooter({Key? key, required List<Widget> children, bool divider = true})
+```
+
+Constructor types, required parameters, defaults and aliases are generated in the [resolved native API inventory](../../../reference/native-component-api.json) using `npm run catalog:flutter-api`.
+
+### Property equivalence
+
+Each row is a proposed native contract, not an available export. Source types/requiredness are retained below; optional app parameters follow the documented source default, not a guessed Material default. Native aliases and model translations follow [the native mapping rules](../../../core-native-api-mapping.sc.md).
+
+| Web property | Web type | Presence / local default | Proposed app property/type | Native adaptation |
+| --- | --- | --- | --- | --- |
+| `divider` | `boolean` | Optional; `true` | `divider: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `autoFocus` | `boolean` | Optional; no local initializer | `autofocus: bool` | Native focus request, subordinate to modal/compound owner policy; no focus theft during updates. |
+| `id` | `string` | Optional; no local initializer | `semanticId: String` | Stable owner-scoped semantic/test identity, not a DOM id. |
+| `title` | `string` | Optional; no local initializer | `tooltip: String` | Preserve visible component title; inherited native title maps to tooltip. |
+| `aria-describedby` | `string` | Optional; no local initializer | `descriptions: List<ForgeDescriptionBinding>` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-expanded` | `Booleanish` | Optional; no local initializer | `semanticExpanded: bool` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-invalid` | `boolean \| "false" \| "true" \| "grammar" \| "spelling"` | Optional; no local initializer | `semanticInvalid: ForgeInvalidState` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-label` | `string` | Optional; no local initializer | `semanticLabel: String` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-pressed` | `boolean \| "false" \| "mixed" \| "true"` | Optional; no local initializer | `semanticPressed: ForgeSemanticFlag` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `children` | `ReactNode` | Optional; no local initializer | `child: Widget?` | Compose caller Widgets; keep passive/action semantics and null-content behavior from source. |
+
+### Defaults and fixed forwarding
+
+- Preserve `divider = true` observed in `web/library/src/design-system/components/atoms/ModalFooter/useModalFooter.ts`.
+- Preserve all observable constraints in [the shared acceptance criteria](../../../../ds/components/atoms/AlertDialogFooter.sc.md#criteria); interpret browser-specific implementation/tooling through this native contract, not as Flutter dependencies.
+
+### Showcase equivalence
+
+- Preserve the component-owned scenarios from [the current Web showcase definition](../../../../../../showcase/portal/src/features/showcase-v2/components/AlertDialogFooter/definition.ts): `basic`. Source resource fixtures may remain documentation/typed fixtures rather than becoming extra widget parameters.
+- Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
+- Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
+
+## Criteria
+
+- [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
+- [ ] Expose the same native part contract as ModalFooter and recognize both names as the same canonical compound role. Do not duplicate the Modal lifecycle or state.
+- [ ] Accept alias and canonical part interchangeably under Modal/Dialog/AlertDialog without duplicate headers, bodies, footers or controllers.
+- [ ] Preserve all ModalFooter properties, defaults and semantic relationships; native type/role registration must retain Web alias compatibility even when Dart names differ.
+- [ ] Orphan aliases fail as their canonical counterparts do; Header title/Body focus scope/Footer close requests remain owned by the same modal.
+- [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
+- [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
+- [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.

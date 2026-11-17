@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "baseline": "Approved Forge UI Web tokens.css",
+  "rootFontSizePx": 16,
+  "rootFontSizeVerified": false,
+  "supportedThemes": [
+    "light",
+    "dark",
+    "contrast",
+    "liquid-glass"
+  ],
+  "platformRules": "web-only.json is intentionally excluded from Dart; browser-specific media/supports rules are emitted only in CSS",
+  "approvedCssSha256": "68ed92cc2fd20996fd564709915cbd90acf4742558569c16a9d639da0351fc06"
+}

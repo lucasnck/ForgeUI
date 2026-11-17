@@ -1,5 +1,26 @@
 # Forge UI — plano de criação e extração
 
+## Desenvolvimento Flutter — primeira entrega funcional
+
+Button, Spinner e ButtonGroup têm implementação e exemplos reais na prévia Flutter. O Button expõe tamanhos, tons, aparências, formatos, largura, loading, loadingLabel, disabled, foco e semântica; outlined permanece como alias legado. Capacidades e receitas de estilo são compartilhadas. O manifesto só registra os três widgets após análise, testes e build reais.
+
+Evidências e limites: [primeira entrega Flutter](docs/migration/FLUTTER-COMPONENTS-PHASE-1.md). A aceitação visual/native e as partes ainda propostas dos contratos permanecem PENDING. Os outros 218 componentes ainda não têm implementação Flutter registrada.
+
+## Specs de paridade Web / app — catálogo completo
+
+Os **221 componentes atuais da Web têm specs app** em docs/sc/app/ds/components, preservando propriedades, funcionalidades e estados com adaptações nativas explícitas. Foram acrescentadas 217 specs e enriquecidas as quatro iniciais. Todas permanecem **PENDING para implementação e aceite Flutter**.
+
+- [Inventário completo](docs/sc/app/core-app-parity-catalog.sc.md), [regras de paridade](docs/sc/app/core-web-app-parity.sc.md) e [mapeamento nativo](docs/sc/app/core-native-api-mapping.sc.md).
+- Cada spec registra tipos/presença das propriedades, defaults locais, comportamento nativo, critérios de aceite e cenários equivalentes; 254 exemplos reais do catálogo são referenciados.
+- Contratos compartilhados cobrem modelos tipados, composição, formulários, semântica, aliases e portas injetadas de arquivos/mapas/navegação/overlays/transições.
+- [Rastreabilidade das fontes](docs/sc/app/reference/component-contracts.json) e [auditoria documental](docs/sc/app/reference/spec-authoring-audit.json) distinguem autoria de validação funcional.
+- Próxima fase: implementar os contratos e validar biblioteca/showcase por dependências. Documentação não anuncia widgets disponíveis.
+- Esta etapa altera documentação, sem implementar widgets, integrar consumidores ou publicar commits.
+
+## Validação multiplataforma inicial — 2026-11-16
+
+Os tokens compartilhados, adaptadores de tema e o primeiro Button Flutter estão implementados. Os quatro comandos de validação solicitados foram executados localmente com Flutter 3.38.7 / Dart 3.10.7; os resultados e limites estão no [relatório multiplataforma](docs/migration/MULTIPLATFORM-IMPLEMENTATION.md). A compilação registra somente Button; não representa a migração dos 221 componentes para Flutter. Os critérios visuais, Android/iOS e de acessibilidade permanecem pendentes. As referências abaixo a Flutter como etapa futura são históricas para a biblioteca completa.
+
 ## Marco 10 — extração em lote executada localmente
 
 Este quadro substitui as contagens e os bloqueios dos marcos anteriores; eles permanecem abaixo como histórico.
@@ -326,3 +347,18 @@ Portados `DataGrid` e seus componentes públicos, `Icon`, `useCollapse`, SCs de 
 
 
 **Escopo preservado:** PraticarFront, `forge.ps1`, Git remoto e consumidores não foram alterados.
+
+
+## Implementação nativa por grupos
+
+Plano detalhado e evidências em [FLUTTER-IMPLEMENTATION-REPORT.md](docs/migration/FLUTTER-IMPLEMENTATION-REPORT.md). Inventário em [FLUTTER-IMPLEMENTATION-PROGRESS.json](docs/migration/FLUTTER-IMPLEMENTATION-PROGRESS.json). Classes presentes não equivalem a aceite ou disponibilidade compilada no showcase.
+
+### Validação das prévias nativas — 17/11/2026
+
+- [x] Reexecutar análise Flutter, 113 testes da biblioteca e 353 do showcase, incluindo Option e as composições/feedback preparados nas etapas 4 e 5.
+- [x] Compilar e registrar 68 prévias; verificar concordância entre catálogo, bootstrap e índice do portal.
+- [x] Disponibilizar controles dos cenários e manter propriedades Dart documentadas mesmo sem prévia compilada.
+- [x] Validar tokens, typecheck, documentação, build do portal e 10 rotas/artefatos HTTP.
+- [ ] Completar exemplos dos demais componentes e critérios de paridade, acessibilidade e revisão visual em navegador/dispositivos.
+
+Evidências e limites: [relatório consolidado](docs/migration/FLUTTER-IMPLEMENTATION-REPORT.md). As 221 APIs exportadas não são 221 SCs aceitas.

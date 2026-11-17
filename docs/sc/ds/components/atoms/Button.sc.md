@@ -1,6 +1,6 @@
 ---
 title: "Button"
-scope: "Native action button with shared visual capabilities and loading feedback"
+scope: "Platform-native Web and Flutter action buttons sharing visual tokens, accessibility and loading feedback"
 status: "PENDING"
 type: "component"
 ds-level: "atoms"
@@ -17,6 +17,9 @@ features/showcase-v2/components/Button/Button.example.tsx (M)
 features/showcase-v2/components/Button/useButtonExample.ts (M)
 design-system/index.ts (M)
 design-system/components/atoms/Button/Button.tsx (M)
+../../../app/library/lib/src/components/forge_button.dart (C)
+../../../app/library/test/forge_theme_data_test.dart (C)
+../../../app/showcase_flutter/lib/main.dart (C)
 design-system/components/atoms/Button/Button.module.css (M)
 design-system/components/atoms/Button/index.ts (M)
 features/showcase/examples/Button.example.tsx (M)
@@ -27,6 +30,8 @@ features/showcase-v2/model/showcase-v2-control-options.ts (M)
 ## Dependencies
 
 - [Design tokens](../../styles/tech-design-tokens.sc.md)
+- [Cross-platform token generation](../../styles/tech-cross-platform-token-generation.sc.md)
+- [Flutter theme adapter](../../../app/tech-flutter-theme-adapter.sc.md)
 - [Shape contracts](../../styles/tech-shape.sc.md)
 - [Motion recipes](../../styles/animations/tech-motion-recipes.sc.md)
 - [Component capabilities](../../types/tech-component-capabilities.sc.md)
@@ -38,6 +43,12 @@ import { Button } from "@forge-ui/web";
 <Button type="submit" loading={isSubmitting} loadingLabel={savingLabel} fullWidth>
  {saveLabel}
 </Button>;
+```
+
+```dart
+import 'package:forge_ui/forge_ui.dart';
+
+ForgeButton(onPressed: () {}, child: const Text('Salvar alterações'));
 ```
 
 ## Styles
@@ -152,3 +163,7 @@ export function Button({
 - [x] Showcase documents the existing `brand`, `neutral`, `sand`, `violet`, `forest`, `sky`, `success`, `warning`, `info` and `danger` tones (when supported by the canonical type), with meaningful solid/soft/bordered/ghost combinations. No new local palette or duplicate type is introduced.
 - [x] Consumer scenarios demonstrate one prominent `brand/solid` action per decision area, `sand/bordered` for Edit, `neutral/ghost` for Back and Cancel, `neutral/bordered` for Retry and filters, and `danger` only in destructive confirmation. Supporting `violet`, `forest` and `sky` tones require a semantic use and must not compete with Create/Save.
 - [ ] Check keyboard focus, pending/disabled behavior, contrast and forced-colors in light, dark, contrast and liquid-glass themes; verify actual V2 preview, minimal copyable TSX and relevant typecheck/build before accepting this increment.
+
+- [x] Flutter ForgeButton renders as a token-backed native Material action, exposes an accessible label from its child, and disables interaction while loading.
+- [x] Flutter widget tests confirm enabled/disabled and theme switching; `flutter analyze` and `flutter test` pass before claiming Flutter delivery parity.
+- [x] A public Flutter Web demo may only be registered after an actual compiled and tested artifact; React Button remains the default Showcase implementation.

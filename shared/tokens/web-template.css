@@ -1,0 +1,417 @@
+:root {
+  --scrollbar-size: {{s:--scrollbar-size}};
+  --scrollbar-radius: {{s:--scrollbar-radius}};
+  --color-scrollbar-track: {{s:--color-scrollbar-track}};
+  --color-scrollbar-thumb: {{s:--color-scrollbar-thumb}};
+  --color-scrollbar-thumb-hover: {{s:--color-scrollbar-thumb-hover}};
+}
+
+:root {
+  --opacity-full: {{p:--opacity-full}};
+  --switch-track-opacity: {{p:--switch-track-opacity}};
+  --switch-state-layer-spread: {{p:--switch-state-layer-spread}};
+  --switch-track-width-xs: {{p:--switch-track-width-xs}};
+  --switch-track-height-xs: {{p:--switch-track-height-xs}};
+  --switch-thumb-size-xs: {{p:--switch-thumb-size-xs}};
+  --switch-track-width-sm: {{p:--switch-track-width-sm}};
+  --switch-track-height-sm: {{p:--switch-track-height-sm}};
+  --switch-thumb-size-sm: {{p:--switch-thumb-size-sm}};
+  --switch-track-width-md: {{p:--switch-track-width-md}};
+  --switch-track-height-md: {{p:--switch-track-height-md}};
+  --switch-thumb-size-md: {{p:--switch-thumb-size-md}};
+  --switch-track-width-lg: {{p:--switch-track-width-lg}};
+  --switch-track-height-lg: {{p:--switch-track-height-lg}};
+  --switch-thumb-size-lg: {{p:--switch-thumb-size-lg}};
+  --switch-track-width-xl: {{p:--switch-track-width-xl}};
+  --switch-track-height-xl: {{p:--switch-track-height-xl}};
+  --switch-thumb-size-xl: {{p:--switch-thumb-size-xl}};
+
+  color-scheme: light;
+  --color-brand-primary: {{s:--color-brand-primary}};
+  --color-brand-deep: {{s:--color-brand-deep}};
+  --color-brand-night: {{s:--color-brand-night}};
+  --color-brand-gray: {{s:--color-brand-gray}};
+  --font-family-brand: {{p:--font-family-brand}};
+  --color-surface-page: {{s:--color-surface-page}};
+  --color-surface-default: {{s:--color-surface-default}};
+  --color-surface-subtle: {{s:--color-surface-subtle}};
+  --color-surface-raised: {{s:--color-surface-raised}};
+  --color-surface-inverse: {{s:--color-surface-inverse}};
+  --color-text-default: {{s:--color-text-default}};
+  --color-text-muted: {{s:--color-text-muted}};
+  --color-text-inverse: {{s:--color-text-inverse}};
+  --color-text-brand: {{s:--color-text-brand}};
+  --color-border-default: {{s:--color-border-default}};
+  --color-border-subtle: {{s:--color-border-subtle}};
+  --color-focus-ring: {{s:--color-focus-ring}};
+  --color-action-brand-background: {{s:--color-action-brand-background}};
+  --color-action-brand-foreground: {{s:--color-action-brand-foreground}};
+  --color-checkable-brand-background: {{s:--color-checkable-brand-background}};
+  --color-action-neutral-background: {{s:--color-action-neutral-background}};
+  --color-action-danger-background: {{s:--color-action-danger-background}};
+  --color-action-success-background: {{s:--color-action-success-background}};
+  --color-action-warning-background: {{s:--color-action-warning-background}};
+  --color-action-info-background: {{s:--color-action-info-background}};
+  --color-action-sky-background: {{s:--color-action-sky-background}};
+  --color-action-forest-background: {{s:--color-action-forest-background}};
+  --color-action-violet-background: {{s:--color-action-violet-background}};
+  --color-action-sand-background: {{s:--color-action-sand-background}};
+  --color-action-sand-foreground: {{s:--color-action-sand-foreground}};
+  --color-text-sand: {{s:--color-text-sand}};
+  --color-text-violet: {{s:--color-text-violet}};
+  --color-text-forest: {{s:--color-text-forest}};
+  --color-text-sky: {{s:--color-text-sky}};
+  --color-action-foreground: {{s:--color-action-foreground}};
+  --color-text-danger: {{s:--color-text-danger}};
+  --color-text-success: {{s:--color-text-success}};
+  --color-surface-accent: {{s:--color-surface-accent}};
+  --color-surface-sand: {{s:--color-surface-sand}};
+  --surface-background: {{s:--surface-background}};
+  --surface-backdrop-filter: {{s:--surface-backdrop-filter}};
+  --surface-reflection: {{s:--surface-reflection}};
+  --surface-raised-background: {{s:--surface-raised-background}};
+  --page-background: {{s:--page-background}};
+  --font-family-sans: {{p:--font-family-sans}};
+  --font-family-display: {{p:--font-family-display}};
+  --font-size-xs: {{p:--font-size-xs}};
+  --font-size-sm: {{p:--font-size-sm}};
+  --font-size-md: {{p:--font-size-md}};
+  --font-size-lg: {{p:--font-size-lg}};
+  --font-size-xl: {{p:--font-size-xl}};
+  --font-size-2xl: {{p:--font-size-2xl}};
+  --font-size-3xl: {{p:--font-size-3xl}};
+  --font-size-4xl: {{p:--font-size-4xl}};
+  --font-size-5xl: {{p:--font-size-5xl}};
+  --line-height-normal: {{p:--line-height-normal}};
+  --space-0: {{p:--space-0}};
+  --space-1: {{p:--space-1}};
+  --space-2: {{p:--space-2}};
+  --space-3: {{p:--space-3}};
+  --space-4: {{p:--space-4}};
+  --space-5: {{p:--space-5}};
+  --space-6: {{p:--space-6}};
+  --space-8: {{p:--space-8}};
+  --space-10: {{p:--space-10}};
+  --space-12: {{p:--space-12}};
+  --space-16: {{p:--space-16}};
+  --space-20: {{p:--space-20}};
+  --radius-none: {{p:--radius-none}};
+  --radius-xs: {{p:--radius-xs}};
+  --radius-sm: {{p:--radius-sm}};
+  --radius-md: {{p:--radius-md}};
+  --radius-lg: {{p:--radius-lg}};
+  --radius-xl: {{p:--radius-xl}};
+  --radius-full: {{p:--radius-full}};
+  --shadow-raised: {{p:--shadow-raised}};
+  --shadow-floating: {{p:--shadow-floating}};
+  --motion-fast: {{p:--motion-fast}};
+  --motion-normal: {{p:--motion-normal}};
+  --motion-opacity-hidden: {{p:--motion-opacity-hidden}};
+  --motion-opacity-visible: {{p:--motion-opacity-visible}};
+  --motion-scale-enter: {{p:--motion-scale-enter}};
+  --motion-scale-rest: {{p:--motion-scale-rest}};
+  --motion-grid-collapsed: {{p:--motion-grid-collapsed}};
+  --motion-grid-expanded: {{p:--motion-grid-expanded}};
+  --ease-standard: {{p:--ease-standard}};
+  --base-unit: {{p:--base-unit}};
+  --zero: {{p:--zero}};
+  --size-full: {{p:--size-full}};
+  --size-half: {{p:--size-half}};
+  --size-viewport: {{p:--size-viewport}};
+  --size-viewport-inline: {{p:--size-viewport-inline}};
+  --size-visually-hidden: {{p:--size-visually-hidden}};
+  --color-transparent: {{s:--color-transparent}};
+  --color-current: {{s:--color-current}};
+  --color-system-button-text: {{s:--color-system-button-text}};
+  --color-system-field-text: {{s:--color-system-field-text}};
+  --color-system-highlight: {{s:--color-system-highlight}};
+  --color-system-canvas-text: {{s:--color-system-canvas-text}};
+  --border-width-thin: {{p:--border-width-thin}};
+  --border-width-thick: {{p:--border-width-thick}};
+  --border-width-focus: {{p:--border-width-focus}};
+  --border-style-default: {{p:--border-style-default}};
+  --opacity-disabled: {{p:--opacity-disabled}};
+  --opacity-decorative: {{p:--opacity-decorative}};
+  --opacity-pulse: {{p:--opacity-pulse}};
+  --filter-hover: {{p:--filter-hover}};
+  --motion-spin-duration: {{p:--motion-spin-duration}};
+  --motion-pulse-duration: {{p:--motion-pulse-duration}};
+  --ease-linear: {{p:--ease-linear}};
+  --ease-pulse: {{p:--ease-pulse}};
+  --rotation-full: {{p:--rotation-full}};
+  --rotation-decorative: {{p:--rotation-decorative}};
+  --translation-center: {{p:--translation-center}};
+  --z-index-popup: {{p:--z-index-popup}};
+  --z-index-skip-link: {{p:--z-index-skip-link}};
+  --shape-radius: {{s:--shape-radius}};
+  --icon-stroke-width: {{p:--icon-stroke-width}};
+  --icon-stroke-width-thin: {{p:--icon-stroke-width-thin}};
+  --icon-align-offset: {{p:--icon-align-offset}};
+  --icon-size-inherit: {{p:--icon-size-inherit}};
+  --font-family-mono: {{p:--font-family-mono}};
+  --radius-circle: {{p:--radius-circle}};
+  --layout-column: {{p:--layout-column}};
+  --layout-sidebar-columns: {{p:--layout-sidebar-columns}};
+  --layout-span-full: {{p:--layout-span-full}};
+  --layout-sidebar-navigation-column: {{p:--layout-sidebar-navigation-column}};
+  --layout-sidebar-content-column: {{p:--layout-sidebar-content-column}};
+  --layout-hero-columns: {{p:--layout-hero-columns}};
+  --layout-component-columns: {{p:--layout-component-columns}};
+  --layout-form-columns: {{p:--layout-form-columns}};
+  --layout-metrics-columns: {{p:--layout-metrics-columns}};
+  --layout-three-columns: {{p:--layout-three-columns}};
+  --layout-four-columns: {{p:--layout-four-columns}};
+  --layout-two-columns: {{p:--layout-two-columns}};
+  --layout-span-all: {{p:--layout-span-all}};
+  --layout-container-narrow: {{p:--layout-container-narrow}};
+  --layout-container-wide: {{p:--layout-container-wide}};
+  --layout-container-padding: {{p:--layout-container-padding}};
+  --layout-container-padding-wide: {{p:--layout-container-padding-wide}};
+  --aspect-square: {{p:--aspect-square}};
+  --aspect-video: {{p:--aspect-video}};
+  --aspect-photo: {{p:--aspect-photo}};
+  --aspect-portrait: {{p:--aspect-portrait}};
+  --font-size-hero-fluid: {{p:--font-size-hero-fluid}};
+  --font-size-value-fluid: {{p:--font-size-value-fluid}};
+  --length-1: {{p:--length-1}};
+  --length-2: {{p:--length-2}};
+  --length-3: {{p:--length-3}};
+  --length-4: {{p:--length-4}};
+  --length-5: {{p:--length-5}};
+  --length-6: {{p:--length-6}};
+  --length-8: {{p:--length-8}};
+  --length-10: {{p:--length-10}};
+  --length-12: {{p:--length-12}};
+  --length-16: {{p:--length-16}};
+  --length-20: {{p:--length-20}};
+  --font-size-6xl: {{p:--font-size-6xl}};
+  --font-size-7xl: {{p:--font-size-7xl}};
+  --line-height-tight: {{p:--line-height-tight}};
+  --line-height-display: {{p:--line-height-display}};
+  --line-height-heading: {{p:--line-height-heading}};
+  --line-height-compact: {{p:--line-height-compact}};
+  --line-height-text: {{p:--line-height-text}};
+  --line-height-relaxed: {{p:--line-height-relaxed}};
+  --font-weight-regular: {{p:--font-weight-regular}};
+  --font-weight-medium: {{p:--font-weight-medium}};
+  --font-weight-semibold: {{p:--font-weight-semibold}};
+  --font-weight-bold: {{p:--font-weight-bold}};
+  --letter-spacing-tight: {{p:--letter-spacing-tight}};
+  --letter-spacing-display: {{p:--letter-spacing-display}};
+  --letter-spacing-wide: {{p:--letter-spacing-wide}};
+  --letter-spacing-normal: {{p:--letter-spacing-normal}};
+  --underline-offset: {{p:--underline-offset}};
+  --component-height-xs: {{p:--component-height-xs}};
+  --component-padding-block-xs: {{p:--component-padding-block-xs}};
+  --component-padding-inline-xs: {{p:--component-padding-inline-xs}};
+  --component-height-sm: {{p:--component-height-sm}};
+  --component-padding-block-sm: {{p:--component-padding-block-sm}};
+  --component-padding-inline-sm: {{p:--component-padding-inline-sm}};
+  --component-height-md: {{p:--component-height-md}};
+  --component-padding-block-md: {{p:--component-padding-block-md}};
+  --component-padding-inline-md: {{p:--component-padding-inline-md}};
+  --length-7: {{p:--length-7}};
+  --component-height-lg: {{p:--component-height-lg}};
+  --component-padding-block-lg: {{p:--component-padding-block-lg}};
+  --component-padding-inline-lg: {{p:--component-padding-inline-lg}};
+  --component-height-xl: {{p:--component-height-xl}};
+  --component-padding-block-xl: {{p:--component-padding-block-xl}};
+  --component-padding-inline-xl: {{p:--component-padding-inline-xl}};
+  --length-96: {{p:--length-96}};
+  --breakpoint-mobile: {{p:--breakpoint-mobile}};
+  --length-138: {{p:--length-138}};
+  --breakpoint-wide: {{p:--breakpoint-wide}};
+  --length-18: {{p:--length-18}};
+  --length-170: {{p:--length-170}};
+  --length-40: {{p:--length-40}};
+  --length-93: {{p:--length-93}};
+  --length-148: {{p:--length-148}};
+  --length-39: {{p:--length-39}};
+  --length-13: {{p:--length-13}};
+  --length-71: {{p:--length-71}};
+  --length-58: {{p:--length-58}};
+  --length-29: {{p:--length-29}};
+  --length-32: {{p:--length-32}};
+  --length-28: {{p:--length-28}};
+  --length-8-negative: {{p:--length-8-negative}};
+  --length-6-negative: {{p:--length-6-negative}};
+  --length-21: {{p:--length-21}};
+  --length-22: {{p:--length-22}};
+  --size-fraction-60: {{p:--size-fraction-60}};
+  --length-88: {{p:--length-88}};
+}
+
+:root:not([data-theme]),
+:root[data-theme="light"] {
+  --color-surface-page: {{t:light:--color-surface-page}};
+  --color-surface-default: {{t:light:--color-surface-default}};
+  --color-surface-subtle: {{t:light:--color-surface-subtle}};
+  --color-surface-raised: {{t:light:--color-surface-raised}};
+  --color-border-default: {{t:light:--color-border-default}};
+  --color-border-subtle: {{t:light:--color-border-subtle}};
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-surface-page: {{t:dark:--color-surface-page}};
+  --color-surface-default: {{t:dark:--color-surface-default}};
+  --color-surface-subtle: {{t:dark:--color-surface-subtle}};
+  --color-surface-raised: {{t:dark:--color-surface-raised}};
+  --color-surface-inverse: {{t:dark:--color-surface-inverse}};
+  --color-text-default: {{t:dark:--color-text-default}};
+  --color-text-muted: {{t:dark:--color-text-muted}};
+  --color-text-inverse: {{t:dark:--color-text-inverse}};
+  --color-text-brand: {{t:dark:--color-text-brand}};
+  --color-border-default: {{t:dark:--color-border-default}};
+  --color-border-subtle: {{t:dark:--color-border-subtle}};
+  --color-focus-ring: {{t:dark:--color-focus-ring}};
+  --color-action-brand-background: {{t:dark:--color-action-brand-background}};
+  --color-action-brand-foreground: {{t:dark:--color-action-brand-foreground}};
+  --color-checkable-brand-background: {{t:dark:--color-checkable-brand-background}};
+  --color-action-neutral-background: {{t:dark:--color-action-neutral-background}};
+  --color-action-danger-background: {{t:dark:--color-action-danger-background}};
+  --color-action-success-background: {{t:dark:--color-action-success-background}};
+  --color-action-warning-background: {{t:dark:--color-action-warning-background}};
+  --color-action-info-background: {{t:dark:--color-action-info-background}};
+  --color-action-sky-background: {{t:dark:--color-action-sky-background}};
+  --color-action-forest-background: {{t:dark:--color-action-forest-background}};
+  --color-action-violet-background: {{t:dark:--color-action-violet-background}};
+  --color-action-sand-background: {{t:dark:--color-action-sand-background}};
+  --color-action-sand-foreground: {{t:dark:--color-action-sand-foreground}};
+  --color-text-sand: {{t:dark:--color-text-sand}};
+  --color-text-violet: {{t:dark:--color-text-violet}};
+  --color-text-forest: {{t:dark:--color-text-forest}};
+  --color-text-sky: {{t:dark:--color-text-sky}};
+  --color-action-foreground: {{t:dark:--color-action-foreground}};
+  --color-text-danger: {{t:dark:--color-text-danger}};
+  --color-text-success: {{t:dark:--color-text-success}};
+  --color-surface-accent: {{t:dark:--color-surface-accent}};
+  --color-surface-sand: {{t:dark:--color-surface-sand}};
+  --shadow-raised: {{t:dark:--shadow-raised}};
+  --shadow-floating: {{t:dark:--shadow-floating}};
+}
+
+:root[data-theme="contrast"] {
+  color-scheme: dark;
+  --color-surface-page: {{t:contrast:--color-surface-page}};
+  --color-surface-default: {{t:contrast:--color-surface-default}};
+  --color-surface-subtle: {{t:contrast:--color-surface-subtle}};
+  --color-surface-raised: {{t:contrast:--color-surface-raised}};
+  --color-surface-inverse: {{t:contrast:--color-surface-inverse}};
+  --color-text-default: {{t:contrast:--color-text-default}};
+  --color-text-muted: {{t:contrast:--color-text-muted}};
+  --color-text-inverse: {{t:contrast:--color-text-inverse}};
+  --color-text-brand: {{t:contrast:--color-text-brand}};
+  --color-border-default: {{t:contrast:--color-border-default}};
+  --color-border-subtle: {{t:contrast:--color-border-subtle}};
+  --color-focus-ring: {{t:contrast:--color-focus-ring}};
+  --color-action-brand-background: {{t:contrast:--color-action-brand-background}};
+  --color-action-neutral-background: {{t:contrast:--color-action-neutral-background}};
+  --color-action-danger-background: {{t:contrast:--color-action-danger-background}};
+  --color-action-success-background: {{t:contrast:--color-action-success-background}};
+  --color-action-warning-background: {{t:contrast:--color-action-warning-background}};
+  --color-action-info-background: {{t:contrast:--color-action-info-background}};
+  --color-action-sky-background: {{t:contrast:--color-action-sky-background}};
+  --color-action-forest-background: {{t:contrast:--color-action-forest-background}};
+  --color-action-violet-background: {{t:contrast:--color-action-violet-background}};
+  --color-action-sand-background: {{t:contrast:--color-action-sand-background}};
+  --color-text-sand: {{t:contrast:--color-text-sand}};
+  --color-text-violet: {{t:contrast:--color-text-violet}};
+  --color-text-forest: {{t:contrast:--color-text-forest}};
+  --color-text-sky: {{t:contrast:--color-text-sky}};
+  --color-action-foreground: {{t:contrast:--color-action-foreground}};
+  --color-text-danger: {{t:contrast:--color-text-danger}};
+  --color-text-success: {{t:contrast:--color-text-success}};
+  --color-surface-accent: {{t:contrast:--color-surface-accent}};
+  --color-surface-sand: {{t:contrast:--color-surface-sand}};
+  --shadow-raised: {{t:contrast:--shadow-raised}};
+  --shadow-floating: {{t:contrast:--shadow-floating}};
+}
+
+:root[data-theme="liquid-glass"] {
+  --surface-raised-background: {{t:liquid-glass:--surface-raised-background}};
+  --color-surface-page: {{t:liquid-glass:--color-surface-page}};
+  --color-surface-default: {{t:liquid-glass:--color-surface-default}};
+  --color-surface-subtle: {{t:liquid-glass:--color-surface-subtle}};
+  --color-surface-raised: {{t:liquid-glass:--color-surface-raised}};
+  --color-text-default: {{t:liquid-glass:--color-text-default}};
+  --color-text-muted: {{t:liquid-glass:--color-text-muted}};
+  --color-border-default: {{t:liquid-glass:--color-border-default}};
+  --color-border-subtle: {{t:liquid-glass:--color-border-subtle}};
+  --surface-reflection: {{t:liquid-glass:--surface-reflection}};
+  --page-background:
+    {{t:liquid-glass:--page-background}};
+  --shadow-raised:
+    {{t:liquid-glass:--shadow-raised}};
+  --shadow-floating:
+    {{t:liquid-glass:--shadow-floating}};
+}
+
+@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
+  :root[data-theme="liquid-glass"] {
+    --surface-background: {{w:w0}};
+    --surface-backdrop-filter: {{w:w1}};
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root[data-theme="liquid-glass"] {
+    --surface-reflection: {{w:w2}};
+    --surface-background: {{w:w3}};
+    --surface-backdrop-filter: {{w:w4}};
+  }
+}
+
+@media (forced-colors: active) {
+  :root,
+  :root[data-theme] {
+    --color-surface-page: {{w:w5}};
+    --color-surface-default: {{w:w6}};
+    --color-surface-subtle: {{w:w7}};
+    --color-surface-raised: {{w:w8}};
+    --color-surface-inverse: {{w:w9}};
+    --color-surface-sand: {{w:w10}};
+    --color-text-default: {{w:w11}};
+    --color-text-muted: {{w:w12}};
+    --color-text-brand: {{w:w13}};
+    --color-text-inverse: {{w:w14}};
+    --color-border-default: {{w:w15}};
+    --color-border-subtle: {{w:w16}};
+    --color-focus-ring: {{w:w17}};
+    --color-action-brand-background: {{w:w18}};
+    --color-action-brand-foreground: {{w:w19}};
+    --color-action-neutral-background: {{w:w20}};
+    --color-action-danger-background: {{w:w21}};
+    --color-action-success-background: {{w:w22}};
+    --color-action-warning-background: {{w:w23}};
+    --color-action-info-background: {{w:w24}};
+    --color-action-sky-background: {{w:w25}};
+    --color-action-forest-background: {{w:w26}};
+    --color-action-violet-background: {{w:w27}};
+    --color-action-sand-background: {{w:w28}};
+    --color-action-sand-foreground: {{w:w29}};
+    --color-text-sand: {{w:w30}};
+    --color-text-violet: {{w:w31}};
+    --color-text-forest: {{w:w32}};
+    --color-text-sky: {{w:w33}};
+    --color-action-foreground: {{w:w34}};
+    --surface-background: {{w:w35}};
+    --surface-reflection: {{w:w36}};
+    --surface-backdrop-filter: {{w:w37}};
+    --page-background: {{w:w38}};
+    --shadow-raised: {{w:w39}};
+    --shadow-floating: {{w:w40}};
+  }
+}
+
+[data-shape="square"] {
+  --shape-radius: {{w:w41}};
+}
+
+[data-shape="rounded"] {
+  --shape-radius: {{w:w42}};
+}
+
+[data-shape="pill"] {
+  --shape-radius: {{w:w43}};
+}

@@ -1,5 +1,26 @@
 # Forge UI — status da migração Showcase V2
 
+## Estado Flutter — auditoria estática e novas composições (16/11/2026)
+
+**Não confundir código Dart com aceite Flutter.** A auditoria de source e exports públicos registra **125/221 contratos** com declaração Dart pública (entrega inicial 3/3, primitivas 20/20, inputs 35/36, composições 66/142, avançados 1/20). Isso **não** significa 125 componentes testados, previews compilados ou SCs `DONE`. As 23 implementações relatadas anteriormente mantêm suas próprias evidências e pendências de aceitação.
+
+Foram adicionados os componentes `Breadcrumb`/`BreadcrumbItem`, `Pagination`/`PaginationItem`/`PaginationEllipsis`, `TagGroup`/`TagGroupItem` e `PageHeader`. As especificações continuam `PENDING`: foram escritos código, exports e testes, porém **não foi possível executar** `flutter analyze`, os widget tests, o build de preview nem validação Android/iOS neste ambiente sem Flutter SDK. O indicador ativo de Tabs passou a consumir o token semântico de marca. O log histórico do Checkbox aponta token que já está presente nos quatro temas atuais; não houve alteração desnecessária do componente.
+
+Evidências e rastreabilidade: [matriz de source](FLUTTER-SOURCE-COVERAGE.md), [relatório da onda 2](FLUTTER-ATOMS-COMPOSABLES-WAVE-2.md), [onda 3](FLUTTER-COMPOSITES-WAVE-3.md), [checkpoint de navegação anterior](FLUTTER-NAVIGATION-CHECKPOINT.md) e [progresso JSON](FLUTTER-IMPLEMENTATION-PROGRESS.json). Comando de auditoria: `npm run audit:flutter-source`; para atualizar relatórios no checkout: `npm run audit:flutter-source -- --write`. Somente executar o fluxo Flutter real e inspeções de paridade pode justificar novas marcações de `DONE`.
+
+
+## Primeira entrega de componentes Flutter
+
+Button, Spinner e ButtonGroup estão implementados com exemplos/controladores de propriedades reais no portal. O novo Button substitui o contrato mínimo anterior e preserva o alias outlined. [Relatório de validação e limites](FLUTTER-COMPONENTS-PHASE-1.md). Os marcos abaixo são históricos; os contratos completos e a aceitação visual/native continuam pendentes.
+
+## Correção da prévia Flutter e do layout das abas
+
+As abas agora pertencem ao header/container do Showcase V2. O Button Flutter possui controles de conteúdo, ação habilitada, loading e contorno, ligados ao widget em execução; o código Dart acompanha as alterações. Runtime/fontes locais e versionamento dos assets evitam dependência de CDN e cache antigo. Flutter analyze/test/build, testes do bridge, `npm run check` e verificações HTTP passaram. Consulte o [relatório](FLUTTER-PREVIEW-FIX.md). Inspeção visual em navegador e Android/iOS permanecem pendentes.
+
+## Incremento Flutter validado localmente — 2026-11-16
+
+Primeiro widget Flutter: **Button**, com tokens gerados e adaptadores de quatro temas. `tokens:check`, análise/testes/build Flutter Web, TypeScript e build Next foram executados com sucesso; consulte o [relatório e logs](MULTIPLATFORM-IMPLEMENTATION.md). A disponibilidade é registrada após build real. A validação visual, Android/iOS e os demais widgets continuam pendentes. Este incremento foi validado localmente, sem novo commit ou push nesta etapa.
+
 ## Marco 10 — extração em lote executada localmente
 
 Este quadro substitui as contagens e os bloqueios dos marcos anteriores; eles permanecem abaixo como histórico.

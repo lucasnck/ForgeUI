@@ -1,6 +1,6 @@
 # Forge UI
 
-Design system extraído do PraticarFront, com biblioteca React/TypeScript independente de Next e um portal de Showcase V2. Aplicativos permanecem reservados para uma etapa futura.
+Design system extraído do PraticarFront, com biblioteca React/TypeScript independente de Next e um portal de Showcase V2. A biblioteca Flutter possui tokens, temas e um primeiro Button com prévia Web compilada; os demais widgets permanecem pendentes.
 
 ## Executar
 
@@ -26,7 +26,8 @@ Veja [status atual](docs/migration/STATUS.md), [cobertura por item](docs/migrati
 - `showcase/portal/`: catálogo, exemplos originais e fluxos de demonstração.
 - `docs/sc/`: contratos, catálogos e templates; fluxo SC-first e agentes em `.github/agents/`.
 - `docs/migration/`: proveniência, hashes, cobertura, reconciliações e conteúdo histórico preservado.
-- `shared/` e `app/library/`: fronteiras previstas para expansão; sem widgets Flutter implementados.
+- `shared/tokens/`: definições canônicas e geração determinística de CSS/Dart.
+- `app/library/`: biblioteca Flutter inicial; `app/showcase_flutter/` produz a prévia embutida no mesmo portal. Consulte a [validação multiplataforma](docs/migration/MULTIPLATFORM-IMPLEMENTATION.md).
 
 ## Limites
 

@@ -1,0 +1,1291 @@
+
+> forge-ui-workspace@0.1.0 check
+> npm run test:migrate:bulk && npm run test:showcase-store && npm run verify:workspace && npm run verify:v2 && npm run coverage && npm run verify:docs && npm run verify:phase6 && npm run audit:bulk:targets && npm run typecheck && npm run build && npm run check:cross-platform
+
+
+> forge-ui-workspace@0.1.0 test:migrate:bulk
+> node scripts/test-bulk-migration.mjs
+
+bulk migration contract tests: PASS
+
+> forge-ui-workspace@0.1.0 test:showcase-store
+> node scripts/test-example-store.mjs
+
+[forge] Original Showcase V2 store: edit, registered editor, subscriber, reset PASS
+
+> forge-ui-workspace@0.1.0 verify:workspace
+> node scripts/verify-workspace.mjs
+
+[forge] OK arquivo PLAN.md
+[forge] OK arquivo README.md
+[forge] OK arquivo AGENTS.md
+[forge] OK arquivo web/library/package.json
+[forge] OK arquivo web/library/src/index.ts
+[forge] OK arquivo showcase/portal/package.json
+[forge] OK arquivo showcase/portal/src/app/layout.tsx
+[forge] OK arquivo showcase/portal/src/app/(catalog)/page.tsx
+[forge] OK arquivo showcase/portal/src/features/showcase-v2/components/ShowcaseV2Page/ShowcaseV2Page.tsx
+[forge] OK arquivo showcase/portal/src/features/showcase-v2/components/ShowcaseV2Navigation/ShowcaseV2Navigation.tsx
+[forge] OK arquivo showcase/portal/src/features/showcase-v2/components/LiveExamples/LiveExamples.tsx
+[forge] OK arquivo web/library/src/design-system/styles/tokens.css
+[forge] OK arquivo web/library/src/design-system/styles/globals.css
+[forge] OK arquivo docs/sc/core/architecture.sc.md
+[forge] OK arquivo docs/sc/showcase/feature-showcase-portal.sc.md
+[forge] OK arquivo docs/sc/web/feature-foundational-atoms-phase2.sc.md
+[forge] OK arquivo docs/migration/source-manifest.json
+[forge] OK arquivo scripts/forge.mjs
+[forge] OK arquivo forge.sh
+[forge] OK arquivo forge.cmd
+[forge] OK arquivo forge.ps1
+[forge] OK npm workspaces na raiz
+[forge] OK biblioteca web identificada
+[forge] OK showcase identificado
+[forge] OK showcase usa workspace local
+[forge] OK biblioteca não duplica React em dependencies
+[forge] OK exports públicos da biblioteca
+[forge] OK scripts de verificação presentes
+[forge] OK bootstrap Windows verifica SHA-256 via .NET sem depender de Get-FileHash
+[forge] OK bootstrap Windows usa ZipFile sem depender de Expand-Archive
+[forge] OK átomo Button (TSX, CSS, barrel e API pública)
+[forge] OK demo Button usa @forge-ui/web
+[forge] OK átomo Badge (TSX, CSS, barrel e API pública)
+[forge] OK demo Badge usa @forge-ui/web
+[forge] OK átomo Input (TSX, CSS, barrel e API pública)
+[forge] OK demo Input usa @forge-ui/web
+[forge] OK átomo Checkbox (TSX, CSS, barrel e API pública)
+[forge] OK demo Checkbox usa @forge-ui/web
+[forge] OK átomo Text (TSX, CSS, barrel e API pública)
+[forge] OK demo Text usa @forge-ui/web
+[forge] OK átomo Spinner (TSX, CSS, barrel e API pública)
+[forge] OK demo Spinner usa @forge-ui/web
+[forge] OK átomo Textarea (TSX, CSS, barrel e API pública)
+[forge] OK demo Textarea usa @forge-ui/web
+[forge] OK átomo Switch (TSX, CSS, barrel e API pública)
+[forge] OK demo Switch usa @forge-ui/web
+[forge] OK átomo Radio (TSX, CSS, barrel e API pública)
+[forge] OK demo Radio usa @forge-ui/web
+[forge] OK átomo Label (TSX, CSS, barrel e API pública)
+[forge] OK demo Label usa @forge-ui/web
+[forge] OK átomo Divider (TSX, CSS, barrel e API pública)
+[forge] OK demo Divider usa @forge-ui/web
+[forge] OK átomo Heading (TSX, CSS, barrel e API pública)
+[forge] OK demo Heading usa @forge-ui/web
+[forge] OK átomo VisuallyHidden (TSX, CSS, barrel e API pública)
+[forge] OK demo VisuallyHidden usa @forge-ui/web
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\css-modules.d.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionBody\AccordionBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionBody\useAccordionBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionFooter\AccordionFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionFooter\useAccordionFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionHeader\AccordionHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AccordionHeader\useAccordionHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertBody\AlertBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertBody\useAlertBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertDialogBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertDialogFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertFooter\AlertFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertFooter\useAlertFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertHeader\AlertHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AlertHeader\useAlertHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ApplicationLayoutBody\ApplicationLayoutBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ApplicationLayoutBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ApplicationLayoutFooter\ApplicationLayoutFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ApplicationLayoutFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ApplicationLayoutHeader\ApplicationLayoutHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ApplicationLayoutHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AspectRatio\AspectRatio.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AspectRatio\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AutocompleteFooter\AutocompleteFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AutocompleteFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AutocompleteFooter\useAutocompleteFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AutocompleteHeader\AutocompleteHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AutocompleteHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\AutocompleteHeader\useAutocompleteHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Avatar\Avatar.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Avatar\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Avatar\useAvatar.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Badge\Badge.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Badge\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\BreadcrumbItem\BreadcrumbItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\BreadcrumbItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Button\Button.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Button\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardBody\CardBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardBody\useCardBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardFooter\CardFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardFooter\useCardFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardHeader\CardHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CardHeader\useCardHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Checkbox\Checkbox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Checkbox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupBody\ChoiceGroupBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupBody\useChoiceGroupBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupFooter\ChoiceGroupFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupFooter\useChoiceGroupFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupHeader\ChoiceGroupHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ChoiceGroupHeader\useChoiceGroupHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseBody\CollapseBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseBody\useCollapseBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseFooter\CollapseFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseFooter\useCollapseFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseHeader\CollapseHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CollapseHeader\useCollapseHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ComboboxFooter\ComboboxFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ComboboxFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ComboboxFooter\useComboboxFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ComboboxHeader\ComboboxHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ComboboxHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ComboboxHeader\useComboboxHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Container\Container.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Container\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Container (1)\Container.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Container (1)\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CurrencyValue\CurrencyValue.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\CurrencyValue\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DataGridCell\DataGridCell.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DataGridCell\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DataGridCell\useDataGridCell.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DataGridFooter\DataGridFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DataGridFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DataGridFooter\useDataGridFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DialogBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DialogClose\DialogClose.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DialogClose\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DialogClose\useDialogClose.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\DialogFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Divider\Divider.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Divider\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateBody\EmptyStateBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateBody\useEmptyStateBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateFooter\EmptyStateFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateFooter\useEmptyStateFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateHeader\EmptyStateHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\EmptyStateHeader\useEmptyStateHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateBody\ErrorStateBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateBody\useErrorStateBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateFooter\ErrorStateFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateFooter\useErrorStateFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateHeader\ErrorStateHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ErrorStateHeader\useErrorStateHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FieldError\FieldError.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FieldError\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FieldHint\FieldHint.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FieldHint\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormBody\FormBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormBody\useFormBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFieldBody\FormFieldBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFieldBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFieldBody\useFormFieldBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFieldHeader\FormFieldHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFieldHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFieldHeader\useFormFieldHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFooter\FormFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormFooter\useFormFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormHeader\FormHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\FormHeader\useFormHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Heading\Heading.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Heading\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Icon\Icon.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Icon\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Inline\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Inline\Inline.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Inline (1)\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Inline (1)\Inline.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Input\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Input\Input.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Label\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Label\Label.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Link\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Link\Link.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Link (1)\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Link (1)\Link.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBody\ListBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBody\useListBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxFooter\ListBoxFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxFooter\useListBoxFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxHeader\ListBoxHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxHeader\useListBoxHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxItem\ListBoxItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListBoxItem\useListBoxItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListFooter\ListFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListFooter\useListFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListHeader\ListHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListHeader\useListHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ListItem\ListItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\LoadingStateFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\LoadingStateFooter\LoadingStateFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\LoadingStateFooter\useLoadingStateFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\LoadingStateHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\LoadingStateHeader\LoadingStateHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\LoadingStateHeader\useLoadingStateHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuBody\MenuBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuBody\useMenuBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuFooter\MenuFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuFooter\useMenuFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuHeader\MenuHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuHeader\useMenuHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuItem\MenuItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\MenuItem\useMenuItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Meter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Meter\Meter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ModalBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ModalBody\ModalBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ModalBody\useModalBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ModalFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ModalFooter\ModalFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ModalFooter\useModalFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuBody\NavigationMenuBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuBody\useNavigationMenuBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuFooter\NavigationMenuFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuFooter\useNavigationMenuFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuHeader\NavigationMenuHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuHeader\useNavigationMenuHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuSublist\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuSublist\NavigationMenuSublist.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\NavigationMenuSublist\useNavigationMenuSublist.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Option\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Option\Option.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\OverlayPortal\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\OverlayPortal\OverlayPortal.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\OverlayPortal\useOverlayPortal.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PaginationEllipsis\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PaginationEllipsis\PaginationEllipsis.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PaginationItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PaginationItem\PaginationItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PaginationItem\usePaginationItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverBody\PopoverBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverBody\usePopoverBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverFooter\PopoverFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverFooter\usePopoverFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverHeader\PopoverHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopoverHeader\usePopoverHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopupListboxItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopupListboxItem\PopupListboxItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\PopupListboxItem\usePopupListboxItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Progress\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Progress\Progress.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Radio\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Radio\Radio.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\RangeTrack\RangeTrack.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Select\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Select\Select.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Select (1)\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Select (1)\Select.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\SharedElement\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\SharedElement\SharedElement.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\SimpleGrid\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\SimpleGrid\SimpleGrid.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Skeleton\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Skeleton\Skeleton.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Spinner\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Spinner\Spinner.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Stack\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Stack\Stack.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Stack (1)\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Stack (1)\Stack.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperBody\StepperBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperBody\useStepperBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperFooter\StepperFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperFooter\useStepperFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperHeader\StepperHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperHeader\useStepperHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperPanel\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperPanel\StepperPanel.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\StepperPanel\useStepperPanel.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Surface\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Surface\Surface.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Switch\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Switch\Switch.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Tab\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Tab\Tab.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Tab\useTab.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabPanel\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabPanel\TabPanel.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabPanel\useTabPanel.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsBody\TabsBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsBody\useTabsBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsFooter\TabsFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsFooter\useTabsFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsHeader\TabsHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TabsHeader\useTabsHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Text\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Text\Text.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Textarea\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\Textarea\Textarea.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToastBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToastBody\ToastBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToastBody\useToastBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToastHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToastHeader\ToastHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToastHeader\useToastHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToolbarItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToolbarItem\ToolbarItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\ToolbarItem\useToolbarItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeFooter\TreeFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeFooter\useTreeFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridCell\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridCell\TreeGridCell.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridCell\useTreeGridCell.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridColumnHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridColumnHeader\TreeGridColumnHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridColumnHeader\useTreeGridColumnHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridFooter\TreeGridFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeGridFooter\useTreeGridFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeHeader\TreeHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\TreeHeader\useTreeHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\VisuallyHidden\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\atoms\VisuallyHidden\VisuallyHidden.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Accordion\Accordion.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Accordion\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Accordion\useAccordionView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AccordionItem\AccordionItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AccordionItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AccordionItem\useAccordionItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Alert\Alert.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Alert\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Alert\useAlert.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AlertDialogHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Autocomplete\Autocomplete.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Autocomplete\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Autocomplete\useAutocomplete.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AutocompleteBody\AutocompleteBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AutocompleteBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\AutocompleteBody\useAutocompleteBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Breadcrumb\Breadcrumb.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Breadcrumb\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ButtonGroup\ButtonGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ButtonGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Card\Card.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Card\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Card\useCard.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CheckboxGroup\CheckboxGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CheckboxGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CheckboxGroup\useCheckboxGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CheckboxGroupItem\CheckboxGroupItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CheckboxGroupItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CheckboxGroupItem\useCheckboxGroupItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ChoiceGroup\ChoiceGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ChoiceGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ChoiceGroup\useChoiceGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Collapse\Collapse.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Collapse\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Collapse\useCollapseView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ColorInput\ColorInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ColorInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Combobox\Combobox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Combobox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Combobox\useCombobox.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ComboboxBody\ComboboxBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ComboboxBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ComboboxBody\useComboboxBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CurrencyInput\CurrencyInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CurrencyInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\CurrencyInput\useCurrencyInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridBody\DataGridBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridBody\useDataGridBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridColumnHeader\DataGridColumnHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridColumnHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridColumnHeader\useDataGridColumnHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridHeader\DataGridHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridHeader\useDataGridHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridRow\DataGridRow.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridRow\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DataGridRow\useDataGridRow.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DateInput\DateInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DateInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DateTimeInput\DateTimeInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DateTimeInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DialogHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Disclosure\Disclosure.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Disclosure\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DropdownMenu\DropdownMenu.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DropdownMenu\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\DropdownMenu\useDropdownMenu.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\EmailInput\EmailInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\EmailInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\EmailInput\useEmailInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\EmptyState\EmptyState.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\EmptyState\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\EmptyState\useEmptyState.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ErrorState\ErrorState.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ErrorState\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ErrorState\useErrorState.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FileInput\FileInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FileInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FileInput\useFileInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FormField\FormField.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FormField\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FormField\useFormField.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FormFieldFooter\FormFieldFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FormFieldFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\FormFieldFooter\useFormFieldFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\IconButton\IconButton.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\IconButton\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InputAddon\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InputAddon\InputAddon.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InputBase\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InputBase\InputBase.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InputGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InputGroup\InputGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InternationalTelephoneInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InternationalTelephoneInput\InternationalTelephoneInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\InternationalTelephoneInput\useInternationalTelephoneInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Legend\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Legend\Legend.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\List\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\List\List.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\List\useList.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ListBoxBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ListBoxBody\ListBoxBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ListBoxBody\useListBoxBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LoadingState\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LoadingState\LoadingState.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LoadingState\useLoadingState.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LoadingStateBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LoadingStateBody\LoadingStateBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LoadingStateBody\useLoadingStateBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LocaleSelector\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LocaleSelector\LocaleSelector.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\LocaleSelector\useLocaleSelector.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\MaskedInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\MaskedInput\MaskedInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\MaskedInput\useMaskedInputView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Menu\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Menu\Menu.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Menu\useMenu.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Modal\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Modal\Modal.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Modal\useModalView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ModalHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ModalHeader\ModalHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ModalHeader\useModalHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\NavigationMenuItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\NavigationMenuItem\NavigationMenuItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\NavigationMenuItem\useNavigationMenuGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\NavigationMenuItem\useNavigationMenuItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\NumberInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\NumberInput\NumberInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterCondition\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterCondition\ODataFilterCondition.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterCondition\useODataFilterCondition.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterGroup\ODataFilterGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterGroup\useODataFilterGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterValue\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterValue\ODataFilterValue.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ODataFilterValue\useODataFilterValue.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PageHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PageHeader\PageHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PageTransition\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PageTransition\PageTransition.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Pagination\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Pagination\Pagination.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Pagination\usePagination.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PasswordInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PasswordInput\PasswordInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PasswordInput\usePasswordInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PercentageInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PercentageInput\PercentageInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Popover\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Popover\Popover.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Popover\usePopover.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PopupListbox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PopupListbox\PopupListbox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PopupListbox\usePopupListboxView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PostalCodeInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\PostalCodeInput\PostalCodeInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ProgressBar\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ProgressBar\ProgressBar.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\RadioGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\RadioGroup\RadioGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\RadioGroup\useRadioGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\RadioGroupItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\RadioGroupItem\RadioGroupItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\RadioGroupItem\useRadioGroupItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\SearchInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\SearchInput\SearchInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\SearchInput\useSearchInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Slider\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Slider\Slider.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\StepperItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\StepperItem\StepperItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\StepperItem\useStepperItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tabs\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tabs\Tabs.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tabs\useTabs.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tag\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tag\Tag.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TagGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TagGroup\TagGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TagGroupItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TagGroupItem\TagGroupItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TaxIdInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TaxIdInput\TaxIdInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TelephoneInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TelephoneInput\TelephoneInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ThemeSelector\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ThemeSelector\ThemeSelector.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ThemeSelector\useThemeSelector.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TimeInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TimeInput\TimeInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Toast\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Toast\Toast.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Toast\useToastView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ToastFooter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ToastFooter\ToastFooter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\ToastFooter\useToastFooter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TokenInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TokenInput\TokenInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Toolbar\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Toolbar\Toolbar.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Toolbar\useToolbar.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tooltip\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tooltip\Tooltip.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\Tooltip\useTooltip.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeBody\TreeBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeBody\useTreeBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridBody\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridBody\TreeGridBody.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridBody\useTreeGridBody.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridHeader\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridHeader\TreeGridHeader.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridHeader\useTreeGridHeader.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridRow\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridRow\TreeGridRow.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGridRow\useTreeGridRow.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGroup\TreeGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeGroup\useTreeGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeItem\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeItem\TreeItem.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\TreeItem\useTreeItem.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\UrlInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\molecules\UrlInput\UrlInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\AlertDialog\AlertDialog.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\AlertDialog\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\AlertDialog\useAlertDialog.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ConfirmationModal\ConfirmationModal.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ConfirmationModal\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ConfirmationModal\useConfirmationModal.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\DataGrid\DataGrid.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\DataGrid\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\DataGrid\useDataGrid.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Dialog\Dialog.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Dialog\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\Form.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldAutocomplete\FormFieldAutocomplete.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldAutocomplete\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldAutocomplete\useFormFieldAutocomplete.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCheckbox\FormFieldCheckbox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCheckbox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCheckbox\useFormFieldCheckbox.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCheckboxGroup\FormFieldCheckboxGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCheckboxGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCheckboxGroup\useFormFieldCheckboxGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldColorInput\FormFieldColorInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldColorInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldColorInput\useFormFieldColorInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCombobox\FormFieldCombobox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCombobox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCombobox\useFormFieldCombobox.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCurrencyInput\FormFieldCurrencyInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCurrencyInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldCurrencyInput\useFormFieldCurrencyInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldDateInput\FormFieldDateInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldDateInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldDateInput\useFormFieldDateInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldDateTimeInput\FormFieldDateTimeInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldDateTimeInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldDateTimeInput\useFormFieldDateTimeInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldEmailInput\FormFieldEmailInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldEmailInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldEmailInput\useFormFieldEmailInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldFileInput\FormFieldFileInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldFileInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldFileInput\useFormFieldFileInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldInput\FormFieldInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldInput\useFormFieldInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldInternationalTelephoneInput\FormFieldInternationalTelephoneInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldInternationalTelephoneInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldInternationalTelephoneInput\useFormFieldInternationalTelephoneInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldListBox\FormFieldListBox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldListBox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldListBox\useFormFieldListBox.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldMaskedInput\FormFieldMaskedInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldMaskedInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldMaskedInput\useFormFieldMaskedInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldNumberInput\FormFieldNumberInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldNumberInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldNumberInput\useFormFieldNumberInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPasswordInput\FormFieldPasswordInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPasswordInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPasswordInput\useFormFieldPasswordInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPercentageInput\FormFieldPercentageInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPercentageInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPercentageInput\useFormFieldPercentageInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPostalCodeInput\FormFieldPostalCodeInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPostalCodeInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldPostalCodeInput\useFormFieldPostalCodeInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldRadioGroup\FormFieldRadioGroup.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldRadioGroup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldRadioGroup\useFormFieldRadioGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSearchInput\FormFieldSearchInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSearchInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSearchInput\useFormFieldSearchInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSelect\FormFieldSelect.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSelect\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSelect\useFormFieldSelect.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSlider\FormFieldSlider.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSlider\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSlider\useFormFieldSlider.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSwitch\FormFieldSwitch.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSwitch\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldSwitch\useFormFieldSwitch.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTaxIdInput\FormFieldTaxIdInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTaxIdInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTaxIdInput\useFormFieldTaxIdInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTelephoneInput\FormFieldTelephoneInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTelephoneInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTelephoneInput\useFormFieldTelephoneInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTextarea\FormFieldTextarea.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTextarea\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTextarea\useFormFieldTextarea.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTimeInput\FormFieldTimeInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTimeInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTimeInput\useFormFieldTimeInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTokenInput\FormFieldTokenInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTokenInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldTokenInput\useFormFieldTokenInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldUrlInput\FormFieldUrlInput.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldUrlInput\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormFieldUrlInput\useFormFieldUrlInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormView\FormView.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormView\FormViewField.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormView\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\FormView\useFormView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Form\useForm.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ListBox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ListBox\ListBox.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ListBox\useListBox.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\MapView\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\MapView\map-renderer-resource.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\MapView\MapView.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\MapView\useMapView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\NavigationMenu\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\NavigationMenu\NavigationMenu.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ODataFilter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ODataFilter\ODataFilter.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ODataFilter\useODataFilter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Stepper\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Stepper\Stepper.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Stepper\useStepper.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ToastRegion\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ToastRegion\ToastRegion.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\ToastRegion\useToastRegionView.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Tree\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Tree\Tree.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\Tree\useTree.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\TreeGrid\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\TreeGrid\TreeGrid.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\organisms\TreeGrid\useTreeGrid.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\static-components.contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ApplicationLayoutTemplate\ApplicationLayoutTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ApplicationLayoutTemplate\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\DetailPageTemplate\DetailPageTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\DetailPageTemplate\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\FormPageTemplate\FormPageTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\FormPageTemplate\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\HomePageTemplate\HomePageTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\HomePageTemplate\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ListPageTemplate\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ListPageTemplate\ListPageTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ShowcasePageTemplate\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ShowcasePageTemplate\ShowcasePageTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ShowcasePageTemplate (1)\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\components\templates\ShowcasePageTemplate (1)\ShowcasePageTemplate.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\brazilian-documents.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\compound.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\date-only.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\duration.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\file-size.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\formatters.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\icon-data.generated.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\map-geometry.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\mask.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\money.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\odata-filter\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\odata-filter\serializeODataFilter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\phone-country-labels.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\phone.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\postal-code.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\range.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\relative-time.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\tree.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\helpers\validators.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\collapse\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\collapse\useCollapse.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\disclosure-group\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\disclosure-group\useAccordion.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\disclosure-group\useDisclosureGroup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\focus\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\focus\useRovingFocus.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\grid\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\grid\useGridNavigation.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\listbox\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\listbox\useListBoxState.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\mask\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\mask\useMaskedInput.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\modal\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\modal\useModal.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\motion\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\motion\usePresence.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\notifications\budgets.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\notifications\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\notifications\useToast.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\notifications\useToastRegion.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\overlay\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\overlay\useOverlay.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\popup\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\popup\usePopupListbox.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\tree\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\tree\useTreeNavigation.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\hooks\tree\useTreeState.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\accordion\AccordionContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\accordion\AccordionItemContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\alert\AlertContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\autocomplete\AutocompleteContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\card\CardContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\checkboxgroup\CheckboxGroupContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\choicegroup\ChoiceGroupContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\collapse\CollapseContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\combobox\ComboboxContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\datagrid\DataGridContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\datagrid\validateParts.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\dropdownmenu\DropdownMenuContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\emptystate\EmptyStateContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\errorstate\ErrorStateContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\form\FormContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\formfield\field-control.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\formfield\FormFieldContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\list\ListContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\listbox\ListBoxContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\loadingstate\LoadingStateContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\menu\MenuContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\modal\ModalContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\navigationmenu\NavigationItemContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\navigationmenu\NavigationMenuContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\navigationmenu\validateNavigationItems.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\notifications\NotificationContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\pagination\PaginationContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\popover\PopoverContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\query-input\QueryInputContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\radiogroup\RadioGroupContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\stepper\collectStepperChildren.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\stepper\StepperContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\tabs\TabsContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\toast\ToastContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\toolbar\ToolbarContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\tree\TreeContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\treegrid\TreeGridContext.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\internal\treegrid\validateParts.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\animation.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\behavior-contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\collection-contracts.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\component-capabilities.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\compound-composition.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\disclosure.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\focus.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\form-field-organisms.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\forms.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\grid-navigation.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\icon-geometry.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\icon.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\input-specializations.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\interactive-controls.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\layout (1).ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\layout.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\listbox-state.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\loading.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\map.contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\map.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\mask.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\modal.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\money.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\native-control-contracts.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\notifications.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\odata-filter.contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\odata-filter.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\overlay.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\page-transitions.contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\page-transitions.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\phone.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\popup-item.contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\popup.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\preferences.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\range.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\selection-navigation.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\tree-grid.contracts.test.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\tree.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\typography.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\design-system\types\virtual-window.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\contracts\preferences.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\contracts\selection.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\formatting\intl.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\forms\form-config.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\forms\form-config.types.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\forms\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\context.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\dictionary.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\formatters.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\I18nProvider.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\locale.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\messages\en.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\messages\es.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\messages\pt-BR.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\useI18nProvider.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\useLocale.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\i18n\useTranslation.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\context.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\index.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\theme.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\ThemeProvider.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\ThemeScript.tsx
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\useTheme.ts
+[forge] OK sem import de Next/Praticar em D:\projects\AiWorkzone\ForgeUI\web\library\src\support\theme\useThemeProvider.ts
+[forge] Imports relativos auditados: 3030.
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Textarea/Textarea.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Textarea/Textarea.module.css
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Switch/Switch.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Switch/Switch.module.css
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Radio/Radio.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Radio/Radio.module.css
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Label/Label.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Label/Label.module.css
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Divider/Divider.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Divider/Divider.module.css
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Heading/Heading.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/Heading/Heading.module.css
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.tsx
+[forge] OK hash da fonte web/library/src/design-system/components/atoms/VisuallyHidden/VisuallyHidden.module.css
+[forge] OK hash da fonte web/library/src/design-system/types/interactive-controls.ts
+[forge] OK hash da fonte web/library/src/design-system/styles/interactive-primitives.module.css
+[forge] OK renderer V2 components/ExampleScope/example-store.ts
+[forge] OK renderer V2 components/ExampleScope/ExampleScope.tsx
+[forge] OK renderer V2 components/ExampleScope/useExampleScope.ts
+[forge] OK renderer V2 components/ExamplePreview/ExamplePreview.tsx
+[forge] OK renderer V2 components/ExampleCode/ExampleCode.tsx
+[forge] OK renderer V2 components/PropertyGrid/PropertyEditor.tsx
+[forge] OK renderer V2 components/PropertyGrid/PropertyGrid.tsx
+[forge] OK renderer V2 components/TechnicalGrid/TechnicalGrid.tsx
+[forge] OK renderer V2 components/ShowcaseV2Template/ShowcaseV2Template.tsx
+[forge] OK renderer V2 components/ShowcaseV2Renderer/ShowcaseV2Renderer.tsx
+[forge] OK renderer V2 components/LiveExamples/LiveDefinitionPage.tsx
+[forge] OK renderer V2 model/showcase-v2-control-options.ts
+[forge] OK rotas de componentes usam loader original V2
+[forge] OK Preview V2 usa Card público do Forge UI
+[forge] OK composição Card: export público Surface
+[forge] OK composição Card: export público Card
+[forge] OK composição Card: export público CardHeader
+[forge] OK composição Card: export público CardBody
+[forge] OK composição Card: export público CardFooter
+[forge] OK template V2 usa store compartilhado e grids
+[forge] OK índice original preserva 221 páginas de componentes (não 221 demos migradas)
+[forge] OK índice original preserva 33 recursos
+[forge] OK home importa ShowcaseV2Page original
+[forge] OK shell V2 reutiliza ShowcasePageTemplate público
+[forge] OK nenhum ShowcaseClient antigo ativo
+[forge] OK export V2 público Select
+[forge] OK export V2 público Option
+[forge] OK export V2 público Container
+[forge] OK export V2 público Stack
+[forge] OK export V2 público Inline
+[forge] OK export V2 público Link
+[forge] OK export V2 público ThemeSelector
+[forge] OK export V2 público LocaleSelector
+[forge] OK export V2 público ShowcasePageTemplate
+[forge] Imports relativos do portal auditados: 2272.
+[forge] Verificação estrutural e hashes aprovada (não substitui typecheck, build ou inspeção visual).
+
+> forge-ui-workspace@0.1.0 verify:v2
+> node scripts/test-v2-contracts.mjs
+
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/Icon/Icon.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/Icon/Icon.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/types/icon.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/types/icon-geometry.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/helpers/icon-data.generated.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/styles/icon-components.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/organisms/DataGrid/DataGrid.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/organisms/DataGrid/useDataGrid.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/organisms/DataGrid/DataGrid.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridHeader/DataGridHeader.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridHeader/useDataGridHeader.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridHeader/DataGridHeader.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridBody/DataGridBody.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridBody/useDataGridBody.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridBody/DataGridBody.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridRow/DataGridRow.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridRow/useDataGridRow.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridRow/DataGridRow.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridColumnHeader/DataGridColumnHeader.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridColumnHeader/useDataGridColumnHeader.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/molecules/DataGridColumnHeader/DataGridColumnHeader.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/DataGridCell/DataGridCell.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/DataGridCell/useDataGridCell.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/DataGridCell/DataGridCell.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/DataGridFooter/DataGridFooter.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/DataGridFooter/useDataGridFooter.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/components/atoms/DataGridFooter/DataGridFooter.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/internal/datagrid/DataGridContext.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/internal/datagrid/validateParts.ts
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/styles/data-grid-components.module.css
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/hooks/collapse/useCollapse.ts
+[forge-v2] OK fonte ou reconciliação showcase/portal/src/features/showcase-v2/components/ExampleState/ScenarioControls.tsx
+[forge-v2] OK fonte ou reconciliação showcase/portal/src/features/showcase-v2/components/ExampleState/ExampleState.tsx
+[forge-v2] OK fonte ou reconciliação showcase/portal/src/features/showcase-v2/components/ExampleState/ExampleBoundary.tsx
+[forge-v2] OK fonte ou reconciliação showcase/portal/src/features/showcase-v2/components/ExampleControls.tsx
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/assets/icons/icon-sources.json
+[forge-v2] OK fonte ou reconciliação web/library/src/design-system/assets/icons/LICENSE-upstream.md
+[forge-v2] OK fonte ou reconciliação docs/migration/original-showcase-v2/showcase-v2-loaders.source.txt
+[forge-v2] OK fonte ou reconciliação docs/migration/original-showcase-v2/showcase-v2-resource-loaders.source.txt
+[forge-v2] OK export público Icon
+[forge-v2] OK export público DataGrid
+[forge-v2] OK export público DataGridHeader
+[forge-v2] OK export público DataGridBody
+[forge-v2] OK export público DataGridRow
+[forge-v2] OK export público DataGridCell
+[forge-v2] OK export público DataGridColumnHeader
+[forge-v2] OK export público DataGridFooter
+[forge-v2] OK hook público useCollapse
+[forge-v2] OK PropertyGrid/PropertyGrid.tsx compõe DataGrid original
+[forge-v2] OK TechnicalGrid/TechnicalGrid.tsx compõe DataGrid original
+[forge-v2] OK ExampleState/ScenarioControls.tsx compõe DataGrid original
+[forge-v2] OK ExampleState/ExampleState.tsx compõe DataGrid original
+[forge-v2] OK preview com useCollapse e boundary
+[forge-v2] OK controls ativos no template
+[forge-v2] OK loader V2 usa import dinâmico
+[forge-v2] OK 16 demos reais registradas
+[forge-v2] OK DataGrid com dois cenários
+[forge-v2] APROVADO contratos estáticos; typecheck/build/visual não inclusos.
+
+> forge-ui-workspace@0.1.0 coverage
+> node scripts/generate-migration-coverage.mjs
+
+{
+  "catalogComponents": 221,
+  "catalogResources": 33,
+  "publicComponentExports": 221,
+  "componentDemos": 221,
+  "originalV2Demos": 221,
+  "adapterV2Demos": 0,
+  "componentsWithLocalSC": 221,
+  "libraryOnly": 0,
+  "catalogOnly": 0,
+  "resourcesWithLocalSource": 33,
+  "resourcesWithLocalSC": 33
+}
+
+> forge-ui-workspace@0.1.0 verify:docs
+> node scripts/verify-sc-manifests.mjs && node scripts/audit-sc-links.mjs
+
+[forge-integrity] Current source revision verified for docs/sc/tech-theming.sc.md; historical snapshot retained.
+[forge-integrity] Current source revision verified for docs/sc/tech-form-config.sc.md; historical snapshot retained.
+[forge-integrity] Current source revision verified for docs/sc/tech-preference-contracts.sc.md; historical snapshot retained.
+[forge-integrity] Current source revision verified for docs/sc/tech-form-config-types.sc.md; historical snapshot retained.
+[forge-sc] 173 arquivos de manifesto e 7 definições originais auditados; 0 falhas (sem typecheck/build)
+[SC] 366 documentos, 1731 links relativos, 0 links pendentes (0 pares)
+
+> forge-ui-workspace@0.1.0 verify:phase6
+> node scripts/test-phase6-contracts.mjs
+
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Avatar/Avatar.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Avatar/Avatar.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Avatar/index.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Avatar/useAvatar.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/atoms/Avatar.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Skeleton/Skeleton.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Skeleton/Skeleton.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/Skeleton/index.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/atoms/Skeleton.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/IconButton/IconButton.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/IconButton/IconButton.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/IconButton/index.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/molecules/IconButton.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Tag/Tag.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Tag/Tag.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Tag/index.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/molecules/Tag.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Alert/Alert.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Alert/Alert.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Alert/index.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/molecules/Alert/useAlert.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/molecules/Alert.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertHeader/AlertHeader.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertHeader/AlertHeader.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertHeader/index.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertHeader/useAlertHeader.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/atoms/AlertHeader.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertBody/AlertBody.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertBody/AlertBody.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertBody/index.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertBody/useAlertBody.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/atoms/AlertBody.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertFooter/AlertFooter.module.css
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertFooter/AlertFooter.tsx
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertFooter/index.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/components/atoms/AlertFooter/useAlertFooter.ts
+[forge-p6] OK hash ou reconciliação auditada docs/sc/ds/atoms/AlertFooter.sc.md
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/internal/alert/AlertContext.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/types/loading.ts
+[forge-p6] OK hash ou reconciliação auditada web/library/src/design-system/types/collection-contracts.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Avatar/definition.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Avatar/Avatar.example.tsx
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Avatar/useAvatarExample.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Avatar/usage-code.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Skeleton/definition.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Skeleton/Skeleton.example.tsx
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Skeleton/useSkeletonExample.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Skeleton/usage-code.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/IconButton/definition.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/IconButton/IconButton.example.tsx
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/IconButton/useIconButtonExample.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/IconButton/usage-code.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Tag/definition.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Tag/Tag.example.tsx
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Tag/useTagExample.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Tag/usage-code.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Alert/definition.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Alert/Alert.example.tsx
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Alert/useAlertExample.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/Alert/usage-code.ts
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/ResourceExamples/ResourceState.tsx
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/src/features/showcase-v2/components/ResourceExamples/useResourceExampleCopy.ts
+[forge-integrity] Current source revision verified for showcase/portal/public/images/showcase/accordion-landscape.svg; historical snapshot retained.
+[forge-p6] OK hash ou reconciliação auditada showcase/portal/public/images/showcase/accordion-landscape.svg
+[forge-p6] OK hash ou reconciliação auditada docs/migration/original-showcase-v2/core-catalog-ds.sc.md
+[forge-p6] OK hash ou reconciliação auditada docs/migration/original-showcase-v2/feature-showcase-v2-ds-coverage.sc.md
+[forge-p6] OK public API Avatar
+[forge-p6] OK SC original Avatar
+[forge-p6] OK public API Skeleton
+[forge-p6] OK SC original Skeleton
+[forge-p6] OK public API IconButton
+[forge-p6] OK SC original IconButton
+[forge-p6] OK public API Tag
+[forge-p6] OK SC original Tag
+[forge-p6] OK public API Alert
+[forge-p6] OK SC original Alert
+[forge-p6] OK public API AlertHeader
+[forge-p6] OK SC original AlertHeader
+[forge-p6] OK public API AlertBody
+[forge-p6] OK SC original AlertBody
+[forge-p6] OK public API AlertFooter
+[forge-p6] OK SC original AlertFooter
+[forge-p6] OK V2 original Avatar/definition.ts
+[forge-p6] OK V2 original Avatar/Avatar.example.tsx
+[forge-p6] OK V2 original Avatar/useAvatarExample.ts
+[forge-p6] OK V2 original Avatar/usage-code.ts
+[forge-p6] OK loader Avatar
+[forge-p6] OK spec Forge Avatar
+[forge-p6] OK V2 original Skeleton/definition.ts
+[forge-p6] OK V2 original Skeleton/Skeleton.example.tsx
+[forge-p6] OK V2 original Skeleton/useSkeletonExample.ts
+[forge-p6] OK V2 original Skeleton/usage-code.ts
+[forge-p6] OK loader Skeleton
+[forge-p6] OK spec Forge Skeleton
+[forge-p6] OK V2 original IconButton/definition.ts
+[forge-p6] OK V2 original IconButton/IconButton.example.tsx
+[forge-p6] OK V2 original IconButton/useIconButtonExample.ts
+[forge-p6] OK V2 original IconButton/usage-code.ts
+[forge-p6] OK loader IconButton
+[forge-p6] OK spec Forge IconButton
+[forge-p6] OK V2 original Tag/definition.ts
+[forge-p6] OK V2 original Tag/Tag.example.tsx
+[forge-p6] OK V2 original Tag/useTagExample.ts
+[forge-p6] OK V2 original Tag/usage-code.ts
+[forge-p6] OK loader Tag
+[forge-p6] OK spec Forge Tag
+[forge-p6] OK V2 original Alert/definition.ts
+[forge-p6] OK V2 original Alert/Alert.example.tsx
+[forge-p6] OK V2 original Alert/useAlertExample.ts
+[forge-p6] OK V2 original Alert/usage-code.ts
+[forge-p6] OK loader Alert
+[forge-p6] OK spec Forge Alert
+[forge-p6] OK boundary usa Alert público
+[forge-p6] OK catálogo e matriz
+[forge-p6] OK biblioteca 43 e demos 21
+[forge-p6] OK fixture Avatar local
+[forge-p6] APROVADO verificações estruturais (não são build/browser)
+
+> forge-ui-workspace@0.1.0 audit:bulk:targets
+> node scripts/audit-bulk-migration.mjs --target-only
+
+{
+  "source": "D:\\projects\\AiWorkzone\\PraticarWorkspace\\PraticarFront",
+  "sourceVerification": "not-run-target-only",
+  "sourceFilesVerified": 0,
+  "sourceChanges": [],
+  "missingTargets": 0,
+  "unresolvedApplicationImports": [],
+  "counts": {
+    "sourceTreeFiles": 2550,
+    "copiedInitially": 1787,
+    "preservedInitially": 68,
+    "reconciliationRecords": 486
+  }
+}
+
+> forge-ui-workspace@0.1.0 typecheck
+> npm run typecheck --workspace @forge-ui/web && npm run typecheck --workspace @forge-ui/showcase
+
+
+> @forge-ui/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @forge-ui/showcase@0.1.0 typecheck
+> tsc --noEmit
+
+
+> forge-ui-workspace@0.1.0 build
+> npm run build --workspace @forge-ui/showcase
+
+
+> @forge-ui/showcase@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 103ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.3s
+  Running TypeScript ...
+  Finished TypeScript in 11.9s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/297) ...
+  Generating static pages using 3 workers (74/297) 
+  Generating static pages using 3 workers (148/297) 
+  Generating static pages using 3 workers (222/297) 
+✓ Generating static pages using 3 workers (297/297) in 17.6s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /components/[slug]
+│ ├ ● /components/map-view
+│ ├ ● /components/application-layout-header
+│ ├ ● /components/application-layout-body
+│ └ ● [+212 more paths]
+├ ○ /demos/records/create
+├   /demos/records/details/[id]
+│ ├ ● /demos/records/details/item-1
+│ ├ ● /demos/records/details/item-2
+│ ├ ● /demos/records/details/item-3
+│ └ ● [+12 more paths]
+├   /demos/records/edit/[id]
+│ ├ ● /demos/records/edit/item-1
+│ ├ ● /demos/records/edit/item-2
+│ ├ ● /demos/records/edit/item-3
+│ └ ● [+12 more paths]
+├ ○ /demos/records/home
+├ ○ /demos/records/list
+├   /demos/templates/application-layout-template/[scenario]
+│ ├ ● /demos/templates/application-layout-template/shell
+│ ├ ● /demos/templates/application-layout-template/minimal
+│ ├ ● /demos/templates/application-layout-template/header
+│ └ ● [+2 more paths]
+├   /demos/templates/showcase-page-template/[scenario]
+│ ├ ● /demos/templates/showcase-page-template/catalog
+│ └ ● /demos/templates/showcase-page-template/focused
+├   /resources/[slug]
+│ ├ ● /resources/use-presence
+│ ├ ● /resources/motion-recipes
+│ ├ ● /resources/design-tokens
+│ └ ● [+30 more paths]
+└   /templates/[slug]
+  ├ ● /templates/application-layout-template
+  ├ ● /templates/showcase-page-template
+  ├ ● /templates/home-page
+  └ ● [+3 more paths]
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+
+
+> forge-ui-workspace@0.1.0 check:cross-platform
+> npm run tokens:check && npm run test:flutter-preview
+
+
+> forge-ui-workspace@0.1.0 tokens:check
+> node scripts/check-token-parity.mjs
+
+Verified CSS + Dart: 184 portable tokens across 4 themes; web SHA-256 68ed92cc2fd20996fd564709915cbd90acf4742558569c16a9d639da0351fc06
+Verified CSS + Dart: 184 portable tokens across 4 themes; web SHA-256 68ed92cc2fd20996fd564709915cbd90acf4742558569c16a9d639da0351fc06
+PASS token source, brand constants, 4 themes, baseline hash, deterministic CSS/Dart
+
+> forge-ui-workspace@0.1.0 test:flutter-preview
+> node scripts/test-flutter-preview.mjs
+
+PASS: real Flutter property schema/snippets, local bootstrap and origin/source-validated bridge

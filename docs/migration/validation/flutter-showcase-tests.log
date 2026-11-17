@@ -1,0 +1,110 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:00 +1: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:01 +2: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:01 +3: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:01 +4: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:01 +5: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:01 +6: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:02 +7: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:02 +8: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:02 +9: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:02 +10: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:02 +11: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: native settings preserve all Button enums and reject malformed values
+00:02 +12: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet inline 9
+00:02 +13: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: Spinner and ButtonGroup previews use real widgets and live settings
+00:02 +14: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: Spinner and ButtonGroup previews use real widgets and live settings
+00:02 +15: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: Spinner and ButtonGroup previews use real widgets and live settings
+00:02 +16: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: Spinner and ButtonGroup previews use real widgets and live settings
+00:02 +17: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet simple-grid 13
+00:02 +18: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: hierarchy exposes danger only after an explicit confirmation request
+00:02 +19: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: hierarchy exposes danger only after an explicit confirmation request
+00:02 +20: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: hierarchy exposes danger only after an explicit confirmation request
+00:02 +21: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet avatar 16
+00:02 +22: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet skeleton 17
+00:02 +23: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet progress 18
+00:02 +24: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet meter 19
+00:03 +25: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet text 20
+00:10 +26: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: primitive bridge validates exact finite constructor controls
+00:10 +27: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.light
+00:11 +28: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.dark
+00:11 +29: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.contrast
+00:11 +30: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.liquidGlass
+00:11 +31: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.light
+00:11 +32: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.dark
+00:11 +33: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.contrast
+00:11 +34: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.liquidGlass
+00:11 +35: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.light
+00:11 +36: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.dark
+00:11 +37: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.contrast
+00:11 +38: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.liquidGlass
+00:12 +39: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.light
+00:12 +40: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.dark
+00:12 +41: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.contrast
+00:12 +42: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.liquidGlass
+00:12 +43: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.light
+00:12 +44: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.dark
+00:12 +45: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.contrast
+00:12 +46: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.liquidGlass
+00:12 +47: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.light
+00:12 +48: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.dark
+00:12 +49: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.contrast
+00:12 +50: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.liquidGlass
+00:12 +51: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.light
+00:12 +52: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.dark
+00:12 +53: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.contrast
+00:12 +54: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.liquidGlass
+00:12 +55: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.light
+00:12 +56: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.dark
+00:12 +57: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.contrast
+00:13 +58: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.liquidGlass
+00:13 +59: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.light
+00:13 +60: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.dark
+00:13 +61: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.contrast
+00:13 +62: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.liquidGlass
+00:13 +63: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.light
+00:13 +64: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.dark
+00:13 +65: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.contrast
+00:13 +66: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.liquidGlass
+00:13 +67: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.light
+00:13 +68: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.dark
+00:13 +69: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.contrast
+00:13 +70: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.liquidGlass
+00:13 +71: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.light
+00:13 +72: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.dark
+00:13 +73: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.contrast
+00:13 +74: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.liquidGlass
+00:13 +75: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.light
+00:14 +76: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.dark
+00:14 +77: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.contrast
+00:14 +78: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.liquidGlass
+00:14 +79: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.light
+00:14 +80: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.dark
+00:14 +81: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.contrast
+00:14 +82: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.liquidGlass
+00:14 +83: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.light
+00:14 +84: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.dark
+00:14 +85: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.contrast
+00:14 +86: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.liquidGlass
+00:14 +87: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.light
+00:14 +88: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.dark
+00:14 +89: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.contrast
+00:14 +90: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.liquidGlass
+00:14 +91: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.light
+00:14 +92: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.dark
+00:14 +93: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.contrast
+00:14 +94: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.liquidGlass
+00:14 +95: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.light
+00:14 +96: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.dark
+00:15 +97: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.contrast
+00:15 +98: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.liquidGlass
+00:15 +99: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.light
+00:15 +100: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.dark
+00:15 +101: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.contrast
+00:15 +102: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.liquidGlass
+00:15 +103: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.light
+00:15 +104: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.dark
+00:15 +105: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.contrast
+00:15 +106: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.liquidGlass
+00:15 +107: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: text property edit updates the real native widget
+00:15 +108: All tests passed!

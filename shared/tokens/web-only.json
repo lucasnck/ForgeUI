@@ -1,0 +1,394 @@
+{
+  "overrides": {
+    "w0": {
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)))"
+      ],
+      "token": "--surface-background",
+      "$type": "color",
+      "$value": "rgb(249 252 250 / 78%)"
+    },
+    "w1": {
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)))"
+      ],
+      "token": "--surface-backdrop-filter",
+      "$type": "color",
+      "$value": "blur(20px) saturate(145%)"
+    },
+    "w2": {
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@media (prefers-reduced-transparency: reduce)"
+      ],
+      "token": "--surface-reflection",
+      "$type": "color",
+      "$value": "none"
+    },
+    "w3": {
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@media (prefers-reduced-transparency: reduce)"
+      ],
+      "token": "--surface-background",
+      "$type": "color",
+      "$value": "var(--color-surface-default)"
+    },
+    "w4": {
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@media (prefers-reduced-transparency: reduce)"
+      ],
+      "token": "--surface-backdrop-filter",
+      "$type": "color",
+      "$value": "none"
+    },
+    "w5": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-surface-page",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w6": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-surface-default",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w7": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-surface-subtle",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w8": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-surface-raised",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w9": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-surface-inverse",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w10": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-surface-sand",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w11": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-default",
+      "$type": "color",
+      "$value": "CanvasText"
+    },
+    "w12": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-muted",
+      "$type": "color",
+      "$value": "CanvasText"
+    },
+    "w13": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-brand",
+      "$type": "color",
+      "$value": "LinkText"
+    },
+    "w14": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-inverse",
+      "$type": "color",
+      "$value": "CanvasText"
+    },
+    "w15": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-border-default",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w16": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-border-subtle",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w17": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-focus-ring",
+      "$type": "color",
+      "$value": "Highlight"
+    },
+    "w18": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-brand-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w19": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-brand-foreground",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w20": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-neutral-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w21": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-danger-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w22": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-success-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w23": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-warning-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w24": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-info-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w25": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-sky-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w26": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-forest-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w27": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-violet-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w28": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-sand-background",
+      "$type": "color",
+      "$value": "ButtonFace"
+    },
+    "w29": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-sand-foreground",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w30": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-sand",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w31": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-violet",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w32": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-forest",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w33": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-text-sky",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w34": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--color-action-foreground",
+      "$type": "color",
+      "$value": "ButtonText"
+    },
+    "w35": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--surface-background",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w36": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--surface-reflection",
+      "$type": "color",
+      "$value": "none"
+    },
+    "w37": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--surface-backdrop-filter",
+      "$type": "color",
+      "$value": "none"
+    },
+    "w38": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--page-background",
+      "$type": "color",
+      "$value": "Canvas"
+    },
+    "w39": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--shadow-raised",
+      "$type": "shadow",
+      "$value": "none"
+    },
+    "w40": {
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "token": "--shadow-floating",
+      "$type": "shadow",
+      "$value": "none"
+    },
+    "w41": {
+      "selector": "[data-shape=\"square\"]",
+      "conditions": [],
+      "token": "--shape-radius",
+      "$type": "dimension",
+      "$value": "var(--zero)"
+    },
+    "w42": {
+      "selector": "[data-shape=\"rounded\"]",
+      "conditions": [],
+      "token": "--shape-radius",
+      "$type": "dimension",
+      "$value": "var(--radius-md)"
+    },
+    "w43": {
+      "selector": "[data-shape=\"pill\"]",
+      "conditions": [],
+      "token": "--shape-radius",
+      "$type": "dimension",
+      "$value": "var(--radius-full)"
+    }
+  }
+}

@@ -13,7 +13,7 @@
     "dev": "npm run dev --workspace @forge-ui/showcase",
     "build": "npm run build --workspace @forge-ui/showcase",
     "typecheck": "npm run typecheck --workspace @forge-ui/web && npm run typecheck --workspace @forge-ui/showcase",
-    "check": "npm run test:migrate:bulk && npm run test:showcase-store && npm run verify:workspace && npm run verify:v2 && npm run coverage && npm run verify:docs && npm run verify:phase6 && npm run audit:bulk:targets && npm run typecheck && npm run build",
+    "check": "npm run test:migrate:bulk && npm run test:showcase-store && npm run verify:workspace && npm run verify:v2 && npm run coverage && npm run verify:docs && npm run verify:phase6 && npm run audit:bulk:targets && npm run typecheck && npm run build && npm run check:cross-platform",
     "verify:workspace": "node scripts/verify-workspace.mjs",
     "test:showcase-store": "node scripts/test-example-store.mjs",
     "verify:v2": "node scripts/test-v2-contracts.mjs",
@@ -24,6 +24,16 @@
     "audit:migrate:bulk": "node scripts/migrate-from-praticarfront.mjs",
     "test:migrate:bulk": "node scripts/test-bulk-migration.mjs",
     "audit:bulk": "node scripts/audit-bulk-migration.mjs",
-    "audit:bulk:targets": "node scripts/audit-bulk-migration.mjs --target-only"
+    "audit:bulk:targets": "node scripts/audit-bulk-migration.mjs --target-only",
+    "tokens:generate": "node shared/tokens/generate.mjs",
+    "tokens:check": "node scripts/check-token-parity.mjs",
+    "build:flutter-preview": "node scripts/build-flutter-preview.mjs",
+    "check:cross-platform": "npm run tokens:check && npm run test:flutter-preview",
+    "test:flutter-preview": "node scripts/test-flutter-preview.mjs",
+    "audit:flutter-source": "node scripts/audit-flutter-components.mjs",
+    "catalog:flutter-api": "node scripts/generate-flutter-api.mjs && node scripts/generate-flutter-catalog.mjs",
+    "check:flutter-api": "node scripts/generate-flutter-catalog.mjs --check",
+    "catalog:flutter-primitives": "node scripts/generate-flutter-primitives.mjs",
+    "test:flutter-catalog": "node scripts/test-flutter-catalog.mjs"
   }
 }

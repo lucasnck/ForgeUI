@@ -1,0 +1,1208 @@
+{
+  "schemaVersion": 1,
+  "webCssSha256": "68ed92cc2fd20996fd564709915cbd90acf4742558569c16a9d639da0351fc06",
+  "portableCount": 185,
+  "themeCounts": {
+    "light": 186,
+    "dark": 186,
+    "contrast": 186,
+    "liquid-glass": 185
+  },
+  "unmapped": {
+    "light": {
+      "--font-family-brand": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "\"DM Sans\", \"Segoe UI\", Arial, sans-serif"
+      },
+      "--font-family-sans": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--font-family-display": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--shadow-raised": {
+        "reason": "Unsupported CSS expression (0 4px 24px rgb(24 42 41 / 4%))",
+        "css": "0 4px 24px rgb(24 42 41 / 4%)"
+      },
+      "--shadow-floating": {
+        "reason": "Unsupported CSS expression (0 16px 48px rgb(24 42 41 / 10%))",
+        "css": "0 16px 48px rgb(24 42 41 / 10%)"
+      },
+      "--motion-grid-collapsed": {
+        "reason": "Unsupported CSS expression (0fr)",
+        "css": "0fr"
+      },
+      "--motion-grid-expanded": {
+        "reason": "Unsupported CSS expression (1fr)",
+        "css": "1fr"
+      },
+      "--ease-standard": {
+        "reason": "Unsupported CSS expression (cubic-bezier(0.2, 0, 0, 1))",
+        "css": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      "--size-full": {
+        "reason": "Unsupported CSS expression (100%)",
+        "css": "100%"
+      },
+      "--size-half": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--size-viewport": {
+        "reason": "Unsupported CSS expression (100dvh)",
+        "css": "100dvh"
+      },
+      "--size-viewport-inline": {
+        "reason": "Unsupported CSS expression (100dvw)",
+        "css": "100dvw"
+      },
+      "--border-style-default": {
+        "reason": "Unsupported CSS expression (solid)",
+        "css": "solid"
+      },
+      "--filter-hover": {
+        "reason": "Unsupported CSS expression (brightness(0.92))",
+        "css": "brightness(0.92)"
+      },
+      "--ease-linear": {
+        "reason": "Unsupported CSS expression (linear)",
+        "css": "linear"
+      },
+      "--ease-pulse": {
+        "reason": "Unsupported CSS expression (ease-in-out)",
+        "css": "ease-in-out"
+      },
+      "--rotation-full": {
+        "reason": "Unsupported CSS expression (360deg)",
+        "css": "360deg"
+      },
+      "--rotation-decorative": {
+        "reason": "Unsupported CSS expression (-9deg)",
+        "css": "-9deg"
+      },
+      "--translation-center": {
+        "reason": "Unsupported CSS expression (-50%)",
+        "css": "-50%"
+      },
+      "--icon-align-offset": {
+        "reason": "Unsupported CSS expression (-0.125em)",
+        "css": "-0.125em"
+      },
+      "--icon-size-inherit": {
+        "reason": "Unsupported CSS expression (1em)",
+        "css": "1em"
+      },
+      "--font-family-mono": {
+        "reason": "Unsupported CSS expression (monospace)",
+        "css": "monospace"
+      },
+      "--radius-circle": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--layout-column": {
+        "reason": "Unsupported CSS expression (minmax(var(--zero), 1fr))",
+        "css": "minmax(var(--zero), 1fr)"
+      },
+      "--layout-sidebar-columns": {
+        "reason": "Unsupported CSS expression (calc(var(--base-unit) * 30) minmax(var(--zero), 1fr))",
+        "css": "calc(var(--base-unit) * 30) minmax(var(--zero), 1fr)"
+      },
+      "--layout-span-full": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--layout-hero-columns": {
+        "reason": "Unsupported CSS expression (1.55fr 1fr)",
+        "css": "1.55fr 1fr"
+      },
+      "--layout-component-columns": {
+        "reason": "Unsupported CSS expression (1.15fr 1fr)",
+        "css": "1.15fr 1fr"
+      },
+      "--layout-form-columns": {
+        "reason": "Unsupported CSS expression (1.35fr 1fr)",
+        "css": "1.35fr 1fr"
+      },
+      "--layout-metrics-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, 1fr) 1.8fr)",
+        "css": "repeat(3, 1fr) 1.8fr"
+      },
+      "--layout-three-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, minmax(var(--zero), 1fr)))",
+        "css": "repeat(3, minmax(var(--zero), 1fr))"
+      },
+      "--layout-four-columns": {
+        "reason": "Unsupported CSS expression (repeat(4, minmax(var(--zero), 1fr)))",
+        "css": "repeat(4, minmax(var(--zero), 1fr))"
+      },
+      "--layout-two-columns": {
+        "reason": "Unsupported CSS expression (repeat(2, minmax(var(--zero), 1fr)))",
+        "css": "repeat(2, minmax(var(--zero), 1fr))"
+      },
+      "--layout-span-all": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--aspect-square": {
+        "reason": "Unsupported CSS expression (1 / 1)",
+        "css": "1 / 1"
+      },
+      "--aspect-video": {
+        "reason": "Unsupported CSS expression (16 / 9)",
+        "css": "16 / 9"
+      },
+      "--aspect-photo": {
+        "reason": "Unsupported CSS expression (4 / 3)",
+        "css": "4 / 3"
+      },
+      "--aspect-portrait": {
+        "reason": "Unsupported CSS expression (3 / 4)",
+        "css": "3 / 4"
+      },
+      "--font-size-hero-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl)))",
+        "css": "clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl))"
+      },
+      "--font-size-value-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg)))",
+        "css": "clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg))"
+      },
+      "--underline-offset": {
+        "reason": "Unsupported CSS expression (0.2em)",
+        "css": "0.2em"
+      },
+      "--size-fraction-60": {
+        "reason": "Unsupported CSS expression (60%)",
+        "css": "60%"
+      },
+      "--surface-backdrop-filter": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--surface-reflection": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--color-current": {
+        "reason": "Unsupported CSS expression (currentColor)",
+        "css": "currentColor"
+      },
+      "--color-system-button-text": {
+        "reason": "Unsupported CSS expression (ButtonText)",
+        "css": "ButtonText"
+      },
+      "--color-system-field-text": {
+        "reason": "Unsupported CSS expression (FieldText)",
+        "css": "FieldText"
+      },
+      "--color-system-highlight": {
+        "reason": "Unsupported CSS expression (Highlight)",
+        "css": "Highlight"
+      },
+      "--color-system-canvas-text": {
+        "reason": "Unsupported CSS expression (CanvasText)",
+        "css": "CanvasText"
+      }
+    },
+    "dark": {
+      "--font-family-brand": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "\"DM Sans\", \"Segoe UI\", Arial, sans-serif"
+      },
+      "--font-family-sans": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--font-family-display": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--shadow-raised": {
+        "reason": "Unsupported CSS expression (0 4px 24px rgb(0 0 0 / 12%))",
+        "css": "0 4px 24px rgb(0 0 0 / 12%)"
+      },
+      "--shadow-floating": {
+        "reason": "Unsupported CSS expression (0 16px 48px rgb(0 0 0 / 25%))",
+        "css": "0 16px 48px rgb(0 0 0 / 25%)"
+      },
+      "--motion-grid-collapsed": {
+        "reason": "Unsupported CSS expression (0fr)",
+        "css": "0fr"
+      },
+      "--motion-grid-expanded": {
+        "reason": "Unsupported CSS expression (1fr)",
+        "css": "1fr"
+      },
+      "--ease-standard": {
+        "reason": "Unsupported CSS expression (cubic-bezier(0.2, 0, 0, 1))",
+        "css": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      "--size-full": {
+        "reason": "Unsupported CSS expression (100%)",
+        "css": "100%"
+      },
+      "--size-half": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--size-viewport": {
+        "reason": "Unsupported CSS expression (100dvh)",
+        "css": "100dvh"
+      },
+      "--size-viewport-inline": {
+        "reason": "Unsupported CSS expression (100dvw)",
+        "css": "100dvw"
+      },
+      "--border-style-default": {
+        "reason": "Unsupported CSS expression (solid)",
+        "css": "solid"
+      },
+      "--filter-hover": {
+        "reason": "Unsupported CSS expression (brightness(0.92))",
+        "css": "brightness(0.92)"
+      },
+      "--ease-linear": {
+        "reason": "Unsupported CSS expression (linear)",
+        "css": "linear"
+      },
+      "--ease-pulse": {
+        "reason": "Unsupported CSS expression (ease-in-out)",
+        "css": "ease-in-out"
+      },
+      "--rotation-full": {
+        "reason": "Unsupported CSS expression (360deg)",
+        "css": "360deg"
+      },
+      "--rotation-decorative": {
+        "reason": "Unsupported CSS expression (-9deg)",
+        "css": "-9deg"
+      },
+      "--translation-center": {
+        "reason": "Unsupported CSS expression (-50%)",
+        "css": "-50%"
+      },
+      "--icon-align-offset": {
+        "reason": "Unsupported CSS expression (-0.125em)",
+        "css": "-0.125em"
+      },
+      "--icon-size-inherit": {
+        "reason": "Unsupported CSS expression (1em)",
+        "css": "1em"
+      },
+      "--font-family-mono": {
+        "reason": "Unsupported CSS expression (monospace)",
+        "css": "monospace"
+      },
+      "--radius-circle": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--layout-column": {
+        "reason": "Unsupported CSS expression (minmax(var(--zero), 1fr))",
+        "css": "minmax(var(--zero), 1fr)"
+      },
+      "--layout-sidebar-columns": {
+        "reason": "Unsupported CSS expression (calc(var(--base-unit) * 30) minmax(var(--zero), 1fr))",
+        "css": "calc(var(--base-unit) * 30) minmax(var(--zero), 1fr)"
+      },
+      "--layout-span-full": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--layout-hero-columns": {
+        "reason": "Unsupported CSS expression (1.55fr 1fr)",
+        "css": "1.55fr 1fr"
+      },
+      "--layout-component-columns": {
+        "reason": "Unsupported CSS expression (1.15fr 1fr)",
+        "css": "1.15fr 1fr"
+      },
+      "--layout-form-columns": {
+        "reason": "Unsupported CSS expression (1.35fr 1fr)",
+        "css": "1.35fr 1fr"
+      },
+      "--layout-metrics-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, 1fr) 1.8fr)",
+        "css": "repeat(3, 1fr) 1.8fr"
+      },
+      "--layout-three-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, minmax(var(--zero), 1fr)))",
+        "css": "repeat(3, minmax(var(--zero), 1fr))"
+      },
+      "--layout-four-columns": {
+        "reason": "Unsupported CSS expression (repeat(4, minmax(var(--zero), 1fr)))",
+        "css": "repeat(4, minmax(var(--zero), 1fr))"
+      },
+      "--layout-two-columns": {
+        "reason": "Unsupported CSS expression (repeat(2, minmax(var(--zero), 1fr)))",
+        "css": "repeat(2, minmax(var(--zero), 1fr))"
+      },
+      "--layout-span-all": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--aspect-square": {
+        "reason": "Unsupported CSS expression (1 / 1)",
+        "css": "1 / 1"
+      },
+      "--aspect-video": {
+        "reason": "Unsupported CSS expression (16 / 9)",
+        "css": "16 / 9"
+      },
+      "--aspect-photo": {
+        "reason": "Unsupported CSS expression (4 / 3)",
+        "css": "4 / 3"
+      },
+      "--aspect-portrait": {
+        "reason": "Unsupported CSS expression (3 / 4)",
+        "css": "3 / 4"
+      },
+      "--font-size-hero-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl)))",
+        "css": "clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl))"
+      },
+      "--font-size-value-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg)))",
+        "css": "clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg))"
+      },
+      "--underline-offset": {
+        "reason": "Unsupported CSS expression (0.2em)",
+        "css": "0.2em"
+      },
+      "--size-fraction-60": {
+        "reason": "Unsupported CSS expression (60%)",
+        "css": "60%"
+      },
+      "--surface-backdrop-filter": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--surface-reflection": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--color-current": {
+        "reason": "Unsupported CSS expression (currentColor)",
+        "css": "currentColor"
+      },
+      "--color-system-button-text": {
+        "reason": "Unsupported CSS expression (ButtonText)",
+        "css": "ButtonText"
+      },
+      "--color-system-field-text": {
+        "reason": "Unsupported CSS expression (FieldText)",
+        "css": "FieldText"
+      },
+      "--color-system-highlight": {
+        "reason": "Unsupported CSS expression (Highlight)",
+        "css": "Highlight"
+      },
+      "--color-system-canvas-text": {
+        "reason": "Unsupported CSS expression (CanvasText)",
+        "css": "CanvasText"
+      }
+    },
+    "contrast": {
+      "--font-family-brand": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "\"DM Sans\", \"Segoe UI\", Arial, sans-serif"
+      },
+      "--font-family-sans": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--font-family-display": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--shadow-raised": {
+        "reason": "Unsupported CSS expression (0 0 0 1px #ffffff)",
+        "css": "0 0 0 1px #ffffff"
+      },
+      "--shadow-floating": {
+        "reason": "Unsupported CSS expression (0 0 0 2px #ffffff)",
+        "css": "0 0 0 2px #ffffff"
+      },
+      "--motion-grid-collapsed": {
+        "reason": "Unsupported CSS expression (0fr)",
+        "css": "0fr"
+      },
+      "--motion-grid-expanded": {
+        "reason": "Unsupported CSS expression (1fr)",
+        "css": "1fr"
+      },
+      "--ease-standard": {
+        "reason": "Unsupported CSS expression (cubic-bezier(0.2, 0, 0, 1))",
+        "css": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      "--size-full": {
+        "reason": "Unsupported CSS expression (100%)",
+        "css": "100%"
+      },
+      "--size-half": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--size-viewport": {
+        "reason": "Unsupported CSS expression (100dvh)",
+        "css": "100dvh"
+      },
+      "--size-viewport-inline": {
+        "reason": "Unsupported CSS expression (100dvw)",
+        "css": "100dvw"
+      },
+      "--border-style-default": {
+        "reason": "Unsupported CSS expression (solid)",
+        "css": "solid"
+      },
+      "--filter-hover": {
+        "reason": "Unsupported CSS expression (brightness(0.92))",
+        "css": "brightness(0.92)"
+      },
+      "--ease-linear": {
+        "reason": "Unsupported CSS expression (linear)",
+        "css": "linear"
+      },
+      "--ease-pulse": {
+        "reason": "Unsupported CSS expression (ease-in-out)",
+        "css": "ease-in-out"
+      },
+      "--rotation-full": {
+        "reason": "Unsupported CSS expression (360deg)",
+        "css": "360deg"
+      },
+      "--rotation-decorative": {
+        "reason": "Unsupported CSS expression (-9deg)",
+        "css": "-9deg"
+      },
+      "--translation-center": {
+        "reason": "Unsupported CSS expression (-50%)",
+        "css": "-50%"
+      },
+      "--icon-align-offset": {
+        "reason": "Unsupported CSS expression (-0.125em)",
+        "css": "-0.125em"
+      },
+      "--icon-size-inherit": {
+        "reason": "Unsupported CSS expression (1em)",
+        "css": "1em"
+      },
+      "--font-family-mono": {
+        "reason": "Unsupported CSS expression (monospace)",
+        "css": "monospace"
+      },
+      "--radius-circle": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--layout-column": {
+        "reason": "Unsupported CSS expression (minmax(var(--zero), 1fr))",
+        "css": "minmax(var(--zero), 1fr)"
+      },
+      "--layout-sidebar-columns": {
+        "reason": "Unsupported CSS expression (calc(var(--base-unit) * 30) minmax(var(--zero), 1fr))",
+        "css": "calc(var(--base-unit) * 30) minmax(var(--zero), 1fr)"
+      },
+      "--layout-span-full": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--layout-hero-columns": {
+        "reason": "Unsupported CSS expression (1.55fr 1fr)",
+        "css": "1.55fr 1fr"
+      },
+      "--layout-component-columns": {
+        "reason": "Unsupported CSS expression (1.15fr 1fr)",
+        "css": "1.15fr 1fr"
+      },
+      "--layout-form-columns": {
+        "reason": "Unsupported CSS expression (1.35fr 1fr)",
+        "css": "1.35fr 1fr"
+      },
+      "--layout-metrics-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, 1fr) 1.8fr)",
+        "css": "repeat(3, 1fr) 1.8fr"
+      },
+      "--layout-three-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, minmax(var(--zero), 1fr)))",
+        "css": "repeat(3, minmax(var(--zero), 1fr))"
+      },
+      "--layout-four-columns": {
+        "reason": "Unsupported CSS expression (repeat(4, minmax(var(--zero), 1fr)))",
+        "css": "repeat(4, minmax(var(--zero), 1fr))"
+      },
+      "--layout-two-columns": {
+        "reason": "Unsupported CSS expression (repeat(2, minmax(var(--zero), 1fr)))",
+        "css": "repeat(2, minmax(var(--zero), 1fr))"
+      },
+      "--layout-span-all": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--aspect-square": {
+        "reason": "Unsupported CSS expression (1 / 1)",
+        "css": "1 / 1"
+      },
+      "--aspect-video": {
+        "reason": "Unsupported CSS expression (16 / 9)",
+        "css": "16 / 9"
+      },
+      "--aspect-photo": {
+        "reason": "Unsupported CSS expression (4 / 3)",
+        "css": "4 / 3"
+      },
+      "--aspect-portrait": {
+        "reason": "Unsupported CSS expression (3 / 4)",
+        "css": "3 / 4"
+      },
+      "--font-size-hero-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl)))",
+        "css": "clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl))"
+      },
+      "--font-size-value-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg)))",
+        "css": "clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg))"
+      },
+      "--underline-offset": {
+        "reason": "Unsupported CSS expression (0.2em)",
+        "css": "0.2em"
+      },
+      "--size-fraction-60": {
+        "reason": "Unsupported CSS expression (60%)",
+        "css": "60%"
+      },
+      "--surface-backdrop-filter": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--surface-reflection": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--color-current": {
+        "reason": "Unsupported CSS expression (currentColor)",
+        "css": "currentColor"
+      },
+      "--color-system-button-text": {
+        "reason": "Unsupported CSS expression (ButtonText)",
+        "css": "ButtonText"
+      },
+      "--color-system-field-text": {
+        "reason": "Unsupported CSS expression (FieldText)",
+        "css": "FieldText"
+      },
+      "--color-system-highlight": {
+        "reason": "Unsupported CSS expression (Highlight)",
+        "css": "Highlight"
+      },
+      "--color-system-canvas-text": {
+        "reason": "Unsupported CSS expression (CanvasText)",
+        "css": "CanvasText"
+      }
+    },
+    "liquid-glass": {
+      "--font-family-brand": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "\"DM Sans\", \"Segoe UI\", Arial, sans-serif"
+      },
+      "--font-family-sans": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--font-family-display": {
+        "reason": "Unsupported CSS expression (\"DM Sans\", \"Segoe UI\", Arial, sans-serif)",
+        "css": "var(--font-family-brand)"
+      },
+      "--shadow-raised": {
+        "reason": "Unsupported CSS expression (inset 0 1px 0 rgb(255 255 255 / 90%), inset 0 -1px 0 rgb(255 255 255 / 32%),\n    0 8px 28px rgb(38 62 108 / 10%))",
+        "css": "inset 0 1px 0 rgb(255 255 255 / 90%), inset 0 -1px 0 rgb(255 255 255 / 32%),\n    0 8px 28px rgb(38 62 108 / 10%)"
+      },
+      "--shadow-floating": {
+        "reason": "Unsupported CSS expression (inset 0 1px 0 rgb(255 255 255 / 95%), inset 0 -1px 0 rgb(255 255 255 / 40%),\n    0 24px 64px rgb(38 62 108 / 20%))",
+        "css": "inset 0 1px 0 rgb(255 255 255 / 95%), inset 0 -1px 0 rgb(255 255 255 / 40%),\n    0 24px 64px rgb(38 62 108 / 20%)"
+      },
+      "--motion-grid-collapsed": {
+        "reason": "Unsupported CSS expression (0fr)",
+        "css": "0fr"
+      },
+      "--motion-grid-expanded": {
+        "reason": "Unsupported CSS expression (1fr)",
+        "css": "1fr"
+      },
+      "--ease-standard": {
+        "reason": "Unsupported CSS expression (cubic-bezier(0.2, 0, 0, 1))",
+        "css": "cubic-bezier(0.2, 0, 0, 1)"
+      },
+      "--size-full": {
+        "reason": "Unsupported CSS expression (100%)",
+        "css": "100%"
+      },
+      "--size-half": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--size-viewport": {
+        "reason": "Unsupported CSS expression (100dvh)",
+        "css": "100dvh"
+      },
+      "--size-viewport-inline": {
+        "reason": "Unsupported CSS expression (100dvw)",
+        "css": "100dvw"
+      },
+      "--border-style-default": {
+        "reason": "Unsupported CSS expression (solid)",
+        "css": "solid"
+      },
+      "--filter-hover": {
+        "reason": "Unsupported CSS expression (brightness(0.92))",
+        "css": "brightness(0.92)"
+      },
+      "--ease-linear": {
+        "reason": "Unsupported CSS expression (linear)",
+        "css": "linear"
+      },
+      "--ease-pulse": {
+        "reason": "Unsupported CSS expression (ease-in-out)",
+        "css": "ease-in-out"
+      },
+      "--rotation-full": {
+        "reason": "Unsupported CSS expression (360deg)",
+        "css": "360deg"
+      },
+      "--rotation-decorative": {
+        "reason": "Unsupported CSS expression (-9deg)",
+        "css": "-9deg"
+      },
+      "--translation-center": {
+        "reason": "Unsupported CSS expression (-50%)",
+        "css": "-50%"
+      },
+      "--icon-align-offset": {
+        "reason": "Unsupported CSS expression (-0.125em)",
+        "css": "-0.125em"
+      },
+      "--icon-size-inherit": {
+        "reason": "Unsupported CSS expression (1em)",
+        "css": "1em"
+      },
+      "--font-family-mono": {
+        "reason": "Unsupported CSS expression (monospace)",
+        "css": "monospace"
+      },
+      "--radius-circle": {
+        "reason": "Unsupported CSS expression (50%)",
+        "css": "50%"
+      },
+      "--layout-column": {
+        "reason": "Unsupported CSS expression (minmax(var(--zero), 1fr))",
+        "css": "minmax(var(--zero), 1fr)"
+      },
+      "--layout-sidebar-columns": {
+        "reason": "Unsupported CSS expression (calc(var(--base-unit) * 30) minmax(var(--zero), 1fr))",
+        "css": "calc(var(--base-unit) * 30) minmax(var(--zero), 1fr)"
+      },
+      "--layout-span-full": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--layout-hero-columns": {
+        "reason": "Unsupported CSS expression (1.55fr 1fr)",
+        "css": "1.55fr 1fr"
+      },
+      "--layout-component-columns": {
+        "reason": "Unsupported CSS expression (1.15fr 1fr)",
+        "css": "1.15fr 1fr"
+      },
+      "--layout-form-columns": {
+        "reason": "Unsupported CSS expression (1.35fr 1fr)",
+        "css": "1.35fr 1fr"
+      },
+      "--layout-metrics-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, 1fr) 1.8fr)",
+        "css": "repeat(3, 1fr) 1.8fr"
+      },
+      "--layout-three-columns": {
+        "reason": "Unsupported CSS expression (repeat(3, minmax(var(--zero), 1fr)))",
+        "css": "repeat(3, minmax(var(--zero), 1fr))"
+      },
+      "--layout-four-columns": {
+        "reason": "Unsupported CSS expression (repeat(4, minmax(var(--zero), 1fr)))",
+        "css": "repeat(4, minmax(var(--zero), 1fr))"
+      },
+      "--layout-two-columns": {
+        "reason": "Unsupported CSS expression (repeat(2, minmax(var(--zero), 1fr)))",
+        "css": "repeat(2, minmax(var(--zero), 1fr))"
+      },
+      "--layout-span-all": {
+        "reason": "Unsupported CSS expression (1 / -1)",
+        "css": "1 / -1"
+      },
+      "--aspect-square": {
+        "reason": "Unsupported CSS expression (1 / 1)",
+        "css": "1 / 1"
+      },
+      "--aspect-video": {
+        "reason": "Unsupported CSS expression (16 / 9)",
+        "css": "16 / 9"
+      },
+      "--aspect-photo": {
+        "reason": "Unsupported CSS expression (4 / 3)",
+        "css": "4 / 3"
+      },
+      "--aspect-portrait": {
+        "reason": "Unsupported CSS expression (3 / 4)",
+        "css": "3 / 4"
+      },
+      "--font-size-hero-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl)))",
+        "css": "clamp(var(--font-size-4xl), 4vw, var(--font-size-6xl))"
+      },
+      "--font-size-value-fluid": {
+        "reason": "Unsupported CSS expression (clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg)))",
+        "css": "clamp(var(--font-size-xs), 1.4vw, var(--font-size-lg))"
+      },
+      "--underline-offset": {
+        "reason": "Unsupported CSS expression (0.2em)",
+        "css": "0.2em"
+      },
+      "--size-fraction-60": {
+        "reason": "Unsupported CSS expression (60%)",
+        "css": "60%"
+      },
+      "--surface-backdrop-filter": {
+        "reason": "Unsupported CSS expression (none)",
+        "css": "none"
+      },
+      "--surface-reflection": {
+        "reason": "Unsupported CSS expression (linear-gradient(\n    135deg,\n    rgb(255 255 255 / 72%),\n    rgb(255 255 255 / 12%) 38%,\n    rgb(255 255 255 / 0%) 62%,\n    rgb(208 225 255 / 24%)\n  ))",
+        "css": "linear-gradient(\n    135deg,\n    rgb(255 255 255 / 72%),\n    rgb(255 255 255 / 12%) 38%,\n    rgb(255 255 255 / 0%) 62%,\n    rgb(208 225 255 / 24%)\n  )"
+      },
+      "--page-background": {
+        "reason": "Unsupported CSS expression (radial-gradient(ellipse at 8% 8%, #c7dbff, transparent 55%),\n    radial-gradient(ellipse at 92% 35%, #e4d6f7, transparent 52%),\n    radial-gradient(ellipse at 35% 90%, #c5e9ed, transparent 58%), var(--color-surface-page))",
+        "css": "radial-gradient(ellipse at 8% 8%, #c7dbff, transparent 55%),\n    radial-gradient(ellipse at 92% 35%, #e4d6f7, transparent 52%),\n    radial-gradient(ellipse at 35% 90%, #c5e9ed, transparent 58%), var(--color-surface-page)"
+      },
+      "--color-current": {
+        "reason": "Unsupported CSS expression (currentColor)",
+        "css": "currentColor"
+      },
+      "--color-system-button-text": {
+        "reason": "Unsupported CSS expression (ButtonText)",
+        "css": "ButtonText"
+      },
+      "--color-system-field-text": {
+        "reason": "Unsupported CSS expression (FieldText)",
+        "css": "FieldText"
+      },
+      "--color-system-highlight": {
+        "reason": "Unsupported CSS expression (Highlight)",
+        "css": "Highlight"
+      },
+      "--color-system-canvas-text": {
+        "reason": "Unsupported CSS expression (CanvasText)",
+        "css": "CanvasText"
+      }
+    }
+  },
+  "conditionalWebRules": [
+    {
+      "id": "w0",
+      "token": "--surface-background",
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)))"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w1",
+      "token": "--surface-backdrop-filter",
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)))"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w2",
+      "token": "--surface-reflection",
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@media (prefers-reduced-transparency: reduce)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w3",
+      "token": "--surface-background",
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@media (prefers-reduced-transparency: reduce)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w4",
+      "token": "--surface-backdrop-filter",
+      "selector": ":root[data-theme=\"liquid-glass\"]",
+      "conditions": [
+        "@media (prefers-reduced-transparency: reduce)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w5",
+      "token": "--color-surface-page",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w6",
+      "token": "--color-surface-default",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w7",
+      "token": "--color-surface-subtle",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w8",
+      "token": "--color-surface-raised",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w9",
+      "token": "--color-surface-inverse",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w10",
+      "token": "--color-surface-sand",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w11",
+      "token": "--color-text-default",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w12",
+      "token": "--color-text-muted",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w13",
+      "token": "--color-text-brand",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w14",
+      "token": "--color-text-inverse",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w15",
+      "token": "--color-border-default",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w16",
+      "token": "--color-border-subtle",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w17",
+      "token": "--color-focus-ring",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w18",
+      "token": "--color-action-brand-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w19",
+      "token": "--color-action-brand-foreground",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w20",
+      "token": "--color-action-neutral-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w21",
+      "token": "--color-action-danger-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w22",
+      "token": "--color-action-success-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w23",
+      "token": "--color-action-warning-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w24",
+      "token": "--color-action-info-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w25",
+      "token": "--color-action-sky-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w26",
+      "token": "--color-action-forest-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w27",
+      "token": "--color-action-violet-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w28",
+      "token": "--color-action-sand-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w29",
+      "token": "--color-action-sand-foreground",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w30",
+      "token": "--color-text-sand",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w31",
+      "token": "--color-text-violet",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w32",
+      "token": "--color-text-forest",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w33",
+      "token": "--color-text-sky",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w34",
+      "token": "--color-action-foreground",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w35",
+      "token": "--surface-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w36",
+      "token": "--surface-reflection",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w37",
+      "token": "--surface-backdrop-filter",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w38",
+      "token": "--page-background",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w39",
+      "token": "--shadow-raised",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w40",
+      "token": "--shadow-floating",
+      "selector": ":root,\n  :root[data-theme]",
+      "conditions": [
+        "@media (forced-colors: active)"
+      ],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w41",
+      "token": "--shape-radius",
+      "selector": "[data-shape=\"square\"]",
+      "conditions": [],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w42",
+      "token": "--shape-radius",
+      "selector": "[data-shape=\"rounded\"]",
+      "conditions": [],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    },
+    {
+      "id": "w43",
+      "token": "--shape-radius",
+      "selector": "[data-shape=\"pill\"]",
+      "conditions": [],
+      "reason": "Browser-specific selector or feature; not exported to Flutter"
+    }
+  ],
+  "conversion": {
+    "remBasePx": 16,
+    "verified": false,
+    "px": "Flutter logical pixel; visual device-density equivalence requires runtime tests",
+    "ms": "milliseconds",
+    "textScale": "managed by Flutter MediaQuery, not baked into tokens"
+  }
+}

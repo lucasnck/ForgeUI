@@ -1,0 +1,32 @@
+[
+  {
+    "url": "/components/button/",
+    "status": 200,
+    "tabsInsideArticleHeader": true
+  },
+  {
+    "url": "/flutter/index.html?build=25b9b7b7888c1b52",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "/flutter/flutter_bootstrap.js?build=25b9b7b7888c1b52",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "url": "/flutter/main.dart.js?build=25b9b7b7888c1b52",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8"
+  },
+  {
+    "url": "/flutter/canvaskit/chromium/canvaskit.wasm",
+    "status": 200,
+    "contentType": "application/wasm"
+  },
+  {
+    "url": "/flutter/assets/assets/fonts/roboto-regular.ttf",
+    "status": 200,
+    "contentType": "font/ttf"
+  }
+]

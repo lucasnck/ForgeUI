@@ -1,0 +1,246 @@
+
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart                                                                                                                
+00:01 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart                                                                                                                
+00:02 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart                                                                                                                
+00:03 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart                                                                                                                
+00:03 +0: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus                                                   
+00:04 +0: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus                                                   
+00:04 +1: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus                                                   
+00:04 +2: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus                                                   
+00:04 +3: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus                                                   
+00:04 +4: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus                                                   
+00:04 +4: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: dropdown is an actual menu and accepts a dismissed controlled request                                                 
+00:05 +4: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: dropdown is an actual menu and accepts a dismissed controlled request                                                 
+00:05 +5: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: dropdown is an actual menu and accepts a dismissed controlled request                                                 
+00:05 +5: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: tree expansion and selection remain separate keyboard operations                                                      
+00:05 +6: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: tree expansion and selection remain separate keyboard operations                                                      
+00:05 +6: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: tree nullable controlled selection can explicitly refuse                                                              
+00:05 +7: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: tree nullable controlled selection can explicitly refuse                                                              
+00:05 +7: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: stepper preserves panel state across controlled changes                                                               
+00:05 +8: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: stepper preserves panel state across controlled changes                                                               
+00:05 +8: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: navigation leaves delegate href and groups disclose native content                                                    
+00:06 +8: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: navigation leaves delegate href and groups disclose native content                                                    
+00:06 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: navigation leaves delegate href and groups disclose native content                                                    
+00:07 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: navigation leaves delegate href and groups disclose native content                                                    
+00:08 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: navigation leaves delegate href and groups disclose native content                                                    
+00:08 +9: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart                                                                                                               
+00:08 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: card sorts canonical parts and child actions remain independent                                                      
+00:09 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: card sorts canonical parts and child actions remain independent                                                      
+00:10 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: card sorts canonical parts and child actions remain independent                                                      
+00:10 +10: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: card sorts canonical parts and child actions remain independent                                                     
+00:10 +10: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: parts require matching owner and a unique required body                                                             
+00:10 +11: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: parts require matching owner and a unique required body                                                             
+00:10 +11: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: loading state owns one accessible status label                                                                      
+00:10 +12: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: loading state owns one accessible status label                                                                      
+00:10 +12: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: list has real item content and child actions                                                                        
+00:10 +13: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: list has real item content and child actions                                                                        
+00:10 +13: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: form submit validates and includes exact submitter once; reset restores field                                       
+00:10 +14: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: form submit validates and includes exact submitter once; reset restores field                                       
+00:10 +14: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: cancelled submit and reset retain owner control                                                                     
+00:10 +15: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: cancelled submit and reset retain owner control                                                                     
+00:10 +15: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: field association forwards focus and footer override to a real control                                              
+00:11 +15: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: field association forwards focus and footer override to a real control                                              
+00:11 +16: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: field association forwards focus and footer override to a real control                                              
+00:11 +16: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: currency input preserves incomplete drafts and refusal commits authoritative value on blur                          
+00:11 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: currency input preserves incomplete drafts and refusal commits authoritative value on blur                          
+00:12 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: currency input preserves incomplete drafts and refusal commits authoritative value on blur                          
+00:13 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: currency input preserves incomplete drafts and refusal commits authoritative value on blur                          
+00:14 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: currency input preserves incomplete drafts and refusal commits authoritative value on blur                          
+00:14 +17: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart                                                                                                                 
+00:14 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows                                      
+00:15 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows                                      
+00:15 +18: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows                                      
+00:16 +18: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows                                      
+00:16 +19: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows                                      
+00:16 +20: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows                                      
+00:16 +20: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: native table honors row and column spans and preserves cell actions                                                    
+00:16 +21: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: native table honors row and column spans and preserves cell actions                                                    
+00:16 +21: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: grid empty content has a real spanning cell and footer remains independent                                             
+00:16 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: grid empty content has a real spanning cell and footer remains independent                                             
+00:17 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: grid empty content has a real spanning cell and footer remains independent                                             
+00:17 +22: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart                                                                                                              
+00:17 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: one native activation; disabled, loading and null suppress actions                                                  
+00:18 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: one native activation; disabled, loading and null suppress actions                                                  
+00:19 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: one native activation; disabled, loading and null suppress actions                                                  
+00:19 +23: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:19 +24: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:19 +25: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:19 +26: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:20 +26: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:20 +27: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:20 +28: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations                                        
+00:20 +28: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb uses caller activation and current item stays passive                                      
+00:20 +29: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb uses caller activation and current item stays passive                                      
+00:20 +29: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination is controlled and ignores duplicate current requests                                       
+00:20 +30: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination is controlled and ignores duplicate current requests                                       
+00:20 +30: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: disabled page actions do not notify their owner or user handler                                       
+00:20 +31: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: disabled page actions do not notify their owner or user handler                                       
+00:20 +31: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination validates range and rejects foreign children                                               
+00:20 +32: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination validates range and rejects foreign children                                               
+00:20 +32: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination item cannot render outside a pagination owner                                              
+00:20 +33: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination item cannot render outside a pagination owner                                              
+00:20 +33: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: brand checkbox resolves an existing portable color token                                              
+00:20 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: brand checkbox resolves an existing portable color token                                              
+00:21 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: brand checkbox resolves an existing portable color token                                              
+00:22 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: brand checkbox resolves an existing portable color token                                              
+00:22 +34: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart                                                                                                         
+00:22 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart: PageHeader keeps caller-owned slots and a stable heading                                                       
+00:23 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart: PageHeader keeps caller-owned slots and a stable heading                                                       
+00:24 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart: PageHeader keeps caller-owned slots and a stable heading                                                       
+00:24 +35: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: requires a nonblank status label                                                                                   
+00:24 +36: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: requires a nonblank status label                                                                                   
+00:24 +37: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: requires a nonblank status label                                                                                   
+00:25 +37: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: requires a nonblank status label                                                                                   
+00:25 +38: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: requires a nonblank status label                                                                                   
+00:25 +38: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: named status, decorative exclusion and reduced-motion cleanup                                                      
+00:25 +39: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: named status, decorative exclusion and reduced-motion cleanup                                                      
+00:25 +39: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: every size uses the Web spinner token, not control height                                                          
+00:25 +40: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: every size uses the Web spinner token, not control height                                                          
+00:26 +40: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: every size uses the Web spinner token, not control height                                                          
+00:26 +40: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart                                                                                                           
+00:26 +40: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart: TagGroup uses stable entries and never removes caller data                                                       
+00:27 +40: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart: TagGroup uses stable entries and never removes caller data                                                       
+00:27 +41: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart: TagGroup uses stable entries and never removes caller data                                                       
+00:28 +41: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart: TagGroup uses stable entries and never removes caller data                                                       
+00:28 +42: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:28 +43: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:28 +44: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:28 +45: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:28 +46: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:29 +46: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:30 +46: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state                                                      
+00:30 +46: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart                                                                                                                    
+00:30 +46: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: mask slots preserve raw values and optional digit policy                                                                  
+00:30 +47: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: mask slots preserve raw values and optional digit policy                                                                  
+00:30 +47: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: email suggestions are local prefix matches with bounded results                                                           
+00:30 +48: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: email suggestions are local prefix matches with bounded results                                                           
+00:30 +48: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: controlled input can refuse edits without callback echo                                                                   
+00:31 +48: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: controlled input can refuse edits without callback echo                                                                   
+00:32 +48: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: controlled input can refuse edits without callback echo                                                                   
+00:32 +49: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled                                                     
+00:32 +50: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled                                                     
+00:32 +51: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled                                                     
+00:32 +52: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: search clear emits once and controlled owner may reject                                                                   
+00:33 +52: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: search clear emits once and controlled owner may reject                                                                   
+00:33 +53: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox controlled multiple owner can refuse; form excludes disabled options                                             
+00:33 +54: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox controlled multiple owner can refuse; form excludes disabled options                                             
+00:33 +55: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: select retains duplicate option labels with index identity                                                                
+00:33 +56: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: select retains duplicate option labels with index identity                                                                
+00:33 +57: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild                                              
+00:33 +58: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild                                              
+00:33 +59: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild                                              
+00:34 +59: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild                                              
+00:34 +60: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild                                              
+00:34 +60: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: combobox edit clears selected value independently from query                                                             
+00:34 +61: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: combobox edit clears selected value independently from query                                                             
+00:35 +61: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: combobox edit clears selected value independently from query                                                             
+00:35 +61: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart                                                                                                                  
+00:35 +61: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map geometry preserves canonical decoded coordinates and rejects invalid scenes                                         
+00:35 +62: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map geometry preserves canonical decoded coordinates and rejects invalid scenes                                         
+00:35 +62: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once                                  
+00:36 +62: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once                                  
+00:36 +63: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:36 +64: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:36 +65: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:37 +65: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:37 +66: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:38 +66: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:39 +66: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:39 +67: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:39 +68: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen                                           
+00:39 +68: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: controlled modal refuses escape, cancellation and outside dismissal                                                        
+00:39 +69: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: controlled modal refuses escape, cancellation and outside dismissal                                                        
+00:39 +69: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: inside and dragged-out pointer sequences do not dismiss                                                                    
+00:39 +70: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: inside and dragged-out pointer sequences do not dismiss                                                                    
+00:39 +70: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal cancellation intercepts close before owner change                                                                    
+00:40 +70: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal cancellation intercepts close before owner change                                                                    
+00:40 +71: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal cancellation intercepts close before owner change                                                                    
+00:40 +71: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: confirmation never closes or invokes confirm during loading                                                                
+00:40 +72: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: confirmation never closes or invokes confirm during loading                                                                
+00:40 +72: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: phone input retains incomplete draft and submits only accepted canonical number                                            
+00:40 +73: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: phone input retains incomplete draft and submits only accepted canonical number                                            
+00:41 +73: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: phone input retains incomplete draft and submits only accepted canonical number                                            
+00:41 +73: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart                                                                                                                
+00:41 +73: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus                             
+00:42 +73: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus                             
+00:43 +73: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus                             
+00:43 +74: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus                             
+00:44 +74: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus                             
+00:44 +74: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: toolbar wraps keyboard focus in source direction and excludes disabled                                                
+00:44 +75: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: toolbar wraps keyboard focus in source direction and excludes disabled                                                
+00:44 +75: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: collapse retains input state and moves focus before hiding                                                            
+00:44 +76: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: collapse retains input state and moves focus before hiding                                                            
+00:44 +76: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: controlled collapse refusal does not hide content                                                                     
+00:44 +77: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: controlled collapse refusal does not hide content                                                                     
+00:44 +77: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: accordion single noncollapsible and multiple state follow accepted owner                                              
+00:44 +78: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: accordion single noncollapsible and multiple state follow accepted owner                                              
+00:44 +78: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: selection groups preserve controlled refusal, repeated form values and reset                                          
+00:44 +79: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_test.dart: Dart OData serializer matches existing Web fixtures including exact decimal ranges                                         
+00:44 +80: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_test.dart: Dart OData serializer matches existing Web fixtures including exact decimal ranges                                         
+00:44 +81: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: roving focus validates identities before mutation                                                                     
+00:44 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: roving focus validates identities before mutation                                                                     
+00:45 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: roving focus validates identities before mutation                                                                     
+00:45 +82: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart                                                                                                             
+00:46 +82: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart                                                                                                             
+00:46 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: simple exact-decimal editing and Apply emit the authoritative expression once                                      
+00:47 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: simple exact-decimal editing and Apply emit the authoritative expression once                                      
+00:48 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: simple exact-decimal editing and Apply emit the authoritative expression once                                      
+00:49 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: simple exact-decimal editing and Apply emit the authoritative expression once                                      
+00:49 +83: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus                                                          
+00:49 +84: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus                                                          
+00:50 +84: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus                                                          
+00:50 +85: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus                                                          
+00:50 +86: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus                                                          
+00:50 +87: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus                                                          
+00:50 +87: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover outside pointer requests close but controlled owner can refuse                                                  
+00:50 +88: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover outside pointer requests close but controlled owner can refuse                                                  
+00:50 +88: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: anchored overlay clamps to viewport instead of overflowing its right edge                                               
+00:50 +89: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: anchored overlay clamps to viewport instead of overflowing its right edge                                               
+00:50 +89: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: tooltip exposes supplementary text on focus and honors controlled refusal                                               
+00:50 +90: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: tooltip exposes supplementary text on focus and honors controlled refusal                                               
+00:50 +90: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: portal preserves nearest theme and removes content with owner                                                           
+00:51 +90: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: portal preserves nearest theme and removes content with owner                                                           
+00:51 +91: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: portal preserves nearest theme and removes content with owner                                                           
+00:51 +91: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart                                                                                                                     
+00:51 +91: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:52 +91: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:52 +92: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:52 +93: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:53 +93: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:54 +93: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:54 +94: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:54 +95: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:54 +96: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:55 +96: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures                                                                  
+00:55 +97: D:/projects/AiWorkzone/ForgeUI/app/library/test/primitives_test.dart: label binding targets borrowed focus; link delegates exact destination                                                
+00:55 +98: D:/projects/AiWorkzone/ForgeUI/app/library/test/primitives_test.dart: label binding targets borrowed focus; link delegates exact destination                                                
+00:56 +98: D:/projects/AiWorkzone/ForgeUI/app/library/test/primitives_test.dart: label binding targets borrowed focus; link delegates exact destination                                                
+00:56 +98: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart                                                                                               
+00:56 +98: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                            
+00:57 +98: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                            
+00:57 +99: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                            
+00:57 +100: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                           
+00:58 +100: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                           
+00:59 +100: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                           
+00:59 +101: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                           
+00:59 +102: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                           
+00:59 +103: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults                           
+00:59 +103: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: registered field fails clearly without typed owner                                                  
+00:59 +104: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: registered field fails clearly without typed owner                                                  
+00:59 +104: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: application shell preserves entered state when responsive slots change                              
+00:59 +105: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: application shell preserves entered state when responsive slots change                              
+00:59 +105: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page templates omit absent slots and preserve header/content ordering                               
+00:59 +106: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page templates omit absent slots and preserve header/content ordering                               
+00:59 +106: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page transition commits latest content immediately and snaps for reduced motion                     
+00:59 +107: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page transition commits latest content immediately and snaps for reduced motion                     
+00:59 +107: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: shared element uses real native route participation and direct-entry fallback                       
+01:00 +107: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: shared element uses real native route participation and direct-entry fallback                       
+01:00 +108: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: shared element uses real native route participation and direct-entry fallback                       
+01:00 +108: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart                                                                                                                
+01:00 +108: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter                                                      
+01:01 +108: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter                                                      
+01:02 +108: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter                                                      
+01:02 +109: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter                                                      
+01:02 +109: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: controlled tree-grid collapse returns focused descendant to matching ancestor column                                  
+01:02 +110: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: controlled tree-grid collapse returns focused descendant to matching ancestor column                                  
+01:02 +110: All tests passed!                                                                                                                                                                          

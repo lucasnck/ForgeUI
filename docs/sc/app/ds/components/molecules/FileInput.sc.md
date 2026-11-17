@@ -1,0 +1,106 @@
+---
+title: "Flutter FileInput"
+scope: "Native app contract preserving the Web FileInput capabilities and ownership"
+status: "PENDING"
+type: "component"
+ds-level: "molecules"
+---
+
+# Flutter FileInput
+
+## Files
+
+```text
+components/forge_file_input.dart (C)
+../forge_ui.dart (M)
+```
+
+## Dependencies
+
+- [Shared Web FileInput](../../../../ds/components/molecules/FileInput.sc.md)
+- [Native API and model adaptation](../../types/tech-native-contracts.sc.md)
+- [Flutter theme adapter](../../../tech-flutter-theme-adapter.sc.md)
+- [App Input](../atoms/Input.sc.md)
+
+## Contract
+
+```dart
+import 'package:forge_ui/forge_ui.dart';
+
+ForgeFileInput()
+```
+
+## Tests
+
+### Native behavior
+
+- Replace File/FileList with an injected native file-picker/result port, retaining accept/multiple/capture intent and explicit cancellation.
+- Preserve onFilesChange and underlying caller change/cancellation order; empty accepted selection emits [] while cancellation without change emits nothing.
+- Return stable file metadata and lazy byte/stream access rather than assuming a desktop path; disabled prevents chooser activation.
+- No value/defaultValue channel is added, no permission is requested before explicit interaction, and no upload/preview/network side effect is implied.
+- Unsupported MIME/capture/filter behavior must be reported through the platform adapter rather than silently discarded.
+
+### Implemented native API
+
+The resolved public Dart constructor is shown below. This records source availability, not complete Web parity, native-device acceptance or compiled preview availability. The proposed equivalence and remaining Criteria below still apply.
+
+```dart
+ForgeFileInput({Key? key, required Future<ForgeFilePickerResult> Function(ForgeFilePickerRequest) picker, required String chooserLabel, String? accept, String? name, String? semanticLabel, ForgeCapturePreference? capture, bool multiple = false, bool disabled = false, bool readOnly = false, bool required = false, bool autofocus = false, bool fullWidth = true, void Function(List<ForgeFileReference>)? onFilesChange, void Function(ForgeFileChangeContext)? onChanged, void Function(Object)? onPickerError, ForgeFormBinding? form, FocusNode? focusNode, ForgeSize size = ForgeSize.md, ForgeTone tone = ForgeTone.neutral, ForgeAppearance appearance = ForgeAppearance.bordered, ForgeShape? shape, bool? invalid})
+```
+
+Constructor types, required parameters, defaults and aliases are generated in the [resolved native API inventory](../../../reference/native-component-api.json) using `npm run catalog:flutter-api`.
+
+### Property equivalence
+
+Each row is a proposed native contract, not an available export. Source types/requiredness are retained below; optional app parameters follow the documented source default, not a guessed Material default. Native aliases and model translations follow [the native mapping rules](../../../core-native-api-mapping.sc.md).
+
+| Web property | Web type | Presence / local default | Proposed app property/type | Native adaptation |
+| --- | --- | --- | --- | --- |
+| `onFilesChange` | `((files: readonly File[]) => void)` | Optional; no local initializer | `onFilesChange: void Function(List<ForgeFileReference>)` | Native selected-file descriptors/streams instead of browser File; preserve order, metadata, empty selection and cancellation. |
+| `form` | `string` | Optional; no local initializer | `form: ForgeFormBinding` | Explicit native form association; no hidden HTML controls or ambient document lookup. |
+| `title` | `string` | Optional; no local initializer | `tooltip: String` | Preserve visible component title; inherited native title maps to tooltip. |
+| `autoFocus` | `boolean` | Optional; no local initializer | `autofocus: bool` | Native focus request, subordinate to modal/compound owner policy; no focus theft during updates. |
+| `id` | `string` | Optional; no local initializer | `semanticId: String` | Stable owner-scoped semantic/test identity, not a DOM id. |
+| `aria-describedby` | `string` | Optional; no local initializer | `descriptions: List<ForgeDescriptionBinding>` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-expanded` | `Booleanish` | Optional; no local initializer | `semanticExpanded: bool` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-invalid` | `boolean \| "false" \| "true" \| "grammar" \| "spelling"` | Optional; no local initializer | `semanticInvalid: ForgeInvalidState` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-label` | `string` | Optional; no local initializer | `semanticLabel: String` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-pressed` | `boolean \| "false" \| "mixed" \| "true"` | Optional; no local initializer | `semanticPressed: ForgeSemanticFlag` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `onChange` | `ChangeEventHandler<T, HTMLInputElement>` | Optional; no local initializer | `onChanged: ForgeFileChangeInterceptor` | Native value callback replacing browser event; preserve controlled/default ownership, exact canonical value and one user-change notification. |
+| `name` | `string` | Optional; no local initializer | `name: String` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `required` | `boolean` | Optional; no local initializer | `required: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `accept` | `string` | Optional; no local initializer | `accept: String` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `capture` | `boolean \| "user" \| "environment"` | Optional; no local initializer | `capture: ForgeCapturePreference` | Native chooser capture preference only where available; do not acquire permissions or select a platform plugin implicitly. |
+| `disabled` | `boolean` | Optional; no local initializer | `disabled: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `multiple` | `boolean` | Optional; no local initializer | `multiple: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `readOnly` | `boolean` | Optional; no local initializer | `readOnly: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `size` | `ComponentSize` | Optional; no local initializer | `size: ForgeSize` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `tone` | `ComponentTone` | Optional; no local initializer | `tone: ForgeTone` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `appearance` | `ComponentAppearance` | Optional; no local initializer | `appearance: ForgeAppearance` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `shape` | `ComponentShape` | Optional; no local initializer | `shape: ForgeShape` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `fullWidth` | `boolean` | Optional; no local initializer | `fullWidth: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `invalid` | `boolean` | Optional; no local initializer | `invalid: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+
+### Defaults and fixed forwarding
+
+- No public-property initializer is owned locally; preserve inherited defaults from the shared baseline/delegated component rather than choosing a new native default.
+- Source forwards `type="file"` to a rendered control. Preserve that control intent and the source spread/override precedence; it is not automatically a new public app parameter.
+- Preserve all observable constraints in [the shared acceptance criteria](../../../../ds/components/molecules/FileInput.sc.md#criteria); interpret browser-specific implementation/tooling through this native contract, not as Flutter dependencies.
+
+### Showcase equivalence
+
+- Preserve the component-owned scenarios from [the current Web showcase definition](../../../../../../showcase/portal/src/features/showcase-v2/components/FileInput/definition.ts): `file-size`, `basic`. Source resource fixtures may remain documentation/typed fixtures rather than becoming extra widget parameters.
+- Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
+- Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
+
+## Criteria
+
+- [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
+- [ ] Replace File/FileList with an injected native file-picker/result port, retaining accept/multiple/capture intent and explicit cancellation.
+- [ ] Preserve onFilesChange and underlying caller change/cancellation order; empty accepted selection emits [] while cancellation without change emits nothing.
+- [ ] Return stable file metadata and lazy byte/stream access rather than assuming a desktop path; disabled prevents chooser activation.
+- [ ] No value/defaultValue channel is added, no permission is requested before explicit interaction, and no upload/preview/network side effect is implied.
+- [ ] Unsupported MIME/capture/filter behavior must be reported through the platform adapter rather than silently discarded.
+- [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
+- [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
+- [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.

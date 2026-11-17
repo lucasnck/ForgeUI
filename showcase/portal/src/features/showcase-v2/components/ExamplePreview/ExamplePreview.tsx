@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Card, CardHeader, CardBody, CardFooter, Button, Heading, Inline, Stack, VisuallyHidden, useCollapse } from "@forge-ui/web";
 import type { ShowcaseV2Example } from "../../model/showcase-v2.types";
 import { useShowcaseV2Copy } from "../../messages/useShowcaseV2Copy";
@@ -14,7 +14,9 @@ export function ExamplePreview({ example }: { example: ShowcaseV2Example }) {
   const store = useExampleStore();
   const [revision, setRevision] = useState(0);
   const collapse = useCollapse({ defaultOpen: true, id: `${example.id}-preview-toggle` });
-  const clipboard = useExampleCode(example.code);
+  const overrides = useSyncExternalStore(store?.subscribe ?? noSubscribe, store?.getOverrides ?? emptySnapshot, store?.getServerOverrides ?? emptySnapshot);
+  const code = example.getCode?.(overrides) ?? example.code;
+  const clipboard = useExampleCode(code);
   const { Component } = example;
   function reset() {
     store?.clear();
@@ -40,8 +42,11 @@ export function ExamplePreview({ example }: { example: ShowcaseV2Example }) {
         <ExampleBoundary><Stack gap="2"><Component key={revision}/></Stack></ExampleBoundary>
       </CardBody>
       <CardFooter>
-        <ExampleCode code={example.code} title={example.title}/>
+        <ExampleCode code={code} title={example.title}/>
       </CardFooter>
     </Card>
   );
 }
+const empty = Object.freeze({});
+const emptySnapshot = () => empty;
+const noSubscribe = () => () => {};

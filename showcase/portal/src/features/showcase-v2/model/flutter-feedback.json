@@ -1,0 +1,140 @@
+[
+  {
+    "slug": "card",
+    "name": "Card",
+    "schema": {
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Resumo do projeto",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Dados do projeto disponíveis.",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "fullWidth": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "elevation": {
+        "kind": "select",
+        "defaultValue": "raised",
+        "options": [
+          "flat",
+          "raised",
+          "floating"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "alert",
+    "name": "Alert",
+    "schema": {
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Aviso",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Alterações não foram enviadas.",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Entendi",
+        "nonblank": true
+      },
+      "announcement": {
+        "kind": "select",
+        "defaultValue": "polite",
+        "options": [
+          "off",
+          "polite",
+          "assertive"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "empty-state",
+    "name": "EmptyState",
+    "schema": {
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Nenhum resultado",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Não há registros nesta lista.",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Criar registro",
+        "nonblank": true
+      },
+      "showAction": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    }
+  },
+  {
+    "slug": "error-state",
+    "name": "ErrorState",
+    "schema": {
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Não foi possível carregar",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Confira a conexão e tente novamente.",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Tentar novamente",
+        "nonblank": true
+      },
+      "announcement": {
+        "kind": "select",
+        "defaultValue": "polite",
+        "options": [
+          "off",
+          "polite",
+          "assertive"
+        ]
+      }
+    }
+  },
+  {
+    "slug": "loading-state",
+    "name": "LoadingState",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Carregando registros",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Preparando os dados..."
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Atualização em andamento"
+      }
+    }
+  }
+]

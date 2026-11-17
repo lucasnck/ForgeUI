@@ -1,0 +1,12 @@
+
+> forge-ui-workspace@0.1.0 typecheck
+> npm run typecheck --workspace @forge-ui/web && npm run typecheck --workspace @forge-ui/showcase
+
+
+> @forge-ui/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @forge-ui/showcase@0.1.0 typecheck
+> tsc --noEmit
+

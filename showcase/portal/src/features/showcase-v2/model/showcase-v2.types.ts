@@ -30,6 +30,7 @@ export interface ShowcaseV2Example {
   title: string;
   description: string;
   code: string;
+  getCode?: (overrides: Readonly<Record<string, unknown>>) => string;
   Component: ComponentType;
 }
 export interface ShowcaseV2Definition extends ShowcaseV2IndexEntry {

@@ -1,0 +1,7 @@
+name: forge_ui_catalog_tools
+publish_to: none
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+dependencies:
+  analyzer: 8.2.0
+  path: 1.9.1

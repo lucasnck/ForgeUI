@@ -11,7 +11,7 @@ The canonical source is the Forge UI `PLAN.md`. Read `architecture.sc.md`, affec
 | --- | --- |
 | Library API, TS types, CSS Modules, tokens | `web/library/src/design-system/` |
 | React/Next preview, controls, catalog and documentation | `showcase/portal/` |
-| Future app components | `app/library/` (not yet implemented) |
+| Flutter tokens, themes, Button, Spinner and ButtonGroup | `app/library/`; complete parity, remaining widgets and native/visual acceptance pending |
 | Source provenance and migration evidence | `docs/migration/` |
 
 Resource specifications include title, scope, status, type and ds-level; declare meaningful criteria; do not copy a `DONE` status from PraticarFront without Forge UI verification. Library code imports no Praticar business features. Showcase can depend on library; library must not import showcase.
@@ -19,3 +19,9 @@ Resource specifications include title, scope, status, type and ds-level; declare
 ## One-command developer workflow
 
 [One-command workflow](feature-one-command-workflow.sc.md) is the canonical contract for portable Node bootstrap, root workspace installation, `doctor`, `check` and starting the showcase. Read it before editing scripts or package-manager behavior.
+
+## Web / app parity authoring
+
+Use the [app authoring templates and editor snippets](../app/core-authoring-templates.sc.md) for native widgets, local controllers, pure helpers and app SCs.
+
+Read the [app parity rules and property mappings](../app/core-web-app-parity.sc.md) and [app specification coverage](../app/core-app-parity-catalog.sc.md) before extending Flutter widgets. Preserve existing Web capabilities; proposed APIs remain PENDING until implementation and acceptance evidence.

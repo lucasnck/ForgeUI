@@ -1,0 +1,67 @@
+
+> forge-ui-workspace@0.1.0 build
+> npm run build --workspace @forge-ui/showcase
+
+
+> @forge-ui/showcase@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 104ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 20.8s
+  Running TypeScript ...
+  Finished TypeScript in 17.4s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/297) ...
+  Generating static pages using 3 workers (74/297) 
+  Generating static pages using 3 workers (148/297) 
+  Generating static pages using 3 workers (222/297) 
+✓ Generating static pages using 3 workers (297/297) in 20.5s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /components/[slug]
+│ ├ ● /components/map-view
+│ ├ ● /components/application-layout-header
+│ ├ ● /components/application-layout-body
+│ └ ● [+212 more paths]
+├ ○ /demos/records/create
+├   /demos/records/details/[id]
+│ ├ ● /demos/records/details/item-1
+│ ├ ● /demos/records/details/item-2
+│ ├ ● /demos/records/details/item-3
+│ └ ● [+12 more paths]
+├   /demos/records/edit/[id]
+│ ├ ● /demos/records/edit/item-1
+│ ├ ● /demos/records/edit/item-2
+│ ├ ● /demos/records/edit/item-3
+│ └ ● [+12 more paths]
+├ ○ /demos/records/home
+├ ○ /demos/records/list
+├   /demos/templates/application-layout-template/[scenario]
+│ ├ ● /demos/templates/application-layout-template/shell
+│ ├ ● /demos/templates/application-layout-template/minimal
+│ ├ ● /demos/templates/application-layout-template/header
+│ └ ● [+2 more paths]
+├   /demos/templates/showcase-page-template/[scenario]
+│ ├ ● /demos/templates/showcase-page-template/catalog
+│ └ ● /demos/templates/showcase-page-template/focused
+├   /resources/[slug]
+│ ├ ● /resources/use-presence
+│ ├ ● /resources/motion-recipes
+│ ├ ● /resources/design-tokens
+│ └ ● [+30 more paths]
+└   /templates/[slug]
+  ├ ● /templates/application-layout-template
+  ├ ● /templates/showcase-page-template
+  ├ ● /templates/home-page
+  └ ● [+3 more paths]
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

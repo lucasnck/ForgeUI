@@ -1,0 +1,103 @@
+---
+title: "Flutter FormPageTemplate"
+scope: "Native app contract preserving the Web FormPageTemplate capabilities and ownership"
+status: "PENDING"
+type: "component"
+ds-level: "templates"
+---
+
+# Flutter FormPageTemplate
+
+## Files
+
+```text
+components/forge_templates.dart (C)
+../forge_ui.dart (M)
+```
+
+## Dependencies
+
+- [Shared Web FormPageTemplate](../../../../ds/components/templates/FormPageTemplate.sc.md)
+- [Native API and model adaptation](../../types/tech-native-contracts.sc.md)
+- [Flutter theme adapter](../../../tech-flutter-theme-adapter.sc.md)
+- [App PageHeader](../molecules/PageHeader.sc.md)
+- [App Stack](../atoms/Stack.sc.md)
+
+## Contract
+
+```dart
+import 'package:forge_ui/forge_ui.dart';
+
+ForgeFormPageTemplate(
+  child: content,
+  titleId: titleId,
+  pageTitle: pageTitle,
+)
+```
+
+## Tests
+
+### Native behavior
+
+- Use a content-section template inside the existing native app shell, adapting multi-column slots to available width without losing content or creating routing/providers.
+- Reuse PageHeader and space-3 padding/gaps; preserve all explicit slots and omit absent wrappers.
+- Keep titleId/pageTitle/identity/breadcrumb/actions relationships and child state through preference/layout changes.
+- Caller supplies busy/Skeleton/EmptyState/ErrorState and async behavior; templates do not fetch data, validate forms or create a second shell.
+- On narrow screens, stack supporting filters/aside/summary/notice/pagination in logical reading order while keeping each slot reachable; respect SafeArea/keyboard insets through shell integration.
+
+### Implemented native API
+
+The resolved public Dart constructor is shown below. This records source availability, not complete Web parity, native-device acceptance or compiled preview availability. The proposed equivalence and remaining Criteria below still apply.
+
+```dart
+ForgeFormPageTemplate({Key? key, required String titleId, required Widget pageTitle, required Widget child, Widget? description, Widget? identity, Widget? breadcrumb, Widget? actions, bool divider = false, Widget? notice})
+```
+
+Constructor types, required parameters, defaults and aliases are generated in the [resolved native API inventory](../../../reference/native-component-api.json) using `npm run catalog:flutter-api`.
+
+### Property equivalence
+
+Each row is a proposed native contract, not an available export. Source types/requiredness are retained below; optional app parameters follow the documented source default, not a guessed Material default. Native aliases and model translations follow [the native mapping rules](../../../core-native-api-mapping.sc.md).
+
+| Web property | Web type | Presence / local default | Proposed app property/type | Native adaptation |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | Required; no local initializer | `child: Widget?` | Compose caller Widgets; keep passive/action semantics and null-content behavior from source. |
+| `notice` | `ReactNode` | Optional; no local initializer | `notice: Widget?` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `title` | `string` | Optional; no local initializer | `tooltip: String` | Preserve visible component title; inherited native title maps to tooltip. |
+| `autoFocus` | `boolean` | Optional; no local initializer | `autofocus: bool` | Native focus request, subordinate to modal/compound owner policy; no focus theft during updates. |
+| `id` | `string` | Optional; no local initializer | `semanticId: String` | Stable owner-scoped semantic/test identity, not a DOM id. |
+| `aria-describedby` | `string` | Optional; no local initializer | `descriptions: List<ForgeDescriptionBinding>` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-expanded` | `Booleanish` | Optional; no local initializer | `semanticExpanded: bool` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-invalid` | `boolean \| "false" \| "true" \| "grammar" \| "spelling"` | Optional; no local initializer | `semanticInvalid: ForgeInvalidState` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-label` | `string` | Optional; no local initializer | `semanticLabel: String` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `aria-pressed` | `boolean \| "false" \| "mixed" \| "true"` | Optional; no local initializer | `semanticPressed: ForgeSemanticFlag` | Native semantics equivalent; component/context-owned state wins according to the shared contract; no duplicate announcements. |
+| `titleId` | `string` | Required; no local initializer | `titleId: String` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `pageTitle` | `ReactNode` | Required; no local initializer | `pageTitle: Widget?` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `description` | `ReactNode` | Optional; no local initializer | `description: Widget?` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `identity` | `ReactNode` | Optional; no local initializer | `identity: Widget?` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `breadcrumb` | `ReactNode` | Optional; no local initializer | `breadcrumb: Widget?` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `actions` | `ReactNode` | Optional; no local initializer | `actions: Widget?` | Same capability and value constraints; preserve source ownership and callback timing. |
+| `divider` | `boolean` | Optional; no local initializer | `divider: bool` | Same capability and value constraints; preserve source ownership and callback timing. |
+
+### Defaults and fixed forwarding
+
+- No public-property initializer is owned locally; preserve inherited defaults from the shared baseline/delegated component rather than choosing a new native default.
+- Preserve all observable constraints in [the shared acceptance criteria](../../../../ds/components/templates/FormPageTemplate.sc.md#criteria); interpret browser-specific implementation/tooling through this native contract, not as Flutter dependencies.
+
+### Showcase equivalence
+
+- Preserve the component-owned scenarios from [the current Web showcase definition](../../../../../../showcase/portal/src/features/showcase-v2/components/FormPageTemplate/definition.ts): `form-page-overview`, `form-page-edit`. Source resource fixtures may remain documentation/typed fixtures rather than becoming extra widget parameters.
+- Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
+- Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
+
+## Criteria
+
+- [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
+- [ ] Use a content-section template inside the existing native app shell, adapting multi-column slots to available width without losing content or creating routing/providers.
+- [ ] Reuse PageHeader and space-3 padding/gaps; preserve all explicit slots and omit absent wrappers.
+- [ ] Keep titleId/pageTitle/identity/breadcrumb/actions relationships and child state through preference/layout changes.
+- [ ] Caller supplies busy/Skeleton/EmptyState/ErrorState and async behavior; templates do not fetch data, validate forms or create a second shell.
+- [ ] On narrow screens, stack supporting filters/aside/summary/notice/pagination in logical reading order while keeping each slot reachable; respect SafeArea/keyboard insets through shell integration.
+- [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
+- [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
+- [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.

@@ -9,7 +9,7 @@
     "sourceTreeFiles": 2550,
     "copiedInitially": 1787,
     "preservedInitially": 68,
-    "reconciliationRecords": 477
+    "reconciliationRecords": 486
   },
   "items": [
     {
@@ -15339,7 +15339,7 @@
           "after": "@forge-ui/web"
         }
       ],
-      "finalSha256": "99c35c1ca9e85c220194e4b5c548f5e93f8853300164ee43ce5888f5cf62f1c5",
+      "finalSha256": "9fad4a7a596dd64c64dd3f6eadadad046b525bc28c4bb63153a77c4ba4682824",
       "reconciliation": "recorded-adaptation"
     },
     {
@@ -22183,8 +22183,8 @@
       "sourceSha256": "f81bd7591388b32222df03095b11592e52e49a23e4219d9c187f2e5620f98e3f",
       "targetSha256": "f81bd7591388b32222df03095b11592e52e49a23e4219d9c187f2e5620f98e3f",
       "proposedSha256": "f81bd7591388b32222df03095b11592e52e49a23e4219d9c187f2e5620f98e3f",
-      "finalSha256": "f81bd7591388b32222df03095b11592e52e49a23e4219d9c187f2e5620f98e3f",
-      "reconciliation": "source-copy-with-codemod"
+      "finalSha256": "c26c415acb005fee2c56432683a518431f653297be5f5f5be783d699e5b4ef33",
+      "reconciliation": "recorded-adaptation"
     },
     {
       "from": "src/features/showcase-v2/components/ShowcaseV2Navigation/ShowcaseV2Navigation.module.css",
@@ -22291,8 +22291,8 @@
           "after": "@forge-ui/web"
         }
       ],
-      "finalSha256": "e918851d4d1f93bc3eaca81dbdce00268baccee64d1429a0dd8475764870788b",
-      "reconciliation": "preserved-existing-adaptation"
+      "finalSha256": "ae27f6788e5db722e7bce61b6306e3ef6c9879d2c77eec20a43a11e48a69c56a",
+      "reconciliation": "recorded-adaptation"
     },
     {
       "from": "src/features/showcase-v2/components/ShowcaseV2Template/ShowcaseV2Template.tsx",
@@ -22307,8 +22307,8 @@
           "after": "@forge-ui/web"
         }
       ],
-      "finalSha256": "7f0be4e37aa6bb1e028a72be06c15e9e1fa5891e5c6a2561ec572d6e65e9c8e6",
-      "reconciliation": "preserved-existing-adaptation"
+      "finalSha256": "9754264df8af753230e29604616747fc231a061333b699be3ef93a37525ca1e5",
+      "reconciliation": "recorded-adaptation"
     },
     {
       "from": "src/features/showcase-v2/components/ShowcaseV2Template/useShowcaseV2Template.ts",
@@ -22317,8 +22317,8 @@
       "sourceSha256": "ca3a98215a713567a8fa45b1c1416f6d1f4ef52304780aa22358d2032ecc9c67",
       "targetSha256": "ca3a98215a713567a8fa45b1c1416f6d1f4ef52304780aa22358d2032ecc9c67",
       "proposedSha256": "ca3a98215a713567a8fa45b1c1416f6d1f4ef52304780aa22358d2032ecc9c67",
-      "finalSha256": "ca3a98215a713567a8fa45b1c1416f6d1f4ef52304780aa22358d2032ecc9c67",
-      "reconciliation": "source-copy-with-codemod"
+      "finalSha256": "c98a4f5336777a50bc244dba4e91efe82d06c46ebb94d78c5ec0f05f3a60b663",
+      "reconciliation": "recorded-adaptation"
     },
     {
       "from": "src/features/showcase-v2/components/SimpleGrid/definition.ts",
@@ -27039,8 +27039,8 @@
       "sourceSha256": "f566a76dd8768ab8aa8c42c710cc020ef08b2fccd84d35dd77df9ccc89063857",
       "targetSha256": "f566a76dd8768ab8aa8c42c710cc020ef08b2fccd84d35dd77df9ccc89063857",
       "proposedSha256": "f566a76dd8768ab8aa8c42c710cc020ef08b2fccd84d35dd77df9ccc89063857",
-      "finalSha256": "f566a76dd8768ab8aa8c42c710cc020ef08b2fccd84d35dd77df9ccc89063857",
-      "reconciliation": "source-copy-with-codemod"
+      "finalSha256": "e90698c3a59ae4b6bd6333e6048020e811a03abf253cfae94ffd3128e42637bf",
+      "reconciliation": "recorded-adaptation"
     },
     {
       "from": "src/features/showcase-v2/model/specialized-input-control-options.ts",
@@ -27319,7 +27319,7 @@
       "sourceSha256": "ff071c9a43a8c57ece1734f4ef1b5c64649460a95b1444435dea9180d987cd0e",
       "targetSha256": "ff071c9a43a8c57ece1734f4ef1b5c64649460a95b1444435dea9180d987cd0e",
       "proposedSha256": "ff071c9a43a8c57ece1734f4ef1b5c64649460a95b1444435dea9180d987cd0e",
-      "finalSha256": "82e4e44d2854cbeea9aa2443380a7575aa9dd4fc8d0a0001a1c10d4f459e82de",
+      "finalSha256": "c0e6279ca06554d8d26fe781778d9fb41c8fad9a0ff365a9522c53a7100f5cfc",
       "reconciliation": "recorded-adaptation"
     },
     {

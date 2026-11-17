@@ -1,0 +1,69 @@
+{
+  "origin": "http://localhost:3000",
+  "buildId": "13099cb03e02cedd",
+  "registeredPreviews": 68,
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 56204,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/card/",
+      "status": 200,
+      "bytes": 91387,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/pagination/",
+      "status": 200,
+      "bytes": 72971,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/option/",
+      "status": 200,
+      "bytes": 62392,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/text/",
+      "status": 200,
+      "bytes": 151480,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/map-view/",
+      "status": 200,
+      "bytes": 142589,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/flutter/index.html",
+      "status": 200,
+      "bytes": 317,
+      "type": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "/flutter/flutter_bootstrap.js",
+      "status": 200,
+      "bytes": 12590,
+      "type": "application/javascript; charset=UTF-8",
+      "previewCount": 68
+    },
+    {
+      "path": "/flutter/main.dart.js",
+      "status": 200,
+      "bytes": 3303184,
+      "type": "application/javascript; charset=UTF-8",
+      "buildId": "13099cb03e02cedd"
+    },
+    {
+      "path": "/flutter/canvaskit/canvaskit.wasm",
+      "status": 200,
+      "bytes": 7083768,
+      "type": "application/wasm"
+    }
+  ]
+}

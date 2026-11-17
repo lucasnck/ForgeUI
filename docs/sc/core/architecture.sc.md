@@ -7,8 +7,8 @@ scope: "Dependency boundaries and initial web library/showcase implementation"
 
 - **Independent library**: `web/library/` is React/TypeScript and CSS Modules. Its public interface is `@forge-ui/web`; Next is not a dependency.
 - **Showcase**: `showcase/portal/` is a Next.js application (version aligned with source declarations), importing the public library exports and CSS tokens. It is documentation/demo only, with no Praticar login, backend or business APIs.
-- **App**: `app/library/` reserves Flutter work and is intentionally not implemented.
-- **Tokens**: keep current semantic CSS tokens in web; document cross-platform token extraction before trying to generate Flutter equivalents.
+- **App**: `app/library/` contains generated Dart tokens, theme adapters, shared visual enums, Button, Spinner and ButtonGroup. `app/showcase_flutter/` compiles their embedded previews for the existing portal; complete parity, other widgets and native/visual acceptance remain pending.
+- **Tokens**: canonical definitions live in `shared/tokens/`. Generation preserves the approved CSS byte for byte and produces 184 portable Dart tokens across four themes. Browser-only values remain explicitly classified; visual root-size equivalence remains unverified.
 - **SC-first**: new component, refactor or behavioral change starts as a specification; criteria and evidence govern statuses.
 - **Consumer integration**: Git submodules are a separate future phase; no assumption that changes propagate automatically.
 

@@ -14,3 +14,8 @@ coverage/
 *.zip
 *.tgz
 *.gdoc
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages

@@ -1,0 +1,1444 @@
+[
+  {
+    "slug": "label",
+    "name": "Label",
+    "schema": {
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xl2",
+          "xl3",
+          "xl4",
+          "xl5",
+          "xl6",
+          "xl7"
+        ],
+        "defaultValue": "md"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "defaultTone",
+          "muted",
+          "brand",
+          "danger",
+          "success",
+          "inverse"
+        ],
+        "defaultValue": "defaultTone"
+      },
+      "weight": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "regular",
+          "medium",
+          "semibold",
+          "bold"
+        ],
+        "defaultValue": "semibold"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "required",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "size",
+        "type": "ForgeTextSize",
+        "nullable": true
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTextTone",
+        "nullable": true
+      },
+      {
+        "key": "weight",
+        "type": "ForgeFontWeight",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "link",
+    "name": "Link",
+    "schema": {
+      "href": {
+        "kind": "text",
+        "defaultValue": "/exemplo"
+      },
+      "target": {
+        "kind": "text",
+        "defaultValue": ""
+      },
+      "rel": {
+        "kind": "text",
+        "defaultValue": ""
+      },
+      "download": {
+        "kind": "text",
+        "defaultValue": ""
+      },
+      "hrefLang": {
+        "kind": "text",
+        "defaultValue": ""
+      },
+      "semanticLabel": {
+        "kind": "text",
+        "defaultValue": "Separador"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "href",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "target",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "rel",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "download",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "hrefLang",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "semanticLabel",
+        "type": "String",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "icon",
+    "name": "Icon",
+    "schema": {
+      "name": {
+        "kind": "select",
+        "options": [
+          "alertTriangle",
+          "arrowLeft",
+          "arrowRight",
+          "bell",
+          "calendar",
+          "check",
+          "chevronDown",
+          "chevronLeft",
+          "chevronRight",
+          "chevronUp",
+          "circleCheck",
+          "circleX",
+          "clock",
+          "close",
+          "copy",
+          "download",
+          "edit",
+          "externalLink",
+          "eye",
+          "eyeOff",
+          "filter",
+          "info",
+          "logOut",
+          "menu",
+          "minus",
+          "plus",
+          "refresh",
+          "search",
+          "settings",
+          "sortAscending",
+          "sortDescending",
+          "spinner",
+          "trash",
+          "upload",
+          "user"
+        ],
+        "defaultValue": "check"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "inherit"
+        ],
+        "defaultValue": "inherit"
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo acessível"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "name",
+        "type": "ForgeIconName",
+        "nullable": false
+      },
+      {
+        "key": "size",
+        "type": "ForgeIconSize",
+        "nullable": true
+      },
+      {
+        "key": "label",
+        "type": "String",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "text",
+    "name": "Text",
+    "schema": {
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xl2",
+          "xl3",
+          "xl4",
+          "xl5",
+          "xl6",
+          "xl7"
+        ],
+        "defaultValue": "inherit"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "defaultTone",
+          "muted",
+          "brand",
+          "danger",
+          "success",
+          "inverse"
+        ],
+        "defaultValue": "inherit"
+      },
+      "weight": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "regular",
+          "medium",
+          "semibold",
+          "bold"
+        ],
+        "defaultValue": "inherit"
+      },
+      "semanticRole": {
+        "kind": "select",
+        "options": [
+          "inline",
+          "paragraph",
+          "small",
+          "strong"
+        ],
+        "defaultValue": "inline"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "size",
+        "type": "ForgeTextSize",
+        "nullable": true
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTextTone",
+        "nullable": true
+      },
+      {
+        "key": "weight",
+        "type": "ForgeFontWeight",
+        "nullable": true
+      },
+      {
+        "key": "semanticRole",
+        "type": "ForgeTextSemanticRole",
+        "nullable": false
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "heading",
+    "name": "Heading",
+    "schema": {
+      "level": {
+        "kind": "number",
+        "defaultValue": 3
+      },
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xl2",
+          "xl3",
+          "xl4",
+          "xl5",
+          "xl6",
+          "xl7"
+        ],
+        "defaultValue": "inherit"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "defaultTone",
+          "muted",
+          "brand",
+          "danger",
+          "success",
+          "inverse"
+        ],
+        "defaultValue": "inherit"
+      },
+      "weight": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "regular",
+          "medium",
+          "semibold",
+          "bold"
+        ],
+        "defaultValue": "inherit"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "level",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "size",
+        "type": "ForgeTextSize",
+        "nullable": true
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTextTone",
+        "nullable": true
+      },
+      {
+        "key": "weight",
+        "type": "ForgeFontWeight",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "field-hint",
+    "name": "FieldHint",
+    "schema": {
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xl2",
+          "xl3",
+          "xl4",
+          "xl5",
+          "xl6",
+          "xl7"
+        ],
+        "defaultValue": "sm"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "defaultTone",
+          "muted",
+          "brand",
+          "danger",
+          "success",
+          "inverse"
+        ],
+        "defaultValue": "muted"
+      },
+      "weight": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "regular",
+          "medium",
+          "semibold",
+          "bold"
+        ],
+        "defaultValue": "regular"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "size",
+        "type": "ForgeTextSize",
+        "nullable": true
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTextTone",
+        "nullable": true
+      },
+      {
+        "key": "weight",
+        "type": "ForgeFontWeight",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "field-error",
+    "name": "FieldError",
+    "schema": {
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      },
+      "announce": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xl2",
+          "xl3",
+          "xl4",
+          "xl5",
+          "xl6",
+          "xl7"
+        ],
+        "defaultValue": "sm"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "defaultTone",
+          "muted",
+          "brand",
+          "danger",
+          "success",
+          "inverse"
+        ],
+        "defaultValue": "danger"
+      },
+      "weight": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "regular",
+          "medium",
+          "semibold",
+          "bold"
+        ],
+        "defaultValue": "regular"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "announce",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "size",
+        "type": "ForgeTextSize",
+        "nullable": true
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTextTone",
+        "nullable": true
+      },
+      {
+        "key": "weight",
+        "type": "ForgeFontWeight",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "divider",
+    "name": "Divider",
+    "schema": {
+      "semanticLabel": {
+        "kind": "text",
+        "defaultValue": "Separador"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "semanticLabel",
+        "type": "String",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "visually-hidden",
+    "name": "VisuallyHidden",
+    "schema": {
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "inline",
+    "name": "Inline",
+    "schema": {
+      "wrap": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "align": {
+        "kind": "select",
+        "options": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "defaultValue": "center"
+      },
+      "justify": {
+        "kind": "select",
+        "options": [
+          "start",
+          "center",
+          "end",
+          "between"
+        ],
+        "defaultValue": "start"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "wrap",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "gap",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "padding",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "align",
+        "type": "ForgeAlign",
+        "nullable": false
+      },
+      {
+        "key": "justify",
+        "type": "ForgeJustify",
+        "nullable": false
+      }
+    ],
+    "fixture": "children: const [ForgeBadge(text: 'Um'), ForgeBadge(text: 'Dois'), ForgeBadge(text: 'Três')]",
+    "extra": ""
+  },
+  {
+    "slug": "stack",
+    "name": "Stack",
+    "schema": {
+      "gap": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "align": {
+        "kind": "select",
+        "options": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "defaultValue": "stretch"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "gap",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "padding",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "align",
+        "type": "ForgeAlign",
+        "nullable": false
+      }
+    ],
+    "fixture": "children: const [ForgeBadge(text: 'Um'), ForgeBadge(text: 'Dois'), ForgeBadge(text: 'Três')]",
+    "extra": ""
+  },
+  {
+    "slug": "container",
+    "name": "Container",
+    "schema": {
+      "size": {
+        "kind": "select",
+        "options": [
+          "narrow",
+          "wide"
+        ],
+        "defaultValue": "wide"
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "size",
+        "type": "ForgeContainerSize",
+        "nullable": false
+      },
+      {
+        "key": "gap",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "padding",
+        "type": "ForgeSpace",
+        "nullable": true
+      }
+    ],
+    "fixture": "children: const [ForgeBadge(text: 'Um'), ForgeBadge(text: 'Dois'), ForgeBadge(text: 'Três')]",
+    "extra": ""
+  },
+  {
+    "slug": "surface",
+    "name": "Surface",
+    "schema": {
+      "elevation": {
+        "kind": "select",
+        "options": [
+          "flat",
+          "raised",
+          "floating"
+        ],
+        "defaultValue": "raised"
+      },
+      "shape": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "square",
+          "rounded",
+          "pill"
+        ],
+        "defaultValue": "inherit"
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "align": {
+        "kind": "select",
+        "options": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "defaultValue": "stretch"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "elevation",
+        "type": "ForgeElevation",
+        "nullable": false
+      },
+      {
+        "key": "shape",
+        "type": "ForgeShape",
+        "nullable": true
+      },
+      {
+        "key": "gap",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "padding",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "align",
+        "type": "ForgeAlign",
+        "nullable": false
+      }
+    ],
+    "fixture": "children: const [ForgeBadge(text: 'Um'), ForgeBadge(text: 'Dois'), ForgeBadge(text: 'Três')]",
+    "extra": ""
+  },
+  {
+    "slug": "simple-grid",
+    "name": "SimpleGrid",
+    "schema": {
+      "gap": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s8",
+          "s10",
+          "s12",
+          "s16",
+          "s20"
+        ],
+        "defaultValue": "inherit"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "gap",
+        "type": "ForgeSpace",
+        "nullable": true
+      },
+      {
+        "key": "padding",
+        "type": "ForgeSpace",
+        "nullable": true
+      }
+    ],
+    "fixture": "children: const [ForgeBadge(text: 'Um'), ForgeBadge(text: 'Dois'), ForgeBadge(text: 'Três')]",
+    "extra": "columns: const ForgeResponsive<int>(base: 2, wide: 3)"
+  },
+  {
+    "slug": "aspect-ratio",
+    "name": "AspectRatio",
+    "schema": {
+      "ratio": {
+        "kind": "select",
+        "options": [
+          "square",
+          "video",
+          "photo",
+          "portrait"
+        ],
+        "defaultValue": "video"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "ratio",
+        "type": "ForgeAspectRatioValue",
+        "nullable": false
+      }
+    ],
+    "fixture": "child: const ForgeSurface(child: Center(child: Text('Proporção do conteúdo')))",
+    "extra": ""
+  },
+  {
+    "slug": "badge",
+    "name": "Badge",
+    "schema": {
+      "text": {
+        "kind": "text",
+        "defaultValue": "Exemplo Forge UI"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "defaultValue": "md"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "neutral",
+          "brand",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "inverse",
+          "sand",
+          "violet",
+          "forest",
+          "sky"
+        ],
+        "defaultValue": "brand"
+      },
+      "appearance": {
+        "kind": "select",
+        "options": [
+          "solid",
+          "soft",
+          "outlined",
+          "bordered",
+          "ghost",
+          "none"
+        ],
+        "defaultValue": "soft"
+      },
+      "shape": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "square",
+          "rounded",
+          "pill"
+        ],
+        "defaultValue": "inherit"
+      },
+      "fullWidth": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "text",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "size",
+        "type": "ForgeSize",
+        "nullable": false
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTone",
+        "nullable": false
+      },
+      {
+        "key": "appearance",
+        "type": "ForgeAppearance",
+        "nullable": false
+      },
+      {
+        "key": "shape",
+        "type": "ForgeShape",
+        "nullable": true
+      },
+      {
+        "key": "fullWidth",
+        "type": "bool",
+        "nullable": false
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "avatar",
+    "name": "Avatar",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo acessível"
+      },
+      "initials": {
+        "kind": "text",
+        "defaultValue": "FU"
+      },
+      "decorative": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "defaultValue": "md"
+      },
+      "shape": {
+        "kind": "select",
+        "options": [
+          "square",
+          "rounded",
+          "pill"
+        ],
+        "defaultValue": "pill"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "label",
+        "type": "String",
+        "nullable": false
+      },
+      {
+        "key": "initials",
+        "type": "String",
+        "nullable": true
+      },
+      {
+        "key": "decorative",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "size",
+        "type": "ForgeSize",
+        "nullable": false
+      },
+      {
+        "key": "shape",
+        "type": "ForgeShape",
+        "nullable": false
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "skeleton",
+    "name": "Skeleton",
+    "schema": {
+      "size": {
+        "kind": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "defaultValue": "md"
+      },
+      "shape": {
+        "kind": "select",
+        "options": [
+          "inherit",
+          "square",
+          "rounded",
+          "pill"
+        ],
+        "defaultValue": "inherit"
+      },
+      "fullWidth": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "kind": {
+        "kind": "select",
+        "options": [
+          "rectangle",
+          "text",
+          "circle"
+        ],
+        "defaultValue": "rectangle"
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "size",
+        "type": "ForgeSize",
+        "nullable": false
+      },
+      {
+        "key": "shape",
+        "type": "ForgeShape",
+        "nullable": true
+      },
+      {
+        "key": "fullWidth",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "animated",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "kind",
+        "type": "ForgeSkeletonKind",
+        "nullable": false
+      }
+    ],
+    "fixture": "",
+    "extra": ""
+  },
+  {
+    "slug": "progress",
+    "name": "Progress",
+    "schema": {
+      "value": {
+        "kind": "number",
+        "defaultValue": 60
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo acessível"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "defaultValue": "md"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "neutral",
+          "brand",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "inverse",
+          "sand",
+          "violet",
+          "forest",
+          "sky"
+        ],
+        "defaultValue": "brand"
+      },
+      "fullWidth": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "value",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "key": "label",
+        "type": "String",
+        "nullable": false
+      },
+      {
+        "key": "size",
+        "type": "ForgeSize",
+        "nullable": false
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTone",
+        "nullable": false
+      },
+      {
+        "key": "fullWidth",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "animated",
+        "type": "bool",
+        "nullable": false
+      }
+    ],
+    "fixture": "",
+    "extra": "max: 100"
+  },
+  {
+    "slug": "meter",
+    "name": "Meter",
+    "schema": {
+      "value": {
+        "kind": "number",
+        "defaultValue": 60
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo acessível"
+      },
+      "size": {
+        "kind": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "defaultValue": "md"
+      },
+      "tone": {
+        "kind": "select",
+        "options": [
+          "neutral",
+          "brand",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "inverse",
+          "sand",
+          "violet",
+          "forest",
+          "sky"
+        ],
+        "defaultValue": "brand"
+      },
+      "fullWidth": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "snippetArgs": [
+      {
+        "key": "value",
+        "type": "double",
+        "nullable": false
+      },
+      {
+        "key": "label",
+        "type": "String",
+        "nullable": false
+      },
+      {
+        "key": "size",
+        "type": "ForgeSize",
+        "nullable": false
+      },
+      {
+        "key": "tone",
+        "type": "ForgeTone",
+        "nullable": false
+      },
+      {
+        "key": "fullWidth",
+        "type": "bool",
+        "nullable": false
+      },
+      {
+        "key": "animated",
+        "type": "bool",
+        "nullable": false
+      }
+    ],
+    "fixture": "",
+    "extra": "max: 100"
+  }
+]

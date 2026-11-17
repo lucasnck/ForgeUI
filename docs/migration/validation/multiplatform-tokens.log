@@ -1,0 +1,7 @@
+
+> forge-ui-workspace@0.1.0 tokens:check
+> node scripts/check-token-parity.mjs
+
+Verified CSS + Dart: 184 portable tokens across 4 themes; web SHA-256 68ed92cc2fd20996fd564709915cbd90acf4742558569c16a9d639da0351fc06
+Verified CSS + Dart: 184 portable tokens across 4 themes; web SHA-256 68ed92cc2fd20996fd564709915cbd90acf4742558569c16a9d639da0351fc06
+PASS token source, brand constants, 4 themes, baseline hash, deterministic CSS/Dart

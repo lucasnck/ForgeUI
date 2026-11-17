@@ -4,3 +4,5 @@
 docs/** -text
 web/** -text
 showcase/** -text
+shared/** -text
+app/** text eol=lf

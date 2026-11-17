@@ -14,6 +14,10 @@ interface Props {
   properties: readonly ShowcaseV2Property[];
   schema: PropertySchema;
   links?: ReactNode;
+  platformControls?: ReactNode;
+  panelId?: string;
+  panelLabelledBy?: string;
+  emptyState?: ReactNode;
   children: ReactNode;
 }
 
@@ -29,6 +33,7 @@ export function ShowcaseV2Template(props: Props) {
           </Heading>
           <Text as="p">{props.description}</Text>
           {props.links}
+          {props.platformControls}
           {props.examples.length > 1 && (
             <Inline gap="2" align="end">
               <Stack gap="1">
@@ -44,6 +49,12 @@ export function ShowcaseV2Template(props: Props) {
             </Inline>
           )}
         </Stack>
+        <div id={props.panelId} role={props.panelId ? "tabpanel" : undefined} aria-labelledby={props.panelLabelledBy} tabIndex={props.panelId ? 0 : undefined}>
+        {props.examples.length === 0 ? (
+          <ExampleScope name={props.name} schema={props.schema} properties={props.properties}>
+            <Stack gap="6">{props.emptyState}{props.children}</Stack>
+          </ExampleScope>
+        ) : props.emptyState}
         {props.examples.map((example) => (
           <div key={example.id} hidden={example.id !== active}>
             <ExampleScope name={props.name} schema={props.schema} properties={props.properties}>
@@ -55,6 +66,7 @@ export function ShowcaseV2Template(props: Props) {
             </ExampleScope>
           </div>
         ))}
+        </div>
       </Stack>
     </Container>
   );

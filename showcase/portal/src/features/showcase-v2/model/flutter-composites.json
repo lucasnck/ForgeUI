@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Breadcrumb",
+    "slug": "breadcrumb",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Localização",
+        "nonblank": true
+      },
+      "ancestorLabel": {
+        "kind": "text",
+        "defaultValue": "Catálogo",
+        "nonblank": true
+      },
+      "currentLabel": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      }
+    }
+  },
+  {
+    "name": "Pagination",
+    "slug": "pagination",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Páginas",
+        "nonblank": true
+      },
+      "page": {
+        "kind": "number",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 12
+      },
+      "pageCount": {
+        "kind": "number",
+        "defaultValue": 5,
+        "min": 1,
+        "max": 12
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    }
+  },
+  {
+    "name": "TagGroup",
+    "slug": "tag-group",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Habilidades",
+        "nonblank": true
+      },
+      "fullWidth": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "tagText": {
+        "kind": "text",
+        "defaultValue": "Flutter",
+        "nonblank": true
+      },
+      "removeLabel": {
+        "kind": "text",
+        "defaultValue": "Remover Flutter",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    }
+  },
+  {
+    "name": "PageHeader",
+    "slug": "page-header",
+    "schema": {
+      "titleId": {
+        "kind": "text",
+        "defaultValue": "forge-page-title",
+        "nonblank": true
+      },
+      "pageTitle": {
+        "kind": "text",
+        "defaultValue": "Meus registros",
+        "nonblank": true
+      },
+      "description": {
+        "kind": "text",
+        "defaultValue": "Gerencie seus registros"
+      },
+      "divider": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    }
+  }
+]

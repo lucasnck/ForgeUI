@@ -1,0 +1,22 @@
+{
+  "kind": "Documentation authoring audit, not widget/runtime acceptance",
+  "baselineComponents": 221,
+  "appComponentSpecs": 221,
+  "status": "All component implementations/acceptance remain PENDING",
+  "levels": {
+    "organisms": 14,
+    "templates": 6,
+    "atoms": 115,
+    "molecules": 86
+  },
+  "mappedPropertyRows": 3315,
+  "publicSourceMembers": 61011,
+  "classifiedSourceMembers": 61011,
+  "actualWebScenarios": 254,
+  "sourceHashesVerified": 221,
+  "praticarSourceEntriesLocated": 221,
+  "scFilesChecked": 230,
+  "relativeLinksChecked": 2158,
+  "fileMarkersChecked": 903,
+  "errors": []
+}

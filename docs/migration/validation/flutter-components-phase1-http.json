@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/components/button",
+    "status": 200,
+    "bytes": 130762
+  },
+  {
+    "path": "/components/spinner",
+    "status": 200,
+    "bytes": 63862
+  },
+  {
+    "path": "/components/button-group",
+    "status": 200,
+    "bytes": 65456
+  },
+  {
+    "path": "/flutter/index.html",
+    "status": 200,
+    "bytes": 317
+  },
+  {
+    "path": "/flutter/main.dart.js",
+    "status": 200,
+    "bytes": 1925016
+  },
+  {
+    "path": "/flutter/canvaskit/canvaskit.wasm",
+    "status": 200,
+    "bytes": 7083768
+  }
+]
