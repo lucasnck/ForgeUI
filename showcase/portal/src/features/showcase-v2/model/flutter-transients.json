@@ -1,0 +1,1689 @@
+[
+  {
+    "name": "Modal",
+    "owner": "Modal",
+    "slug": "modal",
+    "family": "modal",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"modal\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"modal\":\"modal\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='modal';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ModalHeader",
+    "owner": "Modal",
+    "slug": "modal-header",
+    "family": "modal",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"modal-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"modal-header\":\"modal\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='modal-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ModalBody",
+    "owner": "Modal",
+    "slug": "modal-body",
+    "family": "modal",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"modal-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"modal-body\":\"modal\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='modal-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ModalFooter",
+    "owner": "Modal",
+    "slug": "modal-footer",
+    "family": "modal",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"modal-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"modal-footer\":\"modal\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='modal-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeModal(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeModalHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeModalBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeModalFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Dialog",
+    "owner": "Dialog",
+    "slug": "dialog",
+    "family": "dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"dialog\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"dialog\":\"dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='dialog';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "DialogHeader",
+    "owner": "Dialog",
+    "slug": "dialog-header",
+    "family": "dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"dialog-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"dialog-header\":\"dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='dialog-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "DialogBody",
+    "owner": "Dialog",
+    "slug": "dialog-body",
+    "family": "dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"dialog-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"dialog-body\":\"dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='dialog-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "DialogFooter",
+    "owner": "Dialog",
+    "slug": "dialog-footer",
+    "family": "dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"dialog-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"dialog-footer\":\"dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='dialog-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "DialogClose",
+    "owner": "Dialog",
+    "slug": "dialog-close",
+    "family": "dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"dialog-close\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"dialog-close\":\"dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='dialog-close';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"closeOnOutsideClick\":false,\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:fieldFocus,animated:flag('animated'),animationEffect:effect,closeOnOutsideClick:flag('closeOnOutsideClick'),children:[ForgeDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AlertDialog",
+    "owner": "AlertDialog",
+    "slug": "alert-dialog",
+    "family": "alert-dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "description": {
+        "kind": "text",
+        "defaultValue": "Atenção à ação solicitada",
+        "nonblank": true
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"alert-dialog\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"description\":{\"kind\":\"text\",\"defaultValue\":\"Atenção à ação solicitada\",\"nonblank\":true},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"alert-dialog\":\"alert-dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='alert-dialog';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"description\":\"Atenção à ação solicitada\",\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AlertDialogHeader",
+    "owner": "AlertDialog",
+    "slug": "alert-dialog-header",
+    "family": "alert-dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "description": {
+        "kind": "text",
+        "defaultValue": "Atenção à ação solicitada",
+        "nonblank": true
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"alert-dialog-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"description\":{\"kind\":\"text\",\"defaultValue\":\"Atenção à ação solicitada\",\"nonblank\":true},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"alert-dialog-header\":\"alert-dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='alert-dialog-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"description\":\"Atenção à ação solicitada\",\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AlertDialogBody",
+    "owner": "AlertDialog",
+    "slug": "alert-dialog-body",
+    "family": "alert-dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "description": {
+        "kind": "text",
+        "defaultValue": "Atenção à ação solicitada",
+        "nonblank": true
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"alert-dialog-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"description\":{\"kind\":\"text\",\"defaultValue\":\"Atenção à ação solicitada\",\"nonblank\":true},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"alert-dialog-body\":\"alert-dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='alert-dialog-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"description\":\"Atenção à ação solicitada\",\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AlertDialogFooter",
+    "owner": "AlertDialog",
+    "slug": "alert-dialog-footer",
+    "family": "alert-dialog",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "description": {
+        "kind": "text",
+        "defaultValue": "Atenção à ação solicitada",
+        "nonblank": true
+      },
+      "preventDismiss": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"alert-dialog-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"description\":{\"kind\":\"text\",\"defaultValue\":\"Atenção à ação solicitada\",\"nonblank\":true},\"preventDismiss\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"alert-dialog-footer\":\"alert-dialog\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='alert-dialog-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"description\":\"Atenção à ação solicitada\",\"preventDismiss\":false,\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeAlertDialog(open:opened,onOpenChange:requestOpen,onCancel:intercept,onClose:closed,returnFocusNode:origin,initialFocusNode:leastFocus,description:text('description'),animated:flag('animated'),animationEffect:effect,children:[ForgeAlertDialogHeader(title:text('titleText'),child:ForgeDialogClose(child:Text(text('closeLabel')))),ForgeAlertDialogBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgeAlertDialogFooter(children:[Text(text('footerText')),ForgeDialogClose(focusNode:leastFocus,child:Text(text('cancelLabel')))])]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ConfirmationModal",
+    "owner": "ConfirmationModal",
+    "slug": "confirmation-modal",
+    "family": "confirmation-modal",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "confirmLabel": {
+        "kind": "text",
+        "defaultValue": "Confirmar",
+        "nonblank": true
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "closeOnOutsideClick": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "closeOnConfirm": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "expression": "ForgeConfirmationModal(open:opened,onOpenChange:requestOpen,returnFocusNode:origin,title:text('titleText'),closeLabel:text('closeLabel'),cancelLabel:text('cancelLabel'),confirmLabel:text('confirmLabel'),loading:flag('loading'),loadingLabel:'Confirmando',animated:flag('animated'),closeOnOutsideClick:flag('closeOnOutsideClick'),onConfirm:(){recordAction('confirmed');if(flag('closeOnConfirm'))requestOpen(false);},child:Text(text('bodyText')))",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"confirmation-modal\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"confirmLabel\":{\"kind\":\"text\",\"defaultValue\":\"Confirmar\",\"nonblank\":true},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"closeOnOutsideClick\":{\"kind\":\"boolean\",\"defaultValue\":false},\"closeOnConfirm\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst transientFamilies=<String,String>{\"confirmation-modal\":\"confirmation-modal\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='confirmation-modal';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"confirmLabel\":\"Confirmar\",\"loading\":false,\"closeOnOutsideClick\":false,\"closeOnConfirm\":false};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeConfirmationModal(open:opened,onOpenChange:requestOpen,returnFocusNode:origin,title:text('titleText'),closeLabel:text('closeLabel'),cancelLabel:text('cancelLabel'),confirmLabel:text('confirmLabel'),loading:flag('loading'),loadingLabel:'Confirmando',animated:flag('animated'),closeOnOutsideClick:flag('closeOnOutsideClick'),onConfirm:(){recordAction('confirmed');if(flag('closeOnConfirm'))requestOpen(false);},child:Text(text('bodyText'))),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Popover",
+    "owner": "Popover",
+    "slug": "popover",
+    "family": "popover",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Painel de opções",
+        "nonblank": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"popover\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Painel de opções\",\"nonblank\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"popover\":\"popover\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='popover';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"label\":\"Painel de opções\",\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "PopoverHeader",
+    "owner": "Popover",
+    "slug": "popover-header",
+    "family": "popover",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Painel de opções",
+        "nonblank": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"popover-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Painel de opções\",\"nonblank\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"popover-header\":\"popover\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='popover-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"label\":\"Painel de opções\",\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "PopoverBody",
+    "owner": "Popover",
+    "slug": "popover-body",
+    "family": "popover",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Painel de opções",
+        "nonblank": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"popover-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Painel de opções\",\"nonblank\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"popover-body\":\"popover\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='popover-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"label\":\"Painel de opções\",\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "PopoverFooter",
+    "owner": "Popover",
+    "slug": "popover-footer",
+    "family": "popover",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Painel de opções",
+        "nonblank": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      }
+    },
+    "expression": "ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"popover-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Painel de opções\",\"nonblank\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"}}};\nconst transientFamilies=<String,String>{\"popover-footer\":\"popover\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='popover-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\",\"label\":\"Painel de opções\",\"animationEffect\":\"fade\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgePopover(open:opened,onOpenChange:requestOpen,triggerLabel:text('triggerLabel'),label:text('label'),animated:flag('animated'),animationEffect:effect,children:[ForgePopoverHeader(child:Text(text('titleText'))),ForgePopoverBody(child:Column(children:[Text(text('bodyText')),ForgeInput(focusNode:fieldFocus,semanticLabel:'Campo preservado')])),ForgePopoverFooter(child:ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel'))))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Tooltip",
+    "owner": "Tooltip",
+    "slug": "tooltip",
+    "family": "tooltip",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "content": {
+        "kind": "text",
+        "defaultValue": "Informação complementar",
+        "nonblank": true
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Ajuda",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "expression": "ForgeTooltip(content:text('content'),open:opened,onOpenChange:requestOpen,animated:flag('animated'),child:ForgeButton(focusNode:origin,disabled:flag('disabled'),onPressed:()=>recordAction('tooltip'),child:Text(text('triggerLabel'))))",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"tooltip\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"content\":{\"kind\":\"text\",\"defaultValue\":\"Informação complementar\",\"nonblank\":true},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Ajuda\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst transientFamilies=<String,String>{\"tooltip\":\"tooltip\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='tooltip';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"content\":\"Informação complementar\",\"triggerLabel\":\"Ajuda\",\"disabled\":false};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),ForgeTooltip(content:text('content'),open:opened,onOpenChange:requestOpen,animated:flag('animated'),child:ForgeButton(focusNode:origin,disabled:flag('disabled'),onPressed:()=>recordAction('tooltip'),child:Text(text('triggerLabel')))),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "OverlayPortal",
+    "owner": "OverlayPortal",
+    "slug": "overlay-portal",
+    "family": "overlay-portal",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "triggerLabel": {
+        "kind": "text",
+        "defaultValue": "Abrir",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo da apresentação",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Ações do consumidor",
+        "nonblank": true
+      },
+      "closeLabel": {
+        "kind": "text",
+        "defaultValue": "Fechar",
+        "nonblank": true
+      },
+      "cancelLabel": {
+        "kind": "text",
+        "defaultValue": "Cancelar",
+        "nonblank": true
+      }
+    },
+    "expression": "opened?ForgeOverlayPortal(anchor:const Text('Âncora do portal'),children:[SafeArea(child:Align(alignment:Alignment.topRight,child:Padding(padding:EdgeInsets.all(ForgeThemeTokens.of(context).palette.space4),child:ConstrainedBox(constraints:BoxConstraints(maxWidth:ForgeThemeTokens.of(context).palette.layoutContainerNarrow),child:ForgeSurface(padding:ForgeSpace.s4,children:[Text(text('bodyText')),ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel')))])))))]):const SizedBox.shrink()",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"overlay-portal\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"triggerLabel\":{\"kind\":\"text\",\"defaultValue\":\"Abrir\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo da apresentação\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Ações do consumidor\",\"nonblank\":true},\"closeLabel\":{\"kind\":\"text\",\"defaultValue\":\"Fechar\",\"nonblank\":true},\"cancelLabel\":{\"kind\":\"text\",\"defaultValue\":\"Cancelar\",\"nonblank\":true}}};\nconst transientFamilies=<String,String>{\"overlay-portal\":\"overlay-portal\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='overlay-portal';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"animated\":true,\"open\":false,\"triggerLabel\":\"Abrir\",\"titleText\":\"Detalhes\",\"bodyText\":\"Conteúdo da apresentação\",\"footerText\":\"Ações do consumidor\",\"closeLabel\":\"Fechar\",\"cancelLabel\":\"Cancelar\"};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),opened?ForgeOverlayPortal(anchor:const Text('Âncora do portal'),children:[SafeArea(child:Align(alignment:Alignment.topRight,child:Padding(padding:EdgeInsets.all(ForgeThemeTokens.of(context).palette.space4),child:ConstrainedBox(constraints:BoxConstraints(maxWidth:ForgeThemeTokens.of(context).palette.layoutContainerNarrow),child:ForgeSurface(padding:ForgeSpace.s4,children:[Text(text('bodyText')),ForgeButton(onPressed:()=>requestOpen(false),child:Text(text('closeLabel')))])))))]):const SizedBox.shrink(),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ToastRegion",
+    "owner": "ToastRegion",
+    "slug": "toast-region",
+    "family": "toast-region",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Notificações",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Atualização",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Operação demonstrativa concluída",
+        "nonblank": true
+      },
+      "dismissLabel": {
+        "kind": "text",
+        "defaultValue": "Dispensar",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Revisar",
+        "nonblank": true
+      },
+      "duration": {
+        "kind": "select",
+        "options": [
+          "persistent",
+          "short",
+          "long"
+        ],
+        "defaultValue": "persistent"
+      },
+      "urgency": {
+        "kind": "select",
+        "options": [
+          "normal",
+          "urgent"
+        ],
+        "defaultValue": "normal"
+      },
+      "withAction": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      },
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"toast-region\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Notificações\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Atualização\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Operação demonstrativa concluída\",\"nonblank\":true},\"dismissLabel\":{\"kind\":\"text\",\"defaultValue\":\"Dispensar\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Revisar\",\"nonblank\":true},\"duration\":{\"kind\":\"select\",\"options\":[\"persistent\",\"short\",\"long\"],\"defaultValue\":\"persistent\"},\"urgency\":{\"kind\":\"select\",\"options\":[\"normal\",\"urgent\"],\"defaultValue\":\"normal\"},\"withAction\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"},\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst transientFamilies=<String,String>{\"toast-region\":\"toast-region\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='toast-region';final Map<String,Object?> properties=const {\"label\":\"Notificações\",\"titleText\":\"Atualização\",\"bodyText\":\"Operação demonstrativa concluída\",\"dismissLabel\":\"Dispensar\",\"actionLabel\":\"Revisar\",\"duration\":\"persistent\",\"urgency\":\"normal\",\"withAction\":false,\"animated\":true,\"animationEffect\":\"fade\",\"acceptChanges\":true};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Toast",
+    "owner": "ToastRegion",
+    "slug": "toast",
+    "family": "toast-region",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Notificações",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Atualização",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Operação demonstrativa concluída",
+        "nonblank": true
+      },
+      "dismissLabel": {
+        "kind": "text",
+        "defaultValue": "Dispensar",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Revisar",
+        "nonblank": true
+      },
+      "duration": {
+        "kind": "select",
+        "options": [
+          "persistent",
+          "short",
+          "long"
+        ],
+        "defaultValue": "persistent"
+      },
+      "urgency": {
+        "kind": "select",
+        "options": [
+          "normal",
+          "urgent"
+        ],
+        "defaultValue": "normal"
+      },
+      "withAction": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      },
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"toast\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Notificações\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Atualização\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Operação demonstrativa concluída\",\"nonblank\":true},\"dismissLabel\":{\"kind\":\"text\",\"defaultValue\":\"Dispensar\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Revisar\",\"nonblank\":true},\"duration\":{\"kind\":\"select\",\"options\":[\"persistent\",\"short\",\"long\"],\"defaultValue\":\"persistent\"},\"urgency\":{\"kind\":\"select\",\"options\":[\"normal\",\"urgent\"],\"defaultValue\":\"normal\"},\"withAction\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"},\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst transientFamilies=<String,String>{\"toast\":\"toast-region\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='toast';final Map<String,Object?> properties=const {\"label\":\"Notificações\",\"titleText\":\"Atualização\",\"bodyText\":\"Operação demonstrativa concluída\",\"dismissLabel\":\"Dispensar\",\"actionLabel\":\"Revisar\",\"duration\":\"persistent\",\"urgency\":\"normal\",\"withAction\":false,\"animated\":true,\"animationEffect\":\"fade\",\"acceptChanges\":true};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ToastHeader",
+    "owner": "ToastRegion",
+    "slug": "toast-header",
+    "family": "toast-region",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Notificações",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Atualização",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Operação demonstrativa concluída",
+        "nonblank": true
+      },
+      "dismissLabel": {
+        "kind": "text",
+        "defaultValue": "Dispensar",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Revisar",
+        "nonblank": true
+      },
+      "duration": {
+        "kind": "select",
+        "options": [
+          "persistent",
+          "short",
+          "long"
+        ],
+        "defaultValue": "persistent"
+      },
+      "urgency": {
+        "kind": "select",
+        "options": [
+          "normal",
+          "urgent"
+        ],
+        "defaultValue": "normal"
+      },
+      "withAction": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      },
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"toast-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Notificações\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Atualização\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Operação demonstrativa concluída\",\"nonblank\":true},\"dismissLabel\":{\"kind\":\"text\",\"defaultValue\":\"Dispensar\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Revisar\",\"nonblank\":true},\"duration\":{\"kind\":\"select\",\"options\":[\"persistent\",\"short\",\"long\"],\"defaultValue\":\"persistent\"},\"urgency\":{\"kind\":\"select\",\"options\":[\"normal\",\"urgent\"],\"defaultValue\":\"normal\"},\"withAction\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"},\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst transientFamilies=<String,String>{\"toast-header\":\"toast-region\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='toast-header';final Map<String,Object?> properties=const {\"label\":\"Notificações\",\"titleText\":\"Atualização\",\"bodyText\":\"Operação demonstrativa concluída\",\"dismissLabel\":\"Dispensar\",\"actionLabel\":\"Revisar\",\"duration\":\"persistent\",\"urgency\":\"normal\",\"withAction\":false,\"animated\":true,\"animationEffect\":\"fade\",\"acceptChanges\":true};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ToastBody",
+    "owner": "ToastRegion",
+    "slug": "toast-body",
+    "family": "toast-region",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Notificações",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Atualização",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Operação demonstrativa concluída",
+        "nonblank": true
+      },
+      "dismissLabel": {
+        "kind": "text",
+        "defaultValue": "Dispensar",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Revisar",
+        "nonblank": true
+      },
+      "duration": {
+        "kind": "select",
+        "options": [
+          "persistent",
+          "short",
+          "long"
+        ],
+        "defaultValue": "persistent"
+      },
+      "urgency": {
+        "kind": "select",
+        "options": [
+          "normal",
+          "urgent"
+        ],
+        "defaultValue": "normal"
+      },
+      "withAction": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      },
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"toast-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Notificações\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Atualização\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Operação demonstrativa concluída\",\"nonblank\":true},\"dismissLabel\":{\"kind\":\"text\",\"defaultValue\":\"Dispensar\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Revisar\",\"nonblank\":true},\"duration\":{\"kind\":\"select\",\"options\":[\"persistent\",\"short\",\"long\"],\"defaultValue\":\"persistent\"},\"urgency\":{\"kind\":\"select\",\"options\":[\"normal\",\"urgent\"],\"defaultValue\":\"normal\"},\"withAction\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"},\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst transientFamilies=<String,String>{\"toast-body\":\"toast-region\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='toast-body';final Map<String,Object?> properties=const {\"label\":\"Notificações\",\"titleText\":\"Atualização\",\"bodyText\":\"Operação demonstrativa concluída\",\"dismissLabel\":\"Dispensar\",\"actionLabel\":\"Revisar\",\"duration\":\"persistent\",\"urgency\":\"normal\",\"withAction\":false,\"animated\":true,\"animationEffect\":\"fade\",\"acceptChanges\":true};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ToastFooter",
+    "owner": "ToastRegion",
+    "slug": "toast-footer",
+    "family": "toast-region",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Notificações",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Atualização",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Operação demonstrativa concluída",
+        "nonblank": true
+      },
+      "dismissLabel": {
+        "kind": "text",
+        "defaultValue": "Dispensar",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Revisar",
+        "nonblank": true
+      },
+      "duration": {
+        "kind": "select",
+        "options": [
+          "persistent",
+          "short",
+          "long"
+        ],
+        "defaultValue": "persistent"
+      },
+      "urgency": {
+        "kind": "select",
+        "options": [
+          "normal",
+          "urgent"
+        ],
+        "defaultValue": "normal"
+      },
+      "withAction": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "animationEffect": {
+        "kind": "select",
+        "options": [
+          "none",
+          "fade",
+          "scale"
+        ],
+        "defaultValue": "fade"
+      },
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst transientContracts=<String,Map<String,Map<String,Object?>>>{\"toast-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Notificações\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Atualização\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Operação demonstrativa concluída\",\"nonblank\":true},\"dismissLabel\":{\"kind\":\"text\",\"defaultValue\":\"Dispensar\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Revisar\",\"nonblank\":true},\"duration\":{\"kind\":\"select\",\"options\":[\"persistent\",\"short\",\"long\"],\"defaultValue\":\"persistent\"},\"urgency\":{\"kind\":\"select\",\"options\":[\"normal\",\"urgent\"],\"defaultValue\":\"normal\"},\"withAction\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"animationEffect\":{\"kind\":\"select\",\"options\":[\"none\",\"fade\",\"scale\"],\"defaultValue\":\"fade\"},\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst transientFamilies=<String,String>{\"toast-footer\":\"toast-region\"};\nclass ForgeTransientExample extends StatefulWidget{final String slug='toast-footer';final Map<String,Object?> properties=const {\"label\":\"Notificações\",\"titleText\":\"Atualização\",\"bodyText\":\"Operação demonstrativa concluída\",\"dismissLabel\":\"Dispensar\",\"actionLabel\":\"Revisar\",\"duration\":\"persistent\",\"urgency\":\"normal\",\"withAction\":false,\"animated\":true,\"animationEffect\":\"fade\",\"acceptChanges\":true};const ForgeTransientExample({super.key});@override State<ForgeTransientExample> createState()=>_TransientState();}\nclass _TransientState extends State<ForgeTransientExample>{\nbool opened=false;int requests=0,actions=0,closures=0,sequence=0;String feedback='';\nfinal origin=FocusNode(),fieldFocus=FocusNode(),leastFocus=FocusNode();\nForgeToastQueue? queue;List<ForgeToastRecord> records=[];\nString get family=>transientFamilies[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??transientContracts[widget.slug]?[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> values,T fallback)=>values.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nForgeAnimationEffect get effect=>enumValue('animationEffect',ForgeAnimationEffect.values,ForgeAnimationEffect.fade);\nForgeToastRecord makeRecord(String id)=>ForgeToastRecord(id:id,title:text('titleText'),message:text('bodyText'),dismissLabel:text('dismissLabel'),duration:enumValue('duration',ForgeToastDuration.values,ForgeToastDuration.persistent),urgency:enumValue('urgency',ForgeNotificationUrgency.values,ForgeNotificationUrgency.normal),action:flag('withAction')?ForgeButton(onPressed:()=>recordAction('toast-action'),child:Text(text('actionLabel'))):null);\nvoid requestRecords(List<ForgeToastRecord> next){setState((){requests++;feedback='Notificações solicitadas: '+next.length.toString();if(flag('acceptChanges'))records=List.of(next);});if(flag('acceptChanges'))queue!.update(records:records,onRecordsChange:requestRecords);}\nvoid recordAction(String value)=>setState((){actions++;feedback='Ação: $value';});\nvoid requestOpen(bool next){\n setState((){requests++;if(flag('acceptChanges'))opened=next;});\n if(family=='overlay-portal'&&!next&&flag('acceptChanges'))WidgetsBinding.instance.addPostFrameCallback((_){if(mounted)origin.requestFocus();});\n}\nvoid intercept(ForgeModalDismissContext event){if(flag('preventDismiss'))event.cancel();}\nvoid closed(){if(mounted)setState(()=>closures++);}\n@override void initState(){super.initState();opened=flag('open');if(family=='toast-region'){records=[makeRecord('initial')];queue=ForgeToastQueue(records:records,onRecordsChange:requestRecords);}}\n@override void didUpdateWidget(covariant ForgeTransientExample old){\n super.didUpdateWidget(old);\n if(old.properties['open']!=widget.properties['open'])opened=flag('open');\n if(family=='toast-region'&&['titleText','bodyText','dismissLabel','duration','urgency','withAction','actionLabel'].any((key)=>old.properties[key]!=widget.properties[key])){\n records=records.map((r)=>makeRecord(r.id)).toList();queue!.update(records:records,onRecordsChange:requestRecords);\n }\n}\n@override void dispose(){queue?.dispose();origin.dispose();fieldFocus.dispose();leastFocus.dispose();super.dispose();}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[if(['modal','dialog','alert-dialog','confirmation-modal','overlay-portal'].contains(family))ForgeButton(focusNode:origin,onPressed:()=>requestOpen(!opened),child:Text(text('triggerLabel'))),Column(children:[ForgeButton(focusNode:origin,onPressed:()=>queue!.add(makeRecord('toast-'+(++sequence).toString())),child:const Text('Adicionar notificação')),ForgeToastRegion(label:text('label'),controller:queue,renderToast:(record)=>ForgeToast(record:record,animated:flag('animated'),animationEffect:effect,children:[ForgeToastHeader(child:Text(record.title)),ForgeToastBody(child:Text(record.message)),ForgeToastFooter(child:ForgeInline(children:[if(record.action!=null)record.action!,ForgeButton(onPressed:()=>queue!.dismiss(record.id),child:Text(record.dismissLabel))]))]))]),Text('Ações: $actions · Solicitações: $requests · Fechamentos: $closures'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  }
+]

@@ -95,6 +95,12 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
+### Native Flutter rendering (2026-11-18)
+
+- `ForgePopover` owns only its existing component behavior and uses `package:flutter/widgets.dart`, ForgeUI surfaces and semantic tokens without importing Material or Cupertino.
+- Preserve current public constructor, controlled/uncontrolled state, action callbacks, focus management and accessibility semantics. Visual highlighting, panel labels and input suggestion ownership remain component-specific.
+- Source-only acceptance is insufficient: Flutter compile/widget tests, platform accessibility and Web × Flutter screenshot comparison must pass before `DONE`.
+
 ## Criteria
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
@@ -105,3 +111,7 @@ Each row is a proposed native contract, not an available export. Source types/re
 - [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
 - [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
 - [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.
+
+## Showcase verification checkpoint — 2026-11-17
+
+The native showcase now exercises this API in its canonical composition. The [group validation report](../../../../../migration/FLUTTER-REMAINING-PREVIEWS-WAVE-8.md) records widget/snippet tests, compilation evidence and limits. This records preview coverage; it does not establish full Web parity or Android/iOS visual and assistive acceptance. Unverified Criteria remain PENDING.

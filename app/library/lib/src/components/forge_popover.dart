@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import '../theme/forge_theme_tokens.dart';
 import '../types/component_capabilities.dart';
@@ -144,6 +144,8 @@ class _PopoverState extends State<ForgePopover> {
         },
         child: ForgeAnchoredOverlay(
             open: opened,
+            animated: widget.animated,
+            animationEffect: widget.animationEffect,
             gap: p.space1,
             maxWidth: p.layoutContainerNarrow,
             anchor: TapRegion(
@@ -166,10 +168,8 @@ class _PopoverState extends State<ForgePopover> {
                         child: Semantics(
                             container: true,
                             label: widget.label,
-                            child: Material(
-                                type: MaterialType.transparency,
-                                child: SingleChildScrollView(
-                                    child: ForgeSurface(
+                            child: SingleChildScrollView(
+                                child: ForgeSurface(
                                         padding: ForgeSpace.s0,
                                         elevation: ForgeElevation.floating,
                                         child: ForgeStack(
@@ -179,7 +179,7 @@ class _PopoverState extends State<ForgePopover> {
                                                   in _PopoverPartKind.values)
                                                 if (parts[kind] != null)
                                                   parts[kind]!
-                                            ]))))))))));
+                                            ])))))))));
   }
 }
 

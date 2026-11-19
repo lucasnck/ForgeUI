@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "description": "Pre-migration runtime exceptions; not approvals. The strict gate must eventually become empty.",
+  "knownRuntimeDependencies": {
+    "react": [
+      "@hookform/resolvers",
+      "libphonenumber-js",
+      "react-hook-form",
+      "zod"
+    ],
+    "flutter": [
+      "phone_numbers_parser"
+    ]
+  },
+  "migrationOwners": {
+    "react": "Feature-specific form / validation and international phone specs; separate TECH required for each distinct replacement",
+    "flutter": "Flutter international telephone parser SC and native components that consume it",
+    "material": "Flutter theme TECH then individually owned component SCs",
+    "cupertino": "Flutter individually owned component SCs"
+  }
+}

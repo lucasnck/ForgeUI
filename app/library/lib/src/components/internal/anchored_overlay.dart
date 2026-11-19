@@ -1,14 +1,20 @@
+import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
+import '../../types/primitives.dart';
+import 'forge_presence.dart';
 
 class ForgeAnchoredOverlay extends StatefulWidget {
   final Widget anchor, child;
-  final bool open;
+  final bool open, animated;
+  final ForgeAnimationEffect animationEffect;
   final double maxWidth, gap;
   const ForgeAnchoredOverlay(
       {super.key,
       required this.anchor,
       required this.child,
       required this.open,
+      this.animated = true,
+      this.animationEffect = ForgeAnimationEffect.fade,
       this.maxWidth = 400,
       this.gap = 4});
   @override
@@ -32,17 +38,21 @@ class _AnchoredState extends State<ForgeAnchoredOverlay> {
         final bounds = MatrixUtils.transformRect(
             info.childPaintTransform, Offset.zero & info.childSize);
         final media = MediaQuery.maybeOf(context);
-        final inset = media?.padding ?? EdgeInsets.zero;
-        return Offstage(
-            offstage: !widget.open,
-            child: ExcludeFocus(
-                excluding: !widget.open,
-                child: ExcludeSemantics(
-                    excluding: !widget.open,
-                    child: CustomSingleChildLayout(
-                        delegate: _AnchorLayout(bounds, inset, widget.maxWidth,
-                            widget.gap, Directionality.of(context)),
-                        child: widget.child))));
+        final safe = media?.padding ?? EdgeInsets.zero;
+        final keyboard = media?.viewInsets ?? EdgeInsets.zero;
+        final inset = EdgeInsets.fromLTRB(
+            math.max(safe.left, keyboard.left),
+            math.max(safe.top, keyboard.top),
+            math.max(safe.right, keyboard.right),
+            math.max(safe.bottom, keyboard.bottom));
+        return CustomSingleChildLayout(
+            delegate: _AnchorLayout(bounds, inset, widget.maxWidth, widget.gap,
+                Directionality.of(context)),
+            child: ForgePresence(
+                visible: widget.open,
+                animated: widget.animated,
+                effect: widget.animationEffect,
+                child: widget.child));
       },
       child: widget.anchor);
 }

@@ -1,0 +1,10 @@
+
+> forge-ui-workspace@0.1.0 verify:docs
+> node scripts/verify-sc-manifests.mjs && node scripts/audit-sc-links.mjs
+
+[forge-integrity] Current source revision verified for docs/sc/tech-theming.sc.md; historical snapshot retained.
+[forge-integrity] Current source revision verified for docs/sc/tech-form-config.sc.md; historical snapshot retained.
+[forge-integrity] Current source revision verified for docs/sc/tech-preference-contracts.sc.md; historical snapshot retained.
+[forge-integrity] Current source revision verified for docs/sc/tech-form-config-types.sc.md; historical snapshot retained.
+[forge-sc] 173 arquivos de manifesto e 7 definições originais auditados; 0 falhas (sem typecheck/build)
+[SC] 597 documentos, 4274 links relativos, 0 links pendentes (0 pares)

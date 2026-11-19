@@ -78,6 +78,13 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
+### Native Flutter implementation (2026-11-18)
+
+- Preserve the existing public `ForgeIcon` widget contract and all shared tokens, semantics, focus/gesture behavior and user-owned resources.
+- Use only `package:flutter/widgets.dart` and Forge-owned compositions; no Material/Cupertino import or Material rendering layer.
+- `ForgeIcon` may inherit `IconTheme` as a native Flutter widget setting but uses Forge token fallback and its own SVG-like canvas geometry; `ForgeIconButton` delegates to the Forge-owned `ForgeAction` (legacy action backend migration remains a separate pending step); `ForgeTooltip` composes `ForgeSurface` directly, preserving its anchor, hover, focus, escape and semantics behavior.
+- Native-source assertion is necessary but not sufficient: run `flutter analyze`, widget tests and visual/a11y inspection before marking this component `DONE`.
+
 ## Criteria
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.

@@ -4,6 +4,7 @@ library forge_ui;
 export 'src/generated/forge_tokens.g.dart';
 export 'src/theme/forge_theme_data.dart';
 export 'src/theme/forge_theme_tokens.dart';
+export 'src/theme/forge_theme_scope.dart';
 export 'src/components/forge_button.dart';
 export 'src/components/forge_spinner.dart';
 export 'src/components/forge_button_group.dart';

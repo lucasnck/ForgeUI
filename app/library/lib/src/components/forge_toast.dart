@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'internal/forge_presence.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/semantics.dart';
 import '../controllers/toast_queue.dart';
 import '../types/component_capabilities.dart';
@@ -313,10 +314,14 @@ class _ToastState extends State<ForgeToast> {
                   dismiss();
                   return false;
                 },
-                child: ForgeSurface(
-                    gap: ForgeSpace.s2,
-                    padding: ForgeSpace.s2,
-                    children: children))));
+                child: ForgePresence(
+                    visible: true,
+                    animated: widget.animated,
+                    effect: widget.animationEffect,
+                    child: ForgeSurface(
+                        gap: ForgeSpace.s2,
+                        padding: ForgeSpace.s2,
+                        children: children)))));
   }
 }
 

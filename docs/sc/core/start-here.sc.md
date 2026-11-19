@@ -5,7 +5,7 @@ scope: "Navigation and working protocol for Forge UI SC authoring and implementa
 
 # Start Here
 
-The canonical source is the Forge UI `PLAN.md`. Read `architecture.sc.md`, affected resource SC, and migration inventory; compare PraticarFront source when applicable. Follow **SC-first**: demand → SC `PENDING` → authorized implementation → verify → `DONE` only when criteria are proven. There is no `APPROVED` status gate.
+The canonical source is the Forge UI `PLAN.md`. Read `architecture.sc.md`, affected resource SC, and migration inventory; compare PraticarFront source when applicable. Follow **SC-first**: demand → SC `PENDING` → authorized implementation → verify → `DONE` only when criteria are proven. Before authoring, apply the [FEATURE/TECH granularity rubric](../core-template.sc.md): one consumer outcome per FEATURE; one independently testable technical capability per TECH; reuse existing owners and create separate TECHs for separate integrations, without micro-SCs per method. There is no `APPROVED` status gate.
 
 | Work | Current owner |
 | --- | --- |

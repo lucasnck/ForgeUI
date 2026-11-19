@@ -11,7 +11,7 @@ ds-level: "atoms"
 ## Files
 
 ```text
-components/forge_label.dart (C)
+components/forge_label.dart (M)
 ../forge_ui.dart (M)
 ```
 
@@ -20,6 +20,7 @@ components/forge_label.dart (C)
 - [Shared Web Label](../../../../ds/components/atoms/Label.sc.md)
 - [Native API and model adaptation](../../types/tech-native-contracts.sc.md)
 - [Flutter theme adapter](../../../tech-flutter-theme-adapter.sc.md)
+- [Native typography recipe](../../../tech-flutter-typography-recipe.sc.md)
 
 ## Contract
 
@@ -32,6 +33,11 @@ ForgeLabel(
 ```
 
 ## Tests
+
+### Native-library independence
+
+- Render native label text/gesture through `widgets.dart` only, preserving `ForgeControlBinding` focus activation and required marker semantics under `ForgeThemeScope`.
+- Exercise the component in the shared native typography widget test. Dart SDK execution must be recorded, not assumed.
 
 ### Native behavior
 
@@ -86,6 +92,8 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
 ## Criteria
+
+- [ ] Native Flutter (no `MaterialApp`) rendering matches this component contract and remains independent of Material/Cupertino imports where owned; compile, semantics and visual evidence recorded before DONE.
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
 - [ ] Link native label semantics and optional activation to an explicit control/focus target instead of htmlFor DOM lookup.

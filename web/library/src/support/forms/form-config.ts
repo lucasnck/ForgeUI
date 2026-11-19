@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { FormConfig, FormFieldsConfig } from "./form-config.types";
 
-export function defineFormConfig<TShape extends z.ZodRawShape>(
+export function defineFormConfig<TShape extends Record<string, z.ZodType>>(
   fields: FormFieldsConfig<TShape>,
 ): FormConfig<TShape> {
   const shape: Record<string, z.ZodType> = {};

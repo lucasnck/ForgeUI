@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import '../types/odata_filter.dart';
 import '../types/component_capabilities.dart';
 import '../types/primitives.dart';

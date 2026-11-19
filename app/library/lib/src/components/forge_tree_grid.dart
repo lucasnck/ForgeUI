@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:ui' show SemanticsRole;
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import '../controllers/roving_focus_controller.dart';
 import '../types/component_capabilities.dart';

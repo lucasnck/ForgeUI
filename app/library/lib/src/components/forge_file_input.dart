@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../types/file_picker.dart';
 import '../types/forms.dart';
 import '../types/component_capabilities.dart';

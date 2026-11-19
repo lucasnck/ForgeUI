@@ -122,3 +122,15 @@ Each row is a proposed native contract, not an available export. Source types/re
 - [ ] Preserve focus visibility, supported keyboard actions, busy feedback and native touch usability.
 - [x] Preserve basic/crud-hierarchy scenarios through the showcase parity resource.
 - [ ] Record representative runtime visual evidence before claiming parity; native acceptance remains pending until observed.
+
+
+## Continuação: ForgeAction nativo sem Material — 18/11/2026
+
+Tech owner: `docs/sc/app/tech-flutter-native-action-recipe.sc.md`. A receita do Button/IconButton agora é especificada para `widgets.dart` com os mesmos tokens Web de tamanho (`xs` a `xl`), fonte semibold, espaçamento, altura pintada, shape, tom, aparência e foco. O alvo de toque mobile de pelo menos 48 dp **não** altera a geometria visual definida por `--component-height-*`. Precedência `appearance > variant > outlined` e estados `disabled/loading`, `onPressed`, `semanticLabel`, `tooltip`, `focusNode`, `autofocus`, `onFocusChange`, `fullWidth` permanecem.
+
+- [ ] Executar `npm run test:native-actions` no checkout integral.
+- [ ] Executar `dart format`, `flutter analyze`, `flutter test` e o build das prévias atualizado.
+- [ ] Validar manualmente quatro temas, pesos, escalas, estados e a paridade de `Button` e `IconButton` com Web em Android/iOS.
+- [ ] Auditar a biblioteca completa; a dependência Material de Select e do tema legado não está eliminada neste recorte.
+
+**STATUS: PENDING** até homologação real; verificação Node estrutural não equivale a aceite Flutter.

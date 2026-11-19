@@ -112,6 +112,12 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
+### Native Flutter rendering (2026-11-18)
+
+- `ForgeEmailInput` owns only its existing component behavior and uses `package:flutter/widgets.dart`, ForgeUI surfaces and semantic tokens without importing Material or Cupertino.
+- Preserve current public constructor, controlled/uncontrolled state, action callbacks, focus management and accessibility semantics. Visual highlighting, panel labels and input suggestion ownership remain component-specific.
+- Source-only acceptance is insufficient: Flutter compile/widget tests, platform accessibility and Web × Flutter screenshot comparison must pass before `DONE`.
+
 ## Criteria
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.

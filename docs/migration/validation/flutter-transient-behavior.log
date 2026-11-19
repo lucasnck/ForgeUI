@@ -1,0 +1,116 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/transient_preview_test.dart
+00:00 +0: finite transient contracts validate bridge messages
+00:00 +1: open modal in ForgeThemeId.light at 320 logical pixels
+00:01 +2: open modal in ForgeThemeId.dark at 320 logical pixels
+00:01 +3: open modal in ForgeThemeId.contrast at 320 logical pixels
+00:02 +4: open modal in ForgeThemeId.liquidGlass at 320 logical pixels
+00:02 +5: open modal-header in ForgeThemeId.light at 320 logical pixels
+00:02 +6: open modal-header in ForgeThemeId.dark at 320 logical pixels
+00:02 +7: open modal-header in ForgeThemeId.contrast at 320 logical pixels
+00:02 +8: open modal-header in ForgeThemeId.liquidGlass at 320 logical pixels
+00:02 +9: open modal-body in ForgeThemeId.light at 320 logical pixels
+00:02 +10: open modal-body in ForgeThemeId.dark at 320 logical pixels
+00:02 +11: open modal-body in ForgeThemeId.contrast at 320 logical pixels
+00:03 +12: open modal-body in ForgeThemeId.liquidGlass at 320 logical pixels
+00:03 +13: open modal-footer in ForgeThemeId.light at 320 logical pixels
+00:03 +14: open modal-footer in ForgeThemeId.dark at 320 logical pixels
+00:03 +15: open modal-footer in ForgeThemeId.contrast at 320 logical pixels
+00:03 +16: open modal-footer in ForgeThemeId.liquidGlass at 320 logical pixels
+00:03 +17: open dialog in ForgeThemeId.light at 320 logical pixels
+00:03 +18: open dialog in ForgeThemeId.dark at 320 logical pixels
+00:03 +19: open dialog in ForgeThemeId.contrast at 320 logical pixels
+00:03 +20: open dialog in ForgeThemeId.liquidGlass at 320 logical pixels
+00:03 +21: open dialog-header in ForgeThemeId.light at 320 logical pixels
+00:04 +22: open dialog-header in ForgeThemeId.dark at 320 logical pixels
+00:04 +23: open dialog-header in ForgeThemeId.contrast at 320 logical pixels
+00:04 +24: open dialog-header in ForgeThemeId.liquidGlass at 320 logical pixels
+00:04 +25: open dialog-body in ForgeThemeId.light at 320 logical pixels
+00:04 +26: open dialog-body in ForgeThemeId.dark at 320 logical pixels
+00:04 +27: open dialog-body in ForgeThemeId.contrast at 320 logical pixels
+00:04 +28: open dialog-body in ForgeThemeId.liquidGlass at 320 logical pixels
+00:04 +29: open dialog-footer in ForgeThemeId.light at 320 logical pixels
+00:04 +30: open dialog-footer in ForgeThemeId.dark at 320 logical pixels
+00:04 +31: open dialog-footer in ForgeThemeId.contrast at 320 logical pixels
+00:05 +32: open dialog-footer in ForgeThemeId.liquidGlass at 320 logical pixels
+00:05 +33: open dialog-close in ForgeThemeId.light at 320 logical pixels
+00:05 +34: open dialog-close in ForgeThemeId.dark at 320 logical pixels
+00:05 +35: open dialog-close in ForgeThemeId.contrast at 320 logical pixels
+00:05 +36: open dialog-close in ForgeThemeId.liquidGlass at 320 logical pixels
+00:05 +37: open alert-dialog in ForgeThemeId.light at 320 logical pixels
+00:05 +38: open alert-dialog in ForgeThemeId.dark at 320 logical pixels
+00:05 +39: open alert-dialog in ForgeThemeId.contrast at 320 logical pixels
+00:05 +40: open alert-dialog in ForgeThemeId.liquidGlass at 320 logical pixels
+00:06 +41: open alert-dialog-header in ForgeThemeId.light at 320 logical pixels
+00:06 +42: open alert-dialog-header in ForgeThemeId.dark at 320 logical pixels
+00:06 +43: open alert-dialog-header in ForgeThemeId.contrast at 320 logical pixels
+00:06 +44: open alert-dialog-header in ForgeThemeId.liquidGlass at 320 logical pixels
+00:06 +45: open alert-dialog-body in ForgeThemeId.light at 320 logical pixels
+00:06 +46: open alert-dialog-body in ForgeThemeId.dark at 320 logical pixels
+00:06 +47: open alert-dialog-body in ForgeThemeId.contrast at 320 logical pixels
+00:06 +48: open alert-dialog-body in ForgeThemeId.liquidGlass at 320 logical pixels
+00:06 +49: open alert-dialog-footer in ForgeThemeId.light at 320 logical pixels
+00:06 +50: open alert-dialog-footer in ForgeThemeId.dark at 320 logical pixels
+00:06 +51: open alert-dialog-footer in ForgeThemeId.contrast at 320 logical pixels
+00:07 +52: open alert-dialog-footer in ForgeThemeId.liquidGlass at 320 logical pixels
+00:07 +53: open confirmation-modal in ForgeThemeId.light at 320 logical pixels
+00:07 +54: open confirmation-modal in ForgeThemeId.dark at 320 logical pixels
+00:07 +55: open confirmation-modal in ForgeThemeId.contrast at 320 logical pixels
+00:07 +56: open confirmation-modal in ForgeThemeId.liquidGlass at 320 logical pixels
+00:07 +57: open popover in ForgeThemeId.light at 320 logical pixels
+00:07 +58: open popover in ForgeThemeId.dark at 320 logical pixels
+00:07 +59: open popover in ForgeThemeId.contrast at 320 logical pixels
+00:07 +60: open popover in ForgeThemeId.liquidGlass at 320 logical pixels
+00:07 +61: open popover-header in ForgeThemeId.light at 320 logical pixels
+00:08 +62: open popover-header in ForgeThemeId.dark at 320 logical pixels
+00:08 +63: open popover-header in ForgeThemeId.contrast at 320 logical pixels
+00:08 +64: open popover-header in ForgeThemeId.liquidGlass at 320 logical pixels
+00:08 +65: open popover-body in ForgeThemeId.light at 320 logical pixels
+00:08 +66: open popover-body in ForgeThemeId.dark at 320 logical pixels
+00:08 +67: open popover-body in ForgeThemeId.contrast at 320 logical pixels
+00:08 +68: open popover-body in ForgeThemeId.liquidGlass at 320 logical pixels
+00:08 +69: open popover-footer in ForgeThemeId.light at 320 logical pixels
+00:08 +70: open popover-footer in ForgeThemeId.dark at 320 logical pixels
+00:09 +71: open popover-footer in ForgeThemeId.contrast at 320 logical pixels
+00:09 +72: open popover-footer in ForgeThemeId.liquidGlass at 320 logical pixels
+00:09 +73: open tooltip in ForgeThemeId.light at 320 logical pixels
+00:09 +74: open tooltip in ForgeThemeId.dark at 320 logical pixels
+00:09 +75: open tooltip in ForgeThemeId.contrast at 320 logical pixels
+00:09 +76: open tooltip in ForgeThemeId.liquidGlass at 320 logical pixels
+00:09 +77: open overlay-portal in ForgeThemeId.light at 320 logical pixels
+00:09 +78: open overlay-portal in ForgeThemeId.dark at 320 logical pixels
+00:09 +79: open overlay-portal in ForgeThemeId.contrast at 320 logical pixels
+00:09 +80: open overlay-portal in ForgeThemeId.liquidGlass at 320 logical pixels
+00:09 +81: open toast-region in ForgeThemeId.light at 320 logical pixels
+00:09 +82: open toast-region in ForgeThemeId.dark at 320 logical pixels
+00:09 +83: open toast-region in ForgeThemeId.contrast at 320 logical pixels
+00:09 +84: open toast-region in ForgeThemeId.liquidGlass at 320 logical pixels
+00:09 +85: open toast in ForgeThemeId.light at 320 logical pixels
+00:09 +86: open toast in ForgeThemeId.dark at 320 logical pixels
+00:09 +87: open toast in ForgeThemeId.contrast at 320 logical pixels
+00:10 +88: open toast in ForgeThemeId.liquidGlass at 320 logical pixels
+00:10 +89: open toast-header in ForgeThemeId.light at 320 logical pixels
+00:10 +90: open toast-header in ForgeThemeId.dark at 320 logical pixels
+00:10 +91: open toast-header in ForgeThemeId.contrast at 320 logical pixels
+00:10 +92: open toast-header in ForgeThemeId.liquidGlass at 320 logical pixels
+00:10 +93: open toast-body in ForgeThemeId.light at 320 logical pixels
+00:10 +94: open toast-body in ForgeThemeId.dark at 320 logical pixels
+00:10 +95: open toast-body in ForgeThemeId.contrast at 320 logical pixels
+00:10 +96: open toast-body in ForgeThemeId.liquidGlass at 320 logical pixels
+00:10 +97: open toast-footer in ForgeThemeId.light at 320 logical pixels
+00:10 +98: open toast-footer in ForgeThemeId.dark at 320 logical pixels
+00:10 +99: open toast-footer in ForgeThemeId.contrast at 320 logical pixels
+00:10 +100: open toast-footer in ForgeThemeId.liquidGlass at 320 logical pixels
+00:10 +101: modal close restores focus and retains entered content
+00:11 +102: modal accepts cancellation veto
+00:11 +103: modal caller can refuse controlled opening
+00:11 +104: dialog close restores focus and retains entered content
+00:11 +105: dialog accepts cancellation veto
+00:11 +106: dialog caller can refuse controlled opening
+00:11 +107: alert-dialog close restores focus and retains entered content
+00:12 +108: alert-dialog accepts cancellation veto
+00:12 +109: alert-dialog caller can refuse controlled opening
+00:12 +110: confirmation records the callback and caller controls closure
+00:12 +111: popover closes through real footer and restores trigger
+00:12 +112: toast queue supports action and dismissal
+00:12 +113: controlled toast queue preserves rejected dismissal
+00:12 +114: All tests passed!

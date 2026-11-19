@@ -1,0 +1,22 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_part_snippets_test.dart
+00:00 +0: copyable interaction card-header 0
+00:01 +1: copyable interaction card-body 1
+00:01 +2: copyable interaction card-footer 2
+00:01 +3: copyable interaction alert-header 3
+00:01 +4: copyable interaction alert-body 4
+00:01 +5: copyable interaction alert-footer 5
+00:01 +6: copyable interaction empty-state-header 6
+00:01 +7: copyable interaction empty-state-body 7
+00:01 +8: copyable interaction empty-state-footer 8
+00:01 +9: copyable interaction error-state-header 9
+00:01 +10: copyable interaction error-state-body 10
+00:01 +11: copyable interaction error-state-footer 11
+00:01 +12: copyable interaction loading-state-header 12
+00:01 +13: copyable interaction loading-state-body 13
+00:01 +14: copyable interaction loading-state-footer 14
+00:01 +15: copyable interaction breadcrumb-item 15
+00:01 +16: copyable interaction pagination-item 16
+00:02 +17: copyable interaction pagination-ellipsis 17
+00:02 +18: copyable interaction tag-group-item 18
+00:02 +19: copyable interaction card-header 19
+00:02 +20: All tests passed!

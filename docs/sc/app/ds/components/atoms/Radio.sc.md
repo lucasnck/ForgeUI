@@ -102,3 +102,12 @@ Each row is a proposed native contract, not an available export. Source types/re
 - [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
 - [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
 - [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.
+
+### Independência nativa — recorte 18/11/2026
+
+- **Fonte canônica compartilhada:** `app/library/lib/src/components/forge_checkable.dart` e [TECH de controles nativos](../../../tech-native-checkables.sc.md).
+- **Implementação deste recorte:** `package:flutter/widgets.dart` + `services.dart`, `Focus`, `GestureDetector`, `Semantics` e tokens existentes, removendo `Material`, `InkWell` e `kMinInteractiveDimension` da fonte.
+- **Contrato Radio:** radio selection only becomes true, repeated activation does not emit duplicate callbacks; maintain required group validation, mutual exclusivity contract and correct keyboard/focus semantics. Existing group adapter parity still pending.
+- **Limite de compatibilidade:** alvo mínimo 48 dp equivalente ao anterior, ainda sem token semântico dedicado; nenhum contrato público ou export modificado.
+- **Validação requerida:** `npm run test:native-checkables`, `flutter analyze`, `flutter test test/forge_native_checkables_test.dart`, acessibilidade e paridade em aparelho. O teste Node cobre fronteira estrutural, não a semântica em runtime.
+- **Estado:** `PENDING`. Só marcar critérios após execução dos testes e verificação funcional/visual.

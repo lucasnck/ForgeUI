@@ -11,7 +11,7 @@ ds-level: "atoms"
 ## Files
 
 ```text
-components/forge_field_error.dart (C)
+components/forge_field_error.dart (M)
 ../forge_ui.dart (M)
 ```
 
@@ -20,6 +20,7 @@ components/forge_field_error.dart (C)
 - [Shared Web FieldError](../../../../ds/components/atoms/FieldError.sc.md)
 - [Native API and model adaptation](../../types/tech-native-contracts.sc.md)
 - [Flutter theme adapter](../../../tech-flutter-theme-adapter.sc.md)
+- [Native typography recipe](../../../tech-flutter-typography-recipe.sc.md)
 
 ## Contract
 
@@ -32,6 +33,11 @@ ForgeFieldError(
 ```
 
 ## Tests
+
+### Native-library independence
+
+- Render with native Flutter `widgets.dart` under `ForgeThemeScope`; preserve token typography, semantic labels, descriptions and long-text wrapping, without Material UI imports.
+- Exercise the component in the shared native typography widget test. Dart SDK execution must be recorded, not assumed.
 
 ### Native behavior
 
@@ -84,6 +90,8 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
 ## Criteria
+
+- [ ] Native Flutter (no `MaterialApp`) rendering matches this component contract and remains independent of Material/Cupertino imports where owned; compile, semantics and visual evidence recorded before DONE.
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
 - [ ] Use native validation description and optional safe announcement, keeping validity owned by its control/form.

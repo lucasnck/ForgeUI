@@ -1,5 +1,5 @@
 import '../types/primitives.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../generated/forge_icons.g.dart';
 import '../theme/forge_theme_tokens.dart';
 

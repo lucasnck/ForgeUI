@@ -1,5 +1,18 @@
 # Implementação Flutter por grupos
 
+## Checkpoint atual — etapas 6 a 8 — 17/11/2026
+
+**221 APIs públicas e 221 prévias Flutter compiladas e registradas**, incluindo partes canônicas demonstradas no proprietário correto. **125 testes da biblioteca e 1.174 do showcase passaram**; análise Dart sem problemas. Build Flutter `0d5f6c48442ac45e`. Tokens (185 em quatro temas), curva de movimento canônica e typecheck Web/portal aprovados. Não há entrada de catálogo sem prévia registrada. Build do portal aprovado com 297 rotas; [17 verificações HTTP](validation/flutter-wave8-http.json) passaram, incluindo correspondência do hash Flutter servido ao manifesto.
+
+Entregues os grupos de interação/formulários, coleções/navegação, modais/notificações, tabelas, templates, transições, mapa e OData. Corrigidos teclado/RTL de RadioGroup, semântica de FormField, geometria dos popups e presença/animações com restauração de foco. Os snippets copiáveis são compilados nos testes.
+
+Evidências: [etapa 6](FLUTTER-INTERACTION-FORMS-WAVE-6.md), [etapa 7](FLUTTER-COLLECTIONS-WAVE-7.md), [etapa 8](FLUTTER-REMAINING-PREVIEWS-WAVE-8.md), [pipeline integral](validation/flutter-wave8-build.log) e [acompanhamento estruturado](FLUTTER-IMPLEMENTATION-PROGRESS.json).
+
+**Pendências de aceite:** comparação visual e funcional completa por SC entre Web/app; validação Android/iOS e tecnologias assistivas. Semântica e foco têm testes automatizados, mas isso não representa auditoria em aparelho. APIs nativas e os controles de cenário são distintos; o editor não oferece alteração de todos os parâmetros construtores/objetos tipados. PopupListbox e Toast ainda removem itens imediatamente, sem pintura de saída retida. As SCs continuam PENDING nos critérios não comprovados.
+
+Os registros seguintes são históricos e suas contagens/bloqueios são substituídos pelo checkpoint acima. PraticarFront permanece intacto.
+
+
 ## Validação no checkout com SDK — 17/11/2026
 
 - Flutter 3.38.7 / Dart 3.10.7 disponíveis; análise da biblioteca e do showcase sem problemas.

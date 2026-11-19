@@ -1,0 +1,744 @@
+
+> forge-ui-workspace@0.1.0 build:flutter-preview
+> node scripts/build-flutter-preview.mjs
+
+Verified constructor properties for 221 native components; preview availability is unchanged.
+PASS: 20 property schemas, invalid values and 21 real Dart snippets generated for compilation.
+PASS: 36 native input schemas; 37 real snippets generated for Flutter compilation.
+PASS: 4 controlled compositional schemas and 5 real Dart snippets prepared for Flutter compilation.
+PASS: 5 feedback schemas and 6 copyable Dart samples generated.
+PASS: 26 finite contextual APIs and 27 copyable Dart interaction samples prepared for compilation.
+PASS: 14 native form/list contexts and 15 copyable Dart samples prepared for compilation.
+PASS: real Flutter property schema/snippets, local bootstrap and origin/source-validated bridge
+PASS: 108 finite native identities, bootstrap handshakes and portal index guards
+Resolving dependencies...
+Downloading packages...
+  characters 1.4.0 (1.4.1 available)
+  clock 1.1.2 (1.1.3 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  lints 5.1.1 (6.1.0 available)
+  matcher 0.12.17 (0.12.20 available)
+  material_color_utilities 0.11.1 (0.13.1 available)
+  meta 1.17.0 (1.19.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.7 (0.7.15 available)
+  vector_math 2.2.0 (2.4.4 available)
+Got dependencies!
+10 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing library...                                            
+No issues found! (ran in 5.3s)
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus
+00:00 +1: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus
+00:00 +2: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus
+00:00 +3: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: menu activates one action before dismissal and loops keyboard focus
+00:01 +4: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: dropdown is an actual menu and accepts a dismissed controlled request
+00:01 +5: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: tree expansion and selection remain separate keyboard operations
+00:01 +6: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: tree nullable controlled selection can explicitly refuse
+00:01 +7: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: stepper preserves panel state across controlled changes
+00:02 +8: D:/projects/AiWorkzone/ForgeUI/app/library/test/collections_test.dart: navigation leaves delegate href and groups disclose native content
+00:07 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: card sorts canonical parts and child actions remain independent
+00:08 +10: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows
+00:08 +11: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows
+00:09 +12: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows
+00:09 +13: D:/projects/AiWorkzone/ForgeUI/app/library/test/data_grid_test.dart: data grid renders source order and emits controlled sorting without mutating rows
+00:09 +14: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: form submit validates and includes exact submitter once; reset restores field
+00:09 +15: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: form submit validates and includes exact submitter once; reset restores field
+00:09 +16: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: form submit validates and includes exact submitter once; reset restores field
+00:09 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: cancelled submit and reset retain owner control
+00:10 +18: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: field association forwards focus and footer override to a real control
+00:10 +19: D:/projects/AiWorkzone/ForgeUI/app/library/test/compositions_test.dart: currency input preserves incomplete drafts and refusal commits authoritative value on blur
+00:11 +20: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_group_test.dart: wraps actions with token spacing and independent semantics/callbacks
+00:13 +21: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: one native activation; disabled, loading and null suppress actions
+00:13 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: one native activation; disabled, loading and null suppress actions
+00:14 +23: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: loading replacement, empty fallback and explicit semantics
+00:14 +24: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: appearance overrides variant and legacy; theme shape is inherited
+00:14 +25: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: bounded full width, unbounded fallback and scaled content stay finite
+00:15 +26: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_button_test.dart: keyboard activation and borrowed focus survive widget disposal
+00:16 +27: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb requires a current last item and valid destinations
+00:16 +28: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: breadcrumb uses caller activation and current item stays passive
+00:17 +29: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination is controlled and ignores duplicate current requests
+00:17 +30: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: disabled page actions do not notify their owner or user handler
+00:17 +31: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination validates range and rejects foreign children
+00:17 +32: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: pagination item cannot render outside a pagination owner
+00:17 +33: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_navigation_compounds_test.dart: brand checkbox resolves an existing portable color token
+00:21 +34: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart: PageHeader keeps caller-owned slots and a stable heading
+00:22 +35: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart: PageHeader keeps caller-owned slots and a stable heading
+00:22 +36: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: named status, decorative exclusion and reduced-motion cleanup
+00:22 +37: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_page_header_test.dart: PageHeader does not invent missing slots or divider
+00:22 +38: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: every size uses the Web spinner token, not control height
+00:22 +39: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_spinner_test.dart: every size uses the Web spinner token, not control height
+00:22 +40: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart
+00:29 +40: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart: TagGroup uses stable entries and never removes caller data
+00:29 +41: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_tag_group_test.dart: TagGroup uses stable entries and never removes caller data
+00:30 +42: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state
+00:30 +43: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state
+00:30 +44: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state
+00:30 +45: D:/projects/AiWorkzone/ForgeUI/app/library/test/forge_theme_data_test.dart: button switches themes and respects disabled/loading state
+00:32 +46: D:/projects/AiWorkzone/ForgeUI/app/library/test/form_field_semantics_test.dart: field associates only mounted hint/error and preserves native input state
+00:32 +47: D:/projects/AiWorkzone/ForgeUI/app/library/test/form_field_semantics_test.dart: field associates only mounted hint/error and preserves native input state
+00:32 +48: D:/projects/AiWorkzone/ForgeUI/app/library/test/form_field_semantics_test.dart: field associates only mounted hint/error and preserves native input state
+00:33 +49: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: controlled input can refuse edits without callback echo
+00:34 +50: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: form validates required, submits current and resets defaults
+00:34 +51: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: password reveal changes obscurity while preserving text and selection
+00:34 +52: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: search clear emits once and controlled owner may reject
+00:34 +53: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: checkbox registers only checked successful controls and reset restores default
+00:34 +54: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: select retains duplicate option labels with index identity
+00:35 +55: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: file cancellation emits nothing; accepted empty emits with cancellable callback order
+00:35 +56: D:/projects/AiWorkzone/ForgeUI/app/library/test/inputs_test.dart: temporal values are local and invalid dates do not normalize silently
+00:35 +57: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled
+00:35 +58: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled
+00:36 +59: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled
+00:36 +60: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once
+00:36 +61: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once
+00:36 +62: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once
+00:37 +63: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once
+00:37 +64: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map cancels superseded mounts and destroys both late and accepted handles exactly once
+00:37 +65: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: map validates before vendor mount and keeps readable fallback
+00:37 +66: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: renderer failure reports once without implicit retry on unrelated scene updates
+00:37 +67: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: schematic renderer paints actual geometry and uses explicit non-navigation label
+00:38 +68: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: initial renderer failure cleans cancellation once (update: false)
+00:38 +69: D:/projects/AiWorkzone/ForgeUI/app/library/test/map_view_test.dart: initial renderer failure cleans cancellation once (update: true)
+00:38 +70: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen
+00:39 +71: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen
+00:41 +72: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus
+00:41 +73: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus
+00:41 +74: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus
+00:41 +75: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus
+00:42 +76: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus
+00:42 +77: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: tabs use manual keyboard activation, skip disabled, retain panels and repair hidden focus
+00:43 +78: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: toolbar wraps keyboard focus in source direction and excludes disabled
+00:43 +79: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: collapse retains input state and moves focus before hiding
+00:43 +80: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: controlled collapse refusal does not hide content
+00:43 +81: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: accordion single noncollapsible and multiple state follow accepted owner
+00:43 +82: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_test.dart: Dart OData serializer matches existing Web fixtures including exact decimal ranges
+00:43 +83: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_test.dart: Dart OData serializer matches existing Web fixtures including exact decimal ranges
+00:44 +84: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: removing a focused toolbar item repairs focus to the next enabled action
+00:44 +85: D:/projects/AiWorkzone/ForgeUI/app/library/test/navigation_test.dart: roving focus validates identities before mutation
+00:45 +86: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: simple exact-decimal editing and Apply emit the authoritative expression once
+00:47 +87: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:47 +88: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: invalid/incomplete range remains visible and blocks Apply
+00:47 +89: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover outside pointer requests close but controlled owner can refuse
+00:47 +90: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: unsupported simple model is never flattened and clear retains root identity
+00:47 +91: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: anchored overlay clamps to viewport instead of overflowing its right edge
+00:47 +92: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: advanced add/remove preserves immutable parent expression
+00:47 +93: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: advanced add/remove preserves immutable parent expression
+00:48 +94: D:/projects/AiWorkzone/ForgeUI/app/library/test/odata_widgets_test.dart: advanced add/remove preserves immutable parent expression
+00:48 +95: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures
+00:49 +96: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures
+00:49 +97: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures
+00:50 +98: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures
+00:51 +99: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures
+00:51 +100: D:/projects/AiWorkzone/ForgeUI/app/library/test/phone_test.dart: native phone helper matches existing Web country fixtures
+00:51 +101: D:/projects/AiWorkzone/ForgeUI/app/library/test/primitives_test.dart: label binding targets borrowed focus; link delegates exact destination
+00:52 +102: D:/projects/AiWorkzone/ForgeUI/app/library/test/radio_group_keyboard_test.dart: radio arrows wrap, skip disabled and update native selection once
+00:54 +103: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults
+00:54 +104: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults
+00:54 +105: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults
+00:54 +106: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: registered field fails clearly without typed owner
+00:55 +107: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: application shell preserves entered state when responsive slots change
+00:55 +108: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page templates omit absent slots and preserve header/content ordering
+00:55 +109: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page transition commits latest content immediately and snaps for reduced motion
+00:55 +110: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: shared element uses real native route participation and direct-entry fallback
+00:56 +111: D:/projects/AiWorkzone/ForgeUI/app/library/test/toast_test.dart: toast queue pauses remaining timeout and keeps actionable records persistent
+00:57 +112: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter
+00:57 +113: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter
+00:58 +114: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter
+00:58 +115: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: tree grid navigates a matrix and expands only first-column Enter
+00:58 +116: D:/projects/AiWorkzone/ForgeUI/app/library/test/tree_grid_test.dart: controlled tree-grid collapse returns focused descendant to matching ancestor column
+00:58 +117: All tests passed!
+Resolving dependencies...
+Downloading packages...
+  characters 1.4.0 (1.4.1 available)
+  clock 1.1.2 (1.1.3 available)
+  matcher 0.12.17 (0.12.20 available)
+  material_color_utilities 0.11.1 (0.13.1 available)
+  meta 1.17.0 (1.19.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.7 (0.7.15 available)
+  vector_math 2.2.0 (2.4.4 available)
+Got dependencies!
+8 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing showcase_flutter...                                   
+No issues found! (ran in 3.7s)
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: only real, well-typed supported composition properties cross the bridge
+00:00 +1: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native breadcrumb in ForgeThemeId.light
+00:00 +2: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native breadcrumb in ForgeThemeId.light
+00:01 +3: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +4: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +5: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +6: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +7: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +8: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +9: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +10: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.light
+00:01 +11: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native tag-group in ForgeThemeId.light
+00:01 +12: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native tag-group in ForgeThemeId.light
+00:01 +13: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.contrast
+00:02 +14: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native tag-group in ForgeThemeId.dark
+00:02 +15: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback card renders in ForgeThemeId.liquidGlass
+00:02 +16: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native tag-group in ForgeThemeId.contrast
+00:02 +17: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback alert renders in ForgeThemeId.light
+00:02 +18: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native tag-group in ForgeThemeId.liquidGlass
+00:02 +19: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback alert renders in ForgeThemeId.dark
+00:02 +20: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native page-header in ForgeThemeId.light
+00:02 +21: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native page-header in ForgeThemeId.light
+00:02 +22: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback alert renders in ForgeThemeId.liquidGlass
+00:02 +23: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native page-header in ForgeThemeId.dark
+00:02 +24: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback empty-state renders in ForgeThemeId.light
+00:02 +25: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native page-header in ForgeThemeId.contrast
+00:02 +26: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback empty-state renders in ForgeThemeId.dark
+00:02 +27: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: native page-header in ForgeThemeId.liquidGlass
+00:02 +28: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback empty-state renders in ForgeThemeId.contrast
+00:02 +29: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: breadcrumb delegates navigation; current item is passive
+00:02 +30: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: breadcrumb delegates navigation; current item is passive
+00:02 +31: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: breadcrumb delegates navigation; current item is passive
+00:02 +32: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback error-state renders in ForgeThemeId.dark
+00:02 +33: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: pagination is controlled by caller and ignores disabled requests
+00:02 +34: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: pagination is controlled by caller and ignores disabled requests
+00:02 +35: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: pagination is controlled by caller and ignores disabled requests
+00:02 +36: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback loading-state renders in ForgeThemeId.light
+00:02 +37: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: pagination rejects duplicate page targets
+00:03 +38: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: real feedback loading-state renders in ForgeThemeId.dark
+00:03 +39: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: tag removal is owned by fixture, stable entries survive
+00:03 +40: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: tag removal is owned by fixture, stable entries survive
+00:03 +41: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/composite_preview_test.dart: tag removal is owned by fixture, stable entries survive
+00:03 +42: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: card action is independent and edits preserve consumer state
+00:03 +43: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: card action is independent and edits preserve consumer state
+00:03 +44: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: empty state can omit footer, no implicit action
+00:03 +45: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: error retry only invokes caller callback
+00:03 +46: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/feedback_preview_test.dart: loading status includes a decorative spinner and required label
+00:04 +47: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: 14 finite form/list contracts validate exact message values
+00:04 +48: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list at 320 logical pixels in ForgeThemeId.light
+00:06 +49: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable breadcrumb 0
+00:06 +50: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable breadcrumb 0
+00:06 +51: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable breadcrumb 0
+00:06 +52: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list at 320 logical pixels in ForgeThemeId.liquidGlass
+00:06 +53: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable pagination 1
+00:06 +54: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable pagination 1
+00:06 +55: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable pagination 1
+00:06 +56: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-header at 320 logical pixels in ForgeThemeId.contrast
+00:06 +57: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable tag-group 2
+00:06 +58: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable tag-group 2
+00:06 +59: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable tag-group 2
+00:06 +60: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-body at 320 logical pixels in ForgeThemeId.dark
+00:06 +61: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable page-header 3
+00:06 +62: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-body at 320 logical pixels in ForgeThemeId.contrast
+00:06 +63: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_composite_snippets_test.dart: copyable breadcrumb 4
+00:06 +64: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:06 +65: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-footer at 320 logical pixels in ForgeThemeId.light
+00:06 +66: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-footer at 320 logical pixels in ForgeThemeId.dark
+00:07 +67: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-footer at 320 logical pixels in ForgeThemeId.contrast
+00:07 +68: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +69: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-item at 320 logical pixels in ForgeThemeId.light
+00:07 +70: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-item at 320 logical pixels in ForgeThemeId.dark
+00:07 +71: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-item at 320 logical pixels in ForgeThemeId.contrast
+00:07 +72: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list list-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +73: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form at 320 logical pixels in ForgeThemeId.light
+00:07 +74: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form at 320 logical pixels in ForgeThemeId.dark
+00:07 +75: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form at 320 logical pixels in ForgeThemeId.contrast
+00:07 +76: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +77: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-header at 320 logical pixels in ForgeThemeId.light
+00:07 +78: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +79: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +80: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +81: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +82: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +83: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +84: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +85: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +86: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +87: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:08 +88: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +89: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +90: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +91: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +92: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +93: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +94: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +95: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +96: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 0
+00:09 +97: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +98: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback alert 1
+00:09 +99: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback alert 1
+00:09 +100: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-body at 320 logical pixels in ForgeThemeId.dark
+00:09 +101: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback empty-state 2
+00:09 +102: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-body at 320 logical pixels in ForgeThemeId.contrast
+00:09 +103: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback error-state 3
+00:10 +104: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:10 +105: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback loading-state 4
+00:10 +106: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback loading-state 4
+00:10 +107: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-footer at 320 logical pixels in ForgeThemeId.dark
+00:10 +108: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_feedback_snippets_test.dart: copyable feedback card 5
+00:10 +109: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-footer at 320 logical pixels in ForgeThemeId.contrast
+00:10 +110: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:10 +111: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-input at 320 logical pixels in ForgeThemeId.light
+00:10 +112: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-input at 320 logical pixels in ForgeThemeId.dark
+00:10 +113: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-input at 320 logical pixels in ForgeThemeId.contrast
+00:10 +114: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: form/list form-field-input at 320 logical pixels in ForgeThemeId.liquidGlass
+00:10 +115: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: required form validates, submits named value and submitter then resets
+00:11 +116: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: cancelled submit and reset retain entered value
+00:11 +117: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: typed model edits and provider errors preserve displayed override and validity
+00:11 +118: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: disabled owner blocks editing and loading suppresses submission
+00:11 +119: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: list is passive while footer action is independent
+00:11 +120: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/form_catalog_preview_test.dart: entrypoint mounts native typed form
+00:11 +121: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart: copyable interaction list 0
+00:13 +122: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart: copyable interaction list-header 1
+00:13 +123: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart: copyable interaction list-body 2
+00:13 +124: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:13 +125: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:13 +126: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:13 +127: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:13 +128: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:13 +129: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +130: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +131: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +132: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +133: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +134: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +135: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input 0
+00:14 +136: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart: copyable interaction form-field-input 14
+00:14 +137: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input textarea 1
+00:14 +138: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input checkbox 2
+00:14 +139: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input switch 3
+00:14 +140: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input radio 4
+00:14 +141: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input select 5
+00:15 +142: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input option 6
+00:15 +143: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input-base 7
+00:15 +144: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input icon-button 8
+00:15 +145: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input progress-bar 9
+00:15 +146: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input slider 10
+00:15 +147: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input legend 11
+00:15 +148: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input-group 12
+00:15 +149: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input input-addon 13
+00:15 +150: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input tag 14
+00:15 +151: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input masked-input 15
+00:15 +152: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input date-input 16
+00:15 +153: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:15 +154: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +155: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +156: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +157: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +158: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +159: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +160: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +161: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:16 +162: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:17 +163: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:17 +164: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:17 +165: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:17 +166: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input password-input 29
+00:17 +167: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-header 1
+00:17 +168: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input number-input 30
+00:17 +169: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-body 2
+00:17 +170: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-body 2
+00:17 +171: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input url-input 32
+00:17 +172: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-footer 3
+00:17 +173: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input date-time-input 33
+00:17 +174: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction checkbox-group 4
+00:17 +175: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input time-input 34
+00:17 +176: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction checkbox-group-item 5
+00:17 +177: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_input_snippets_test.dart: copyable input file-input 35
+00:17 +178: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group 6
+00:17 +179: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group 6
+00:17 +180: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group-item 7
+00:17 +181: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs 8
+00:18 +182: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs-header 9
+00:18 +183: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs-body 10
+00:18 +184: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs-footer 11
+00:18 +185: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tab 12
+00:18 +186: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tab-panel 13
+00:18 +187: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction toolbar 14
+00:18 +188: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction toolbar-item 15
+00:18 +189: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction disclosure 16
+00:19 +190: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse 17
+00:19 +191: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-header 18
+00:19 +192: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-body 19
+00:19 +193: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-footer 20
+00:19 +194: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion 21
+00:19 +195: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:19 +196: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:19 +197: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:19 +198: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:19 +199: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:19 +200: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet label 0
+00:20 +201: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet link 1
+00:20 +202: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet icon 2
+00:20 +203: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet text 3
+00:20 +204: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet heading 4
+00:20 +205: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet field-hint 5
+00:20 +206: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet field-error 6
+00:20 +207: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet divider 7
+00:21 +208: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet visually-hidden 8
+00:21 +209: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet inline 9
+00:21 +210: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet stack 10
+00:21 +211: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: all input bridge contracts reject unknown properties and wrong types
+00:21 +212: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_snippets_test.dart: copyable native snippet container 11
+00:21 +213: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +214: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +215: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +216: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +217: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +218: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +219: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +220: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +221: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:21 +222: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.light
+00:22 +223: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.dark
+00:22 +224: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.contrast
+00:22 +225: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input in ForgeThemeId.liquidGlass
+00:22 +226: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input textarea in ForgeThemeId.light
+00:22 +227: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: 26 finite contracts validate defaults and reject unsupported changes
+00:22 +228: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input textarea in ForgeThemeId.dark
+00:22 +229: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +230: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +231: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +232: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +233: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +234: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +235: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +236: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +237: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +238: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +239: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +240: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +241: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +242: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +243: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:23 +244: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +245: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +246: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +247: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +248: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +249: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +250: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.light
+00:24 +251: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input option in ForgeThemeId.liquidGlass
+00:24 +252: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.dark
+00:24 +253: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-base in ForgeThemeId.light
+00:24 +254: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.contrast
+00:24 +255: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-base in ForgeThemeId.dark
+00:24 +256: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:24 +257: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-base in ForgeThemeId.contrast
+00:24 +258: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.light
+00:24 +259: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-base in ForgeThemeId.liquidGlass
+00:24 +260: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.dark
+00:24 +261: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input icon-button in ForgeThemeId.light
+00:24 +262: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input icon-button in ForgeThemeId.light
+00:24 +263: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:24 +264: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:24 +265: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input icon-button in ForgeThemeId.contrast
+00:24 +266: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-body at 320 logical pixels in ForgeThemeId.light
+00:24 +267: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input icon-button in ForgeThemeId.liquidGlass
+00:24 +268: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-body at 320 logical pixels in ForgeThemeId.dark
+00:24 +269: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input progress-bar in ForgeThemeId.light
+00:24 +270: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-body at 320 logical pixels in ForgeThemeId.contrast
+00:24 +271: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input progress-bar in ForgeThemeId.dark
+00:25 +272: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:25 +273: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input progress-bar in ForgeThemeId.contrast
+00:25 +274: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.light
+00:25 +275: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.light
+00:25 +276: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input slider in ForgeThemeId.light
+00:25 +277: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input slider in ForgeThemeId.light
+00:25 +278: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.contrast
+00:25 +279: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input slider in ForgeThemeId.dark
+00:25 +280: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:25 +281: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input slider in ForgeThemeId.contrast
+00:25 +282: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.light
+00:25 +283: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input slider in ForgeThemeId.liquidGlass
+00:25 +284: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.dark
+00:25 +285: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input legend in ForgeThemeId.light
+00:25 +286: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.contrast
+00:25 +287: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.contrast
+00:25 +288: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input legend in ForgeThemeId.contrast
+00:25 +289: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:25 +290: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input legend in ForgeThemeId.liquidGlass
+00:25 +291: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.light
+00:25 +292: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-group in ForgeThemeId.light
+00:25 +293: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.dark
+00:25 +294: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-group in ForgeThemeId.dark
+00:25 +295: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.contrast
+00:25 +296: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-group in ForgeThemeId.contrast
+00:25 +297: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:25 +298: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-group in ForgeThemeId.liquidGlass
+00:25 +299: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.light
+00:25 +300: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.light
+00:25 +301: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-addon in ForgeThemeId.dark
+00:25 +302: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.dark
+00:25 +303: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.dark
+00:25 +304: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input input-addon in ForgeThemeId.liquidGlass
+00:25 +305: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.contrast
+00:26 +306: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input tag in ForgeThemeId.light
+00:26 +307: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:26 +308: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:26 +309: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input tag in ForgeThemeId.contrast
+00:26 +310: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group-item at 320 logical pixels in ForgeThemeId.light
+00:26 +311: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input tag in ForgeThemeId.liquidGlass
+00:26 +312: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group-item at 320 logical pixels in ForgeThemeId.dark
+00:26 +313: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input masked-input in ForgeThemeId.light
+00:26 +314: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group-item at 320 logical pixels in ForgeThemeId.contrast
+00:26 +315: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input masked-input in ForgeThemeId.dark
+00:26 +316: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:26 +317: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input masked-input in ForgeThemeId.contrast
+00:26 +318: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.light
+00:26 +319: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.light
+00:26 +320: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.light
+00:26 +321: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.light
+00:26 +322: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input date-input in ForgeThemeId.contrast
+00:26 +323: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.dark
+00:26 +324: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input date-input in ForgeThemeId.liquidGlass
+00:26 +325: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.contrast
+00:27 +326: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input postal-code-input in ForgeThemeId.light
+00:27 +327: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.liquidGlass
+00:27 +328: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input postal-code-input in ForgeThemeId.dark
+00:27 +329: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.light
+00:27 +330: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.light
+00:27 +331: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input postal-code-input in ForgeThemeId.liquidGlass
+00:27 +332: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.dark
+00:27 +333: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input tax-id-input in ForgeThemeId.light
+00:27 +334: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.contrast
+00:27 +335: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.contrast
+00:27 +336: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input tax-id-input in ForgeThemeId.contrast
+00:27 +337: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:27 +338: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input tax-id-input in ForgeThemeId.liquidGlass
+00:27 +339: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.light
+00:27 +340: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.light
+00:27 +341: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input token-input in ForgeThemeId.dark
+00:27 +342: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.dark
+00:27 +343: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input token-input in ForgeThemeId.contrast
+00:27 +344: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.contrast
+00:27 +345: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input token-input in ForgeThemeId.liquidGlass
+00:27 +346: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:27 +347: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:27 +348: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input email-input in ForgeThemeId.dark
+00:27 +349: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.light
+00:27 +350: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input email-input in ForgeThemeId.contrast
+00:27 +351: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.dark
+00:27 +352: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input email-input in ForgeThemeId.liquidGlass
+00:27 +353: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.contrast
+00:28 +354: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input search-input in ForgeThemeId.light
+00:28 +355: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:28 +356: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input search-input in ForgeThemeId.dark
+00:28 +357: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input search-input in ForgeThemeId.contrast
+00:28 +358: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.light
+00:28 +359: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input search-input in ForgeThemeId.liquidGlass
+00:28 +360: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.dark
+00:28 +361: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input percentage-input in ForgeThemeId.light
+00:28 +362: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.contrast
+00:28 +363: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.contrast
+00:28 +364: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input percentage-input in ForgeThemeId.contrast
+00:28 +365: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.liquidGlass
+00:28 +366: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.liquidGlass
+00:28 +367: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input currency-input in ForgeThemeId.light
+00:28 +368: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input currency-input in ForgeThemeId.light
+00:28 +369: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.dark
+00:28 +370: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input currency-input in ForgeThemeId.dark
+00:28 +371: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.contrast
+00:28 +372: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.contrast
+00:28 +373: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input currency-input in ForgeThemeId.liquidGlass
+00:28 +374: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.liquidGlass
+00:28 +375: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input currency-value in ForgeThemeId.light
+00:28 +376: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.light
+00:28 +377: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.light
+00:28 +378: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input currency-value in ForgeThemeId.contrast
+00:28 +379: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.dark
+00:28 +380: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.dark
+00:29 +381: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +382: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +383: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +384: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +385: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +386: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +387: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.light
+00:29 +388: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction disclosure at 320 logical pixels in ForgeThemeId.light
+00:29 +389: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.dark
+00:29 +390: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.dark
+00:29 +391: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.dark
+00:29 +392: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.dark
+00:29 +393: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse at 320 logical pixels in ForgeThemeId.light
+00:29 +394: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.contrast
+00:29 +395: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.contrast
+00:30 +396: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.contrast
+00:30 +397: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse at 320 logical pixels in ForgeThemeId.liquidGlass
+00:30 +398: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.liquidGlass
+00:30 +399: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.liquidGlass
+00:30 +400: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.liquidGlass
+00:30 +401: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.liquidGlass
+00:30 +402: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input international-telephone-input in ForgeThemeId.liquidGlass
+00:30 +403: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.light
+00:30 +404: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input locale-selector in ForgeThemeId.light
+00:30 +405: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.dark
+00:30 +406: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input locale-selector in ForgeThemeId.dark
+00:30 +407: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.contrast
+00:30 +408: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.contrast
+00:30 +409: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input locale-selector in ForgeThemeId.liquidGlass
+00:30 +410: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:30 +411: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input theme-selector in ForgeThemeId.light
+00:30 +412: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.light
+00:30 +413: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input theme-selector in ForgeThemeId.dark
+00:30 +414: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.dark
+00:30 +415: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input theme-selector in ForgeThemeId.contrast
+00:30 +416: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.contrast
+00:30 +417: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input theme-selector in ForgeThemeId.liquidGlass
+00:30 +418: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:30 +419: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input color-input in ForgeThemeId.light
+00:30 +420: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.light
+00:30 +421: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input color-input in ForgeThemeId.dark
+00:31 +422: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.dark
+00:31 +423: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.dark
+00:31 +424: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input color-input in ForgeThemeId.liquidGlass
+00:31 +425: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.contrast
+00:31 +426: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input password-input in ForgeThemeId.light
+00:31 +427: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.liquidGlass
+00:31 +428: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input password-input in ForgeThemeId.dark
+00:31 +429: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.light
+00:31 +430: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input password-input in ForgeThemeId.contrast
+00:31 +431: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.dark
+00:31 +432: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input password-input in ForgeThemeId.liquidGlass
+00:31 +433: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.contrast
+00:31 +434: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.contrast
+00:31 +435: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input number-input in ForgeThemeId.dark
+00:31 +436: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:31 +437: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input number-input in ForgeThemeId.contrast
+00:31 +438: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.light
+00:31 +439: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input number-input in ForgeThemeId.liquidGlass
+00:31 +440: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.dark
+00:31 +441: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.dark
+00:31 +442: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.contrast
+00:31 +443: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.contrast
+00:31 +444: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input telephone-input in ForgeThemeId.contrast
+00:31 +445: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:31 +446: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input telephone-input in ForgeThemeId.liquidGlass
+00:31 +447: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.light
+00:31 +448: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input url-input in ForgeThemeId.light
+00:31 +449: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.dark
+00:31 +450: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input url-input in ForgeThemeId.dark
+00:31 +451: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.contrast
+00:31 +452: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.contrast
+00:31 +453: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input url-input in ForgeThemeId.liquidGlass
+00:31 +454: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:31 +455: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input date-time-input in ForgeThemeId.light
+00:32 +456: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.light
+00:32 +457: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input date-time-input in ForgeThemeId.dark
+00:32 +458: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.dark
+00:32 +459: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.dark
+00:32 +460: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input date-time-input in ForgeThemeId.liquidGlass
+00:32 +461: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input date-time-input in ForgeThemeId.liquidGlass
+00:32 +462: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:32 +463: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:32 +464: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: native input time-input in ForgeThemeId.dark
+00:32 +465: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +466: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +467: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +468: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +469: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +470: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +471: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:32 +472: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: input owner accepts edits once and property edits preserve event count
+00:32 +473: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: tabs retain edited field state across panels and refuse controlled requests
+00:32 +474: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/inputs_preview_test.dart: file fixture exercises the real picker port and reports selected file
+00:33 +475: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: toolbar arrows skip disabled and activate one action
+00:33 +476: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: toolbar arrows skip disabled and activate one action
+00:33 +477: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: collapse retains fields, repairs focus and honors rejected closure
+00:33 +478: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: accordion multiple and noncollapsible rules remain library-owned
+00:33 +479: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: entrypoint mounts selected interaction instead of unavailable state
+00:34 +480: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: preview rejects malformed or unsupported messages
+00:34 +481: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: live properties reach the real button without resetting its counter
+00:35 +482: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: native settings preserve all Button enums and reject malformed values
+00:35 +483: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: Spinner and ButtonGroup previews use real widgets and live settings
+00:35 +484: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/preview_test.dart: hierarchy exposes danger only after an explicit confirmation request
+00:37 +485: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: primitive bridge validates exact finite constructor controls
+00:37 +486: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.light
+00:38 +487: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.dark
+00:38 +488: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.contrast
+00:38 +489: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture label in ForgeThemeId.liquidGlass
+00:38 +490: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.light
+00:38 +491: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.dark
+00:38 +492: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.contrast
+00:39 +493: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture link in ForgeThemeId.liquidGlass
+00:39 +494: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.light
+00:39 +495: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.dark
+00:39 +496: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.contrast
+00:39 +497: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture icon in ForgeThemeId.liquidGlass
+00:39 +498: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.light
+00:39 +499: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.dark
+00:39 +500: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.contrast
+00:39 +501: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture text in ForgeThemeId.liquidGlass
+00:39 +502: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.light
+00:39 +503: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.dark
+00:39 +504: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.contrast
+00:39 +505: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture heading in ForgeThemeId.liquidGlass
+00:39 +506: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.light
+00:39 +507: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.dark
+00:39 +508: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.contrast
+00:39 +509: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-hint in ForgeThemeId.liquidGlass
+00:39 +510: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.light
+00:39 +511: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.dark
+00:39 +512: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.contrast
+00:39 +513: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture field-error in ForgeThemeId.liquidGlass
+00:39 +514: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.light
+00:39 +515: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.dark
+00:39 +516: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.contrast
+00:39 +517: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture divider in ForgeThemeId.liquidGlass
+00:39 +518: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.light
+00:39 +519: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.dark
+00:40 +520: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.contrast
+00:40 +521: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture visually-hidden in ForgeThemeId.liquidGlass
+00:40 +522: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.light
+00:40 +523: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.dark
+00:40 +524: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.contrast
+00:40 +525: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture inline in ForgeThemeId.liquidGlass
+00:40 +526: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.light
+00:40 +527: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.dark
+00:40 +528: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.contrast
+00:40 +529: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture stack in ForgeThemeId.liquidGlass
+00:40 +530: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.light
+00:40 +531: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.dark
+00:40 +532: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.contrast
+00:40 +533: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture container in ForgeThemeId.liquidGlass
+00:40 +534: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.light
+00:40 +535: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.dark
+00:40 +536: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.contrast
+00:40 +537: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture surface in ForgeThemeId.liquidGlass
+00:40 +538: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.light
+00:40 +539: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.dark
+00:40 +540: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.contrast
+00:40 +541: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture simple-grid in ForgeThemeId.liquidGlass
+00:40 +542: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.light
+00:40 +543: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.dark
+00:40 +544: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.contrast
+00:40 +545: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture aspect-ratio in ForgeThemeId.liquidGlass
+00:40 +546: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.light
+00:40 +547: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.dark
+00:41 +548: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.contrast
+00:41 +549: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture badge in ForgeThemeId.liquidGlass
+00:41 +550: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.light
+00:41 +551: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.dark
+00:41 +552: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.contrast
+00:41 +553: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture avatar in ForgeThemeId.liquidGlass
+00:41 +554: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.light
+00:41 +555: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.dark
+00:41 +556: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.contrast
+00:41 +557: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture skeleton in ForgeThemeId.liquidGlass
+00:41 +558: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.light
+00:41 +559: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.dark
+00:41 +560: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.contrast
+00:41 +561: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture progress in ForgeThemeId.liquidGlass
+00:41 +562: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.light
+00:41 +563: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.dark
+00:41 +564: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.contrast
+00:41 +565: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: real primitive fixture meter in ForgeThemeId.liquidGlass
+00:41 +566: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: text property edit updates the real native widget
+00:41 +567: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: label preview focuses its owned native input
+00:41 +568: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/primitives_preview_test.dart: link activation is observable and survives property edits
+00:41 +569: All tests passed!
+Compiling lib\main.dart for the Web...                          
+Wasm dry run succeeded. Consider building and testing your application with the `--wasm` flag. See docs for more info: https://docs.flutter.dev/platform-integration/web/wasm
+Use --no-wasm-dry-run to disable these warnings.
+Expected to find fonts for (MaterialIcons, packages/cupertino_icons/CupertinoIcons), but found (MaterialIcons). This usually means you are referring to font families in an IconData class but not including them in the assets section of your pubspec.yaml, are missing the package that would include them, or are missing "uses-material-design: true".
+Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 7736 bytes (99.5% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+Compiling lib\main.dart for the Web...                             73.7s
+√ Built ..\..\showcase\portal\public\flutter
+Published verified Flutter Web build and registered the tested native preview catalog

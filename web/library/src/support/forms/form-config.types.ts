@@ -153,11 +153,11 @@ export type FormFieldConfig<TName extends string, TSchema extends z.ZodType> = F
 > &
   FormRendererMetadata<z.input<TSchema>>;
 
-export type FormFieldsConfig<TShape extends z.ZodRawShape> = {
+export type FormFieldsConfig<TShape extends Record<string, z.ZodType>> = {
   [Key in keyof TShape]: FormFieldConfig<Extract<Key, string>, TShape[Key]>;
 };
 
-export interface FormConfig<TShape extends z.ZodRawShape> {
+export interface FormConfig<TShape extends Record<string, z.ZodType>> {
   fields: FormFieldsConfig<TShape>;
   schema: z.ZodObject<TShape>;
   defaultValues: {

@@ -30,6 +30,28 @@ import 'package:forge_ui/forge_ui.dart';
 ForgeSlider()
 ```
 
+## Wave 10 — native slider implementation (18/11/2026)
+
+**SC remains `PENDING`.** The source slice replaces Material `SliderTheme`/`Slider`
+with token-backed Flutter painting, `Semantics` adjustable actions, pointer dragging,
+`Focus` with physical arrow/Home/End keys (RTL aware), and the existing form binding.
+The existing public `double? value` / `ValueChanged<double>` constructor is kept
+unchanged to avoid silently breaking consumers. The Web contract's canonical
+string channel and mapped inherited browser properties are **not yet covered**;
+that deviation must be resolved in a separate, explicitly reviewed API/parity
+slice, not mislabeled as implemented.
+
+The target uses a 48dp external touch area while retaining the Web track size
+and colors from generated tokens. No Material/Cupertino UI widgets are imported
+from this component. Static Node checks and four negative injections pass in an
+isolated source fixture; SDK compilation, widget tests, visual comparison,
+assistive-technology inspection, and Android/iOS are **not executed**.
+
+- Implementation: `app/library/lib/src/components/forge_slider.dart`
+- Widget tests: `app/library/test/forge_native_slider_test.dart`
+- Static tests: `scripts/check-native-slider.mjs`, `scripts/test-native-slider.mjs`
+- Technical contract: `docs/sc/app/tech-native-slider.sc.md`
+
 ## Tests
 
 ### Native behavior

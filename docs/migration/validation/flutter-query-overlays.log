@@ -1,0 +1,14 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false)
+00:01 +1: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: true)
+00:07 +2: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled
+00:09 +3: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:09 +4: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:09 +5: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:10 +6: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild
+00:10 +7: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: autocomplete accepts supplied options and restores refused query on rebuild
+00:10 +8: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: anchored overlay clamps to viewport instead of overflowing its right edge
+00:10 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: combobox edit clears selected value independently from query
+00:10 +10: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: tooltip exposes supplementary text on focus and honors controlled refusal
+00:10 +11: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: portal preserves nearest theme and removes content with owner
+00:10 +12: All tests passed!

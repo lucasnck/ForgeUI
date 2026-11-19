@@ -94,3 +94,7 @@ Each row is a proposed native contract, not an available export. Source types/re
 - **Behavior encoded:** Slot/order and stable identity rules are enforced locally; caller remains responsible for data/removal/navigation and parent scope.
 - **Verification:** Static source checks only. Flutter SDK, widget tests, preview build, visual and native parity were not available for this execution.
 - **Acceptance:** **PENDING**; do not add this component to the preview manifest or mark all proposed Web-to-native mappings as complete before real Flutter evidence.
+
+## Showcase verification checkpoint — 2026-11-17
+
+The native showcase now exercises this API in its canonical composition. The [group validation report](../../../../../migration/FLUTTER-REMAINING-PREVIEWS-WAVE-8.md) records widget/snippet tests, compilation evidence and limits. This records preview coverage; it does not establish full Web parity or Android/iOS visual and assistive acceptance. Unverified Criteria remain PENDING.

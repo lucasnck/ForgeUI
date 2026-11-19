@@ -1,0 +1,140 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: 26 finite contracts validate defaults and reject unsupported changes
+00:00 +1: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:04 +2: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group 0
+00:04 +3: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.dark
+00:04 +4: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-header 1
+00:04 +5: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.contrast
+00:04 +6: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-body 2
+00:05 +7: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:05 +8: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction choice-group-footer 3
+00:05 +9: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.light
+00:05 +10: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction checkbox-group 4
+00:05 +11: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.dark
+00:05 +12: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction checkbox-group-item 5
+00:05 +13: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-header at 320 logical pixels in ForgeThemeId.contrast
+00:05 +14: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group 6
+00:05 +15: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group 6
+00:05 +16: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-body at 320 logical pixels in ForgeThemeId.light
+00:05 +17: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group-item 7
+00:05 +18: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction radio-group-item 7
+00:05 +19: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-body at 320 logical pixels in ForgeThemeId.contrast
+00:06 +20: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs 8
+00:06 +21: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs 8
+00:06 +22: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs 8
+00:06 +23: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs 8
+00:06 +24: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs-header 9
+00:07 +25: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.contrast
+00:07 +26: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.contrast
+00:07 +27: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tabs-footer 11
+00:07 +28: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tab 12
+00:07 +29: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction choice-group-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +30: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction tab-panel 13
+00:07 +31: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.light
+00:07 +32: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction toolbar 14
+00:07 +33: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.dark
+00:07 +34: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction toolbar-item 15
+00:07 +35: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.contrast
+00:07 +36: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction disclosure 16
+00:08 +37: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:08 +38: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse 17
+00:08 +39: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.light
+00:08 +40: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-header 18
+00:08 +41: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-header 18
+00:08 +42: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.contrast
+00:08 +43: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-body 19
+00:08 +44: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction checkbox-group-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:08 +45: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.light
+00:08 +46: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction collapse-footer 20
+00:08 +47: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.dark
+00:08 +48: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion 21
+00:09 +49: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.contrast
+00:09 +50: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion-item 22
+00:09 +51: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +52: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion-header 23
+00:09 +53: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group-item at 320 logical pixels in ForgeThemeId.light
+00:09 +54: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion-body 24
+00:09 +55: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion-body 24
+00:09 +56: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction radio-group-item at 320 logical pixels in ForgeThemeId.contrast
+00:09 +57: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion-footer 25
+00:09 +58: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_interaction_snippets_test.dart: copyable interaction accordion-footer 25
+00:09 +59: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.light
+00:10 +60: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.light
+00:12 +61: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.dark
+00:12 +62: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.contrast
+00:12 +63: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs at 320 logical pixels in ForgeThemeId.liquidGlass
+00:13 +64: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.light
+00:13 +65: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.dark
+00:13 +66: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.contrast
+00:13 +67: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:13 +68: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.light
+00:14 +69: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.dark
+00:14 +70: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.contrast
+00:14 +71: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:14 +72: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.light
+00:14 +73: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.dark
+00:14 +74: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.contrast
+00:14 +75: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tabs-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:14 +76: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.light
+00:15 +77: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.dark
+00:15 +78: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.contrast
+00:15 +79: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab at 320 logical pixels in ForgeThemeId.liquidGlass
+00:15 +80: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.light
+00:15 +81: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.dark
+00:15 +82: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.contrast
+00:15 +83: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction tab-panel at 320 logical pixels in ForgeThemeId.liquidGlass
+00:15 +84: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.light
+00:15 +85: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.dark
+00:16 +86: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.contrast
+00:16 +87: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar at 320 logical pixels in ForgeThemeId.liquidGlass
+00:16 +88: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar-item at 320 logical pixels in ForgeThemeId.light
+00:16 +89: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar-item at 320 logical pixels in ForgeThemeId.dark
+00:16 +90: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar-item at 320 logical pixels in ForgeThemeId.contrast
+00:16 +91: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction toolbar-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:16 +92: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction disclosure at 320 logical pixels in ForgeThemeId.light
+00:16 +93: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction disclosure at 320 logical pixels in ForgeThemeId.dark
+00:17 +94: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction disclosure at 320 logical pixels in ForgeThemeId.contrast
+00:17 +95: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction disclosure at 320 logical pixels in ForgeThemeId.liquidGlass
+00:17 +96: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse at 320 logical pixels in ForgeThemeId.light
+00:17 +97: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse at 320 logical pixels in ForgeThemeId.dark
+00:17 +98: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse at 320 logical pixels in ForgeThemeId.contrast
+00:17 +99: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse at 320 logical pixels in ForgeThemeId.liquidGlass
+00:17 +100: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-header at 320 logical pixels in ForgeThemeId.light
+00:17 +101: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-header at 320 logical pixels in ForgeThemeId.dark
+00:17 +102: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-header at 320 logical pixels in ForgeThemeId.contrast
+00:17 +103: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:18 +104: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.light
+00:18 +105: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.dark
+00:18 +106: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.contrast
+00:18 +107: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:18 +108: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.light
+00:18 +109: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.dark
+00:18 +110: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.contrast
+00:18 +111: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction collapse-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:18 +112: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.light
+00:18 +113: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.dark
+00:18 +114: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.contrast
+00:19 +115: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion at 320 logical pixels in ForgeThemeId.liquidGlass
+00:19 +116: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.light
+00:19 +117: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.dark
+00:19 +118: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.contrast
+00:19 +119: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:19 +120: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.light
+00:19 +121: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.dark
+00:19 +122: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.contrast
+00:19 +123: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:19 +124: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.light
+00:20 +125: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.dark
+00:20 +126: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.contrast
+00:20 +127: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:20 +128: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.light
+00:20 +129: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.dark
+00:20 +130: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.contrast
+00:20 +131: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: native interaction accordion-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:20 +132: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: checkbox group accepts then refuses requested changes without losing state
+00:21 +133: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: tabs retain edited field state across panels and refuse controlled requests
+00:21 +134: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: toolbar arrows skip disabled and activate one action
+00:21 +135: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: collapse retains fields, repairs focus and honors rejected closure
+00:22 +136: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: accordion multiple and noncollapsible rules remain library-owned
+00:22 +137: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/interaction_preview_test.dart: entrypoint mounts selected interaction instead of unavailable state
+00:22 +138: All tests passed!

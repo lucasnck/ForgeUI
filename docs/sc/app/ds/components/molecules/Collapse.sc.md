@@ -95,3 +95,7 @@ Each row is a proposed native contract, not an available export. Source types/re
 - [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
 - [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
 - [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.
+
+## Showcase verification checkpoint — 2026-11-17
+
+The native showcase now exercises this API in its canonical composition. The [group validation report](../../../../../migration/FLUTTER-INTERACTION-FORMS-WAVE-6.md) records widget/snippet tests, compilation evidence and limits. This records preview coverage; it does not establish full Web parity or Android/iOS visual and assistive acceptance. Unverified Criteria remain PENDING.

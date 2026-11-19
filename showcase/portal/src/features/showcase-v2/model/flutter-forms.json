@@ -1,0 +1,775 @@
+[
+  {
+    "name": "List",
+    "owner": "List",
+    "slug": "list",
+    "family": "list",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Registros",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Itens disponíveis",
+        "nonblank": true
+      },
+      "firstItem": {
+        "kind": "text",
+        "defaultValue": "Primeiro registro",
+        "nonblank": true
+      },
+      "secondItem": {
+        "kind": "text",
+        "defaultValue": "Segundo registro",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Adicionar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"list\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Registros\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Itens disponíveis\",\"nonblank\":true},\"firstItem\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro registro\",\"nonblank\":true},\"secondItem\":{\"kind\":\"text\",\"defaultValue\":\"Segundo registro\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Adicionar\",\"nonblank\":true}}};\nconst formCatalogFamilies=<String,String>{\"list\":\"list\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='list';final Map<String,Object?> properties=const {\"label\":\"Registros\",\"titleText\":\"Itens disponíveis\",\"firstItem\":\"Primeiro registro\",\"secondItem\":\"Segundo registro\",\"actionLabel\":\"Adicionar\"};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "ListHeader",
+    "owner": "List",
+    "slug": "list-header",
+    "family": "list",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Registros",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Itens disponíveis",
+        "nonblank": true
+      },
+      "firstItem": {
+        "kind": "text",
+        "defaultValue": "Primeiro registro",
+        "nonblank": true
+      },
+      "secondItem": {
+        "kind": "text",
+        "defaultValue": "Segundo registro",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Adicionar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"list-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Registros\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Itens disponíveis\",\"nonblank\":true},\"firstItem\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro registro\",\"nonblank\":true},\"secondItem\":{\"kind\":\"text\",\"defaultValue\":\"Segundo registro\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Adicionar\",\"nonblank\":true}}};\nconst formCatalogFamilies=<String,String>{\"list-header\":\"list\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='list-header';final Map<String,Object?> properties=const {\"label\":\"Registros\",\"titleText\":\"Itens disponíveis\",\"firstItem\":\"Primeiro registro\",\"secondItem\":\"Segundo registro\",\"actionLabel\":\"Adicionar\"};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "ListBody",
+    "owner": "List",
+    "slug": "list-body",
+    "family": "list",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Registros",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Itens disponíveis",
+        "nonblank": true
+      },
+      "firstItem": {
+        "kind": "text",
+        "defaultValue": "Primeiro registro",
+        "nonblank": true
+      },
+      "secondItem": {
+        "kind": "text",
+        "defaultValue": "Segundo registro",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Adicionar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"list-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Registros\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Itens disponíveis\",\"nonblank\":true},\"firstItem\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro registro\",\"nonblank\":true},\"secondItem\":{\"kind\":\"text\",\"defaultValue\":\"Segundo registro\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Adicionar\",\"nonblank\":true}}};\nconst formCatalogFamilies=<String,String>{\"list-body\":\"list\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='list-body';final Map<String,Object?> properties=const {\"label\":\"Registros\",\"titleText\":\"Itens disponíveis\",\"firstItem\":\"Primeiro registro\",\"secondItem\":\"Segundo registro\",\"actionLabel\":\"Adicionar\"};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "ListFooter",
+    "owner": "List",
+    "slug": "list-footer",
+    "family": "list",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Registros",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Itens disponíveis",
+        "nonblank": true
+      },
+      "firstItem": {
+        "kind": "text",
+        "defaultValue": "Primeiro registro",
+        "nonblank": true
+      },
+      "secondItem": {
+        "kind": "text",
+        "defaultValue": "Segundo registro",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Adicionar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"list-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Registros\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Itens disponíveis\",\"nonblank\":true},\"firstItem\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro registro\",\"nonblank\":true},\"secondItem\":{\"kind\":\"text\",\"defaultValue\":\"Segundo registro\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Adicionar\",\"nonblank\":true}}};\nconst formCatalogFamilies=<String,String>{\"list-footer\":\"list\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='list-footer';final Map<String,Object?> properties=const {\"label\":\"Registros\",\"titleText\":\"Itens disponíveis\",\"firstItem\":\"Primeiro registro\",\"secondItem\":\"Segundo registro\",\"actionLabel\":\"Adicionar\"};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "ListItem",
+    "owner": "List",
+    "slug": "list-item",
+    "family": "list",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Registros",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Itens disponíveis",
+        "nonblank": true
+      },
+      "firstItem": {
+        "kind": "text",
+        "defaultValue": "Primeiro registro",
+        "nonblank": true
+      },
+      "secondItem": {
+        "kind": "text",
+        "defaultValue": "Segundo registro",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Adicionar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"list-item\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Registros\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Itens disponíveis\",\"nonblank\":true},\"firstItem\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro registro\",\"nonblank\":true},\"secondItem\":{\"kind\":\"text\",\"defaultValue\":\"Segundo registro\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Adicionar\",\"nonblank\":true}}};\nconst formCatalogFamilies=<String,String>{\"list-item\":\"list\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='list-item';final Map<String,Object?> properties=const {\"label\":\"Registros\",\"titleText\":\"Itens disponíveis\",\"firstItem\":\"Primeiro registro\",\"secondItem\":\"Segundo registro\",\"actionLabel\":\"Adicionar\"};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "Form",
+    "owner": "Form",
+    "slug": "form",
+    "family": "form",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form\":\"form\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormHeader",
+    "owner": "Form",
+    "slug": "form-header",
+    "family": "form",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-header\":\"form\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-header';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormBody",
+    "owner": "Form",
+    "slug": "form-body",
+    "family": "form",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-body\":\"form\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-body';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormFooter",
+    "owner": "Form",
+    "slug": "form-footer",
+    "family": "form",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-footer\":\"form\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-footer';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormField",
+    "owner": "FormField",
+    "slug": "form-field",
+    "family": "form-field",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-field\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-field\":\"form-field\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-field';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormFieldHeader",
+    "owner": "FormField",
+    "slug": "form-field-header",
+    "family": "form-field",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-field-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-field-header\":\"form-field\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-field-header';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormFieldBody",
+    "owner": "FormField",
+    "slug": "form-field-body",
+    "family": "form-field",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-field-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-field-body\":\"form-field\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-field-body';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormFieldFooter",
+    "owner": "FormField",
+    "slug": "form-field-footer",
+    "family": "form-field",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-field-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-field-footer\":\"form-field\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-field-footer';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  },
+  {
+    "name": "FormFieldInput",
+    "owner": "FormFieldInput",
+    "slug": "form-field-input",
+    "family": "form-field-input",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Email",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Cadastro",
+        "nonblank": true
+      },
+      "hint": {
+        "kind": "text",
+        "defaultValue": "Informe um email",
+        "nonblank": false
+      },
+      "modelValue": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "providerError": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "errorOverride": {
+        "kind": "text",
+        "defaultValue": "",
+        "nonblank": false
+      },
+      "required": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "readOnly": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "loading": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "noValidate": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelSubmit": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "cancelReset": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\ntypedef ForgeDemoProfile=({String email});\nconst formCatalogContracts=<String,Map<String,Map<String,Object?>>>{\"form-field-input\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Email\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Cadastro\",\"nonblank\":true},\"hint\":{\"kind\":\"text\",\"defaultValue\":\"Informe um email\",\"nonblank\":false},\"modelValue\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"providerError\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"errorOverride\":{\"kind\":\"text\",\"defaultValue\":\"\",\"nonblank\":false},\"required\":{\"kind\":\"boolean\",\"defaultValue\":true},\"readOnly\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"loading\":{\"kind\":\"boolean\",\"defaultValue\":false},\"noValidate\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelSubmit\":{\"kind\":\"boolean\",\"defaultValue\":false},\"cancelReset\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst formCatalogFamilies=<String,String>{\"form-field-input\":\"form-field-input\"};\nclass ForgeFormCatalogExample extends StatefulWidget {final String slug='form-field-input';final Map<String,Object?> properties=const {\"label\":\"Email\",\"titleText\":\"Cadastro\",\"hint\":\"Informe um email\",\"modelValue\":\"\",\"providerError\":\"\",\"errorOverride\":\"\",\"required\":true,\"readOnly\":false,\"disabled\":false,\"loading\":false,\"noValidate\":false,\"cancelSubmit\":false,\"cancelReset\":false};const ForgeFormCatalogExample({super.key});@override State<ForgeFormCatalogExample> createState()=>_FormCatalogState();}\nclass _FormCatalogState extends State<ForgeFormCatalogExample> {\n  ForgeTypedFormController<ForgeDemoProfile>? controller;\n  final path = ForgeFieldPath<ForgeDemoProfile>('profile.email',\n      read: (v) => v.email, write: (v, text) => (email: text));\n  int edits = 0, submits = 0, resets = 0, actions = 0;\n  String feedback = '';\n  String get family => formCatalogFamilies[widget.slug]!;\n  Object? prop(String key) =>\n      widget.properties[key] ??\n      formCatalogContracts[widget.slug]?[key]?['defaultValue'];\n  String text(String key) => (prop(key) as String?) ?? '';\n  bool flag(String key) => prop(key) == true;\n  ForgeTypedFormController<ForgeDemoProfile> get owner => controller!;\n  @override\n  void initState() {\n    super.initState();\n    if (family != 'list') {\n      controller = ForgeTypedFormController<ForgeDemoProfile>(\n          initialValues: (email: ''));\n      sync();\n    }\n  }\n\n  void sync() {\n    owner.replaceValues((email: text('modelValue')));\n    owner.setDisabled(flag('disabled'));\n    owner.setError(path.name,\n        text('providerError').isEmpty ? null : text('providerError'));\n  }\n\n  @override\n  void didUpdateWidget(covariant ForgeFormCatalogExample old) {\n    super.didUpdateWidget(old);\n    if (family != 'list') {\n      if (old.properties['modelValue'] != widget.properties['modelValue'])\n        owner.replaceValues((email: text('modelValue')));\n      if (old.properties['disabled'] != widget.properties['disabled'])\n        owner.setDisabled(flag('disabled'));\n      if (old.properties['providerError'] != widget.properties['providerError'])\n        owner.setError(path.name,\n            text('providerError').isEmpty ? null : text('providerError'));\n    }\n  }\n\n  @override\n  void dispose() {\n    controller?.dispose();\n    super.dispose();\n  }\n\n  Widget field() => family == 'form-field'\n      ? ForgeFormField(\n          controlId: 'form-example-email',\n          label: text('label'),\n          children: [\n              const ForgeFormFieldHeader(),\n              ForgeFormFieldBody(\n                  controlBuilder: (context, field) => ForgeInput(\n                        control: field.binding,\n                        name: path.name,\n                        value: owner.values.email,\n                        onChanged: (v) {\n                          owner.writeField(path, v, notify: false);\n                          setState(() => edits++);\n                        },\n                        semanticLabel: field.label,\n                        invalid: field.invalid,\n                        readOnly: flag('readOnly'),\n                        disabled: flag('disabled'),\n                        required: flag('required'),\n                        validationMessage: 'Preencha o campo.',\n                      )),\n              ForgeFormFieldFooter(\n                  hint: text('hint'),\n                  error: text('errorOverride').isEmpty\n                      ? owner.errors[path.name]\n                      : text('errorOverride')),\n            ])\n      : ForgeFormFieldInput<ForgeDemoProfile>(\n          name: path,\n          label: text('label'),\n          hint: text('hint'),\n          error: text('errorOverride').isEmpty ? null : text('errorOverride'),\n          required: flag('required'),\n          disabled: flag('disabled'),\n          readOnly: flag('readOnly'),\n          validationMessage: 'Preencha o campo.',\n          onChanged: (_) => setState(() => edits++));\n  Widget form() => ForgeTypedFormScope<ForgeDemoProfile>(\n      controller: owner,\n      child: ForgeForm(\n          binding: owner,\n          loading: flag('loading'),\n          loadingLabel: 'Enviando',\n          noValidate: flag('noValidate'),\n          onSubmit: (event) {\n            if (flag('cancelSubmit')) {\n              event.cancel();\n              setState(() => feedback = 'Envio cancelado');\n            }\n          },\n          onReset: (event) {\n            if (flag('cancelReset')) {\n              event.cancel();\n              setState(() => feedback = 'Reset cancelado');\n            } else {\n              setState(() => resets++);\n            }\n          },\n          onValidSubmit: (data, event) => setState(() {\n                submits++;\n                feedback = 'Enviado: ' +\n                    (data.get(path.name)?.toString() ?? '') +\n                    ' | ação: ' +\n                    (data.get('action')?.toString() ?? '');\n              }),\n          children: [\n            ForgeFormHeader(children: [Text(text('titleText'))]),\n            ForgeFormBody(children: [field()]),\n            const ForgeFormFooter(children: [\n              ForgeButton(\n                  type: ForgeButtonType.submit,\n                  name: 'action',\n                  value: 'save',\n                  child: Text('Enviar')),\n              ForgeButton(type: ForgeButtonType.reset, child: Text('Restaurar'))\n            ])\n          ]));\n  Widget list() => ForgeList(label: text('label'), children: [\n        ForgeListHeader(child: Text(text('titleText'))),\n        ForgeListBody(items: [\n          ForgeListItem(child: Text(text('firstItem'))),\n          ForgeListItem(child: Text(text('secondItem')))\n        ]),\n        ForgeListFooter(\n            child: ForgeButton(\n                onPressed: () => setState(() => actions++),\n                child: Text(text('actionLabel'))))\n      ]);\n  @override\n  Widget build(BuildContext context) =>\n      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [\n        if (family == 'list')\n          list()\n        else\n          ListenableBuilder(listenable: owner, builder: (context, child) => form()),\n        if (family == 'list')\n          Text('Ações: $actions')\n        else\n          Text('Edições: $edits · Envios: $submits · Resets: $resets'),\n        if (feedback.isNotEmpty) Text(feedback)\n      ]);\n}\n"
+  }
+]

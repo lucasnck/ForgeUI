@@ -1,0 +1,111 @@
+{
+  "origin": "http://localhost:3000",
+  "buildId": "0d5f6c48442ac45e",
+  "registeredPreviews": 221,
+  "status": "PASS",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 56204,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/button/",
+      "status": 200,
+      "bytes": 134615,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/radio-group/",
+      "status": 200,
+      "bytes": 84657,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/form-field/",
+      "status": 200,
+      "bytes": 66817,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/combobox/",
+      "status": 200,
+      "bytes": 98118,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/modal/",
+      "status": 200,
+      "bytes": 121581,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/toast-region/",
+      "status": 200,
+      "bytes": 103219,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/data-grid/",
+      "status": 200,
+      "bytes": 153099,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/tree-grid/",
+      "status": 200,
+      "bytes": 127153,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/odata-filter/",
+      "status": 200,
+      "bytes": 245482,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/components/map-view/",
+      "status": 200,
+      "bytes": 145963,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/templates/application-layout-template/",
+      "status": 200,
+      "bytes": 92033,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/templates/home-page/",
+      "status": 200,
+      "bytes": 88997,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/flutter/index.html",
+      "status": 200,
+      "bytes": 317,
+      "type": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "/flutter/flutter_bootstrap.js",
+      "status": 200,
+      "bytes": 15109,
+      "type": "application/javascript; charset=UTF-8"
+    },
+    {
+      "path": "/flutter/main.dart.js",
+      "status": 200,
+      "bytes": 3575775,
+      "type": "application/javascript; charset=UTF-8"
+    },
+    {
+      "path": "/flutter/canvaskit/canvaskit.wasm",
+      "status": 200,
+      "bytes": 7083768,
+      "type": "application/wasm"
+    }
+  ],
+  "limitations": "HTTP and compiled artifact integrity only; no browser interaction or native visual acceptance."
+}

@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show SchedulerPhase;
+import 'internal/forge_presence.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
 import '../theme/forge_theme_tokens.dart';
@@ -153,7 +155,17 @@ class _ModalState extends State<ForgeModal> {
             restore?.context != null &&
             restore!.canRequestFocus) restore.requestFocus();
       });
-      widget.onClose?.call();
+      final onClose = widget.onClose;
+      if (onClose != null) {
+        if (WidgetsBinding.instance.schedulerPhase ==
+            SchedulerPhase.persistentCallbacks) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) onClose();
+          });
+        } else {
+          onClose();
+        }
+      }
     }
   }
 
@@ -172,7 +184,7 @@ class _ModalState extends State<ForgeModal> {
   bool outside(Offset global) {
     final box = surfaceKey.currentContext?.findRenderObject() as RenderBox?;
     if (box == null || !box.hasSize) return false;
-    return !(box.localToGlobal(Offset.zero) & box.size).contains(global);
+    return !(Offset.zero & box.size).contains(box.globalToLocal(global));
   }
 
   Widget surface(BuildContext context) {
@@ -213,10 +225,12 @@ class _ModalState extends State<ForgeModal> {
       });
     }
 
-    return Offstage(
-        offstage: !opened,
+    return ForgePresence(
+        visible: opened,
+        animated: widget.animated,
+        effect: ForgeAnimationEffect.fade,
         child: TickerMode(
-            enabled: opened,
+            enabled: true,
             child: ExcludeFocus(
                 excluding: !opened || !top,
                 child: ExcludeSemantics(
@@ -297,29 +311,25 @@ class _ModalState extends State<ForgeModal> {
                                                           label: widget
                                                                   .semanticLabel ??
                                                               title,
-                                                          child: Material(
-                                                              type: MaterialType
-                                                                  .transparency,
-                                                              child: SingleChildScrollView(
-                                                                  child: ForgeSurface(
-                                                                      key: surfaceKey,
-                                                                      elevation: ForgeElevation.floating,
-                                                                      padding: ForgeSpace.s0,
-                                                                      gap: ForgeSpace.s0,
-                                                                      child: _ModalScope(
-                                                                          state: this,
-                                                                          child: ForgeStack(gap: ForgeSpace.s0, children: [
-                                                                            if (parts[_ModalPartKind.header] !=
-                                                                                null)
-                                                                              parts[_ModalPartKind.header]!,
-                                                                            if (widget.description !=
-                                                                                null)
-                                                                              Padding(padding: EdgeInsets.all(p.space3), child: Text(widget.description!)),
-                                                                            parts[_ModalPartKind.body]!,
-                                                                            if (parts[_ModalPartKind.footer] !=
-                                                                                null)
-                                                                              parts[_ModalPartKind.footer]!
-                                                                          ])))))))))))
+                                                          child: Builder(
+                                                              builder: (_) => ForgePresence(
+                                                                  visible: opened,
+                                                                  animated: widget.animated,
+                                                                  effect: widget.animationEffect,
+                                                                  child: SingleChildScrollView(
+                                                                      child: ForgeSurface(
+                                                                          key: surfaceKey,
+                                                                          elevation: ForgeElevation.floating,
+                                                                          padding: ForgeSpace.s0,
+                                                                          gap: ForgeSpace.s0,
+                                                                          child: _ModalScope(
+                                                                              state: this,
+                                                                              child: ForgeStack(gap: ForgeSpace.s0, children: [
+                                                                                if (parts[_ModalPartKind.header] != null) parts[_ModalPartKind.header]!,
+                                                                                if (widget.description != null) Padding(padding: EdgeInsets.all(p.space3), child: Text(widget.description!)),
+                                                                                parts[_ModalPartKind.body]!,
+                                                                                if (parts[_ModalPartKind.footer] != null) parts[_ModalPartKind.footer]!
+                                                                              ]))))))))))))
                                 ]))))))));
   }
 

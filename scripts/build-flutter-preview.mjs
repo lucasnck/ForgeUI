@@ -10,7 +10,7 @@ const registry = path.join(
   root,
   "showcase/portal/src/features/showcase-v2/model/flutter-preview-manifest.json",
 );
-const catalogFiles = ["flutter-primitives.json", "flutter-inputs.json", "flutter-composites.json", "flutter-feedback.json"];
+const catalogFiles = ["flutter-primitives.json", "flutter-inputs.json", "flutter-composites.json", "flutter-feedback.json", "flutter-interactions.json", "flutter-forms.json", "flutter-collections.json", "flutter-transients.json", "flutter-advanced.json", "flutter-parts.json"];
 const supportedSlugs = ["button", "spinner", "button-group", ...catalogFiles.flatMap(file => JSON.parse(fs.readFileSync(path.join(root,"showcase/portal/src/features/showcase-v2/model",file),"utf8")).map(entry=>entry.slug))];
 if(new Set(supportedSlugs).size!==supportedSlugs.length)throw new Error("Duplicate native preview slug");
 function run(args, cwd) {
@@ -24,7 +24,7 @@ function run(args, cwd) {
   if (r.status !== 0)
     throw new Error(`flutter ${args.join(" ")} failed: ${r.status}`);
 }
-for (const script of ['generate-flutter-catalog.mjs', 'test-flutter-catalog.mjs', 'test-flutter-input-catalog.mjs', 'test-flutter-composite-catalog.mjs', 'test-flutter-feedback-catalog.mjs', 'test-flutter-preview.mjs']) {
+for (const script of ['generate-flutter-catalog.mjs', 'generate-flutter-motion.mjs', 'test-flutter-catalog.mjs', 'test-flutter-input-catalog.mjs', 'test-flutter-composite-catalog.mjs', 'test-flutter-feedback-catalog.mjs', 'test-flutter-interaction-catalog.mjs', 'test-flutter-form-catalog.mjs', 'test-flutter-collection-catalog.mjs', 'test-flutter-transient-catalog.mjs', 'test-flutter-advanced-catalog.mjs', 'test-flutter-part-catalog.mjs', 'test-flutter-preview.mjs']) {
  const result = spawnSync(process.execPath, [path.join(root, 'scripts', script), ...(script.startsWith('generate') ? ['--check'] : [])], {cwd: root, stdio: 'inherit'});
  if (result.error) throw result.error;
  if (result.status !== 0) throw new Error(script + ' failed');

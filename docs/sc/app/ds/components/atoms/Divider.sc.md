@@ -11,7 +11,7 @@ ds-level: "atoms"
 ## Files
 
 ```text
-components/forge_divider.dart (C)
+components/forge_divider.dart (M)
 ../forge_ui.dart (M)
 ```
 
@@ -26,12 +26,15 @@ components/forge_divider.dart (C)
 ```dart
 import 'package:forge_ui/forge_ui.dart';
 
-ForgeDivider(
-  child: content,
-)
+const ForgeDivider(semanticLabel: 'Section separator')
 ```
 
 ## Tests
+
+### Native-library independence
+
+- Render as a noninteractive `SizedBox`/`ColoredBox` line with the existing `colorBorderDefault` and `borderWidthThin` tokens, not Material `Divider`. Preserve semanticLabel with no implicit outer spacing.
+- Exercise the component in the shared native typography widget test. Dart SDK execution must be recorded, not assumed.
 
 ### Native behavior
 
@@ -77,6 +80,8 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
 ## Criteria
+
+- [ ] Native Flutter (no `MaterialApp`) rendering matches this component contract and remains independent of Material/Cupertino imports where owned; compile, semantics and visual evidence recorded before DONE.
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
 - [ ] Use a passive native separator with optional accessible name and no owned outer margin.

@@ -1,5 +1,6 @@
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import '../theme/forge_theme_tokens.dart';
 import '../theme/forge_control_style.dart';
 import '../theme/forge_primitive_style.dart';
@@ -274,7 +275,7 @@ class _CheckableState extends State<ForgeCheckable> {
                       painter:
                           _CheckMark(action.foreground, p.borderWidthThick)));
     }
-    final minimum = math.max(kMinInteractiveDimension,
+    final minimum = math.max(48.0,
         p.number('--component-height-${widget.size.name}'));
     visual =
         SizedBox(width: minimum, height: minimum, child: Center(child: visual));
@@ -295,16 +296,28 @@ class _CheckableState extends State<ForgeCheckable> {
         inMutuallyExclusiveGroup: widget._kind == _CheckKind.radio,
         onTap: disabled ? null : change,
         child: ExcludeSemantics(
-            child: Material(
-                type: MaterialType.transparency,
-                child: InkWell(
+            child: Focus(
+                focusNode: _focus,
+                autofocus: widget.autofocus,
+                canRequestFocus: !disabled,
+                skipTraversal: disabled,
+                onFocusChange: (value) {
+                  if (mounted) setState(() => _focused = value);
+                },
+                onKeyEvent: (node, event) {
+                  if (disabled || event is! KeyDownEvent) {
+                    return KeyEventResult.ignored;
+                  }
+                  if (event.logicalKey == LogicalKeyboardKey.space ||
+                      event.logicalKey == LogicalKeyboardKey.enter) {
+                    change();
+                    return KeyEventResult.handled;
+                  }
+                  return KeyEventResult.ignored;
+                },
+                child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
                     onTap: disabled ? null : change,
-                    focusNode: _focus,
-                    autofocus: widget.autofocus,
-                    canRequestFocus: !disabled,
-                    onFocusChange: (value) {
-                      if (mounted) setState(() => _focused = value);
-                    },
                     child: visual))));
     target = Opacity(
         opacity: disabled ? p.opacityDisabled : p.opacityFull, child: target);

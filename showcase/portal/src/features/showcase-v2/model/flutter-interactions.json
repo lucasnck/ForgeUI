@@ -1,0 +1,1672 @@
+[
+  {
+    "name": "ChoiceGroup",
+    "owner": "ChoiceGroup",
+    "slug": "choice-group",
+    "family": "choice-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"choice-group\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"choice-group\":\"choice-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='choice-group';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ChoiceGroupHeader",
+    "owner": "ChoiceGroup",
+    "slug": "choice-group-header",
+    "family": "choice-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"choice-group-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"choice-group-header\":\"choice-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='choice-group-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ChoiceGroupBody",
+    "owner": "ChoiceGroup",
+    "slug": "choice-group-body",
+    "family": "choice-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"choice-group-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"choice-group-body\":\"choice-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='choice-group-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ChoiceGroupFooter",
+    "owner": "ChoiceGroup",
+    "slug": "choice-group-footer",
+    "family": "choice-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"choice-group-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"choice-group-footer\":\"choice-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='choice-group-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeChoiceGroup(disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckbox(checked:values.contains('first'),disabled:flag('disabled'),semanticLabel:text('firstLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='first'),'first']:values.where((v)=>v!='first').toList())),\nText(text('firstLabel')),\nForgeCheckbox(checked:values.contains('second'),disabled:flag('disabled')||flag('disableSecond'),semanticLabel:text('secondLabel'),onChanged:(v)=>requestValues(v?[...values.where((v)=>v!='second'),'second']:values.where((v)=>v!='second').toList())),\nText(text('secondLabel'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "CheckboxGroup",
+    "owner": "CheckboxGroup",
+    "slug": "checkbox-group",
+    "family": "checkbox-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      },
+      "name": {
+        "kind": "text",
+        "defaultValue": "preferences",
+        "nonblank": true
+      }
+    },
+    "expression": "ForgeCheckboxGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:values,onValueChange:requestValues,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckboxGroupItem(value:'first',label:text('firstLabel')),\nForgeCheckboxGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"checkbox-group\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"},\"name\":{\"kind\":\"text\",\"defaultValue\":\"preferences\",\"nonblank\":true}}};\nconst interactionFamilies=<String,String>{\"checkbox-group\":\"checkbox-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='checkbox-group';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\",\"name\":\"preferences\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeCheckboxGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:values,onValueChange:requestValues,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckboxGroupItem(value:'first',label:text('firstLabel')),\nForgeCheckboxGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "CheckboxGroupItem",
+    "owner": "CheckboxGroup",
+    "slug": "checkbox-group-item",
+    "family": "checkbox-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      },
+      "name": {
+        "kind": "text",
+        "defaultValue": "preferences",
+        "nonblank": true
+      }
+    },
+    "expression": "ForgeCheckboxGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:values,onValueChange:requestValues,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckboxGroupItem(value:'first',label:text('firstLabel')),\nForgeCheckboxGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"checkbox-group-item\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"},\"name\":{\"kind\":\"text\",\"defaultValue\":\"preferences\",\"nonblank\":true}}};\nconst interactionFamilies=<String,String>{\"checkbox-group-item\":\"checkbox-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='checkbox-group-item';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\",\"name\":\"preferences\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeCheckboxGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:values,onValueChange:requestValues,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeCheckboxGroupItem(value:'first',label:text('firstLabel')),\nForgeCheckboxGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond'))])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "RadioGroup",
+    "owner": "RadioGroup",
+    "slug": "radio-group",
+    "family": "radio-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "third"
+        ],
+        "defaultValue": "none"
+      },
+      "name": {
+        "kind": "text",
+        "defaultValue": "delivery",
+        "nonblank": true
+      }
+    },
+    "expression": "ForgeRadioGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:current,onValueChange:requestScalar,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeRadioGroupItem(value:'first',label:text('firstLabel')),\nForgeRadioGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond')),\nconst ForgeRadioGroupItem(value:'third',label:'Terceiro')])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"radio-group\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"third\"],\"defaultValue\":\"none\"},\"name\":{\"kind\":\"text\",\"defaultValue\":\"delivery\",\"nonblank\":true}}};\nconst interactionFamilies=<String,String>{\"radio-group\":\"radio-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='radio-group';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\",\"name\":\"delivery\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeRadioGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:current,onValueChange:requestScalar,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeRadioGroupItem(value:'first',label:text('firstLabel')),\nForgeRadioGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond')),\nconst ForgeRadioGroupItem(value:'third',label:'Terceiro')])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "RadioGroupItem",
+    "owner": "RadioGroup",
+    "slug": "radio-group-item",
+    "family": "radio-group",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Preferências",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "invalid": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "gap": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s6"
+        ],
+        "defaultValue": "s2"
+      },
+      "padding": {
+        "kind": "select",
+        "options": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4"
+        ],
+        "defaultValue": "s0"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "selection": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "third"
+        ],
+        "defaultValue": "none"
+      },
+      "name": {
+        "kind": "text",
+        "defaultValue": "delivery",
+        "nonblank": true
+      }
+    },
+    "expression": "ForgeRadioGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:current,onValueChange:requestScalar,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeRadioGroupItem(value:'first',label:text('firstLabel')),\nForgeRadioGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond')),\nconst ForgeRadioGroupItem(value:'third',label:'Terceiro')])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"radio-group-item\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Preferências\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"invalid\":{\"kind\":\"boolean\",\"defaultValue\":false},\"gap\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\",\"s6\"],\"defaultValue\":\"s2\"},\"padding\":{\"kind\":\"select\",\"options\":[\"s0\",\"s1\",\"s2\",\"s3\",\"s4\"],\"defaultValue\":\"s0\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"selection\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"third\"],\"defaultValue\":\"none\"},\"name\":{\"kind\":\"text\",\"defaultValue\":\"delivery\",\"nonblank\":true}}};\nconst interactionFamilies=<String,String>{\"radio-group-item\":\"radio-group\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='radio-group-item';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"footerText\":\"Informações complementares\",\"label\":\"Preferências\",\"disabled\":false,\"invalid\":false,\"gap\":\"s2\",\"padding\":\"s0\",\"disableSecond\":false,\"selection\":\"none\",\"name\":\"delivery\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeRadioGroup(name:text('name'),disabled:flag('disabled'),invalid:flag('invalid'),gap:enumValue('gap',ForgeSpace.values,ForgeSpace.s2),padding:enumValue('padding',ForgeSpace.values,ForgeSpace.s0),value:current,onValueChange:requestScalar,children:[\nForgeChoiceGroupHeader(child:Text(text('label'))),\nForgeChoiceGroupBody(child:Column(children:[\nForgeRadioGroupItem(value:'first',label:text('firstLabel')),\nForgeRadioGroupItem(value:'second',label:text('secondLabel'),disabled:flag('disableSecond')),\nconst ForgeRadioGroupItem(value:'third',label:'Terceiro')])),\nForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Tabs",
+    "owner": "Tabs",
+    "slug": "tabs",
+    "family": "tabs",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Seções",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "activeTab": {
+        "kind": "select",
+        "options": [
+          "first",
+          "second"
+        ],
+        "defaultValue": "first"
+      }
+    },
+    "expression": "ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"tabs\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Seções\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"activeTab\":{\"kind\":\"select\",\"options\":[\"first\",\"second\"],\"defaultValue\":\"first\"}}};\nconst interactionFamilies=<String,String>{\"tabs\":\"tabs\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='tabs';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Seções\",\"direction\":\"ltr\",\"animated\":true,\"disableSecond\":false,\"activeTab\":\"first\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "TabsHeader",
+    "owner": "Tabs",
+    "slug": "tabs-header",
+    "family": "tabs",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Seções",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "activeTab": {
+        "kind": "select",
+        "options": [
+          "first",
+          "second"
+        ],
+        "defaultValue": "first"
+      }
+    },
+    "expression": "ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"tabs-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Seções\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"activeTab\":{\"kind\":\"select\",\"options\":[\"first\",\"second\"],\"defaultValue\":\"first\"}}};\nconst interactionFamilies=<String,String>{\"tabs-header\":\"tabs\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='tabs-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Seções\",\"direction\":\"ltr\",\"animated\":true,\"disableSecond\":false,\"activeTab\":\"first\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "TabsBody",
+    "owner": "Tabs",
+    "slug": "tabs-body",
+    "family": "tabs",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Seções",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "activeTab": {
+        "kind": "select",
+        "options": [
+          "first",
+          "second"
+        ],
+        "defaultValue": "first"
+      }
+    },
+    "expression": "ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"tabs-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Seções\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"activeTab\":{\"kind\":\"select\",\"options\":[\"first\",\"second\"],\"defaultValue\":\"first\"}}};\nconst interactionFamilies=<String,String>{\"tabs-body\":\"tabs\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='tabs-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Seções\",\"direction\":\"ltr\",\"animated\":true,\"disableSecond\":false,\"activeTab\":\"first\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "TabsFooter",
+    "owner": "Tabs",
+    "slug": "tabs-footer",
+    "family": "tabs",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Seções",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "activeTab": {
+        "kind": "select",
+        "options": [
+          "first",
+          "second"
+        ],
+        "defaultValue": "first"
+      }
+    },
+    "expression": "ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"tabs-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Seções\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"activeTab\":{\"kind\":\"select\",\"options\":[\"first\",\"second\"],\"defaultValue\":\"first\"}}};\nconst interactionFamilies=<String,String>{\"tabs-footer\":\"tabs\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='tabs-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Seções\",\"direction\":\"ltr\",\"animated\":true,\"disableSecond\":false,\"activeTab\":\"first\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Tab",
+    "owner": "Tabs",
+    "slug": "tab",
+    "family": "tabs",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Seções",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "activeTab": {
+        "kind": "select",
+        "options": [
+          "first",
+          "second"
+        ],
+        "defaultValue": "first"
+      }
+    },
+    "expression": "ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"tab\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Seções\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"activeTab\":{\"kind\":\"select\",\"options\":[\"first\",\"second\"],\"defaultValue\":\"first\"}}};\nconst interactionFamilies=<String,String>{\"tab\":\"tabs\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='tab';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Seções\",\"direction\":\"ltr\",\"animated\":true,\"disableSecond\":false,\"activeTab\":\"first\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "TabPanel",
+    "owner": "Tabs",
+    "slug": "tab-panel",
+    "family": "tabs",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Seções",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "activeTab": {
+        "kind": "select",
+        "options": [
+          "first",
+          "second"
+        ],
+        "defaultValue": "first"
+      }
+    },
+    "expression": "ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"tab-panel\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Seções\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"activeTab\":{\"kind\":\"select\",\"options\":[\"first\",\"second\"],\"defaultValue\":\"first\"}}};\nconst interactionFamilies=<String,String>{\"tab-panel\":\"tabs\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='tab-panel';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Seções\",\"direction\":\"ltr\",\"animated\":true,\"disableSecond\":false,\"activeTab\":\"first\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[\nForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),\nForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),\nForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Toolbar",
+    "owner": "Toolbar",
+    "slug": "toolbar",
+    "family": "toolbar",
+    "schema": {
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Ações",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "orientation": {
+        "kind": "select",
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "expression": "ForgeToolbar(label:text('label'),direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),orientation:enumValue('orientation',ForgeNavigationOrientation.values,ForgeNavigationOrientation.horizontal),children:[\nForgeToolbarItem(itemKey:'first',onPressed:()=>record('first'),child:Text(text('firstLabel'))),\nForgeToolbarItem(itemKey:'second',disabled:flag('disableSecond'),onPressed:()=>record('second'),child:Text(text('secondLabel'))),\nForgeToolbarItem(itemKey:'third',onPressed:()=>record('third'),child:const Text('Terceiro'))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"toolbar\":{\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Ações\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"orientation\":{\"kind\":\"select\",\"options\":[\"horizontal\",\"vertical\"],\"defaultValue\":\"horizontal\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst interactionFamilies=<String,String>{\"toolbar\":\"toolbar\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='toolbar';final Map<String,Object?> properties=const {\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"label\":\"Ações\",\"direction\":\"ltr\",\"orientation\":\"horizontal\",\"disableSecond\":false};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeToolbar(label:text('label'),direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),orientation:enumValue('orientation',ForgeNavigationOrientation.values,ForgeNavigationOrientation.horizontal),children:[\nForgeToolbarItem(itemKey:'first',onPressed:()=>record('first'),child:Text(text('firstLabel'))),\nForgeToolbarItem(itemKey:'second',disabled:flag('disableSecond'),onPressed:()=>record('second'),child:Text(text('secondLabel'))),\nForgeToolbarItem(itemKey:'third',onPressed:()=>record('third'),child:const Text('Terceiro'))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "ToolbarItem",
+    "owner": "Toolbar",
+    "slug": "toolbar-item",
+    "family": "toolbar",
+    "schema": {
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Ações",
+        "nonblank": true
+      },
+      "direction": {
+        "kind": "select",
+        "options": [
+          "ltr",
+          "rtl"
+        ],
+        "defaultValue": "ltr"
+      },
+      "orientation": {
+        "kind": "select",
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "defaultValue": "horizontal"
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      }
+    },
+    "expression": "ForgeToolbar(label:text('label'),direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),orientation:enumValue('orientation',ForgeNavigationOrientation.values,ForgeNavigationOrientation.horizontal),children:[\nForgeToolbarItem(itemKey:'first',onPressed:()=>record('first'),child:Text(text('firstLabel'))),\nForgeToolbarItem(itemKey:'second',disabled:flag('disableSecond'),onPressed:()=>record('second'),child:Text(text('secondLabel'))),\nForgeToolbarItem(itemKey:'third',onPressed:()=>record('third'),child:const Text('Terceiro'))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"toolbar-item\":{\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Ações\",\"nonblank\":true},\"direction\":{\"kind\":\"select\",\"options\":[\"ltr\",\"rtl\"],\"defaultValue\":\"ltr\"},\"orientation\":{\"kind\":\"select\",\"options\":[\"horizontal\",\"vertical\"],\"defaultValue\":\"horizontal\"},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false}}};\nconst interactionFamilies=<String,String>{\"toolbar-item\":\"toolbar\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='toolbar-item';final Map<String,Object?> properties=const {\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"label\":\"Ações\",\"direction\":\"ltr\",\"orientation\":\"horizontal\",\"disableSecond\":false};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeToolbar(label:text('label'),direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),orientation:enumValue('orientation',ForgeNavigationOrientation.values,ForgeNavigationOrientation.horizontal),children:[\nForgeToolbarItem(itemKey:'first',onPressed:()=>record('first'),child:Text(text('firstLabel'))),\nForgeToolbarItem(itemKey:'second',disabled:flag('disableSecond'),onPressed:()=>record('second'),child:Text(text('secondLabel'))),\nForgeToolbarItem(itemKey:'third',onPressed:()=>record('third'),child:const Text('Terceiro'))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Disclosure",
+    "owner": "Disclosure",
+    "slug": "disclosure",
+    "family": "disclosure",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "ForgeDisclosure(label:text('label'),open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')]))",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"disclosure\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst interactionFamilies=<String,String>{\"disclosure\":\"disclosure\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='disclosure';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"bodyText\":\"Conteúdo preservado\",\"label\":\"Detalhes\",\"open\":false,\"disabled\":false,\"animated\":true};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeDisclosure(label:text('label'),open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Collapse",
+    "owner": "Collapse",
+    "slug": "collapse",
+    "family": "collapse",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"collapse\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst interactionFamilies=<String,String>{\"collapse\":\"collapse\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='collapse';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Detalhes\",\"open\":false,\"disabled\":false,\"animated\":true};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "CollapseHeader",
+    "owner": "Collapse",
+    "slug": "collapse-header",
+    "family": "collapse",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"collapse-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst interactionFamilies=<String,String>{\"collapse-header\":\"collapse\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='collapse-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Detalhes\",\"open\":false,\"disabled\":false,\"animated\":true};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "CollapseBody",
+    "owner": "Collapse",
+    "slug": "collapse-body",
+    "family": "collapse",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"collapse-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst interactionFamilies=<String,String>{\"collapse-body\":\"collapse\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='collapse-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Detalhes\",\"open\":false,\"disabled\":false,\"animated\":true};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "CollapseFooter",
+    "owner": "Collapse",
+    "slug": "collapse-footer",
+    "family": "collapse",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "label": {
+        "kind": "text",
+        "defaultValue": "Detalhes",
+        "nonblank": true
+      },
+      "open": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      }
+    },
+    "expression": "ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"collapse-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"label\":{\"kind\":\"text\",\"defaultValue\":\"Detalhes\",\"nonblank\":true},\"open\":{\"kind\":\"boolean\",\"defaultValue\":false},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true}}};\nconst interactionFamilies=<String,String>{\"collapse-footer\":\"collapse\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='collapse-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"label\":\"Detalhes\",\"open\":false,\"disabled\":false,\"animated\":true};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeCollapse(open:opened,onOpenChange:requestOpen,disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeCollapseHeader(child:Text(text('label'))),\nForgeCollapseBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),\nForgeCollapseFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "Accordion",
+    "owner": "Accordion",
+    "slug": "accordion",
+    "family": "accordion",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "multiple": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "collapsible": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "level": {
+        "kind": "number",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 6
+      },
+      "expanded": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"accordion\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"multiple\":{\"kind\":\"boolean\",\"defaultValue\":false},\"collapsible\":{\"kind\":\"boolean\",\"defaultValue\":true},\"level\":{\"kind\":\"number\",\"defaultValue\":2,\"min\":1,\"max\":6},\"expanded\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"accordion\":\"accordion\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='accordion';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"disabled\":false,\"animated\":true,\"disableSecond\":false,\"multiple\":false,\"collapsible\":true,\"level\":2,\"expanded\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AccordionItem",
+    "owner": "Accordion",
+    "slug": "accordion-item",
+    "family": "accordion",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "multiple": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "collapsible": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "level": {
+        "kind": "number",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 6
+      },
+      "expanded": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"accordion-item\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"multiple\":{\"kind\":\"boolean\",\"defaultValue\":false},\"collapsible\":{\"kind\":\"boolean\",\"defaultValue\":true},\"level\":{\"kind\":\"number\",\"defaultValue\":2,\"min\":1,\"max\":6},\"expanded\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"accordion-item\":\"accordion\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='accordion-item';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"disabled\":false,\"animated\":true,\"disableSecond\":false,\"multiple\":false,\"collapsible\":true,\"level\":2,\"expanded\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AccordionHeader",
+    "owner": "Accordion",
+    "slug": "accordion-header",
+    "family": "accordion",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "multiple": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "collapsible": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "level": {
+        "kind": "number",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 6
+      },
+      "expanded": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"accordion-header\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"multiple\":{\"kind\":\"boolean\",\"defaultValue\":false},\"collapsible\":{\"kind\":\"boolean\",\"defaultValue\":true},\"level\":{\"kind\":\"number\",\"defaultValue\":2,\"min\":1,\"max\":6},\"expanded\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"accordion-header\":\"accordion\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='accordion-header';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"disabled\":false,\"animated\":true,\"disableSecond\":false,\"multiple\":false,\"collapsible\":true,\"level\":2,\"expanded\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AccordionBody",
+    "owner": "Accordion",
+    "slug": "accordion-body",
+    "family": "accordion",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "multiple": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "collapsible": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "level": {
+        "kind": "number",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 6
+      },
+      "expanded": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"accordion-body\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"multiple\":{\"kind\":\"boolean\",\"defaultValue\":false},\"collapsible\":{\"kind\":\"boolean\",\"defaultValue\":true},\"level\":{\"kind\":\"number\",\"defaultValue\":2,\"min\":1,\"max\":6},\"expanded\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"accordion-body\":\"accordion\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='accordion-body';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"disabled\":false,\"animated\":true,\"disableSecond\":false,\"multiple\":false,\"collapsible\":true,\"level\":2,\"expanded\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  },
+  {
+    "name": "AccordionFooter",
+    "owner": "Accordion",
+    "slug": "accordion-footer",
+    "family": "accordion",
+    "schema": {
+      "acceptChanges": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "firstLabel": {
+        "kind": "text",
+        "defaultValue": "Primeiro",
+        "nonblank": true
+      },
+      "secondLabel": {
+        "kind": "text",
+        "defaultValue": "Segundo",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo preservado",
+        "nonblank": true
+      },
+      "footerText": {
+        "kind": "text",
+        "defaultValue": "Informações complementares",
+        "nonblank": true
+      },
+      "disabled": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "animated": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "disableSecond": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "multiple": {
+        "kind": "boolean",
+        "defaultValue": false
+      },
+      "collapsible": {
+        "kind": "boolean",
+        "defaultValue": true
+      },
+      "level": {
+        "kind": "number",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 6
+      },
+      "expanded": {
+        "kind": "select",
+        "options": [
+          "none",
+          "first",
+          "second",
+          "both"
+        ],
+        "defaultValue": "none"
+      }
+    },
+    "expression": "ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])])",
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\nconst interactionContracts=<String,Map<String,Map<String,Object?>>>{\"accordion-footer\":{\"acceptChanges\":{\"kind\":\"boolean\",\"defaultValue\":true},\"firstLabel\":{\"kind\":\"text\",\"defaultValue\":\"Primeiro\",\"nonblank\":true},\"secondLabel\":{\"kind\":\"text\",\"defaultValue\":\"Segundo\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo preservado\",\"nonblank\":true},\"footerText\":{\"kind\":\"text\",\"defaultValue\":\"Informações complementares\",\"nonblank\":true},\"disabled\":{\"kind\":\"boolean\",\"defaultValue\":false},\"animated\":{\"kind\":\"boolean\",\"defaultValue\":true},\"disableSecond\":{\"kind\":\"boolean\",\"defaultValue\":false},\"multiple\":{\"kind\":\"boolean\",\"defaultValue\":false},\"collapsible\":{\"kind\":\"boolean\",\"defaultValue\":true},\"level\":{\"kind\":\"number\",\"defaultValue\":2,\"min\":1,\"max\":6},\"expanded\":{\"kind\":\"select\",\"options\":[\"none\",\"first\",\"second\",\"both\"],\"defaultValue\":\"none\"}}};\nconst interactionFamilies=<String,String>{\"accordion-footer\":\"accordion\"};\nclass ForgeInteractionExample extends StatefulWidget {final String slug='accordion-footer';final Map<String,Object?> properties=const {\"acceptChanges\":true,\"firstLabel\":\"Primeiro\",\"secondLabel\":\"Segundo\",\"bodyText\":\"Conteúdo preservado\",\"footerText\":\"Informações complementares\",\"disabled\":false,\"animated\":true,\"disableSecond\":false,\"multiple\":false,\"collapsible\":true,\"level\":2,\"expanded\":\"none\"};const ForgeInteractionExample({super.key});@override State<ForgeInteractionExample> createState()=>_InteractionState();}\nclass _InteractionState extends State<ForgeInteractionExample>{\nString current='first',feedback='';List<String> values=[];bool opened=false;int events=0;\nMap<String,Map<String,Object?>> get schema=>interactionContracts[widget.slug]!;\nObject? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];\nString text(String key)=>(prop(key) as String?)??'';\nbool flag(String key)=>prop(key)==true;\nT enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;\nString get family=>interactionFamilies[widget.slug]!;\nList<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};\nvoid sync(){\n current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');\n values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');\n}\nvoid record(String value)=>setState((){events++;feedback='Solicitado: $value';});\nvoid requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});\nvoid requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});\nvoid requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});\n@override void initState(){super.initState();sync();}\n@override void didUpdateWidget(covariant ForgeInteractionExample old){\n super.didUpdateWidget(old);\n if(old.slug!=widget.slug){events=0;feedback='';sync();return;}\n if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();\n if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();\n}\n@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeAccordion(value:flag('multiple')?values:values.take(1).toList(),onValueChange:requestValues,multiple:flag('multiple'),collapsible:flag('collapsible'),level:((prop('level') as num?)??2).toInt(),disabled:flag('disabled'),animated:flag('animated'),children:[\nForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text('firstLabel'))),ForgeAccordionBody(child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),ForgeAccordionFooter(child:Text(text('footerText')))]),\nForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);\n}\n"
+  }
+]

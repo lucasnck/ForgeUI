@@ -1,0 +1,210 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: 39 finite collection contracts accept defaults and reject unknown fields
+00:00 +1: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box at 320 logical pixels in ForgeThemeId.light
+00:00 +2: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box at 320 logical pixels in ForgeThemeId.dark
+00:01 +3: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box at 320 logical pixels in ForgeThemeId.contrast
+00:01 +4: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box at 320 logical pixels in ForgeThemeId.liquidGlass
+00:01 +5: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-header at 320 logical pixels in ForgeThemeId.light
+00:01 +6: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-header at 320 logical pixels in ForgeThemeId.dark
+00:01 +7: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-header at 320 logical pixels in ForgeThemeId.contrast
+00:01 +8: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:01 +9: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-body at 320 logical pixels in ForgeThemeId.light
+00:01 +10: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-body at 320 logical pixels in ForgeThemeId.dark
+00:01 +11: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-body at 320 logical pixels in ForgeThemeId.contrast
+00:01 +12: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:01 +13: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-footer at 320 logical pixels in ForgeThemeId.light
+00:01 +14: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-footer at 320 logical pixels in ForgeThemeId.dark
+00:01 +15: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-footer at 320 logical pixels in ForgeThemeId.contrast
+00:01 +16: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:01 +17: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-item at 320 logical pixels in ForgeThemeId.light
+00:01 +18: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-item at 320 logical pixels in ForgeThemeId.dark
+00:02 +19: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-item at 320 logical pixels in ForgeThemeId.contrast
+00:02 +20: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection list-box-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:02 +21: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete at 320 logical pixels in ForgeThemeId.light
+00:02 +22: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete at 320 logical pixels in ForgeThemeId.dark
+00:02 +23: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete at 320 logical pixels in ForgeThemeId.contrast
+00:02 +24: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete at 320 logical pixels in ForgeThemeId.liquidGlass
+00:02 +25: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-header at 320 logical pixels in ForgeThemeId.light
+00:02 +26: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-header at 320 logical pixels in ForgeThemeId.dark
+00:02 +27: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-header at 320 logical pixels in ForgeThemeId.contrast
+00:02 +28: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:03 +29: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-body at 320 logical pixels in ForgeThemeId.light
+00:03 +30: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-body at 320 logical pixels in ForgeThemeId.dark
+00:03 +31: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-body at 320 logical pixels in ForgeThemeId.contrast
+00:03 +32: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:03 +33: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-footer at 320 logical pixels in ForgeThemeId.light
+00:03 +34: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-footer at 320 logical pixels in ForgeThemeId.dark
+00:03 +35: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection autocomplete-footer at 320 logical pixels in ForgeThemeId.contrast
+00:03 +36: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:03 +37: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:03 +38: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:03 +39: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:03 +40: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:03 +41: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +42: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +43: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +44: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +45: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +46: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +47: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +48: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +49: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +50: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +51: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +52: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +53: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +54: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +55: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +56: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +57: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +58: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box 0
+00:04 +59: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection popup-listbox-item at 320 logical pixels in ForgeThemeId.dark
+00:04 +60: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-header 1
+00:04 +61: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-header 1
+00:05 +62: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-header 1
+00:05 +63: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu at 320 logical pixels in ForgeThemeId.light
+00:05 +64: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-body 2
+00:05 +65: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu at 320 logical pixels in ForgeThemeId.dark
+00:05 +66: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-footer 3
+00:05 +67: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-footer 3
+00:05 +68: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu at 320 logical pixels in ForgeThemeId.liquidGlass
+00:05 +69: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction list-box-item 4
+00:05 +70: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-header at 320 logical pixels in ForgeThemeId.light
+00:05 +71: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +72: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +73: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +74: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +75: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +76: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +77: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete 5
+00:05 +78: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:05 +79: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete-header 6
+00:05 +80: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-footer at 320 logical pixels in ForgeThemeId.light
+00:05 +81: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete-body 7
+00:05 +82: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete-body 7
+00:05 +83: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-footer at 320 logical pixels in ForgeThemeId.contrast
+00:05 +84: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction autocomplete-footer 8
+00:06 +85: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:06 +86: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction combobox 9
+00:06 +87: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-item at 320 logical pixels in ForgeThemeId.light
+00:06 +88: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction combobox-header 10
+00:06 +89: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction combobox-header 10
+00:06 +90: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-item at 320 logical pixels in ForgeThemeId.contrast
+00:06 +91: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction combobox-body 11
+00:06 +92: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection menu-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:06 +93: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction combobox-footer 12
+00:06 +94: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection dropdown-menu at 320 logical pixels in ForgeThemeId.light
+00:06 +95: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction popup-listbox 13
+00:06 +96: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection dropdown-menu at 320 logical pixels in ForgeThemeId.dark
+00:06 +97: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction popup-listbox-item 14
+00:06 +98: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection dropdown-menu at 320 logical pixels in ForgeThemeId.contrast
+00:06 +99: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu 15
+00:06 +100: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu 15
+00:06 +101: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu at 320 logical pixels in ForgeThemeId.light
+00:06 +102: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu-header 16
+00:06 +103: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu at 320 logical pixels in ForgeThemeId.dark
+00:06 +104: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu-body 17
+00:06 +105: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu at 320 logical pixels in ForgeThemeId.contrast
+00:06 +106: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu-footer 18
+00:06 +107: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu at 320 logical pixels in ForgeThemeId.liquidGlass
+00:06 +108: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu-item 19
+00:06 +109: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction menu-item 19
+00:06 +110: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-header at 320 logical pixels in ForgeThemeId.dark
+00:06 +111: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction dropdown-menu 20
+00:07 +112: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction dropdown-menu 20
+00:07 +113: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +114: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu 21
+00:07 +115: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-body at 320 logical pixels in ForgeThemeId.light
+00:07 +116: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-header 22
+00:07 +117: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-header 22
+00:07 +118: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-body at 320 logical pixels in ForgeThemeId.contrast
+00:07 +119: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-body 23
+00:07 +120: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +121: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-footer 24
+00:07 +122: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-footer at 320 logical pixels in ForgeThemeId.light
+00:07 +123: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-item 25
+00:07 +124: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-item 25
+00:07 +125: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-footer at 320 logical pixels in ForgeThemeId.contrast
+00:07 +126: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction navigation-menu-sublist 26
+00:07 +127: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +128: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree 27
+00:07 +129: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree 27
+00:07 +130: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-item at 320 logical pixels in ForgeThemeId.dark
+00:07 +131: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-header 28
+00:07 +132: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-header 28
+00:07 +133: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-body 29
+00:07 +134: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-body 29
+00:07 +135: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-sublist at 320 logical pixels in ForgeThemeId.light
+00:07 +136: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-footer 30
+00:07 +137: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-sublist at 320 logical pixels in ForgeThemeId.dark
+00:07 +138: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-sublist at 320 logical pixels in ForgeThemeId.contrast
+00:07 +139: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-item 31
+00:07 +140: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection navigation-menu-sublist at 320 logical pixels in ForgeThemeId.liquidGlass
+00:07 +141: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction tree-group 32
+00:07 +142: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree at 320 logical pixels in ForgeThemeId.light
+00:08 +143: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper 33
+00:08 +144: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper 33
+00:08 +145: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree at 320 logical pixels in ForgeThemeId.contrast
+00:08 +146: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-header 34
+00:08 +147: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-header 34
+00:08 +148: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-header at 320 logical pixels in ForgeThemeId.light
+00:08 +149: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-body 35
+00:08 +150: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-header at 320 logical pixels in ForgeThemeId.dark
+00:08 +151: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-footer 36
+00:08 +152: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-footer 36
+00:08 +153: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:08 +154: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-item 37
+00:08 +155: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-body at 320 logical pixels in ForgeThemeId.light
+00:08 +156: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-panel 38
+00:08 +157: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction stepper-panel 38
+00:08 +158: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-body at 320 logical pixels in ForgeThemeId.contrast
+00:08 +159: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_collection_snippets_test.dart: copyable interaction combobox 39
+00:08 +160: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:08 +161: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-footer at 320 logical pixels in ForgeThemeId.light
+00:08 +162: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-footer at 320 logical pixels in ForgeThemeId.dark
+00:08 +163: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-footer at 320 logical pixels in ForgeThemeId.contrast
+00:08 +164: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:08 +165: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-item at 320 logical pixels in ForgeThemeId.light
+00:08 +166: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-item at 320 logical pixels in ForgeThemeId.dark
+00:08 +167: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-item at 320 logical pixels in ForgeThemeId.contrast
+00:08 +168: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:08 +169: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-group at 320 logical pixels in ForgeThemeId.light
+00:08 +170: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-group at 320 logical pixels in ForgeThemeId.dark
+00:09 +171: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-group at 320 logical pixels in ForgeThemeId.contrast
+00:09 +172: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection tree-group at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +173: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper at 320 logical pixels in ForgeThemeId.light
+00:09 +174: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper at 320 logical pixels in ForgeThemeId.dark
+00:09 +175: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper at 320 logical pixels in ForgeThemeId.contrast
+00:09 +176: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +177: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-header at 320 logical pixels in ForgeThemeId.light
+00:09 +178: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-header at 320 logical pixels in ForgeThemeId.dark
+00:09 +179: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-header at 320 logical pixels in ForgeThemeId.contrast
+00:09 +180: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-header at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +181: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-body at 320 logical pixels in ForgeThemeId.light
+00:09 +182: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-body at 320 logical pixels in ForgeThemeId.dark
+00:09 +183: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-body at 320 logical pixels in ForgeThemeId.contrast
+00:09 +184: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-body at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +185: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-footer at 320 logical pixels in ForgeThemeId.light
+00:09 +186: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-footer at 320 logical pixels in ForgeThemeId.dark
+00:09 +187: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-footer at 320 logical pixels in ForgeThemeId.contrast
+00:09 +188: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-footer at 320 logical pixels in ForgeThemeId.liquidGlass
+00:09 +189: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-item at 320 logical pixels in ForgeThemeId.light
+00:09 +190: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-item at 320 logical pixels in ForgeThemeId.dark
+00:09 +191: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-item at 320 logical pixels in ForgeThemeId.contrast
+00:10 +192: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-item at 320 logical pixels in ForgeThemeId.liquidGlass
+00:10 +193: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-panel at 320 logical pixels in ForgeThemeId.light
+00:10 +194: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-panel at 320 logical pixels in ForgeThemeId.dark
+00:10 +195: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-panel at 320 logical pixels in ForgeThemeId.contrast
+00:10 +196: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: collection stepper-panel at 320 logical pixels in ForgeThemeId.liquidGlass
+00:10 +197: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: multiple listbox supports selection and controlled refusal
+00:10 +198: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: query acceptance is keyboard accessible and combobox has a selection channel
+00:10 +199: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: popup stays closed while disabled and actual item uses consumer controller
+00:11 +200: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: menu dispatches once before dismissal and disabled items do not activate
+00:11 +201: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: dropdown trigger opens a real menu and action closes it
+00:11 +202: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: navigation delegates links and preserves independent nested disclosure
+00:11 +203: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: tree preserves separate selection and expansion requests
+00:11 +204: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: stepper retains field edits and can refuse a requested step
+00:11 +205: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: entrypoint routes collection targets to real native implementation
+00:11 +206: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: property selection edits do not overwrite the independent query channel
+00:11 +207: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/collection_preview_test.dart: tree expansion property edits preserve nullable controlled selection
+00:11 +208: All tests passed!

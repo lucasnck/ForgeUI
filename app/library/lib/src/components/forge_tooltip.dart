@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import '../theme/forge_theme_tokens.dart';
 import '../types/component_capabilities.dart';
@@ -102,6 +102,7 @@ class _TooltipState extends State<ForgeTooltip> {
         },
         child: ForgeAnchoredOverlay(
             open: opened,
+            animated: widget.animated,
             maxWidth: p.layoutContainerNarrow,
             gap: p.space1,
             anchor: TapRegion(
@@ -140,11 +141,9 @@ class _TooltipState extends State<ForgeTooltip> {
                       update();
                     },
                     child: ExcludeSemantics(
-                        child: Material(
-                            type: MaterialType.transparency,
-                            child: ForgeSurface(
-                                elevation: ForgeElevation.floating,
-                                padding: ForgeSpace.s2,
-                                child: Text(widget.content))))))));
+                        child: ForgeSurface(
+                            elevation: ForgeElevation.floating,
+                            padding: ForgeSpace.s2,
+                            child: Text(widget.content)))))));
   }
 }

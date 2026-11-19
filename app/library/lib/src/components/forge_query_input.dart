@@ -1,11 +1,13 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
+import '../theme/forge_theme_tokens.dart';
+import 'package:flutter/widgets.dart';
 import '../controllers/popup_listbox_controller.dart';
 import '../types/component_capabilities.dart';
 import 'internal/configured_input.dart';
 import 'forge_layout.dart';
 import 'forge_list_box.dart';
 import 'forge_popup_listbox.dart';
+import 'internal/anchored_overlay.dart';
 
 enum _QueryKind { autocomplete, combobox }
 
@@ -343,49 +345,35 @@ class _QueryBody extends StatefulWidget {
 }
 
 class _QueryBodyState extends State<_QueryBody> {
-  final portal = OverlayPortalController(), link = LayerLink();
-  double width = 320;
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) portal.show();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final s = widget.owner;
-    return OverlayPortal(
-        controller: portal,
-        overlayChildBuilder: (context) => Positioned.fill(
-            child: CompositedTransformFollower(
-                link: link,
-                showWhenUnlinked: false,
-                targetAnchor: Alignment.bottomLeft,
-                followerAnchor: Alignment.topLeft,
-                child: Align(
-                    alignment: Alignment.topLeft,
+    return LayoutBuilder(builder: (context, c) {
+      final width = c.hasBoundedWidth ? c.maxWidth : 320.0;
+      return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AnimatedBuilder(
+                animation: s.popup,
+                builder: (context, _) => ForgeAnchoredOverlay(
+                    open: s.popup.isOpen,
+                    animated: false,
+                    maxWidth: width,
+                    gap: ForgeThemeTokens.of(context).palette.space1,
+                    anchor: s.editor(),
                     child: SizedBox(
                         width: width,
                         child: TextFieldTapRegion(
                             child: ForgePopupListbox<ForgeChoiceOption>(
                                 popup: s.popup,
+                                animated: s.widget.animated,
                                 items: s.enabledOptions,
                                 getOptionLabel: (o) => o.label,
                                 getOptionKey: (o, i) => o.value,
-                                listboxLabel: s.widget.listboxLabel)))))),
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              CompositedTransformTarget(
-                  link: link,
-                  child: LayoutBuilder(builder: (context, c) {
-                    width = c.hasBoundedWidth ? c.maxWidth : 320;
-                    return s.editor();
-                  })),
-              if (widget.child != null) widget.child!
-            ]));
+                                listboxLabel: s.widget.listboxLabel))))),
+            if (widget.child != null) widget.child!
+          ]);
+    });
   }
 }

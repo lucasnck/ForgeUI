@@ -1,5 +1,64 @@
 # Forge UI — plano de criação e extração
 
+## Checkpoint de implementação — 18/11/2026 — Slider Flutter nativo (Wave 10)
+
+Seguindo `sc-author → sc-implementer`, a SC do Slider e a TECH nativa foram
+registradas antes do código: o Slider deixa de renderizar Material e mantém
+a API Flutter publicada, pintura/geométrica/token Forge, toque, foco, teclado
+com RTL, semântica ajustável e formulário. Auditorias Node: PASS isolado,
+com quatro regressões negativas rejeitadas. O gate final continua bloqueado
+sem SDK Flutter, testes Android/iOS, acesso por leitor de tela e paridade
+visual Web × Flutter; incompatibilidade de canal `double` vs. valores
+string do Web está explícita na SC. Estimativa estática após a alteração:
+6 imports diretos Material/Cupertino, pendente de auditoria integral.
+Documento: `docs/migration/FORGEUI-NATIVE-SLIDER-WAVE10-2026-11-18.md`.
+Nenhuma SC alterada para `DONE`; sem modificação de consumidores ou Git remoto.
+
+## Checkpoint de independência nativa — 18/11/2026 — auditoria dos 221 contratos e onda de importações
+
+A auditoria reproduzível `npm run audit:native-independence` analisou **221 contratos** e **128 arquivos Dart** no recorte de biblioteca disponível no Drive, com **zero fontes ou nomes de construtores ausentes** e **zero imports relativos quebrados** nesse recorte. Foram eliminados quatro imports Material/Cupertino de produção: `configured_input.dart`, `schematic_map_renderer.dart`, `forge_o_data_filter.dart`, e wrapper `Material` transparente de `forge_modal.dart` substituído por `Builder`, sem modificar API de componentes, receitas de estilo ou tokens. Os imports diretos Material/Cupertino da biblioteca passaram de **12 para 7** neste recorte. Os testes Node da auditoria e mutações negativas passaram; **Flutter SDK, Dart format/analyze/test, Android/iOS, inspeção visual e acessibilidade não foram executados**.
+
+Continuam com import Material direto: `ForgeInput`, `ForgeSelect`, `ForgeSlider`, `ForgeColorInput`, `ForgeTemporalInput`, `ForgeThemeTokens` e `ForgeThemeData` (adaptador legado). O helper `forge_control_style.dart` agora delega à receita nativa compartilhada; `ForgeSelect` consome `style.background`, sem mudar sua implementação pública ainda Material. `phone_numbers_parser` continua em produção. A auditoria identifica **146 contratos com dependência transitiva Material/Cupertino**, não 146 componentes a reimplementar: depende de retirar essa dependência compartilhada, inclusive de tokens. Famílias Web × Flutter mantêm 221 SCs `PENDING` até evidências reais. Problemas de paridade Web ainda registrados: família DM Sans não gerada para Dart e `rootFontSizeVerified=false` na escala de rem.
+
+Artefatos: `docs/sc/app/tech-native-platform-boundary-wave9.sc.md`, `docs/sc/app/tech-native-select-recipe.sc.md`, `scripts/audit-native-independence.mjs`, `scripts/test-native-independence.mjs`, `docs/migration/validation/native-independence-matrix.json`, `docs/migration/FORGEUI-NATIVE-INDEPENDENCE-WAVE9-2026-11-18.md`. Nada foi publicado em Git nem alterado nos consumidores.
+
+
+## Checkpoint de implementação — 18/11/2026 — ForgeAction nativo e paridade Web × Flutter
+
+O fluxo `sc-author → sc-implementer` atualizou a SC Flutter Button e criou `docs/sc/app/tech-flutter-native-action-recipe.sc.md` e `docs/sc/app/tech-web-flutter-parity-gates.sc.md`. `ForgeAction` (motor compartilhado de `ForgeButton` e `ForgeIconButton`) deixou de usar `FilledButton`, `OutlinedButton` e `Tooltip` do Material: renderização por widgets Flutter + `ForgeTooltip`, preservando tokens originais do Web para tamanhos, tons, formas, pesos, cores, radius, motion e estados, além da precedência `appearance > variant > outlined`. O alvo de toque mobile é pelo menos 48 dp e **não muda o tamanho visual definido pelo token**. `ForgeSelect` continua usando a receita Material legada, preservada separadamente.
+
+Publicados no Drive: `forge_action.dart`, `forge_action_palette.dart`, `forge_native_action_recipe.dart`, reconciliação do `forge_control_style.dart`, testes de `Button` e `IconButton`, scripts `check-native-actions.mjs` e `test-native-actions.mjs` e integração `test:native-actions` no `check:cross-platform`. `npm run test:native-actions` passou em estrutura isolada com quatro regressões negativas rejeitadas; **Dart/Flutter analyze, tests, builds, mobile, acessibilidade e paridade visual não foram executados**. SCs permanecem `PENDING` e nenhum consumidor ou Git remoto foi alterado. Relatório: [recorte de ações nativas](docs/migration/FORGEUI-NATIVE-ACTIONS-PARITY-SLICE-2026-11-18.md).
+
+**Lacuna de paridade identificada:** O motor de ação já migrou, mas a fonte tipográfica exata e a escala de rem permanecem sem aceite: `--font-family-brand` existe em `shared/tokens/primitives.json`, porém não é emitido em Dart; `schema.json` marca `rootFontSizeVerified:false`. Sem supor que o default Flutter equivale à Web. Detalhes na TECH transversal e no relatório do recorte.
+
+## Checkpoint de implementação — 18/11/2026 — checkables Flutter nativos
+
+**Aplicado ao Google Drive, ainda não homologado pelo Flutter SDK.** Após o recorte de tipografia, o fluxo `sc-author` → `sc-implementer` atualizou as SCs de `Checkbox`, `Radio` e `Switch`, criou `docs/sc/app/tech-native-checkables.sc.md` e substituiu a implementação compartilhada em `app/library/lib/src/components/forge_checkable.dart` por `Focus`/`GestureDetector`/`Semantics` de `widgets.dart` (sem import direto Material/Cupertino). Foram adicionados `scripts/check-native-checkables.mjs`, `scripts/test-native-checkables.mjs` e `app/library/test/forge_native_checkables_test.dart`; `npm run test:native-checkables` foi ligado ao `check:cross-platform`.
+
+**Verificado:** `git apply --check` sobre fonte original e testes Node da fronteira nativa, inclusive três regressões injetadas. **Não executados:** Dart format, Flutter analyze/widget tests/build, acessibilidade e paridade visual. As três SCs continuam `PENDING`, a independência global do Material não está concluída, e o build anterior das 221 prévias não comprova este recorte. Nenhuma publicação Git nem modificação dos consumidores. Evidências: [relatório do recorte](docs/migration/FORGEUI-NATIVE-CHECKABLES-SLICE-2026-11-18.md).
+
+## Checkpoint de implementação — 18/11/2026 — tipografia Flutter nativa
+
+O fluxo `sc-author` → `sc-implementer` prosseguiu em `AiWorkspace/ForgeUI`: uma TECH de tipografia nativa (`docs/sc/app/tech-flutter-typography-recipe.sc.md`) e seis SCs de componentes atualizadas antes do código. As implementações de `ForgeText`, `ForgeHeading` e `ForgeLabel`, mais o helper `forge_primitive_style.dart`, deixaram de importar Material diretamente; `ForgeDivider` agora desenha a linha com `SizedBox`/`ColoredBox` e tokens ForgeUI. `ForgeFieldHint` e `ForgeFieldError` já usavam Flutter nativo e foram incluídos nos testes.
+
+Foram adicionados `scripts/check-native-typography.mjs`, `app/library/test/forge_native_typography_test.dart` e `npm run test:native-typography`, incorporado a `check:cross-platform`. O teste estrutural Node passou no conjunto de arquivos atualizados, inclusive com rejeição de import Material injetado. O teste de widget **ainda não foi executado**, porque Flutter/Dart não estão instalados no ambiente desta entrega. O repositório completo, análise Dart, builds nativos e comparação visual Web × Flutter ainda exigem homologação local. Nenhuma SC foi marcada `DONE` por este lote. Material continua no adaptador legado e em outros widgets; a independência global não está concluída.
+
+Relatório: `docs/migration/FORGEUI-NATIVE-TYPOGRAPHY-SLICE-2026-11-18.md` (cópia no diretório de relatórios do Drive). Nenhuma alteração foi publicada por Git ou sincronizada com a revisão do ForgeUI consumida pelo PraticarApp.
+
+
+## Checkpoint atual — etapas 6 a 8 — 17/11/2026
+
+**221 APIs públicas e 221 prévias Flutter compiladas e registradas**, incluindo partes canônicas demonstradas no proprietário correto. **125 testes da biblioteca e 1.174 do showcase passaram**; análise Dart sem problemas. Build Flutter `0d5f6c48442ac45e`. Tokens (185 em quatro temas), curva de movimento canônica e typecheck Web/portal aprovados. Não há entrada de catálogo sem prévia registrada. Build do portal aprovado com 297 rotas; [17 verificações HTTP](docs/migration/validation/flutter-wave8-http.json) passaram, incluindo correspondência do hash Flutter servido ao manifesto.
+
+Entregues os grupos de interação/formulários, coleções/navegação, modais/notificações, tabelas, templates, transições, mapa e OData. Corrigidos teclado/RTL de RadioGroup, semântica de FormField, geometria dos popups e presença/animações com restauração de foco. Os snippets copiáveis são compilados nos testes.
+
+Evidências: [etapa 6](docs/migration/FLUTTER-INTERACTION-FORMS-WAVE-6.md), [etapa 7](docs/migration/FLUTTER-COLLECTIONS-WAVE-7.md), [etapa 8](docs/migration/FLUTTER-REMAINING-PREVIEWS-WAVE-8.md), [pipeline integral](docs/migration/validation/flutter-wave8-build.log) e [acompanhamento estruturado](docs/migration/FLUTTER-IMPLEMENTATION-PROGRESS.json).
+
+**Pendências de aceite:** comparação visual e funcional completa por SC entre Web/app; validação Android/iOS e tecnologias assistivas. Semântica e foco têm testes automatizados, mas isso não representa auditoria em aparelho. APIs nativas e os controles de cenário são distintos; o editor não oferece alteração de todos os parâmetros construtores/objetos tipados. PopupListbox e Toast ainda removem itens imediatamente, sem pintura de saída retida. As SCs continuam PENDING nos critérios não comprovados.
+
+Os registros seguintes são históricos e suas contagens/bloqueios são substituídos pelo checkpoint acima. PraticarFront permanece intacto.
+
+
 ## Desenvolvimento Flutter — primeira entrega funcional
 
 Button, Spinner e ButtonGroup têm implementação e exemplos reais na prévia Flutter. O Button expõe tamanhos, tons, aparências, formatos, largura, loading, loadingLabel, disabled, foco e semântica; outlined permanece como alias legado. Capacidades e receitas de estilo são compartilhadas. O manifesto só registra os três widgets após análise, testes e build reais.

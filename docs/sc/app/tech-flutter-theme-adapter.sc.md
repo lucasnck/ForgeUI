@@ -1,6 +1,6 @@
 ---
 title: "Flutter Token Theme Adapter"
-scope: "Flutter ThemeData and widget-level token adaptation from generated shared token values without importing Web or Showcase modules"
+scope: "Flutter Forge-owned theme distribution and token adaptation without requiring Material as the visual design system"
 status: "PENDING"
 type: "helper"
 ds-level: "none"
@@ -11,11 +11,11 @@ ds-level: "none"
 ## Files
 
 ```text
-../../../app/library/pubspec.yaml (C)
-../../../app/library/lib/forge_ui.dart (C)
-../../../app/library/lib/src/theme/forge_theme_data.dart (C)
-../../../app/library/lib/src/theme/forge_theme_tokens.dart (C)
-../../../app/library/test/forge_theme_data_test.dart (C)
+../../../app/library/lib/src/theme/forge_theme_scope.dart (C)
+../../../app/library/lib/src/theme/forge_theme_tokens.dart (M)
+../../../app/library/lib/src/theme/forge_theme_data.dart (M, later compatibility retirement)
+../../../app/library/lib/forge_ui.dart (M)
+../../../app/library/test/forge_theme_scope_test.dart (C)
 ```
 
 ## Dependencies
@@ -25,23 +25,31 @@ ds-level: "none"
 ## Contract
 
 ```dart
+import 'package:flutter/widgets.dart';
 import 'package:forge_ui/forge_ui.dart';
 
-final theme = ForgeThemeData.light();
+ForgeThemeScope(
+  tokens: ForgeThemeTokens.fromId(ForgeThemeId.light),
+  child: Text("Exemplo"),
+);
 ```
+
+## Ownership
+
+This TECH owns one coherent capability: framework-native, Forge-owned theme distribution. It does not own generated token definitions, individual widget Material removal or Showcase host changes. `ForgeThemeScope` must use `widgets.dart` and `InheritedWidget`; switching light/dark/contrast/liquid-glass must notify dependents. ForgeThemeTokens.of(context) first resolves the Forge scope; a legacy Material ThemeExtension fallback remains temporarily during per-component migration. `ForgeThemeData` is the old Material adapter and is deprecated only after all consumers migrate. Do not imply the Flutter library is Material-free from adding the scope alone.
+
+The canonical replacement for MaterialApp/Scaffold in the compiled Showcase is a separate feature/integration step, sequenced after widget migration and tests. Never change production UI appearance while introducing this compatibility bridge.
 
 ## Tests
 
-- Resolve token-backed light, dark and contrast ColorScheme, typography and shape values in widget tests.
-- Verify non-portable liquid-glass properties use documented Flutter platform fallbacks without changing shared semantic colors.
-- Verify dynamic text scaling, high-contrast accessibility and platform brightness preference when enabled by the consuming app.
-- Ensure Flutter packages do not import React, Next.js, CSS source files or Showcase source, and do not duplicate token literal palettes.
+- `WidgetsApp` with `ForgeThemeScope` works without a `MaterialApp` ancestor, and `ForgeThemeTokens.of` reads light/dark correctly.
+- Updating the scope notifies dependents; unchanged tokens do not cause unnecessary notifications.
+- Existing `MaterialApp` + ForgeThemeData compatibility remains functional.
+- Run `dart format`, `flutter analyze`, and targeted `flutter test` before marking implementation complete; when Flutter is unavailable, record blocked.
 
 ## Criteria
 
-- [ ] Expose a public Flutter theme adapter consuming generated Dart tokens, not hand-maintained colors or spacing.
-- [ ] Preserve Web semantics in the Flutter mapping while retaining platform-appropriate widgets and behavior; common names do not imply identical implementation trees.
-- [ ] Support explicit light/dark/contrast/liquid-glass theme selection with documented platform exceptions and accessible fallbacks.
-- [ ] Keep platform preference persistence owned by consumers; the library does not read or modify application storage implicitly.
-- [ ] Verify representative widget appearance and runtime theme switching in Flutter tests. `flutter analyze`, targeted tests and formatting must pass with recorded results before `DONE`.
-- [ ] Do not declare widgets or preview availability merely because theme generation succeeds.
+- [ ] Scope compiles and provides all four themes without a MaterialApp ancestor.
+- [ ] Legacy Material consumers continue to work until their individually owned SCs are migrated.
+- [ ] Formatting, analyzer, widget tests and native checks have recorded evidence.
+- [ ] Material imports, Material theme adapters and third-party library dependencies are removed only after independent tests and migrations, not as a drive-by change.

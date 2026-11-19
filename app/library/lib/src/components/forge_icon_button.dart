@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'internal/forge_action.dart';
 import 'forge_icon.dart';
 import '../generated/forge_icons.g.dart';

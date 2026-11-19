@@ -45,9 +45,6 @@ export function FlutterPreview({
         onLoad={view.send}
         onError={view.failed}
       />
-      <a href={view.url} target="_blank" rel="noreferrer">
-        Abrir prévia Flutter em outra aba
-      </a>
     </div>
   );
 }

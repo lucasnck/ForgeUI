@@ -3,6 +3,12 @@ import 'examples/primitives_generated.dart';
 import 'examples/input_contracts.dart';
 import 'examples/composite_contracts.dart';
 import 'examples/feedback_contracts.dart';
+import 'examples/interaction_contracts.dart';
+import 'examples/form_catalog_contracts.dart';
+import 'examples/collection_contracts.dart';
+import 'examples/transient_contracts.dart';
+import 'examples/advanced_contracts.dart';
+import 'examples/part_contracts.dart';
 import 'package:forge_ui/forge_ui.dart';
 
 class ForgePreviewSettings {
@@ -75,7 +81,13 @@ class ForgePreviewSettings {
             !(validPrimitiveProperties(slug, p) ||
                 validInputProperties(slug, p) ||
                 validCompositeProperties(slug, p) ||
-                validFeedbackProperties(slug, p))) return null;
+                validFeedbackProperties(slug, p) ||
+                validInteractionProperties(slug, p) ||
+                validFormCatalogProperties(slug, p) ||
+                validCollectionProperties(slug, p) ||
+                validTransientProperties(slug, p) ||
+                validAdvancedProperties(slug, p) ||
+                validPartProperties(slug, p))) return null;
         final theme = themeFor(p['theme'] is String ? p['theme'] : null);
         if (theme == null ||
             (p['scenario'] != null && p['scenario'] != 'basic')) return null;

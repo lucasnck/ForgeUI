@@ -1,21 +1,28 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:forge_ui/forge_ui.dart';
 
 Widget host(Widget child,
-        {ForgeShape shape = ForgeShape.rounded, bool reduce = false}) =>
-    MaterialApp(
-        theme: ForgeThemeData.light().copyWith(extensions: [
-          ForgeThemeTokens.fromId(ForgeThemeId.light).copyWith(shape: shape)
-        ]),
-        home: MediaQuery(
-            data: MediaQueryData(disableAnimations: reduce),
-            child: Scaffold(body: Center(child: child))));
+        {ForgeThemeId theme = ForgeThemeId.light,
+        ForgeShape shape = ForgeShape.rounded,
+        bool reduce = false}) =>
+    WidgetsApp(
+        color: const Color(0xFF101820),
+        home: ForgeThemeScope(
+            tokens: ForgeThemeTokens.fromId(theme).copyWith(shape: shape),
+            child: MediaQuery(
+                data: MediaQueryData(disableAnimations: reduce),
+                child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Center(child: child)))));
+
+BoxDecoration actionDecoration(WidgetTester tester) =>
+    tester.widget<AnimatedContainer>(find.byType(AnimatedContainer).first).decoration!
+        as BoxDecoration;
 
 void main() {
-  testWidgets(
-      'one native activation; disabled, loading and null suppress actions',
+  testWidgets('one activation; disabled, loading and null suppress actions',
       (tester) async {
     var hits = 0;
     for (final state in ['enabled', 'disabled', 'loading', 'null']) {
@@ -29,7 +36,8 @@ void main() {
     }
     expect(hits, 1);
   });
-  testWidgets('loading replacement, empty fallback and explicit semantics',
+
+  testWidgets('loading replacement, fallback and explicit semantics',
       (tester) async {
     final handle = tester.ensureSemantics();
     await tester.pumpWidget(host(ForgeButton(
@@ -53,8 +61,8 @@ void main() {
     expect(find.bySemanticsLabel('Save'), findsNothing);
     handle.dispose();
   });
-  testWidgets(
-      'appearance overrides variant and legacy; theme shape is inherited',
+
+  testWidgets('appearance precedence and theme shape follow Forge Web tokens',
       (tester) async {
     // ignore: deprecated_member_use
     await tester.pumpWidget(host(
@@ -65,25 +73,40 @@ void main() {
             appearance: ForgeAppearance.soft,
             child: const Text('Go')),
         shape: ForgeShape.pill));
-    final button = tester.widget<FilledButton>(find.byType(FilledButton));
-    final p = ForgeTokens.light;
-    expect(button.style!.backgroundColor!.resolve({}), p.colorSurfaceSubtle);
-    final inherited =
-        button.style!.shape!.resolve({})! as RoundedRectangleBorder;
-    expect(inherited.borderRadius, BorderRadius.circular(p.radiusFull));
+    expect(actionDecoration(tester).color, ForgeTokens.light.colorSurfaceSubtle);
+    expect(actionDecoration(tester).borderRadius,
+        BorderRadius.circular(ForgeTokens.light.radiusFull));
     await tester.pumpWidget(host(ForgeButton(
         onPressed: () {},
         shape: ForgeShape.square,
         appearance: ForgeAppearance.bordered,
         child: const Text('Go'))));
-    final outlined = tester.widget<OutlinedButton>(find.byType(OutlinedButton));
-    expect(
-        (outlined.style!.shape!.resolve({})! as RoundedRectangleBorder)
-            .borderRadius,
-        BorderRadius.zero);
+    expect(actionDecoration(tester).borderRadius, BorderRadius.zero);
+    expect(actionDecoration(tester).color, ForgeTokens.light.colorSurfaceDefault);
   });
-  testWidgets(
-      'bounded full width, unbounded fallback and scaled content stay finite',
+
+  testWidgets('all four token themes and sizes work without MaterialApp',
+      (tester) async {
+    for (final theme in ForgeThemeId.values) {
+      final palette = ForgeThemeTokens.fromId(theme).palette;
+      for (final size in ForgeSize.values) {
+        await tester.pumpWidget(host(
+            ForgeButton(
+                onPressed: () {}, size: size, child: const Text('Native')),
+            theme: theme,
+            reduce: true));
+        expect(actionDecoration(tester).color,
+            palette.colorActionBrandBackground);
+        expect(tester.getSize(find.byType(ForgeButton)).height,
+            greaterThanOrEqualTo(48));
+        expect(tester.getSize(find.byType(AnimatedContainer).first).height,
+            greaterThanOrEqualTo(palette.number('--component-height-${size.name}')));
+        expect(tester.takeException(), isNull);
+      }
+    }
+  });
+
+  testWidgets('bounded fullWidth, unbounded fallback and scaled text',
       (tester) async {
     await tester.pumpWidget(host(SizedBox(
         width: 320,
@@ -105,7 +128,8 @@ void main() {
                 child: const Text('Long scaled action label'))))));
     expect(tester.takeException(), isNull);
   });
-  testWidgets('keyboard activation and borrowed focus survive widget disposal',
+
+  testWidgets('keyboard activation and borrowed FocusNode survive disposal',
       (tester) async {
     final focus = FocusNode();
     var hits = 0;
@@ -117,7 +141,9 @@ void main() {
     await tester.pump();
     await tester.sendKeyEvent(LogicalKeyboardKey.enter);
     await tester.pump();
-    expect(hits, 1);
+    await tester.sendKeyEvent(LogicalKeyboardKey.space);
+    await tester.pump();
+    expect(hits, 2);
     await tester.pumpWidget(const SizedBox());
     expect(() => focus.addListener(() {}), returnsNormally);
     focus.dispose();

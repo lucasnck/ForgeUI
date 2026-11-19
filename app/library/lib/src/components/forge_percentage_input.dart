@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'internal/configured_input.dart';
 import 'forge_input.dart';
 import 'forge_input_group.dart';

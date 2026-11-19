@@ -31,7 +31,7 @@
         "Meter",
         "Link"
       ],
-      "status": "implemented_pending_showcase_and_acceptance",
+      "status": "implemented_and_preview_compiled_pending_full_acceptance",
       "implemented": [
         "Icon",
         "Text",
@@ -58,7 +58,14 @@
         "flutter analyze: PASS",
         "flutter test test/primitives_test.dart: 6 PASS"
       ],
-      "remaining": []
+      "remaining": [
+        "Full spec-by-spec Web/app parity and visual/assistive acceptance on native devices"
+      ],
+      "previewCoverage": {
+        "count": 20,
+        "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+      },
+      "validatedMeaning": "The existing validated list is historical implementation evidence. previewCoverage and currentValidation record the current compiled/tested catalog; full native acceptance is still pending."
     },
     {
       "id": "inputs",
@@ -100,7 +107,7 @@
         "TimeInput",
         "FileInput"
       ],
-      "status": "in_progress",
+      "status": "implemented_and_preview_compiled_pending_full_acceptance",
       "implemented": [
         "Input",
         "Textarea",
@@ -127,6 +134,7 @@
         "PercentageInput",
         "CurrencyInput",
         "CurrencyValue",
+        "InternationalTelephoneInput",
         "LocaleSelector",
         "ThemeSelector",
         "ColorInput",
@@ -140,8 +148,13 @@
       ],
       "validated": [],
       "remaining": [
-        "InternationalTelephoneInput"
-      ]
+        "Full spec-by-spec Web/app parity and visual/assistive acceptance on native devices"
+      ],
+      "previewCoverage": {
+        "count": 36,
+        "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+      },
+      "validatedMeaning": "The existing validated list is historical implementation evidence. previewCoverage and currentValidation record the current compiled/tested catalog; full native acceptance is still pending."
     },
     {
       "id": "compositions",
@@ -289,80 +302,12 @@
         "Modal",
         "ModalHeader"
       ],
-      "status": "in_progress",
+      "status": "implemented_and_preview_compiled_pending_full_acceptance",
       "implemented": [
-        "PageHeader",
-        "FormHeader",
-        "FormBody",
-        "FormFooter",
-        "ChoiceGroup",
-        "ChoiceGroupHeader",
-        "ChoiceGroupBody",
-        "ChoiceGroupFooter",
-        "CheckboxGroup",
-        "CheckboxGroupItem",
-        "RadioGroup",
-        "RadioGroupItem",
-        "TagGroup",
-        "TagGroupItem",
-        "Tabs",
-        "TabsHeader",
-        "TabsBody",
-        "TabsFooter",
-        "Tab",
-        "TabPanel",
-        "Toolbar",
-        "ToolbarItem",
-        "Disclosure",
-        "Collapse",
-        "CollapseHeader",
-        "CollapseBody",
-        "CollapseFooter",
-        "Accordion",
-        "AccordionItem",
-        "AccordionHeader",
-        "AccordionBody",
-        "AccordionFooter",
-        "Pagination",
-        "PaginationItem",
-        "PaginationEllipsis",
-        "List",
-        "ListHeader",
-        "ListBody",
-        "ListFooter",
-        "ListItem",
-        "Breadcrumb",
-        "BreadcrumbItem",
-        "Alert",
-        "AlertHeader",
-        "AlertBody",
-        "AlertFooter",
-        "EmptyState",
-        "EmptyStateHeader",
-        "EmptyStateBody",
-        "EmptyStateFooter",
-        "ErrorState",
-        "ErrorStateHeader",
-        "ErrorStateBody",
-        "ErrorStateFooter",
-        "LoadingState",
-        "LoadingStateHeader",
-        "LoadingStateBody",
-        "LoadingStateFooter",
-        "FormField",
-        "FormFieldHeader",
-        "FormFieldBody",
-        "FormFieldFooter",
-        "CardHeader",
-        "CardBody",
-        "CardFooter",
-        "Card"
-      ],
-      "validated": [],
-      "remaining": [
         "ApplicationLayoutHeader",
         "ApplicationLayoutBody",
         "ApplicationLayoutFooter",
+        "PageHeader",
         "ODataFilterCondition",
         "ODataFilterGroup",
         "ODataFilterValue",
@@ -430,13 +375,87 @@
         "ListBoxBody",
         "ListBoxFooter",
         "ListBoxItem",
+        "FormHeader",
+        "FormBody",
+        "FormFooter",
         "DataGridCell",
         "DataGridFooter",
+        "ChoiceGroup",
+        "ChoiceGroupHeader",
+        "ChoiceGroupBody",
+        "ChoiceGroupFooter",
+        "CheckboxGroup",
+        "CheckboxGroupItem",
+        "RadioGroup",
+        "RadioGroupItem",
+        "TagGroup",
+        "TagGroupItem",
+        "Tabs",
+        "TabsHeader",
+        "TabsBody",
+        "TabsFooter",
+        "Tab",
+        "TabPanel",
+        "Toolbar",
+        "ToolbarItem",
+        "Disclosure",
+        "Collapse",
+        "CollapseHeader",
+        "CollapseBody",
+        "CollapseFooter",
+        "Accordion",
+        "AccordionItem",
+        "AccordionHeader",
+        "AccordionBody",
+        "AccordionFooter",
+        "Pagination",
+        "PaginationItem",
+        "PaginationEllipsis",
+        "List",
+        "ListHeader",
+        "ListBody",
+        "ListFooter",
+        "ListItem",
+        "Breadcrumb",
+        "BreadcrumbItem",
+        "Alert",
+        "AlertHeader",
+        "AlertBody",
+        "AlertFooter",
+        "EmptyState",
+        "EmptyStateHeader",
+        "EmptyStateBody",
+        "EmptyStateFooter",
+        "ErrorState",
+        "ErrorStateHeader",
+        "ErrorStateBody",
+        "ErrorStateFooter",
+        "LoadingState",
+        "LoadingStateHeader",
+        "LoadingStateBody",
+        "LoadingStateFooter",
+        "FormField",
+        "FormFieldHeader",
+        "FormFieldBody",
+        "FormFieldFooter",
+        "CardHeader",
+        "CardBody",
+        "CardFooter",
         "ModalBody",
         "ModalFooter",
+        "Card",
         "Modal",
         "ModalHeader"
-      ]
+      ],
+      "validated": [],
+      "remaining": [
+        "Full spec-by-spec Web/app parity and visual/assistive acceptance on native devices"
+      ],
+      "previewCoverage": {
+        "count": 142,
+        "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+      },
+      "validatedMeaning": "The existing validated list is historical implementation evidence. previewCoverage and currentValidation record the current compiled/tested catalog; full native acceptance is still pending."
     },
     {
       "id": "advanced",
@@ -462,12 +481,8 @@
         "DetailPageTemplate",
         "FormPageTemplate"
       ],
-      "status": "in_progress",
+      "status": "implemented_and_preview_compiled_pending_full_acceptance",
       "implemented": [
-        "Form"
-      ],
-      "validated": [],
-      "remaining": [
         "MapView",
         "ApplicationLayoutTemplate",
         "ShowcasePageTemplate",
@@ -482,62 +497,36 @@
         "NavigationMenu",
         "Stepper",
         "ListBox",
+        "Form",
         "DataGrid",
         "HomePageTemplate",
         "ListPageTemplate",
         "DetailPageTemplate",
         "FormPageTemplate"
-      ]
+      ],
+      "validated": [],
+      "remaining": [
+        "Full spec-by-spec Web/app parity and visual/assistive acceptance on native devices"
+      ],
+      "previewCoverage": {
+        "count": 20,
+        "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+      },
+      "validatedMeaning": "The existing validated list is historical implementation evidence. previewCoverage and currentValidation record the current compiled/tested catalog; full native acceptance is still pending."
     }
   ],
   "acceptance": "Source/behavioral verification and actual preview build required; no proxy, empty subclass or catalog-only count establishes delivery.",
   "latestCheckpoint": {
-    "date": "2026-11-16",
-    "scope": "Flutter feedback and status compositions preview wave 5",
-    "workflow": [
-      "sc-author",
-      "sc-implementer"
-    ],
-    "status": "source_staged_pending_flutter_sdk_validation",
-    "newPreviewOwners": [
-      "Card",
-      "Alert",
-      "EmptyState",
-      "ErrorState",
-      "LoadingState"
-    ],
-    "regressionFix": "Pagination now rejects duplicate targets; preview no longer emits Previous/Next duplicates",
-    "newFiles": [
-      "app/showcase_flutter/lib/examples/feedback_contracts.dart",
-      "app/showcase_flutter/lib/examples/feedback_examples.dart",
-      "app/showcase_flutter/test/feedback_preview_test.dart",
-      "app/showcase_flutter/test/generated_feedback_snippets_test.dart",
-      "showcase/portal/src/features/showcase-v2/model/flutter-feedback.json",
-      "showcase/portal/src/features/showcase-v2/components/FlutterPreview/flutter-feedback-configurations.tsx",
-      "scripts/test-flutter-feedback-catalog.mjs",
-      "docs/migration/FLUTTER-FEEDBACK-PREVIEWS-WAVE-5.md"
-    ],
-    "changedFiles": [
-      "app/library/lib/src/components/forge_pagination.dart",
-      "app/showcase_flutter/lib/examples/composite_examples.dart",
-      "app/showcase_flutter/test/composite_preview_test.dart",
-      "app/showcase_flutter/lib/main.dart",
-      "app/showcase_flutter/lib/preview_settings.dart",
-      "showcase/portal/src/features/showcase-v2/components/FlutterPreview/FlutterComponentShowcase.tsx",
-      "showcase/portal/src/features/showcase-v2/components/FlutterPreview/useFlutterPreview.ts",
-      "scripts/build-flutter-preview.mjs",
-      "docs/sc/showcase/feature-multiplatform-showcase.sc.md"
-    ],
-    "evidence": {
-      "nodeFeedbackGenerator": "PASS: 5 controlled schemas and 6 copyable Dart samples",
-      "typescriptSyntax": "PASS: 3 changed/new TS/TSX sources",
-      "flutterAnalyze": "NOT_RUN: Flutter SDK unavailable",
-      "widgetTests": "NOT_RUN: SDK unavailable, tests staged",
-      "optionBridgeRetest": "NOT_RUN: older Option failure needs Flutter rerun",
-      "previewBuild": "NOT_RUN: registry unchanged",
-      "nativeVisual": "NOT_RUN"
-    },
-    "countPolicy": "221 resolved public APIs unchanged; new preview owners are not accepted or registered until SDK tests and Web build succeed."
+    "date": "2026-11-17",
+    "scope": "Dependency groups 6–8: full native preview catalog",
+    "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING",
+    "publicApis": 221,
+    "compiledPreviews": 221,
+    "remainingUnregisteredPreviews": 0,
+    "libraryTests": 125,
+    "showcaseTests": 1174,
+    "report": "docs/migration/FLUTTER-REMAINING-PREVIEWS-WAVE-8.md",
+    "countPolicy": "Canonical parts are counted as catalog identities exercised within owners. This is not full SC parity or native visual acceptance."
   },
   "checkpointHistory": [
     {
@@ -686,6 +675,54 @@
         "showcaseBuild": "NOT_RUN"
       },
       "countPolicy": "Source added only. The official validated count is unchanged until real Flutter tests and preview build pass."
+    },
+    {
+      "date": "2026-11-16",
+      "scope": "Flutter feedback and status compositions preview wave 5",
+      "workflow": [
+        "sc-author",
+        "sc-implementer"
+      ],
+      "status": "source_staged_pending_flutter_sdk_validation",
+      "newPreviewOwners": [
+        "Card",
+        "Alert",
+        "EmptyState",
+        "ErrorState",
+        "LoadingState"
+      ],
+      "regressionFix": "Pagination now rejects duplicate targets; preview no longer emits Previous/Next duplicates",
+      "newFiles": [
+        "app/showcase_flutter/lib/examples/feedback_contracts.dart",
+        "app/showcase_flutter/lib/examples/feedback_examples.dart",
+        "app/showcase_flutter/test/feedback_preview_test.dart",
+        "app/showcase_flutter/test/generated_feedback_snippets_test.dart",
+        "showcase/portal/src/features/showcase-v2/model/flutter-feedback.json",
+        "showcase/portal/src/features/showcase-v2/components/FlutterPreview/flutter-feedback-configurations.tsx",
+        "scripts/test-flutter-feedback-catalog.mjs",
+        "docs/migration/FLUTTER-FEEDBACK-PREVIEWS-WAVE-5.md"
+      ],
+      "changedFiles": [
+        "app/library/lib/src/components/forge_pagination.dart",
+        "app/showcase_flutter/lib/examples/composite_examples.dart",
+        "app/showcase_flutter/test/composite_preview_test.dart",
+        "app/showcase_flutter/lib/main.dart",
+        "app/showcase_flutter/lib/preview_settings.dart",
+        "showcase/portal/src/features/showcase-v2/components/FlutterPreview/FlutterComponentShowcase.tsx",
+        "showcase/portal/src/features/showcase-v2/components/FlutterPreview/useFlutterPreview.ts",
+        "scripts/build-flutter-preview.mjs",
+        "docs/sc/showcase/feature-multiplatform-showcase.sc.md"
+      ],
+      "evidence": {
+        "nodeFeedbackGenerator": "PASS: 5 controlled schemas and 6 copyable Dart samples",
+        "typescriptSyntax": "PASS: 3 changed/new TS/TSX sources",
+        "flutterAnalyze": "NOT_RUN: Flutter SDK unavailable",
+        "widgetTests": "NOT_RUN: SDK unavailable, tests staged",
+        "optionBridgeRetest": "NOT_RUN: older Option failure needs Flutter rerun",
+        "previewBuild": "NOT_RUN: registry unchanged",
+        "nativeVisual": "NOT_RUN"
+      },
+      "countPolicy": "221 resolved public APIs unchanged; new preview owners are not accepted or registered until SDK tests and Web build succeed."
     }
   ],
   "sourceCoverageAudit": {
@@ -703,7 +740,7 @@
     "report": "docs/migration/FLUTTER-SOURCE-COVERAGE.md",
     "data": "docs/migration/FLUTTER-SOURCE-COVERAGE.json",
     "generator": "scripts/audit-flutter-components.mjs",
-    "validation": "221 public constructor APIs resolved; 113 library tests passed. Full SC and native visual acceptance remains PENDING.",
+    "validation": "221 public constructor APIs resolved; 125 library tests and 1174 showcase tests passed; 221 previews compiled. Full SC and native visual acceptance remains PENDING.",
     "resolvedApi": "docs/sc/app/reference/native-component-api.json"
   },
   "implementationInventory": {
@@ -937,26 +974,28 @@
   "currentValidation": {
     "date": "2026-11-17",
     "flutterAnalyze": "PASS library and showcase",
-    "libraryTests": 113,
-    "showcaseTests": 353,
-    "showcaseTestsNote": "Full suite passed, including Option contracts, composition/feedback behavior and compilation of copyable Dart snippets.",
-    "tokens": "PASS: 185 portable tokens, 4 themes, canonical Web CSS unchanged",
+    "libraryTests": 125,
+    "showcaseTests": 1174,
+    "showcaseTestsNote": "Full suite includes actual copyable Dart snippets, controlled refusal, keyboard navigation, focus/semantics, forms, sorting, exact decimals and real caller navigation.",
+    "tokens": "PASS: 185 portable tokens, 4 themes, unchanged canonical Web CSS; native standard motion curve generated from canonical CSS",
     "typecheck": "PASS Web and portal",
-    "documentation": "PASS: 597 documents, 4121 relative links, zero pending links",
+    "documentation": "PASS: 597 documents, 4274 relative links, zero pending links",
     "nativeDeviceVisual": "NOT_RUN",
+    "browserVisual": "NOT_RUN for new groups",
     "compiledPreview": {
       "status": "PASS",
-      "count": 68,
-      "buildId": "13099cb03e02cedd",
+      "count": 221,
+      "buildId": "0d5f6c48442ac45e",
       "bootstrapCatalogGuard": "PASS"
     },
-    "portalBuild": "PASS: 297 static routes exported; current Flutter build ID included in exported client chunk",
-    "log": "docs/migration/validation/flutter-preview.log",
+    "portalBuild": "PASS: 297 static routes exported; current Flutter build ID present in exported client chunk",
+    "log": "docs/migration/validation/flutter-wave8-build.log",
     "http": {
       "status": "PASS",
-      "checks": 10,
+      "checks": 17,
       "url": "http://localhost:3000",
-      "evidence": "docs/migration/validation/flutter-wave5-http.json"
+      "evidence": "docs/migration/validation/flutter-wave8-http.json",
+      "note": "Initial simultaneous requests during dev compilation returned transient JSON parse errors on two routes. Individual retries and complete 17-request repeat passed; production export also passed."
     }
   },
   "showcasePreviewWaves": [
@@ -982,6 +1021,82 @@
         "EmptyState",
         "ErrorState",
         "LoadingState"
+      ],
+      "sourceOnly": false,
+      "buildManifestRegistered": true,
+      "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+    },
+    {
+      "id": "interactions-forms-6",
+      "date": "2026-11-17",
+      "owners": [
+        "ChoiceGroup",
+        "CheckboxGroup",
+        "RadioGroup",
+        "Tabs",
+        "Toolbar",
+        "Disclosure",
+        "Collapse",
+        "Accordion",
+        "List",
+        "Form",
+        "FormField",
+        "FormFieldInput"
+      ],
+      "sourceOnly": false,
+      "buildManifestRegistered": true,
+      "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+    },
+    {
+      "id": "collections-7",
+      "date": "2026-11-17",
+      "owners": [
+        "ListBox",
+        "Autocomplete",
+        "Combobox",
+        "PopupListbox",
+        "Menu",
+        "DropdownMenu",
+        "NavigationMenu",
+        "Tree",
+        "Stepper"
+      ],
+      "sourceOnly": false,
+      "buildManifestRegistered": true,
+      "status": "COMPILED_AND_WIDGET_TESTED_NATIVE_VISUAL_PENDING"
+    },
+    {
+      "id": "transients-advanced-parts-8",
+      "date": "2026-11-17",
+      "owners": [
+        "Modal",
+        "Dialog",
+        "AlertDialog",
+        "ConfirmationModal",
+        "Popover",
+        "Tooltip",
+        "OverlayPortal",
+        "ToastRegion",
+        "DataGrid",
+        "TreeGrid",
+        "ApplicationLayoutTemplate",
+        "ShowcasePageTemplate",
+        "HomePageTemplate",
+        "ListPageTemplate",
+        "DetailPageTemplate",
+        "FormPageTemplate",
+        "PageTransition",
+        "SharedElement",
+        "MapView",
+        "ODataFilter",
+        "CardHeader",
+        "AlertHeader",
+        "EmptyStateHeader",
+        "ErrorStateHeader",
+        "LoadingStateHeader",
+        "BreadcrumbItem",
+        "PaginationItem",
+        "TagGroupItem"
       ],
       "sourceOnly": false,
       "buildManifestRegistered": true,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../theme/forge_theme_tokens.dart';
 
 class ForgeDivider extends StatelessWidget {
@@ -9,9 +9,9 @@ class ForgeDivider extends StatelessWidget {
     final p = ForgeThemeTokens.of(context).palette;
     return Semantics(
         label: semanticLabel,
-        child: Divider(
-            height: p.borderWidthThin,
-            thickness: p.borderWidthThin,
-            color: p.colorBorderDefault));
+        child: SizedBox(
+          height: p.borderWidthThin,
+          child: ColoredBox(color: p.colorBorderDefault),
+        ));
   }
 }

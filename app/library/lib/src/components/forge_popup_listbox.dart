@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'internal/forge_presence.dart';
 import '../controllers/popup_listbox_controller.dart';
 import '../types/primitives.dart';
 import '../theme/forge_theme_tokens.dart';
+import 'forge_layout.dart';
+import '../types/component_capabilities.dart';
 
 class ForgePopupListbox<T> extends StatelessWidget {
   final ForgePopupListboxController popup;
@@ -25,6 +28,7 @@ class ForgePopupListbox<T> extends StatelessWidget {
       animation: popup,
       builder: (context, _) {
         final open = popup.isOpen && items.isNotEmpty;
+        if (!open) return const SizedBox.shrink();
         if (open && items.length != popup.count)
           throw ArgumentError('Popup items must match controller count.');
         final keys = [
@@ -33,17 +37,16 @@ class ForgePopupListbox<T> extends StatelessWidget {
         ];
         if (keys.toSet().length != keys.length)
           throw ArgumentError('Popup options require unique keys.');
-        return Offstage(
-            offstage: !open,
+        return ForgePresence(
+            visible: true,
+            animated: animated,
+            effect: animationEffect,
             child: ExcludeFocus(
                 child: Semantics(
                     container: true,
                     label: listboxLabel,
-                    child: Material(
-                        color: ForgeThemeTokens.of(context)
-                            .palette
-                            .colorSurfaceDefault,
-                        elevation: 4,
+                    child: ForgeSurface(
+                        elevation: ForgeElevation.floating,
                         child: ConstrainedBox(
                             constraints: const BoxConstraints(maxHeight: 240),
                             child: ListView(
@@ -83,7 +86,17 @@ class ForgePopupListboxItem extends StatelessWidget {
             onPointerDown: (event) {
               if (event.buttons == 1) popup.acceptOption(index);
             },
-            child: ListTile(
-                selected: popup.activeIndex == index, title: Text(label))));
+            child: ColoredBox(
+                color: popup.activeIndex == index
+                    ? ForgeThemeTokens.of(context).palette.colorSurfaceSubtle
+                    : ForgeThemeTokens.of(context).palette.colorSurfaceDefault,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: ForgeThemeTokens.of(context).palette.space3,
+                    vertical: ForgeThemeTokens.of(context).palette.space2,
+                  ),
+                  child: Text(label),
+                ),
+            )));
   }
 }

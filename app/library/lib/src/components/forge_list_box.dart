@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../types/primitives.dart';
 import '../types/component_capabilities.dart';
 import '../types/forms.dart';

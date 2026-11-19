@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import '../types/forms.dart';
 import '../types/component_capabilities.dart';
 import 'forge_layout.dart';
@@ -158,6 +159,67 @@ class ForgeRadioGroup extends _SelectionGroup {
 
 class _SelectionState extends State<_SelectionGroup> {
   late List<String> local;
+  final members = <_SelectionItemState>[];
+  bool traversalScheduled = false;
+  void syncTraversal() {
+    if (!radio || traversalScheduled || !mounted) return;
+    traversalScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      traversalScheduled = false;
+      if (!mounted) return;
+      final enabled = members
+          .where((m) =>
+              m.mounted &&
+              !m.widget.disabled &&
+              !widget.disabled &&
+              !(form?.disabled ?? false))
+          .toList();
+      final entry =
+          enabled.where((m) => selected.contains(m.widget.value)).firstOrNull ??
+              enabled.firstOrNull;
+      for (final m in members) {
+        if (m.mounted) m.focus.skipTraversal = m != entry;
+      }
+    });
+  }
+
+  KeyEventResult navigateRadio(_SelectionItemState from, KeyEvent event) {
+    if (!radio ||
+        event is! KeyDownEvent ||
+        widget.disabled ||
+        (form?.disabled ?? false)) return KeyEventResult.ignored;
+    final key = event.logicalKey;
+    if (![
+      LogicalKeyboardKey.arrowLeft,
+      LogicalKeyboardKey.arrowRight,
+      LogicalKeyboardKey.arrowUp,
+      LogicalKeyboardKey.arrowDown
+    ].contains(key)) return KeyEventResult.ignored;
+    final available = members
+        .where(
+            (m) => m.mounted && !m.widget.disabled && m.focus.canRequestFocus)
+        .toList();
+    if (available.isEmpty) return KeyEventResult.ignored;
+    final nodes = ReadingOrderTraversalPolicy()
+        .sortDescendants(available.map((m) => m.focus), from.focus)
+        .toList();
+    final index = nodes.indexOf(from.focus);
+    if (index < 0) return KeyEventResult.ignored;
+    var delta = (key == LogicalKeyboardKey.arrowRight ||
+            key == LogicalKeyboardKey.arrowDown)
+        ? 1
+        : -1;
+    if ((key == LogicalKeyboardKey.arrowLeft ||
+            key == LogicalKeyboardKey.arrowRight) &&
+        Directionality.of(from.context) == TextDirection.rtl) delta = -delta;
+    final target = nodes[(index + delta + nodes.length) % nodes.length];
+    final member = available.firstWhere((m) => m.focus == target);
+    target.requestFocus();
+    change(member.widget.value, true);
+    syncTraversal();
+    return KeyEventResult.handled;
+  }
+
   ForgeFormBinding? form;
   bool get radio => widget is ForgeRadioGroup;
   List<String> defaults() => switch (widget) {
@@ -197,7 +259,8 @@ class _SelectionState extends State<_SelectionGroup> {
   }
 
   void change(String value, bool checked) {
-    if (widget.disabled || (form?.disabled ?? false)) return;
+    if (widget.disabled || (form?.disabled ?? false) || radio && !checked)
+      return;
     final next = radio
         ? [value]
         : checked
@@ -213,6 +276,7 @@ class _SelectionState extends State<_SelectionGroup> {
           w.onValueChange?.call(value);
     }
     form?.changed(widget.name);
+    syncTraversal();
   }
 
   @override
@@ -280,7 +344,13 @@ class _SelectionItemState extends State<_SelectionItem> {
         context.dependOnInheritedWidgetOfExactType<_SelectionScope>()?.state;
     if (next == null || next.radio != widget.radio)
       throw StateError('Selection item requires its matching group.');
-    owner = next;
+    if (owner != next) {
+      owner?.members.remove(this);
+      owner?.syncTraversal();
+      owner = next;
+      if (!next.members.contains(this)) next.members.add(this);
+    }
+    next.syncTraversal();
     final nextForm = next.form;
     if (form != nextForm) {
       form?.unregister(this);
@@ -312,6 +382,8 @@ class _SelectionItemState extends State<_SelectionItem> {
 
   @override
   void dispose() {
+    owner?.members.remove(this);
+    owner?.syncTraversal();
     form?.unregister(this);
     focus.dispose();
     super.dispose();
@@ -343,21 +415,25 @@ class _SelectionItemState extends State<_SelectionItem> {
             onChanged: (v) {
               if (!widget.readOnly) s.change(widget.value, v);
             });
-    return Row(children: [
-      control,
-      Flexible(
-          child: GestureDetector(
-              onTap: disabled || widget.readOnly
-                  ? null
-                  : () {
-                      focus.requestFocus();
-                      s.change(
-                          widget.value,
-                          widget.radio
-                              ? true
-                              : !s.selected.contains(widget.value));
-                    },
-              child: ExcludeSemantics(child: Text(widget.label))))
-    ]);
+    s.syncTraversal();
+    return Focus(
+        canRequestFocus: false,
+        onKeyEvent: (_, event) => s.navigateRadio(this, event),
+        child: Row(children: [
+          control,
+          Flexible(
+              child: GestureDetector(
+                  onTap: disabled || widget.readOnly
+                      ? null
+                      : () {
+                          focus.requestFocus();
+                          s.change(
+                              widget.value,
+                              widget.radio
+                                  ? true
+                                  : !s.selected.contains(widget.value));
+                        },
+                  child: ExcludeSemantics(child: Text(widget.label))))
+        ]));
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:ui' show SemanticsValidationResult;
 import 'package:flutter/widgets.dart';
 import '../types/primitives.dart';
 import '../types/component_capabilities.dart';
@@ -143,8 +144,16 @@ class ForgeFormFieldBody extends _FieldPart {
   const ForgeFormFieldBody({super.key, required this.controlBuilder})
       : super(kind: _FieldPartKind.body);
   @override
-  Widget build(BuildContext context) =>
-      controlBuilder(context, _FieldScope.of(context));
+  Widget build(BuildContext context) {
+    final field = _FieldScope.of(context);
+    final descriptions = field.descriptions.map((d) => d.text).join(' ');
+    return Semantics(
+        hint: descriptions.isEmpty ? null : descriptions,
+        validationResult: field.invalid
+            ? SemanticsValidationResult.invalid
+            : SemanticsValidationResult.none,
+        child: controlBuilder(context, field));
+  }
 }
 
 class ForgeFormFieldFooter extends _FieldPart {

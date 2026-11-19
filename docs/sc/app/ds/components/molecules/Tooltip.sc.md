@@ -77,6 +77,13 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
 
+### Native Flutter implementation (2026-11-18)
+
+- Preserve the existing public `ForgeTooltip` widget contract and all shared tokens, semantics, focus/gesture behavior and user-owned resources.
+- Use only `package:flutter/widgets.dart` and Forge-owned compositions; no Material/Cupertino import or Material rendering layer.
+- `ForgeIcon` may inherit `IconTheme` as a native Flutter widget setting but uses Forge token fallback and its own SVG-like canvas geometry; `ForgeIconButton` delegates to the Forge-owned `ForgeAction` (legacy action backend migration remains a separate pending step); `ForgeTooltip` composes `ForgeSurface` directly, preserving its anchor, hover, focus, escape and semantics behavior.
+- Native-source assertion is necessary but not sufficient: run `flutter analyze`, widget tests and visual/a11y inspection before marking this component `DONE`.
+
 ## Criteria
 
 - [ ] Expose the proposed native contract with every mapped shared capability, exact source value constraints and documented default/override precedence.
@@ -87,3 +94,7 @@ Each row is a proposed native contract, not an available export. Source types/re
 - [ ] Retain public owner/part and typed data contracts; preserve shared observable acceptance while replacing Web mechanisms as mapped.
 - [ ] Use canonical token/theme mappings and inherited app settings; resolve missing mappings at their shared owner instead of hardcoding a substitute.
 - [ ] Implement equivalent scenarios/property controls only after the public widget supports them; record targeted behavior and relevant runtime evidence before DONE.
+
+## Showcase verification checkpoint — 2026-11-17
+
+The native showcase now exercises this API in its canonical composition. The [group validation report](../../../../../migration/FLUTTER-REMAINING-PREVIEWS-WAVE-8.md) records widget/snippet tests, compilation evidence and limits. This records preview coverage; it does not establish full Web parity or Android/iOS visual and assistive acceptance. Unverified Criteria remain PENDING.

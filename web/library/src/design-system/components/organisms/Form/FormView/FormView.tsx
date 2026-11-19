@@ -10,7 +10,7 @@ import { FormViewField } from "./FormViewField";
 import styles from "./FormView.module.css";
 import { useFormView } from "./useFormView";
 
-function isFieldKey<Shape extends z.ZodRawShape>(
+function isFieldKey<Shape extends Record<string, z.ZodType>>(
   name: string,
   fields: FormFieldsConfig<Shape>,
 ): name is Extract<keyof Shape, string> {
@@ -18,7 +18,7 @@ function isFieldKey<Shape extends z.ZodRawShape>(
 }
 
 export interface FormViewProps<
-  Shape extends z.ZodRawShape,
+  Shape extends Record<string, z.ZodType>,
   Context = undefined,
   Output extends FieldValues = z.output<z.ZodObject<Shape>>,
 > {
@@ -40,7 +40,7 @@ export interface FormViewProps<
 const identity = (key: string) => key;
 
 export function FormView<
-  Shape extends z.ZodRawShape,
+  Shape extends Record<string, z.ZodType>,
   Context = undefined,
   Output extends FieldValues = z.output<z.ZodObject<Shape>>,
 >(props: FormViewProps<Shape, Context, Output>) {

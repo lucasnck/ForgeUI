@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../types/forms.dart';
 import '../types/primitives.dart';
 import '../controllers/typed_form_controller.dart';

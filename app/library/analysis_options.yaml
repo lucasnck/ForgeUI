@@ -1,0 +1,10 @@
+# Native SDK lint rules; do not depend on undeclared external lint packages.
+analyzer:
+  errors:
+    dead_code: error
+    invalid_assignment: error
+linter:
+  rules:
+    - avoid_empty_else
+    - avoid_relative_lib_imports
+    - unnecessary_statements

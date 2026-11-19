@@ -2926,5 +2926,23 @@
     "origin": "Preserve native constructor documentation in a real ExampleScope when no compiled preview is available; keep unavailable preview explicit.",
     "beforeSha256": "7f0be4e37aa6bb1e028a72be06c15e9e1fa5891e5c6a2561ec572d6e65e9c8e6",
     "afterSha256": "449631d672ff530f92b11fd25210ed1a4d0da8795c163a8398da518bc9139277"
+  },
+  {
+    "file": "web/library/src/support/forms/form-config.ts",
+    "origin": "Classic Zod 3/4 form schema compatibility; typed schema methods and renderer metadata retained. Before-image: docs/migration/reconciliation-before-images/zod-compatibility/form-config.ts",
+    "beforeSha256": "bd8cc37bf75b3151f3dd566a259da8b70174cac942fda4a414ee73ba1d4b87a2",
+    "afterSha256": "c3a8067e2e2f70da5210c4bb90320004672df3a1ac7046cee1524fa21220ff8f"
+  },
+  {
+    "file": "web/library/src/support/forms/form-config.types.ts",
+    "origin": "Classic Zod 3/4 form schema compatibility; typed schema methods and renderer metadata retained. Before-image: docs/migration/reconciliation-before-images/zod-compatibility/form-config.types.ts",
+    "beforeSha256": "1fad3f556e8dab3de805def8beb00e9c09db78b5b19449aab7ff4cf856c52b6c",
+    "afterSha256": "02063180afe10715d2de7fdd75d0dce7f15ea026385063fc0dd652ffeb8893b2"
+  },
+  {
+    "file": "web/library/src/design-system/components/organisms/Form/FormView/FormView.tsx",
+    "origin": "Classic Zod 3/4 form schema compatibility; typed schema methods and renderer metadata retained. Before-image: docs/migration/reconciliation-before-images/zod-compatibility/FormView.tsx",
+    "beforeSha256": "ca61aeb565658916a315c59c3d68d63b43325099c3a5cf0d889e444ba16ef4a9",
+    "afterSha256": "c7441c8a628eda71e0492eaa52cf52f49513aae184cfe6490720f19bcc35801f"
   }
 ]

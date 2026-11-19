@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../theme/forge_theme_tokens.dart';
 import '../types/primitives.dart';
 import '../types/component_capabilities.dart';
@@ -233,7 +233,7 @@ class ForgeTab extends StatelessWidget {
                                 ? ForgeThemeTokens.of(context)
                                     .palette
                                     .colorActionBrandBackground
-                                : Colors.transparent,
+                                : const Color(0x00000000),
                             width: attached ? 3 : 2))),
                 child: child)));
   }

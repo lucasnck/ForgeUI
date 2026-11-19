@@ -11,7 +11,7 @@ ds-level: "atoms"
 ## Files
 
 ```text
-components/forge_progress.dart (C)
+components/forge_progress.dart (M)
 ../forge_ui.dart (M)
 ```
 
@@ -87,6 +87,14 @@ Each row is a proposed native contract, not an available export. Source types/re
 - Preserve the component-owned scenarios from [the current Web showcase definition](../../../../../../showcase/portal/src/features/showcase-v2/components/Progress/definition.ts): `basic`. Source resource fixtures may remain documentation/typed fixtures rather than becoming extra widget parameters.
 - Demonstrate the native contract, controlled refusal where applicable, reset and action feedback using actual app exports only after implementation. Do not simulate missing library features with demo-local styles or state.
 - Compare copyable Dart usage and real property controls with the equivalent Web outcomes; Flutter Web preview alone is not native-device or visual acceptance.
+
+### Native independence implementation (2026-11-18)
+
+- **Owner:** `ForgeProgress` only. No Material or Cupertino rendering imports; use Flutter SDK widgets, gestures, actions, focus, semantics and the existing Forge tokens.
+- **Compatibility:** preserve all existing constructor fields and the public `forge_ui.dart` export. Maintain the consumer-owned adapters; never navigate or assume permission without explicit activation.
+- **Verification:** source-boundary gate and targeted widget tests in `WidgetsApp` + `ForgeThemeScope`; retain `PENDING` until Flutter analyze, tests, keyboard, screen-reader and visual acceptance have actual recorded evidence.
+
+- **Progress checks:** determinate zero and bounds, explicit indeterminate state, values/semantics consistency, token-backed fill and track, reduced-motion mode, reuse by ForgeMeter and ForgeProgressBar, and no Material LinearProgressIndicator.
 
 ## Criteria
 

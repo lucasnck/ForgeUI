@@ -1,3 +1,4 @@
+import '../generated/forge_motion.g.dart';
 import 'package:flutter/widgets.dart';
 import '../theme/forge_theme_tokens.dart';
 
@@ -102,7 +103,7 @@ class _PageTransitionState extends State<ForgePageTransition>
       child: widget.child,
       builder: (context, child) {
         final value =
-            enabled ? Curves.easeInOut.transform(animation.value) : 1.0;
+            enabled ? forgeStandardCurve.transform(animation.value) : 1.0;
         final p = ForgeThemeTokens.of(context).palette,
             rtl = Directionality.of(context) == TextDirection.rtl ? -1.0 : 1.0;
         final offset = switch (intent) {

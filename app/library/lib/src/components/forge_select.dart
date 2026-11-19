@@ -183,7 +183,7 @@ class _SelectState extends State<ForgeSelect> {
                 isDense: true,
                 enabled: !widget.disabled,
                 filled: true,
-                fillColor: style.backgroundColor!.resolve({}),
+                fillColor: style.background,
                 border: OutlineInputBorder(
                     borderRadius: forgeRadius(
                         p, widget.shape ?? ForgeThemeTokens.of(context).shape),

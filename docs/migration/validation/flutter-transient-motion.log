@@ -1,0 +1,82 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/library/test/presence_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/library/test/presence_test.dart: closing paint is retained while focus, pointer and semantics are removed immediately
+00:01 +1: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:01 +2: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:01 +3: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover opens with real field, Escape closes and returns focus
+00:02 +4: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: popover outside pointer requests close but controlled owner can refuse
+00:02 +5: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: anchored overlay clamps to viewport instead of overflowing its right edge
+00:02 +6: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: tooltip exposes supplementary text on focus and honors controlled refusal
+00:02 +7: D:/projects/AiWorkzone/ForgeUI/app/library/test/overlays_test.dart: portal preserves nearest theme and removes content with owner
+00:03 +8: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen
+00:04 +9: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen
+00:04 +10: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen
+00:06 +11: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal traps focus and retains native field state after accepted close and reopen
+00:06 +12: D:/projects/AiWorkzone/ForgeUI/app/library/test/toast_test.dart: queue rejects duplicate IDs and renderer cannot replace authoritative record
+00:06 +13: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: controlled modal refuses escape, cancellation and outside dismissal
+00:06 +14: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: inside and dragged-out pointer sequences do not dismiss
+00:06 +15: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: modal cancellation intercepts close before owner change
+00:06 +16: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: confirmation never closes or invokes confirm during loading
+00:07 +17: D:/projects/AiWorkzone/ForgeUI/app/library/test/modal_test.dart: phone input retains incomplete draft and submits only accepted canonical number
+00:07 +18: D:/projects/AiWorkzone/ForgeUI/app/library/test/listbox_test.dart: listbox keyboard navigation is manual, bounded and typeahead enabled
+00:09 +19: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false)
+00:09 +20: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false)
+00:09 +21: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false)
+00:10 +22: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false)
+00:10 +23: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <200>
+  Actual: <196.0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart:54:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart line 54
+The test description was:
+  query popup fits viewport and keyboard insets (rtl: false)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:10 +23 -1: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: false) [E]
+  Test failed. See exception logs above.
+  The test description was: query popup fits viewport and keyboard insets (rtl: false)
+  
+00:10 +23 -1: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: true)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <200>
+  Actual: <196.0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart:54:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart line 54
+The test description was:
+  query popup fits viewport and keyboard insets (rtl: true)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:11 +23 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: query popup fits viewport and keyboard insets (rtl: true) [E]
+  Test failed. See exception logs above.
+  The test description was: query popup fits viewport and keyboard insets (rtl: true)
+  
+00:11 +23 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/query_overlay_geometry_test.dart: closed popup does not instantiate items against an unavailable count
+00:11 +24 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: typed field writes nested identity once, obeys errors and resets defaults
+00:13 +25 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: registered field fails clearly without typed owner
+00:13 +26 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: application shell preserves entered state when responsive slots change
+00:13 +27 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page templates omit absent slots and preserve header/content ordering
+00:13 +28 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: page transition commits latest content immediately and snaps for reduced motion
+00:13 +29 -2: D:/projects/AiWorkzone/ForgeUI/app/library/test/templates_forms_transitions_test.dart: shared element uses real native route participation and direct-entry fallback
+00:13 +30 -2: Some tests failed.

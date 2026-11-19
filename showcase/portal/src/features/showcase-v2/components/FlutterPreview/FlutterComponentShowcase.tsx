@@ -1,5 +1,11 @@
 "use client";
+import { partConfigurations } from "./flutter-part-configurations";
+import { advancedConfigurations } from "./flutter-advanced-configurations";
+import { transientConfigurations } from "./flutter-transient-configurations";
 import type { ReactNode } from "react";
+import { collectionConfigurations } from "./flutter-collection-configurations";
+import { formCatalogConfigurations } from "./flutter-form-configurations";
+import { interactionConfigurations } from "./flutter-interaction-configurations";
 import { FlutterScenarioControls } from "./FlutterScenarioControls";
 import { inputConfigurations } from "./flutter-input-configurations";
 import { compositeConfigurations } from "./flutter-composite-configurations";
@@ -95,6 +101,12 @@ function hierarchyCode(v: Readonly<Record<string, unknown>>) {
     .join("\n");
 }
 const configurations = {
+  ...partConfigurations,
+  ...advancedConfigurations,
+  ...transientConfigurations,
+  ...collectionConfigurations,
+  ...formCatalogConfigurations,
+  ...interactionConfigurations,
   ...primitiveConfigurations,
   ...inputConfigurations,
   ...compositeConfigurations,

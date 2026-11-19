@@ -106,3 +106,7 @@ Each row is a proposed native contract, not an available export. Source types/re
 - **Evidence:** static structural inspection and token/export checks only.
 - **Runtime status:** `NOT_RUN` for `flutter analyze`, `flutter test test/forge_navigation_compounds_test.dart`, Flutter Web compilation, browser/native accessibility and pixel acceptance. The Flutter SDK is not available in this execution environment.
 - **Acceptance:** Remains **PENDING**. Proposed native mappings not yet exposed remain open, and source code alone is not proof of parity. The tests must pass before this component is marked implemented/validated or registered in the preview manifest.
+
+## Showcase verification checkpoint — 2026-11-17
+
+The native showcase now exercises this API in its canonical composition. The [group validation report](../../../../../migration/FLUTTER-REMAINING-PREVIEWS-WAVE-8.md) records widget/snippet tests, compilation evidence and limits. This records preview coverage; it does not establish full Web parity or Android/iOS visual and assistive acceptance. Unverified Criteria remain PENDING.

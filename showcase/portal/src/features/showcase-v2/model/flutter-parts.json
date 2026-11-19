@@ -1,0 +1,553 @@
+[
+  {
+    "name": "CardHeader",
+    "owner": "card",
+    "slug": "card-header",
+    "family": "card",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// CardHeader is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"card-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"card-header\":\"card\"};\nclass ForgePartExample extends StatefulWidget{final String slug='card-header';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "CardBody",
+    "owner": "card",
+    "slug": "card-body",
+    "family": "card",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// CardBody is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"card-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"card-body\":\"card\"};\nclass ForgePartExample extends StatefulWidget{final String slug='card-body';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "CardFooter",
+    "owner": "card",
+    "slug": "card-footer",
+    "family": "card",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// CardFooter is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"card-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"card-footer\":\"card\"};\nclass ForgePartExample extends StatefulWidget{final String slug='card-footer';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "AlertHeader",
+    "owner": "alert",
+    "slug": "alert-header",
+    "family": "alert",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// AlertHeader is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"alert-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"alert-header\":\"alert\"};\nclass ForgePartExample extends StatefulWidget{final String slug='alert-header';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "AlertBody",
+    "owner": "alert",
+    "slug": "alert-body",
+    "family": "alert",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// AlertBody is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"alert-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"alert-body\":\"alert\"};\nclass ForgePartExample extends StatefulWidget{final String slug='alert-body';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "AlertFooter",
+    "owner": "alert",
+    "slug": "alert-footer",
+    "family": "alert",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// AlertFooter is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"alert-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"alert-footer\":\"alert\"};\nclass ForgePartExample extends StatefulWidget{final String slug='alert-footer';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "EmptyStateHeader",
+    "owner": "empty-state",
+    "slug": "empty-state-header",
+    "family": "empty-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// EmptyStateHeader is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"empty-state-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"empty-state-header\":\"empty-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='empty-state-header';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "EmptyStateBody",
+    "owner": "empty-state",
+    "slug": "empty-state-body",
+    "family": "empty-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// EmptyStateBody is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"empty-state-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"empty-state-body\":\"empty-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='empty-state-body';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "EmptyStateFooter",
+    "owner": "empty-state",
+    "slug": "empty-state-footer",
+    "family": "empty-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// EmptyStateFooter is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"empty-state-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"empty-state-footer\":\"empty-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='empty-state-footer';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "ErrorStateHeader",
+    "owner": "error-state",
+    "slug": "error-state-header",
+    "family": "error-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// ErrorStateHeader is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"error-state-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"error-state-header\":\"error-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='error-state-header';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "ErrorStateBody",
+    "owner": "error-state",
+    "slug": "error-state-body",
+    "family": "error-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// ErrorStateBody is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"error-state-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"error-state-body\":\"error-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='error-state-body';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "ErrorStateFooter",
+    "owner": "error-state",
+    "slug": "error-state-footer",
+    "family": "error-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// ErrorStateFooter is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"error-state-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"error-state-footer\":\"error-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='error-state-footer';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "LoadingStateHeader",
+    "owner": "loading-state",
+    "slug": "loading-state-header",
+    "family": "loading-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// LoadingStateHeader is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"loading-state-header\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"loading-state-header\":\"loading-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='loading-state-header';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "LoadingStateBody",
+    "owner": "loading-state",
+    "slug": "loading-state-body",
+    "family": "loading-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// LoadingStateBody is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"loading-state-body\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"loading-state-body\":\"loading-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='loading-state-body';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "LoadingStateFooter",
+    "owner": "loading-state",
+    "slug": "loading-state-footer",
+    "family": "loading-state",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// LoadingStateFooter is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"loading-state-footer\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"loading-state-footer\":\"loading-state\"};\nclass ForgePartExample extends StatefulWidget{final String slug='loading-state-footer';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "BreadcrumbItem",
+    "owner": "breadcrumb",
+    "slug": "breadcrumb-item",
+    "family": "breadcrumb",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// BreadcrumbItem is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"breadcrumb-item\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"breadcrumb-item\":\"breadcrumb\"};\nclass ForgePartExample extends StatefulWidget{final String slug='breadcrumb-item';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "PaginationItem",
+    "owner": "pagination",
+    "slug": "pagination-item",
+    "family": "pagination",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// PaginationItem is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"pagination-item\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"pagination-item\":\"pagination\"};\nclass ForgePartExample extends StatefulWidget{final String slug='pagination-item';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "PaginationEllipsis",
+    "owner": "pagination",
+    "slug": "pagination-ellipsis",
+    "family": "pagination",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// PaginationEllipsis is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"pagination-ellipsis\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"pagination-ellipsis\":\"pagination\"};\nclass ForgePartExample extends StatefulWidget{final String slug='pagination-ellipsis';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  },
+  {
+    "name": "TagGroupItem",
+    "owner": "tag-group",
+    "slug": "tag-group-item",
+    "family": "tag-group",
+    "schema": {
+      "label": {
+        "kind": "text",
+        "defaultValue": "Exemplo de composição",
+        "nonblank": true
+      },
+      "titleText": {
+        "kind": "text",
+        "defaultValue": "Título",
+        "nonblank": true
+      },
+      "bodyText": {
+        "kind": "text",
+        "defaultValue": "Conteúdo",
+        "nonblank": true
+      },
+      "actionLabel": {
+        "kind": "text",
+        "defaultValue": "Executar",
+        "nonblank": true
+      }
+    },
+    "code": "import 'package:flutter/material.dart';\nimport 'package:forge_ui/forge_ui.dart';\n// TagGroupItem is demonstrated inside its canonical owner. Data-driven owners create their public items.\nconst partContracts=<String,Map<String,Map<String,Object?>>>{\"tag-group-item\":{\"label\":{\"kind\":\"text\",\"defaultValue\":\"Exemplo de composição\",\"nonblank\":true},\"titleText\":{\"kind\":\"text\",\"defaultValue\":\"Título\",\"nonblank\":true},\"bodyText\":{\"kind\":\"text\",\"defaultValue\":\"Conteúdo\",\"nonblank\":true},\"actionLabel\":{\"kind\":\"text\",\"defaultValue\":\"Executar\",\"nonblank\":true}}};\nconst partFamilies=<String,String>{\"tag-group-item\":\"tag-group\"};\nclass ForgePartExample extends StatefulWidget{final String slug='tag-group-item';final Map<String,Object?> properties=const {\"label\":\"Exemplo de composição\",\"titleText\":\"Título\",\"bodyText\":\"Conteúdo\",\"actionLabel\":\"Executar\"};const ForgePartExample({super.key});@override State<ForgePartExample> createState()=>_PartState();}\nclass _PartState extends State<ForgePartExample> {\n  int actions = 0, page = 5;\n  bool removed = false;\n  String get family => partFamilies[widget.slug]!;\n  String text(String k) =>\n      (widget.properties[k] ?? partContracts[widget.slug]?[k]?['defaultValue'])\n          as String;\n  void act() {\n    setState(() => actions++);\n  }\n\n  Widget action() =>\n      ForgeButton(onPressed: act, child: Text(text('actionLabel')));\n  Widget composition() => switch (family) {\n        'card' => ForgeCard(children: [\n            ForgeCardHeader(child: Text(text('titleText'))),\n            ForgeCardBody(child: Text(text('bodyText'))),\n            ForgeCardFooter(child: action())\n          ]),\n        'alert' => ForgeAlert(children: [\n            ForgeAlertHeader(child: Text(text('titleText'))),\n            ForgeAlertBody(child: Text(text('bodyText'))),\n            ForgeAlertFooter(child: action())\n          ]),\n        'empty-state' => ForgeEmptyState(children: [\n            ForgeEmptyStateHeader(child: Text(text('titleText'))),\n            ForgeEmptyStateBody(child: Text(text('bodyText'))),\n            ForgeEmptyStateFooter(child: action())\n          ]),\n        'error-state' => ForgeErrorState(children: [\n            ForgeErrorStateHeader(child: Text(text('titleText'))),\n            ForgeErrorStateBody(child: Text(text('bodyText'))),\n            ForgeErrorStateFooter(child: action())\n          ]),\n        'loading-state' => ForgeLoadingState(label: text('label'), children: [\n            ForgeLoadingStateHeader(child: Text(text('titleText'))),\n            ForgeLoadingStateBody(child: Text(text('bodyText'))),\n            ForgeLoadingStateFooter(child: action())\n          ]),\n        'breadcrumb' => ForgeBreadcrumb(label: text('label'), children: [\n            ForgeBreadcrumbItem(\n                href: '/catalog',\n                onActivate: act,\n                child: Text(text('actionLabel'))),\n            ForgeBreadcrumbItem(current: true, child: Text(text('titleText')))\n          ]),\n        'pagination' => ForgePagination(\n              label: text('label'),\n              page: page,\n              pageCount: 9,\n              onPageChange: (p) => setState(() {\n                    page = p;\n                    actions++;\n                  }),\n              children: [\n                const ForgePaginationItem(page: 1, label: 'Página 1'),\n                if (page > 2) const ForgePaginationEllipsis(),\n                if (page > 1 && page < 9)\n                  ForgePaginationItem(page: page, label: 'Página $page'),\n                if (page < 8) const ForgePaginationEllipsis(),\n                const ForgePaginationItem(page: 9, label: 'Página 9')\n              ]),\n        'tag-group' => Column(children: [\n            ForgeTagGroup(label: text('label'), items: [\n              if (!removed)\n                ForgeTagGroupEntry(\n                    id: 'forge',\n                    tag: ForgeTagConfiguration(\n                        text: text('titleText'),\n                        removeLabel: text('actionLabel'),\n                        onRemove: () => setState(() {\n                              removed = true;\n                              actions++;\n                            })))\n            ]),\n            if (removed)\n              ForgeButton(\n                  onPressed: () => setState(() => removed = false),\n                  child: const Text('Restaurar tag'))\n          ]),\n        _ => throw StateError(family)\n      };\n  @override\n  Widget build(BuildContext context) => Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [composition(), Text('Ações: $actions')]);\n}\n"
+  }
+]

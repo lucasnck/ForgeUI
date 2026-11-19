@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import '../theme/forge_theme_tokens.dart';
 import '../helpers/email.dart';
 import 'internal/configured_input.dart';
 import 'forge_input.dart';
@@ -76,8 +77,17 @@ class _EmailState extends ConfiguredInputState<ForgeEmailInput> {
           onChanged: widget.onValueChange),
       optionsViewBuilder: (context, select, options) => Align(
           alignment: AlignmentDirectional.topStart,
-          child: Material(
-              elevation: 4,
+          child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: ForgeThemeTokens.of(context).palette.colorSurfaceRaised,
+                border: Border.all(
+                  color: ForgeThemeTokens.of(context).palette.colorBorderSubtle,
+                  width: ForgeThemeTokens.of(context).palette.borderWidthThin,
+                ),
+                borderRadius: BorderRadius.circular(
+                  ForgeThemeTokens.of(context).palette.radiusMd,
+                ),
+              ),
               child: ConstrainedBox(
                   constraints:
                       const BoxConstraints(maxHeight: 240, maxWidth: 320),
@@ -89,11 +99,24 @@ class _EmailState extends ConfiguredInputState<ForgeEmailInput> {
                           itemCount: options.length,
                           itemBuilder: (context, index) {
                             final option = options.elementAt(index);
-                            return ListTile(
-                                selected:
-                                    AutocompleteHighlightedOption.of(context) ==
-                                        index,
-                                title: Text('@' + option),
-                                onTap: () => select(option));
+                            final selected =
+                                AutocompleteHighlightedOption.of(context) == index;
+                            final palette = ForgeThemeTokens.of(context).palette;
+                            return Semantics(
+                                selected: selected,
+                                onTap: () => select(option),
+                                child: GestureDetector(
+                                    excludeFromSemantics: true,
+                                    behavior: HitTestBehavior.opaque,
+                                    onTap: () => select(option),
+                                    child: ColoredBox(
+                                        color: selected
+                                            ? palette.colorSurfaceSubtle
+                                            : palette.colorSurfaceRaised,
+                                        child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: palette.space3,
+                                                vertical: palette.space2),
+                                            child: Text('@$option')))));
                           }))))));
 }

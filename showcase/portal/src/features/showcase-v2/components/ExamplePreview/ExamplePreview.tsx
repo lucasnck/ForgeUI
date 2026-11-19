@@ -1,11 +1,12 @@
 "use client";
-import { useState, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { Card, CardHeader, CardBody, CardFooter, Button, Heading, Inline, Stack, VisuallyHidden, useCollapse } from "@forge-ui/web";
 import type { ShowcaseV2Example } from "../../model/showcase-v2.types";
 import { useShowcaseV2Copy } from "../../messages/useShowcaseV2Copy";
 import { useExampleStore } from "../ExampleScope/ExampleScope";
 import { useExampleCode } from "../ExampleCode/useExampleCode";
 import { ExampleCode } from "../ExampleCode/ExampleCode";
+import { formatDartForDisplay } from "../ExampleCode/format-dart-for-display.mjs";
 import { ExampleBoundary } from "../ExampleState/ExampleBoundary";
 
 /** Original Showcase V2 Card composition and the original useCollapse + ExampleBoundary contracts. */
@@ -15,7 +16,8 @@ export function ExamplePreview({ example }: { example: ShowcaseV2Example }) {
   const [revision, setRevision] = useState(0);
   const collapse = useCollapse({ defaultOpen: true, id: `${example.id}-preview-toggle` });
   const overrides = useSyncExternalStore(store?.subscribe ?? noSubscribe, store?.getOverrides ?? emptySnapshot, store?.getServerOverrides ?? emptySnapshot);
-  const code = example.getCode?.(overrides) ?? example.code;
+  const rawCode = example.getCode?.(overrides) ?? example.code;
+  const code = useMemo(() => formatDartForDisplay(rawCode), [rawCode]);
   const clipboard = useExampleCode(code);
   const { Component } = example;
   function reset() {

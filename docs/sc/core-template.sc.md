@@ -23,6 +23,20 @@ The prefix classifies documentation ownership, not frontmatter type or source id
 
 The canonical reading entry is `core-start-here.sc.md`. When renaming a spec, update its links, catalogs, agent instructions and any verifier path references in the same change. Do not keep an unprefixed duplicate or forwarding SC. Audit the file against this template as well as its name; a correct filename does not establish structural compliance.
 
+## Scope and granularity: FEATURE versus TECH
+
+Every implementation resource has one **cohesive, testable responsibility**, not necessarily one file. Classify by ownership and acceptance boundary rather than the number of classes, endpoints, packages or components touched.
+
+| Type | Owns | Split when | Keep together when |
+| --- | --- | --- | --- |
+| `feature-` | One observable business/user-facing capability or coherent screen/workflow, including its own UI orchestration and acceptance | Two independent user outcomes can be delivered and accepted separately | Multiple steps form the same workflow, or a page has exclusive presentational children |
+| `tech-` | One independent technical capability/integration: provider/SDK adapter, transport/protocol, theme adapter, token generation, formatting engine or audit mechanism | Different integrations/toolchains have separate contracts, upgrades, owners, tests, rollback or consumer dependencies | Several files, configuration entries, helpers and tests jointly deliver **the same** mechanism |
+| `core-` | Project-wide policy, architecture, templates, navigation and catalogs | A concrete implementation begins to be specified in a global guide | It states reusable governance rather than implementation |
+
+A FEATURE may depend on **zero, one or many** TECH SCs; create only missing TECH contracts. Do not force a one-to-one FEATURE↔TECH relationship, do not treat each class/function as a SC and do not use a broad `tech-integration` SC to combine unrelated libraries. Cross-platform contracts may have a shared technical source (tokens) with separate platform adapters where ownership is independent. A catalog-wide audit is a single TECH for its **audit gate**, while individual DS widget fixes remain in their own component SCs and the user-facing showcase remains a FEATURE.
+
+**Author checklist:** (1) inspect existing SCs and source to avoid duplicates; (2) name the consumer outcome and each independent technical boundary; (3) test whether implementation/release/rollback/acceptance is independent; (4) split only distinct contracts and link them through Dependencies; (5) record specific files and measurable tests for each owner. When scope changes during implementation, return the new responsibility to `sc-author` before touching unrelated code. `sc-implementer` must not silently grow the SC. Governance-only edits belong here or in agent instructions and do not require an artificial implementation SC.
+
 ## Header
 
 ```yaml

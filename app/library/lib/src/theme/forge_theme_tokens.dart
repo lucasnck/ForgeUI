@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../generated/forge_tokens.g.dart';
 import '../types/component_capabilities.dart';
+import 'forge_theme_scope.dart';
 
 enum ForgeThemeId { light, dark, contrast, liquidGlass }
 
@@ -35,10 +36,13 @@ class ForgeThemeTokens extends ThemeExtension<ForgeThemeTokens> {
   }
 
   static ForgeThemeTokens of(BuildContext context) {
+    // Prefer our own InheritedWidget; Material is a legacy compatibility path.
+    final scoped = ForgeThemeScope.maybeOf(context);
+    if (scoped != null) return scoped;
     final extension = Theme.of(context).extension<ForgeThemeTokens>();
     if (extension == null) {
       throw FlutterError(
-          'ForgeThemeTokens requires a ForgeThemeData theme in MaterialApp.');
+          'ForgeThemeTokens requires a ForgeThemeScope ancestor (or the legacy ForgeThemeData Material adapter).');
     }
     return extension;
   }

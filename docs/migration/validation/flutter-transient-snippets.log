@@ -1,0 +1,64 @@
+
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_transient_snippets_test.dart                                                                                      
+00:01 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_transient_snippets_test.dart                                                                                      
+00:02 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_transient_snippets_test.dart                                                                                      
+00:03 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_transient_snippets_test.dart                                                                                      
+00:04 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_transient_snippets_test.dart                                                                                      
+00:04 +0: copyable interaction modal 0                                                                                                                                                                 
+00:05 +0: copyable interaction modal 0                                                                                                                                                                 
+00:06 +0: copyable interaction modal 0                                                                                                                                                                 
+00:06 +1: copyable interaction modal 0                                                                                                                                                                 
+00:06 +1: copyable interaction modal-header 1                                                                                                                                                          
+00:06 +2: copyable interaction modal-header 1                                                                                                                                                          
+00:06 +2: copyable interaction modal-body 2                                                                                                                                                            
+00:06 +3: copyable interaction modal-body 2                                                                                                                                                            
+00:06 +3: copyable interaction modal-footer 3                                                                                                                                                          
+00:07 +3: copyable interaction modal-footer 3                                                                                                                                                          
+00:07 +4: copyable interaction modal-footer 3                                                                                                                                                          
+00:07 +4: copyable interaction dialog 4                                                                                                                                                                
+00:07 +5: copyable interaction dialog 4                                                                                                                                                                
+00:07 +5: copyable interaction dialog-header 5                                                                                                                                                         
+00:07 +6: copyable interaction dialog-header 5                                                                                                                                                         
+00:07 +6: copyable interaction dialog-body 6                                                                                                                                                           
+00:07 +7: copyable interaction dialog-body 6                                                                                                                                                           
+00:07 +7: copyable interaction dialog-footer 7                                                                                                                                                         
+00:07 +8: copyable interaction dialog-footer 7                                                                                                                                                         
+00:07 +8: copyable interaction dialog-close 8                                                                                                                                                          
+00:07 +9: copyable interaction dialog-close 8                                                                                                                                                          
+00:07 +9: copyable interaction alert-dialog 9                                                                                                                                                          
+00:07 +10: copyable interaction alert-dialog 9                                                                                                                                                         
+00:07 +10: copyable interaction alert-dialog-header 10                                                                                                                                                 
+00:07 +11: copyable interaction alert-dialog-header 10                                                                                                                                                 
+00:07 +11: copyable interaction alert-dialog-body 11                                                                                                                                                   
+00:08 +11: copyable interaction alert-dialog-body 11                                                                                                                                                   
+00:08 +12: copyable interaction alert-dialog-body 11                                                                                                                                                   
+00:08 +12: copyable interaction alert-dialog-footer 12                                                                                                                                                 
+00:08 +13: copyable interaction alert-dialog-footer 12                                                                                                                                                 
+00:08 +13: copyable interaction confirmation-modal 13                                                                                                                                                  
+00:08 +14: copyable interaction confirmation-modal 13                                                                                                                                                  
+00:08 +14: copyable interaction popover 14                                                                                                                                                             
+00:08 +15: copyable interaction popover 14                                                                                                                                                             
+00:08 +15: copyable interaction popover-header 15                                                                                                                                                      
+00:08 +16: copyable interaction popover-header 15                                                                                                                                                      
+00:08 +16: copyable interaction popover-body 16                                                                                                                                                        
+00:08 +17: copyable interaction popover-body 16                                                                                                                                                        
+00:08 +17: copyable interaction popover-footer 17                                                                                                                                                      
+00:08 +18: copyable interaction popover-footer 17                                                                                                                                                      
+00:08 +18: copyable interaction tooltip 18                                                                                                                                                             
+00:08 +19: copyable interaction tooltip 18                                                                                                                                                             
+00:08 +19: copyable interaction overlay-portal 19                                                                                                                                                      
+00:08 +20: copyable interaction overlay-portal 19                                                                                                                                                      
+00:08 +20: copyable interaction toast-region 20                                                                                                                                                        
+00:08 +21: copyable interaction toast-region 20                                                                                                                                                        
+00:08 +21: copyable interaction toast 21                                                                                                                                                               
+00:08 +22: copyable interaction toast 21                                                                                                                                                               
+00:08 +22: copyable interaction toast-header 22                                                                                                                                                        
+00:09 +22: copyable interaction toast-header 22                                                                                                                                                        
+00:09 +23: copyable interaction toast-header 22                                                                                                                                                        
+00:09 +23: copyable interaction toast-body 23                                                                                                                                                          
+00:09 +24: copyable interaction toast-body 23                                                                                                                                                          
+00:09 +24: copyable interaction toast-footer 24                                                                                                                                                        
+00:09 +25: copyable interaction toast-footer 24                                                                                                                                                        
+00:09 +25: copyable interaction modal 25                                                                                                                                                               
+00:09 +26: copyable interaction modal 25                                                                                                                                                               
+00:09 +26: All tests passed!                                                                                                                                                                           

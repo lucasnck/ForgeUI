@@ -63,9 +63,11 @@ assert.equal(removedPreviewWorker,1);
 assert.equal(removedOtherWorker,0);
 console.log('PASS: real Flutter property schema/snippets, local bootstrap and origin/source-validated bridge');
 
-const catalogFiles = ['flutter-primitives','flutter-inputs','flutter-composites','flutter-feedback'];
+const catalogFiles = ['flutter-primitives','flutter-inputs','flutter-composites','flutter-feedback','flutter-interactions','flutter-forms','flutter-collections','flutter-transients','flutter-advanced','flutter-parts'];
 const expectedSlugs = ['button','spinner','button-group', ...catalogFiles.flatMap(name => JSON.parse(read('showcase/portal/src/features/showcase-v2/model/'+name+'.json')).map(entry => entry.slug))];
 assert.equal(new Set(expectedSlugs).size, expectedSlugs.length, 'Duplicate native preview identities');
+const resolvedApiSlugs = JSON.parse(read('docs/sc/app/reference/native-component-api.json')).components.map(entry=>entry.slug);
+assert.deepEqual([...expectedSlugs].sort(), [...resolvedApiSlugs].sort(), 'Every resolved native API must have exactly one preview identity');
 const bootstrap = read('app/showcase_flutter/web/flutter_bootstrap.js').replace(/^\{\{[^\n]+\}\}\r?\n/gm,'');
 for (const slug of expectedSlugs) {
  const replies = [];

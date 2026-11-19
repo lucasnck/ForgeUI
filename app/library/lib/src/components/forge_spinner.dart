@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../theme/forge_control_style.dart';
 import '../theme/forge_theme_tokens.dart';
 import '../types/component_capabilities.dart';

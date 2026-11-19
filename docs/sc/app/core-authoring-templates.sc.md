@@ -7,6 +7,8 @@ scope: "Reusable Dart widget, local logic, helper and resource-specification pat
 
 Use the existing [resource template](../core-template.sc.md), [app parity rules](core-web-app-parity.sc.md), [native API mapping](core-native-api-mapping.sc.md) and the component's [app SC](core-app-parity-catalog.sc.md) first. These snippets are authoring tools, not new public components, implemented parity or a reason to replace an existing contract.
 
+Apply the canonical [SC granularity rubric](../core-template.sc.md) first: a shared Flutter technical adapter is a TECH only when it has one independently testable responsibility; the Showcase user-facing experience is a FEATURE; each reusable widget retains its own canonical component SC. One TECH can own several Dart files and tests. Do not create a TECH per helper or combine unrelated Flutter, Web and build-tool integrations in one implementation scope.
+
 The Web pattern separates rendered components, colocated view hooks and shared helpers. Native equivalents use Widgets, State and an optional colocated controller/notifier. Flutter widgets never need React hooks, CSS Modules, Next or a new state-management package.
 
 ## Editor snippets

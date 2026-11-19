@@ -1,0 +1,159 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart
+00:00 +0: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: advanced contracts validate finite bridge messages
+00:00 +1: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid in ForgeThemeId.light at 320 pixels
+00:01 +2: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +3: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +4: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +5: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +6: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +7: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +8: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid 0
+00:01 +9: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-header in ForgeThemeId.liquidGlass at 320 pixels
+00:01 +10: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-header 1
+00:02 +11: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-header 1
+00:02 +12: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-body in ForgeThemeId.dark at 320 pixels
+00:02 +13: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-body 2
+00:02 +14: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-body in ForgeThemeId.contrast at 320 pixels
+00:02 +15: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-row 3
+00:02 +16: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-body in ForgeThemeId.liquidGlass at 320 pixels
+00:02 +17: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-column-header 4
+00:02 +18: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-row in ForgeThemeId.light at 320 pixels
+00:02 +19: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-cell 5
+00:02 +20: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-cell 5
+00:02 +21: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-row in ForgeThemeId.contrast at 320 pixels
+00:02 +22: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction data-grid-footer 6
+00:02 +23: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-row in ForgeThemeId.liquidGlass at 320 pixels
+00:02 +24: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction tree-grid 7
+00:02 +25: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-column-header in ForgeThemeId.light at 320 pixels
+00:02 +26: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction tree-grid-header 8
+00:02 +27: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-column-header in ForgeThemeId.dark at 320 pixels
+00:02 +28: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction tree-grid-body 9
+00:03 +29: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-column-header in ForgeThemeId.contrast at 320 pixels
+00:03 +30: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction tree-grid-row 10
+00:03 +31: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-column-header in ForgeThemeId.liquidGlass at 320 pixels
+00:03 +32: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction tree-grid-column-header 11
+00:03 +33: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-cell in ForgeThemeId.light at 320 pixels
+00:03 +34: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-cell in ForgeThemeId.light at 320 pixels
+00:03 +35: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction tree-grid-footer 13
+00:03 +36: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-cell in ForgeThemeId.dark at 320 pixels
+00:03 +37: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-template 14
+00:03 +38: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-template 14
+00:03 +39: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-template 14
+00:03 +40: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-template 14
+00:03 +41: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-footer in ForgeThemeId.dark at 320 pixels
+00:03 +42: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-header 15
+00:03 +43: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data-grid-footer in ForgeThemeId.contrast at 320 pixels
+00:03 +44: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-body 16
+00:03 +45: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-body 16
+00:03 +46: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid in ForgeThemeId.light at 320 pixels
+00:03 +47: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction application-layout-footer 17
+00:03 +48: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid in ForgeThemeId.dark at 320 pixels
+00:04 +49: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction showcase-page-template 18
+00:04 +50: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid in ForgeThemeId.contrast at 320 pixels
+00:04 +51: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction home-page 19
+00:04 +52: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction home-page 19
+00:04 +53: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-header in ForgeThemeId.light at 320 pixels
+00:04 +54: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction list-page 20
+00:04 +55: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction list-page 20
+00:04 +56: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-header in ForgeThemeId.contrast at 320 pixels
+00:04 +57: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction detail-page 21
+00:04 +58: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-header in ForgeThemeId.liquidGlass at 320 pixels
+00:04 +59: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction form-page 22
+00:04 +60: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction form-page 22
+00:04 +61: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-body in ForgeThemeId.dark at 320 pixels
+00:04 +62: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction page-transition 23
+00:04 +63: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-body in ForgeThemeId.contrast at 320 pixels
+00:04 +64: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction shared-element 24
+00:04 +65: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction shared-element 24
+00:04 +66: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-row in ForgeThemeId.light at 320 pixels
+00:04 +67: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction map-view 25
+00:04 +68: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction map-view 25
+00:04 +69: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-row in ForgeThemeId.contrast at 320 pixels
+00:04 +70: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter 26
+00:04 +71: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter 26
+00:04 +72: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter 26
+00:04 +73: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter 26
+00:04 +74: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter 26
+00:04 +75: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-column-header in ForgeThemeId.liquidGlass at 320 pixels
+00:04 +76: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-condition 27
+00:05 +77: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-condition 27
+00:05 +78: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-condition 27
+00:05 +79: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-condition 27
+00:05 +80: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-cell in ForgeThemeId.liquidGlass at 320 pixels
+00:05 +81: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-group 28
+00:05 +82: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-group 28
+00:05 +83: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-group 28
+00:05 +84: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree-grid-footer in ForgeThemeId.contrast at 320 pixels
+00:05 +85: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-value 29
+00:05 +86: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_advanced_snippets_test.dart: copyable interaction odata-filter-value 29
+00:05 +87: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-template in ForgeThemeId.light at 320 pixels
+00:05 +88: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-template in ForgeThemeId.light at 320 pixels
+00:05 +89: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-template in ForgeThemeId.dark at 320 pixels
+00:05 +90: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-template in ForgeThemeId.contrast at 320 pixels
+00:05 +91: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-template in ForgeThemeId.liquidGlass at 320 pixels
+00:05 +92: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-header in ForgeThemeId.light at 320 pixels
+00:05 +93: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-header in ForgeThemeId.dark at 320 pixels
+00:05 +94: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-header in ForgeThemeId.contrast at 320 pixels
+00:05 +95: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-header in ForgeThemeId.liquidGlass at 320 pixels
+00:06 +96: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-body in ForgeThemeId.light at 320 pixels
+00:06 +97: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-body in ForgeThemeId.dark at 320 pixels
+00:06 +98: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-body in ForgeThemeId.contrast at 320 pixels
+00:06 +99: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-body in ForgeThemeId.liquidGlass at 320 pixels
+00:06 +100: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-footer in ForgeThemeId.light at 320 pixels
+00:06 +101: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-footer in ForgeThemeId.dark at 320 pixels
+00:06 +102: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-footer in ForgeThemeId.contrast at 320 pixels
+00:06 +103: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: application-layout-footer in ForgeThemeId.liquidGlass at 320 pixels
+00:06 +104: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: showcase-page-template in ForgeThemeId.light at 320 pixels
+00:06 +105: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: showcase-page-template in ForgeThemeId.dark at 320 pixels
+00:06 +106: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: showcase-page-template in ForgeThemeId.contrast at 320 pixels
+00:06 +107: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: showcase-page-template in ForgeThemeId.liquidGlass at 320 pixels
+00:06 +108: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: home-page in ForgeThemeId.light at 320 pixels
+00:06 +109: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: home-page in ForgeThemeId.dark at 320 pixels
+00:06 +110: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: home-page in ForgeThemeId.contrast at 320 pixels
+00:06 +111: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: home-page in ForgeThemeId.liquidGlass at 320 pixels
+00:06 +112: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: list-page in ForgeThemeId.light at 320 pixels
+00:06 +113: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: list-page in ForgeThemeId.dark at 320 pixels
+00:06 +114: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: list-page in ForgeThemeId.contrast at 320 pixels
+00:06 +115: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: list-page in ForgeThemeId.liquidGlass at 320 pixels
+00:07 +116: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: detail-page in ForgeThemeId.light at 320 pixels
+00:07 +117: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: detail-page in ForgeThemeId.dark at 320 pixels
+00:07 +118: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: detail-page in ForgeThemeId.contrast at 320 pixels
+00:07 +119: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: detail-page in ForgeThemeId.liquidGlass at 320 pixels
+00:07 +120: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: form-page in ForgeThemeId.light at 320 pixels
+00:07 +121: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: form-page in ForgeThemeId.dark at 320 pixels
+00:07 +122: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: form-page in ForgeThemeId.contrast at 320 pixels
+00:07 +123: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: form-page in ForgeThemeId.liquidGlass at 320 pixels
+00:07 +124: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: page-transition in ForgeThemeId.light at 320 pixels
+00:07 +125: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: page-transition in ForgeThemeId.dark at 320 pixels
+00:07 +126: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: page-transition in ForgeThemeId.contrast at 320 pixels
+00:07 +127: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: page-transition in ForgeThemeId.liquidGlass at 320 pixels
+00:07 +128: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: shared-element in ForgeThemeId.light at 320 pixels
+00:07 +129: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: shared-element in ForgeThemeId.dark at 320 pixels
+00:07 +130: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: shared-element in ForgeThemeId.contrast at 320 pixels
+00:07 +131: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: shared-element in ForgeThemeId.liquidGlass at 320 pixels
+00:07 +132: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: map-view in ForgeThemeId.light at 320 pixels
+00:07 +133: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: map-view in ForgeThemeId.dark at 320 pixels
+00:07 +134: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: map-view in ForgeThemeId.contrast at 320 pixels
+00:07 +135: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: map-view in ForgeThemeId.liquidGlass at 320 pixels
+00:07 +136: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter in ForgeThemeId.light at 320 pixels
+00:07 +137: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter in ForgeThemeId.dark at 320 pixels
+00:08 +138: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter in ForgeThemeId.contrast at 320 pixels
+00:08 +139: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter in ForgeThemeId.liquidGlass at 320 pixels
+00:08 +140: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-condition in ForgeThemeId.light at 320 pixels
+00:08 +141: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-condition in ForgeThemeId.dark at 320 pixels
+00:08 +142: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-condition in ForgeThemeId.contrast at 320 pixels
+00:08 +143: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-condition in ForgeThemeId.liquidGlass at 320 pixels
+00:08 +144: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-group in ForgeThemeId.light at 320 pixels
+00:08 +145: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-group in ForgeThemeId.dark at 320 pixels
+00:08 +146: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-group in ForgeThemeId.contrast at 320 pixels
+00:09 +147: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-group in ForgeThemeId.liquidGlass at 320 pixels
+00:09 +148: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-value in ForgeThemeId.light at 320 pixels
+00:09 +149: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-value in ForgeThemeId.dark at 320 pixels
+00:09 +150: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-value in ForgeThemeId.contrast at 320 pixels
+00:09 +151: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: odata-filter-value in ForgeThemeId.liquidGlass at 320 pixels
+00:09 +152: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: data grid sorts caller data and emits once per activation
+00:09 +153: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: tree grid expands native branch through keyboard
+00:09 +154: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: page transition swaps real current screen
+00:09 +155: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: shared element uses caller navigation and can return
+00:09 +156: D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/advanced_preview_test.dart: OData preserves exact decimal and emits authoritative serialization
+00:10 +157: All tests passed!

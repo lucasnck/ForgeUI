@@ -248,6 +248,10 @@ features/showcase-v2/components/FlutterPreview/flutter-component-properties.ts (
 
 ## Dependencies
 
+- [Flutter preview host surface](tech-flutter-preview-surface.sc.md)
+- [Public Dart snippet presentation](tech-flutter-code-display.sc.md)
+- [Full-catalog structural/evidence audit](tech-full-catalog-parity.sc.md)
+
 - [Native model contracts](ds/types/tech-native-contracts.sc.md)
 - [Native platform adapters](ds/helpers/tech-native-platform-adapters.sc.md)
 
@@ -288,3 +292,18 @@ import { FlutterPreview } from "./features/showcase-v2/components/FlutterPreview
 - [ ] Generate public Dart usage from current controls; demo-only overrides cannot fake missing widget features.
 - [ ] Keep navigation/specs/comparison in one portal; widgets never import portal modules.
 - [ ] Record runtime evidence for edits, activation, loading, reset and platform switching; compilation alone is insufficient.
+
+## 2026-11-18 — Tabs presentation parity
+
+**Files:** `app/library/lib/src/components/forge_tabs.dart` (M), `app/library/test/forge_tabs_visual_state_test.dart` (C). Dependency: the Web `Tab`/`Tabs` default presentation in `web/library`, and `feature-multiplatform-showcase.sc.md` for embedded preview.
+
+For an unset Flutter `ForgeTab.appearance`, an enabled selected tab resolves to the branded **solid button** treatment, and an enabled unselected tab resolves to a ghost button treatment. Explicit caller appearance overrides remain supported. Do not add a new permanent underline below the label. Preserve `attached`, size, tone, shape, controlled/uncontrolled selection, disabled behavior, roving keyboard focus, text direction and accessibility semantics; an optional underline variant may be specified separately but is not the default. The Flutter user-facing widget remains the real `ForgeTab`, not a demo-only substitute.
+
+Tests must check resolved `ForgeButton.appearance` before and after changing selection, an explicit appearance override, and that the selected tab is exposed in accessibility semantics. Check light/dark visual results against React before claiming DONE. Public API callers and `PraticarApp` are not automatically upgraded until the ForgeUI repository revision is published/referenced.
+
+
+## Full-catalog parity scope — 18 November 2026
+
+The feature owns the observable Showcasing and parity journey; the linked TECH SCs own independent preview embedding, snippet presentation and structural/evidence validation. This FEATURE does not reimplement those technical mechanisms, and each Dart widget fix stays in that widget's SC.
+
+The requested parity review covers **all 221** native component constructors and their canonical React scenarios, not just Tabs. See `docs/sc/app/tech-full-catalog-parity.sc.md` for the cross-cutting inventory, required evidence and blocking regression tests. Changes to shared showcase code apply uniformly, while missing styles, behavior and API mappings must be corrected under each owning component SC (not masked by screenshots or fake examples). Any incomplete native/visual comparison remains PENDING.

@@ -1,0 +1,185 @@
+00:00 +0: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart
+test/generated_form_catalog_snippets_test.dart:193:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:193:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:389:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:389:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:585:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:585:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:781:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:781:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:977:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:977:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:1177:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:1177:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:1377:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:1377:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:1577:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:1577:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:1777:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:1777:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:1977:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:1977:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:2177:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:2177:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:2377:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:2377:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:2577:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:2577:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:2779:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:2779:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+test/generated_form_catalog_snippets_test.dart:2981:61: Error: '_' is already declared in this scope.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                            ^
+test/generated_form_catalog_snippets_test.dart:2981:58: Context: Previous declaration of '_'.
+          ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                         ^
+00:00 +0 -1: loading D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart [E]
+  Failed to load "D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart":
+  Compilation failed for testPath=D:/projects/AiWorkzone/ForgeUI/app/showcase_flutter/test/generated_form_catalog_snippets_test.dart: test/generated_form_catalog_snippets_test.dart:193:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:193:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:389:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:389:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:585:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:585:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:781:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:781:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:977:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:977:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:1177:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:1177:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:1377:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:1377:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:1577:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:1577:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:1777:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:1777:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:1977:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:1977:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:2177:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:2177:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:2377:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:2377:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:2577:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:2577:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:2779:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:2779:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  test/generated_form_catalog_snippets_test.dart:2981:61: Error: '_' is already declared in this scope.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                              ^
+  test/generated_form_catalog_snippets_test.dart:2981:58: Context: Previous declaration of '_'.
+            ListenableBuilder(listenable: owner, builder: (_, _) => form()),
+                                                           ^
+  .
+00:00 +0 -1: Some tests failed.
