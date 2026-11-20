@@ -25,6 +25,37 @@ String message(
     });
 
 void main() {
+  testWidgets('preview shell is Forge-scoped and does not force Material/Roboto',
+      (tester) async {
+    late void Function(String) update;
+    await tester.pumpWidget(ForgeFlutterPreview(connect: (receive) {
+      update = receive;
+      return () {};
+    }));
+    expect(find.byType(WidgetsApp), findsOneWidget);
+    expect(find.byType(MaterialApp), findsNothing);
+    expect(find.byType(Scaffold), findsNothing);
+    final context = tester.element(find.byType(ForgeButton).first);
+    final style = DefaultTextStyle.of(context).style;
+    expect(style.fontFamily, 'DM Sans');
+    expect(style.fontFamilyFallback, ['Segoe UI', 'Arial', 'sans-serif']);
+    expect(ForgeThemeTokens.of(context).id, ForgeThemeId.light);
+    expect(MaterialLocalizations.of(context), isA<MaterialLocalizations>());
+    for (final entry in <String, ForgeThemeId>{
+      'dark': ForgeThemeId.dark,
+      'contrast': ForgeThemeId.contrast,
+      'liquid-glass': ForgeThemeId.liquidGlass,
+      'light': ForgeThemeId.light,
+    }.entries) {
+      update(message(theme: entry.key));
+      await tester.pump();
+      final updatedContext = tester.element(find.byType(ForgeButton).first);
+      final updatedTokens = ForgeThemeTokens.of(updatedContext);
+      expect(updatedTokens.id, entry.value);
+      expect(DefaultTextStyle.of(updatedContext).style.color,
+          updatedTokens.palette.colorTextDefault);
+    }
+  });
   test('preview rejects malformed or unsupported messages', () {
     expect(ForgePreviewSettings.fromMessage('invalid'), isNull);
     expect(ForgePreviewSettings.fromMessage(message(theme: 'unknown')), isNull);
@@ -52,7 +83,8 @@ void main() {
     expect(find.text('Cliques: 1'), findsOneWidget);
     update(message());
     await tester.pumpAndSettle();
-    expect(find.byType(OutlinedButton), findsOneWidget);
+    expect(find.byType(ForgeButton), findsOneWidget);
+    expect(find.byType(OutlinedButton), findsNothing);
     expect(find.text('Novo conteúdo'), findsOneWidget);
     expect(find.text('Cliques: 1'), findsOneWidget);
     expect(ForgeThemeTokens.of(tester.element(find.byType(ForgeButton))).id,

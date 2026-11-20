@@ -5,8 +5,9 @@ import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const dir = mkdtempSync(join(tmpdir(), 'forge-native-actions-'));
+const temp = mkdtempSync(join(tmpdir(), 'forge-native-action-api-'));
 const files = [
   'app/library/lib/src/components/internal/forge_action.dart',
   'app/library/lib/src/theme/forge_action_palette.dart',
@@ -15,28 +16,35 @@ const files = [
 ];
 try {
   for (const file of files) {
-    mkdirSync(dirname(join(dir, file)), { recursive: true });
-    writeFileSync(join(dir, file), readFileSync(join(root, file)));
+    mkdirSync(dirname(join(temp, file)), { recursive: true });
+    writeFileSync(join(temp, file), readFileSync(join(root, file)));
   }
-  mkdirSync(join(dir, 'scripts'), { recursive: true });
-  const checker = join(dir, 'scripts/check-native-actions.mjs');
+  mkdirSync(join(temp, 'scripts'), { recursive: true });
+  const checker = join(temp, 'scripts/check-native-actions.mjs');
   writeFileSync(checker, readFileSync(join(root, 'scripts/check-native-actions.mjs')));
-  const run = () => spawnSync('node', [checker], { cwd: dir, encoding: 'utf8' });
-  assert.equal(run().status, 0, 'clean source passes');
-  const actionPath = join(dir, files[0]);
-  const cleanAction = readFileSync(actionPath, 'utf8');
-  writeFileSync(actionPath, "import 'package:flutter/material.dart';\n" + cleanAction);
-  assert.notEqual(run().status, 0, 'Material import rejected');
-  writeFileSync(actionPath, cleanAction.replace('GestureDetector(', 'InkWell('));
-  assert.notEqual(run().status, 0, 'Material ink rejected');
-  writeFileSync(actionPath, cleanAction.replace('LogicalKeyboardKey.enter', 'LogicalKeyboardKey.f1'));
-  assert.notEqual(run().status, 0, 'keyboard parity regression rejected');
-  writeFileSync(actionPath, cleanAction);
-  const recipePath = join(dir, files[2]);
-  const cleanRecipe = readFileSync(recipePath, 'utf8');
-  writeFileSync(recipePath, cleanRecipe.replace('p.fontWeightSemibold', 'p.fontWeightNormal'));
-  assert.notEqual(run().status, 0, 'weight token regression rejected');
-  writeFileSync(recipePath, cleanRecipe);
+  const run = () => spawnSync(process.execPath, [checker], { cwd: temp, encoding: 'utf8' });
+  const original = Object.fromEntries(files.map(file => [file, readFileSync(join(temp, file), 'utf8')]));
+  const mutate = (file, oldValue, newValue, description) => {
+    assert.ok(original[file].includes(oldValue), `${description}: fixture anchor exists`);
+    writeFileSync(join(temp, file), original[file].replace(oldValue, newValue));
+    const result = run();
+    assert.notEqual(result.status, 0, `${description}: regression rejected`);
+    writeFileSync(join(temp, file), original[file]);
+  };
+  assert.equal(run().status, 0, 'current contract passes');
+  const a = files[0], r = files[2], l = files[3];
+  mutate(a, "import 'package:flutter/services.dart';", "import 'package:flutter/material.dart';", 'Material import');
+  mutate(a, 'GestureDetector(', 'InkWell(', 'Material ink');
+  mutate(a, 'LogicalKeyboardKey.enter', 'LogicalKeyboardKey.f1', 'keyboard action parity');
+  mutate(r, 'p.fontWeightSemibold', 'p.fontWeightNormal', 'font weight parity');
+  mutate(a, 'recipe.duration', 'recipe.animationDuration', 'obsolete duration getter');
+  mutate(a, 'recipe.height', 'recipe.tapTargetSize', 'obsolete tap-target getter');
+  mutate(a, 'recipe.decoration(', 'recipe.side(', 'obsolete decoration getter');
+  mutate(a, 'recipe.padding', 'recipe.backgroundColor', 'obsolete background getter');
+  mutate(a, 'appearance: appearance,', 'appearance: widget.appearance,', 'nullable appearance');
+  mutate(l, 'ForgeNativeActionRecipe forgeActionStyle(', 'ButtonStyle forgeActionStyle(', 'stale Material type');
   assert.equal(run().status, 0, 'restored sources pass');
-  console.log('PASS: native ForgeAction source, 4 negative injections and restore');
-} finally { rmSync(dir, { recursive: true, force: true }); }
+  console.log('PASS: native action contract, 10 negative regressions, and restore');
+} finally {
+  rmSync(temp, { recursive: true, force: true });
+}

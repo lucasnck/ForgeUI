@@ -28,7 +28,7 @@
     "tokens:generate": "node shared/tokens/generate.mjs && node scripts/generate-flutter-motion.mjs",
     "tokens:check": "node scripts/check-token-parity.mjs && node scripts/generate-flutter-motion.mjs --check",
     "build:flutter-preview": "node scripts/build-flutter-preview.mjs",
-    "check:cross-platform": "npm run tokens:check && npm run check:showcase-parity && npm run audit:flutter-parity && npm run test:showcase-parity-shell && npm run test:dart-code-display && npm run check:flutter-format && npm run test:flutter-preview && npm run test:independence && npm run audit:independence && npm run test:native-typography && npm run test:native-link-progress && npm run test:native-import-only && npm run test:native-surfaces && npm run test:native-checkables && npm run test:native-actions && npm run test:native-independence && npm run audit:native-independence && npm run test:native-slider",
+    "check:cross-platform": "npm run tokens:check && npm run check:showcase-parity && npm run audit:flutter-parity && npm run test:showcase-parity-shell && npm run test:dart-code-display && npm run check:flutter-format && npm run test:flutter-preview && npm run test:independence && npm run audit:independence && npm run test:native-typography && npm run test:native-link-progress && npm run test:native-import-only && npm run test:native-surfaces && npm run test:native-checkables && npm run test:native-actions && npm run test:native-independence && npm run audit:native-independence && npm run test:native-slider && npm run test:native-showcase-shell",
     "test:flutter-preview": "node scripts/test-flutter-preview.mjs",
     "audit:flutter-source": "node scripts/audit-flutter-components.mjs",
     "catalog:flutter-api": "node scripts/generate-flutter-api.mjs && node scripts/generate-flutter-catalog.mjs",
@@ -67,6 +67,7 @@
     "audit:native-independence": "node scripts/audit-native-independence.mjs --check --max-platform-imports=6 --write-report",
     "audit:native-independence:strict": "node scripts/audit-native-independence.mjs --check --strict",
     "test:native-independence": "node scripts/test-native-independence.mjs",
-    "test:native-slider": "node scripts/check-native-slider.mjs && node scripts/test-native-slider.mjs"
+    "test:native-slider": "node scripts/check-native-slider.mjs && node scripts/test-native-slider.mjs",
+    "test:native-showcase-shell": "node scripts/check-native-showcase-shell.mjs && node scripts/test-native-showcase-shell.mjs"
   }
 }

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:forge_ui/forge_ui.dart';
+import 'legacy_material_bridge.dart';
 import 'preview_bridge.dart';
 import 'preview_settings.dart';
 import 'examples/button_example.dart';
@@ -71,18 +72,43 @@ class _ForgeFlutterPreviewState extends State<ForgeFlutterPreview> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ForgeThemeData.forId(settings.theme);
-    return MaterialApp(
+    final tokens = ForgeThemeTokens.fromId(settings.theme);
+    final palette = tokens.palette;
+    return WidgetsApp(
       debugShowCheckedModeBanner: false,
       title: 'Forge UI Flutter preview',
-      theme: theme.copyWith(
-        textTheme: theme.textTheme.apply(fontFamily: 'Roboto'),
-        primaryTextTheme: theme.primaryTextTheme.apply(fontFamily: 'Roboto'),
+      color: palette.colorActionBrandBackground,
+      // Keep Navigator/Overlay for compound previews without a Material shell.
+      pageRouteBuilder: <T>(RouteSettings route, WidgetBuilder builder) =>
+          PageRouteBuilder<T>(
+        settings: route,
+        pageBuilder: (context, animation, secondaryAnimation) => builder(context),
       ),
-      home: Scaffold(
-        // Match the shared Showcase V2 card surface; use ForgeUI tokens in every theme.
-        backgroundColor: ForgeThemeTokens.fromId(settings.theme).palette.colorSurfaceSubtle,
-        body: Builder(
+      builder: (context, child) => ForgeThemeScope(
+        tokens: tokens,
+        child: ForgePreviewLegacyMaterialBridge(
+          theme: settings.theme,
+          child: DefaultTextStyle(
+            // shared/tokens/primitives.json: --font-family-brand.
+            // The family must be bundled before exact font glyph parity is claimed.
+            style: TextStyle(
+              fontFamily: 'DM Sans',
+              fontFamilyFallback: const ['Segoe UI', 'Arial', 'sans-serif'],
+              fontSize: palette.fontSizeMd,
+              height: palette.lineHeightNormal,
+              color: palette.colorTextDefault,
+            ),
+            child: IconTheme(
+              data: IconThemeData(color: palette.colorTextDefault),
+              child: child ?? const SizedBox.shrink(),
+            ),
+          ),
+        ),
+      ),
+      home: ColoredBox(
+        // Match shared Showcase V2 surface using ForgeUI's own theme tokens.
+        color: palette.colorSurfaceSubtle,
+        child: Builder(
           builder: (context) {
             final p = ForgeThemeTokens.of(context).palette;
             return SingleChildScrollView(

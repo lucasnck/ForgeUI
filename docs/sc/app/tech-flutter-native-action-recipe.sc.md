@@ -17,7 +17,7 @@ A fonte de verdade visual continua sendo o Design System Web do ForgeUI, seus to
 
 - `app/library/lib/src/theme/forge_action_palette.dart` (C) — resolução de aparência/tom desacoplada do Material.
 - `app/library/lib/src/theme/forge_native_action_recipe.dart` (C) — receita de aparência nativa em widgets.dart.
-- `app/library/lib/src/theme/forge_control_style.dart` (M) — passa a reexportar a paleta/precedência comum; conserva temporariamente a receita Material exigida por ForgeSelect.
+- `app/library/lib/src/theme/forge_control_style.dart` (M) — passa a reexportar a paleta/precedência comum; delega à receita nativa compartilhada; ForgeSelect permanece como controle Material legado, sem alterar seus contratos.
 - `app/library/lib/src/components/internal/forge_action.dart` (M) — composição com `Focus`, `GestureDetector`, `MouseRegion`, `AnimatedContainer`, `Semantics` e ForgeTooltip.
 - `app/library/test/forge_button_test.dart` (M) — verifica tokens, comportamento e propriedade sem exigir MaterialApp.
 - `scripts/check-native-actions.mjs`, `scripts/test-native-actions.mjs` (C); `package.json` (M).
@@ -42,3 +42,15 @@ A fonte de verdade visual continua sendo o Design System Web do ForgeUI, seus to
 - [ ] `dart format`, `flutter analyze`, `flutter test` e teste de integração com ambos Button/IconButton.
 - [ ] Comparar estados visualmente com Web nos 4 temas, tamanho xs–xl, densidade e fonte escalada; validar leitores de tela, foco, teclado e interação Android/iOS.
 - [ ] Preservar SCs PENDING até testes nativos e evidência de paridade visual. Não afirmar independência global.
+
+## Regressão de contratos detectada pelo `flutter analyze` — 19/11/2026
+
+O checkout local reportou `ForgeNativeActionRecipe` sem os getters `animationDuration`, `tapTargetSize`, `backgroundColor` e `side`, além da atribuição indevida de `ForgeAppearance?` a `ForgeAppearance`. O Drive já publica as APIs canônicas `duration`, `height`, `background`, `border`/`borderWidth`, `decoration(...)`; a causa provável é mistura de revisões locais, não uma exigência de adicionar aliases de estilo. **Não inventar novas propriedades apenas para silenciar o analisador.**
+
+- [x] Conferir uso da receita em `ForgeAction` e `ForgeSelect` no Drive, garantindo resolução não nula `resolveForgeAppearance`.
+- [x] Adicionar teste estático de correspondência entre *declarações* da receita e *acessos* do consumidor, inclusive `forgeActionStyle`, com 10 regressões negativas.
+- [x] Adicionar preflight a `scripts/build-flutter-preview.mjs`, antes dos comandos Flutter, para rejeitar checkout incoerente.
+- [ ] Reconciliar/revisar o checkout Windows com os arquivos atuais no Drive; não sobrescrever alterações locais sem revisão.
+- [ ] Executar `flutter analyze` e `flutter test` reais em biblioteca e Showcase, e reconstruir o `main.dart.js`. Sem isso o recorte segue `PENDING`.
+
+Evidências: `docs/migration/FORGEUI-NATIVE-ACTION-API-DRIFT-2026-11-19.md` e `scripts/check-native-actions.mjs`/`scripts/test-native-actions.mjs`.

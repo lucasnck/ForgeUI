@@ -1,5 +1,18 @@
 # Forge UI — plano de criação e extração
 
+## Checkpoint — 19/11/2026 — correção de drift da API ForgeAction (analisador Flutter)
+
+`flutter analyze` no checkout Windows acusou acessos à `ForgeNativeActionRecipe` usando nomes antigos (`animationDuration`, `tapTargetSize`, `backgroundColor`, `side`) e tipo anulável de aparência. **No Drive, os fontes atuais `forge_action.dart`/`forge_native_action_recipe.dart` já estão alinhados** (`duration`, `height`, `background`, `decoration`, `resolveForgeAppearance`); isso sugere checkout local com revisões misturadas, ainda não inspecionado diretamente. Não acrescentar aliases falsos.
+
+Atualizado `check-native-actions.mjs` para checar consumo contra propriedades reais da receita e `forge_control_style.dart` sem esperar `ButtonStyle`; `test-native-actions.mjs` passou com 10 regressões negativas. Adicionado preflight no `build-flutter-preview.mjs`. Receita tipográfica especifica índice `int` explicitamente. Pacote de reconciliação criado, com instrução de preservar diferenças locais. **PENDENTE:** revalidar `flutter analyze/test`, comparar outros erros do log completo e compilar/publicar Showcase; execução Flutter não disponível aqui. Relatório `docs/migration/FORGEUI-NATIVE-ACTION-API-DRIFT-2026-11-19.md`. Sem Git push ou mudanças em consumidores.
+
+
+## Checkpoint — 19/11/2026 — shell do Showcase Flutter sem MaterialApp/Roboto
+
+O `app/showcase_flutter/lib/main.dart` passou a usar `WidgetsApp`, `PageRouteBuilder`, `ForgeThemeScope`, `DefaultTextStyle` e cores da paleta Forge, sem `MaterialApp`/`Scaffold` nem forçar Roboto. Um adaptador temporário `legacy_material_bridge.dart` fornece serviços Material apenas para previews de Input/Select/pickers ainda legados, sem reintroduzir MaterialApp; isso evita quebra funcional enquanto a migração avança. O `pubspec.yaml` do Showcase deixou de registrar Roboto; o teste `preview_test.dart` agora inspeciona a árvore Forge e as trocas de quatro temas, sem esperar `OutlinedButton` Material. O novo gate `npm run test:native-showcase-shell` compara a ordem de fontes declarada com `--font-family-brand` da Web e rejeita regressões; Node PASS + seis mutações negativas rejeitadas. TECH: `docs/sc/app/tech-native-showcase-shell.sc.md`. Relatório: `docs/migration/FORGEUI-NATIVE-SHOWCASE-SHELL-2026-11-19.md`.
+
+**PENDENTE:** a Web prioriza DM Sans, porém essa família não está incluída nos assets Flutter e, sem registro licenciado/instalação, o shell poderá usar fallback. O Flutter SDK, a compilação/análise/testes de widgets, a comparação visual nos quatro temas e o rebuild/manifesto do Showcase NÃO foram executados. Os arquivos compilados em `showcase/portal/public/flutter` permanecem antigos. O shell corrigido não equivale à independência de todos os componentes; adapters Material ainda existem na biblioteca. Nada foi alterado em Git ou consumidores.
+
 ## Checkpoint de implementação — 18/11/2026 — Slider Flutter nativo (Wave 10)
 
 Seguindo `sc-author → sc-implementer`, a SC do Slider e a TECH nativa foram

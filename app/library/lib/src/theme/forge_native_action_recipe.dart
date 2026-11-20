@@ -110,7 +110,7 @@ ForgeNativeActionRecipe forgeNativeActionRecipe(
       fontSize: p.number('--font-size-${size.name}'),
       height: p.lineHeightNormal,
       fontWeight: FontWeight.values[
-        (p.fontWeightSemibold ~/ 100 - 1).clamp(0, 8)
+        (p.fontWeightSemibold ~/ 100 - 1).clamp(0, 8).toInt()
       ],
       color: foreground,
     ),

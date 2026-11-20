@@ -292,204 +292,204 @@ const ForgeRadioGroupItem(value:'third',label:'Terceiro')])),
 ForgeChoiceGroupFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
 }
 
-const snippetContracts8=<String,Map<String,Map<String,Object?>>>{"tabs":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies8=<String,String>{"tabs":"tabs"};
-class InteractionSnippet8 extends StatefulWidget {final String slug='tabs';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Seções", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet8({super.key});@override State<InteractionSnippet8> createState()=>_InteractionSnippetState8();}
-class _InteractionSnippetState8 extends State<InteractionSnippet8>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts8[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies8[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet8 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
 
-const snippetContracts9=<String,Map<String,Map<String,Object?>>>{"tabs-header":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies9=<String,String>{"tabs-header":"tabs"};
-class InteractionSnippet9 extends StatefulWidget {final String slug='tabs-header';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Seções", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet9({super.key});@override State<InteractionSnippet9> createState()=>_InteractionSnippetState9();}
-class _InteractionSnippetState9 extends State<InteractionSnippet9>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts9[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies9[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet9 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
+Widget buildTabs() => ForgeTabs(
+  label: "Seções",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 
-const snippetContracts10=<String,Map<String,Map<String,Object?>>>{"tabs-body":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies10=<String,String>{"tabs-body":"tabs"};
-class InteractionSnippet10 extends StatefulWidget {final String slug='tabs-body';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Seções", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet10({super.key});@override State<InteractionSnippet10> createState()=>_InteractionSnippetState10();}
-class _InteractionSnippetState10 extends State<InteractionSnippet10>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts10[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies10[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet10 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
+Widget buildTabs() => ForgeTabs(
+  label: "Seções",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 
-const snippetContracts11=<String,Map<String,Map<String,Object?>>>{"tabs-footer":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies11=<String,String>{"tabs-footer":"tabs"};
-class InteractionSnippet11 extends StatefulWidget {final String slug='tabs-footer';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Seções", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet11({super.key});@override State<InteractionSnippet11> createState()=>_InteractionSnippetState11();}
-class _InteractionSnippetState11 extends State<InteractionSnippet11>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts11[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies11[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet11 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
+Widget buildTabs() => ForgeTabs(
+  label: "Seções",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 
-const snippetContracts12=<String,Map<String,Map<String,Object?>>>{"tab":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies12=<String,String>{"tab":"tabs"};
-class InteractionSnippet12 extends StatefulWidget {final String slug='tab';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Seções", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet12({super.key});@override State<InteractionSnippet12> createState()=>_InteractionSnippetState12();}
-class _InteractionSnippetState12 extends State<InteractionSnippet12>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts12[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies12[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet12 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
+Widget buildTabs() => ForgeTabs(
+  label: "Seções",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 
-const snippetContracts13=<String,Map<String,Map<String,Object?>>>{"tab-panel":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies13=<String,String>{"tab-panel":"tabs"};
-class InteractionSnippet13 extends StatefulWidget {final String slug='tab-panel';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Seções", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet13({super.key});@override State<InteractionSnippet13> createState()=>_InteractionSnippetState13();}
-class _InteractionSnippetState13 extends State<InteractionSnippet13>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts13[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies13[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet13 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
+Widget buildTabs() => ForgeTabs(
+  label: "Seções",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 
+Widget buildTabs() => ForgeTabs(
+  label: "Seções",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 const snippetContracts14=<String,Map<String,Map<String,Object?>>>{"toolbar":{"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"label":{"kind":"text","defaultValue":"Ações","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"orientation":{"kind":"select","options":["horizontal","vertical"],"defaultValue":"horizontal"},"disableSecond":{"kind":"boolean","defaultValue":false}}};
 const snippetFamilies14=<String,String>{"toolbar":"toolbar"};
 class InteractionSnippet14 extends StatefulWidget {final String slug='toolbar';final Map<String,Object?> properties=const {"firstLabel": "Primeiro", "secondLabel": "Segundo", "label": "Ações", "direction": "ltr", "orientation": "horizontal", "disableSecond": false};const InteractionSnippet14({super.key});@override State<InteractionSnippet14> createState()=>_InteractionSnippetState14();}
@@ -878,39 +878,39 @@ ForgeAccordionItem(value:'first',children:[ForgeAccordionHeader(child:Text(text(
 ForgeAccordionItem(value:'second',disabled:flag('disableSecond'),children:[ForgeAccordionHeader(child:Text(text('secondLabel'))),const ForgeAccordionBody(child:Text('Conteúdo secundário')),ForgeAccordionFooter(child:Text(text('footerText')))])]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
 }
 
-const snippetContracts26=<String,Map<String,Map<String,Object?>>>{"tabs":{"acceptChanges":{"kind":"boolean","defaultValue":true},"firstLabel":{"kind":"text","defaultValue":"Primeiro","nonblank":true},"secondLabel":{"kind":"text","defaultValue":"Segundo","nonblank":true},"bodyText":{"kind":"text","defaultValue":"Conteúdo preservado","nonblank":true},"footerText":{"kind":"text","defaultValue":"Informações complementares","nonblank":true},"label":{"kind":"text","defaultValue":"Seções","nonblank":true},"direction":{"kind":"select","options":["ltr","rtl"],"defaultValue":"ltr"},"animated":{"kind":"boolean","defaultValue":true},"disableSecond":{"kind":"boolean","defaultValue":false},"activeTab":{"kind":"select","options":["first","second"],"defaultValue":"first"}}};
-const snippetFamilies26=<String,String>{"tabs":"tabs"};
-class InteractionSnippet26 extends StatefulWidget {final String slug='tabs';final Map<String,Object?> properties=const {"acceptChanges": true, "firstLabel": "Primeiro", "secondLabel": "Segundo", "bodyText": "Conteúdo preservado", "footerText": "Informações complementares", "label": "Aspas ' barra \\ dólar \$ e\nnova linha", "direction": "ltr", "animated": true, "disableSecond": false, "activeTab": "first"};const InteractionSnippet26({super.key});@override State<InteractionSnippet26> createState()=>_InteractionSnippetState26();}
-class _InteractionSnippetState26 extends State<InteractionSnippet26>{
-String current='first',feedback='';List<String> values=[];bool opened=false;int events=0;
-Map<String,Map<String,Object?>> get schema=>snippetContracts26[widget.slug]!;
-Object? prop(String key)=>widget.properties[key]??schema[key]?['defaultValue'];
-String text(String key)=>(prop(key) as String?)??'';
-bool flag(String key)=>prop(key)==true;
-T enumValue<T extends Enum>(String key,List<T> items,T fallback)=>items.where((v)=>v.name==prop(key)).firstOrNull??fallback;
-String get family=>snippetFamilies26[widget.slug]!;
-List<String> decode(String v)=>switch(v){'first'=>['first'],'second'=>['second'],'both'=>['first','second'],_=>[]};
-void sync(){
- current=family=='tabs'?text('activeTab'):text('selection')=='none'?'':text('selection');
- values=decode(text(family=='accordion'?'expanded':'selection'));opened=flag('open');
-}
-void record(String value)=>setState((){events++;feedback='Solicitado: $value';});
-void requestScalar(String next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))current=next;});
-void requestValues(List<String> next)=>setState((){events++;feedback='Solicitado: '+next.join(', ');if(flag('acceptChanges'))values=List.of(next);});
-void requestOpen(bool next)=>setState((){events++;feedback='Solicitado: $next';if(flag('acceptChanges'))opened=next;});
-@override void initState(){super.initState();sync();}
-@override void didUpdateWidget(covariant InteractionSnippet26 old){
- super.didUpdateWidget(old);
- if(old.slug!=widget.slug){events=0;feedback='';sync();return;}
- if(['activeTab','selection','expanded','open'].any((key)=>old.properties[key]!=widget.properties[key]))sync();
- if(family=='accordion'&&!flag('multiple'))values=values.take(1).toList();
-}
-@override Widget build(BuildContext context)=>Column(crossAxisAlignment:CrossAxisAlignment.start,children:[ForgeTabs(label:text('label'),value:current,onValueChange:requestScalar,direction:enumValue('direction',ForgeNavigationDirection.values,ForgeNavigationDirection.ltr),animated:flag('animated'),children:[
-ForgeTabsHeader(tabs:[ForgeTab(value:'first',child:Text(text('firstLabel'))),ForgeTab(value:'second',disabled:flag('disableSecond'),child:Text(text('secondLabel')))]),
-ForgeTabsBody(panels:[ForgeTabPanel(value:'first',child:Column(children:[Text(text('bodyText')),const ForgeInput(semanticLabel:'Campo preservado')])),const ForgeTabPanel(value:'second',child:Text('Painel secundário'))]),
-ForgeTabsFooter(child:Text(text('footerText')))]),Text('Alterações: $events'),if(feedback.isNotEmpty)Text(feedback)]);
-}
 
+Widget buildTabs() => ForgeTabs(
+  label: "Aspas ' barra \\ dólar \$ e\nnova linha",
+  defaultValue: "first",
+  direction: ForgeNavigationDirection.ltr,
+  animated: true,
+  onValueChange: (value) {
+    // React to the selection in your application.
+  },
+  children: [
+    ForgeTabsHeader(tabs: [
+      ForgeTab(
+        value: 'first',
+        child: Text("Primeiro"),
+      ),
+      ForgeTab(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsBody(panels: [
+      ForgeTabPanel(
+        value: 'first',
+        child: Text("Conteúdo preservado"),
+      ),
+      ForgeTabPanel(
+        value: 'second',
+        child: Text("Segundo"),
+      ),
+    ]),
+    ForgeTabsFooter(child: Text("Informações complementares")),
+  ],
+);
 Widget host(Widget child)=>MaterialApp(theme:ForgeThemeData.light(),home:Scaffold(body:SingleChildScrollView(child:SizedBox(width:320,child:child))));
 void main(){
 testWidgets('copyable interaction choice-group 0',(t)async{await t.pumpWidget(host(const InteractionSnippet0()));await t.pump(const Duration(milliseconds:150));expect(t.takeException(),isNull);await t.pumpWidget(const SizedBox());await t.pump();});
